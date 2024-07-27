@@ -8,7 +8,7 @@ namespace jod
     EM_BOOL onopen(int eventType, const EmscriptenWebSocketOpenEvent *websocketEvent, void *userData)
     {
         _<WebSocketClient>().m_webSocketEvent = std::shared_ptr<const EmscriptenWebSocketOpenEvent>(websocketEvent);
-        puts("onopen");
+        std::cout << "Opening new connection.\n";
 
         EMSCRIPTEN_RESULT result;
         result = emscripten_websocket_send_utf8_text(websocketEvent->socket, "hoge");
@@ -21,8 +21,7 @@ namespace jod
 
     EM_BOOL onerror(int eventType, const EmscriptenWebSocketErrorEvent *websocketEvent, void *userData)
     {
-        puts("onerror");
-
+        std::cout << "Web socket error.\n";
         return EM_TRUE;
     }
 
@@ -97,27 +96,7 @@ namespace jod
             {
                 _<Canvas>().PresentNewCanvas();
             }
-
-            // _<WebSocketClient>().m_recievedData.push_back(i);
-
-            // if (_<WebSocketClient>().m_recievedData.size() == 6)
-            // {
-            //     std::cout << "Recieved_full packet\n";
-
-            //     auto msg_idx = _<WebSocketClient>().m_recievedData[0];
-            //     auto imageNameHash = _<WebSocketClient>().m_recievedData[1];
-            //     auto x = _<WebSocketClient>().m_recievedData[2] / 10000.0f;
-            //     auto y = _<WebSocketClient>().m_recievedData[3] / 10000.0f;
-            //     auto w = _<WebSocketClient>().m_recievedData[4] / 10000.0f;
-            //     auto h = _<WebSocketClient>().m_recievedData[5] / 10000.0f;
-
-            //     std::cout << "Draw img: " << imageNameHash << ", " << x << "," << y << "," << w << "," << h
-            //               << std::endl;
-
-            //     _<WebSocketClient>().m_recievedData.clear();
-            // }
         }
-
         return EM_TRUE;
     }
 

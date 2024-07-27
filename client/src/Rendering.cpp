@@ -37,6 +37,7 @@ namespace jod
                                   SizeF textureFillAmount, ColorF color)
     {
         auto GLRect = dest.ToGLRectF();
+
         Vertex2F verts[RendererBase::NumVerticesInRectangle()];
         verts[0].pos = {GLRect.x, GLRect.y - GLRect.h};
         verts[1].pos = {GLRect.x, GLRect.y};
@@ -47,10 +48,14 @@ namespace jod
         verts[2].uv = {1.0f / textureFillAmount.w, 0.0f};
         verts[3].uv = {1.0f / textureFillAmount.w, 1.0f / textureFillAmount.h};
         glDisable(GL_DEPTH_TEST);
+        
         auto imageID = _<ImageBank>().GetImage(imageNameHash);
+
         if (imageID == -1)
             return;
+
         glBindTexture(GL_TEXTURE_2D, imageID);
+
         if (repeatTexture)
         {
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -67,6 +72,7 @@ namespace jod
         std::vector<float> positions;
         std::vector<float> colors;
         std::vector<float> uvs;
+
         for (auto &vert : verts)
         {
             positions.push_back(vert.pos.x);

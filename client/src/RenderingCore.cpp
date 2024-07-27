@@ -9,7 +9,9 @@ namespace jod
         GLuint vertexShader = 0;
         GLuint fragmentShader = 0;
         m_programID = glCreateProgram();
+
         auto success = true;
+
         {
             auto vertexShaderRes = CompileShader(vertexShaderSource, &vertexShader, GL_VERTEX_SHADER);
 
@@ -45,6 +47,7 @@ namespace jod
                 success = false;
             }
         }
+        
         glDeleteShader(vertexShader);
         glDeleteShader(fragmentShader);
 

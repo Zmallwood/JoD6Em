@@ -12,35 +12,32 @@ namespace jod
         _<ClientEngine>().Run();
     }
 
-    void loopFunction()
+    namespace
     {
-        if (!_<ClientEngine>().m_running)
-            emscripten_cancel_main_loop();
-
-        _<ClientEngine>().PollEvents();
-        _<Graphics>().ClearCanvas();
-        _<WebSocketClient>().SendMessage("Tick");
-        _<Canvas>().DrawCanvas();
-        _<Graphics>().PresentCanvas();
+        void GameLoopFunction()
+        {
+            if (!_<ClientEngine>().m_running)
+                emscripten_cancel_main_loop();
+            _<ClientEngine>().PollEvents();
+            _<Graphics>().ClearCanvas();
+            _<WebSocketClient>().SendMessage("Tick");
+            _<Canvas>().DrawCanvas();
+            _<Graphics>().PresentCanvas();
+        }
     }
 
     void ClientEngine::Run()
     {
         _<WebSocketClient>().Start();
-
         SDL_Init(SDL_INIT_EVERYTHING);
-
         _<Graphics>();
-
-        int simulate_infinite_loop = 1;
-
-        emscripten_set_main_loop(loopFunction, 0, simulate_infinite_loop);
+        auto simulateInfiniteLoop = 1;
+        emscripten_set_main_loop(GameLoopFunction, 0, simulateInfiniteLoop);
     }
 
     void ClientEngine::PollEvents()
     {
         SDL_Event event;
-
         while (SDL_PollEvent(&event))
         {
             switch (event.type)

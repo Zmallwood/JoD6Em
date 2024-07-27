@@ -10,8 +10,7 @@ namespace jod
         void Start();
         void SendMessage(std::string message);
 
-        std::shared_ptr<const EmscriptenWebSocketOpenEvent> m_webSocketEvent = nullptr;
-        std::vector<int> m_recievedData;
+        std::shared_ptr<const EmscriptenWebSocketOpenEvent> m_webSocketEvent;
 
       private:
         const std::string k_host = "localhost";
