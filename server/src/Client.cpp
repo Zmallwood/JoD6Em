@@ -1,10 +1,13 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 
 #include "Client.h"
+
 #include "Net.h"
 
 namespace beast = boost::beast;
+
 namespace http = beast::http;
+
 namespace websocket = beast::websocket;
 
 using tcp = boost::asio::ip::tcp;
@@ -26,11 +29,14 @@ namespace jod
             /* Set a decorator to change the Server of the handshake. */
             ws.set_option(websocket::stream_base::decorator(
                 [](websocket::response_type &res)
-                { res.set(http::field::server, std::string(BOOST_BEAST_VERSION_STRING) + " websocket-server-sync"); }));
+                {
+                    res.set(http::field::server,
+                            std::string(BOOST_BEAST_VERSION_STRING) + " websocket-server-sync");
+                }));
 
             /* Accept the websocket handshake. */
             ws.accept();
-            
+
             ws.text(false);
 
             while (true)
@@ -41,19 +47,24 @@ namespace jod
                 /* Read a message. */
                 ws.read(buffer);
 
-                auto message = std::string(buffer_cast<const char *>(buffer.data()), buffer.size());
+                const auto message = buffer_cast<int *>(buffer.data());
 
-                if (message == "Tick")
+                if (*message == MessageCodes::k_tick)
                 {
-                    SendImageDrawInstruction(ws, "DefaultSceneBackground", {0.0f, 0.0f, 1.0f, 1.0f});
+                    SendImageDrawInstruction(ws, "DefaultSceneBackground",
+                                             {0.0f, 0.0f, 1.0f, 1.0f});
                     SendImageDrawInstruction(ws, "JoDLogo", {0.3f, 0.3f, 0.4f, 0.2f});
                     SendPresentCanvasInstruction(ws);
+                }
+                else if (*message == MessageCodes::k_click)
+                {
+                    std::cout << "Click event\n";
                 }
             }
         }
         catch (beast::system_error const &se)
         {
-            /* This indicates that the session was closed. */ 
+            /* This indicates that the session was closed. */
             if (se.code() != websocket::error::closed)
                 std::cerr << "Error: " << se.code().message() << std::endl;
         }
@@ -63,7 +74,8 @@ namespace jod
         }
     }
 
-    void Client::SendImageDrawInstruction(websocket::stream<tcp::socket>& ws, std::string_view imageName, RectF dest)
+    void Client::SendImageDrawInstruction(websocket::stream<tcp::socket> &ws,
+                                          std::string_view imageName, RectF dest)
     {
         auto msg_code = MessageCodes::k_drawImageInstr;
 
@@ -86,7 +98,7 @@ namespace jod
         ws.write(boost::asio::buffer(data));
     }
 
-    void Client::SendPresentCanvasInstruction(websocket::stream<tcp::socket>& ws)
+    void Client::SendPresentCanvasInstruction(websocket::stream<tcp::socket> &ws)
     {
         auto msg_code_present = MessageCodes::k_applyBuffer;
 

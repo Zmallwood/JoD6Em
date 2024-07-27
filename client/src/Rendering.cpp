@@ -1,6 +1,7 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 
 #include "Rendering.h"
+
 #include "Assets.h"
 
 namespace jod

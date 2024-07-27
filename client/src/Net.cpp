@@ -1,7 +1,9 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 
 #include "Net.h"
+
 #include "Core.h"
+#include <emscripten/websocket.h>
 
 namespace jod
 {
@@ -48,10 +50,23 @@ namespace jod
 
     void WebSocketClient::SendMessage(std::string message)
     {
-        /* Send message and check success. */
-        if (auto result =
-                emscripten_websocket_send_utf8_text(m_webSocketEvent->socket, message.c_str()))
-            std::cout << "Failed to emscripten_websocket_send_utf8_text(): " << result;
+        if (message == "Tick")
+        {
+            int msg = MessageCodes::k_tick;
+            emscripten_websocket_send_binary(m_webSocketEvent->socket, &msg, sizeof(msg));
+        }
+        else if (message == "Click")
+        {
+            int msg = MessageCodes::k_click;
+            emscripten_websocket_send_binary(m_webSocketEvent->socket, &msg, sizeof(msg));
+        }
+        else
+        {
+            /* Send message and check success. */
+            if (auto result =
+                    emscripten_websocket_send_utf8_text(m_webSocketEvent->socket, message.c_str()))
+                std::cout << "Failed to emscripten_websocket_send_utf8_text(): " << result;
+        }
     }
 
     void NetMessageProcessor::ProcessMessage(unsigned char *bytes)

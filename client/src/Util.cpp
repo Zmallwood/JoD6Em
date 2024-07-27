@@ -1,6 +1,7 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 
 #include "Util.h"
+
 #include "Graphics.h"
 
 namespace jod

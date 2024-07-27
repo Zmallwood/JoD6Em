@@ -8,6 +8,8 @@ namespace jod
     {
         constexpr int k_drawImageInstr = 1;
         constexpr int k_applyBuffer = 2;
+        constexpr int k_tick = 3;
+        constexpr int k_click = 4;
     }
 
     namespace NetConstants

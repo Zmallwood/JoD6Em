@@ -1,12 +1,28 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 
 #include "Core.h"
+
 #include "Graphics.h"
+
 #include "Net.h"
+
 #include "Rendering.h"
 
 namespace jod
 {
+    namespace
+    {
+        void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
+
+        void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods);
+
+        void CharacterCallback(GLFWwindow *window, unsigned int codepoint);
+
+        EM_BOOL TouchStartCallback(int, EmscriptenTouchEvent const *, void *);
+
+        EM_BOOL TouchEndCallback(int, EmscriptenTouchEvent const *, void *);
+    }
+
     void RunNewClientInstance()
     {
         /* Access ClientEngine and run it. */
@@ -25,6 +41,8 @@ namespace jod
 
         /* Required by SDL2 before using it. */
         SDL_Init(SDL_INIT_EVERYTHING);
+
+        _<InputManager>();
 
         /* Touch Graphics to initialize it. */
         _<Graphics>();
@@ -51,6 +69,15 @@ namespace jod
             }
             }
         }
+    }
+
+    InputManager::InputManager()
+    {
+        glfwSetKeyCallback(_<Graphics>().m_window, KeyCallback);
+        glfwSetMouseButtonCallback(_<Graphics>().m_window, MouseButtonCallback);
+        glfwSetCharCallback(_<Graphics>().m_window, CharacterCallback);
+        emscripten_set_touchstart_callback("#canvas", nullptr, true, TouchStartCallback);
+        emscripten_set_touchend_callback("#canvas", nullptr, true, TouchEndCallback);
     }
 
     RenderInstructionsManager::RenderInstructionsManager()
@@ -109,6 +136,47 @@ namespace jod
 
             /* Present canvas to users web browser. */
             _<Graphics>().PresentCanvas();
+        }
+
+        void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
+        {
+            // if (action == GLFW_PRESS)
+            //     _<KeyboardInput>().OnKeyPress(key);
+            // else if (action == GLFW_RELEASE)
+            //     _<KeyboardInput>().OnKeyRelease(key);
+        }
+
+        void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
+        {
+            _<WebSocketClient>().SendMessage("Click");
+
+            // if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+            //     _<MouseInput>().LeftButton().OnPress();
+            // else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
+            //     _<MouseInput>().LeftButton().OnRelease();
+            // else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+            //     _<MouseInput>().RightButton().OnPress();
+            // else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE)
+            //     _<MouseInput>().RightButton().OnRelease();
+        }
+
+        void CharacterCallback(GLFWwindow *window, unsigned int codepoint)
+        {
+            // _<KeyboardInput>().AppendTextInput(std::string(1, (char)codepoint));
+        }
+
+        EM_BOOL TouchStartCallback(int, EmscriptenTouchEvent const *, void *)
+        {
+            // _<MouseInput>().LeftButton().OnPress();
+
+            return EM_FALSE;
+        }
+
+        EM_BOOL TouchEndCallback(int, EmscriptenTouchEvent const *, void *)
+        {
+            // _<MouseInput>().LeftButton().OnRelease();
+
+            return EM_FALSE;
         }
     }
 }
