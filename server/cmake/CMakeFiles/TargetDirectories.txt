@@ -1,3 +1,0 @@
-/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir
-/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/edit_cache.dir
-/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/rebuild_cache.dir
