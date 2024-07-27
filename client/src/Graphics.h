@@ -8,7 +8,9 @@ namespace jod
     {
       public:
         Graphics();
+
         void ClearCanvas();
+        
         void PresentCanvas();
 
         GLFWwindow *m_window = nullptr;
