@@ -7,116 +7,168 @@ namespace jod
 {
     namespace
     {
-        EM_BOOL onopen(int eventType, const EmscriptenWebSocketOpenEvent *websocketEvent, void *userData);
-        EM_BOOL onerror(int eventType, const EmscriptenWebSocketErrorEvent *websocketEvent, void *userData);
-        EM_BOOL onclose(int eventType, const EmscriptenWebSocketCloseEvent *websocketEvent, void *userData);
-        EM_BOOL onmessage(int eventType, const EmscriptenWebSocketMessageEvent *websocketEvent, void *userData);
+        EM_BOOL OnOpen(int eventType, const EmscriptenWebSocketOpenEvent *websocketEvent,
+                       void *userData);
+
+        EM_BOOL OnError(int eventType, const EmscriptenWebSocketErrorEvent *websocketEvent,
+                        void *userData);
+
+        EM_BOOL OnClose(int eventType, const EmscriptenWebSocketCloseEvent *websocketEvent,
+                        void *userData);
+
+        EM_BOOL OnMessage(int eventType, const EmscriptenWebSocketMessageEvent *websocketEvent,
+                          void *userData);
+
+        int ReadFourBytesAsInt(unsigned char *bytes);
+
+        float ReadFourBytesAsFloat(unsigned char *bytes);
     }
 
     void WebSocketClient::Start()
     {
+        /* Check support exists. */
         if (!emscripten_websocket_is_supported())
             return;
 
-        auto server_address = "ws://" + k_host + ":" + std::to_string(k_port);
+        /* Create address to connect to. */
+        auto serverAddress = "ws://" + k_host + ":" + std::to_string(k_port);
 
-        EmscriptenWebSocketCreateAttributes ws_attrs = {server_address.c_str(), NULL, EM_TRUE};
+        /* Create attributes. */
+        auto wsAttrs = EmscriptenWebSocketCreateAttributes{serverAddress.c_str(), NULL, EM_TRUE};
 
-        auto ws = emscripten_websocket_new(&ws_attrs);
-        emscripten_websocket_set_onopen_callback(ws, NULL, onopen);
-        emscripten_websocket_set_onerror_callback(ws, NULL, onerror);
-        emscripten_websocket_set_onclose_callback(ws, NULL, onclose);
-        emscripten_websocket_set_onmessage_callback(ws, NULL, onmessage);
+        /* Create the web socket and connect. */
+        auto ws = emscripten_websocket_new(&wsAttrs);
+
+        /* Setup callback functions. */
+        emscripten_websocket_set_onopen_callback(ws, NULL, OnOpen);
+        emscripten_websocket_set_onerror_callback(ws, NULL, OnError);
+        emscripten_websocket_set_onclose_callback(ws, NULL, OnClose);
+        emscripten_websocket_set_onmessage_callback(ws, NULL, OnMessage);
     }
 
     void WebSocketClient::SendMessage(std::string message)
     {
-        if (auto result = emscripten_websocket_send_utf8_text(m_webSocketEvent->socket, message.c_str()))
+        /* Send message and check success. */
+        if (auto result =
+                emscripten_websocket_send_utf8_text(m_webSocketEvent->socket, message.c_str()))
             std::cout << "Failed to emscripten_websocket_send_utf8_text(): " << result;
+    }
+
+    void NetMessageProcessor::ProcessMessage(unsigned char *bytes)
+    {
+        /* The first bytes contains the message code. */
+        auto messageCode = ReadFourBytesAsInt(bytes);
+
+        /* Perform corresponding action. */
+        switch (messageCode)
+        {
+        case MessageCodes::k_drawImageInstr:
+        {
+            /* Next 4 bytes contains the image name hash code. */
+            auto imageNameHash = ReadFourBytesAsInt(bytes + 4);
+
+            /* Next 4 bytes contains the x coordinate. */
+            auto x = ReadFourBytesAsFloat(bytes + 8);
+
+            /* Next 4 bytes contains the y coordinate. */
+            auto y = ReadFourBytesAsFloat(bytes + 12);
+
+            /* Next 4 bytes contains the width. */
+            auto w = ReadFourBytesAsFloat(bytes + 16);
+
+            /* Next 4 bytes contains the height. */
+            auto h = ReadFourBytesAsFloat(bytes + 20);
+
+            /* Add the complete instruction. */
+            _<RenderInstructionsManager>().AddImageDrawInstruction(imageNameHash, {x, y, w, h});
+
+            break;
+        }
+        case MessageCodes::k_applyBuffer:
+        {
+            /* Apply the buffered render instructions. */
+            _<RenderInstructionsManager>().ApplyBuffer();
+
+            break;
+        }
+        }
     }
 
     namespace
     {
-        EM_BOOL onopen(int eventType, const EmscriptenWebSocketOpenEvent *websocketEvent, void *userData)
+        EM_BOOL OnOpen(int eventType, const EmscriptenWebSocketOpenEvent *websocketEvent,
+                       void *userData)
         {
-            _<WebSocketClient>().m_webSocketEvent = std::shared_ptr<const EmscriptenWebSocketOpenEvent>(websocketEvent);
+            /* Save web socket event to WebSocketClient so it can be used from that object by its
+             * own. */
+            _<WebSocketClient>().m_webSocketEvent =
+                std::shared_ptr<const EmscriptenWebSocketOpenEvent>(websocketEvent);
 
             std::cout << "Opening new connection.\n";
 
-            if (auto result = emscripten_websocket_send_utf8_text(websocketEvent->socket, "Initialize connection"))
+            /* Send initial message and check result. */
+            if (auto result = emscripten_websocket_send_utf8_text(websocketEvent->socket,
+                                                                  "Initialize connection"))
                 std::cout << "Failed to send init message to server: " << result << std::endl;
 
             return EM_TRUE;
         }
 
-        EM_BOOL onerror(int eventType, const EmscriptenWebSocketErrorEvent *websocketEvent, void *userData)
+        EM_BOOL OnError(int eventType, const EmscriptenWebSocketErrorEvent *websocketEvent,
+                        void *userData)
         {
+            /* Notify on web socket errors. */
             std::cout << "Web socket error.\n";
 
             return EM_TRUE;
         }
 
-        EM_BOOL onclose(int eventType, const EmscriptenWebSocketCloseEvent *websocketEvent, void *userData)
+        EM_BOOL OnClose(int eventType, const EmscriptenWebSocketCloseEvent *websocketEvent,
+                        void *userData)
         {
+            /* Notify on closing web socket connection. */
             std::cout << "Closing web socket connection.\n";
 
             return EM_TRUE;
         }
 
-        EM_BOOL onmessage(int eventType, const EmscriptenWebSocketMessageEvent *websocketEvent, void *userData)
+        EM_BOOL OnMessage(int eventType, const EmscriptenWebSocketMessageEvent *websocketEvent,
+                          void *userData)
         {
-            auto b0 = (int)websocketEvent->data[0];
-            auto b1 = (int)websocketEvent->data[1];
-            auto b2 = (int)websocketEvent->data[2];
-            auto b3 = (int)websocketEvent->data[3];
-
-            auto i = (b3 << 3 * 8) + (b2 << 2 * 8) + (b1 << 8) + b0;
-
-            if (i == MessageCodes::k_drawImageInstr)
-            {
-                auto b4 = (int)websocketEvent->data[4];
-                auto b5 = (int)websocketEvent->data[5];
-                auto b6 = (int)websocketEvent->data[6];
-                auto b7 = (int)websocketEvent->data[7];
-
-                auto imageNameHash = (b7 << 3 * 8) + (b6 << 2 * 8) + (b5 << 8) + b4;
-
-                auto b8 = (int)websocketEvent->data[8];
-                auto b9 = (int)websocketEvent->data[9];
-                auto b10 = (int)websocketEvent->data[10];
-                auto b11 = (int)websocketEvent->data[11];
-
-                auto x = ((b11 << 3 * 8) + (b10 << 2 * 8) + (b9 << 8) + b8) / 10000.0f;
-
-                auto b12 = (int)websocketEvent->data[12];
-                auto b13 = (int)websocketEvent->data[13];
-                auto b14 = (int)websocketEvent->data[14];
-                auto b15 = (int)websocketEvent->data[15];
-
-                auto y = ((b15 << 3 * 8) + (b14 << 2 * 8) + (b13 << 8) + b12) / 10000.0f;
-
-                auto b16 = (int)websocketEvent->data[16];
-                auto b17 = (int)websocketEvent->data[17];
-                auto b18 = (int)websocketEvent->data[18];
-                auto b19 = (int)websocketEvent->data[19];
-
-                auto w = ((b19 << 3 * 8) + (b18 << 2 * 8) + (b17 << 8) + b16) / 10000.0f;
-
-                auto b20 = (int)websocketEvent->data[20];
-                auto b21 = (int)websocketEvent->data[21];
-                auto b22 = (int)websocketEvent->data[22];
-                auto b23 = (int)websocketEvent->data[23];
-
-                auto h = ((b23 << 3 * 8) + (b22 << 2 * 8) + (b21 << 8) + b20) / 10000.0f;
-
-                _<Canvas>().AddImageDrawInstruction(imageNameHash, {x, y, w, h});
-            }
-            else if (i == MessageCodes::k_presentCanvas)
-            {
-                _<Canvas>().PresentNewCanvas();
-            }
+            /* Process the raw message data in bytes. */
+            _<NetMessageProcessor>().ProcessMessage(websocketEvent->data);
 
             return EM_TRUE;
+        }
+
+        int ReadFourBytesAsInt(unsigned char *bytes)
+        {
+            /* Pick out the separate bytes. */
+            auto b0 = (int)bytes[0];
+            auto b1 = (int)bytes[1];
+            auto b2 = (int)bytes[2];
+            auto b3 = (int)bytes[3];
+
+            /* Shift the bytes to form an integer. */
+            auto result = (b3 << 3 * 8) + (b2 << 2 * 8) + (b1 << 8) + b0;
+
+            return result;
+        }
+
+        float ReadFourBytesAsFloat(unsigned char *bytes)
+        {
+            /* Pick out the separate bytes. */
+            auto b0 = (int)bytes[0];
+            auto b1 = (int)bytes[1];
+            auto b2 = (int)bytes[2];
+            auto b3 = (int)bytes[3];
+
+            /* Shift the bytes to form an integer, then divide it with 10000.0 to get a float with 4
+             * decimals precision. */
+            auto result =
+                ((b3 << 3 * 8) + (b2 << 2 * 8) + (b1 << 8) + b0) / NetConstants::k_floatPrecision;
+
+            return result;
         }
     }
 }

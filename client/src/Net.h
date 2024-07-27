@@ -7,7 +7,12 @@ namespace jod
     namespace MessageCodes
     {
         constexpr int k_drawImageInstr = 1;
-        constexpr int k_presentCanvas = 2;
+        constexpr int k_applyBuffer = 2;
+    }
+
+    namespace NetConstants
+    {
+        constexpr float k_floatPrecision = 10000.0f;
     }
 
     class WebSocketClient
@@ -21,5 +26,11 @@ namespace jod
       private:
         const std::string k_host = "localhost";
         const int k_port = 8765;
+    };
+
+    class NetMessageProcessor
+    {
+      public:
+        void ProcessMessage(unsigned char *bytes);
     };
 }

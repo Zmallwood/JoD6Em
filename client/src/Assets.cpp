@@ -7,6 +7,7 @@ namespace jod
     namespace
     {
         GLuint LoadSingleImage(std::string_view absFilePath);
+        
         SDL_Surface *LoadImageData(const char *filename);
     }
 

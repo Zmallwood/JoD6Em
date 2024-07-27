@@ -88,7 +88,7 @@ namespace jod
 
     void Client::SendPresentCanvasInstruction(websocket::stream<tcp::socket>& ws)
     {
-        auto msg_code_present = MessageCodes::k_presentCanvas;
+        auto msg_code_present = MessageCodes::k_applyBuffer;
 
         ws.write(boost::asio::buffer(&msg_code_present, sizeof(msg_code_present)));
     }

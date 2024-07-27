@@ -53,14 +53,14 @@ namespace jod
         }
     }
 
-    Canvas::Canvas()
+    RenderInstructionsManager::RenderInstructionsManager()
     {
         /* Create a sufficient amount of RIDs for drawing images and game start. */
         for (auto i = 0; i < k_maxNumDrawInstructions; i++)
             m_rids.push_back(_<ImageRenderer>().NewImage());
     }
 
-    void Canvas::AddImageDrawInstruction(int imageNameHash, RectF dest)
+    void RenderInstructionsManager::AddImageDrawInstruction(int imageNameHash, RectF dest)
     {
         /* Create a new image draw instruction and save it. */
         auto newInstruction = ImageDrawInstruction{m_rids.at(m_imageDrawInstructionsBuffer.size()),
@@ -68,7 +68,7 @@ namespace jod
         m_imageDrawInstructionsBuffer.push_back(newInstruction);
     }
 
-    void Canvas::PresentNewCanvas()
+    void RenderInstructionsManager::ApplyBuffer()
     {
         /* Replace the current instruction group with the new one. */
         m_imageDrawInstructions = m_imageDrawInstructionsBuffer;
@@ -78,7 +78,7 @@ namespace jod
         m_imageDrawInstructionsBuffer.clear();
     }
 
-    void Canvas::DrawCanvas()
+    void RenderInstructionsManager::ExecuteInstructions()
     {
         /* Execute all drawing instructions that have been added. */
         for (auto &instr : m_imageDrawInstructions)
@@ -103,7 +103,7 @@ namespace jod
             _<WebSocketClient>().SendMessage("Tick");
 
             /* Draw canvas in its current state (current set of drawing instructions). */
-            _<Canvas>().DrawCanvas();
+            _<RenderInstructionsManager>().ExecuteInstructions();
 
             /* Present canvas to users web browser. */
             _<Graphics>().PresentCanvas();

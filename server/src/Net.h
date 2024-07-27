@@ -7,7 +7,7 @@ namespace jod
     namespace MessageCodes
     {
         constexpr int k_drawImageInstr = 1;
-        constexpr int k_presentCanvas = 2;
+        constexpr int k_applyBuffer = 2;
     }
 
     class Client;

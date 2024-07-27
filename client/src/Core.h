@@ -66,14 +66,14 @@ namespace jod
      * @brief Holds latest set of rendering instructions and executes them.
      *
      */
-    class Canvas
+    class RenderInstructionsManager
     {
       public:
         /**
-         * @brief Construct a new Canvas object.
+         * @brief Construct a new RenderInstructionsManager object.
          *
          */
-        Canvas();
+        RenderInstructionsManager();
 
         /**
          * @brief Add new image draw instruction to group, called on request from server.
@@ -87,14 +87,14 @@ namespace jod
          * @brief Copies the buffered render instructions to the active render instructions set.
          *
          */
-        void PresentNewCanvas();
+        void ApplyBuffer();
 
         /**
          * @brief Performs all rendering instructions by performing rendering instructions to the
          *        web browser.
          *
          */
-        void DrawCanvas();
+        void ExecuteInstructions();
 
       private:
         /**
