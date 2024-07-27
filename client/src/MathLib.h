@@ -33,6 +33,25 @@ namespace jod
     };
 
     /**
+     * @brief Size with int dimenstion.
+     *
+     */
+    struct Size
+    {
+        /**
+         * @brief Width in int type.
+         *
+         */
+        int w = 0;
+
+        /**
+         * @brief Height in int type.
+         *
+         */
+        int h = 0;
+    };
+
+    /**
      * @brief Size with float dimenstion.
      *
      */

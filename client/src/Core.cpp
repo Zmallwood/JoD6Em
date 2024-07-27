@@ -105,6 +105,8 @@ namespace jod
             /* Draw canvas in its current state (current set of drawing instructions). */
             _<RenderInstructionsManager>().ExecuteInstructions();
 
+            _<Cursor>().Render();
+
             /* Present canvas to users web browser. */
             _<Graphics>().PresentCanvas();
         }

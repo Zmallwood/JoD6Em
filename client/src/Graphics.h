@@ -43,4 +43,17 @@ namespace jod
          */
         const std::string k_title = "Journey of Dreams";
     };
+
+    class Cursor
+    {
+      public:
+        Cursor();
+
+        void Render() const;
+
+      private:
+        RID m_ridCursorImage;
+        const std::string k_cursorImageName = "CursorDefault";
+        const float k_cursorSize = 0.03f;
+    };
 }

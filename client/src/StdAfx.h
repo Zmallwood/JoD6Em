@@ -19,6 +19,6 @@
 #include <numeric>
 #include <string>
 
-#include "Util.h"
 #include "MathLib.h"
+#include "Util.h"
 // clang-format on

@@ -1,6 +1,7 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 
 #include "Util.h"
+#include "Graphics.h"
 
 namespace jod
 {
@@ -32,11 +33,64 @@ namespace jod
     int Hash(std::string_view text)
     {
         unsigned long hash = 5381;
-        
+
         for (size_t i = 0; i < text.size(); ++i)
             hash = 33 * hash + (unsigned char)text[i];
 
         return static_cast<int>(hash);
+    }
+
+    Size GetCanvasSize()
+    {
+        /* To store dimensions in pixels. */
+        int w;
+        int h;
+
+        /* Use GLFW to get canvas size. */
+        glfwGetWindowSize(_<Graphics>().m_window, &w, &h);
+
+        return {w, h};
+    }
+
+    PointF GetMousePosition()
+    {
+        /* Declare variables to store mouse coordinates in pixels. */
+        double xpos, ypos;
+
+        /* Use GLFW to get current mouse coordinates. */
+        glfwGetCursorPos(_<Graphics>().m_window, &xpos, &ypos);
+
+        /* Get canvas size. */
+        auto canvasSize = GetCanvasSize();
+
+        /* And use it to convert pixel coordinates to fractal coordinates. */
+        auto mousePosition = PointF{static_cast<float>(xpos) / canvasSize.w,
+                                    static_cast<float>(ypos) / canvasSize.h};
+
+        return mousePosition;
+    }
+
+    float GetAspectRatio()
+    {
+        /* Get canvas dimensions. */
+        auto canvasSize = GetCanvasSize();
+        
+        /* And calculate the ratio between them. */
+        auto aspectRatio = static_cast<float>(canvasSize.w) / canvasSize.h;
+
+        return aspectRatio;
+    }
+
+    float ConvertWidthToHeight(float width)
+    {
+        /* Use aspect ratio to convert from width to corresponding height. */
+        return width * GetAspectRatio();
+    }
+
+    float ConvertHeightToWidth(float height)
+    {
+        /* Use aspect ratio to convert from height to corresponding width. */
+        return height / GetAspectRatio();
     }
 
     std::string FileExtension(std::string_view absPath)

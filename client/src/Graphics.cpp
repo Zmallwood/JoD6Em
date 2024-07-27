@@ -1,6 +1,7 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 
 #include "Graphics.h"
+#include "Rendering.h"
 
 namespace jod
 {
@@ -52,5 +53,27 @@ namespace jod
 
         /* Do not return until previously issued commands have finished. */
         glFinish();
+    }
+
+    Cursor::Cursor()
+    {
+        glfwSetInputMode(_<Graphics>().m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+        m_ridCursorImage = _<ImageRenderer>().NewImage();
+    }
+
+    void Cursor::Render() const
+    {
+        auto mousePos = GetMousePosition();
+
+        auto cursorWidth = k_cursorSize;
+        auto cursorHeight = ConvertWidthToHeight(k_cursorSize);
+
+        auto cursorX = mousePos.x - cursorWidth / 2;
+        auto cursorY = mousePos.y - cursorHeight / 2;
+
+        auto cursorArea = RectF{cursorX, cursorY, cursorWidth, cursorHeight};
+        
+        _<ImageRenderer>().DrawImage(m_ridCursorImage, k_cursorImageName, cursorArea);
     }
 }
