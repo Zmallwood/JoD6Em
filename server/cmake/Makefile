@@ -144,6 +144,30 @@ cmake_pch.hxx.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/JoDServer.dir/build.make CMakeFiles/JoDServer.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
+home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.o: home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o
+.PHONY : home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.o
+
+# target to build an object file
+home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JoDServer.dir/build.make CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o
+.PHONY : home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o
+
+home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.i: home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.i
+.PHONY : home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.i
+
+# target to preprocess a source file
+home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JoDServer.dir/build.make CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.i
+.PHONY : home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.i
+
+home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.s: home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.s
+.PHONY : home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.s
+
+# target to generate assembly for a file
+home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JoDServer.dir/build.make CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.s
+.PHONY : home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.s
+
 home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.o: home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o
 .PHONY : home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.o
 
@@ -228,6 +252,9 @@ help:
 	@echo "... cmake_pch.hxx.gch"
 	@echo "... cmake_pch.hxx.i"
 	@echo "... cmake_pch.hxx.s"
+	@echo "... home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.o"
+	@echo "... home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.i"
+	@echo "... home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.s"
 	@echo "... home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.o"
 	@echo "... home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.i"
 	@echo "... home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.s"

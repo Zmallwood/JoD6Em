@@ -4,6 +4,12 @@
 
 namespace jod
 {
+    namespace MessageCodes
+    {
+        constexpr int k_drawImageInstr = 1;
+        constexpr int k_presentCanvas = 2;
+    }
+
     class WebSocketClient
     {
       public:

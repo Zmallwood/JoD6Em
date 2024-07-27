@@ -10,6 +10,8 @@ CXX_FLAGS = -flto=auto -std=gnu++20
 
 # PCH options: CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch_OPTIONS = -Winvalid-pch;-x;c++-header;-include;/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
 
+# PCH options: CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o_OPTIONS = -Winvalid-pch;-include;/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+
 # PCH options: CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o_OPTIONS = -Winvalid-pch;-include;/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp.o_OPTIONS = -Winvalid-pch;-include;/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx

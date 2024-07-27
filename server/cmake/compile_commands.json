@@ -7,6 +7,12 @@
 },
 {
   "directory": "/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake",
+  "command": "/usr/bin/c++  -I/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/../src -I/usr/include/python3.12 -flto=auto -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx -o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o -c /home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp",
+  "file": "/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp",
+  "output": "CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o"
+},
+{
+  "directory": "/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake",
   "command": "/usr/bin/c++  -I/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/../src -I/usr/include/python3.12 -flto=auto -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx -o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o -c /home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp",
   "file": "/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp",
   "output": "CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o"

@@ -84,12 +84,28 @@ CMakeFiles/JoDServer.dir/cmake_pch.hxx.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JoDServer.dir/cmake_pch.hxx.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -x c++-header -include /home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx -S /home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx.cxx -o CMakeFiles/JoDServer.dir/cmake_pch.hxx.s
 
+CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o: CMakeFiles/JoDServer.dir/flags.make
+CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o: /home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp
+CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o: CMakeFiles/JoDServer.dir/cmake_pch.hxx
+CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o: CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch
+CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o: CMakeFiles/JoDServer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx -MD -MT CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o -MF CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o.d -o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o -c /home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp
+
+CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx -E /home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp > CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.i
+
+CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx -S /home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp -o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.s
+
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o: CMakeFiles/JoDServer.dir/flags.make
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o: /home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o: CMakeFiles/JoDServer.dir/cmake_pch.hxx
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o: CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o: CMakeFiles/JoDServer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx -MD -MT CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o -MF CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o.d -o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o -c /home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp
 
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.i: cmake_force
@@ -105,7 +121,7 @@ CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp.o: CMakeFiles/JoDServer.dir/cmake_pch.hxx
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp.o: CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp.o: CMakeFiles/JoDServer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx -MD -MT CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp.o -MF CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp.o.d -o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp.o -c /home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp
 
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp.i: cmake_force
@@ -121,7 +137,7 @@ CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util.cpp.o: CMakeFiles/JoDServer.dir/cmake_pch.hxx
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util.cpp.o: CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util.cpp.o: CMakeFiles/JoDServer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx -MD -MT CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util.cpp.o -MF CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util.cpp.o.d -o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util.cpp.o -c /home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util.cpp
 
 CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util.cpp.i: cmake_force
@@ -134,6 +150,7 @@ CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util
 
 # Object files for target JoDServer
 JoDServer_OBJECTS = \
+"CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o" \
 "CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o" \
 "CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp.o" \
 "CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util.cpp.o"
@@ -142,12 +159,13 @@ JoDServer_OBJECTS = \
 JoDServer_EXTERNAL_OBJECTS =
 
 bin/JoDServer: CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch
+bin/JoDServer: CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Client.cpp.o
 bin/JoDServer: CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Main.cpp.o
 bin/JoDServer: CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Net.cpp.o
 bin/JoDServer: CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/repo/server/src/Util.cpp.o
 bin/JoDServer: CMakeFiles/JoDServer.dir/build.make
 bin/JoDServer: CMakeFiles/JoDServer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable bin/JoDServer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/andreas/code/hobby_cpp/JoD6Em/repo/server/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable bin/JoDServer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/JoDServer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

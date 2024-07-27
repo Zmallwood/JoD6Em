@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     }
 
     using namespace jod;
+
     try
     {
         _<WebSocketServer>().Start(argv[1], argv[2]);
@@ -20,6 +21,9 @@ int main(int argc, char *argv[])
     catch (const std::exception &e)
     {
         std::cerr << "Error: " << e.what() << std::endl;
+        
         return EXIT_FAILURE;
     }
+
+    return EXIT_SUCCESS;
 }
