@@ -1,3 +1,5 @@
+// Copyright (c) 2024 Andreas Åkerberg.
+
 #include "MathLib.h"
 
 namespace jod

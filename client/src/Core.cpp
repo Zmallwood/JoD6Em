@@ -1,3 +1,5 @@
+// Copyright (c) 2024 Andreas Åkerberg.
+
 #include "Core.h"
 #include "Graphics.h"
 #include "Net.h"

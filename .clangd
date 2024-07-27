@@ -1,0 +1,4 @@
+Diagnostics:
+  Suppress: []
+CompileFlags:
+  Remove: [-s*, --preload-file, --shell-file]
