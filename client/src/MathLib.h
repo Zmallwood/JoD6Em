@@ -6,57 +6,176 @@ namespace jod
 {
     namespace MathConstants
     {
+        /**
+         * @brief To avoid magic number.
+         *
+         */
         inline static constexpr int k_numVerticesInRectangle = 4;
     }
 
-    class PointF
+    /**
+     * @brief Point with float coordinates.
+     *
+     */
+    struct PointF
     {
-      public:
+        /**
+         * @brief X coordinate in float type.
+         *
+         */
         float x = 0.0f;
+
+        /**
+         * @brief Y coordinatae in float type.
+         *
+         */
         float y = 0.0f;
     };
 
-    class SizeF
+    /**
+     * @brief Size with float dimenstion.
+     *
+     */
+    struct SizeF
     {
-      public:
+        /**
+         * @brief Width in float type.
+         *
+         */
         float w = 0.0f;
+
+        /**
+         * @brief Height in float type.
+         *
+         */
         float h = 0.0f;
     };
 
-    class GLRectF
+    /**
+     * @brief Rectangle object with float dimensions, ment to represent a rectangle for OpenGLs
+     *        default coordinate system.
+     *
+     */
+    struct GLRectF
     {
-      public:
+        /**
+         * @brief X coordinate in float type.
+         *
+         */
         float x = 0.0f;
+
+        /**
+         * @brief Y coordinate in float type.
+         *
+         */
         float y = 0.0f;
+
+        /**
+         * @brief Width in float type.
+         *
+         */
         float w = 0.0f;
+
+        /**
+         * @brief Height in float type.
+         *
+         */
         float h = 0.0f;
     };
 
-    class RectF
+    /**
+     * @brief Rectangle object with float dimensions, ment to represent a rectangle in standard
+     *        screen coordinates, with 0,0 being in top left corner and 1,1 being in bottom right
+     *        corner.
+     *
+     */
+    struct RectF
     {
-      public:
+        /**
+         * @brief Convert this objects values to format of OpenGLs default coordinate system.
+         *
+         * @return GLRectF Converted resulting object.
+         */
         GLRectF ToGLRectF() const;
 
+        /**
+         * @brief X coordinate in float type.
+         *
+         */
         float x = 0.0f;
+
+        /**
+         * @brief Y coordinate in float type.
+         *
+         */
         float y = 0.0f;
+
+        /**
+         * @brief Width in float type.
+         *
+         */
         float w = 0.0f;
+
+        /**
+         * @brief Height in float type.
+         *
+         */
         float h = 0.0f;
     };
 
-    class ColorF
+    /**
+     * @brief RGBA color object with color components in float type.
+     *
+     */
+    struct ColorF
     {
-      public:
+        /**
+         * @brief Red component in float type in range 0.0 - 1.0.
+         *
+         */
         float r = 0.0f;
+
+        /**
+         * @brief Green component in float type in range 0.0 - 1.0.
+         *
+         */
         float g = 0.0f;
+
+        /**
+         * @brief Blue component in float type in range 0.0 - 1.0.
+         *
+         */
         float b = 0.0f;
+
+        /**
+         * @brief Alpha component in float type in range 0.0 - 1.0.
+         *
+         */
         float a = 1.0f;
     };
 
-    class Vertex2F
+    /**
+     * @brief Vertex object with position, color and UV data.
+     *
+     */
+    struct Vertex2F
     {
-      public:
+        /**
+         * @brief Position of this vertex with coordinates in float type.
+         *
+         */
         PointF pos;
+
+        /**
+         * @brief  Color of this vertex.
+         *
+         */
         ColorF color;
+
+        /**
+         * @brief UV coordinates of this vertex.
+         *
+         */
         PointF uv;
     };
 }

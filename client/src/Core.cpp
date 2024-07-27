@@ -82,7 +82,7 @@ namespace jod
     {
         /* Execute all drawing instructions that have been added. */
         for (auto &instr : m_imageDrawInstructions)
-            _<ImageRenderer>().DrawImage(instr.m_rid, instr.m_imageNameHash, instr.m_dest);
+            _<ImageRenderer>().DrawImage(instr.rid, instr.imageNameHash, instr.dest);
     }
 
     namespace

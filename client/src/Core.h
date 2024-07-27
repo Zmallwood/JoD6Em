@@ -41,26 +41,25 @@ namespace jod
      *        incoming from the server.
      *
      */
-    class ImageDrawInstruction
+    struct ImageDrawInstruction
     {
-      public:
         /**
          * @brief ID for an image resource previously allocated.
          *
          */
-        RID m_rid = -1;
+        RID rid = -1;
 
         /**
          * @brief Hash code of image name to draw.
          *
          */
-        int m_imageNameHash = 0;
+        int imageNameHash = 0;
 
         /**
          * @brief Destination rectangle to draw the image at.
          *
          */
-        RectF m_dest;
+        RectF dest;
     };
 
     /**
