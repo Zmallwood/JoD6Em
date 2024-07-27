@@ -16,6 +16,10 @@
 
 #include <iostream>
 
+#include <functional>
+
+#include <map>
+
 
 
 #include "MathLib.h"

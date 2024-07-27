@@ -4,6 +4,8 @@
 
 #include "Net.h"
 
+#include "ClientCore.h"
+
 namespace beast = boost::beast;
 
 namespace http = beast::http;
@@ -14,7 +16,7 @@ using tcp = boost::asio::ip::tcp;
 
 namespace jod
 {
-    Client::Client(tcp::socket socket)
+    Client::Client(tcp::socket socket) : m_serverEngine(std::make_shared<ServerEngine>(*this))
     {
         std::thread(&Client::DoSession, this, std::move(socket)).detach();
     }
@@ -41,6 +43,9 @@ namespace jod
 
             while (true)
             {
+                m_serverEngine->Update();
+                m_serverEngine->Render(ws);
+
                 /* This buffer will hold the incoming message. */
                 beast::flat_buffer buffer;
 
@@ -51,14 +56,15 @@ namespace jod
 
                 if (*message == MessageCodes::k_tick)
                 {
-                    SendImageDrawInstruction(ws, "DefaultSceneBackground",
-                                             {0.0f, 0.0f, 1.0f, 1.0f});
-                    SendImageDrawInstruction(ws, "JoDLogo", {0.3f, 0.3f, 0.4f, 0.2f});
-                    SendPresentCanvasInstruction(ws);
+                    // SendImageDrawInstruction(ws, "DefaultSceneBackground",
+                    //                          {0.0f, 0.0f, 1.0f, 1.0f});
+                    // SendImageDrawInstruction(ws, "JoDLogo", {0.3f, 0.3f, 0.4f, 0.2f});
+                    // SendPresentCanvasInstruction(ws);
                 }
-                else if (*message == MessageCodes::k_click)
+                else if (*message == MessageCodes::k_mouseDown)
                 {
                     std::cout << "Click event\n";
+                    m_serverEngine->OnMouseDown();
                 }
             }
         }

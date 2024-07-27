@@ -57,7 +57,7 @@ namespace jod
         }
         else if (message == "Click")
         {
-            int msg = MessageCodes::k_click;
+            int msg = MessageCodes::k_mouseDown;
             emscripten_websocket_send_binary(m_webSocketEvent->socket, &msg, sizeof(msg));
         }
         else
