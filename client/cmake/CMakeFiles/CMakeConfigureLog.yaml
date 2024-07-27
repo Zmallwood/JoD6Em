@@ -1,0 +1,56 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:200 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The target system is: Emscripten - 1 - x86
+      The host system is: Linux - 6.9.9-arch1-1 - x86_64
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "external/pybind11/tools/pybind11Common.cmake:287 (check_cxx_compiler_flag)"
+      - "external/pybind11/tools/pybind11Common.cmake:327 (_pybind11_return_if_cxx_and_linker_flags_work)"
+      - "external/pybind11/tools/pybind11Common.cmake:399 (_pybind11_generate_lto)"
+      - "external/pybind11/CMakeLists.txt:247 (include)"
+    checks:
+      - "Performing Test HAS_FLTO_THIN"
+    directories:
+      source: "/home/andreas/code/hobby_cpp/JoD6Em/repo/client/cmake/CMakeFiles/CMakeScratch/TryCompile-3MNRmf"
+      binary: "/home/andreas/code/hobby_cpp/JoD6Em/repo/client/cmake/CMakeFiles/CMakeScratch/TryCompile-3MNRmf"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/usr/bin/clang-scan-deps"
+      CMAKE_CXX_FLAGS: "-flto=auto"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/andreas/source_build/emsdk/upstream/emscripten/cmake/Modules;/home/andreas/source_build/emsdk/upstream/emscripten/cmake/Modules;/home/andreas/source_build/emsdk/upstream/emscripten/cmake/Modules;/home/andreas/source_build/emsdk/upstream/emscripten/cmake/Modules"
+    buildResult:
+      variable: "HAS_FLTO_THIN"
+      cached: true
+      stdout: |
+        Change Dir: '/home/andreas/code/hobby_cpp/JoD6Em/repo/client/cmake/CMakeFiles/CMakeScratch/TryCompile-3MNRmf'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_0a0b6/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_0a0b6.dir/build.make CMakeFiles/cmTC_0a0b6.dir/build
+        make[1]: Entering directory '/home/andreas/code/hobby_cpp/JoD6Em/repo/client/cmake/CMakeFiles/CMakeScratch/TryCompile-3MNRmf'
+        Building CXX object CMakeFiles/cmTC_0a0b6.dir/src.cxx.o
+        /home/andreas/source_build/emsdk/upstream/emscripten/em++ -DHAS_FLTO_THIN  -flto=auto  -std=gnu++20   -flto -MD -MT CMakeFiles/cmTC_0a0b6.dir/src.cxx.o -MF CMakeFiles/cmTC_0a0b6.dir/src.cxx.o.d -o CMakeFiles/cmTC_0a0b6.dir/src.cxx.o -c /home/andreas/code/hobby_cpp/JoD6Em/repo/client/cmake/CMakeFiles/CMakeScratch/TryCompile-3MNRmf/src.cxx
+        Linking CXX executable cmTC_0a0b6.js
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0a0b6.dir/link.txt --verbose=1
+        /home/andreas/source_build/emsdk/upstream/emscripten/em++ -flto=auto  @CMakeFiles/cmTC_0a0b6.dir/objects1.rsp -o cmTC_0a0b6.js @CMakeFiles/cmTC_0a0b6.dir/linkLibs.rsp
+        cache:INFO: generating system asset: symbol_lists/d37f81590e6621be56c64b2a2c2f4a24d46d0229.json... (this will be cached in "/home/andreas/source_build/emsdk/upstream/emscripten/cache/symbol_lists/d37f81590e6621be56c64b2a2c2f4a24d46d0229.json" for subsequent builds)
+        cache:INFO:  - ok
+        make[1]: Leaving directory '/home/andreas/code/hobby_cpp/JoD6Em/repo/client/cmake/CMakeFiles/CMakeScratch/TryCompile-3MNRmf'
+        
+      exitCode: 0
+...
