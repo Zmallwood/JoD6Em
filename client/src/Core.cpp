@@ -64,7 +64,6 @@ namespace jod
 
     void Canvas::PresentNewCanvas()
     {
-        std::cout << "present\n";
         m_imageDrawInstructions = m_nextImageDrawInstructions;
         m_nextImageDrawInstructions.clear();
     }

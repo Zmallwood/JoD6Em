@@ -32,8 +32,10 @@ namespace jod
     int Hash(std::string_view text)
     {
         unsigned long hash = 5381;
+        
         for (size_t i = 0; i < text.size(); ++i)
             hash = 33 * hash + (unsigned char)text[i];
+
         return static_cast<int>(hash);
     }
 
@@ -41,15 +43,17 @@ namespace jod
     {
         /* Find last occurrence of '.' and keep the part following it. */
         auto extension = absPath.substr(absPath.find_last_of('.') + 1);
+
         return extension.data();
     }
 
     std::string FilenameNoExtension(std::string_view absPath)
     {
-        /* 1) Find last occurence of '/' and get the part following it.
-         * 2) Then only keep the part preceeding the last occurrence of '.'. */
+        /* Find last occurence of '/' and get the part following it. */
         auto nameWithExt = std::string(absPath.substr(absPath.find_last_of('/') + 1));
+        /* Then only keep the part preceeding the last occurrence of '.'. */
         auto fileName = nameWithExt.substr(0, nameWithExt.find_last_of('.'));
+
         return fileName;
     }
 }

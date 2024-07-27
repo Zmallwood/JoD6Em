@@ -4,6 +4,11 @@
 
 namespace jod
 {
+    namespace MathConstants
+    {
+        inline static constexpr int k_numVerticesInRectangle = 4;
+    }
+
     class PointF
     {
       public:

@@ -45,7 +45,6 @@ namespace jod
         void UpdateData(GLuint VBOID, std::vector<float> &data, BufferTypes buffType, int layoutLocation) const;
         void UseVAOEnd() const;
         void CleanupBase() const;
-        static const int NumVerticesInRectangle();
 
         std::shared_ptr<ShaderProgram> m_shaderProgram;
 
@@ -65,6 +64,5 @@ namespace jod
             {BufferTypes::Indices, 1}, {BufferTypes::Positions2D, 2}, {BufferTypes::Positions3D, 3},
             {BufferTypes::Colors, 4},  {BufferTypes::UVs, 2},         {BufferTypes::Normals, 3},
             {BufferTypes::BoneIDs, 4}, {BufferTypes::Weights, 4}};
-        inline static const int k_numVerticesInRectangle = 4;
     };
 }
