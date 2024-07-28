@@ -161,22 +161,68 @@ namespace jod
     std::shared_ptr<ShaderProgram> m_shaderProgram;
 
    private:
+    /**
+     * @brief Apply data to an array buffer of float type.
+     *
+     * @param VBOID VBO ID to set the data for.
+     * @param numEntries Number of entries to set.
+     * @param data The actual data.
+     * @param numFloatsPerEntry Number of flots per entry.
+     * @param layoutLocation Layout location of the data in the shader.
+     */
     void SetArrayBufferData(GLuint VBOID, int numEntries, const void *data, int numFloatsPerEntry,
                             int layoutLocation = -1) const;
 
+    /**
+     * @brief Apply data to an array buffer of int type.
+     *
+     * @param VBOID VBO ID to set the data for.
+     * @param numEntries Number of entries to set.
+     * @param data The actual data.
+     * @param numFloatsPerEntry Number of flots per entry.
+     * @param layoutLocation Layout location of the data in the shader.
+     */
     void SetArrayBufferDataInt(GLuint VBOID, int numEntries, const void *data,
                                int numFloatsPerEntry, int layoutLocation = -1) const;
 
+    /**
+     * @brief Update data to an array buffer of float type.
+     *
+     * @param VBOID VBO ID to update the data for.
+     * @param data The actual data.
+     * @param numFloatsPerEntry Number of flots per entry.
+     * @param layoutLocation Layout location of the data in the shader.
+     */
     void UpdateArrayBufferData(GLuint VBOID, std::vector<float> &data, int numFloatsPerEntry,
                                int layoutLocation) const;
 
+    /**
+     * @brief Update data to an array buffer of int type.
+     *
+     * @param VBOID VBO ID to update the data for.
+     * @param data The actual data.
+     * @param numFloatsPerEntry Number of flots per entry.
+     * @param layoutLocation Layout location of the data in the shader.
+     */
     void UpdateArrayBufferDataInt(GLuint VBOID, std::vector<float> &data, int numFloatsPerEntry,
                                   int layoutLocation) const;
 
+    /**
+     * @brief Stores IDs of all Vertex Array Objects.
+     *
+     */
     std::shared_ptr<std::vector<GLuint>> m_VAOIDs;
 
+    /**
+     * @brief Stores IDs of all Vertex Buffer Objects.
+     *
+     */
     std::shared_ptr<std::map<BufferTypes, std::shared_ptr<std::map<GLuint, GLuint>>>> m_VBOIDs;
 
+    /**
+     * @brief Predefined constants of number of floats for different entry types.
+     *
+     */
     inline static const auto k_numFloatsPerEntry = std::map<BufferTypes, int>{
         {BufferTypes::Indices, 1}, {BufferTypes::Positions2D, 2}, {BufferTypes::Positions3D, 3},
         {BufferTypes::Colors, 4},  {BufferTypes::UVs, 2},         {BufferTypes::Normals, 3},
