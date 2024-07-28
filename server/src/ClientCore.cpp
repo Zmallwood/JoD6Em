@@ -4,7 +4,12 @@
 
 #include "Client.h"
 
+#include "Player.h"
+
+#include "World.h"
+
 namespace websocket = boost::beast::websocket;
+
 using tcp = boost::asio::ip::tcp;
 
 namespace jod
@@ -90,11 +95,15 @@ namespace jod
         {
           auto tW = 0.05f;
           auto tH = tW * m_client.GetAspectRatio();
+          auto playerCoord = _<Player>().m_coord;
           for (auto y = 0; y < 11; y++)
           {
             for (auto x = 0; x < 11; x++)
             {
-              m_client.SendImageDrawInstruction(ws, "GroundGrass", {x * tW, y * tH, tW, tH});
+              auto mapX = playerCoord.x - 5 + x;
+              auto mapY = playerCoord.y - 5 + y;
+              auto tile = _<World>().m_currentWorldArea->m_tiles[mapX][mapY];
+              m_client.SendImageDrawInstruction(ws, tile->m_ground, {x * tW, y * tH, tW, tH});
             }
           }
 

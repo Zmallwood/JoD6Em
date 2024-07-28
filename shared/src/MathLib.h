@@ -13,6 +13,12 @@ namespace jod
     inline static constexpr int k_numVerticesInRectangle = 4;
   }
 
+  struct Point
+  {
+    int x = 0;
+    int y = 0;
+  };
+
   /**
    * @brief Point with float coordinates.
    *

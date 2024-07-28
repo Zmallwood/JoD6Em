@@ -2,6 +2,8 @@
 
 #include "Net.h"
 
+#include "WorldGeneration.h"
+
 int main(int argc, char *argv[])
 {
   if (argc != 3)
@@ -16,6 +18,8 @@ int main(int argc, char *argv[])
 
   try
   {
+    GenerateNewWorld();
+
     _<WebSocketServer>().Start(argv[1], argv[2]);
   }
   catch (const std::exception &e)

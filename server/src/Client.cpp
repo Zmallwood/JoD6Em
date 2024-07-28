@@ -7,6 +7,7 @@
 #include "ClientCore.h"
 
 #include "MessageCodes.h"
+
 #include "NetConfiguration.h"
 
 namespace beast = boost::beast;
@@ -29,9 +30,11 @@ namespace jod
     try
     {
       /* Construct the stream by moving in the socket. */
+
       websocket::stream<tcp::socket> ws{std::move(socket)};
 
       /* Set a decorator to change the Server of the handshake. */
+
       ws.set_option(websocket::stream_base::decorator(
           [](websocket::response_type &res)
           {
@@ -40,6 +43,7 @@ namespace jod
           }));
 
       /* Accept the websocket handshake. */
+
       ws.accept();
 
       ws.text(false);
@@ -50,9 +54,11 @@ namespace jod
         m_serverEngine->Render(ws);
 
         /* This buffer will hold the incoming message. */
+
         beast::flat_buffer buffer;
 
         /* Read a message. */
+
         ws.read(buffer);
 
         const auto message = buffer_cast<int *>(buffer.data());
@@ -80,6 +86,7 @@ namespace jod
     catch (beast::system_error const &se)
     {
       /* This indicates that the session was closed. */
+
       if (se.code() != websocket::error::closed)
         std::cerr << "Error: " << se.code().message() << std::endl;
     }
@@ -92,9 +99,13 @@ namespace jod
   void Client::SendImageDrawInstruction(websocket::stream<tcp::socket> &ws,
                                         std::string_view imageName, RectF dest)
   {
-    auto msg_code = MessageCodes::k_drawImageInstr;
+    SendImageDrawInstruction(ws, Hash(imageName), dest);
+  }
 
-    auto imageNamHash = Hash(imageName);
+  void Client::SendImageDrawInstruction(websocket::stream<tcp::socket> &ws,
+                                        int imageNameHash, RectF dest)
+  {
+    auto msg_code = MessageCodes::k_drawImageInstr;
 
     auto x = (int)(dest.x * NetConstants::k_floatPrecision);
     auto y = (int)(dest.y * NetConstants::k_floatPrecision);
@@ -104,7 +115,7 @@ namespace jod
     auto data = std::vector<int>();
 
     data.push_back(msg_code);
-    data.push_back(imageNamHash);
+    data.push_back(imageNameHash);
     data.push_back(x);
     data.push_back(y);
     data.push_back(w);
