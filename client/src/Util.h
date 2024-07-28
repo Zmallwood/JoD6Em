@@ -8,14 +8,6 @@ namespace jod
 
   static auto Ticks = SDL_GetTicks;
 
-  template <class T>
-  T &_()
-  {
-    static T instance;
-
-    return instance;
-  }
-
   class SDLDeleter
   {
    public:
@@ -29,8 +21,6 @@ namespace jod
 
     void operator()(TTF_Font *font) const;
   };
-
-  int Hash(std::string_view text);
 
   Size GetCanvasSize();
 

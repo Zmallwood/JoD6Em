@@ -44,16 +44,43 @@ namespace jod
     const std::string k_title = "Journey of Dreams";
   };
 
+  /**
+   * @brief Custom cursor object which replaces the default system cursor.
+   *
+   */
   class Cursor
   {
    public:
+    /**
+     * @brief Construct a new Cursor object by hiding the default system cursor and allocate
+     * resources for drawing cursor images.
+     *
+     */
     Cursor();
 
+    /**
+     * @brief Render the cursor to web browser.
+     *
+     */
     void Render() const;
 
    private:
+    /**
+     * @brief Resource ID for cursor image.
+     *
+     */
     RID m_ridCursorImage;
+
+    /**
+     * @brief Image name for default cursor style.
+     *
+     */
     const std::string k_cursorImageName = "CursorDefault";
+
+    /**
+     * @brief Size of rendered cursor symbol.
+     *
+     */
     const float k_cursorSize = 0.03f;
   };
 }

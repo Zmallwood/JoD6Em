@@ -36,6 +36,10 @@ namespace jod
     bool m_running = true;
   };
 
+  /**
+   * @brief Sets up callbacks for events from the user.
+   *
+   */
   class InputManager
   {
    public:

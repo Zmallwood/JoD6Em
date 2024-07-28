@@ -24,6 +24,8 @@
 
 #include "MathLib.h"
 
-#include "Util.h"
+#include "CommonUtils.h"
+
+#include "NetConfiguration.h"
 
 // clang-format on

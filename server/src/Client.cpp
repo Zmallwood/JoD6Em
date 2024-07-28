@@ -6,6 +6,9 @@
 
 #include "ClientCore.h"
 
+#include "MessageCodes.h"
+#include "NetConfiguration.h"
+
 namespace beast = boost::beast;
 
 namespace http = beast::http;
@@ -70,7 +73,6 @@ namespace jod
         }
         else if (*message == MessageCodes::k_mouseDown)
         {
-          std::cout << "Click event\n";
           m_serverEngine->OnMouseDown();
         }
       }
@@ -94,10 +96,10 @@ namespace jod
 
     auto imageNamHash = Hash(imageName);
 
-    auto x = (int)(dest.x * 10000);
-    auto y = (int)(dest.y * 10000);
-    auto w = (int)(dest.w * 10000);
-    auto h = (int)(dest.h * 10000);
+    auto x = (int)(dest.x * NetConstants::k_floatPrecision);
+    auto y = (int)(dest.y * NetConstants::k_floatPrecision);
+    auto w = (int)(dest.w * NetConstants::k_floatPrecision);
+    auto h = (int)(dest.h * NetConstants::k_floatPrecision);
 
     auto data = std::vector<int>();
 
