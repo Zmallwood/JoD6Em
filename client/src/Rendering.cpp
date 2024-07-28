@@ -39,6 +39,18 @@ namespace jod
       "    FragColor = texture(TexUnit, ex_TexCoord);\n"
       "}\0";
     // clang-format on
+
+    /* Location of position variable in vertex shader. */
+    constexpr int k_locPosition{0};
+
+    /* Location of color variable in vertex shader. */
+    constexpr int k_locColor{1};
+
+    /* Location of UV variable in vertex shader. */
+    constexpr int k_locUv{2};
+
+    /* Location of pixelation effect switch variable in vertex shader. */
+    int m_locNoPixelEffect{-1};
   }
 
   ImageRenderer::ImageRenderer()
