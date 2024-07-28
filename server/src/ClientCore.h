@@ -4,75 +4,76 @@
 
 namespace jod
 {
-    class Client;
-    class SceneManager;
+  class Client;
+  class SceneManager;
+  class KeyboardInput;
 
-    class ServerEngine
-    {
-      public:
-        ServerEngine(Client &client);
+  class ServerEngine
+  {
+   public:
+    ServerEngine(Client &client);
 
-        void Update();
+    void Update();
 
-        void Render(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
+    void Render(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
 
-        void OnMouseDown();
+    void OnMouseDown();
 
-        void OnKeyDown();
+    void OnKeyDown();
 
-      private:
-        std::shared_ptr<SceneManager> m_sceneManager;
-        Client &m_client;
-    };
+   private:
+    std::shared_ptr<SceneManager> m_sceneManager;
+    Client &m_client;
+  };
 
-    class Scene
-    {
-      public:
-        Scene(std::function<void()> updateAction,
-              std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
-                  renderAction,
-              std::function<void()> keyDownAction, std::function<void()> mouseDownAction);
+  class Scene
+  {
+   public:
+    Scene(std::function<void()> updateAction,
+          std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
+              renderAction,
+          std::function<void()> keyDownAction, std::function<void()> mouseDownAction);
 
-        void Update();
+    void Update();
 
-        void Render(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
+    void Render(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
 
-        void OnMouseDown();
+    void OnMouseDown();
 
-        void OnKeyDown();
+    void OnKeyDown();
 
-      private:
-        std::function<void()> m_updateAction;
-        std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
-            m_renderAction;
-        std::function<void()> m_keyDownAction;
-        std::function<void()> m_mouseDownAction;
-    };
+   private:
+    std::function<void()> m_updateAction;
+    std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
+        m_renderAction;
+    std::function<void()> m_keyDownAction;
+    std::function<void()> m_mouseDownAction;
+  };
 
-    class SceneManager
-    {
-      public:
-        SceneManager(Client &client);
+  class SceneManager
+  {
+   public:
+    SceneManager(Client &client);
 
-        void UpdateCurrentScene();
+    void UpdateCurrentScene();
 
-        void RenderCurrentScene(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
+    void RenderCurrentScene(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
 
-        void OnMouseDownCurrentScene();
+    void OnMouseDownCurrentScene();
 
-        void OnKeyDownCurrentScene();
+    void OnKeyDownCurrentScene();
 
-        void GoTo(std::string_view sceneName);
+    void GoTo(std::string_view sceneName);
 
-      private:
-        void AddScene(
-            std::string_view sceneName, std::function<void()> updateAction,
-            std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
-                renderAction,
-            std::function<void()> keyDownAction, std::function<void()> mouseDownAction);
+   private:
+    void
+    AddScene(std::string_view sceneName, std::function<void()> updateAction,
+             std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
+                 renderAction,
+             std::function<void()> keyDownAction, std::function<void()> mouseDownAction);
 
-        int m_currentScene = 0;
-        std::map<int, Scene> m_scenes;
-        Client &m_client;
-    };
+    int m_currentScene = 0;
+    std::map<int, Scene> m_scenes;
+    Client &m_client;
+  };
 }

@@ -10,173 +10,173 @@
 
 namespace jod
 {
-    namespace
+  namespace
+  {
+    void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
+
+    void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods);
+
+    void CharacterCallback(GLFWwindow *window, unsigned int codepoint);
+
+    EM_BOOL TouchStartCallback(int, EmscriptenTouchEvent const *, void *);
+
+    EM_BOOL TouchEndCallback(int, EmscriptenTouchEvent const *, void *);
+  }
+
+  void RunNewClientInstance()
+  {
+    /* Access ClientEngine and run it. */
+    _<ClientEngine>().Run();
+  }
+
+  namespace
+  {
+    void GameLoopFunction();
+  }
+
+  void ClientEngine::Run() const
+  {
+    /* Start network connection. */
+    _<WebSocketClient>().Start();
+
+    /* Required by SDL2 before using it. */
+    SDL_Init(SDL_INIT_EVERYTHING);
+
+    _<InputManager>();
+
+    /* Touch Graphics to initialize it. */
+    _<Graphics>();
+
+    /* Start game loop. */
+    auto simulateInfiniteLoop = 1;
+    emscripten_set_main_loop(GameLoopFunction, 0, simulateInfiniteLoop);
+  }
+
+  void ClientEngine::PollEvents()
+  {
+    SDL_Event event;
+
+    /* Poll for events from user every frame. */
+    while (SDL_PollEvent(&event))
     {
-        void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
+      switch (event.type)
+      {
+      case SDL_QUIT:
+      {
+        /* Quit game by stopping ClientEngine. */
+        m_running = false;
+        break;
+      }
+      }
+    }
+  }
 
-        void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods);
+  InputManager::InputManager()
+  {
+    glfwSetKeyCallback(_<Graphics>().m_window, KeyCallback);
+    glfwSetMouseButtonCallback(_<Graphics>().m_window, MouseButtonCallback);
+    glfwSetCharCallback(_<Graphics>().m_window, CharacterCallback);
+    emscripten_set_touchstart_callback("#canvas", nullptr, true, TouchStartCallback);
+    emscripten_set_touchend_callback("#canvas", nullptr, true, TouchEndCallback);
+  }
 
-        void CharacterCallback(GLFWwindow *window, unsigned int codepoint);
+  RenderInstructionsManager::RenderInstructionsManager()
+  {
+    /* Create a sufficient amount of RIDs for drawing images and game start. */
+    for (auto i = 0; i < k_maxNumDrawInstructions; i++)
+      m_rids.push_back(_<ImageRenderer>().NewImage());
+  }
 
-        EM_BOOL TouchStartCallback(int, EmscriptenTouchEvent const *, void *);
+  void RenderInstructionsManager::AddImageDrawInstruction(int imageNameHash, RectF dest)
+  {
+    /* Create a new image draw instruction and save it. */
+    auto newInstruction =
+        ImageDrawInstruction{m_rids.at(m_imageDrawInstructionsBuffer.size()), imageNameHash, dest};
+    m_imageDrawInstructionsBuffer.push_back(newInstruction);
+  }
 
-        EM_BOOL TouchEndCallback(int, EmscriptenTouchEvent const *, void *);
+  void RenderInstructionsManager::ApplyBuffer()
+  {
+    /* Replace the current instruction group with the new one. */
+    m_imageDrawInstructions = m_imageDrawInstructionsBuffer;
+
+    /* Prepare the next-instructions-set for storing a new set
+       of instructions by clearing it. */
+    m_imageDrawInstructionsBuffer.clear();
+  }
+
+  void RenderInstructionsManager::ExecuteInstructions()
+  {
+    /* Execute all drawing instructions that have been added. */
+    for (auto &instr : m_imageDrawInstructions)
+      _<ImageRenderer>().DrawImage(instr.rid, instr.imageNameHash, instr.dest);
+  }
+
+  namespace
+  {
+    void GameLoopFunction()
+    {
+      /* Exit main loop if user has requested it. */
+      if (!_<ClientEngine>().m_running)
+        emscripten_cancel_main_loop();
+
+      /* Poll user events and process them. */
+      _<ClientEngine>().PollEvents();
+
+      /* Clear canvas with single color to prepare for new rendering. */
+      _<Graphics>().ClearCanvas();
+
+      /* Request updated drawing requests from server. */
+      _<WebSocketClient>().SendMessage("Tick");
+
+      /* Draw canvas in its current state (current set of drawing instructions). */
+      _<RenderInstructionsManager>().ExecuteInstructions();
+
+      _<Cursor>().Render();
+
+      /* Present canvas to users web browser. */
+      _<Graphics>().PresentCanvas();
     }
 
-    void RunNewClientInstance()
+    void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
     {
-        /* Access ClientEngine and run it. */
-        _<ClientEngine>().Run();
+      // if (action == GLFW_PRESS)
+      //     _<KeyboardInput>().OnKeyPress(key);
+      // else if (action == GLFW_RELEASE)
+      //     _<KeyboardInput>().OnKeyRelease(key);
     }
 
-    namespace
+    void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
     {
-        void GameLoopFunction();
+      _<WebSocketClient>().SendMessage("Click");
+
+      // if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+      //     _<MouseInput>().LeftButton().OnPress();
+      // else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
+      //     _<MouseInput>().LeftButton().OnRelease();
+      // else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+      //     _<MouseInput>().RightButton().OnPress();
+      // else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE)
+      //     _<MouseInput>().RightButton().OnRelease();
     }
 
-    void ClientEngine::Run() const
+    void CharacterCallback(GLFWwindow *window, unsigned int codepoint)
     {
-        /* Start network connection. */
-        _<WebSocketClient>().Start();
-
-        /* Required by SDL2 before using it. */
-        SDL_Init(SDL_INIT_EVERYTHING);
-
-        _<InputManager>();
-
-        /* Touch Graphics to initialize it. */
-        _<Graphics>();
-
-        /* Start game loop. */
-        auto simulateInfiniteLoop = 1;
-        emscripten_set_main_loop(GameLoopFunction, 0, simulateInfiniteLoop);
+      // _<KeyboardInput>().AppendTextInput(std::string(1, (char)codepoint));
     }
 
-    void ClientEngine::PollEvents()
+    EM_BOOL TouchStartCallback(int, EmscriptenTouchEvent const *, void *)
     {
-        SDL_Event event;
+      // _<MouseInput>().LeftButton().OnPress();
 
-        /* Poll for events from user every frame. */
-        while (SDL_PollEvent(&event))
-        {
-            switch (event.type)
-            {
-            case SDL_QUIT:
-            {
-                /* Quit game by stopping ClientEngine. */
-                m_running = false;
-                break;
-            }
-            }
-        }
+      return EM_FALSE;
     }
 
-    InputManager::InputManager()
+    EM_BOOL TouchEndCallback(int, EmscriptenTouchEvent const *, void *)
     {
-        glfwSetKeyCallback(_<Graphics>().m_window, KeyCallback);
-        glfwSetMouseButtonCallback(_<Graphics>().m_window, MouseButtonCallback);
-        glfwSetCharCallback(_<Graphics>().m_window, CharacterCallback);
-        emscripten_set_touchstart_callback("#canvas", nullptr, true, TouchStartCallback);
-        emscripten_set_touchend_callback("#canvas", nullptr, true, TouchEndCallback);
+      // _<MouseInput>().LeftButton().OnRelease();
+
+      return EM_FALSE;
     }
-
-    RenderInstructionsManager::RenderInstructionsManager()
-    {
-        /* Create a sufficient amount of RIDs for drawing images and game start. */
-        for (auto i = 0; i < k_maxNumDrawInstructions; i++)
-            m_rids.push_back(_<ImageRenderer>().NewImage());
-    }
-
-    void RenderInstructionsManager::AddImageDrawInstruction(int imageNameHash, RectF dest)
-    {
-        /* Create a new image draw instruction and save it. */
-        auto newInstruction = ImageDrawInstruction{m_rids.at(m_imageDrawInstructionsBuffer.size()),
-                                                   imageNameHash, dest};
-        m_imageDrawInstructionsBuffer.push_back(newInstruction);
-    }
-
-    void RenderInstructionsManager::ApplyBuffer()
-    {
-        /* Replace the current instruction group with the new one. */
-        m_imageDrawInstructions = m_imageDrawInstructionsBuffer;
-
-        /* Prepare the next-instructions-set for storing a new set
-           of instructions by clearing it. */
-        m_imageDrawInstructionsBuffer.clear();
-    }
-
-    void RenderInstructionsManager::ExecuteInstructions()
-    {
-        /* Execute all drawing instructions that have been added. */
-        for (auto &instr : m_imageDrawInstructions)
-            _<ImageRenderer>().DrawImage(instr.rid, instr.imageNameHash, instr.dest);
-    }
-
-    namespace
-    {
-        void GameLoopFunction()
-        {
-            /* Exit main loop if user has requested it. */
-            if (!_<ClientEngine>().m_running)
-                emscripten_cancel_main_loop();
-
-            /* Poll user events and process them. */
-            _<ClientEngine>().PollEvents();
-
-            /* Clear canvas with single color to prepare for new rendering. */
-            _<Graphics>().ClearCanvas();
-
-            /* Request updated drawing requests from server. */
-            _<WebSocketClient>().SendMessage("Tick");
-
-            /* Draw canvas in its current state (current set of drawing instructions). */
-            _<RenderInstructionsManager>().ExecuteInstructions();
-
-            _<Cursor>().Render();
-
-            /* Present canvas to users web browser. */
-            _<Graphics>().PresentCanvas();
-        }
-
-        void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
-        {
-            // if (action == GLFW_PRESS)
-            //     _<KeyboardInput>().OnKeyPress(key);
-            // else if (action == GLFW_RELEASE)
-            //     _<KeyboardInput>().OnKeyRelease(key);
-        }
-
-        void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
-        {
-            _<WebSocketClient>().SendMessage("Click");
-
-            // if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-            //     _<MouseInput>().LeftButton().OnPress();
-            // else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
-            //     _<MouseInput>().LeftButton().OnRelease();
-            // else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-            //     _<MouseInput>().RightButton().OnPress();
-            // else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE)
-            //     _<MouseInput>().RightButton().OnRelease();
-        }
-
-        void CharacterCallback(GLFWwindow *window, unsigned int codepoint)
-        {
-            // _<KeyboardInput>().AppendTextInput(std::string(1, (char)codepoint));
-        }
-
-        EM_BOOL TouchStartCallback(int, EmscriptenTouchEvent const *, void *)
-        {
-            // _<MouseInput>().LeftButton().OnPress();
-
-            return EM_FALSE;
-        }
-
-        EM_BOOL TouchEndCallback(int, EmscriptenTouchEvent const *, void *)
-        {
-            // _<MouseInput>().LeftButton().OnRelease();
-
-            return EM_FALSE;
-        }
-    }
+  }
 }

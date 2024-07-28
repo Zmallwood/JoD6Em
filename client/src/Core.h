@@ -4,130 +4,130 @@
 
 namespace jod
 {
+  /**
+   * @brief Start new game instance.
+   *
+   */
+  void RunNewClientInstance();
+
+  /**
+   * @brief Engine for the client.
+   *
+   */
+  class ClientEngine
+  {
+   public:
     /**
-     * @brief Start new game instance.
+     * @brief Run the client engine.
      *
      */
-    void RunNewClientInstance();
+    void Run() const;
 
     /**
-     * @brief Engine for the client.
+     * @brief Poll input events from user.
      *
      */
-    class ClientEngine
-    {
-      public:
-        /**
-         * @brief Run the client engine.
-         *
-         */
-        void Run() const;
-
-        /**
-         * @brief Poll input events from user.
-         *
-         */
-        void PollEvents();
-
-        /**
-         * @brief Engine is running as long as this is set to true.
-         *
-         */
-        bool m_running = true;
-    };
-
-    class InputManager
-    {
-      public:
-        InputManager();
-    };
+    void PollEvents();
 
     /**
-     * @brief Holds data for doing a image drawing operation, created when such a request is
-     *        incoming from the server.
+     * @brief Engine is running as long as this is set to true.
      *
      */
-    struct ImageDrawInstruction
-    {
-        /**
-         * @brief ID for an image resource previously allocated.
-         *
-         */
-        RID rid = -1;
+    bool m_running = true;
+  };
 
-        /**
-         * @brief Hash code of image name to draw.
-         *
-         */
-        int imageNameHash = 0;
+  class InputManager
+  {
+   public:
+    InputManager();
+  };
 
-        /**
-         * @brief Destination rectangle to draw the image at.
-         *
-         */
-        RectF dest;
-    };
+  /**
+   * @brief Holds data for doing a image drawing operation, created when such a request is
+   *        incoming from the server.
+   *
+   */
+  struct ImageDrawInstruction
+  {
+    /**
+     * @brief ID for an image resource previously allocated.
+     *
+     */
+    RID rid = -1;
 
     /**
-     * @brief Holds latest set of rendering instructions and executes them.
+     * @brief Hash code of image name to draw.
      *
      */
-    class RenderInstructionsManager
-    {
-      public:
-        /**
-         * @brief Construct a new RenderInstructionsManager object.
-         *
-         */
-        RenderInstructionsManager();
+    int imageNameHash = 0;
 
-        /**
-         * @brief Add new image draw instruction to group, called on request from server.
-         *
-         * @param imageNameHash Hash code of image name to draw.
-         * @param dest Destination rectangle to draw the image at.
-         */
-        void AddImageDrawInstruction(int imageNameHash, RectF dest);
+    /**
+     * @brief Destination rectangle to draw the image at.
+     *
+     */
+    RectF dest;
+  };
 
-        /**
-         * @brief Copies the buffered render instructions to the active render instructions set.
-         *
-         */
-        void ApplyBuffer();
+  /**
+   * @brief Holds latest set of rendering instructions and executes them.
+   *
+   */
+  class RenderInstructionsManager
+  {
+   public:
+    /**
+     * @brief Construct a new RenderInstructionsManager object.
+     *
+     */
+    RenderInstructionsManager();
 
-        /**
-         * @brief Performs all rendering instructions by performing rendering instructions to the
-         *        web browser.
-         *
-         */
-        void ExecuteInstructions();
+    /**
+     * @brief Add new image draw instruction to group, called on request from server.
+     *
+     * @param imageNameHash Hash code of image name to draw.
+     * @param dest Destination rectangle to draw the image at.
+     */
+    void AddImageDrawInstruction(int imageNameHash, RectF dest);
 
-      private:
-        /**
-         * @brief Holds the image draw instructions that are executed each call to DrawCanvas().
-         *
-         */
-        std::vector<ImageDrawInstruction> m_imageDrawInstructions;
+    /**
+     * @brief Copies the buffered render instructions to the active render instructions set.
+     *
+     */
+    void ApplyBuffer();
 
-        /**
-         * @brief Holds the buffer for the next set of draw of instructions that will be copied to
-         * the current one in PresentNewCanvas().
-         *
-         */
-        std::vector<ImageDrawInstruction> m_imageDrawInstructionsBuffer;
+    /**
+     * @brief Performs all rendering instructions by performing rendering instructions to the
+     *        web browser.
+     *
+     */
+    void ExecuteInstructions();
 
-        /**
-         * @brief A set of preallocated resource IDs used for drawing images, created in the
-         * constructor.
-         *
-         */
-        std::vector<RID> m_rids;
+   private:
+    /**
+     * @brief Holds the image draw instructions that are executed each call to DrawCanvas().
+     *
+     */
+    std::vector<ImageDrawInstruction> m_imageDrawInstructions;
 
-        /**
-         * @brief Number of preallocated resource IDs created for the image draw instructions. No
-         *        more images than this value can be rendererd in a single game frame.
-         *
-         */
-        const int k_maxNumDrawInstructions = 200;
-    };
+    /**
+     * @brief Holds the buffer for the next set of draw of instructions that will be copied to
+     * the current one in PresentNewCanvas().
+     *
+     */
+    std::vector<ImageDrawInstruction> m_imageDrawInstructionsBuffer;
+
+    /**
+     * @brief A set of preallocated resource IDs used for drawing images, created in the
+     * constructor.
+     *
+     */
+    std::vector<RID> m_rids;
+
+    /**
+     * @brief Number of preallocated resource IDs created for the image draw instructions. No
+     *        more images than this value can be rendererd in a single game frame.
+     *
+     */
+    const int k_maxNumDrawInstructions = 200;
+  };
 }

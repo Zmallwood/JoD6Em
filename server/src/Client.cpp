@@ -16,98 +16,110 @@ using tcp = boost::asio::ip::tcp;
 
 namespace jod
 {
-    Client::Client(tcp::socket socket) : m_serverEngine(std::make_shared<ServerEngine>(*this))
-    {
-        std::thread(&Client::DoSession, this, std::move(socket)).detach();
-    }
+  Client::Client(tcp::socket socket) : m_serverEngine(std::make_shared<ServerEngine>(*this))
+  {
+    std::thread(&Client::DoSession, this, std::move(socket)).detach();
+  }
 
-    void Client::DoSession(tcp::socket socket)
+  void Client::DoSession(tcp::socket socket)
+  {
+    try
     {
-        try
+      /* Construct the stream by moving in the socket. */
+      websocket::stream<tcp::socket> ws{std::move(socket)};
+
+      /* Set a decorator to change the Server of the handshake. */
+      ws.set_option(websocket::stream_base::decorator(
+          [](websocket::response_type &res)
+          {
+            res.set(http::field::server,
+                    std::string(BOOST_BEAST_VERSION_STRING) + " websocket-server-sync");
+          }));
+
+      /* Accept the websocket handshake. */
+      ws.accept();
+
+      ws.text(false);
+
+      while (true)
+      {
+        m_serverEngine->Update();
+        m_serverEngine->Render(ws);
+
+        /* This buffer will hold the incoming message. */
+        beast::flat_buffer buffer;
+
+        /* Read a message. */
+        ws.read(buffer);
+
+        const auto message = buffer_cast<int *>(buffer.data());
+
+        if (*message == MessageCodes::k_canvasSize)
         {
-            /* Construct the stream by moving in the socket. */
-            websocket::stream<tcp::socket> ws{std::move(socket)};
-
-            /* Set a decorator to change the Server of the handshake. */
-            ws.set_option(websocket::stream_base::decorator(
-                [](websocket::response_type &res)
-                {
-                    res.set(http::field::server,
-                            std::string(BOOST_BEAST_VERSION_STRING) + " websocket-server-sync");
-                }));
-
-            /* Accept the websocket handshake. */
-            ws.accept();
-
-            ws.text(false);
-
-            while (true)
-            {
-                m_serverEngine->Update();
-                m_serverEngine->Render(ws);
-
-                /* This buffer will hold the incoming message. */
-                beast::flat_buffer buffer;
-
-                /* Read a message. */
-                ws.read(buffer);
-
-                const auto message = buffer_cast<int *>(buffer.data());
-
-                if (*message == MessageCodes::k_tick)
-                {
-                    // SendImageDrawInstruction(ws, "DefaultSceneBackground",
-                    //                          {0.0f, 0.0f, 1.0f, 1.0f});
-                    // SendImageDrawInstruction(ws, "JoDLogo", {0.3f, 0.3f, 0.4f, 0.2f});
-                    // SendPresentCanvasInstruction(ws);
-                }
-                else if (*message == MessageCodes::k_mouseDown)
-                {
-                    std::cout << "Click event\n";
-                    m_serverEngine->OnMouseDown();
-                }
-            }
+          auto w = (int)message[1];
+          auto h = (int)message[2];
+          m_canvasSize = {w, h};
+          std::cout << "Recieved canvas size: " << w << ", " << h << std::endl;
         }
-        catch (beast::system_error const &se)
+        else if (*message == MessageCodes::k_tick)
         {
-            /* This indicates that the session was closed. */
-            if (se.code() != websocket::error::closed)
-                std::cerr << "Error: " << se.code().message() << std::endl;
+          // SendImageDrawInstruction(ws, "DefaultSceneBackground",
+          //                          {0.0f, 0.0f, 1.0f, 1.0f});
+          // SendImageDrawInstruction(ws, "JoDLogo", {0.3f, 0.3f, 0.4f, 0.2f});
+          // SendPresentCanvasInstruction(ws);
         }
-        catch (std::exception const &e)
+        else if (*message == MessageCodes::k_mouseDown)
         {
-            std::cerr << "Error: " << e.what() << std::endl;
+          std::cout << "Click event\n";
+          m_serverEngine->OnMouseDown();
         }
+      }
     }
-
-    void Client::SendImageDrawInstruction(websocket::stream<tcp::socket> &ws,
-                                          std::string_view imageName, RectF dest)
+    catch (beast::system_error const &se)
     {
-        auto msg_code = MessageCodes::k_drawImageInstr;
-
-        auto imageNamHash = Hash(imageName);
-
-        auto x = (int)(dest.x * 10000);
-        auto y = (int)(dest.y * 10000);
-        auto w = (int)(dest.w * 10000);
-        auto h = (int)(dest.h * 10000);
-
-        auto data = std::vector<int>();
-
-        data.push_back(msg_code);
-        data.push_back(imageNamHash);
-        data.push_back(x);
-        data.push_back(y);
-        data.push_back(w);
-        data.push_back(h);
-
-        ws.write(boost::asio::buffer(data));
+      /* This indicates that the session was closed. */
+      if (se.code() != websocket::error::closed)
+        std::cerr << "Error: " << se.code().message() << std::endl;
     }
-
-    void Client::SendPresentCanvasInstruction(websocket::stream<tcp::socket> &ws)
+    catch (std::exception const &e)
     {
-        auto msg_code_present = MessageCodes::k_applyBuffer;
-
-        ws.write(boost::asio::buffer(&msg_code_present, sizeof(msg_code_present)));
+      std::cerr << "Error: " << e.what() << std::endl;
     }
+  }
+
+  void Client::SendImageDrawInstruction(websocket::stream<tcp::socket> &ws,
+                                        std::string_view imageName, RectF dest)
+  {
+    auto msg_code = MessageCodes::k_drawImageInstr;
+
+    auto imageNamHash = Hash(imageName);
+
+    auto x = (int)(dest.x * 10000);
+    auto y = (int)(dest.y * 10000);
+    auto w = (int)(dest.w * 10000);
+    auto h = (int)(dest.h * 10000);
+
+    auto data = std::vector<int>();
+
+    data.push_back(msg_code);
+    data.push_back(imageNamHash);
+    data.push_back(x);
+    data.push_back(y);
+    data.push_back(w);
+    data.push_back(h);
+
+    ws.write(boost::asio::buffer(data));
+  }
+
+  void Client::SendPresentCanvasInstruction(websocket::stream<tcp::socket> &ws)
+  {
+    auto msg_code_present = MessageCodes::k_applyBuffer;
+
+    ws.write(boost::asio::buffer(&msg_code_present, sizeof(msg_code_present)));
+  }
+
+  float Client::GetAspectRatio()
+  {
+    return static_cast<float>(m_canvasSize.w) / m_canvasSize.h;
+  }
 }
