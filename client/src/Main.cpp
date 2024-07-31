@@ -2,26 +2,13 @@
 
 #include "Core.h"
 
-int main(int argc, char *argv[])
-{
-    /* Catch all exceptions that can happen during execution. */
-
-    try
-    {
-        /* Run new instance of the game. */
-
-        jod::RunNewClientInstance();
+int main(int argc, char *argv[]){
+    try{ // Catch all exceptions that can happen during execution.
+        jod::RunNewClientInstance(); // Run new instance of the game.
     }
-    catch (const std::exception &e)
-    {
+    catch (const std::exception &e){
         std::cout << "Error: " << e.what() << std::endl;
-
-        /* An exception occured, exit game. */
-
-        return EXIT_FAILURE;
+        return EXIT_FAILURE; // An exception occured, exit game.
     }
-
-    /* No exceptions occured. */
-
-    return EXIT_SUCCESS;
+    return EXIT_SUCCESS; // No exceptions occured.
 }

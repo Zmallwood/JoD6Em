@@ -5,7 +5,6 @@
 namespace jod {
     /////////////////////////////////////////////////
     /// \brief Initializes and handles preparing and finilizing graphics for each frame.
-    /// 
     /////////////////////////////////////////////////
     class Graphics {
     public:
