@@ -1,8 +1,6 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-
 #pragma once
 
-namespace jod
-{
+namespace jod {
     SizeF CalcTileSize(float aspectRatio);
 }
