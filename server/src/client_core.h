@@ -1,13 +1,11 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #pragma once
-
 namespace jod {
     class Client;
     class SceneManager;
     class KeyboardInput;
     class MouseInput;
     class MouseButton;
-    
     class ServerEngine {
     public:
         ServerEngine(Client &client);
@@ -21,7 +19,6 @@ namespace jod {
         std::shared_ptr<SceneManager> m_sceneManager;
         Client &m_client;
     };
-    
     class Scene {
     public:
         Scene(std::function<void()> updateAction,
@@ -39,7 +36,6 @@ namespace jod {
         std::function<void()> m_keyDownAction;
         std::function<void()> m_mouseDownAction;
     };
-    
     class SceneManager {
     public:
         SceneManager(Client &client);
@@ -59,14 +55,12 @@ namespace jod {
         std::map<int, Scene> m_scenes;
         Client &m_client;
     };
-    
     class MouseInput {
     public:
         MouseInput();
         void RegisterMouseDown();
         std::shared_ptr<MouseButton> m_leftButton;
     };
-    
     class MouseButton {
     public:
         void RegisterMouseDown();

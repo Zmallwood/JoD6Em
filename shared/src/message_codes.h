@@ -1,6 +1,5 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #pragma once
-
 namespace jod {
     namespace MessageCodes {
         constexpr int k_drawImageInstr = 1;

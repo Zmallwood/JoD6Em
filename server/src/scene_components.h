@@ -1,9 +1,7 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #pragma once
-
 namespace jod {
     class Client;
-    
     class TileHovering {
     public:
         TileHovering(Client &client);
@@ -13,7 +11,6 @@ namespace jod {
     private:
         Client &m_client;
     };
-    
     class MouseMovement {
     public:
         MouseMovement(Client &client);

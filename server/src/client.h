@@ -1,13 +1,11 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #pragma once
-
 namespace jod {
     class ServerEngine;
     class Player;
     class TileHovering;
     class MouseMovement;
     class Cursor;
-    
     class Client {
     public:
         Client(boost::asio::ip::tcp::socket socket);
