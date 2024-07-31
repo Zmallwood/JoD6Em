@@ -32,15 +32,15 @@ namespace jod {
     }
     void
     run_new_client_instance(){
-        _<client_engine>().run();                    // Access ClientEngine and run it.
+        _<client_engine>().run(); // Access ClientEngine and run it.
     }
     void
     client_engine::run() const {
-        _<web_socket_server_connection>().connect();                                       // Start network connection.
+        _<web_socket_server_connection>().connect(); // Start network connection.
         SDL_Init(
-            SDL_INIT_EVERYTHING);                    // Required by SDL2 before using it.
+            SDL_INIT_EVERYTHING); // Required by SDL2 before using it.
         _<input_manager>();
-        _<graphics>();         // Touch Graphics to initialize it.
+        _<graphics>(); // Touch Graphics to initialize it.
         // Start game loop.
         auto simulateInfiniteLoop = 1;
         emscripten_set_main_loop(
@@ -125,14 +125,14 @@ namespace jod {
         game_loop_function(){
             if (!_<client_engine>().m_running) // Exit main loop if user has requested it.
                 emscripten_cancel_main_loop();
-            _<client_engine>().poll_events();                            // Poll user events and process them.
+            _<client_engine>().poll_events(); // Poll user events and process them.
             _<web_socket_server_connection>().send_message(
                 message_codes::k_mousePosition);
             // Clear canvas with single color to prepare for new rendering.
             _<graphics>().clear_canvas();
             // Draw canvas in its current state (current set of drawing instructions).
             _<render_instructions_manager>().execute_instructions();
-            _<graphics>().present_canvas();                          // Present canvas to users web browser.
+            _<graphics>().present_canvas(); // Present canvas to users web browser.
             _<web_socket_server_connection>().send_message(
                 message_codes::k_frameFinished);
         }
