@@ -1,7 +1,7 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #pragma once
 namespace jod {
-    namespace MathConstants {
+    namespace math_constants {
         inline static constexpr int k_numVerticesInRectangle = 4; ///< To avoid magic number.
     }
     struct Point {

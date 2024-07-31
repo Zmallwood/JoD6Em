@@ -1,7 +1,6 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #include "net.h"
 #include "world_generation.h"
-
 int
 main(int argc, char *argv[]){
     if (argc != 3){
@@ -13,8 +12,8 @@ main(int argc, char *argv[]){
     using namespace jod;
     try{
         srand(time(0));
-        GenerateNewWorld();
-        _<WebSocketServer>().Start(argv[1], argv[2]);
+        generate_new_world();
+        _<web_socket_server>().start(argv[1], argv[2]);
     }
     catch (const std::exception &e){
         std::cerr << "Error: " << e.what() << std::endl;

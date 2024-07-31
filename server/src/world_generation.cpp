@@ -4,11 +4,11 @@
 
 namespace jod {
     void
-    GenerateNewWorld(){
-        auto worldArea = _<World>().m_currentWorldArea;
+    generate_new_world(){
+        auto worldArea = _<world>().m_currentWorldArea;
         for (auto y = 0; y < 100; y++)
             for (auto x = 0; x < 100; x++)
-                worldArea->m_tiles[x][y]->m_ground = Hash("GroundGrass");
+                worldArea->m_tiles[x][y]->m_ground = jod::hash("GroundGrass");
         auto numLakes = 15;
         for (auto i = 0; i < numLakes; i++){
             auto xCenter = rand() % 100;
@@ -20,7 +20,7 @@ namespace jod {
                     auto dx = x - xCenter;
                     auto dy = y - yCenter;
                     if (dx * dx + dy * dy <= r * r)
-                        worldArea->m_tiles[x][y]->m_ground = Hash("GroundWater");
+                        worldArea->m_tiles[x][y]->m_ground = jod::hash("GroundWater");
                 }
             }
         }

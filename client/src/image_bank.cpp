@@ -1,22 +1,23 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #include "image_bank.h"
+#include "util.h"
 namespace jod {
     namespace {
-        GLuint LoadSingleImage(std::string_view absFilePath);
-        SDL_Surface *LoadImageData(const char *filename);
+        GLuint load_single_image(std::string_view absFilePath);
+        SDL_Surface *load_image_data(const char *filename);
     }
-    ImageBank::ImageBank() {
-        LoadImages(); // Load all images in images path.
+    image_bank::image_bank() {
+        load_images(); // Load all images in images path.
     }
-    ImageBank::~ImageBank() { // Iterate through all the loaded images.
+    image_bank::~image_bank() { // Iterate through all the loaded images.
         for (const auto &img : m_images) glDeleteTextures(1, &img.second); // Free every allocated image resource.
     }
     GLuint
-    ImageBank::GetImage(std::string_view imageName) const {
-        return GetImage(Hash(imageName)); // Hash the image name and call the function overload
+    image_bank::get_image(std::string_view imageName) const {
+        return get_image(jod::hash(imageName)); // Hash the image name and call the function overload
     }
     GLuint
-    ImageBank::GetImage(int imageNameHash) const {
+    image_bank::get_image(int imageNameHash) const {
         for (auto img : m_images) // Iterate through all the loaded images.
             // If its key, being the hash of the image name, equals
             // the hash of the specified name, then, return this image ID.
@@ -24,34 +25,34 @@ namespace jod {
         return -1; // No image with the name found, return fail value.
     }
     GLuint
-    ImageBank::CreateBlankImage(std::string_view uniqueImageName) {
+    image_bank::create_blank_image(std::string_view uniqueImageName) {
         GLuint texID; // Generate new image resource,
         glGenTextures(1, &texID); // and get its ID.
         // Insert new image entry with image name hash as key
         // and the new ID as value.
-        m_images.insert({Hash(uniqueImageName), texID});
+        m_images.insert({jod::hash(uniqueImageName), texID});
         return texID; // Return the ID of the newly created blank image resource.
     }
     void
-    ImageBank::LoadImages() {
+    image_bank::load_images() {
         using iterator = std::filesystem::recursive_directory_iterator;
         auto allImagesPath = k_relImagesPath + "/";
         for (auto &entry : iterator(allImagesPath)) {
             auto absPath = entry.path().string(); // Create path string to load the images from.
-            if (FileExtension(absPath) != "png") continue; // Only handle files with png extenstion.
-            auto texID = LoadSingleImage(absPath); // Load the current file as an image resource.
-            auto imageName = FilenameNoExtension(absPath); // Extract its pure name without path or extension.
+            if (file_extension(absPath) != "png") continue; // Only handle files with png extenstion.
+            auto texID = load_single_image(absPath); // Load the current file as an image resource.
+            auto imageName = filename_no_extension(absPath); // Extract its pure name without path or extension.
             // Insert a new entry into the images storage, with the
             // image name hash as key and the resource ID as value.
-            m_images.insert({Hash(imageName), texID});
+            m_images.insert({jod::hash(imageName), texID});
         }
     }
     namespace {
         GLuint
-        LoadSingleImage(std::string_view absFilePath) {
+        load_single_image(std::string_view absFilePath) {
             GLuint texID; // Declare variable to hold the resulting ID for the loaded image file.
             // Get image data from the image file.
-            auto surf = LoadImageData(absFilePath.data());
+            auto surf = load_image_data(absFilePath.data());
             glEnable(GL_TEXTURE_2D); // We will work with 2D textures.
             glGenTextures(1, &texID); // Generate a new OpenGL texture and get its ID.
             glBindTexture(GL_TEXTURE_2D, texID); // Use the newly created OpenGL texture.
@@ -74,7 +75,7 @@ namespace jod {
             return texID; // Return the previously generated resource ID.
         }
         SDL_Surface *
-        LoadImageData(const char *filename) {
+        load_image_data(const char *filename) {
             int width;
             int height;
             int bytesPerPixel;

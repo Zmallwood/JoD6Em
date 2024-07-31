@@ -9,5 +9,5 @@ namespace jod {
         return instance;
     }
     
-    int Hash(std::string_view text);
+    int hash(std::string_view text);
 }

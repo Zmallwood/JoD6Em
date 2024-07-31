@@ -2,9 +2,9 @@
 #pragma once
 namespace jod {
     using RID = GLuint;
-    static auto Ticks = SDL_GetTicks;
+    static auto get_ticks = SDL_GetTicks;
     
-    class SDLDeleter {
+    class sdl_deleter {
     public:
         void operator()(SDL_Window *window) const;
         void operator()(SDL_Renderer *renderer) const;
@@ -13,11 +13,11 @@ namespace jod {
         void operator()(TTF_Font *font) const;
     };
     
-    Size GetCanvasSize();
-    PointF GetMousePosition();
-    float GetAspectRatio();
-    float ConvertWidthToHeight(float width);
-    float ConvertHeightToWidth(float height);
-    std::string FileExtension(std::string_view absPath);
-    std::string FilenameNoExtension(std::string_view absPath);
+    Size get_canvas_size();
+    PointF get_mouse_position();
+    float get_aspect_ratio();
+    float convert_width_to_height(float width);
+    float convert_height_to_width(float height);
+    std::string file_extension(std::string_view absPath);
+    std::string filename_no_extension(std::string_view absPath);
 }

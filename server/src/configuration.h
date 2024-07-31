@@ -1,6 +1,6 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 namespace jod {
-    struct GameProperties {
+    struct game_properties {
         const int numGridRows = 21;
     };
 }

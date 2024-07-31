@@ -7,13 +7,13 @@
 #include "client_core.h"
 
 namespace jod {
-    TileHovering::TileHovering(Client &client) : m_client(client){
+    tile_hovering::tile_hovering(client &client) : m_client(client){
     }
     void
-    TileHovering::Update(){
-        auto tileSize = CalcTileSize(m_client.GetAspectRatio());
+    tile_hovering::update(){
+        auto tileSize = calc_tile_size(m_client.get_aspect_ratio());
         auto playerCoord = m_client.m_player->m_coord;
-        auto numRows = _<GameProperties>().numGridRows;
+        auto numRows = _<game_properties>().numGridRows;
         auto numCols = numRows;
         auto tileX = playerCoord.x - (numCols - 1) / 2 +
                      static_cast<int>(m_client.m_mousePosition.x / tileSize.w);
@@ -21,11 +21,11 @@ namespace jod {
                      static_cast<int>(m_client.m_mousePosition.y / tileSize.h);
         m_hoveredCoordinate = {tileX, tileY};
     }
-    MouseMovement::MouseMovement(Client &client) : m_client(client){
+    mouse_movement::mouse_movement(client &client) : m_client(client){
     }
     void
-    MouseMovement::Update(){
-        auto mouseDown = m_client.m_serverEngine->m_mouseInput->m_leftButton->IsPressedPickResult();
+    mouse_movement::update(){
+        auto mouseDown = m_client.m_serverEngine->m_mouseInput->m_leftButton->is_pressed_pick_result();
         auto player = m_client.m_player;
         auto hoveredTile = m_client.m_tileHovering->m_hoveredCoordinate;
         if (mouseDown)

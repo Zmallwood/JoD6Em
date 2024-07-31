@@ -3,68 +3,68 @@
 #include "graphics.h"
 namespace jod {
     void
-    SDLDeleter::operator()(SDL_Window *window) const {
+    sdl_deleter::operator()(SDL_Window *window) const {
         SDL_DestroyWindow(window);
     }
     void
-    SDLDeleter::operator()(SDL_Renderer *renderer) const {
+    sdl_deleter::operator()(SDL_Renderer *renderer) const {
         SDL_DestroyRenderer(renderer);
     }
     void
-    SDLDeleter::operator()(SDL_Surface *surface) const {
+    sdl_deleter::operator()(SDL_Surface *surface) const {
         SDL_FreeSurface(surface);
     }
     void
-    SDLDeleter::operator()(SDL_Texture *texture) const {
+    sdl_deleter::operator()(SDL_Texture *texture) const {
         SDL_DestroyTexture(texture);
     }
     void
-    SDLDeleter::operator()(TTF_Font *font) const {
+    sdl_deleter::operator()(TTF_Font *font) const {
         TTF_CloseFont(font);
     }
     Size
-    GetCanvasSize(){
+    get_canvas_size(){
         int w, h; // To store dimensions in pixels.
         // Use GLFW to get canvas size.
-        glfwGetWindowSize(_<Graphics>().m_window, &w, &h);
+        glfwGetWindowSize(_<graphics>().m_window, &w, &h);
         return {w, h};
     }
     PointF
-    GetMousePosition(){
+    get_mouse_position(){
         double xpos, ypos; // Declare variables to store mouse coordinates in pixels.
         // Use GLFW to get current mouse coordinates.
-        glfwGetCursorPos(_<Graphics>().m_window, &xpos, &ypos);
-        auto canvasSize = GetCanvasSize(); // Get canvas size.
+        glfwGetCursorPos(_<graphics>().m_window, &xpos, &ypos);
+        auto canvasSize = get_canvas_size(); // Get canvas size.
         // And use it to convert pixel coordinates to fractal coordinates.
         auto mousePosition = PointF{static_cast<float>(xpos) / canvasSize.w,
                                     static_cast<float>(ypos) / canvasSize.h};
         return mousePosition;
     }
     float
-    GetAspectRatio(){
-        auto canvasSize = GetCanvasSize(); // Get canvas dimensions.
+    get_aspect_ratio(){
+        auto canvasSize = get_canvas_size(); // Get canvas dimensions.
         // And calculate the ratio between them.
         auto aspectRatio = static_cast<float>(canvasSize.w) / canvasSize.h;
         return aspectRatio;
     }
     float
-    ConvertWidthToHeight(float width){
+    convert_width_to_height(float width){
         // Use aspect ratio to convert from width to corresponding height.
-        return width * GetAspectRatio();
+        return width * get_aspect_ratio();
     }
     float
-    ConvertHeightToWidth(float height){
+    convert_height_to_width(float height){
         // Use aspect ratio to convert from height to corresponding width.
-        return height / GetAspectRatio();
+        return height / get_aspect_ratio();
     }
     std::string
-    FileExtension(std::string_view absPath){
+    file_extension(std::string_view absPath){
         // Find last occurrence of '.' and keep the part following it.
         auto extension = absPath.substr(absPath.find_last_of('.') + 1);
         return extension.data();
     }
     std::string
-    FilenameNoExtension(std::string_view absPath){
+    filename_no_extension(std::string_view absPath){
         // Find last occurence of '/' and get the part following it.
         auto nameWithExt = std::string(absPath.substr(absPath.find_last_of('/') + 1));
         // Then only keep the part preceeding the last occurrence of '.'.

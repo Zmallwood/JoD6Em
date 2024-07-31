@@ -1,21 +1,21 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #pragma once
 namespace jod {
-    class Client;
-    class TileHovering {
+    class client;
+    class tile_hovering {
     public:
-        TileHovering(Client &client);
-        void Update();
+        tile_hovering(client &client);
+        void update();
         
         Point m_hoveredCoordinate = {-1, -1};
     private:
-        Client &m_client;
+        client &m_client;
     };
-    class MouseMovement {
+    class mouse_movement {
     public:
-        MouseMovement(Client &client);
-        void Update();
+        mouse_movement(client &client);
+        void update();
     private:
-        Client &m_client;
+        client &m_client;
     };
 }

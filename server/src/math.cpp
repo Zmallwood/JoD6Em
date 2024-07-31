@@ -4,8 +4,8 @@
 
 namespace jod {
     SizeF
-    CalcTileSize(float aspectRatio){
-        auto tileHeight = 1.0f / _<GameProperties>().numGridRows;
+    calc_tile_size(float aspectRatio){
+        auto tileHeight = 1.0f / _<game_properties>().numGridRows;
         auto tileWidth = tileHeight / aspectRatio;
         return {tileWidth, tileHeight};
     }

@@ -5,17 +5,17 @@ namespace jod {
     /// \brief Connects to to web socket server and enables sending messages over the connection
     ///        after it has opened.
     /////////////////////////////////////////////////
-    class WebSocketServerConnection {
+    class web_socket_server_connection {
     public:
         /////////////////////////////////////////////////
         /// \brief Open the connection to the web socket server.
         /////////////////////////////////////////////////
-        void Connect();
+        void connect();
         /////////////////////////////////////////////////
         /// \brief Send message to the server.
         /// \param messageType Message type to be sent.
         /////////////////////////////////////////////////
-        void SendMessage(int messageType);
+        void send_message(int messageType);
         
         std::shared_ptr<const EmscriptenWebSocketOpenEvent>
         m_webSocketEvent; ///< Web socket event object related to the opened connection.

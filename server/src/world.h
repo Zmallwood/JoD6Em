@@ -1,28 +1,28 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #pragma once
 namespace jod {
-    class WorldArea;
-    class Tile;
-    class Creature;
-    class World {
+    class world_area;
+    class tile;
+    class creature;
+    class world {
     public:
-        World();
+        world();
         
-        std::shared_ptr<WorldArea> m_currentWorldArea;
+        std::shared_ptr<world_area> m_currentWorldArea;
     };
-    class WorldArea {
+    class world_area {
     public:
-        WorldArea();
+        world_area();
         
-        std::vector<std::vector<std::shared_ptr<Tile> > > m_tiles;
+        std::vector<std::vector<std::shared_ptr<tile> > > m_tiles;
     };
-    class Tile {
+    class tile {
     public:
         int m_ground = 0;
         int m_object = 0;
-        std::shared_ptr<Creature> m_creature;
+        std::shared_ptr<creature> m_creature;
     };
-    class Creature {
+    class creature {
     public:
         int m_type = 0;
     };

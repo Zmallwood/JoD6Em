@@ -1,32 +1,32 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #pragma once
 namespace jod {
-    class ServerEngine;
-    class Player;
-    class TileHovering;
-    class MouseMovement;
-    class Cursor;
-    class Client {
+    class server_engine;
+    class player;
+    class tile_hovering;
+    class mouse_movement;
+    class cursor;
+    class client {
     public:
-        Client(boost::asio::ip::tcp::socket socket);
+        client(boost::asio::ip::tcp::socket socket);
         void
-        SendImageDrawInstruction(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
+        send_image_draw_instruction(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
                                  std::string_view imageName, RectF dest);
         void
-        SendImageDrawInstruction(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
+        send_image_draw_instruction(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
                                  int imageNameHash, RectF dest);
-        void SendPresentCanvasInstruction(
+        void send_present_canvas_instruction(
             boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
-        float GetAspectRatio();
+        float get_aspect_ratio();
         
-        std::shared_ptr<Player> m_player;
-        std::shared_ptr<TileHovering> m_tileHovering;
-        std::shared_ptr<MouseMovement> m_mouseMovement;
+        std::shared_ptr<player> m_player;
+        std::shared_ptr<tile_hovering> m_tileHovering;
+        std::shared_ptr<mouse_movement> m_mouseMovement;
         PointF m_mousePosition;
-        std::shared_ptr<ServerEngine> m_serverEngine;
-        std::shared_ptr<Cursor> m_cursor;
+        std::shared_ptr<server_engine> m_serverEngine;
+        std::shared_ptr<cursor> m_cursor;
     private:
-        void DoSession(boost::asio::ip::tcp::socket socket);
+        void do_session(boost::asio::ip::tcp::socket socket);
         
         Size m_canvasSize;
     };
