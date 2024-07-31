@@ -6,101 +6,102 @@
 
 namespace jod
 {
-  /* Use javascript call to get browser-canvas width. */
+    /* Use javascript call to get browser-canvas width. */
 
-  EM_JS(int, CanvasGetWidth, (), { return window.innerWidth; });
+    EM_JS(int, CanvasGetWidth, (), { return window.innerWidth; });
 
-  /* Use javascript call to get browser-canvas height. */
+    /* Use javascript call to get browser-canvas height. */
 
-  EM_JS(int, CanvasGetHeight, (), { return window.innerHeight; });
+    EM_JS(int, CanvasGetHeight, (), { return window.innerHeight; });
 
-  Graphics::Graphics()
-  {
-    /* Initialize GLFW. */
+    Graphics::Graphics()
+    {
+        /* Initialize GLFW. */
 
-    glfwInit();
+        glfwInit();
 
-    /* Use OPENGL ES, which is used for browser OpenGL. */
+        /* Use OPENGL ES, which is used for browser OpenGL. */
 
-    glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_ES_API);
+        glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_ES_API);
 
-    /* Set OpenGL version. */
+        /* Set OpenGL version. */
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 
-    /* Create GLFW window object. */
+        /* Create GLFW window object. */
 
-    m_window = glfwCreateWindow(CanvasGetWidth(), CanvasGetHeight(), k_title.c_str(), NULL, NULL);
+        m_window =
+            glfwCreateWindow(CanvasGetWidth(), CanvasGetHeight(), k_title.c_str(), NULL, NULL);
 
-    /* Activate current window. */
+        /* Activate current window. */
 
-    glfwMakeContextCurrent(m_window);
+        glfwMakeContextCurrent(m_window);
 
-    /* Enable alpha blending to allow transparency in rendering. */
+        /* Enable alpha blending to allow transparency in rendering. */
 
-    glEnable(GL_BLEND);
+        glEnable(GL_BLEND);
 
-    /* Set desired alpha blending functions. */
+        /* Set desired alpha blending functions. */
 
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-  }
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    }
 
-  void Graphics::ClearCanvas()
-  {
-    /* Clear canvas to prepare for rendering new contents. */
+    void Graphics::ClearCanvas()
+    {
+        /* Clear canvas to prepare for rendering new contents. */
 
-    glClear(GL_COLOR_BUFFER_BIT);
-  }
+        glClear(GL_COLOR_BUFFER_BIT);
+    }
 
-  void Graphics::PresentCanvas()
-  {
-    /* Present buffer to web browser. */
+    void Graphics::PresentCanvas()
+    {
+        /* Present buffer to web browser. */
 
-    glfwSwapBuffers(m_window);
+        glfwSwapBuffers(m_window);
 
-    /* Poll new input events from user. */
+        /* Poll new input events from user. */
 
-    glfwPollEvents();
+        glfwPollEvents();
 
-    /* Do not return until previously issued commands have finished. */
+        /* Do not return until previously issued commands have finished. */
 
-    glFinish();
-  }
+        glFinish();
+    }
 
-  Cursor::Cursor()
-  {
-    /* Hide default system cursor. */
+    Cursor::Cursor()
+    {
+        /* Hide default system cursor. */
 
-    glfwSetInputMode(_<Graphics>().m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        glfwSetInputMode(_<Graphics>().m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-    /* Allocate image resource for cursor image.*/
+        /* Allocate image resource for cursor image.*/
 
-    m_ridCursorImage = _<ImageRenderer>().NewImage();
-  }
+        m_ridCursorImage = _<ImageRenderer>().NewImage();
+    }
 
-  void Cursor::Render() const
-  {
-    /* Get current mouse position. */
+    void Cursor::Render() const
+    {
+        /* Get current mouse position. */
 
-    auto mousePos = GetMousePosition();
+        auto mousePos = GetMousePosition();
 
-    /* Obtain cursor dimensions. */
+        /* Obtain cursor dimensions. */
 
-    auto cursorWidth = k_cursorSize;
-    auto cursorHeight = ConvertWidthToHeight(k_cursorSize);
+        auto cursorWidth = k_cursorSize;
+        auto cursorHeight = ConvertWidthToHeight(k_cursorSize);
 
-    /* Calculate cursor position.*/
+        /* Calculate cursor position.*/
 
-    auto cursorX = mousePos.x - cursorWidth / 2;
-    auto cursorY = mousePos.y - cursorHeight / 2;
+        auto cursorX = mousePos.x - cursorWidth / 2;
+        auto cursorY = mousePos.y - cursorHeight / 2;
 
-    /* Create render destination rectangle. */
+        /* Create render destination rectangle. */
 
-    auto cursorDest = RectF{cursorX, cursorY, cursorWidth, cursorHeight};
+        auto cursorDest = RectF{cursorX, cursorY, cursorWidth, cursorHeight};
 
-    /* Render the cursor image. */
+        /* Render the cursor image. */
 
-    _<ImageRenderer>().DrawImage(m_ridCursorImage, k_cursorImageName, cursorDest);
-  }
+        _<ImageRenderer>().DrawImage(m_ridCursorImage, k_cursorImageName, cursorDest);
+    }
 }

@@ -1,8 +1,8 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 
-#include "Player.h"
+#pragma once
 
 namespace jod
 {
-
+    SizeF CalcTileSize(float aspectRatio);
 }

@@ -4,76 +4,100 @@
 
 namespace jod
 {
-  class Client;
-  class SceneManager;
-  class KeyboardInput;
+    class Client;
+    class SceneManager;
+    class KeyboardInput;
+    class MouseInput;
+    class MouseButton;
 
-  class ServerEngine
-  {
-   public:
-    ServerEngine(Client &client);
+    class ServerEngine
+    {
+      public:
+        ServerEngine(Client &client);
 
-    void Update();
+        void Update();
 
-    void Render(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
+        void Render(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
 
-    void OnMouseDown();
+        void OnMouseDown();
 
-    void OnKeyDown();
+        void OnKeyDown();
 
-   private:
-    std::shared_ptr<SceneManager> m_sceneManager;
-    Client &m_client;
-  };
+        std::shared_ptr<MouseInput> m_mouseInput;
 
-  class Scene
-  {
-   public:
-    Scene(std::function<void()> updateAction,
-          std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
-              renderAction,
-          std::function<void()> keyDownAction, std::function<void()> mouseDownAction);
+      private:
+        std::shared_ptr<SceneManager> m_sceneManager;
+        Client &m_client;
+    };
 
-    void Update();
+    class Scene
+    {
+      public:
+        Scene(std::function<void()> updateAction,
+              std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
+                  renderAction,
+              std::function<void()> keyDownAction, std::function<void()> mouseDownAction);
 
-    void Render(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
+        void Update();
 
-    void OnMouseDown();
+        void Render(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
 
-    void OnKeyDown();
+        void OnMouseDown();
 
-   private:
-    std::function<void()> m_updateAction;
-    std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
-        m_renderAction;
-    std::function<void()> m_keyDownAction;
-    std::function<void()> m_mouseDownAction;
-  };
+        void OnKeyDown();
 
-  class SceneManager
-  {
-   public:
-    SceneManager(Client &client);
+      private:
+        std::function<void()> m_updateAction;
+        std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
+            m_renderAction;
+        std::function<void()> m_keyDownAction;
+        std::function<void()> m_mouseDownAction;
+    };
 
-    void UpdateCurrentScene();
+    class SceneManager
+    {
+      public:
+        SceneManager(Client &client);
 
-    void RenderCurrentScene(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
+        void UpdateCurrentScene();
 
-    void OnMouseDownCurrentScene();
+        void RenderCurrentScene(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
 
-    void OnKeyDownCurrentScene();
+        void OnMouseDownCurrentScene();
 
-    void GoTo(std::string_view sceneName);
+        void OnKeyDownCurrentScene();
 
-   private:
-    void
-    AddScene(std::string_view sceneName, std::function<void()> updateAction,
-             std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
-                 renderAction,
-             std::function<void()> keyDownAction, std::function<void()> mouseDownAction);
+        void GoTo(std::string_view sceneName);
 
-    int m_currentScene = 0;
-    std::map<int, Scene> m_scenes;
-    Client &m_client;
-  };
+      private:
+        void AddScene(
+            std::string_view sceneName, std::function<void()> updateAction,
+            std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
+                renderAction,
+            std::function<void()> keyDownAction, std::function<void()> mouseDownAction);
+
+        int m_currentScene = 0;
+        std::map<int, Scene> m_scenes;
+        Client &m_client;
+    };
+
+    class MouseInput
+    {
+      public:
+        MouseInput();
+
+        void RegisterMouseDown();
+
+        std::shared_ptr<MouseButton> m_leftButton;
+    };
+
+    class MouseButton
+    {
+      public:
+        void RegisterMouseDown();
+
+        bool IsPressedPickResult();
+
+        bool m_isPressed;
+    };
 }

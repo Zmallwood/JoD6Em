@@ -28,4 +28,6 @@
 
 #include "NetConfiguration.h"
 
+#include "Math.h"
+
 // clang-format on
