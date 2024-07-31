@@ -7,7 +7,7 @@ namespace jod {
         tile_hovering(client &client);
         void update();
         
-        Point m_hoveredCoordinate = {-1, -1};
+        point m_hoveredCoordinate = {-1, -1};
     private:
         client &m_client;
     };

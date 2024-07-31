@@ -24,7 +24,8 @@ namespace jod {
         scene(std::function<void()> updateAction,
               std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
               renderAction,
-              std::function<void()> keyDownAction, std::function<void()> mouseDownAction);
+              std::function<void()> keyDownAction,
+              std::function<void()> mouseDownAction);
         void update();
         void render(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
         void on_mouse_down();
@@ -46,10 +47,12 @@ namespace jod {
         void go_to(std::string_view sceneName);
     private:
         void add_scene(
-            std::string_view sceneName, std::function<void()> updateAction,
+            std::string_view sceneName,
+            std::function<void()> updateAction,
             std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
             renderAction,
-            std::function<void()> keyDownAction, std::function<void()> mouseDownAction);
+            std::function<void()> keyDownAction,
+            std::function<void()> mouseDownAction);
         
         int m_currentScene = 0;
         std::map<int, scene> m_scenes;

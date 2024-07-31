@@ -17,8 +17,10 @@ namespace jod {
         auto cursorX = mousePos.x - cursorWidth / 2;
         auto cursorY = mousePos.y - cursorHeight / 2;
         // Create render destination rectangle.
-        auto cursorDest = RectF{cursorX, cursorY, cursorWidth, cursorHeight};
+        auto cursorDest = rectf{cursorX, cursorY, cursorWidth, cursorHeight};
         // Render the cursor image.
-        m_client.send_image_draw_instruction(ws, k_cursorImageName, cursorDest);
+        m_client.send_image_draw_instruction(ws,
+                                             k_cursorImageName,
+                                             cursorDest);
     }
 }

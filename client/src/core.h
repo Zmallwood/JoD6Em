@@ -35,7 +35,7 @@ namespace jod {
     struct image_draw_instruction {
         RID rid = -1; ///< ID for an image resource previously allocated.
         int imageNameHash = 0; ///<Hash code of image name to draw.
-        RectF dest; ///< Destination rectangle to draw the image at.
+        rectf dest; ///< Destination rectangle to draw the image at.
     };
     /////////////////////////////////////////////////
     /// \brief Holds latest set of rendering instructions and executes them.
@@ -51,7 +51,8 @@ namespace jod {
         /// \param imageNameHash Hash code of image name to draw.
         /// \param dest Destination rectangle to draw the image at.
         /////////////////////////////////////////////////
-        void add_image_draw_instruction(int imageNameHash, RectF dest);
+        void add_image_draw_instruction(int imageNameHash,
+                                        rectf dest);
         /////////////////////////////////////////////////
         /// \brief Copies the buffered render instructions to the active render instructions set.
         /////////////////////////////////////////////////

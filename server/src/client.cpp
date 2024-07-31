@@ -18,7 +18,9 @@ namespace jod {
         m_tileHovering(std::make_shared<tile_hovering>(*this)),
         m_mouseMovement(std::make_shared<mouse_movement>(*this)),
         m_cursor(std::make_shared<cursor>(*this)){
-        std::thread(&client::do_session, this, std::move(socket)).detach();
+        std::thread(&client::do_session,
+                    this,
+                    std::move(socket)).detach();
     }
     void
     client::do_session(tcp::socket socket){
@@ -69,12 +71,16 @@ namespace jod {
     }
     void
     client::send_image_draw_instruction(websocket::stream<tcp::socket> &ws,
-                                     std::string_view imageName, RectF dest){
-        send_image_draw_instruction(ws, jod::hash(imageName), dest);
+                                        std::string_view imageName,
+                                        rectf dest){
+        send_image_draw_instruction(ws,
+                                    jod::hash(imageName),
+                                    dest);
     }
     void
-    client::send_image_draw_instruction(websocket::stream<tcp::socket> &ws, int imageNameHash,
-                                     RectF dest){
+    client::send_image_draw_instruction(websocket::stream<tcp::socket> &ws,
+                                        int imageNameHash,
+                                        rectf dest){
         auto msg_code = message_codes::k_drawImageInstr;
         auto x = (int)(dest.x * net_constants::k_floatPrecision);
         auto y = (int)(dest.y * net_constants::k_floatPrecision);
@@ -92,7 +98,8 @@ namespace jod {
     void
     client::send_present_canvas_instruction(websocket::stream<tcp::socket> &ws){
         auto msg_code_present = message_codes::k_applyBuffer;
-        ws.write(boost::asio::buffer(&msg_code_present, sizeof(msg_code_present)));
+        ws.write(boost::asio::buffer(&msg_code_present,
+                                     sizeof(msg_code_present)));
     }
     float
     client::get_aspect_ratio(){

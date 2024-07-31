@@ -6,13 +6,17 @@
 #include "util.h"
 namespace jod {
     namespace {
-        EM_BOOL on_open(int eventType, const EmscriptenWebSocketOpenEvent *websocketEvent,
+        EM_BOOL on_open(int eventType,
+                        const EmscriptenWebSocketOpenEvent *websocketEvent,
                         void *userData);
-        EM_BOOL on_error(int eventType, const EmscriptenWebSocketErrorEvent *websocketEvent,
+        EM_BOOL on_error(int eventType,
+                         const EmscriptenWebSocketErrorEvent *websocketEvent,
                          void *userData);
-        EM_BOOL on_close(int eventType, const EmscriptenWebSocketCloseEvent *websocketEvent,
+        EM_BOOL on_close(int eventType,
+                         const EmscriptenWebSocketCloseEvent *websocketEvent,
                          void *userData);
-        EM_BOOL on_message(int eventType, const EmscriptenWebSocketMessageEvent *websocketEvent,
+        EM_BOOL on_message(int eventType,
+                           const EmscriptenWebSocketMessageEvent *websocketEvent,
                            void *userData);
         void process_incoming_message(unsigned char *bytes);
         int read_four_bytes_as_int(unsigned char *bytes);
@@ -27,10 +31,18 @@ namespace jod {
         auto wsAttrs = EmscriptenWebSocketCreateAttributes{serverAddress.c_str(), NULL, EM_TRUE};
         auto ws = emscripten_websocket_new(&wsAttrs); // Create the web socket and connect.
         // Setup callback functions.
-        emscripten_websocket_set_onopen_callback(ws, NULL, on_open);
-        emscripten_websocket_set_onerror_callback(ws, NULL, on_error);
-        emscripten_websocket_set_onclose_callback(ws, NULL, on_close);
-        emscripten_websocket_set_onmessage_callback(ws, NULL, on_message);
+        emscripten_websocket_set_onopen_callback(ws,
+                                                 NULL,
+                                                 on_open);
+        emscripten_websocket_set_onerror_callback(ws,
+                                                  NULL,
+                                                  on_error);
+        emscripten_websocket_set_onclose_callback(ws,
+                                                  NULL,
+                                                  on_close);
+        emscripten_websocket_set_onmessage_callback(ws,
+                                                    NULL,
+                                                    on_message);
     }
     void
     web_socket_server_connection::send_message(int messageType){
@@ -43,14 +55,18 @@ namespace jod {
             msg[1] = canvSize.w;
             msg[2] = canvSize.h;
             // Try send packet and handle failure.
-            if (auto result = emscripten_websocket_send_binary(m_webSocketEvent->socket, msg, 3 * sizeof(int)))
+            if (auto result = emscripten_websocket_send_binary(m_webSocketEvent->socket,
+                                                               msg,
+                                                               3 * sizeof(int)))
                 std::cout << "Failed to emscripten_websocket_send_binary(): " << result;
             break;
         }
         case message_codes::k_mouseDown: {
             int msg = message_codes::k_mouseDown; // Message contains only message code.
             // Try send packet and handle failure.
-            if (auto result = emscripten_websocket_send_binary(m_webSocketEvent->socket, &msg, sizeof(msg)))
+            if (auto result = emscripten_websocket_send_binary(m_webSocketEvent->socket,
+                                                               &msg,
+                                                               sizeof(msg)))
                 std::cout << "Failed to emscripten_websocket_send_binary(): " << result;
             break;
         }
@@ -61,14 +77,18 @@ namespace jod {
             msg[1] = (int)(mousePosition.x * net_constants::k_floatPrecision);
             msg[2] = (int)(mousePosition.y * net_constants::k_floatPrecision);
             // Try send packet and handle failure.
-            if (auto result = emscripten_websocket_send_binary(m_webSocketEvent->socket, &msg, sizeof(msg)))
+            if (auto result = emscripten_websocket_send_binary(m_webSocketEvent->socket,
+                                                               &msg,
+                                                               sizeof(msg)))
                 std::cout << "Failed to emscripten_websocket_send_binary(): " << result;
             break;
         }
         case message_codes::k_frameFinished: {
             int msg = message_codes::k_frameFinished;
             // Try send packet and handle failure.
-            if (auto result = emscripten_websocket_send_binary(m_webSocketEvent->socket, &msg, sizeof(msg)))
+            if (auto result = emscripten_websocket_send_binary(m_webSocketEvent->socket,
+                                                               &msg,
+                                                               sizeof(msg)))
                 std::cout << "Failed to emscripten_websocket_send_binary(): " << result;
             break;
         }
@@ -76,7 +96,8 @@ namespace jod {
     }
     namespace {
         EM_BOOL
-        on_open(int eventType, const EmscriptenWebSocketOpenEvent *websocketEvent,
+        on_open(int eventType,
+                const EmscriptenWebSocketOpenEvent *websocketEvent,
                 void *userData){
             // Save web socket event to WebSocketClient so it can be used from that object by its own.
             _<web_socket_server_connection>().m_webSocketEvent =
@@ -91,19 +112,22 @@ namespace jod {
             return EM_TRUE;
         }
         EM_BOOL
-        on_error(int eventType, const EmscriptenWebSocketErrorEvent *websocketEvent,
+        on_error(int eventType,
+                 const EmscriptenWebSocketErrorEvent *websocketEvent,
                  void *userData){
             std::cout << "Web socket error.\n"; // Notify on web socket errors.
             return EM_TRUE;
         }
         EM_BOOL
-        on_close(int eventType, const EmscriptenWebSocketCloseEvent *websocketEvent,
+        on_close(int eventType,
+                 const EmscriptenWebSocketCloseEvent *websocketEvent,
                  void *userData){
             std::cout << "Closing web socket connection.\n"; // Notify on closing web socket connection.
             return EM_TRUE;
         }
         EM_BOOL
-        on_message(int eventType, const EmscriptenWebSocketMessageEvent *websocketEvent,
+        on_message(int eventType,
+                   const EmscriptenWebSocketMessageEvent *websocketEvent,
                    void *userData){
             process_incoming_message(websocketEvent->data); // Process the raw message data in bytes.
             return EM_TRUE;
@@ -124,7 +148,8 @@ namespace jod {
                 // Next 4 bytes contains the height.
                 auto h = read_four_bytes_at_float(bytes + 20);
                 // Add the complete instruction.
-                _<render_instructions_manager>().add_image_draw_instruction(imageNameHash, {x, y, w, h});
+                _<render_instructions_manager>().add_image_draw_instruction(imageNameHash,
+                                                                            {x, y, w, h});
                 break;
             }
             case message_codes::k_applyBuffer: {

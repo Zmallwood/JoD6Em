@@ -20,12 +20,15 @@ namespace jod {
     /////////////////////////////////////////////////
     class shader_program {
     public:
-        bool create(const GLchar *vertexShaderSource, const GLchar *fragmentShaderSource);
+        bool create(const GLchar *vertexShaderSource,
+                    const GLchar *fragmentShaderSource);
         void cleanup();
         
         GLuint m_programID = 0;
     private:
-        GLuint compile_shader(const GLchar *shaderSource, GLuint *shader, GLenum shaderType);
+        GLuint compile_shader(const GLchar *shaderSource,
+                              GLuint *shader,
+                              GLenum shaderType);
     };
     /////////////////////////////////////////////////
     /// \brief Functions as a base class for all renderers providing shared base functionality.
@@ -48,14 +51,17 @@ namespace jod {
         /// \param VAOID The ID of the Vertex Array Object to which the new buffer is associated.
         /// \return GLuint The ID of the new VBO.
         /////////////////////////////////////////////////
-        GLuint gen_new_buff_id(buffer_types buffType, GLuint VAOID);
+        GLuint gen_new_buff_id(buffer_types buffType,
+                               GLuint VAOID);
         /////////////////////////////////////////////////
         /// \brief Set indices data for a VBO.
         /// \param indicesVBOID The VBO ID associated with the indices data.
         /// \param numIndices Number of indices to set.
         /// \param data Indices data.
         /////////////////////////////////////////////////
-        void set_indices_data(GLuint indicesVBOID, int numIndices, const void *data) const;
+        void set_indices_data(GLuint indicesVBOID,
+                              int numIndices,
+                              const void *data) const;
         /////////////////////////////////////////////////
         /// \brief Set buffer data for a VBO.
         /// \param VBOID The VBO ID associated with the data.
@@ -64,8 +70,11 @@ namespace jod {
         /// \param buffType Type of buffer the data will hold.
         /// \param layoutLocation Location in the shader.
         /////////////////////////////////////////////////
-        void set_data(GLuint VBOID, int numEntries, const void *data, buffer_types buffType,
-                     int layoutLocation = -1) const;
+        void set_data(GLuint VBOID,
+                      int numEntries,
+                      const void *data,
+                      buffer_types buffType,
+                      int layoutLocation = -1) const;
         /////////////////////////////////////////////////
         /// \brief Get layout location in the shader of an uniform variable.
         /// \param variableName Name of variable to obtain location for.
@@ -84,13 +93,15 @@ namespace jod {
         /// \param VAOID The Vertex Array Object to get the ID for.
         /// \return GLuint The ID of the Vertex Buffer Object.
         /////////////////////////////////////////////////
-        GLuint get_buff_id(buffer_types buffType, GLuint VAOID) const;
+        GLuint get_buff_id(buffer_types buffType,
+                           GLuint VAOID) const;
         /////////////////////////////////////////////////
         /// \brief Update indices data.
         /// \param indicesVBOID The ID of the indices VBO to update.
         /// \param indices Indices data to update with.
         /////////////////////////////////////////////////
-        void update_indices_data(GLuint indicesVBOID, std::vector<int> &indices) const;
+        void update_indices_data(GLuint indicesVBOID,
+                                 std::vector<int> &indices) const;
         /////////////////////////////////////////////////
         /// \brief Update data in an Vertex Buffer Object holding a specific buffer type and at a
         ///        specific layout location in the shader.
@@ -99,8 +110,10 @@ namespace jod {
         /// \param buffType The type of data the buffer holds.
         /// \param layoutLocation The layout location in the shader for the data.
         /////////////////////////////////////////////////
-        void update_data(GLuint VBOID, std::vector<float> &data, buffer_types buffType,
-                        int layoutLocation) const;
+        void update_data(GLuint VBOID,
+                         std::vector<float> &data,
+                         buffer_types buffType,
+                         int layoutLocation) const;
         /////////////////////////////////////////////////
         /// \brief Stop using the current Vertex Array Object.
         /////////////////////////////////////////////////
@@ -120,8 +133,11 @@ namespace jod {
         /// \param numFloatsPerEntry Number of flots per entry.
         /// \param layoutLocation Layout location of the data in the shader.
         /////////////////////////////////////////////////
-        void set_array_buffer_data(GLuint VBOID, int numEntries, const void *data,
-                                int numFloatsPerEntry, int layoutLocation = -1) const;
+        void set_array_buffer_data(GLuint VBOID,
+                                   int numEntries,
+                                   const void *data,
+                                   int numFloatsPerEntry,
+                                   int layoutLocation = -1) const;
         /////////////////////////////////////////////////
         /// \brief Apply data to an array buffer of int type.
         /// \param VBOID VBO ID to set the data for.
@@ -130,8 +146,11 @@ namespace jod {
         /// \param numFloatsPerEntry Number of flots per entry.
         /// \param layoutLocation Layout location of the data in the shader.
         /////////////////////////////////////////////////
-        void set_array_buffer_data_int(GLuint VBOID, int numEntries, const void *data,
-                                   int numFloatsPerEntry, int layoutLocation = -1) const;
+        void set_array_buffer_data_int(GLuint VBOID,
+                                       int numEntries,
+                                       const void *data,
+                                       int numFloatsPerEntry,
+                                       int layoutLocation = -1) const;
         /////////////////////////////////////////////////
         /// \brief Update data to an array buffer of float type.
         /// \param VBOID VBO ID to update the data for.
@@ -139,8 +158,10 @@ namespace jod {
         /// \param numFloatsPerEntry Number of flots per entry.
         /// \param layoutLocation Layout location of the data in the shader.
         /////////////////////////////////////////////////
-        void update_array_buffer_data(GLuint VBOID, std::vector<float> &data, int numFloatsPerEntry,
-                                   int layoutLocation) const;
+        void update_array_buffer_data(GLuint VBOID,
+                                      std::vector<float> &data,
+                                      int numFloatsPerEntry,
+                                      int layoutLocation) const;
         /////////////////////////////////////////////////
         /// \brief Update data to an array buffer of int type.
         /// \param VBOID VBO ID to update the data for.
@@ -148,8 +169,10 @@ namespace jod {
         /// \param numFloatsPerEntry Number of flots per entry.
         /// \param layoutLocation Layout location of the data in the shader.
         /////////////////////////////////////////////////
-        void update_array_buffer_data_int(GLuint VBOID, std::vector<float> &data, int numFloatsPerEntry,
-                                      int layoutLocation) const;
+        void update_array_buffer_data_int(GLuint VBOID,
+                                          std::vector<float> &data,
+                                          int numFloatsPerEntry,
+                                          int layoutLocation) const;
         
         std::shared_ptr<std::vector<GLuint> > m_VAOIDs; ///< Stores IDs of all Vertex Array Objects.
         std::shared_ptr<std::map<buffer_types, std::shared_ptr<std::map<GLuint, GLuint> > > >

@@ -22,21 +22,25 @@ namespace jod {
     sdl_deleter::operator()(TTF_Font *font) const {
         TTF_CloseFont(font);
     }
-    Size
+    size
     get_canvas_size(){
         int w, h; // To store dimensions in pixels.
         // Use GLFW to get canvas size.
-        glfwGetWindowSize(_<graphics>().m_window, &w, &h);
+        glfwGetWindowSize(_<graphics>().m_window,
+                          &w,
+                          &h);
         return {w, h};
     }
-    PointF
+    pointf
     get_mouse_position(){
         double xpos, ypos; // Declare variables to store mouse coordinates in pixels.
         // Use GLFW to get current mouse coordinates.
-        glfwGetCursorPos(_<graphics>().m_window, &xpos, &ypos);
+        glfwGetCursorPos(_<graphics>().m_window,
+                         &xpos,
+                         &ypos);
         auto canvasSize = get_canvas_size(); // Get canvas size.
         // And use it to convert pixel coordinates to fractal coordinates.
-        auto mousePosition = PointF{static_cast<float>(xpos) / canvasSize.w,
+        auto mousePosition = pointf{static_cast<float>(xpos) / canvasSize.w,
                                     static_cast<float>(ypos) / canvasSize.h};
         return mousePosition;
     }
@@ -68,7 +72,8 @@ namespace jod {
         // Find last occurence of '/' and get the part following it.
         auto nameWithExt = std::string(absPath.substr(absPath.find_last_of('/') + 1));
         // Then only keep the part preceeding the last occurrence of '.'.
-        auto fileName = nameWithExt.substr(0, nameWithExt.find_last_of('.'));
+        auto fileName = nameWithExt.substr(0,
+                                           nameWithExt.find_last_of('.'));
         return fileName;
     }
 }

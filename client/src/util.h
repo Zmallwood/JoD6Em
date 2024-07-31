@@ -13,8 +13,8 @@ namespace jod {
         void operator()(TTF_Font *font) const;
     };
     
-    Size get_canvas_size();
-    PointF get_mouse_position();
+    size get_canvas_size();
+    pointf get_mouse_position();
     float get_aspect_ratio();
     float convert_width_to_height(float width);
     float convert_height_to_width(float height);

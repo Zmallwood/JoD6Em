@@ -3,24 +3,40 @@
 #include "rendering.h"
 namespace jod {
     // Use javascript call to get browser-canvas width.
-    EM_JS(int, canvas_get_width, (), { return window.innerWidth; });
+    EM_JS(int,
+          canvas_get_width,
+          (),
+          { return window.innerWidth; });
     // Use javascript call to get browser-canvas height.
-    EM_JS(int, canvas_get_height, (), { return window.innerHeight; });
+    EM_JS(int,
+          canvas_get_height,
+          (),
+          { return window.innerHeight; });
     graphics::graphics(){
         glfwInit(); // Initialize GLFW.
         // Use OPENGL ES, which is used for browser OpenGL.
-        glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_ES_API);
+        glfwWindowHint(GLFW_CLIENT_API,
+                       GLFW_OPENGL_ES_API);
         // Set OpenGL version.
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR,
+                       3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR,
+                       0);
         // Create GLFW window object.
-        m_window = glfwCreateWindow(canvas_get_width(), canvas_get_height(), k_title.c_str(), NULL, NULL);
+        m_window = glfwCreateWindow(canvas_get_width(),
+                                    canvas_get_height(),
+                                    k_title.c_str(),
+                                    NULL,
+                                    NULL);
         glfwMakeContextCurrent(m_window); // Activate current window.
         glEnable(GL_BLEND); // Enable alpha blending to allow transparency in rendering.
         // Set desired alpha blending functions.
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glBlendFunc(GL_SRC_ALPHA,
+                    GL_ONE_MINUS_SRC_ALPHA);
         // Hide default system cursor.
-        glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        glfwSetInputMode(m_window,
+                         GLFW_CURSOR,
+                         GLFW_CURSOR_DISABLED);
     }
     void
     graphics::clear_canvas(){

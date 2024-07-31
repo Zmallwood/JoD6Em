@@ -34,7 +34,8 @@ namespace jod {
     }
     scene::scene(std::function<void()> updateAction,
                  std::function<void(websocket::stream<tcp::socket> &)> renderAction,
-                 std::function<void()> keyDownAction, std::function<void()> mouseDownAction)
+                 std::function<void()> keyDownAction,
+                 std::function<void()> mouseDownAction)
         : m_updateAction(updateAction), m_renderAction(renderAction),
         m_keyDownAction(keyDownAction), m_mouseDownAction(mouseDownAction){
     }
@@ -56,27 +57,37 @@ namespace jod {
     }
     scene_manager::scene_manager(client &client) : m_client(client){
         add_scene(
-            "IntroScene", [] {
+            "IntroScene",
+            [] {
         },
             [&](websocket::stream<tcp::socket> &ws){
-            m_client.send_image_draw_instruction(ws, "DefaultSceneBackground",
-                                              {0.0f, 0.0f, 1.0f, 1.0f});
-            m_client.send_image_draw_instruction(ws, "JoDLogo", {0.3f, 0.2f, 0.4f, 0.2f});
+            m_client.send_image_draw_instruction(ws,
+                                                 "DefaultSceneBackground",
+                                                 {0.0f, 0.0f, 1.0f, 1.0f});
+            m_client.send_image_draw_instruction(ws,
+                                                 "JoDLogo",
+                                                 {0.3f, 0.2f, 0.4f, 0.2f});
         },
             [] {
-        }, [&] {
+        },
+            [&] {
             this->go_to("MainMenuScene");
         });
         add_scene(
-            "MainMenuScene", [] {
+            "MainMenuScene",
+            [] {
         },
             [&](websocket::stream<tcp::socket> &ws){
-            m_client.send_image_draw_instruction(ws, "DefaultSceneBackground",
-                                              {0.0f, 0.0f, 1.0f, 1.0f});
-            m_client.send_image_draw_instruction(ws, "JoDLogo", {0.4f, 0.1f, 0.2f, 0.1f});
+            m_client.send_image_draw_instruction(ws,
+                                                 "DefaultSceneBackground",
+                                                 {0.0f, 0.0f, 1.0f, 1.0f});
+            m_client.send_image_draw_instruction(ws,
+                                                 "JoDLogo",
+                                                 {0.4f, 0.1f, 0.2f, 0.1f});
         },
             [] {
-        }, [&] {
+        },
+            [&] {
             this->go_to("MainScene");
         });
         add_scene(
@@ -97,24 +108,28 @@ namespace jod {
                     if (coordX < 0 || coordY < 0 || coordX >= 100 || coordY >= 100) continue;
                     auto tile = _<world>().m_currentWorldArea->m_tiles[coordX][coordY];
                     m_client.send_image_draw_instruction(
-                        ws, tile->m_ground,
+                        ws,
+                        tile->m_ground,
                         {x * tileSize.w, y * tileSize.h, tileSize.w, tileSize.h});
                     if (coordX == m_client.m_tileHovering->m_hoveredCoordinate.x &&
                         coordY == m_client.m_tileHovering->m_hoveredCoordinate.y){
                         m_client.send_image_draw_instruction(
-                            ws, "HoveredTile",
+                            ws,
+                            "HoveredTile",
                             {x * tileSize.w, y * tileSize.h, tileSize.w, tileSize.h});
                     }
                     if (coordX == playerCoord.x && coordY == playerCoord.y){
                         m_client.send_image_draw_instruction(
-                            ws, "Player",
+                            ws,
+                            "Player",
                             {x * tileSize.w, y * tileSize.h, tileSize.w, tileSize.h});
                     }
                 }
             }
         },
             [] {
-        }, [] {
+        },
+            [] {
         });
         go_to("IntroScene");
     }
@@ -143,10 +158,11 @@ namespace jod {
         m_currentScene = jod::hash(sceneName);
     }
     void
-    scene_manager::add_scene(std::string_view sceneName, std::function<void()> updateAction,
-                           std::function<void(websocket::stream<tcp::socket> &)> renderAction,
-                           std::function<void()> keyDownAction,
-                           std::function<void()> mouseDownAction){
+    scene_manager::add_scene(std::string_view sceneName,
+                             std::function<void()> updateAction,
+                             std::function<void(websocket::stream<tcp::socket> &)> renderAction,
+                             std::function<void()> keyDownAction,
+                             std::function<void()> mouseDownAction){
         m_scenes.insert(
             {jod::hash(sceneName), {updateAction, renderAction, keyDownAction, mouseDownAction}});
     }
