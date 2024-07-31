@@ -5,8 +5,9 @@ namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;
 namespace jod {
     void
-    web_socket_server::start(std::string socketAddress,
-                             std::string socketPort){
+    web_socket_server::start(
+        std::string socketAddress,
+        std::string socketPort){
         auto const address = net::ip::make_address(socketAddress);
         auto const port = static_cast<unsigned short>(std::atoi(socketPort.c_str()));
         net::io_context ioc{1}; // The io_context is required for all I/O.

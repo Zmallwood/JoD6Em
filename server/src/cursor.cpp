@@ -19,8 +19,9 @@ namespace jod {
         // Create render destination rectangle.
         auto cursorDest = rectf{cursorX, cursorY, cursorWidth, cursorHeight};
         // Render the cursor image.
-        m_client.send_image_draw_instruction(ws,
-                                             k_cursorImageName,
-                                             cursorDest);
+        m_client.send_image_draw_instruction(
+            ws,
+            k_cursorImageName,
+            cursorDest);
     }
 }

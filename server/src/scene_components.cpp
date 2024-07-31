@@ -14,10 +14,12 @@ namespace jod {
         auto playerCoord = m_client.m_player->m_coord;
         auto numRows = _<game_properties>().numGridRows;
         auto numCols = numRows;
-        auto tileX = playerCoord.x - (numCols - 1) / 2 +
-                     static_cast<int>(m_client.m_mousePosition.x / tileSize.w);
-        auto tileY = playerCoord.y - (numRows - 1) / 2 +
-                     static_cast<int>(m_client.m_mousePosition.y / tileSize.h);
+        auto tileX =
+            playerCoord.x - (numCols - 1) / 2 +
+            static_cast<int>(m_client.m_mousePosition.x / tileSize.w);
+        auto tileY =
+            playerCoord.y - (numRows - 1) / 2 +
+            static_cast<int>(m_client.m_mousePosition.y / tileSize.h);
         m_hoveredCoordinate = {tileX, tileY};
     }
     mouse_movement::mouse_movement(client &client) : m_client(client){

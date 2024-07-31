@@ -32,10 +32,11 @@ namespace jod {
     server_engine::on_mouse_down(){
         m_sceneManager->on_mouse_down_current_scene();
     }
-    scene::scene(std::function<void()> updateAction,
-                 std::function<void(websocket::stream<tcp::socket> &)> renderAction,
-                 std::function<void()> keyDownAction,
-                 std::function<void()> mouseDownAction)
+    scene::scene(
+        std::function<void()> updateAction,
+        std::function<void(websocket::stream<tcp::socket> &)> renderAction,
+        std::function<void()> keyDownAction,
+        std::function<void()> mouseDownAction)
         : m_updateAction(updateAction), m_renderAction(renderAction),
         m_keyDownAction(keyDownAction), m_mouseDownAction(mouseDownAction){
     }
@@ -61,12 +62,14 @@ namespace jod {
             [] {
         },
             [&](websocket::stream<tcp::socket> &ws){
-            m_client.send_image_draw_instruction(ws,
-                                                 "DefaultSceneBackground",
-                                                 {0.0f, 0.0f, 1.0f, 1.0f});
-            m_client.send_image_draw_instruction(ws,
-                                                 "JoDLogo",
-                                                 {0.3f, 0.2f, 0.4f, 0.2f});
+            m_client.send_image_draw_instruction(
+                ws,
+                "DefaultSceneBackground",
+                {0.0f, 0.0f, 1.0f, 1.0f});
+            m_client.send_image_draw_instruction(
+                ws,
+                "JoDLogo",
+                {0.3f, 0.2f, 0.4f, 0.2f});
         },
             [] {
         },
@@ -78,12 +81,14 @@ namespace jod {
             [] {
         },
             [&](websocket::stream<tcp::socket> &ws){
-            m_client.send_image_draw_instruction(ws,
-                                                 "DefaultSceneBackground",
-                                                 {0.0f, 0.0f, 1.0f, 1.0f});
-            m_client.send_image_draw_instruction(ws,
-                                                 "JoDLogo",
-                                                 {0.4f, 0.1f, 0.2f, 0.1f});
+            m_client.send_image_draw_instruction(
+                ws,
+                "DefaultSceneBackground",
+                {0.0f, 0.0f, 1.0f, 1.0f});
+            m_client.send_image_draw_instruction(
+                ws,
+                "JoDLogo",
+                {0.4f, 0.1f, 0.2f, 0.1f});
         },
             [] {
         },
@@ -158,11 +163,12 @@ namespace jod {
         m_currentScene = jod::hash(sceneName);
     }
     void
-    scene_manager::add_scene(std::string_view sceneName,
-                             std::function<void()> updateAction,
-                             std::function<void(websocket::stream<tcp::socket> &)> renderAction,
-                             std::function<void()> keyDownAction,
-                             std::function<void()> mouseDownAction){
+    scene_manager::add_scene(
+        std::string_view sceneName,
+        std::function<void()> updateAction,
+        std::function<void(websocket::stream<tcp::socket> &)> renderAction,
+        std::function<void()> keyDownAction,
+        std::function<void()> mouseDownAction){
         m_scenes.insert(
             {jod::hash(sceneName), {updateAction, renderAction, keyDownAction, mouseDownAction}});
     }

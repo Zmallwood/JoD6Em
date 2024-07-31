@@ -13,8 +13,9 @@ namespace jod {
     }
     image_bank::~image_bank() { // Iterate through all the loaded images.
         for (const auto &img : m_images)
-            glDeleteTextures(1,
-                             &img.second); // Free every allocated image resource.
+            glDeleteTextures(
+                1,
+                &img.second);              // Free every allocated image resource.
     }
     GLuint
     image_bank::get_image(std::string_view imageName) const {
@@ -32,8 +33,9 @@ namespace jod {
     GLuint
     image_bank::create_blank_image(std::string_view uniqueImageName) {
         GLuint texID; // Generate new image resource,
-        glGenTextures(1,
-                      &texID);    // and get its ID.
+        glGenTextures(
+            1,
+            &texID);              // and get its ID.
         // Insert new image entry with image name hash as key
         // and the new ID as value.
         m_images.insert({jod::hash(uniqueImageName), texID});
@@ -43,12 +45,10 @@ namespace jod {
     image_bank::load_images() {
         using iterator = std::filesystem::recursive_directory_iterator;
         auto allImagesPath = k_relImagesPath + "/";
-        for (auto &entry : iterator(
-                 allImagesPath)) {
+        for (auto &entry : iterator(allImagesPath)) {
             auto absPath = entry.path().string(); // Create path string to load the images from.
             if (file_extension(absPath) != "png") continue; // Only handle files with png extenstion.
-            auto texID = load_single_image(
-                absPath); // Load the current file as an image resource.
+            auto texID = load_single_image(absPath); // Load the current file as an image resource.
             auto imageName = filename_no_extension(
                 absPath); // Extract its pure name without path or extension.
             // Insert a new entry into the images storage, with the
@@ -65,8 +65,9 @@ namespace jod {
             auto surf = load_image_data(
                 absFilePath.data());
             glEnable(GL_TEXTURE_2D); // We will work with 2D textures.
-            glGenTextures(1,
-                          &texID); // Generate a new OpenGL texture and get its ID.
+            glGenTextures(
+                1,
+                &texID);           // Generate a new OpenGL texture and get its ID.
             glBindTexture(
                 GL_TEXTURE_2D,
                 texID); // Use the newly created OpenGL texture.

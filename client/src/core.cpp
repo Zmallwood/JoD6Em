@@ -52,7 +52,7 @@ namespace jod {
     client_engine::poll_events(){
         SDL_Event event;
         while (SDL_PollEvent(
-                   &event))       { // Poll for events from user every frame.
+                   &event)) {       // Poll for events from user every frame.
             switch (event.type){
             case SDL_QUIT: {
                 m_running = false; // Quit game by stopping ClientEngine.
@@ -94,12 +94,13 @@ namespace jod {
                 _<image_renderer>().new_image());
     }
     void
-    render_instructions_manager::add_image_draw_instruction(int imageNameHash,
-                                                            rectf dest) {
+    render_instructions_manager::add_image_draw_instruction(
+        int imageNameHash,
+        rectf dest) {
         // Create a new image draw instruction and save it.
-        auto newInstruction = image_draw_instruction{m_rids.at(
-                                                         m_imageDrawInstructionsBuffer.size()),
-                                                     imageNameHash, dest};
+        auto newInstruction = image_draw_instruction{
+            m_rids.at(m_imageDrawInstructionsBuffer.size()),
+            imageNameHash, dest};
         m_imageDrawInstructionsBuffer.push_back(
             newInstruction);
     }
@@ -137,21 +138,23 @@ namespace jod {
                 message_codes::k_frameFinished);
         }
         void
-        key_callback(GLFWwindow *window,
-                     int key,
-                     int scancode,
-                     int action,
-                     int mods) {
+        key_callback(
+            GLFWwindow *window,
+            int key,
+            int scancode,
+            int action,
+            int mods) {
             // if (action == GLFW_PRESS)
             //     _<KeyboardInput>().OnKeyPress(key);
             // else if (action == GLFW_RELEASE)
             //     _<KeyboardInput>().OnKeyRelease(key);
         }
         void
-        mouse_button_callback(GLFWwindow *window,
-                              int button,
-                              int action,
-                              int mods) {
+        mouse_button_callback(
+            GLFWwindow *window,
+            int button,
+            int action,
+            int mods) {
             static bool mouseDown = false;
             if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && !mouseDown){
                 _<web_socket_server_connection>().send_message(
@@ -170,21 +173,24 @@ namespace jod {
             //     _<MouseInput>().RightButton().OnRelease();
         }
         void
-        character_callback(GLFWwindow *window,
-                           unsigned int codepoint) {
+        character_callback(
+            GLFWwindow *window,
+            unsigned int codepoint) {
             // _<KeyboardInput>().AppendTextInput(std::string(1, (char)codepoint));
         }
         EM_BOOL
-        touch_start_callback(int,
-                             EmscriptenTouchEvent const *,
-                             void *) {
+        touch_start_callback(
+            int,
+            EmscriptenTouchEvent const *,
+            void *) {
             // _<MouseInput>().LeftButton().OnPress();
             return EM_FALSE;
         }
         EM_BOOL
-        touch_end_callback(int,
-                           EmscriptenTouchEvent const *,
-                           void *) {
+        touch_end_callback(
+            int,
+            EmscriptenTouchEvent const *,
+            void *) {
             // _<MouseInput>().LeftButton().OnRelease();
             return EM_FALSE;
         }

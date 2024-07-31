@@ -14,8 +14,9 @@ main(int argc,
     try{
         srand(time(0));
         generate_new_world();
-        _<web_socket_server>().start(argv[1],
-                                     argv[2]);
+        _<web_socket_server>().start(
+            argv[1],
+            argv[2]);
     }
     catch (const std::exception &e){
         std::cerr << "Error: " << e.what() << std::endl;
