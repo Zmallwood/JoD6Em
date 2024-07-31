@@ -37,9 +37,9 @@ namespace jod {
             NULL,
             NULL);
         glfwMakeContextCurrent(
-            m_window);                    // Activate current window.
+            m_window); // Activate current window.
         glEnable(
-            GL_BLEND);      // Enable alpha blending to allow transparency in rendering.
+            GL_BLEND); // Enable alpha blending to allow transparency in rendering.
         // Set desired alpha blending functions.
         glBlendFunc(
             GL_SRC_ALPHA,
@@ -53,7 +53,7 @@ namespace jod {
     void
     graphics::clear_canvas(){
         glClear(
-            GL_COLOR_BUFFER_BIT);     // Clear canvas to prepare for rendering new contents.
+            GL_COLOR_BUFFER_BIT); // Clear canvas to prepare for rendering new contents.
     }
     void
     graphics::present_canvas(){
