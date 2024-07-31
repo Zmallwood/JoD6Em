@@ -22,8 +22,7 @@ namespace jod {
     }
     
     void WebSocketServerConnection::Connect(){
-        if (!emscripten_websocket_is_supported()) // Check support exists.
-            return;
+        if (!emscripten_websocket_is_supported()) return; // Check support exists.
         // Create address to connect to.
         auto serverAddress = "ws://" + k_host + ":" + std::to_string(k_port);
         // Create attributes.

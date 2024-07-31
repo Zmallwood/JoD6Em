@@ -1,5 +1,4 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-
 #include "Assets.h"
 
 namespace jod {
@@ -7,29 +6,22 @@ namespace jod {
         GLuint LoadSingleImage(std::string_view absFilePath);
         SDL_Surface *LoadImageData(const char *filename);
     }
-    
     ImageBank::ImageBank() {
         LoadImages(); // Load all images in images path.
     }
-    
     ImageBank::~ImageBank() { // Iterate through all the loaded images.
-        for (const auto &img : m_images)
-            glDeleteTextures(1, &img.second); // Free every allocated image resource.
+        for (const auto &img : m_images) glDeleteTextures(1, &img.second); // Free every allocated image resource.
     }
-    
     GLuint ImageBank::GetImage(std::string_view imageName) const {
         return GetImage(Hash(imageName)); // Hash the image name and call the function overload
     }
-    
     GLuint ImageBank::GetImage(int imageNameHash) const {
         for (auto img : m_images) // Iterate through all the loaded images.
             // If its key, being the hash of the image name, equals
             // the hash of the specified name, then, return this image ID.
-            if (img.first == imageNameHash)
-                return img.second;
+            if (img.first == imageNameHash) return img.second;
         return -1; // No image with the name found, return fail value.
     }
-    
     GLuint ImageBank::CreateBlankImage(std::string_view uniqueImageName) {
         GLuint texID; // Generate new image resource
         glGenTextures(1, &texID); // and get its ID.
@@ -38,14 +30,12 @@ namespace jod {
         m_images.insert({Hash(uniqueImageName), texID});
         return texID; // Return the ID of the newly created blank image resource.
     }
-    
     void ImageBank::LoadImages() {
         using iterator = std::filesystem::recursive_directory_iterator;
         auto allImagesPath = k_relImagesPath + "/";
         for (auto &entry : iterator(allImagesPath)) {
             auto absPath = entry.path().string(); // Create path string to load the images from.
-            if (FileExtension(absPath) != "png") // Only handle files with png extenstion.
-                continue;
+            if (FileExtension(absPath) != "png") continue; // Only handle files with png extenstion.
             auto texID = LoadSingleImage(absPath); // Load the current file as an image resource.
             auto imageName = FilenameNoExtension(absPath); // Extract its pure name without path or extension.
             // Insert a new entry into the images storage, with the
@@ -53,7 +43,6 @@ namespace jod {
             m_images.insert({Hash(imageName), texID});
         }
     }
-    
     namespace {
         GLuint LoadSingleImage(std::string_view absFilePath) {
             GLuint texID; // Declare variable to hold the resulting ID for the loaded image file.
@@ -80,7 +69,6 @@ namespace jod {
             SDL_FreeSurface(surf);
             return texID; // Return the previously generated resource ID.
         }
-        
         SDL_Surface *LoadImageData(const char *filename) {
             int width;
             int height;

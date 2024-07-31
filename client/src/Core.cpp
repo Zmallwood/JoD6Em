@@ -1,5 +1,4 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-
 #include "Core.h"
 #include "Graphics.h"
 #include "MessageCodes.h"
@@ -14,15 +13,12 @@ namespace jod {
         EM_BOOL TouchStartCallback(int, EmscriptenTouchEvent const *, void *);
         EM_BOOL TouchEndCallback(int, EmscriptenTouchEvent const *, void *);
     }
-    
     void RunNewClientInstance(){
         _<ClientEngine>().Run(); // Access ClientEngine and run it.
     }
-    
     namespace {
         void GameLoopFunction();
     }
-    
     void ClientEngine::Run() const {
         _<WebSocketServerConnection>().Connect(); // Start network connection.
         SDL_Init(SDL_INIT_EVERYTHING); // Required by SDL2 before using it.
@@ -32,7 +28,6 @@ namespace jod {
         auto simulateInfiniteLoop = 1;
         emscripten_set_main_loop(GameLoopFunction, 0, simulateInfiniteLoop);
     }
-    
     void ClientEngine::PollEvents(){
         SDL_Event event;
         while (SDL_PollEvent(&event)) { // Poll for events from user every frame.
@@ -44,7 +39,6 @@ namespace jod {
             }
         }
     }
-    
     InputManager::InputManager(){
         // Set callback for keyboard events.
         glfwSetKeyCallback(_<Graphics>().m_window, KeyCallback);
@@ -57,20 +51,17 @@ namespace jod {
         // Set callback for touch end event.
         emscripten_set_touchend_callback("#canvas", nullptr, true, TouchEndCallback);
     }
-    
     RenderInstructionsManager::RenderInstructionsManager(){
         // Create a sufficient amount of RIDs for drawing images and game start.
         for (auto i = 0; i < k_maxNumDrawInstructions; i++)
             m_rids.push_back(_<ImageRenderer>().NewImage());
     }
-    
     void RenderInstructionsManager::AddImageDrawInstruction(int imageNameHash, RectF dest){
         // Create a new image draw instruction and save it.
         auto newInstruction = ImageDrawInstruction{m_rids.at(m_imageDrawInstructionsBuffer.size()),
                                                    imageNameHash, dest};
         m_imageDrawInstructionsBuffer.push_back(newInstruction);
     }
-    
     void RenderInstructionsManager::ApplyBuffer(){
         // Replace the current instruction group with the new one.
         m_imageDrawInstructions = m_imageDrawInstructionsBuffer;
@@ -78,13 +69,11 @@ namespace jod {
         // of instructions by clearing it.
         m_imageDrawInstructionsBuffer.clear();
     }
-    
     void RenderInstructionsManager::ExecuteInstructions(){
         // Execute all drawing instructions that have been added.
         for (auto &instr : m_imageDrawInstructions)
             _<ImageRenderer>().DrawImage(instr.rid, instr.imageNameHash, instr.dest);
     }
-    
     namespace {
         void GameLoopFunction(){
             if (!_<ClientEngine>().m_running) // Exit main loop if user has requested it.
@@ -99,14 +88,12 @@ namespace jod {
             _<Graphics>().PresentCanvas(); // Present canvas to users web browser.
             _<WebSocketServerConnection>().SendMessage(MessageCodes::k_frameFinished);
         }
-        
         void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods){
             // if (action == GLFW_PRESS)
             //     _<KeyboardInput>().OnKeyPress(key);
             // else if (action == GLFW_RELEASE)
             //     _<KeyboardInput>().OnKeyRelease(key);
         }
-        
         void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods){
             static bool mouseDown = false;
             if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && !mouseDown){
@@ -124,16 +111,13 @@ namespace jod {
             // else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE)
             //     _<MouseInput>().RightButton().OnRelease();
         }
-        
         void CharacterCallback(GLFWwindow *window, unsigned int codepoint){
             // _<KeyboardInput>().AppendTextInput(std::string(1, (char)codepoint));
         }
-        
         EM_BOOL TouchStartCallback(int, EmscriptenTouchEvent const *, void *){
             // _<MouseInput>().LeftButton().OnPress();
             return EM_FALSE;
         }
-        
         EM_BOOL TouchEndCallback(int, EmscriptenTouchEvent const *, void *){
             // _<MouseInput>().LeftButton().OnRelease();
             return EM_FALSE;

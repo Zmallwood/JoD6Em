@@ -1,5 +1,4 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-
 #include "Graphics.h"
 #include "Rendering.h"
 
@@ -8,7 +7,6 @@ namespace jod {
     EM_JS(int, CanvasGetWidth, (), { return window.innerWidth; });
     // Use javascript call to get browser-canvas height.
     EM_JS(int, CanvasGetHeight, (), { return window.innerHeight; });
-    
     Graphics::Graphics(){
         glfwInit(); // Initialize GLFW.
         // Use OPENGL ES, which is used for browser OpenGL.
@@ -23,25 +21,21 @@ namespace jod {
         // Set desired alpha blending functions.
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
-    
     void Graphics::ClearCanvas(){
         glClear(GL_COLOR_BUFFER_BIT); // Clear canvas to prepare for rendering new contents.
     }
-    
     void Graphics::PresentCanvas(){
         glfwSwapBuffers(m_window); // Present buffer to web browser.
         glfwPollEvents(); // Poll new input events from user.
         // Do not return until previously issued commands have finished.
         glFinish();
     }
-    
     Cursor::Cursor(){
         // Hide default system cursor.
         glfwSetInputMode(_<Graphics>().m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         // Allocate image resource for cursor image.
         m_ridCursorImage = _<ImageRenderer>().NewImage();
     }
-    
     void Cursor::Render() const {
         auto mousePos = GetMousePosition(); // Get current mouse position.
         // Obtain cursor dimensions.
