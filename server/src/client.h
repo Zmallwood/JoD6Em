@@ -8,15 +8,18 @@ namespace jod {
     class cursor;
     class client {
     public:
-        client(boost::asio::ip::tcp::socket socket);
+        client(
+            boost::asio::ip::tcp::socket socket);
         void
-        send_image_draw_instruction(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
-                                    std::string_view imageName,
-                                    rectf dest);
+        send_image_draw_instruction(
+            boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
+            std::string_view imageName,
+            rectf dest);
         void
-        send_image_draw_instruction(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
-                                    int imageNameHash,
-                                    rectf dest);
+        send_image_draw_instruction(
+            boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
+            int imageNameHash,
+            rectf dest);
         void send_present_canvas_instruction(
             boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
         float get_aspect_ratio();
@@ -28,7 +31,8 @@ namespace jod {
         std::shared_ptr<server_engine> m_serverEngine;
         std::shared_ptr<cursor> m_cursor;
     private:
-        void do_session(boost::asio::ip::tcp::socket socket);
+        void do_session(
+            boost::asio::ip::tcp::socket socket);
         
         size m_canvasSize;
     };

@@ -8,9 +8,11 @@ namespace jod {
     class mouse_button;
     class server_engine {
     public:
-        server_engine(client &client);
+        server_engine(
+            client &client);
         void update();
-        void render(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
+        void render(
+            boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
         void on_mouse_down();
         void on_key_down();
         
@@ -21,13 +23,15 @@ namespace jod {
     };
     class scene {
     public:
-        scene(std::function<void()> updateAction,
-              std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
-              renderAction,
-              std::function<void()> keyDownAction,
-              std::function<void()> mouseDownAction);
+        scene(
+            std::function<void()> updateAction,
+            std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
+            renderAction,
+            std::function<void()> keyDownAction,
+            std::function<void()> mouseDownAction);
         void update();
-        void render(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
+        void render(
+            boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
         void on_mouse_down();
         void on_key_down();
     private:
@@ -39,12 +43,15 @@ namespace jod {
     };
     class scene_manager {
     public:
-        scene_manager(client &client);
+        scene_manager(
+            client &client);
         void update_current_scene();
-        void render_current_scene(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
+        void render_current_scene(
+            boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
         void on_mouse_down_current_scene();
         void on_key_down_current_scene();
-        void go_to(std::string_view sceneName);
+        void go_to(
+            std::string_view sceneName);
     private:
         void add_scene(
             std::string_view sceneName,

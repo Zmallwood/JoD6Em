@@ -6,21 +6,28 @@
 #include "util.h"
 namespace jod {
     namespace {
-        EM_BOOL on_open(int eventType,
-                        const EmscriptenWebSocketOpenEvent *websocketEvent,
-                        void *userData);
-        EM_BOOL on_error(int eventType,
-                         const EmscriptenWebSocketErrorEvent *websocketEvent,
-                         void *userData);
-        EM_BOOL on_close(int eventType,
-                         const EmscriptenWebSocketCloseEvent *websocketEvent,
-                         void *userData);
-        EM_BOOL on_message(int eventType,
-                           const EmscriptenWebSocketMessageEvent *websocketEvent,
-                           void *userData);
-        void process_incoming_message(unsigned char *bytes);
-        int read_four_bytes_as_int(unsigned char *bytes);
-        float read_four_bytes_at_float(unsigned char *bytes);
+        EM_BOOL on_open(
+            int eventType,
+            const EmscriptenWebSocketOpenEvent *websocketEvent,
+            void *userData);
+        EM_BOOL on_error(
+            int eventType,
+            const EmscriptenWebSocketErrorEvent *websocketEvent,
+            void *userData);
+        EM_BOOL on_close(
+            int eventType,
+            const EmscriptenWebSocketCloseEvent *websocketEvent,
+            void *userData);
+        EM_BOOL on_message(
+            int eventType,
+            const EmscriptenWebSocketMessageEvent *websocketEvent,
+            void *userData);
+        void process_incoming_message(
+            unsigned char *bytes);
+        int read_four_bytes_as_int(
+            unsigned char *bytes);
+        float read_four_bytes_at_float(
+            unsigned char *bytes);
     }
     void
     web_socket_server_connection::connect(){

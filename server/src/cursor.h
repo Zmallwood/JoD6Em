@@ -4,8 +4,10 @@ namespace jod {
     class client;
     class cursor {
     public:
-        cursor(client& client);
-        void render(boost::beast::websocket::stream<boost::asio::ip::tcp::socket>& ws);
+        cursor(
+            client& client);
+        void render(
+            boost::beast::websocket::stream<boost::asio::ip::tcp::socket>& ws);
     private:
         client& m_client;
         const std::string k_cursorImageName = "CursorDefault"; ///< Image name for default cursor style.

@@ -19,20 +19,23 @@ namespace jod {
         /// \param imageName Name of image, corresponding to filename wihtout extension.
         /// \return GLuint Resource ID of obtained image object.
         /////////////////////////////////////////////////
-        GLuint get_image(std::string_view imageName) const;
+        GLuint get_image(
+            std::string_view imageName) const;
         /////////////////////////////////////////////////
         /// \brief Get the Image object.
         /// \param imageNameHash Hash code of image name, corresponding to hash code of filename
         ///                      wihtout extension.
         /// \return GLuint Resource ID of obtained image object.
         /////////////////////////////////////////////////
-        GLuint get_image(int imageNameHash) const;
+        GLuint get_image(
+            int imageNameHash) const;
         /////////////////////////////////////////////////
         /// \brief Create a Blank Image object.
         /// \param uniqueImageName Name of newly created blank image.
         /// \return GLuint GLuint Resource ID of created image.
         /////////////////////////////////////////////////
-        GLuint create_blank_image(std::string_view uniqueImageName);
+        GLuint create_blank_image(
+            std::string_view uniqueImageName);
     private:
         void load_images();
         

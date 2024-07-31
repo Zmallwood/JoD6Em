@@ -5,7 +5,6 @@
 #include "player.h"
 #include "configuration.h"
 #include "client_core.h"
-
 namespace jod {
     tile_hovering::tile_hovering(client &client) : m_client(client){
     }
