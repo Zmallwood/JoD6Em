@@ -1,5 +1,4 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-
 #pragma once
 
 namespace jod {
@@ -13,7 +12,6 @@ namespace jod {
         /// \brief Open the connection to the web socket server.
         /////////////////////////////////////////////////
         void Connect();
-        
         /////////////////////////////////////////////////
         /// \brief Send message to the server.
         ///
@@ -23,7 +21,6 @@ namespace jod {
         
         std::shared_ptr<const EmscriptenWebSocketOpenEvent>
         m_webSocketEvent; ///< Web socket event object related to the opened connection.
-        
     private:
         const std::string k_host = "localhost"; ///< Host name of the server to connect to.
         const int k_port = 8765; ///< Port number to open the connection at.

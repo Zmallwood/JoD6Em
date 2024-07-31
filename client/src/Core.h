@@ -16,7 +16,6 @@ namespace jod {
         /// \brief Run the client engine.
         /////////////////////////////////////////////////
         void Run() const;
-        
         /////////////////////////////////////////////////
         /// \brief Poll input events from user.
         /////////////////////////////////////////////////
@@ -53,7 +52,6 @@ namespace jod {
         /// \brief Construct a new Render Instructions Manager object.
         /////////////////////////////////////////////////
         RenderInstructionsManager();
-        
         /////////////////////////////////////////////////
         /// \brief Add new image draw instruction to group, called on request from server.
         ///
@@ -61,18 +59,15 @@ namespace jod {
         /// \param dest Destination rectangle to draw the image at.
         /////////////////////////////////////////////////
         void AddImageDrawInstruction(int imageNameHash, RectF dest);
-        
         /////////////////////////////////////////////////
         /// \brief Copies the buffered render instructions to the active render instructions set.
         /////////////////////////////////////////////////
         void ApplyBuffer();
-        
         /////////////////////////////////////////////////
         /// \brief Performs all rendering instructions by performing rendering instructions to the
         ///        web browser.
         /////////////////////////////////////////////////
         void ExecuteInstructions();
-        
     private:
         std::vector<ImageDrawInstruction>
         m_imageDrawInstructions; ///< Holds the image draw instructions that are executed each call to DrawCanvas().

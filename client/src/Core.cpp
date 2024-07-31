@@ -12,12 +12,10 @@ namespace jod {
         void CharacterCallback(GLFWwindow *window, unsigned int codepoint);
         EM_BOOL TouchStartCallback(int, EmscriptenTouchEvent const *, void *);
         EM_BOOL TouchEndCallback(int, EmscriptenTouchEvent const *, void *);
+        void GameLoopFunction();
     }
     void RunNewClientInstance(){
         _<ClientEngine>().Run(); // Access ClientEngine and run it.
-    }
-    namespace {
-        void GameLoopFunction();
     }
     void ClientEngine::Run() const {
         _<WebSocketServerConnection>().Connect(); // Start network connection.

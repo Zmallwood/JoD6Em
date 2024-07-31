@@ -12,19 +12,16 @@ namespace jod {
         ///        needed settings.
         /////////////////////////////////////////////////
         Graphics();
-        
         /////////////////////////////////////////////////
         /// \brief Clear web browser before rendering new contents.
         /////////////////////////////////////////////////
         void ClearCanvas();
-        
         /////////////////////////////////////////////////
         /// \brief Present all rendered contents stored in the buffer.
         /////////////////////////////////////////////////
         void PresentCanvas();
         
         GLFWwindow *m_window = nullptr; ///< GLFW window object.
-        
     private:
         const std::string k_title = "Journey of Dreams"; ///< Window title used if the game would be in desktop application format.
     };
@@ -39,12 +36,10 @@ namespace jod {
         ///        resources for drawing cursor images.
         /////////////////////////////////////////////////
         Cursor();
-        
         /////////////////////////////////////////////////
         /// \brief Render the cursor to web browser.
         /////////////////////////////////////////////////
         void Render() const;
-        
     private:
         RID m_ridCursorImage; ///< Resource ID for cursor image.
         const std::string k_cursorImageName = "CursorDefault"; ///< Image name for default cursor style.

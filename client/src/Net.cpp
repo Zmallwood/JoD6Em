@@ -1,5 +1,4 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-
 #include "Net.h"
 #include "Core.h"
 #include "MessageCodes.h"
@@ -20,7 +19,6 @@ namespace jod {
         int ReadFourBytesAsInt(unsigned char *bytes);
         float ReadFourBytesAsFloat(unsigned char *bytes);
     }
-    
     void WebSocketServerConnection::Connect(){
         if (!emscripten_websocket_is_supported()) return; // Check support exists.
         // Create address to connect to.
@@ -34,7 +32,6 @@ namespace jod {
         emscripten_websocket_set_onclose_callback(ws, NULL, OnClose);
         emscripten_websocket_set_onmessage_callback(ws, NULL, OnMessage);
     }
-    
     void WebSocketServerConnection::SendMessage(int messageType){
         switch (messageType){ // Determine message type to be sent.
         case MessageCodes::k_canvasSize: { // Send canvas size to server.
@@ -76,7 +73,6 @@ namespace jod {
         }
         }
     }
-    
     namespace {
         EM_BOOL OnOpen(int eventType, const EmscriptenWebSocketOpenEvent *websocketEvent,
                        void *userData){
@@ -92,25 +88,21 @@ namespace jod {
             _<WebSocketServerConnection>().SendMessage(MessageCodes::k_canvasSize);
             return EM_TRUE;
         }
-        
         EM_BOOL OnError(int eventType, const EmscriptenWebSocketErrorEvent *websocketEvent,
                         void *userData){
             std::cout << "Web socket error.\n"; // Notify on web socket errors.
             return EM_TRUE;
         }
-        
         EM_BOOL OnClose(int eventType, const EmscriptenWebSocketCloseEvent *websocketEvent,
                         void *userData){
             std::cout << "Closing web socket connection.\n"; // Notify on closing web socket connection.
             return EM_TRUE;
         }
-        
         EM_BOOL OnMessage(int eventType, const EmscriptenWebSocketMessageEvent *websocketEvent,
                           void *userData){
             ProcessIncomingMessage(websocketEvent->data); // Process the raw message data in bytes.
             return EM_TRUE;
         }
-        
         void ProcessIncomingMessage(unsigned char *bytes){
             auto messageCode = ReadFourBytesAsInt(bytes); // The first bytes contains the message code.
             switch (messageCode){ // Perform corresponding action.
@@ -135,7 +127,6 @@ namespace jod {
             }
             }
         }
-        
         int ReadFourBytesAsInt(unsigned char *bytes){
             // Pick out the separate bytes.
             auto b0 = (int)bytes[0];
@@ -146,7 +137,6 @@ namespace jod {
             auto result = (b3 << 3 * 8) + (b2 << 2 * 8) + (b1 << 8) + b0;
             return result;
         }
-        
         float ReadFourBytesAsFloat(unsigned char *bytes){
             // Pick out the separate bytes.
             auto b0 = (int)bytes[0];

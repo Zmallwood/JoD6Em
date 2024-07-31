@@ -11,12 +11,10 @@ namespace jod {
         /// \brief Construct a new Image Bank object.
         /////////////////////////////////////////////////
         ImageBank();
-        
         /////////////////////////////////////////////////
         /// \brief Destroy the Image Bank object.
         /////////////////////////////////////////////////
         ~ImageBank();
-        
         /////////////////////////////////////////////////
         /// \brief Get the Image object.
         ///
@@ -24,7 +22,6 @@ namespace jod {
         /// \return GLuint Resource ID of obtained image object.
         /////////////////////////////////////////////////
         GLuint GetImage(std::string_view imageName) const;
-        
         /////////////////////////////////////////////////
         /// \brief Get the Image object.
         ///
@@ -33,7 +30,6 @@ namespace jod {
         /// \return GLuint Resource ID of obtained image object.
         /////////////////////////////////////////////////
         GLuint GetImage(int imageNameHash) const;
-        
         /////////////////////////////////////////////////
         /// \brief Create a Blank Image object.
         ///
@@ -41,7 +37,6 @@ namespace jod {
         /// \return GLuint GLuint Resource ID of created image.
         /////////////////////////////////////////////////
         GLuint CreateBlankImage(std::string_view uniqueImageName);
-        
     private:
         void LoadImages();
         
