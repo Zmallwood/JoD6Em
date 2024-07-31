@@ -10,18 +10,12 @@
 
 #include "Rendering.h"
 
-namespace jod
-{
-    namespace
-    {
+namespace jod {
+    namespace {
         void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
-        
         void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods);
-        
         void CharacterCallback(GLFWwindow *window, unsigned int codepoint);
-        
         EM_BOOL TouchStartCallback(int, EmscriptenTouchEvent const *, void *);
-        
         EM_BOOL TouchEndCallback(int, EmscriptenTouchEvent const *, void *);
     }
     
