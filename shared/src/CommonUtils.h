@@ -4,7 +4,8 @@
 
 namespace jod {
     template <class T>
-    T &_(){
+    T &
+    _(){
         static T instance;
         return instance;
     }

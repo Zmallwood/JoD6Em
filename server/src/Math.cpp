@@ -3,7 +3,8 @@
 #include "Configuration.h"
 
 namespace jod {
-    SizeF CalcTileSize(float aspectRatio){
+    SizeF
+    CalcTileSize(float aspectRatio){
         auto tileHeight = 1.0f / _<GameProperties>().numGridRows;
         auto tileWidth = tileHeight / aspectRatio;
         return {tileWidth, tileHeight};

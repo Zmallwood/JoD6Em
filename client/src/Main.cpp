@@ -1,7 +1,8 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #include "Core.h"
 
-int main(int argc, char *argv[]){
+int
+main(int argc, char *argv[]){
     try{ // Catch all exceptions that can happen during execution.
         jod::RunNewClientInstance(); // Run new instance of the game.
     }

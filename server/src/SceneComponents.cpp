@@ -9,7 +9,8 @@
 namespace jod {
     TileHovering::TileHovering(Client &client) : m_client(client){
     }
-    void TileHovering::Update(){
+    void
+    TileHovering::Update(){
         auto tileSize = CalcTileSize(m_client.GetAspectRatio());
         auto playerCoord = m_client.m_player->m_coord;
         auto numRows = _<GameProperties>().numGridRows;
@@ -22,7 +23,8 @@ namespace jod {
     }
     MouseMovement::MouseMovement(Client &client) : m_client(client){
     }
-    void MouseMovement::Update(){
+    void
+    MouseMovement::Update(){
         auto mouseDown = m_client.m_serverEngine->m_mouseInput->m_leftButton->IsPressedPickResult();
         auto player = m_client.m_player;
         auto hoveredTile = m_client.m_tileHovering->m_hoveredCoordinate;

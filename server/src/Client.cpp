@@ -22,7 +22,8 @@ namespace jod {
         m_cursor(std::make_shared<Cursor>(*this)){
         std::thread(&Client::DoSession, this, std::move(socket)).detach();
     }
-    void Client::DoSession(tcp::socket socket){
+    void
+    Client::DoSession(tcp::socket socket){
         try{
             // Construct the stream by moving in the socket.
             websocket::stream<tcp::socket> ws{std::move(socket)};
@@ -68,12 +69,14 @@ namespace jod {
             std::cerr << "Error: " << e.what() << std::endl;
         }
     }
-    void Client::SendImageDrawInstruction(websocket::stream<tcp::socket> &ws,
-                                          std::string_view imageName, RectF dest){
+    void
+    Client::SendImageDrawInstruction(websocket::stream<tcp::socket> &ws,
+                                     std::string_view imageName, RectF dest){
         SendImageDrawInstruction(ws, Hash(imageName), dest);
     }
-    void Client::SendImageDrawInstruction(websocket::stream<tcp::socket> &ws, int imageNameHash,
-                                          RectF dest){
+    void
+    Client::SendImageDrawInstruction(websocket::stream<tcp::socket> &ws, int imageNameHash,
+                                     RectF dest){
         auto msg_code = MessageCodes::k_drawImageInstr;
         auto x = (int)(dest.x * NetConstants::k_floatPrecision);
         auto y = (int)(dest.y * NetConstants::k_floatPrecision);
@@ -88,11 +91,13 @@ namespace jod {
         data.push_back(h);
         ws.write(boost::asio::buffer(data));
     }
-    void Client::SendPresentCanvasInstruction(websocket::stream<tcp::socket> &ws){
+    void
+    Client::SendPresentCanvasInstruction(websocket::stream<tcp::socket> &ws){
         auto msg_code_present = MessageCodes::k_applyBuffer;
         ws.write(boost::asio::buffer(&msg_code_present, sizeof(msg_code_present)));
     }
-    float Client::GetAspectRatio(){
+    float
+    Client::GetAspectRatio(){
         return static_cast<float>(m_canvasSize.w) / m_canvasSize.h;
     }
 }

@@ -9,7 +9,8 @@ namespace jod {
     Cursor::Cursor(Client& client)
         : m_client(client) {
     }
-    void Cursor::Render(websocket::stream<tcp::socket>& ws){
+    void
+    Cursor::Render(websocket::stream<tcp::socket>& ws){
         auto mousePos = m_client.m_mousePosition; // Get current mouse position.
         // Obtain cursor dimensions.
         auto cursorWidth = k_cursorSize;

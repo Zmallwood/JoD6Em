@@ -3,28 +3,35 @@
 #include "Graphics.h"
 
 namespace jod {
-    void SDLDeleter::operator()(SDL_Window *window) const {
+    void
+    SDLDeleter::operator()(SDL_Window *window) const {
         SDL_DestroyWindow(window);
     }
-    void SDLDeleter::operator()(SDL_Renderer *renderer) const {
+    void
+    SDLDeleter::operator()(SDL_Renderer *renderer) const {
         SDL_DestroyRenderer(renderer);
     }
-    void SDLDeleter::operator()(SDL_Surface *surface) const {
+    void
+    SDLDeleter::operator()(SDL_Surface *surface) const {
         SDL_FreeSurface(surface);
     }
-    void SDLDeleter::operator()(SDL_Texture *texture) const {
+    void
+    SDLDeleter::operator()(SDL_Texture *texture) const {
         SDL_DestroyTexture(texture);
     }
-    void SDLDeleter::operator()(TTF_Font *font) const {
+    void
+    SDLDeleter::operator()(TTF_Font *font) const {
         TTF_CloseFont(font);
     }
-    Size GetCanvasSize(){
+    Size
+    GetCanvasSize(){
         int w, h; // To store dimensions in pixels.
         // Use GLFW to get canvas size.
         glfwGetWindowSize(_<Graphics>().m_window, &w, &h);
         return {w, h};
     }
-    PointF GetMousePosition(){
+    PointF
+    GetMousePosition(){
         double xpos, ypos; // Declare variables to store mouse coordinates in pixels.
         // Use GLFW to get current mouse coordinates.
         glfwGetCursorPos(_<Graphics>().m_window, &xpos, &ypos);
@@ -34,26 +41,31 @@ namespace jod {
                                     static_cast<float>(ypos) / canvasSize.h};
         return mousePosition;
     }
-    float GetAspectRatio(){
+    float
+    GetAspectRatio(){
         auto canvasSize = GetCanvasSize(); // Get canvas dimensions.
         // And calculate the ratio between them.
         auto aspectRatio = static_cast<float>(canvasSize.w) / canvasSize.h;
         return aspectRatio;
     }
-    float ConvertWidthToHeight(float width){
+    float
+    ConvertWidthToHeight(float width){
         // Use aspect ratio to convert from width to corresponding height.
         return width * GetAspectRatio();
     }
-    float ConvertHeightToWidth(float height){
+    float
+    ConvertHeightToWidth(float height){
         // Use aspect ratio to convert from height to corresponding width.
         return height / GetAspectRatio();
     }
-    std::string FileExtension(std::string_view absPath){
+    std::string
+    FileExtension(std::string_view absPath){
         // Find last occurrence of '.' and keep the part following it.
         auto extension = absPath.substr(absPath.find_last_of('.') + 1);
         return extension.data();
     }
-    std::string FilenameNoExtension(std::string_view absPath){
+    std::string
+    FilenameNoExtension(std::string_view absPath){
         // Find last occurence of '/' and get the part following it.
         auto nameWithExt = std::string(absPath.substr(absPath.find_last_of('/') + 1));
         // Then only keep the part preceeding the last occurrence of '.'.

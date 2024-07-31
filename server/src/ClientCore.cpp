@@ -16,18 +16,22 @@ namespace jod {
         : m_client(client), m_sceneManager(std::make_shared<SceneManager>(client)),
         m_mouseInput(std::make_shared<MouseInput>()){
     }
-    void ServerEngine::Update(){
+    void
+    ServerEngine::Update(){
         m_sceneManager->UpdateCurrentScene();
     }
-    void ServerEngine::Render(websocket::stream<tcp::socket> &ws){
+    void
+    ServerEngine::Render(websocket::stream<tcp::socket> &ws){
         m_sceneManager->RenderCurrentScene(ws);
         m_client.m_cursor->Render(ws);
         m_client.SendPresentCanvasInstruction(ws);
     }
-    void ServerEngine::OnKeyDown(){
+    void
+    ServerEngine::OnKeyDown(){
         m_sceneManager->OnKeyDownCurrentScene();
     }
-    void ServerEngine::OnMouseDown(){
+    void
+    ServerEngine::OnMouseDown(){
         m_sceneManager->OnMouseDownCurrentScene();
     }
     Scene::Scene(std::function<void()> updateAction,
@@ -36,16 +40,20 @@ namespace jod {
         : m_updateAction(updateAction), m_renderAction(renderAction),
         m_keyDownAction(keyDownAction), m_mouseDownAction(mouseDownAction){
     }
-    void Scene::Update(){
+    void
+    Scene::Update(){
         m_updateAction();
     }
-    void Scene::Render(websocket::stream<tcp::socket> &ws){
+    void
+    Scene::Render(websocket::stream<tcp::socket> &ws){
         m_renderAction(ws);
     }
-    void Scene::OnKeyDown(){
+    void
+    Scene::OnKeyDown(){
         m_keyDownAction();
     }
-    void Scene::OnMouseDown(){
+    void
+    Scene::OnMouseDown(){
         m_mouseDownAction();
     }
     SceneManager::SceneManager(Client &client) : m_client(client){
@@ -112,41 +120,50 @@ namespace jod {
         });
         GoTo("IntroScene");
     }
-    void SceneManager::UpdateCurrentScene(){
+    void
+    SceneManager::UpdateCurrentScene(){
         if (m_scenes.contains(m_currentScene))
             m_scenes.at(m_currentScene).Update();
     }
-    void SceneManager::RenderCurrentScene(websocket::stream<tcp::socket> &ws){
+    void
+    SceneManager::RenderCurrentScene(websocket::stream<tcp::socket> &ws){
         if (m_scenes.contains(m_currentScene))
             m_scenes.at(m_currentScene).Render(ws);
     }
-    void SceneManager::OnKeyDownCurrentScene(){
+    void
+    SceneManager::OnKeyDownCurrentScene(){
         if (m_scenes.contains(m_currentScene))
             m_scenes.at(m_currentScene).OnKeyDown();
     }
-    void SceneManager::OnMouseDownCurrentScene(){
+    void
+    SceneManager::OnMouseDownCurrentScene(){
         if (m_scenes.contains(m_currentScene))
             m_scenes.at(m_currentScene).OnMouseDown();
     }
-    void SceneManager::GoTo(std::string_view sceneName){
+    void
+    SceneManager::GoTo(std::string_view sceneName){
         m_currentScene = Hash(sceneName);
     }
-    void SceneManager::AddScene(std::string_view sceneName, std::function<void()> updateAction,
-                                std::function<void(websocket::stream<tcp::socket> &)> renderAction,
-                                std::function<void()> keyDownAction,
-                                std::function<void()> mouseDownAction){
+    void
+    SceneManager::AddScene(std::string_view sceneName, std::function<void()> updateAction,
+                           std::function<void(websocket::stream<tcp::socket> &)> renderAction,
+                           std::function<void()> keyDownAction,
+                           std::function<void()> mouseDownAction){
         m_scenes.insert(
             {Hash(sceneName), {updateAction, renderAction, keyDownAction, mouseDownAction}});
     }
     MouseInput::MouseInput() : m_leftButton(std::make_shared<MouseButton>()){
     }
-    void MouseInput::RegisterMouseDown(){
+    void
+    MouseInput::RegisterMouseDown(){
         m_leftButton->RegisterMouseDown();
     }
-    void MouseButton::RegisterMouseDown(){
+    void
+    MouseButton::RegisterMouseDown(){
         m_isPressed = true;
     }
-    bool MouseButton::IsPressedPickResult(){
+    bool
+    MouseButton::IsPressedPickResult(){
         auto result = m_isPressed;
         m_isPressed = false;
         

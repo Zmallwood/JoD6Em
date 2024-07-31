@@ -3,7 +3,8 @@
 #include "World.h"
 
 namespace jod {
-    void GenerateNewWorld(){
+    void
+    GenerateNewWorld(){
         auto worldArea = _<World>().m_currentWorldArea;
         for (auto y = 0; y < 100; y++)
             for (auto x = 0; x < 100; x++)

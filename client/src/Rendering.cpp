@@ -44,7 +44,8 @@ namespace jod {
     ImageRenderer::~ImageRenderer(){
         CleanupBase(); // Delete allocated resources for the renderer.
     }
-    RID ImageRenderer::NewImage(){
+    RID
+    ImageRenderer::NewImage(){
         auto rid = GenNewVAOID(); // Create new Vertex Array Object.
         UseVAOBegin(rid); // Use it.
         // Create buffers that are needed for 2D image rendering.
@@ -61,8 +62,9 @@ namespace jod {
         UseVAOEnd(); // Stop using the Vertex Array Object.
         return rid; // Return the ID for the created VAO.
     }
-    void ImageRenderer::DrawImage(RID rid, int imageNameHash, const RectF &dest, bool repeatTexture,
-                                  SizeF textureFillAmount, ColorF color){
+    void
+    ImageRenderer::DrawImage(RID rid, int imageNameHash, const RectF &dest, bool repeatTexture,
+                             SizeF textureFillAmount, ColorF color){
         auto GLRect = dest.ToGLRectF(); // Convert destination to GL coordinate system.
         // Create 4 vertices for an image rectangle.
         Vertex2F verts[MathConstants::k_numVerticesInRectangle];
@@ -124,8 +126,9 @@ namespace jod {
                        NULL);
         UseVAOEnd(); // Stop using the Vertex Array Object.
     }
-    void ImageRenderer::DrawImage(RID rid, std::string_view imageName, const RectF &dest,
-                                  bool repeatTexture, SizeF textureFillAmount, ColorF color){
+    void
+    ImageRenderer::DrawImage(RID rid, std::string_view imageName, const RectF &dest,
+                             bool repeatTexture, SizeF textureFillAmount, ColorF color){
         // Forward the method call to the main overload.
         DrawImage(rid, Hash(imageName), dest, repeatTexture, textureFillAmount, color);
     }

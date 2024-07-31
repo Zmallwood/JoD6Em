@@ -2,7 +2,8 @@
 #include "Net.h"
 #include "WorldGeneration.h"
 
-int main(int argc, char *argv[]){
+int
+main(int argc, char *argv[]){
     if (argc != 3){
         std::cerr << "Usage: websocket-server-sync <address> <port>\n"
                   << "Example:\n"
