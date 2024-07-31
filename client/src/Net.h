@@ -2,8 +2,6 @@
 
 #pragma once
 
-#include "MessageCodes.h"
-
 namespace jod {
     /////////////////////////////////////////////////
     /// \brief Connects to to web socket server and enables sending messages over the connection
