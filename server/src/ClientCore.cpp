@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "World.h"
 #include "SceneComponents.h"
+#include "Cursor.h"
 
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;
@@ -20,6 +21,8 @@ namespace jod {
     }
     void ServerEngine::Render(websocket::stream<tcp::socket> &ws){
         m_sceneManager->RenderCurrentScene(ws);
+        m_client.m_cursor->Render(ws);
+        m_client.SendPresentCanvasInstruction(ws);
     }
     void ServerEngine::OnKeyDown(){
         m_sceneManager->OnKeyDownCurrentScene();
@@ -53,7 +56,6 @@ namespace jod {
             m_client.SendImageDrawInstruction(ws, "DefaultSceneBackground",
                                               {0.0f, 0.0f, 1.0f, 1.0f});
             m_client.SendImageDrawInstruction(ws, "JoDLogo", {0.3f, 0.2f, 0.4f, 0.2f});
-            m_client.SendPresentCanvasInstruction(ws);
         },
             [] {
         }, [&] {
@@ -66,7 +68,6 @@ namespace jod {
             m_client.SendImageDrawInstruction(ws, "DefaultSceneBackground",
                                               {0.0f, 0.0f, 1.0f, 1.0f});
             m_client.SendImageDrawInstruction(ws, "JoDLogo", {0.4f, 0.1f, 0.2f, 0.1f});
-            m_client.SendPresentCanvasInstruction(ws);
         },
             [] {
         }, [&] {
@@ -105,7 +106,6 @@ namespace jod {
                     }
                 }
             }
-            m_client.SendPresentCanvasInstruction(ws);
         },
             [] {
         }, [] {

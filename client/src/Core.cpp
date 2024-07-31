@@ -82,7 +82,6 @@ namespace jod {
             _<Graphics>().ClearCanvas();
             // Draw canvas in its current state (current set of drawing instructions).
             _<RenderInstructionsManager>().ExecuteInstructions();
-            _<Cursor>().Render();
             _<Graphics>().PresentCanvas(); // Present canvas to users web browser.
             _<WebSocketServerConnection>().SendMessage(MessageCodes::k_frameFinished);
         }

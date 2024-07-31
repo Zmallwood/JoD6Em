@@ -6,6 +6,7 @@
 #include "NetConfiguration.h"
 #include "Player.h"
 #include "SceneComponents.h"
+#include "Cursor.h"
 
 namespace beast = boost::beast;
 namespace http = beast::http;
@@ -17,7 +18,8 @@ namespace jod {
         : m_serverEngine(std::make_shared<ServerEngine>(*this)),
         m_player(std::make_shared<Player>()),
         m_tileHovering(std::make_shared<TileHovering>(*this)),
-        m_mouseMovement(std::make_shared<MouseMovement>(*this)){
+        m_mouseMovement(std::make_shared<MouseMovement>(*this)),
+        m_cursor(std::make_shared<Cursor>(*this)){
         std::thread(&Client::DoSession, this, std::move(socket)).detach();
     }
     void Client::DoSession(tcp::socket socket){

@@ -20,6 +20,8 @@ namespace jod {
         glEnable(GL_BLEND); // Enable alpha blending to allow transparency in rendering.
         // Set desired alpha blending functions.
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        // Hide default system cursor.
+        glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     }
     void Graphics::ClearCanvas(){
         glClear(GL_COLOR_BUFFER_BIT); // Clear canvas to prepare for rendering new contents.
@@ -29,24 +31,5 @@ namespace jod {
         glfwPollEvents(); // Poll new input events from user.
         // Do not return until previously issued commands have finished.
         glFinish();
-    }
-    Cursor::Cursor(){
-        // Hide default system cursor.
-        glfwSetInputMode(_<Graphics>().m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-        // Allocate image resource for cursor image.
-        m_ridCursorImage = _<ImageRenderer>().NewImage();
-    }
-    void Cursor::Render() const {
-        auto mousePos = GetMousePosition(); // Get current mouse position.
-        // Obtain cursor dimensions.
-        auto cursorWidth = k_cursorSize;
-        auto cursorHeight = ConvertWidthToHeight(k_cursorSize);
-        // Calculate cursor position.
-        auto cursorX = mousePos.x - cursorWidth / 2;
-        auto cursorY = mousePos.y - cursorHeight / 2;
-        // Create render destination rectangle.
-        auto cursorDest = RectF{cursorX, cursorY, cursorWidth, cursorHeight};
-        // Render the cursor image.
-        _<ImageRenderer>().DrawImage(m_ridCursorImage, k_cursorImageName, cursorDest);
     }
 }

@@ -6,6 +6,7 @@ namespace jod {
     class Player;
     class TileHovering;
     class MouseMovement;
+    class Cursor;
     
     class Client {
     public:
@@ -25,6 +26,7 @@ namespace jod {
         std::shared_ptr<MouseMovement> m_mouseMovement;
         PointF m_mousePosition;
         std::shared_ptr<ServerEngine> m_serverEngine;
+        std::shared_ptr<Cursor> m_cursor;
     private:
         void DoSession(boost::asio::ip::tcp::socket socket);
         
