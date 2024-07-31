@@ -1,12 +1,10 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-
 #include "Rendering.h"
 #include "Assets.h"
 
 namespace jod {
     namespace {
         // Shader sources
-        // clang-format off
         const GLchar *defaultShaderImagesVertex =
             "#version 300 es\n"
             "layout (location = 0) in vec3 aPos;\n"
@@ -22,7 +20,6 @@ namespace jod {
             "   ex_TexCoord = in_TexCoord;\n"
             "   ex_Pos = aPos.xy;\n"
             "}\0";
-        
         const GLchar *defaultShaderImagesFragment =
             "#version 300 es\n"
             "precision mediump float;\n"
@@ -34,23 +31,19 @@ namespace jod {
             "void main() {\n"
             "    FragColor = texture(TexUnit, ex_TexCoord);\n"
             "}\0";
-        // clang-format on
         constexpr int k_locPosition{0}; // Location of position variable in vertex shader.
         constexpr int k_locColor{1}; // Location of color variable in vertex shader.
         constexpr int k_locUv{2}; // Location of UV variable in vertex shader.
         int m_locNoPixelEffect{-1}; // Location of pixelation effect switch variable in vertex shader.
     }
-    
     ImageRenderer::ImageRenderer(){
         // Create shader program.
         m_shaderProgram->Create(defaultShaderImagesVertex, defaultShaderImagesFragment);
         // m_locNoPixelEffect = GetUniformLocation("noPixelEffect");
     }
-    
     ImageRenderer::~ImageRenderer(){
         CleanupBase(); // Delete allocated resources for the renderer.
     }
-    
     RID ImageRenderer::NewImage(){
         auto rid = GenNewVAOID(); // Create new Vertex Array Object.
         UseVAOBegin(rid); // Use it.
@@ -68,7 +61,6 @@ namespace jod {
         UseVAOEnd(); // Stop using the Vertex Array Object.
         return rid; // Return the ID for the created VAO.
     }
-    
     void ImageRenderer::DrawImage(RID rid, int imageNameHash, const RectF &dest, bool repeatTexture,
                                   SizeF textureFillAmount, ColorF color){
         auto GLRect = dest.ToGLRectF(); // Convert destination to GL coordinate system.
@@ -93,8 +85,7 @@ namespace jod {
         if (repeatTexture){
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        }else
-        {
+        }else{
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         }
@@ -133,7 +124,6 @@ namespace jod {
                        NULL);
         UseVAOEnd(); // Stop using the Vertex Array Object.
     }
-    
     void ImageRenderer::DrawImage(RID rid, std::string_view imageName, const RectF &dest,
                                   bool repeatTexture, SizeF textureFillAmount, ColorF color){
         // Forward the method call to the main overload.

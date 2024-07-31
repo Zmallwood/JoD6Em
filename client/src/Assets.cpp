@@ -23,7 +23,7 @@ namespace jod {
         return -1; // No image with the name found, return fail value.
     }
     GLuint ImageBank::CreateBlankImage(std::string_view uniqueImageName) {
-        GLuint texID; // Generate new image resource
+        GLuint texID; // Generate new image resource,
         glGenTextures(1, &texID); // and get its ID.
         // Insert new image entry with image name hash as key
         // and the new ID as value.

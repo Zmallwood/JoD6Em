@@ -14,7 +14,6 @@ namespace jod {
         void Connect();
         /////////////////////////////////////////////////
         /// \brief Send message to the server.
-        ///
         /// \param messageType Message type to be sent.
         /////////////////////////////////////////////////
         void SendMessage(int messageType);

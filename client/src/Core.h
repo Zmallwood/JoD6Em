@@ -54,7 +54,6 @@ namespace jod {
         RenderInstructionsManager();
         /////////////////////////////////////////////////
         /// \brief Add new image draw instruction to group, called on request from server.
-        ///
         /// \param imageNameHash Hash code of image name to draw.
         /// \param dest Destination rectangle to draw the image at.
         /////////////////////////////////////////////////
