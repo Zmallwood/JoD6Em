@@ -37,8 +37,7 @@ namespace jod {
         SDL_Event event;
         while (SDL_PollEvent(&event)) { // Poll for events from user every frame.
             switch (event.type){
-            case SDL_QUIT:
-            {
+            case SDL_QUIT: {
                 m_running = false; // Quit game by stopping ClientEngine.
                 break;
             }

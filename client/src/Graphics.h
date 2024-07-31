@@ -25,16 +25,10 @@ namespace jod {
         /////////////////////////////////////////////////
         void PresentCanvas();
         
-        /////////////////////////////////////////////////
-        /// \brief GLFW window object.
-        /////////////////////////////////////////////////
-        GLFWwindow *m_window = nullptr;
+        GLFWwindow *m_window = nullptr; ///< GLFW window object.
         
     private:
-        /////////////////////////////////////////////////
-        /// \brief Window title used if the game would be in desktop application format.
-        /////////////////////////////////////////////////
-        const std::string k_title = "Journey of Dreams";
+        const std::string k_title = "Journey of Dreams"; ///< Window title used if the game would be in desktop application format.
     };
     
     /////////////////////////////////////////////////
@@ -54,19 +48,8 @@ namespace jod {
         void Render() const;
         
     private:
-        /////////////////////////////////////////////////
-        /// \brief Resource ID for cursor image.
-        /////////////////////////////////////////////////
-        RID m_ridCursorImage;
-        
-        /////////////////////////////////////////////////
-        /// \brief Image name for default cursor style.
-        /////////////////////////////////////////////////
-        const std::string k_cursorImageName = "CursorDefault";
-        
-        /////////////////////////////////////////////////
-        /// \brief Size of rendered cursor symbol.
-        /////////////////////////////////////////////////
-        const float k_cursorSize = 0.03f;
+        RID m_ridCursorImage; ///< Resource ID for cursor image.
+        const std::string k_cursorImageName = "CursorDefault"; ///< Image name for default cursor style.
+        const float k_cursorSize = 0.03f; ///< Size of rendered cursor symbol.
     };
 }

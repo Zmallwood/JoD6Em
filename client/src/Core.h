@@ -23,10 +23,7 @@ namespace jod {
         /////////////////////////////////////////////////
         void PollEvents();
         
-        /////////////////////////////////////////////////
-        /// \brief Engine is running as long as this is set to true.
-        /////////////////////////////////////////////////
-        bool m_running = true;
+        bool m_running = true; ///< Engine is running as long as this is set to true.
     };
     
     /////////////////////////////////////////////////
@@ -43,20 +40,9 @@ namespace jod {
     /////////////////////////////////////////////////
     struct ImageDrawInstruction
     {
-        /////////////////////////////////////////////////
-        /// \brief ID for an image resource previously allocated.
-        /////////////////////////////////////////////////
-        RID rid = -1;
-        
-        /////////////////////////////////////////////////
-        /// \brief Hash code of image name to draw.
-        /////////////////////////////////////////////////
-        int imageNameHash = 0;
-        
-        /////////////////////////////////////////////////
-        /// \brief Destination rectangle to draw the image at.
-        /////////////////////////////////////////////////
-        RectF dest;
+        RID rid = -1; ///< ID for an image resource previously allocated.
+        int imageNameHash = 0; ///<Hash code of image name to draw.
+        RectF dest; ///< Destination rectangle to draw the image at.
     };
     
     /////////////////////////////////////////////////
@@ -89,27 +75,11 @@ namespace jod {
         void ExecuteInstructions();
         
     private:
-        /////////////////////////////////////////////////
-        /// \brief Holds the image draw instructions that are executed each call to DrawCanvas().
-        /////////////////////////////////////////////////
-        std::vector<ImageDrawInstruction> m_imageDrawInstructions;
-        
-        /////////////////////////////////////////////////
-        /// \brief Holds the buffer for the next set of draw of instructions that will be copied to
-        ///        the current one in PresentNewCanvas().
-        /////////////////////////////////////////////////
-        std::vector<ImageDrawInstruction> m_imageDrawInstructionsBuffer;
-        
-        /////////////////////////////////////////////////
-        /// \brief A set of preallocated resource IDs used for drawing images, created in the
-        ///        constructor.
-        /////////////////////////////////////////////////
-        std::vector<RID> m_rids;
-        
-        /////////////////////////////////////////////////
-        /// \brief Number of preallocated resource IDs created for the image draw instructions. No
-        ///        more images than this value can be rendererd in a single game frame.
-        /////////////////////////////////////////////////
-        const int k_maxNumDrawInstructions = 1000;
+        std::vector<ImageDrawInstruction>
+        m_imageDrawInstructions; ///< Holds the image draw instructions that are executed each call to DrawCanvas().
+        std::vector<ImageDrawInstruction>
+        m_imageDrawInstructionsBuffer; ///< Holds the buffer for the next set of draw of instructions.
+        std::vector<RID> m_rids; ///< A set of preallocated RIDs used for drawing images, created in the constructor.
+        const int k_maxNumDrawInstructions = 1000; ///< No more images than this value can be rendererd in a single game frame.
     };
 }
