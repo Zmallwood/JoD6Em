@@ -46,7 +46,7 @@ namespace jod {
     image_renderer::~image_renderer(){
         cleanup_base(); // Delete allocated resources for the renderer.
     }
-    RID
+    rid
     image_renderer::new_image(){
         auto rid = gen_new_vao_id(); // Create new Vertex Array Object.
         use_vao_begin(rid); // Use it.
@@ -79,7 +79,7 @@ namespace jod {
         return rid; // Return the ID for the created VAO.
     }
     void
-    image_renderer::draw_image(RID rid,
+    image_renderer::draw_image(rid rid,
                                int imageNameHash,
                                const rectf &dest,
                                bool repeatTexture,
@@ -174,7 +174,7 @@ namespace jod {
         use_vao_end(); // Stop using the Vertex Array Object.
     }
     void
-    image_renderer::draw_image(RID rid,
+    image_renderer::draw_image(rid rid,
                                std::string_view imageName,
                                const rectf &dest,
                                bool repeatTexture,

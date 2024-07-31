@@ -22,7 +22,7 @@ namespace jod {
         ///        resources.
         /// \return RID Resource ID used to render an image with the allocated resources.
         /////////////////////////////////////////////////
-        RID new_image();
+        rid new_image();
         /////////////////////////////////////////////////
         /// \brief Render an image to the browser.
         /// \param rid Resource ID previously allocated.
@@ -32,7 +32,7 @@ namespace jod {
         /// \param textureFillAmount Used to modify pattern repetition amount.
         /// \param color Used to modify overall color of the image.
         /////////////////////////////////////////////////
-        void draw_image(RID rid,
+        void draw_image(rid rid,
                         std::string_view imageName,
                         const rectf &dest,
                         bool repeatTexture = false,
@@ -47,7 +47,7 @@ namespace jod {
         /// \param textureFillAmount Used to modify pattern repetition amount.
         /// \param color Used to modify overall color of the image.
         /////////////////////////////////////////////////
-        void draw_image(RID rid,
+        void draw_image(rid rid,
                         int imageNameHash,
                         const rectf &dest,
                         bool repeatTexture = false,
