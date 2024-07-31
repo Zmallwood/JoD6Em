@@ -2,14 +2,12 @@
 
 #pragma once
 
-namespace jod
-{
+namespace jod {
     /////////////////////////////////////////////////
     /// \brief Loads and provides image resources.
     /// 
     /////////////////////////////////////////////////
-    class ImageBank
-    {
+    class ImageBank {
     public:
         /////////////////////////////////////////////////
         /// \brief Construct a new Image Bank object.
