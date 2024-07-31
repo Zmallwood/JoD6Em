@@ -12,5 +12,5 @@ add_executable(JoDServer
 )
 target_include_directories(JoDServer PRIVATE ../src ../../shared/src /usr/include/python3.12/)
 
-target_precompile_headers(JoDServer PRIVATE ../src/StdAfx.h)
+target_precompile_headers(JoDServer PRIVATE ../src/stdafx.h)
 target_link_libraries(JoDServer python3.12)

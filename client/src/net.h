@@ -1,6 +1,5 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #pragma once
-
 namespace jod {
     /////////////////////////////////////////////////
     /// \brief Connects to to web socket server and enables sending messages over the connection

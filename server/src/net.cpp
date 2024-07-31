@@ -1,6 +1,6 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "Net.h"
-#include "Client.h"
+#include "net.h"
+#include "client.h"
 
 namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;

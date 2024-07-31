@@ -1,5 +1,5 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "World.h"
+#include "world.h"
 
 namespace jod {
     World::World(){

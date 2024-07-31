@@ -17,7 +17,7 @@
 #include <numeric>
 #include <string>
 
-#include "MathLib.h"
-#include "Util.h"
-#include "CommonUtils.h"
-#include "NetConfiguration.h"
+#include "math_lib.h"
+#include "util.h"
+#include "common_utils.h"
+#include "net_configuration.h"

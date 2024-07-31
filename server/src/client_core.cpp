@@ -1,12 +1,12 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "ClientCore.h"
-#include "Client.h"
-#include "Math.h"
-#include "Configuration.h"
-#include "Player.h"
-#include "World.h"
-#include "SceneComponents.h"
-#include "Cursor.h"
+#include "client_core.h"
+#include "client.h"
+#include "math.h"
+#include "configuration.h"
+#include "player.h"
+#include "world.h"
+#include "scene_components.h"
+#include "cursor.h"
 
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;

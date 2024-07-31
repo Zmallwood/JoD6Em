@@ -1,10 +1,10 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "SceneComponents.h"
-#include "Client.h"
-#include "Math.h"
-#include "Player.h"
-#include "Configuration.h"
-#include "ClientCore.h"
+#include "scene_components.h"
+#include "client.h"
+#include "math.h"
+#include "player.h"
+#include "configuration.h"
+#include "client_core.h"
 
 namespace jod {
     TileHovering::TileHovering(Client &client) : m_client(client){

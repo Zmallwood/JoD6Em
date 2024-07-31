@@ -1,6 +1,6 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "Net.h"
-#include "WorldGeneration.h"
+#include "net.h"
+#include "world_generation.h"
 
 int
 main(int argc, char *argv[]){

@@ -1,6 +1,5 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "Assets.h"
-
+#include "image_bank.h"
 namespace jod {
     namespace {
         GLuint LoadSingleImage(std::string_view absFilePath);

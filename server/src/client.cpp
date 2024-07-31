@@ -1,12 +1,12 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "Client.h"
-#include "Net.h"
-#include "ClientCore.h"
-#include "MessageCodes.h"
-#include "NetConfiguration.h"
-#include "Player.h"
-#include "SceneComponents.h"
-#include "Cursor.h"
+#include "client.h"
+#include "net.h"
+#include "client_core.h"
+#include "message_codes.h"
+#include "net_configuration.h"
+#include "player.h"
+#include "scene_components.h"
+#include "cursor.h"
 
 namespace beast = boost::beast;
 namespace http = beast::http;

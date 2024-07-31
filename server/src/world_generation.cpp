@@ -1,6 +1,6 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "WorldGeneration.h"
-#include "World.h"
+#include "world_generation.h"
+#include "world.h"
 
 namespace jod {
     void

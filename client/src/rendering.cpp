@@ -1,7 +1,6 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "Rendering.h"
-#include "Assets.h"
-
+#include "rendering.h"
+#include "image_bank.h"
 namespace jod {
     namespace {
         // Shader sources

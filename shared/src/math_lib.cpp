@@ -1,5 +1,5 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "MathLib.h"
+#include "math_lib.h"
 
 namespace jod {
     GLRectF

@@ -1,6 +1,6 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "Cursor.h"
-#include "Client.h"
+#include "cursor.h"
+#include "client.h"
 
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;

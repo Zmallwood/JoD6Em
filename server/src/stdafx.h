@@ -10,7 +10,7 @@
 #include <functional>
 #include <map>
 
-#include "MathLib.h"
-#include "CommonUtils.h"
-#include "NetConfiguration.h"
-#include "Math.h"
+#include "math_lib.h"
+#include "common_utils.h"
+#include "net_configuration.h"
+#include "math.h"

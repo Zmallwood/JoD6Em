@@ -1,7 +1,6 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "Graphics.h"
-#include "Rendering.h"
-
+#include "graphics.h"
+#include "rendering.h"
 namespace jod {
     // Use javascript call to get browser-canvas width.
     EM_JS(int, CanvasGetWidth, (), { return window.innerWidth; });

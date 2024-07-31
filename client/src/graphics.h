@@ -1,6 +1,5 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 #pragma once
-
 namespace jod {
     /////////////////////////////////////////////////
     /// \brief Initializes and handles preparing and finilizing graphics for each frame.

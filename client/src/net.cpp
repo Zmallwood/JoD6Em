@@ -1,10 +1,9 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "Net.h"
-#include "Core.h"
-#include "MessageCodes.h"
-#include "NetConfiguration.h"
-#include "Util.h"
-
+#include "net.h"
+#include "core.h"
+#include "message_codes.h"
+#include "net_configuration.h"
+#include "util.h"
 namespace jod {
     namespace {
         EM_BOOL OnOpen(int eventType, const EmscriptenWebSocketOpenEvent *websocketEvent,

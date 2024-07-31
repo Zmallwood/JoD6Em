@@ -1,10 +1,9 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "Core.h"
-#include "Graphics.h"
-#include "MessageCodes.h"
-#include "Net.h"
-#include "Rendering.h"
-
+#include "core.h"
+#include "graphics.h"
+#include "message_codes.h"
+#include "net.h"
+#include "rendering.h"
 namespace jod {
     namespace {
         void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);

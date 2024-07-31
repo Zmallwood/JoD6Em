@@ -14,7 +14,7 @@ add_executable(JourneyOfDreams
 )
 target_include_directories(JourneyOfDreams PRIVATE ../src ../../shared/src)
 
-target_precompile_headers(JourneyOfDreams PRIVATE ../src/StdAfx.h)
+target_precompile_headers(JourneyOfDreams PRIVATE ../src/stdafx.h)
 target_link_libraries(JourneyOfDreams websocket.js)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "index")

@@ -1,6 +1,5 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "RenderingCore.h"
-
+#include "rendering_core.h"
 namespace jod {
     bool
     ShaderProgram::Create(const GLchar *vertexShaderSource, const GLchar *fragmentShaderSource){

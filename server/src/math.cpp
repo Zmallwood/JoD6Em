@@ -1,6 +1,6 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "Math.h"
-#include "Configuration.h"
+#include "math.h"
+#include "configuration.h"
 
 namespace jod {
     SizeF

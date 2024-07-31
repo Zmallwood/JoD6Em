@@ -1,5 +1,5 @@
 // Copyright (c) 2024 Andreas Åkerberg.
-#include "CommonUtils.h"
+#include "common_utils.h"
 
 namespace jod {
     int
