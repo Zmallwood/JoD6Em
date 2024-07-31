@@ -5,7 +5,6 @@ namespace jod {
     /// \brief Start new game instance.
     /////////////////////////////////////////////////
     void RunNewClientInstance();
-    
     /////////////////////////////////////////////////
     /// \brief Engine for the client.
     /////////////////////////////////////////////////
@@ -22,7 +21,6 @@ namespace jod {
         
         bool m_running = true; ///< Engine is running as long as this is set to true.
     };
-    
     /////////////////////////////////////////////////
     /// \brief Sets up callbacks for events from the user.
     /////////////////////////////////////////////////
@@ -30,7 +28,6 @@ namespace jod {
     public:
         InputManager();
     };
-    
     /////////////////////////////////////////////////
     /// \brief Holds data for doing a image drawing operation, created when such a request is
     ///        incoming from the server.
@@ -40,7 +37,6 @@ namespace jod {
         int imageNameHash = 0; ///<Hash code of image name to draw.
         RectF dest; ///< Destination rectangle to draw the image at.
     };
-    
     /////////////////////////////////////////////////
     /// \brief Holds latest set of rendering instructions and executes them.
     /////////////////////////////////////////////////

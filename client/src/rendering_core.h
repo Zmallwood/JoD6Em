@@ -15,7 +15,6 @@ namespace jod {
         Weights,
         Misc
     };
-    
     /////////////////////////////////////////////////
     /// \brief OpenGL shader program object.
     /////////////////////////////////////////////////
@@ -28,7 +27,6 @@ namespace jod {
     private:
         GLuint CompileShader(const GLchar *shaderSource, GLuint *shader, GLenum shaderType);
     };
-    
     /////////////////////////////////////////////////
     /// \brief Functions as a base class for all renderers providing shared base functionality.
     /////////////////////////////////////////////////
