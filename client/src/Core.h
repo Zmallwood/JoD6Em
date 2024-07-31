@@ -11,8 +11,7 @@ namespace jod {
     /////////////////////////////////////////////////
     /// \brief Engine for the client.
     /////////////////////////////////////////////////
-    class ClientEngine
-    {
+    class ClientEngine {
     public:
         /////////////////////////////////////////////////
         /// \brief Run the client engine.
@@ -33,8 +32,7 @@ namespace jod {
     /////////////////////////////////////////////////
     /// \brief Sets up callbacks for events from the user.
     /////////////////////////////////////////////////
-    class InputManager
-    {
+    class InputManager {
     public:
         InputManager();
     };
@@ -64,8 +62,7 @@ namespace jod {
     /////////////////////////////////////////////////
     /// \brief Holds latest set of rendering instructions and executes them.
     /////////////////////////////////////////////////
-    class RenderInstructionsManager
-    {
+    class RenderInstructionsManager {
     public:
         /////////////////////////////////////////////////
         /// \brief Construct a new Render Instructions Manager object.
