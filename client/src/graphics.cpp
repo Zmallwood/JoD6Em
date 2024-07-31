@@ -57,7 +57,7 @@ namespace jod {
     }
     void
     graphics::present_canvas(){
-        glfwSwapBuffers(m_window);             // Present buffer to web browser.
+        glfwSwapBuffers(m_window); // Present buffer to web browser.
         glfwPollEvents(); // Poll new input events from user.
         // Do not return until previously issued commands have finished.
         glFinish();
