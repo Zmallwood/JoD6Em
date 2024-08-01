@@ -4,13 +4,14 @@
 ///////////////////////////////////////////////////////////
 
 #include "client.h"
-#include "net.h"
+#include "server_core/net/web_socket_server.h"
 #include "client_core.h"
 #include "message_codes.h"
 #include "net_configuration.h"
-#include "player.h"
-#include "scene_components.h"
-#include "cursor.h"
+#include "server_core/core_game_objects/player.h"
+#include "server_core/cursor/cursor.h"
+#include "theme0/scenes/main/process/tile_hovering.h"
+#include "theme0/scenes/main/process/mouse_movement.h"
 
 namespace beast = boost::beast;
 namespace http = beast::http;

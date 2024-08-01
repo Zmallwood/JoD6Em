@@ -3,8 +3,8 @@
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
 ///////////////////////////////////////////////////////////
 
-#include "net.h"
-#include "world_generation.h"
+#include "server_core/net/web_socket_server.h"
+#include "theme0/scenes/world_generation/process/generate_new_world.h"
 
 int
 main(int argc, char *argv[]){

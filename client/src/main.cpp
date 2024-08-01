@@ -3,7 +3,7 @@
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
 ///////////////////////////////////////////////////////////
 
-#include "core/run_new_client_instance.h"
+#include "client_core/run_new_client_instance.h"
 
 int
 main(int argc, char *argv[]){

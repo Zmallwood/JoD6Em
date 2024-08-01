@@ -5,12 +5,15 @@
 
 #include "client_core.h"
 #include "client.h"
-#include "math.h"
-#include "configuration.h"
-#include "player.h"
-#include "world.h"
-#include "scene_components.h"
-#include "cursor.h"
+#include "theme0/scenes/main/main_scene_math/tile_grid_math.h"
+#include "configuration/game_properties.h"
+#include "server_core/core_game_objects/player.h"
+#include "server_core/world_structure/world.h"
+#include "server_core/world_structure/world_area.h"
+#include "server_core/world_structure/tile.h"
+#include "server_core/cursor/cursor.h"
+#include "theme0/scenes/main/process/tile_hovering.h"
+#include "theme0/scenes/main/process/mouse_movement.h"
 
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;
