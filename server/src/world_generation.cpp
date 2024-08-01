@@ -21,7 +21,8 @@ namespace jod {
                     auto dx = x - xCenter;
                     auto dy = y - yCenter;
                     if (dx * dx + dy * dy <= r * r)
-                        worldArea->m_tiles[x][y]->m_ground = jod::hash("GroundWater");
+                        worldArea->m_tiles[x][y]->m_ground =
+                            jod::hash("GroundWater");
                 }
             }
         }

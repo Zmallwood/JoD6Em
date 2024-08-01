@@ -10,6 +10,7 @@
 namespace jod {
     tile_hovering::tile_hovering(client &client) : m_client(client){
     }
+
     void
     tile_hovering::update(){
         auto tileSize = calc_tile_size(m_client.get_aspect_ratio());
@@ -24,11 +25,15 @@ namespace jod {
             static_cast<int>(m_client.m_mousePosition.y / tileSize.h);
         m_hoveredCoordinate = {tileX, tileY};
     }
+
     mouse_movement::mouse_movement(client &client) : m_client(client){
     }
+    
     void
     mouse_movement::update(){
-        auto mouseDown = m_client.m_serverEngine->m_mouseInput->m_leftButton->is_pressed_pick_result();
+        auto mouseDown =
+            m_client.m_serverEngine->m_mouseInput->m_leftButton->
+            is_pressed_pick_result();
         auto player = m_client.m_player;
         auto hoveredTile = m_client.m_tileHovering->m_hoveredCoordinate;
         if (mouseDown)

@@ -10,6 +10,7 @@ namespace jod {
     cursor::cursor(client& client)
         : m_client(client) {
     }
+    
     void
     cursor::render(websocket::stream<tcp::socket>& ws){
         auto mousePos = m_client.m_mousePosition; // Get current mouse position.
@@ -22,9 +23,6 @@ namespace jod {
         // Create render destination rectangle.
         auto cursorDest = rectf{cursorX, cursorY, cursorWidth, cursorHeight};
         // Render the cursor image.
-        m_client.send_image_draw_instruction(
-            ws,
-            k_cursorImageName,
-            cursorDest);
+        m_client.send_image_draw_instruction(ws, k_cursorImageName, cursorDest);
     }
 }

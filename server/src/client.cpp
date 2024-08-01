@@ -21,10 +21,7 @@ namespace jod {
         m_tileHovering(std::make_shared<tile_hovering>(*this)),
         m_mouseMovement(std::make_shared<mouse_movement>(*this)),
         m_cursor(std::make_shared<cursor>(*this)){
-        std::thread(
-            &client::do_session,
-            this,
-            std::move(socket)).detach();
+        std::thread(&client::do_session, this, std::move(socket)).detach();
     }
     void
     client::do_session(tcp::socket socket){
@@ -35,9 +32,11 @@ namespace jod {
             ws.set_option(
                 websocket::stream_base::decorator(
                     [](websocket::response_type &res){
-                res.set(http::field::server,
-                        std::string(BOOST_BEAST_VERSION_STRING) + " websocket-server-sync");
-            }));
+                        res.set(
+                            http::field::server,
+                            std::string(BOOST_BEAST_VERSION_STRING) +
+                            " websocket-server-sync");
+                    }));
             ws.accept(); // Accept the websocket handshake.
             ws.text(false); // Receive binary data, not text.
             while (true){
@@ -51,7 +50,8 @@ namespace jod {
                         auto w = (int)message[1];
                         auto h = (int)message[2];
                         m_canvasSize = {w, h};
-                        std::cout << "Recieved canvas size: " << w << ", " << h << std::endl;
+                        std::cout << "Recieved canvas size: " << w << ", " <<
+                            h << std::endl;
                     }else if (*message == message_codes::k_mouseDown) {
                         m_serverEngine->m_mouseInput->register_mouse_down();
                         m_serverEngine->on_mouse_down();
@@ -79,16 +79,12 @@ namespace jod {
         websocket::stream<tcp::socket> &ws,
         std::string_view imageName,
         rectf dest){
-        send_image_draw_instruction(
-            ws,
-            jod::hash(imageName),
-            dest);
+        send_image_draw_instruction(ws, jod::hash(imageName), dest);
     }
     void
     client::send_image_draw_instruction(
         websocket::stream<tcp::socket> &ws,
-        int imageNameHash,
-        rectf dest){
+        int imageNameHash, rectf dest){
         auto msg_code = message_codes::k_drawImageInstr;
         auto x = (int)(dest.x * net_constants::k_floatPrecision);
         auto y = (int)(dest.y * net_constants::k_floatPrecision);
@@ -106,8 +102,10 @@ namespace jod {
     void
     client::send_present_canvas_instruction(websocket::stream<tcp::socket> &ws){
         auto msg_code_present = message_codes::k_applyBuffer;
-        ws.write(boost::asio::buffer(&msg_code_present,
-                                     sizeof(msg_code_present)));
+        ws.write(
+            boost::asio::buffer(
+                &msg_code_present,
+                sizeof(msg_code_present)));
     }
     float
     client::get_aspect_ratio(){

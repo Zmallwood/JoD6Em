@@ -3,6 +3,5 @@
 #pragma once
 
 namespace jod {
-    sizef calc_tile_size(
-        float aspectRatio);
+    sizef calc_tile_size(float aspectRatio);
 }
