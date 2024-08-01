@@ -1,7 +1,7 @@
-/* mouse_utilities.cpp
- *
- * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
- */
+// mouse_utilities.cpp
+//
+// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+///////////////////////////////////////////////////////////
 
 #include "mouse_utilities.h"
 #include "graphics.h"

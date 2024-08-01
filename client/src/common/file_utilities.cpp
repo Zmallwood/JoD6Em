@@ -1,7 +1,7 @@
-/* file_utilities.cpp
- *
- * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
- */
+// file_utilities.cpp
+//
+// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+///////////////////////////////////////////////////////////
 
 #include "file_utilities.h"
 
