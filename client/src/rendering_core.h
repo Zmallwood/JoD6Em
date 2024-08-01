@@ -112,7 +112,7 @@ namespace jod {
         //! \brief Delete all buffers, the Vertex Array Object and cleanup the shader program.
         void cleanup_base() const;
         
-        std::shared_ptr<shader_program> m_shaderProgram; ///< The shader program used for this renderer object.
+        std::shared_ptr<shader_program> m_shaderProgram; //!< The shader program used for this renderer object.
         
     private:
         //! \brief Apply data to an array buffer of float type.
@@ -163,7 +163,7 @@ namespace jod {
             int numFloatsPerEntry,
             int layoutLocation) const;
         
-        std::shared_ptr<std::vector<GLuint> > m_VAOIDs; ///< Stores IDs of all Vertex Array Objects.
+        std::shared_ptr<std::vector<GLuint> > m_VAOIDs; //!< Stores IDs of all Vertex Array Objects.
         
         std::shared_ptr<
             std::map<
@@ -171,10 +171,10 @@ namespace jod {
                     std::map<
                         GLuint,
                         GLuint> > > >
-        m_VBOIDs; ///< Stores IDs of all Vertex Buffer Objects.
+        m_VBOIDs; //!< Stores IDs of all Vertex Buffer Objects.
         
         inline static const auto
-            k_numFloatsPerEntry = std::map<buffer_types, int>{ ///< Predefined constants of number of floats for different entry types.
+            k_numFloatsPerEntry = std::map<buffer_types, int>{ //!< Predefined constants of number of floats for different entry types.
             {buffer_types::Indices, 1}, {buffer_types::Positions2D, 2},
             {buffer_types::Positions3D, 3},
             {buffer_types::Colors, 4},  {buffer_types::UVs, 2},

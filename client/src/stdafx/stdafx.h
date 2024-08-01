@@ -22,6 +22,10 @@
 
 // Project.
 #include "math_lib.h"
-#include "util.h"
+#include "common/aliases.h"
+#include "common/file_utilities.h"
+#include "common/canvas_utilities.h"
+#include "common/mouse_utilities.h"
+#include "common/sdl_deleter.h"
 #include "common_utils.h"
 #include "net_configuration.h"

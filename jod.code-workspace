@@ -12,8 +12,9 @@
 	],
 	"settings": {
 		"files.exclude": {
-			"**/.cache": true
-		},
+            "**/.cache": true,
+            "**/compile_commands.json": true
+        },
 		"indentRainbow.colors": [
 			"rgba(255,255,64,0.25)",
 			"rgba(127,255,127,0.25)",

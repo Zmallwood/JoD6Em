@@ -1,7 +1,6 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 
 #include "image_bank.h"
-#include "util.h"
 
 namespace jod {
     namespace {

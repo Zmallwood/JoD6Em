@@ -21,11 +21,6 @@ namespace jod {
     }
     
     void
-    run_new_client_instance(){
-        _<client_engine>().run(); // Access ClientEngine and run it.
-    }
-    
-    void
     client_engine::run() const {
         _<web_socket_server_connection>().connect(); // Start network connection.
         SDL_Init(SDL_INIT_EVERYTHING); // Required by SDL2 before using it.

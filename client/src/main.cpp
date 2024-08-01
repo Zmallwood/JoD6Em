@@ -1,6 +1,6 @@
 // Copyright (c) 2024 Andreas Åkerberg.
 
-#include "core.h"
+#include "core/run_new_client_instance.h"
 
 int
 main(int argc, char *argv[]){

@@ -4,7 +4,6 @@
 #include "core.h"
 #include "message_codes.h"
 #include "net_configuration.h"
-#include "util.h"
 
 namespace jod {
     namespace {
