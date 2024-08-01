@@ -28,7 +28,9 @@ namespace jod {
     //!        incoming from the server.
     struct image_draw_instruction {
         rid rid = -1; ///< ID for an image resource previously allocated.
+        
         int imageNameHash = 0; ///<Hash code of image name to draw.
+
         rectf dest; ///< Destination rectangle to draw the image at.
     };
     
@@ -58,7 +60,7 @@ namespace jod {
         m_imageDrawInstructionsBuffer; ///< Holds the buffer for the next set of draw of instructions.
 
         std::vector<rid> m_rids; ///< A set of preallocated RIDs used for drawing images, created in the constructor.
-        
+
         const int k_maxNumDrawInstructions = 1000; ///< No more images than this value can be rendererd in a single game frame.
     };
 }
