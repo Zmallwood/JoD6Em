@@ -4,22 +4,22 @@
 
 namespace jod {
     /**
-     * \brief Start new game instance.
+     * @brief Start new game instance.
      */
     void run_new_client_instance();
     
     /**
-     * \brief Engine for the client.
+     * @brief Engine for the client.
      */
     class client_engine {
     public:
         /**
-         * \brief Run the client engine.
+         * @brief Run the client engine.
          */
         void run() const;
         
         /**
-         * \brief Poll input events from user.
+         * @brief Poll input events from user.
          */
         void poll_events();
         
@@ -27,7 +27,7 @@ namespace jod {
     };
     
     /**
-     * \brief Sets up callbacks for events from the user.
+     * @brief Sets up callbacks for events from the user.
      */
     class input_manager {
     public:
@@ -35,7 +35,7 @@ namespace jod {
     };
     
     /**
-     * \brief Holds data for doing a image drawing operation, created when such a request is
+     * @brief Holds data for doing a image drawing operation, created when such a request is
      *        incoming from the server.
      */
     struct image_draw_instruction {
@@ -45,29 +45,29 @@ namespace jod {
     };
     
     /**
-     * \brief Holds latest set of rendering instructions and executes them.
+     * @brief Holds latest set of rendering instructions and executes them.
      */
     class render_instructions_manager {
     public:
         /**
-         * \brief Construct a new Render Instructions Manager object.
+         * @brief Construct a new Render Instructions Manager object.
          */
         render_instructions_manager();
         
         /**
-         * \brief Add new image draw instruction to group, called on request from server.
-         * \param imageNameHash Hash code of image name to draw.
-         * \param dest Destination rectangle to draw the image at.
+         * @brief Add new image draw instruction to group, called on request from server.
+         * @param imageNameHash Hash code of image name to draw.
+         * @param dest Destination rectangle to draw the image at.
          */
         void add_image_draw_instruction(int imageNameHash, rectf dest);
         
         /**
-         * \brief Copies the buffered render instructions to the active render instructions set.
+         * @brief Copies the buffered render instructions to the active render instructions set.
          */
         void apply_buffer();
         
         /**
-         * \brief Performs all rendering instructions by performing rendering instructions to the
+         * @brief Performs all rendering instructions by performing rendering instructions to the
          *        web browser.
          */
         void execute_instructions();

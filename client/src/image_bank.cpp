@@ -1,9 +1,12 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "image_bank.h"
 #include "util.h"
+
 namespace jod {
     namespace {
         GLuint load_single_image(std::string_view absFilePath);
+        
         SDL_Surface *load_image_data(const char *filename);
     }
     
