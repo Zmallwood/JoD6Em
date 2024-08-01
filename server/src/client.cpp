@@ -50,7 +50,6 @@ namespace jod {
                         auto w = (int)message[1];
                         auto h = (int)message[2];
                         m_canvasSize = {w, h};
-                            h << std::endl;
                     }else if (*message == message_codes::k_mouseDown) {
                         m_serverEngine->m_mouseInput->register_mouse_down();
                         m_serverEngine->on_mouse_down();
