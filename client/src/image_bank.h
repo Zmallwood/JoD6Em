@@ -32,6 +32,7 @@ namespace jod {
         void load_images();
         
         std::map<int, GLuint> m_images; ///< Stores images by image name hash code.
+        
         const std::string k_relImagesPath{"Resources/Images"}; ///< Path to images location.
     };
 }

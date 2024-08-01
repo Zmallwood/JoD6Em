@@ -53,9 +53,12 @@ namespace jod {
     private:
         std::vector<image_draw_instruction>
         m_imageDrawInstructions; ///< Holds the image draw instructions that are executed each call to DrawCanvas().
+
         std::vector<image_draw_instruction>
         m_imageDrawInstructionsBuffer; ///< Holds the buffer for the next set of draw of instructions.
+
         std::vector<rid> m_rids; ///< A set of preallocated RIDs used for drawing images, created in the constructor.
+        
         const int k_maxNumDrawInstructions = 1000; ///< No more images than this value can be rendererd in a single game frame.
     };
 }
