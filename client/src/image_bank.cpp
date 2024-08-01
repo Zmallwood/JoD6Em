@@ -15,7 +15,7 @@ namespace jod {
         for (const auto &img : m_images)
             glDeleteTextures(
                 1,
-                &img.second);              // Free every allocated image resource.
+                &img.second); // Free every allocated image resource.
     }
     GLuint
     image_bank::get_image(std::string_view imageName) const {
@@ -35,7 +35,7 @@ namespace jod {
         GLuint texID; // Generate new image resource,
         glGenTextures(
             1,
-            &texID);              // and get its ID.
+            &texID); // and get its ID.
         // Insert new image entry with image name hash as key
         // and the new ID as value.
         m_images.insert({jod::hash(uniqueImageName), texID});
@@ -53,8 +53,7 @@ namespace jod {
                 absPath); // Extract its pure name without path or extension.
             // Insert a new entry into the images storage, with the
             // image name hash as key and the resource ID as value.
-            m_images.insert(
-                {jod::hash(imageName), texID});
+            m_images.insert({jod::hash(imageName), texID});
         }
     }
     namespace {
@@ -67,7 +66,7 @@ namespace jod {
             glEnable(GL_TEXTURE_2D); // We will work with 2D textures.
             glGenTextures(
                 1,
-                &texID);           // Generate a new OpenGL texture and get its ID.
+                &texID); // Generate a new OpenGL texture and get its ID.
             glBindTexture(
                 GL_TEXTURE_2D,
                 texID); // Use the newly created OpenGL texture.
