@@ -1,9 +1,11 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "core.h"
 #include "graphics.h"
 #include "message_codes.h"
 #include "net.h"
 #include "rendering.h"
+
 namespace jod {
     namespace {
         void key_callback(

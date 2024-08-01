@@ -15,8 +15,7 @@ namespace jod {
         /// \brief Send message to the server.
         /// \param messageType Message type to be sent.
         /////////////////////////////////////////////////
-        void send_message(
-            int messageType);
+        void send_message(int messageType);
         
         std::shared_ptr<const EmscriptenWebSocketOpenEvent>
         m_webSocketEvent; ///< Web socket event object related to the opened connection.
