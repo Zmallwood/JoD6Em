@@ -1,6 +1,9 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #pragma once
+
 #include <string_view>
+
 namespace jod {
     template <class T>
     T &

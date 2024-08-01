@@ -1,5 +1,7 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #pragma once
+
 namespace jod {
     /////////////////////////////////////////////////
     /// \brief Available types of GL buffers that can be created.

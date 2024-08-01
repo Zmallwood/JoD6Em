@@ -1,5 +1,7 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #pragma once
+
 namespace jod {
     using rid = GLuint;
     static auto get_ticks = SDL_GetTicks;

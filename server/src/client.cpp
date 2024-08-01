@@ -1,4 +1,5 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "client.h"
 #include "net.h"
 #include "client_core.h"
@@ -7,10 +8,12 @@
 #include "player.h"
 #include "scene_components.h"
 #include "cursor.h"
+
 namespace beast = boost::beast;
 namespace http = beast::http;
 namespace websocket = beast::websocket;
 using tcp = boost::asio::ip::tcp;
+
 namespace jod {
     client::client(tcp::socket socket)
         : m_serverEngine(std::make_shared<server_engine>(*this)),

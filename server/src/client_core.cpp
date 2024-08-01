@@ -1,4 +1,5 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "client_core.h"
 #include "client.h"
 #include "math.h"
@@ -7,8 +8,10 @@
 #include "world.h"
 #include "scene_components.h"
 #include "cursor.h"
+
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;
+
 namespace jod {
     server_engine::server_engine(client &client)
         : m_client(client), m_sceneManager(std::make_shared<scene_manager>(client)),

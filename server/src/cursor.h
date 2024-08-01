@@ -1,5 +1,7 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #pragma once
+
 namespace jod {
     class client;
     class cursor {

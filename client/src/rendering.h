@@ -1,6 +1,9 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #pragma once
+
 #include "rendering_core.h"
+
 namespace jod {
     /////////////////////////////////////////////////
     /// \brief Allocates image resources and enabled rendering images to the browser.

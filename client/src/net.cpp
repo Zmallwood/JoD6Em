@@ -1,9 +1,11 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "net.h"
 #include "core.h"
 #include "message_codes.h"
 #include "net_configuration.h"
 #include "util.h"
+
 namespace jod {
     namespace {
         EM_BOOL on_open(int eventType,

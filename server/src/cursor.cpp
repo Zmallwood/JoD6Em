@@ -1,8 +1,11 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "cursor.h"
 #include "client.h"
+
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;
+
 namespace jod {
     cursor::cursor(client& client)
         : m_client(client) {

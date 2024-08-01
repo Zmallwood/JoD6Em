@@ -1,4 +1,5 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "math.h"
 #include "configuration.h"
 

@@ -1,4 +1,5 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "math_lib.h"
 
 namespace jod {

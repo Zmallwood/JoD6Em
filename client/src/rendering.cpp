@@ -1,8 +1,10 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "rendering.h"
 #include "image_bank.h"
 #include "math_lib.h"
 #include "rendering_core.h"
+
 namespace jod {
     namespace {
         // Shader sources

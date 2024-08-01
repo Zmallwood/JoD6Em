@@ -1,5 +1,7 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "rendering_core.h"
+
 namespace jod {
     bool
     shader_program::create(

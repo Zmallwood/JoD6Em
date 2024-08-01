@@ -5,8 +5,9 @@
 
 namespace jod {
     namespace {
+        // Load single image from absolute file path.
         GLuint load_single_image(std::string_view absFilePath);
-        
+        // Load pure image data from file name.
         SDL_Surface *load_image_data(const char *filename);
     }
     

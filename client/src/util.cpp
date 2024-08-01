@@ -1,6 +1,8 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "util.h"
 #include "graphics.h"
+
 namespace jod {
     void
     sdl_deleter::operator()(SDL_Window *window) const {

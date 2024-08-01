@@ -1,8 +1,11 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "net.h"
 #include "client.h"
+
 namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;
+
 namespace jod {
     void
     web_socket_server::start(

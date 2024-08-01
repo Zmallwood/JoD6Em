@@ -1,5 +1,7 @@
 // Copyright (c) 2024 Andreas Åkerberg.
+
 #include "core.h"
+
 int
 main(int argc, char *argv[]){
     try{ // Catch all exceptions that can happen during execution.
