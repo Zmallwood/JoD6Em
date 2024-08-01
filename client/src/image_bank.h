@@ -4,29 +4,29 @@
 
 namespace jod {
     /**
-     * @brief Loads and provides image resources.
+     * Loads and provides image resources.
      */
     class image_bank {
     public:
         /**
-         * @brief Construct a new Image Bank object.
+         * Construct a new Image Bank object.
          */
         image_bank();
         
         /**
-         * @brief Destroy the image bank object.
+         * Destroy the image bank object.
          */
         ~image_bank();
         
         /**
-         * @brief Get the Image object.
+         * Get the Image object.
          * @param imageNameName of image, corresponding to filename wihtout extension.
          * @return GLuintGLuint Resource ID of obtained image object.
          */
         GLuint get_image(std::string_view imageName) const;
         
         /**
-         * @brief Get the Image object.
+         * Get the Image object.
          * @param imageNameHash Hash code of image name, corresponding to hash code of filename
          *                      wihtout extension.
          * @return GLuint Resource ID of obtained image object.
@@ -34,7 +34,7 @@ namespace jod {
         GLuint get_image(int imageNameHash) const;
         
         /**
-         * @brief Create a blank image object.
+         * Create a blank image object.
          * @param uniqueImageName Name of newly created blank image.
          * @return GLuint Resource ID of created image.
          */
