@@ -15,20 +15,20 @@ namespace jod {
          */
         ~image_bank();
         
-        /** Get the Image object.
+        /** \brief Get the Image object.
          *  \param imageNameName of image, corresponding to filename wihtout extension.
          *  \return GLuintGLuint Resource ID of obtained image object.
          */
         GLuint get_image(std::string_view imageName) const;
         
-        /** Get the Image object.
+        /** \brief Get the Image object.
          *  \param imageNameHash Hash code of image name, corresponding to hash code of filename
          *                       wihtout extension.
          *  \return GLuint Resource ID of obtained image object.
          */
         GLuint get_image(int imageNameHash) const;
         
-        /** Create a blank image object.
+        /** \brief Create a blank image object.
          *  \param uniqueImageName Name of newly created blank image.
          *  \return GLuint Resource ID of created image.
          */
