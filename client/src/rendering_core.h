@@ -128,14 +128,12 @@ namespace jod {
             int numFloatsPerEntry,
             int layoutLocation = -1) const;
         
-        /////////////////////////////////////////////////
-        /// \brief Apply data to an array buffer of int type.
-        /// \param VBOID VBO ID to set the data for.
-        /// \param numEntries Number of entries to set.
-        /// \param data The actual data.
-        /// \param numFloatsPerEntry Number of flots per entry.
-        /// \param layoutLocation Layout location of the data in the shader.
-        /////////////////////////////////////////////////
+        //! \brief Apply data to an array buffer of int type.
+        //! \param VBOID VBO ID to set the data for.
+        //! \param numEntries Number of entries to set.
+        //! \param data The actual data.
+        //! \param numFloatsPerEntry Number of flots per entry.
+        //! \param layoutLocation Layout location of the data in the shader.
         void set_array_buffer_data_int(
             GLuint VBOID,
             int numEntries,
@@ -143,26 +141,22 @@ namespace jod {
             int numFloatsPerEntry,
             int layoutLocation = -1) const;
         
-        /////////////////////////////////////////////////
-        /// \brief Update data to an array buffer of float type.
-        /// \param VBOID VBO ID to update the data for.
-        /// \param data The actual data.
-        /// \param numFloatsPerEntry Number of flots per entry.
-        /// \param layoutLocation Layout location of the data in the shader.
-        /////////////////////////////////////////////////
+        //! \brief Update data to an array buffer of float type.
+        //! \param VBOID VBO ID to update the data for.
+        //! \param data The actual data.
+        //! \param numFloatsPerEntry Number of flots per entry.
+        //! \param layoutLocation Layout location of the data in the shader.
         void update_array_buffer_data(
             GLuint VBOID,
             std::vector<float> &data,
             int numFloatsPerEntry,
             int layoutLocation) const;
         
-        /////////////////////////////////////////////////
-        /// \brief Update data to an array buffer of int type.
-        /// \param VBOID VBO ID to update the data for.
-        /// \param data The actual data.
-        /// \param numFloatsPerEntry Number of flots per entry.
-        /// \param layoutLocation Layout location of the data in the shader.
-        /////////////////////////////////////////////////
+        //! \brief Update data to an array buffer of int type.
+        //! \param VBOID VBO ID to update the data for.
+        //! \param data The actual data.
+        //! \param numFloatsPerEntry Number of flots per entry.
+        //! \param layoutLocation Layout location of the data in the shader.
         void update_array_buffer_data_int(
             GLuint VBOID,
             std::vector<float> &data,
@@ -171,8 +165,12 @@ namespace jod {
         
         std::shared_ptr<std::vector<GLuint> > m_VAOIDs; ///< Stores IDs of all Vertex Array Objects.
         
-        std::shared_ptr<std::map<buffer_types, std::shared_ptr<std::map<GLuint,
-                                                                        GLuint> > > >
+        std::shared_ptr<
+            std::map<
+                buffer_types, std::shared_ptr<
+                    std::map<
+                        GLuint,
+                        GLuint> > > >
         m_VBOIDs; ///< Stores IDs of all Vertex Buffer Objects.
         
         inline static const auto
