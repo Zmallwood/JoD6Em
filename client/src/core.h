@@ -39,8 +39,8 @@ namespace jod {
         render_instructions_manager();
         
         //! \brief Add new image draw instruction to group, called on request from server.
-        //! @param imageNameHash Hash code of image name to draw.
-        //! @param dest Destination rectangle to draw the image at.
+        //! \param imageNameHash Hash code of image name to draw.
+        //! \param dest Destination rectangle to draw the image at.
         void add_image_draw_instruction(int imageNameHash, rectf dest);
         
         //! \brief Copies the buffered render instructions to the active render instructions set.
