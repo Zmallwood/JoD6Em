@@ -6,17 +6,17 @@
 #pragma once
 
 namespace jod {
-    class client;
+    class user_connection;
     
     class cursor {
     public:
-        cursor(client& client);
+        cursor(user_connection& user_connection);
         
         void render(
             boost::beast::websocket::stream<boost::asio::ip::tcp::socket>& ws);
         
     private:
-        client& m_client;
+        user_connection& m_user_connection;
         
         const std::string k_cursorImageName = "CursorDefault"; ///< Image name for default cursor style.
 

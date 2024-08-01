@@ -1,4 +1,4 @@
-// client.h
+// user_connection.h
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
 ///////////////////////////////////////////////////////////
@@ -12,9 +12,9 @@ namespace jod {
     class mouse_movement;
     class cursor;
     
-    class client {
+    class user_connection {
     public:
-        client(boost::asio::ip::tcp::socket socket);
+        user_connection(boost::asio::ip::tcp::socket socket);
         
         void
         send_image_draw_instruction(

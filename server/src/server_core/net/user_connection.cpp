@@ -1,11 +1,11 @@
-// client.cpp
+// user_connection.cpp
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
 ///////////////////////////////////////////////////////////
 
-#include "client.h"
+#include "user_connection.h"
 #include "server_core/net/web_socket_server.h"
-#include "client_core.h"
+#include "server_core/user_game_instance/client_core.h"
 #include "message_codes.h"
 #include "net_configuration.h"
 #include "server_core/core_game_objects/player.h"
@@ -19,16 +19,17 @@ namespace websocket = beast::websocket;
 using tcp = boost::asio::ip::tcp;
 
 namespace jod {
-    client::client(tcp::socket socket)
+    user_connection::user_connection(tcp::socket socket)
         : m_serverEngine(std::make_shared<server_engine>(*this)),
         m_player(std::make_shared<player>()),
         m_tileHovering(std::make_shared<tile_hovering>(*this)),
         m_mouseMovement(std::make_shared<mouse_movement>(*this)),
         m_cursor(std::make_shared<cursor>(*this)){
-        std::thread(&client::do_session, this, std::move(socket)).detach();
+        std::thread(&user_connection::do_session, this, std::move(socket)).detach();
     }
+
     void
-    client::do_session(tcp::socket socket){
+    user_connection::do_session(tcp::socket socket){
         try{
             // Construct the stream by moving in the socket.
             websocket::stream<tcp::socket> ws{std::move(socket)};
@@ -76,15 +77,17 @@ namespace jod {
             std::cerr << "Error: " << e.what() << std::endl;
         }
     }
+
     void
-    client::send_image_draw_instruction(
+    user_connection::send_image_draw_instruction(
         websocket::stream<tcp::socket> &ws,
         std::string_view imageName,
         rectf dest){
         send_image_draw_instruction(ws, jod::hash(imageName), dest);
     }
+
     void
-    client::send_image_draw_instruction(
+    user_connection::send_image_draw_instruction(
         websocket::stream<tcp::socket> &ws,
         int imageNameHash, rectf dest){
         auto msg_code = message_codes::k_drawImageInstr;
@@ -101,16 +104,18 @@ namespace jod {
         data.push_back(h);
         ws.write(boost::asio::buffer(data));
     }
+
     void
-    client::send_present_canvas_instruction(websocket::stream<tcp::socket> &ws){
+    user_connection::send_present_canvas_instruction(websocket::stream<tcp::socket> &ws){
         auto msg_code_present = message_codes::k_applyBuffer;
         ws.write(
             boost::asio::buffer(
                 &msg_code_present,
                 sizeof(msg_code_present)));
     }
+    
     float
-    client::get_aspect_ratio(){
+    user_connection::get_aspect_ratio(){
         return static_cast<float>(m_canvasSize.w) / m_canvasSize.h;
     }
 }

@@ -6,7 +6,7 @@
 #pragma once
 
 namespace jod {
-    class client;
+    class user_connection;
     class scene_manager;
     class keyboard_input;
     class mouse_input;
@@ -14,7 +14,7 @@ namespace jod {
     
     class server_engine {
     public:
-        server_engine(client &client);
+        server_engine(user_connection &user_connection);
         
         void update();
         
@@ -30,7 +30,7 @@ namespace jod {
     private:
         std::shared_ptr<scene_manager> m_sceneManager;
         
-        client &m_client;
+        user_connection &m_user_connection;
     };
     
     class scene {
@@ -65,7 +65,7 @@ namespace jod {
     
     class scene_manager {
     public:
-        scene_manager(client &client);
+        scene_manager(user_connection &user_connection);
         
         void update_current_scene();
         
@@ -92,7 +92,7 @@ namespace jod {
         
         std::map<int, scene> m_scenes;
         
-        client &m_client;
+        user_connection &m_user_connection;
     };
     
     class mouse_input {

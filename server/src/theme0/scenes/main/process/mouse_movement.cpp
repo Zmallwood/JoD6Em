@@ -4,22 +4,22 @@
 ///////////////////////////////////////////////////////////
 
 #include "mouse_movement.h"
-#include "client.h"
-#include "client_core.h"
+#include "server_core/net/user_connection.h"
+#include "server_core/user_game_instance/client_core.h"
 #include "server_core/core_game_objects/player.h"
 #include "tile_hovering.h"
 
 namespace jod {
-    mouse_movement::mouse_movement(client &client) : m_client(client){
+    mouse_movement::mouse_movement(user_connection &user_connection) : m_user_connection(user_connection){
     }
     
     void
     mouse_movement::update(){
         auto mouseDown =
-            m_client.m_serverEngine->m_mouseInput->m_leftButton->
+            m_user_connection.m_serverEngine->m_mouseInput->m_leftButton->
             is_pressed_pick_result();
-        auto player = m_client.m_player;
-        auto hoveredTile = m_client.m_tileHovering->m_hoveredCoordinate;
+        auto player = m_user_connection.m_player;
+        auto hoveredTile = m_user_connection.m_tileHovering->m_hoveredCoordinate;
         if (mouseDown)
             player->m_destination = hoveredTile;
         if (std::chrono::high_resolution_clock::now() >

@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////////////////
 
 #include "client_core.h"
-#include "client.h"
+#include "server_core/net/user_connection.h"
 #include "theme0/scenes/main/main_scene_math/tile_grid_math.h"
 #include "configuration/game_properties.h"
 #include "server_core/core_game_objects/player.h"
@@ -19,9 +19,9 @@ namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;
 
 namespace jod {
-    server_engine::server_engine(client &client)
-        : m_client(client),
-        m_sceneManager(std::make_shared<scene_manager>(client)),
+    server_engine::server_engine(user_connection &user_connection)
+        : m_user_connection(user_connection),
+        m_sceneManager(std::make_shared<scene_manager>(user_connection)),
         m_mouseInput(std::make_shared<mouse_input>()){
     }
     
@@ -33,8 +33,8 @@ namespace jod {
     void
     server_engine::render(websocket::stream<tcp::socket> &ws){
         m_sceneManager->render_current_scene(ws);
-        m_client.m_cursor->render(ws);
-        m_client.send_present_canvas_instruction(ws);
+        m_user_connection.m_cursor->render(ws);
+        m_user_connection.send_present_canvas_instruction(ws);
     }
     
     void
@@ -76,15 +76,15 @@ namespace jod {
         m_mouseDownAction();
     }
     
-    scene_manager::scene_manager(client &client) : m_client(client){
+    scene_manager::scene_manager(user_connection &user_connection) : m_user_connection(user_connection){
         add_scene(
             "IntroScene",[] {
             },
             [&](websocket::stream<tcp::socket> &ws){
-                m_client.send_image_draw_instruction(
+                m_user_connection.send_image_draw_instruction(
                     ws, "DefaultSceneBackground",
                     {0.0f, 0.0f, 1.0f, 1.0f});
-                m_client.send_image_draw_instruction(
+                m_user_connection.send_image_draw_instruction(
                     ws, "JoDLogo",
                     {0.3f, 0.2f, 0.4f, 0.2f});
             },
@@ -98,10 +98,10 @@ namespace jod {
             [] {
             },
             [&](websocket::stream<tcp::socket> &ws){
-                m_client.send_image_draw_instruction(
+                m_user_connection.send_image_draw_instruction(
                     ws, "DefaultSceneBackground",
                     {0.0f, 0.0f, 1.0f, 1.0f});
-                m_client.send_image_draw_instruction(
+                m_user_connection.send_image_draw_instruction(
                     ws, "JoDLogo",
                     {0.4f, 0.1f, 0.2f, 0.1f});
             },
@@ -113,12 +113,12 @@ namespace jod {
         add_scene(
             "MainScene",
             [&]{
-                m_client.m_tileHovering->update();
-                m_client.m_mouseMovement->update();
+                m_user_connection.m_tileHovering->update();
+                m_user_connection.m_mouseMovement->update();
             },
             [&](websocket::stream<tcp::socket> &ws){
-                auto tileSize = calc_tile_size(m_client.get_aspect_ratio());
-                auto playerCoord = m_client.m_player->m_coord;
+                auto tileSize = calc_tile_size(m_user_connection.get_aspect_ratio());
+                auto playerCoord = m_user_connection.m_player->m_coord;
                 auto numGridRows = _<game_properties>().numGridRows;
                 auto numGridCols = numGridRows;
                 for (auto y = 0; y < numGridRows; y++){
@@ -130,23 +130,23 @@ namespace jod {
                         auto tile =
                             _<world>().m_currentWorldArea->m_tiles[coordX][
                                 coordY];
-                        m_client.send_image_draw_instruction(
+                        m_user_connection.send_image_draw_instruction(
                             ws,
                             tile->m_ground,
                             {x * tileSize.w, y * tileSize.h, tileSize.w,
                              tileSize.h});
                         if (coordX ==
-                            m_client.m_tileHovering->m_hoveredCoordinate.x &&
+                            m_user_connection.m_tileHovering->m_hoveredCoordinate.x &&
                             coordY ==
-                            m_client.m_tileHovering->m_hoveredCoordinate.y){
-                            m_client.send_image_draw_instruction(
+                            m_user_connection.m_tileHovering->m_hoveredCoordinate.y){
+                            m_user_connection.send_image_draw_instruction(
                                 ws,
                                 "HoveredTile",
                                 {x * tileSize.w, y * tileSize.h, tileSize.w,
                                  tileSize.h});
                         }
                         if (coordX == playerCoord.x && coordY == playerCoord.y){
-                            m_client.send_image_draw_instruction(
+                            m_user_connection.send_image_draw_instruction(
                                 ws, "Player", {
                             x * tileSize.w, y * tileSize.h,
                             tileSize.w,

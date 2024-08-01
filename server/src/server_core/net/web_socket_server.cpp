@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////////////////
 
 #include "web_socket_server.h"
-#include "client.h"
+#include "user_connection.h"
 
 namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;
@@ -20,7 +20,7 @@ namespace jod {
         while (true){
             tcp::socket socket{ioc}; // This will receive the new connection.
             acceptor.accept(socket); // Block until we get a connection.
-            m_clients.push_back(std::make_shared<client>(std::move(socket)));
+            m_user_connections.push_back(std::make_shared<user_connection>(std::move(socket)));
         }
     }
 }

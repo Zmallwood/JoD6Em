@@ -6,13 +6,13 @@
 #pragma once
 
 namespace jod {
-    class client;
+    class user_connection;
     
     class web_socket_server {
     public:
         void start(std::string socketAddress, std::string socketPort);
         
     private:
-        std::vector<std::shared_ptr<client> > m_clients;
+        std::vector<std::shared_ptr<user_connection> > m_user_connections;
     };
 }

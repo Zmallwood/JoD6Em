@@ -6,17 +6,17 @@
 #pragma once
 
 namespace jod {
-    class client;
+    class user_connection;
     
     class tile_hovering {
     public:
-        tile_hovering(client &client);
+        tile_hovering(user_connection &user_connection);
         
         void update();
         
         point m_hoveredCoordinate = {-1, -1};
         
     private:
-        client &m_client;
+        user_connection &m_user_connection;
     };
 }
