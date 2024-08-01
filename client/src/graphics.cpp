@@ -52,8 +52,7 @@ namespace jod {
     }
     void
     graphics::clear_canvas(){
-        glClear(
-            GL_COLOR_BUFFER_BIT); // Clear canvas to prepare for rendering new contents.
+        glClear(GL_COLOR_BUFFER_BIT); // Clear canvas to prepare for rendering new contents.
     }
     void
     graphics::present_canvas(){

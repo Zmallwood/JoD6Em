@@ -37,8 +37,7 @@ namespace jod {
     void
     client_engine::run() const {
         _<web_socket_server_connection>().connect(); // Start network connection.
-        SDL_Init(
-            SDL_INIT_EVERYTHING); // Required by SDL2 before using it.
+        SDL_Init(SDL_INIT_EVERYTHING); // Required by SDL2 before using it.
         _<input_manager>();
         _<graphics>(); // Touch Graphics to initialize it.
         // Start game loop.
@@ -90,8 +89,7 @@ namespace jod {
     render_instructions_manager::render_instructions_manager(){
         // Create a sufficient amount of RIDs for drawing images and game start.
         for (auto i = 0; i < k_maxNumDrawInstructions; i++)
-            m_rids.push_back(
-                _<image_renderer>().new_image());
+            m_rids.push_back(_<image_renderer>().new_image());
     }
     void
     render_instructions_manager::add_image_draw_instruction(
