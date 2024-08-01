@@ -3,24 +3,19 @@
 #include "util.h"
 namespace jod {
     namespace {
-        GLuint load_single_image(
-            std::string_view absFilePath);
-        SDL_Surface *load_image_data(
-            const char *filename);
+        GLuint load_single_image(std::string_view absFilePath);
+        SDL_Surface *load_image_data(const char *filename);
     }
     image_bank::image_bank() {
         load_images(); // Load all images in images path.
     }
     image_bank::~image_bank() { // Iterate through all the loaded images.
         for (const auto &img : m_images)
-            glDeleteTextures(
-                1,
-                &img.second); // Free every allocated image resource.
+            glDeleteTextures(1, &img.second); // Free every allocated image resource.
     }
     GLuint
     image_bank::get_image(std::string_view imageName) const {
-        return get_image(
-            jod::hash(imageName)); // Hash the image name and call the function overload
+        return get_image(jod::hash(imageName)); // Hash the image name and call the function overload
     }
     GLuint
     image_bank::get_image(int imageNameHash) const {
@@ -33,9 +28,7 @@ namespace jod {
     GLuint
     image_bank::create_blank_image(std::string_view uniqueImageName) {
         GLuint texID; // Generate new image resource,
-        glGenTextures(
-            1,
-            &texID); // and get its ID.
+        glGenTextures(1, &texID); // and get its ID.
         // Insert new image entry with image name hash as key
         // and the new ID as value.
         m_images.insert({jod::hash(uniqueImageName), texID});
@@ -61,56 +54,25 @@ namespace jod {
         load_single_image(std::string_view absFilePath) {
             GLuint texID; // Declare variable to hold the resulting ID for the loaded image file.
             // Get image data from the image file.
-            auto surf = load_image_data(
-                absFilePath.data());
+            auto surf = load_image_data(absFilePath.data());
             glEnable(GL_TEXTURE_2D); // We will work with 2D textures.
-            glGenTextures(
-                1,
-                &texID); // Generate a new OpenGL texture and get its ID.
-            glBindTexture(
-                GL_TEXTURE_2D,
-                texID); // Use the newly created OpenGL texture.
+            glGenTextures(1, &texID); // Generate a new OpenGL texture and get its ID.
+            glBindTexture(GL_TEXTURE_2D, texID); // Use the newly created OpenGL texture.
             // Apply necessary texture parameters.
-            glTexParameteri(
-                GL_TEXTURE_2D,
-                GL_TEXTURE_MAG_FILTER,
-                GL_NEAREST);
-            glTexParameteri(
-                GL_TEXTURE_2D,
-                GL_TEXTURE_MIN_FILTER,
-                GL_NEAREST);
-            glTexParameteri(
-                GL_TEXTURE_2D,
-                GL_TEXTURE_WRAP_S,
-                GL_CLAMP_TO_EDGE);
-            glTexParameteri(
-                GL_TEXTURE_2D,
-                GL_TEXTURE_WRAP_T,
-                GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
             // Transfer image data from SDL surface to OpenGL texture resource depending on
             // if the image format is RGB or RGBA (with or without alpha channel).
             if (surf->format->BytesPerPixel == 4)
                 glTexImage2D(
-                    GL_TEXTURE_2D,
-                    0,
-                    GL_RGBA,
-                    surf->w,
-                    surf->h,
-                    0,
-                    GL_RGBA,
-                    GL_UNSIGNED_BYTE,
-                    surf->pixels);
+                    GL_TEXTURE_2D, 0, GL_RGBA, surf->w, surf->h, 0,
+                    GL_RGBA, GL_UNSIGNED_BYTE, surf->pixels);
             else
                 glTexImage2D(
-                    GL_TEXTURE_2D,
-                    0,
-                    GL_RGBA,
-                    surf->w,
-                    surf->h,
-                    0,
-                    GL_RGB,
-                    GL_UNSIGNED_BYTE,
-                    surf->pixels);
+                    GL_TEXTURE_2D, 0,  GL_RGBA, surf->w, surf->h, 0,
+                    GL_RGB, GL_UNSIGNED_BYTE, surf->pixels);
             // Free SDL surface resource, its not needed anymore as the image data is
             // stored in the OpenGL texture now.
             SDL_FreeSurface(surf);
@@ -123,10 +85,7 @@ namespace jod {
             int bytesPerPixel;
             // Read data.
             void *data = stbi_load(
-                filename,
-                &width,
-                &height,
-                &bytesPerPixel,
+                filename, &width, &height, &bytesPerPixel,
                 0);
             // Calculate pitch.
             int pitch;
@@ -151,15 +110,8 @@ namespace jod {
 #endif
             // Create SDL surface from image data.
             auto surface = SDL_CreateRGBSurfaceFrom(
-                data,
-                width,
-                height,
-                bytesPerPixel * 8,
-                pitch,
-                rMask,
-                gMask,
-                bMask,
-                aMask);
+                data, width, height,
+                bytesPerPixel * 8, pitch, rMask, gMask, bMask, aMask);
             // If surface creation failed, then free image data and return nullptr.
             if (!surface) {
                 stbi_image_free(data);
