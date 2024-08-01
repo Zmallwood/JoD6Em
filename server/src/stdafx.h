@@ -6,6 +6,7 @@
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/beast/websocket.hpp>
 #include <thread>
+#include <chrono>
 
 // Std.
 #include <string>

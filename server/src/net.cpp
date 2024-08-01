@@ -17,7 +17,6 @@ namespace jod {
         while (true){
             tcp::socket socket{ioc}; // This will receive the new connection.
             acceptor.accept(socket); // Block until we get a connection.
-            std::cout << "Connection opened.\n";
             m_clients.push_back(std::make_shared<client>(std::move(socket)));
         }
     }

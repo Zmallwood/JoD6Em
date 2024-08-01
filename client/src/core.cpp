@@ -8,10 +8,12 @@
 
 namespace jod {
     namespace {
+        void setup_callbacks();
         void key_callback(
             GLFWwindow *window, int key, int scancode, int action, int mods);
-        void mouse_button_callback( GLFWwindow *window, int button, int action,
-                                    int mods);
+        void mouse_button_callback(
+            GLFWwindow *window, int button, int action,
+            int mods);
         void character_callback(GLFWwindow *window, unsigned int codepoint);
         EM_BOOL touch_start_callback(int, EmscriptenTouchEvent const *, void *);
         EM_BOOL touch_end_callback(int, EmscriptenTouchEvent const *, void *);
@@ -27,7 +29,7 @@ namespace jod {
     client_engine::run() const {
         _<web_socket_server_connection>().connect(); // Start network connection.
         SDL_Init(SDL_INIT_EVERYTHING); // Required by SDL2 before using it.
-        _<input_manager>();
+        setup_callbacks();
         _<graphics>(); // Touch Graphics to initialize it.
         // Start game loop.
         auto simulateInfiniteLoop = 1;
@@ -46,29 +48,6 @@ namespace jod {
             }
             }
         }
-    }
-    
-    input_manager::input_manager(){
-        // Set callback for keyboard events.
-        glfwSetKeyCallback(_<graphics>().m_window, key_callback);
-        // Set callback for mouse events.
-        glfwSetMouseButtonCallback(
-            _<graphics>().m_window,
-            mouse_button_callback);
-        // Set callback for text typing events.
-        glfwSetCharCallback(_<graphics>().m_window, character_callback);
-        // Set callback for touch start event.
-        emscripten_set_touchstart_callback(
-            "#canvas",
-            nullptr,
-            true,
-            touch_start_callback);
-        // Set callback for touch end event.
-        emscripten_set_touchend_callback(
-            "#canvas",
-            nullptr,
-            true,
-            touch_end_callback);
     }
     
     render_instructions_manager::render_instructions_manager(){
@@ -123,6 +102,30 @@ namespace jod {
             _<graphics>().present_canvas(); // Present canvas to users web browser.
             _<web_socket_server_connection>().send_message(
                 message_codes::k_frameFinished);
+        }
+        
+        void
+        setup_callbacks() {
+            // Set callback for keyboard events.
+            glfwSetKeyCallback(_<graphics>().m_window, key_callback);
+            // Set callback for mouse events.
+            glfwSetMouseButtonCallback(
+                _<graphics>().m_window,
+                mouse_button_callback);
+            // Set callback for text typing events.
+            glfwSetCharCallback(_<graphics>().m_window, character_callback);
+            // Set callback for touch start event.
+            emscripten_set_touchstart_callback(
+                "#canvas",
+                nullptr,
+                true,
+                touch_start_callback);
+            // Set callback for touch end event.
+            emscripten_set_touchend_callback(
+                "#canvas",
+                nullptr,
+                true,
+                touch_end_callback);
         }
         
         void

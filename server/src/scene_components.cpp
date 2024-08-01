@@ -10,7 +10,7 @@
 namespace jod {
     tile_hovering::tile_hovering(client &client) : m_client(client){
     }
-
+    
     void
     tile_hovering::update(){
         auto tileSize = calc_tile_size(m_client.get_aspect_ratio());
@@ -25,7 +25,7 @@ namespace jod {
             static_cast<int>(m_client.m_mousePosition.y / tileSize.h);
         m_hoveredCoordinate = {tileX, tileY};
     }
-
+    
     mouse_movement::mouse_movement(client &client) : m_client(client){
     }
     
@@ -38,17 +38,21 @@ namespace jod {
         auto hoveredTile = m_client.m_tileHovering->m_hoveredCoordinate;
         if (mouseDown)
             player->m_destination = hoveredTile;
-        if (player->m_destination.x != -1 && player->m_destination.y != -1){
-            auto dx = player->m_destination.x - player->m_coord.x;
-            auto dy = player->m_destination.y - player->m_coord.y;
-            auto absdx = std::abs(dx);
-            auto absdy = std::abs(dy);
-            auto normx = 0;
-            auto normy = 0;
-            if (dx) normx = dx / absdx;
-            if (dy) normy = dy / absdy;
-            player->m_coord.x += normx;
-            player->m_coord.y += normy;
+        if (std::chrono::high_resolution_clock::now() >
+            player->m_ticks_last_move + std::chrono::high_resolution_clock::duration(std::chrono::milliseconds(static_cast<int>(1000/player->m_movement_speed)))){
+            if (player->m_destination.x != -1 && player->m_destination.y != -1){
+                auto dx = player->m_destination.x - player->m_coord.x;
+                auto dy = player->m_destination.y - player->m_coord.y;
+                auto absdx = std::abs(dx);
+                auto absdy = std::abs(dy);
+                auto normx = 0;
+                auto normy = 0;
+                if (dx) normx = dx / absdx;
+                if (dy) normy = dy / absdy;
+                player->m_coord.x += normx;
+                player->m_coord.y += normy;
+            }
+            player->m_ticks_last_move = std::chrono::high_resolution_clock::now();
         }
     }
 }

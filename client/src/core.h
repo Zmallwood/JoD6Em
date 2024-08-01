@@ -18,12 +18,6 @@ namespace jod {
         bool m_running = true; ///< Engine is running as long as this is set to true.
     };
     
-    //! \brief Sets up callbacks for events from the user.
-    class input_manager {
-    public:
-        input_manager();
-    };
-    
     //! \brief Holds data for doing a image drawing operation, created when such a request is
     //!        incoming from the server.
     struct image_draw_instruction {
