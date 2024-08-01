@@ -41,16 +41,19 @@ namespace jod {
         renderer_base();
         
         //! \brief new Vertex Array Object and returns its ID.
+        //!
         //! \return GLuint The ID of a new VAO.
         GLuint gen_new_vao_id();
         
         //! \brief Generate a new Vertex Buffer Object and returns its ID.
+        //!
         //! \param buffType Type of buffer the data will hold.
         //! \param VAOID The ID of the Vertex Array Object to which the new buffer is associated.
         //! \return GLuint The ID of the new VBO.
         GLuint gen_new_buff_id(buffer_types buffType, GLuint VAOID);
         
         //! \brief Set indices data for a VBO.
+        //!
         //! \param indicesVBOID The VBO ID associated with the indices data.
         //! \param numIndices Number of indices to set.
         //! \param data Indices data.
@@ -60,6 +63,7 @@ namespace jod {
             const void *data) const;
         
         //! \brief Set buffer data for a VBO.
+        //!
         //! \param VBOID The VBO ID associated with the data.
         //! \param numEntries Number of entries to set.
         //! \param data The buffer data.
@@ -73,22 +77,26 @@ namespace jod {
             int layoutLocation = -1) const;
         
         //! \brief Get layout location in the shader of an uniform variable.
+        //!
         //! \param variableName Name of variable to obtain location for.
         //! \return GLuint Location index.
         GLuint get_uniform_location(std::string_view variableName);
         
         //! \brief Start using a Vertex Array Object.
+        //!
         //! \param VAOID ID of the Vertex Array Object to start using.
         void use_vao_begin(GLuint VAOID) const;
         
         //! \brief Get the ID of a Vertex Buffer Object of a specific type associated with a specific
         //!        Vertex Array Object.
+        //!
         //! \param buffType The type of buffer to get the ID for.
         //! \param VAOID The Vertex Array Object to get the ID for.
         //! \return GLuint The ID of the Vertex Buffer Object.
         GLuint get_buff_id(buffer_types buffType, GLuint VAOID) const;
         
         //! \brief Update indices data.
+        //!
         //! \param indicesVBOID The ID of the indices VBO to update.
         //! \param indices Indices data to update with.
         void update_indices_data(GLuint indicesVBOID,
@@ -96,6 +104,7 @@ namespace jod {
         
         //! \brief Update data in an Vertex Buffer Object holding a specific buffer type and at a
         //!        specific layout location in the shader.
+        //!
         //! \param VBOID The ID of the Vertex Buffer Object to update.
         //! \param data The data to update with.
         //! \param buffType The type of data the buffer holds.
@@ -116,6 +125,7 @@ namespace jod {
         
     private:
         //! \brief Apply data to an array buffer of float type.
+        //!
         //! \param VBOID VBO ID to set the data for.
         //! \param numEntries Number of entries to set.
         //! \param data The actual data.
@@ -130,6 +140,7 @@ namespace jod {
         
         /////////////////////////////////////////////////
         /// \brief Apply data to an array buffer of int type.
+        //!
         /// \param VBOID VBO ID to set the data for.
         /// \param numEntries Number of entries to set.
         /// \param data The actual data.
@@ -145,6 +156,7 @@ namespace jod {
         
         /////////////////////////////////////////////////
         /// \brief Update data to an array buffer of float type.
+        //!
         /// \param VBOID VBO ID to update the data for.
         /// \param data The actual data.
         /// \param numFloatsPerEntry Number of flots per entry.
@@ -158,6 +170,7 @@ namespace jod {
         
         /////////////////////////////////////////////////
         /// \brief Update data to an array buffer of int type.
+        //!
         /// \param VBOID VBO ID to update the data for.
         /// \param data The actual data.
         /// \param numFloatsPerEntry Number of flots per entry.
