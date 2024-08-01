@@ -27,6 +27,7 @@ namespace jod {
         //! \param uniqueImageName Name of newly created blank image.
         //! \return GLuint Resource ID of created image.
         GLuint create_blank_image(std::string_view uniqueImageName);
+        
     private:
         void load_images();
         

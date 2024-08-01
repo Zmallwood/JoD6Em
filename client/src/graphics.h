@@ -25,6 +25,7 @@ namespace jod {
         void present_canvas();
         
         GLFWwindow *m_window = nullptr; ///< GLFW window object.
+        
     private:
         const std::string
             k_title = "Journey of Dreams"; ///< Window title used if the game would be in desktop application format.

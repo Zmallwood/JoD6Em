@@ -49,6 +49,7 @@ namespace jod {
         //! \brief Performs all rendering instructions by performing rendering instructions to the
         //!        web browser.
         void execute_instructions();
+        
     private:
         std::vector<image_draw_instruction>
         m_imageDrawInstructions; ///< Holds the image draw instructions that are executed each call to DrawCanvas().
