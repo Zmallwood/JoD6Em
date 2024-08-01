@@ -1,12 +1,12 @@
-// rendering.cpp
+// image_renderer.cpp
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
 ///////////////////////////////////////////////////////////
 
-#include "rendering.h"
-#include "image_bank.h"
+#include "image_renderer.h"
+#include "core/assets/image_bank.h"
 #include "math_lib.h"
-#include "rendering_core.h"
+#include "core/graphics/rendering/rendering_core/shader_program.h"
 
 namespace jod {
     namespace {

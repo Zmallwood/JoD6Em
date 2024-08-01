@@ -1,41 +1,15 @@
-// rendering_core.h
+// renderer_base.h
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
 ///////////////////////////////////////////////////////////
 
 #pragma once
 
-namespace jod {
-    //! \brief Available types of GL buffers that can be created.
-    enum class buffer_types {
-        Indices,
-        Positions2D,
-        Positions3D,
-        Colors,
-        UVs,
-        Normals,
-        BoneIDs,
-        Weights,
-        Misc
-    };
-    
-    //! \brief OpenGL shader program object.
-    class shader_program {
-    public:
-        bool create(
-            const GLchar *vertexShaderSource,
-            const GLchar *fragmentShaderSource);
-        void cleanup();
-        
-        GLuint m_programID = 0;
-        
-    private:
-        GLuint compile_shader(
-            const GLchar *shaderSource,
-            GLuint *shader,
-            GLenum shaderType);
-    };
-    
+#include "buffer_types.h"
+
+namespace jod {      
+    class shader_program;
+
     //! \brief Functions as a base class for all renderers providing shared base functionality.
     class renderer_base {
     protected:

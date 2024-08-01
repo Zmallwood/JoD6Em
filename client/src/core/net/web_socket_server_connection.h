@@ -1,4 +1,4 @@
-// net.h
+// web_socket_server_connection.h
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
 ///////////////////////////////////////////////////////////

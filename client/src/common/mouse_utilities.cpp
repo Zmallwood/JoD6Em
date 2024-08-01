@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////////////////
 
 #include "mouse_utilities.h"
-#include "graphics.h"
+#include "core/graphics/graphics.h"
 
 namespace jod {
     pointf

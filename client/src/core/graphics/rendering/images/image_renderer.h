@@ -1,11 +1,11 @@
-// rendering.h
+// image_renderer.h
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
 ///////////////////////////////////////////////////////////
 
 #pragma once
 
-#include "rendering_core.h"
+#include "core/graphics/rendering/rendering_core/renderer_base.h"
 
 namespace jod {
     ///! \brief Allocates image resources and enabled rendering images to the browser.

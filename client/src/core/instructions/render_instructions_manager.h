@@ -1,33 +1,13 @@
-// core.h
+// render_instructions_manager.h
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
 ///////////////////////////////////////////////////////////
 
 #pragma once
 
-namespace jod {
-    //! \brief Engine for the client.
-    class client_engine {
-    public:
-        //! \brief Run the client engine.
-        void run() const;
-        
-        //! \brief Poll input events from user.
-        void poll_events();
-        
-        bool m_running = true; //!< Engine is running as long as this is set to true.
-    };
-    
-    //! \brief Holds data for doing a image drawing operation, created when such a request is
-    //!        incoming from the server.
-    struct image_draw_instruction {
-        rid rid = -1; //!< ID for an image resource previously allocated.
-        
-        int imageNameHash = 0; //!<Hash code of image name to draw.
-        
-        rectf dest; //!< Destination rectangle to draw the image at.
-    };
-    
+#include "image_draw_instruction.h"
+
+namespace jod {   
     //! \brief Holds latest set of rendering instructions and executes them.
     class render_instructions_manager {
     public:

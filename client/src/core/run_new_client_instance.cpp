@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////////////////
 
 #include "run_new_client_instance.h"
-#include "core.h"
+#include "client_engine.h"
 
 namespace jod {
     void

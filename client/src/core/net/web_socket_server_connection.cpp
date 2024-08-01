@@ -1,10 +1,10 @@
-// net.cpp
+// web_socket_server_connection.cpp
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
 ///////////////////////////////////////////////////////////
 
-#include "net.h"
-#include "core.h"
+#include "web_socket_server_connection.h"
+#include "core/instructions/render_instructions_manager.h"
 #include "message_codes.h"
 #include "net_configuration.h"
 
