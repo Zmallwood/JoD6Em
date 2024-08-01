@@ -6,29 +6,23 @@
 #include "util.h"
 namespace jod {
     namespace {
-        EM_BOOL on_open(
-            int eventType,
-            const EmscriptenWebSocketOpenEvent *websocketEvent,
-            void *userData);
-        EM_BOOL on_error(
-            int eventType,
-            const EmscriptenWebSocketErrorEvent *websocketEvent,
-            void *userData);
-        EM_BOOL on_close(
-            int eventType,
-            const EmscriptenWebSocketCloseEvent *websocketEvent,
-            void *userData);
-        EM_BOOL on_message(
-            int eventType,
-            const EmscriptenWebSocketMessageEvent *websocketEvent,
-            void *userData);
-        void process_incoming_message(
-            unsigned char *bytes);
-        int read_four_bytes_as_int(
-            unsigned char *bytes);
-        float read_four_bytes_at_float(
-            unsigned char *bytes);
+        EM_BOOL on_open(int eventType,
+                        const EmscriptenWebSocketOpenEvent *websocketEvent,
+                        void *userData);
+        EM_BOOL on_error(int eventType,
+                         const EmscriptenWebSocketErrorEvent *websocketEvent,
+                         void *userData);
+        EM_BOOL on_close(int eventType,
+                         const EmscriptenWebSocketCloseEvent *websocketEvent,
+                         void *userData);
+        EM_BOOL on_message(int eventType,
+                           const EmscriptenWebSocketMessageEvent *websocketEvent,
+                           void *userData);
+        void process_incoming_message(unsigned char *bytes);
+        int read_four_bytes_as_int(unsigned char *bytes);
+        float read_four_bytes_at_float(unsigned char *bytes);
     }
+    
     void
     web_socket_server_connection::connect(){
         if (!emscripten_websocket_is_supported()) return; // Check support exists.
@@ -39,23 +33,12 @@ namespace jod {
             serverAddress.c_str(), NULL, EM_TRUE};
         auto ws = emscripten_websocket_new(&wsAttrs); // Create the web socket and connect.
         // Setup callback functions.
-        emscripten_websocket_set_onopen_callback(
-            ws,
-            NULL,
-            on_open);
-        emscripten_websocket_set_onerror_callback(
-            ws,
-            NULL,
-            on_error);
-        emscripten_websocket_set_onclose_callback(
-            ws,
-            NULL,
-            on_close);
-        emscripten_websocket_set_onmessage_callback(
-            ws,
-            NULL,
-            on_message);
+        emscripten_websocket_set_onopen_callback(ws, NULL, on_open);
+        emscripten_websocket_set_onerror_callback(ws, NULL, on_error);
+        emscripten_websocket_set_onclose_callback(ws, NULL, on_close);
+        emscripten_websocket_set_onmessage_callback(ws, NULL, on_message);
     }
+    
     void
     web_socket_server_connection::send_message(int messageType){
         switch (messageType){ // Determine message type to be sent.
@@ -67,11 +50,12 @@ namespace jod {
             msg[1] = canvSize.w;
             msg[2] = canvSize.h;
             // Try send packet and handle failure.
-            if (auto result = emscripten_websocket_send_binary(
-                    m_webSocketEvent->socket,
-                    msg,
-                    3 * sizeof(int)))
-                std::cout << "Failed to emscripten_websocket_send_binary(): " << result;
+            if (auto result =
+                    emscripten_websocket_send_binary(
+                        m_webSocketEvent->socket,
+                        msg, 3 * sizeof(int)))
+                std::cout << "Failed to emscripten_websocket_send_binary(): " <<
+                    result;
             break;
         }
         case message_codes::k_mouseDown: {
@@ -81,7 +65,8 @@ namespace jod {
                     m_webSocketEvent->socket,
                     &msg,
                     sizeof(msg)))
-                std::cout << "Failed to emscripten_websocket_send_binary(): " << result;
+                std::cout << "Failed to emscripten_websocket_send_binary(): " <<
+                    result;
             break;
         }
         case message_codes::k_mousePosition: {
@@ -95,7 +80,8 @@ namespace jod {
                     m_webSocketEvent->socket,
                     &msg,
                     sizeof(msg)))
-                std::cout << "Failed to emscripten_websocket_send_binary(): " << result;
+                std::cout << "Failed to emscripten_websocket_send_binary(): " <<
+                    result;
             break;
         }
         case message_codes::k_frameFinished: {
@@ -105,11 +91,13 @@ namespace jod {
                     m_webSocketEvent->socket,
                     &msg,
                     sizeof(msg)))
-                std::cout << "Failed to emscripten_websocket_send_binary(): " << result;
+                std::cout << "Failed to emscripten_websocket_send_binary(): " <<
+                    result;
             break;
         }
         }
     }
+    
     namespace {
         EM_BOOL
         on_open(int eventType,
@@ -117,17 +105,21 @@ namespace jod {
                 void *userData){
             // Save web socket event to WebSocketClient so it can be used from that object by its own.
             _<web_socket_server_connection>().m_webSocketEvent =
-                std::shared_ptr<const EmscriptenWebSocketOpenEvent>(websocketEvent);
+                std::shared_ptr<const EmscriptenWebSocketOpenEvent>(
+                    websocketEvent);
             std::cout << "Opening new connection.\n";
             // Send initial message and check result.
             if (auto result = emscripten_websocket_send_utf8_text(
                     websocketEvent->socket,
                     "Initialize connection"))
-                std::cout << "Failed to send init message to server: " << result << std::endl;
+                std::cout << "Failed to send init message to server: " <<
+                    result << std::endl;
             // Send canvas size immediately to server.
-            _<web_socket_server_connection>().send_message(message_codes::k_canvasSize);
+            _<web_socket_server_connection>().send_message(
+                message_codes::k_canvasSize);
             return EM_TRUE;
         }
+        
         EM_BOOL
         on_error(int eventType,
                  const EmscriptenWebSocketErrorEvent *websocketEvent,
@@ -135,6 +127,7 @@ namespace jod {
             std::cout << "Web socket error.\n"; // Notify on web socket errors.
             return EM_TRUE;
         }
+        
         EM_BOOL
         on_close(int eventType,
                  const EmscriptenWebSocketCloseEvent *websocketEvent,
@@ -142,6 +135,7 @@ namespace jod {
             std::cout << "Closing web socket connection.\n"; // Notify on closing web socket connection.
             return EM_TRUE;
         }
+        
         EM_BOOL
         on_message(int eventType,
                    const EmscriptenWebSocketMessageEvent *websocketEvent,
@@ -149,6 +143,7 @@ namespace jod {
             process_incoming_message(websocketEvent->data); // Process the raw message data in bytes.
             return EM_TRUE;
         }
+        
         void
         process_incoming_message(unsigned char *bytes){
             auto messageCode = read_four_bytes_as_int(bytes); // The first bytes contains the message code.
@@ -166,8 +161,7 @@ namespace jod {
                 auto h = read_four_bytes_at_float(bytes + 20);
                 // Add the complete instruction.
                 _<render_instructions_manager>().add_image_draw_instruction(
-                    imageNameHash,
-                    {x, y, w, h});
+                    imageNameHash, {x, y, w, h});
                 break;
             }
             case message_codes::k_applyBuffer: {
@@ -176,6 +170,7 @@ namespace jod {
             }
             }
         }
+        
         int
         read_four_bytes_as_int(unsigned char *bytes){
             // Pick out the separate bytes.
@@ -187,6 +182,7 @@ namespace jod {
             auto result = (b3 << 3 * 8) + (b2 << 2 * 8) + (b1 << 8) + b0;
             return result;
         }
+        
         float
         read_four_bytes_at_float(unsigned char *bytes){
             // Pick out the separate bytes.
@@ -197,7 +193,8 @@ namespace jod {
             // Shift the bytes to form an integer, then divide it with 10000.0 to get a float with 4
             // decimals precision.
             auto result =
-                ((b3 << 3 * 8) + (b2 << 2 * 8) + (b1 << 8) + b0) / net_constants::k_floatPrecision;
+                ((b3 << 3 * 8) + (b2 << 2 * 8) + (b1 << 8) + b0) /
+                net_constants::k_floatPrecision;
             return result;
         }
     }

@@ -6,16 +6,16 @@ namespace jod {
         GLuint load_single_image(std::string_view absFilePath);
         SDL_Surface *load_image_data(const char *filename);
     }
-
+    
     image_bank::image_bank() {
         load_images(); // Load all images in images path.
     }
-
+    
     image_bank::~image_bank() { // Iterate through all the loaded images.
         for (const auto &img : m_images)
             glDeleteTextures(1, &img.second); // Free every allocated image resource.
     }
-
+    
     GLuint
     image_bank::get_image(std::string_view imageName) const {
         return get_image(jod::hash(imageName)); // Hash the image name and call the function overload
@@ -29,7 +29,7 @@ namespace jod {
             if (img.first == imageNameHash) return img.second;
         return -1; // No image with the name found, return fail value.
     }
-
+    
     GLuint
     image_bank::create_blank_image(std::string_view uniqueImageName) {
         GLuint texID; // Generate new image resource,
@@ -39,7 +39,7 @@ namespace jod {
         m_images.insert({jod::hash(uniqueImageName), texID});
         return texID; // Return the ID of the newly created blank image resource.
     }
-
+    
     void
     image_bank::load_images() {
         using iterator = std::filesystem::recursive_directory_iterator;
@@ -55,7 +55,7 @@ namespace jod {
             m_images.insert({jod::hash(imageName), texID});
         }
     }
-
+    
     namespace {
         GLuint
         load_single_image(std::string_view absFilePath) {
