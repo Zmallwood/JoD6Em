@@ -15,10 +15,12 @@ namespace jod {
         EM_BOOL touch_end_callback(int, EmscriptenTouchEvent const *, void *);
         void game_loop_function();
     }
+    
     void
     run_new_client_instance(){
         _<client_engine>().run(); // Access ClientEngine and run it.
     }
+    
     void
     client_engine::run() const {
         _<web_socket_server_connection>().connect(); // Start network connection.
@@ -29,6 +31,7 @@ namespace jod {
         auto simulateInfiniteLoop = 1;
         emscripten_set_main_loop(game_loop_function, 0, simulateInfiniteLoop);
     }
+    
     void
     client_engine::poll_events(){
         SDL_Event event;
@@ -42,6 +45,7 @@ namespace jod {
             }
         }
     }
+    
     input_manager::input_manager(){
         // Set callback for keyboard events.
         glfwSetKeyCallback(_<graphics>().m_window, key_callback);
@@ -64,11 +68,13 @@ namespace jod {
             true,
             touch_end_callback);
     }
+    
     render_instructions_manager::render_instructions_manager(){
         // Create a sufficient amount of RIDs for drawing images and game start.
         for (auto i = 0; i < k_maxNumDrawInstructions; i++)
             m_rids.push_back(_<image_renderer>().new_image());
     }
+    
     void
     render_instructions_manager::add_image_draw_instruction(
         int imageNameHash,
@@ -80,6 +86,7 @@ namespace jod {
         m_imageDrawInstructionsBuffer.push_back(
             newInstruction);
     }
+    
     void
     render_instructions_manager::apply_buffer(){
         // Replace the current instruction group with the new one.
@@ -88,6 +95,7 @@ namespace jod {
         // of instructions by clearing it.
         m_imageDrawInstructionsBuffer.clear();
     }
+    
     void
     render_instructions_manager::execute_instructions(){
         // Execute all drawing instructions that have been added.
@@ -97,6 +105,7 @@ namespace jod {
                 instr.imageNameHash,
                 instr.dest);
     }
+    
     namespace {
         void
         game_loop_function(){
@@ -113,6 +122,7 @@ namespace jod {
             _<web_socket_server_connection>().send_message(
                 message_codes::k_frameFinished);
         }
+        
         void
         key_callback(GLFWwindow *window, int key, int scancode, int action,
                      int mods) {
@@ -121,6 +131,7 @@ namespace jod {
             // else if (action == GLFW_RELEASE)
             //     _<KeyboardInput>().OnKeyRelease(key);
         }
+        
         void
         mouse_button_callback(GLFWwindow *window, int button, int action,
                               int mods) {
@@ -144,17 +155,20 @@ namespace jod {
             // else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE)
             //     _<MouseInput>().RightButton().OnRelease();
         }
+        
         void
         character_callback(
             GLFWwindow *window,
             unsigned int codepoint) {
             // _<KeyboardInput>().AppendTextInput(std::string(1, (char)codepoint));
         }
+        
         EM_BOOL
         touch_start_callback(int, EmscriptenTouchEvent const *, void *) {
             // _<MouseInput>().LeftButton().OnPress();
             return EM_FALSE;
         }
+        
         EM_BOOL
         touch_end_callback(int, EmscriptenTouchEvent const *, void *) {
             // _<MouseInput>().LeftButton().OnRelease();

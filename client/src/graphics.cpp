@@ -8,6 +8,7 @@ namespace jod {
         // Use javascript call to get browser-canvas height.
         EM_JS(int, canvas_get_height, (), { return window.innerHeight; });
     }
+    
     graphics::graphics(){
         glfwInit(); // Initialize GLFW.
         // Use OPENGL ES, which is used for browser OpenGL.
@@ -32,10 +33,12 @@ namespace jod {
             GLFW_CURSOR,
             GLFW_CURSOR_DISABLED);
     }
+    
     void
     graphics::clear_canvas(){
         glClear(GL_COLOR_BUFFER_BIT); // Clear canvas to prepare for rendering new contents.
     }
+    
     void
     graphics::present_canvas(){
         glfwSwapBuffers(m_window); // Present buffer to web browser.
