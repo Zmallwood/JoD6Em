@@ -1,4 +1,7 @@
-// Copyright (c) 2024 Andreas Åkerberg.
+// world_generation.cpp
+//
+// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+///////////////////////////////////////////////////////////
 
 #include "world_generation.h"
 #include "world.h"

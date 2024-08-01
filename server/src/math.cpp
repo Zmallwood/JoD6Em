@@ -1,4 +1,7 @@
-// Copyright (c) 2024 Andreas Åkerberg.
+// math.cpp
+//
+// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+///////////////////////////////////////////////////////////
 
 #include "math.h"
 #include "configuration.h"

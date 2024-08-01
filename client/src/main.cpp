@@ -1,4 +1,7 @@
-// Copyright (c) 2024 Andreas Åkerberg.
+// main.cpp
+//
+// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+///////////////////////////////////////////////////////////
 
 #include "core/run_new_client_instance.h"
 

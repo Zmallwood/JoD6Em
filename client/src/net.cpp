@@ -1,4 +1,7 @@
-// Copyright (c) 2024 Andreas Åkerberg.
+// net.cpp
+//
+// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+///////////////////////////////////////////////////////////
 
 #include "net.h"
 #include "core.h"

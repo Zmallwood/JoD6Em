@@ -1,4 +1,7 @@
-// Copyright (c) 2024 Andreas Åkerberg.
+// client_core.h
+//
+// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+///////////////////////////////////////////////////////////
 
 #pragma once
 

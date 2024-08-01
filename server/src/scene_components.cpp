@@ -1,4 +1,7 @@
-// Copyright (c) 2024 Andreas Åkerberg.
+// scene_components.cpp
+//
+// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+///////////////////////////////////////////////////////////
 
 #include "scene_components.h"
 #include "client.h"

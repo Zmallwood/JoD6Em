@@ -1,4 +1,7 @@
-// Copyright (c) 2024 Andreas Åkerberg.
+// player.cpp
+//
+// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+///////////////////////////////////////////////////////////
 
 #include "player.h"
 

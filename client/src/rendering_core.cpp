@@ -1,4 +1,7 @@
-// Copyright (c) 2024 Andreas Åkerberg.
+// rendering_core.cpp
+//
+// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+///////////////////////////////////////////////////////////
 
 #include "rendering_core.h"
 

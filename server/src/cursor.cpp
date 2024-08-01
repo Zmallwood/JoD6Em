@@ -1,4 +1,7 @@
-// Copyright (c) 2024 Andreas Åkerberg.
+// cursor.cpp
+//
+// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+///////////////////////////////////////////////////////////
 
 #include "cursor.h"
 #include "client.h"
