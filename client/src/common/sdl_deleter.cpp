@@ -1,7 +1,8 @@
-// sdl_deleter.cpp
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * sdl_deleter.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "sdl_deleter.h"
 

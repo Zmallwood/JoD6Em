@@ -1,7 +1,8 @@
-// tile_hovering.cpp
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * tile_hovering.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "tile_hovering.h"
 #include "theme0/scenes/main/main_scene_math/tile_grid_math.h"

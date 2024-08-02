@@ -1,7 +1,8 @@
-// common_utils.cpp
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-///////////////////////////////////////////////////////////
+/*
+ * common_utils.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "common_utils.h"
 

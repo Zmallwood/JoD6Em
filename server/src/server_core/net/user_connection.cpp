@@ -1,7 +1,8 @@
-// user_connection.cpp
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * user_connection.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "user_connection.h"
 #include "server_core/net/web_socket_server.h"

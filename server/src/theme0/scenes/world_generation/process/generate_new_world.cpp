@@ -1,7 +1,8 @@
-// generate_new_world.cpp
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * generate_new_world.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "generate_new_world.h"
 #include "server_core/world_structure/world.h"

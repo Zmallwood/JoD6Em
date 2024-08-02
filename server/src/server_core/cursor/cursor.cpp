@@ -1,7 +1,8 @@
-// cursor.cpp
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * cursor.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "cursor.h"
 #include "server_core/net/user_connection.h"

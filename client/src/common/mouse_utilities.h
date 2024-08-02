@@ -1,7 +1,8 @@
-// mouse_utilities.h
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * mouse_utilities.h
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 namespace jod {
     //! \brief Get the mouse position in the canvas in the web browser.

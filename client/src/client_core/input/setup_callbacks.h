@@ -1,7 +1,8 @@
-// setup_callbacks.h
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * setup_callbacks.h
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #pragma once
 

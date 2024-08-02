@@ -1,7 +1,8 @@
-// client_engine.cpp
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * client_engine.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "client_engine.h"
 #include "client_core/graphics/graphics.h"

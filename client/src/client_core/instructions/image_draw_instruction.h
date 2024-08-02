@@ -1,7 +1,8 @@
-// image_draw_instruction.h
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * image_draw_instruction.h
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #pragma once
 

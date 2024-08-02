@@ -1,7 +1,8 @@
-// tile_grid_math.h
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * tile_grid_math.h
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #pragma once
 

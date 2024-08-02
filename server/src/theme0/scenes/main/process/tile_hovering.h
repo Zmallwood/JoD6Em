@@ -1,7 +1,8 @@
-// tile_hovering.h
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * tile_hovering.h
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #pragma once
 

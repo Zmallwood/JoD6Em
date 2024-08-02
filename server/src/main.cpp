@@ -1,7 +1,8 @@
-// main.cpp
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * main.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "server_core/net/web_socket_server.h"
 #include "theme0/scenes/world_generation/process/generate_new_world.h"

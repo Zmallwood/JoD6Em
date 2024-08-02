@@ -1,7 +1,8 @@
-// web_socket_server_connection.cpp
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * web_socket_server_connection.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "web_socket_server_connection.h"
 #include "client_core/instructions/render_instructions_manager.h"

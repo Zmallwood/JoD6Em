@@ -1,7 +1,8 @@
-// render_instructions_manager.cpp
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * render_instructions_manager.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "render_instructions_manager.h"
 #include "client_core/graphics/rendering/images/image_renderer.h"

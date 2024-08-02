@@ -1,7 +1,8 @@
-// tile_grid_math.cpp
-//
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
+/*
+ * tile_grid_math.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "tile_grid_math.h"
 #include "configuration/game_properties.h"
