@@ -6,7 +6,8 @@
 
 #include "user_connection.h"
 #include "server_core/net/web_socket_server.h"
-#include "server_core/user_game_instance/client_core.h"
+#include "server_core/user_game_instance/input/mouse/mouse_input.h"
+#include "server_core/user_game_instance/server_engine.h"
 #include "message_codes.h"
 #include "net_configuration.h"
 #include "server_core/core_game_objects/player.h"

@@ -6,7 +6,9 @@
 
 #include "mouse_movement.h"
 #include "server_core/net/user_connection.h"
-#include "server_core/user_game_instance/client_core.h"
+#include "server_core/user_game_instance/input/mouse/mouse_input.h"
+#include "server_core/user_game_instance/input/mouse/mouse_button.h"
+#include "server_core/user_game_instance/server_engine.h"
 #include "server_core/core_game_objects/player.h"
 #include "tile_hovering.h"
 
