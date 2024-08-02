@@ -1,6 +1,7 @@
-// image_renderer.cpp
-
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+/*
+ * image_renderer.cpp
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "image_renderer.h"
 #include "client_core/assets/image_bank.h"
