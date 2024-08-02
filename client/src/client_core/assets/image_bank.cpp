@@ -1,6 +1,7 @@
-// image_bank.cpp
-
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+/*
+ * image_bank.cpp
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "image_bank.h"
 
