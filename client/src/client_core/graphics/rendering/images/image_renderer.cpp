@@ -47,7 +47,7 @@ namespace jod {
     
     image_renderer::image_renderer(){
         // Create shader program.
-        m_shaderProgram->create(
+        m_shader_program->create(
             default_shader_images_vertex,
             default_shader_images_fragment);
         // m_locNoPixelEffect = GetUniformLocation("noPixelEffect");
@@ -62,10 +62,10 @@ namespace jod {
         auto rid = gen_new_vao_id(); // Create new Vertex Array Object.
         use_vao_begin(rid); // Use it.
         // Create buffers that are needed for 2D image rendering.
-        auto index_buff_id = gen_new_buff_id(buffer_types::Indices, rid);
-        auto pos_buff_id = gen_new_buff_id(buffer_types::Positions2D, rid);
-        auto color_buff_id = gen_new_buff_id(buffer_types::Colors, rid);
-        auto uv_buff_id = gen_new_buff_id(buffer_types::UVs, rid);
+        auto index_buff_id = gen_new_buff_id(buffer_types::indices, rid);
+        auto pos_buff_id = gen_new_buff_id(buffer_types::positions_2d, rid);
+        auto color_buff_id = gen_new_buff_id(buffer_types::colors, rid);
+        auto uv_buff_id = gen_new_buff_id(buffer_types::uvs, rid);
         // Set buffers to empty data.
         set_indices_data(
             index_buff_id,
@@ -75,17 +75,17 @@ namespace jod {
             pos_buff_id,
             math_constants::k_num_vertices_in_rectangle,
             nullptr,
-            buffer_types::Positions2D);
+            buffer_types::positions_2d);
         set_data(
             color_buff_id,
             math_constants::k_num_vertices_in_rectangle,
             nullptr,
-            buffer_types::Colors);
+            buffer_types::colors);
         set_data(
             uv_buff_id,
             math_constants::k_num_vertices_in_rectangle,
             nullptr,
-            buffer_types::UVs);
+            buffer_types::uvs);
         use_vao_end(); // Stop using the Vertex Array Object.
         return rid; // Return the ID for the created VAO.
     }
@@ -146,17 +146,17 @@ namespace jod {
         auto no_pixel_effect = true; // If pixelation effect should be used.
         // glUniform1f(m_locNoPixelEffect, noPixelEffect ? 1.0f : 0.0f);
         // Get buffer IDs for the required data contents.
-        auto index_buff_id = get_buff_id(buffer_types::Indices, rid);
-        auto pos_buff_id = get_buff_id(buffer_types::Positions2D, rid);
-        auto color_buff_id = get_buff_id(buffer_types::Colors, rid);
-        auto uv_buff_id = get_buff_id(buffer_types::UVs, rid);
+        auto index_buff_id = get_buff_id(buffer_types::indices, rid);
+        auto pos_buff_id = get_buff_id(buffer_types::positions_2d, rid);
+        auto color_buff_id = get_buff_id(buffer_types::colors, rid);
+        auto uv_buff_id = get_buff_id(buffer_types::uvs, rid);
         // Provide the float vector data to the buffers.
         update_indices_data(index_buff_id, indices);
         update_data(
-            pos_buff_id, positions, buffer_types::Positions2D,
+            pos_buff_id, positions, buffer_types::positions_2d,
             k_loc_position);
-        update_data(color_buff_id, colors, buffer_types::Colors, k_loc_color);
-        update_data(uv_buff_id, uvs, buffer_types::UVs, k_loc_uv);
+        update_data(color_buff_id, colors, buffer_types::colors, k_loc_color);
+        update_data(uv_buff_id, uvs, buffer_types::uvs, k_loc_uv);
         // Do the actual rendering.
         glDrawElements(
             GL_TRIANGLE_FAN,
