@@ -8,7 +8,7 @@
 
 namespace jod {
     namespace math_constants {
-        inline static constexpr int k_numVerticesInRectangle = 4; ///< To avoid magic number.
+        inline static constexpr int k_num_vertices_in_rectangle = 4; ///< To avoid magic number.
     }
     struct point {
         int x = 0;

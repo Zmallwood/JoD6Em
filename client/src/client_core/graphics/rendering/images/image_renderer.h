@@ -27,32 +27,32 @@ namespace jod {
         
         //! \brief Render an image to the browser.
         //! \param rid Resource ID previously allocated.
-        //! \param imageName Name of image to render.
-        //! \param dest Destination rectangle to render the image at.
-        //! \param repeatTexture True if repeat image as pattern or false for fitting it to
-        //! \param textureFillAmount Used to modify pattern repetition amount.
+        //! \param image_name Name of image to render.
+        //! \param destination Destination rectangle to render the image at.
+        //! \param repeat_texture True if repeat image as pattern or false for fitting it to
+        //! \param texture_fill_amount Used to modify pattern repetition amount.
         //! \param color Used to modify overall color of the image.
         void draw_image(
             rid rid,
-            std::string_view imageName,
-            const rectf &dest,
-            bool repeatTexture = false,
-            sizef textureFillAmount = {1.0f, 1.0f},
+            std::string_view image_name,
+            const rectf &destination,
+            bool repeat_texture = false,
+            sizef texture_fill_amount = {1.0f, 1.0f},
             colorf color = {1.0f, 1.0f, 1.0f});
         
         //! \brief Render an image to the browser.
         //! \param rid Resource ID previously allocated.
-        //! \param imageNameHash Hash code of name of image to render.
-        //! \param dest Destination rectangle to render the image at.
-        //! \param repeatTexture True if repeat image as pattern or false for fitting it to destination rectangle.
-        //! \param textureFillAmount Used to modify pattern repetition amount.
+        //! \param image_name_hash Hash code of name of image to render.
+        //! \param destination Destination rectangle to render the image at.
+        //! \param repeat_texture True if repeat image as pattern or false for fitting it to destination rectangle.
+        //! \param texture_fill_amount Used to modify pattern repetition amount.
         //! \param color Used to modify overall color of the image.
         void draw_image(
             rid rid,
-            int imageNameHash,
-            const rectf &dest,
-            bool repeatTexture = false,
-            sizef textureFillAmount = {1.0f, 1.0f},
+            int image_name_hash,
+            const rectf &destination,
+            bool repeat_texture = false,
+            sizef texture_fill_amount = {1.0f, 1.0f},
             colorf color = {1.0f, 1.0f, 1.0f});
     };
 }

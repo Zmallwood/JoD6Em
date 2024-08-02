@@ -12,7 +12,7 @@
 namespace jod {
     namespace {
         // Vertex shader for image rendering
-        const GLchar *defaultShaderImagesVertex =
+        const GLchar *default_shader_images_vertex =
             "#version 300 es\n"
             "layout (location = 0) in vec3 aPos;\n"
             "layout (location = 1) in vec4 in_Color;\n"
@@ -28,7 +28,7 @@ namespace jod {
             "   ex_Pos = aPos.xy;\n"
             "}\0";
         // Fragment shader for image rendering
-        const GLchar *defaultShaderImagesFragment =
+        const GLchar *default_shader_images_fragment =
             "#version 300 es\n"
             "precision mediump float;\n"
             "in vec4 ex_Color;\n"
@@ -39,17 +39,17 @@ namespace jod {
             "void main() {\n"
             "    FragColor = texture(TexUnit, ex_TexCoord);\n"
             "}\0";
-        constexpr int k_locPosition{0}; // Location of position variable in vertex shader.
-        constexpr int k_locColor{1}; // Location of color variable in vertex shader.
-        constexpr int k_locUv{2}; // Location of UV variable in vertex shader.
-        int m_locNoPixelEffect{-1}; // Location of pixelation effect switch variable in vertex shader.
+        constexpr int k_loc_position{0}; // Location of position variable in vertex shader.
+        constexpr int k_loc_color{1}; // Location of color variable in vertex shader.
+        constexpr int k_loc_uv{2}; // Location of UV variable in vertex shader.
+        int m_loc_no_pixel_effect{-1}; // Location of pixelation effect switch variable in vertex shader.
     }
     
     image_renderer::image_renderer(){
         // Create shader program.
         m_shaderProgram->create(
-            defaultShaderImagesVertex,
-            defaultShaderImagesFragment);
+            default_shader_images_vertex,
+            default_shader_images_fragment);
         // m_locNoPixelEffect = GetUniformLocation("noPixelEffect");
     }
     
@@ -62,28 +62,28 @@ namespace jod {
         auto rid = gen_new_vao_id(); // Create new Vertex Array Object.
         use_vao_begin(rid); // Use it.
         // Create buffers that are needed for 2D image rendering.
-        auto indexBuffID = gen_new_buff_id(buffer_types::Indices, rid);
-        auto posBuffID = gen_new_buff_id(buffer_types::Positions2D, rid);
-        auto colorBuffID = gen_new_buff_id(buffer_types::Colors, rid);
-        auto uvBuffID = gen_new_buff_id(buffer_types::UVs, rid);
+        auto index_buff_id = gen_new_buff_id(buffer_types::Indices, rid);
+        auto pos_buff_id = gen_new_buff_id(buffer_types::Positions2D, rid);
+        auto color_buff_id = gen_new_buff_id(buffer_types::Colors, rid);
+        auto uv_buff_id = gen_new_buff_id(buffer_types::UVs, rid);
         // Set buffers to empty data.
         set_indices_data(
-            indexBuffID,
-            math_constants::k_numVerticesInRectangle,
+            index_buff_id,
+            math_constants::k_num_vertices_in_rectangle,
             nullptr);
         set_data(
-            posBuffID,
-            math_constants::k_numVerticesInRectangle,
+            pos_buff_id,
+            math_constants::k_num_vertices_in_rectangle,
             nullptr,
             buffer_types::Positions2D);
         set_data(
-            colorBuffID,
-            math_constants::k_numVerticesInRectangle,
+            color_buff_id,
+            math_constants::k_num_vertices_in_rectangle,
             nullptr,
             buffer_types::Colors);
         set_data(
-            uvBuffID,
-            math_constants::k_numVerticesInRectangle,
+            uv_buff_id,
+            math_constants::k_num_vertices_in_rectangle,
             nullptr,
             buffer_types::UVs);
         use_vao_end(); // Stop using the Vertex Array Object.
@@ -93,31 +93,31 @@ namespace jod {
     void
     image_renderer::draw_image(
         rid rid,
-        int imageNameHash,
-        const rectf &dest,
-        bool repeatTexture,
-        sizef textureFillAmount,
+        int image_name_hash,
+        const rectf &destination,
+        bool repeat_texture,
+        sizef texture_fill_amount,
         colorf color){
-        auto GLRect = dest.to_glrectf(); // Convert destination to GL coordinate system.
+        auto gl_rect = destination.to_glrectf(); // Convert destination to GL coordinate system.
         // Create 4 vertices for an image rectangle.
-        vertex2f verts[math_constants::k_numVerticesInRectangle];
+        vertex2f verts[math_constants::k_num_vertices_in_rectangle];
         // Set vertices positions.
-        verts[0].pos = {GLRect.x, GLRect.y - GLRect.h};
-        verts[1].pos = {GLRect.x, GLRect.y};
-        verts[2].pos = {GLRect.x + GLRect.w, GLRect.y};
-        verts[3].pos = {GLRect.x + GLRect.w, GLRect.y - GLRect.h};
+        verts[0].pos = {gl_rect.x, gl_rect.y - gl_rect.h};
+        verts[1].pos = {gl_rect.x, gl_rect.y};
+        verts[2].pos = {gl_rect.x + gl_rect.w, gl_rect.y};
+        verts[3].pos = {gl_rect.x + gl_rect.w, gl_rect.y - gl_rect.h};
         // Set vertices texture coordinates.
-        verts[0].uv = {0.0f, 1.0f / textureFillAmount.h};
+        verts[0].uv = {0.0f, 1.0f / texture_fill_amount.h};
         verts[1].uv = {0.0f, 0.0f};
-        verts[2].uv = {1.0f / textureFillAmount.w, 0.0f};
-        verts[3].uv = {1.0f / textureFillAmount.w, 1.0f / textureFillAmount.h};
+        verts[2].uv = {1.0f / texture_fill_amount.w, 0.0f};
+        verts[3].uv = {1.0f / texture_fill_amount.w, 1.0f / texture_fill_amount.h};
         glDisable(GL_DEPTH_TEST); // No need for depth testing in a 2D plane.
         // Obtain GL ID for image to be rendered.
-        auto imageID = _<image_bank>().get_image(imageNameHash);
-        if (imageID == -1) return; // If requested image not found, stop the rendering.
-        glBindTexture(GL_TEXTURE_2D, imageID); // Start use the image.
+        auto image_id = _<image_bank>().get_image(image_name_hash);
+        if (image_id == -1) return; // If requested image not found, stop the rendering.
+        glBindTexture(GL_TEXTURE_2D, image_id); // Start use the image.
         // If we should repeat the texture as a pattern or fit it to the destination rectangle.
-        if (repeatTexture){
+        if (repeat_texture){
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         }else{
@@ -126,7 +126,7 @@ namespace jod {
         }
         // Create indices for the vertices.
         auto indices = std::vector<int>(
-            math_constants::k_numVerticesInRectangle);
+            math_constants::k_num_vertices_in_rectangle);
         std::iota(std::begin(indices), std::end(indices), 0);
         // Put render input into pure float vector format.
         std::vector<float> positions;
@@ -143,38 +143,38 @@ namespace jod {
             uvs.push_back(vert.uv.y);
         }
         use_vao_begin(rid); // Start using the Vertex Array Object.
-        auto noPixelEffect = true; // If pixelation effect should be used.
+        auto no_pixel_effect = true; // If pixelation effect should be used.
         // glUniform1f(m_locNoPixelEffect, noPixelEffect ? 1.0f : 0.0f);
         // Get buffer IDs for the required data contents.
-        auto indexBuffID = get_buff_id(buffer_types::Indices, rid);
-        auto posBuffID = get_buff_id(buffer_types::Positions2D, rid);
-        auto colorBuffID = get_buff_id(buffer_types::Colors, rid);
-        auto uvBuffID = get_buff_id(buffer_types::UVs, rid);
+        auto index_buff_id = get_buff_id(buffer_types::Indices, rid);
+        auto pos_buff_id = get_buff_id(buffer_types::Positions2D, rid);
+        auto color_buff_id = get_buff_id(buffer_types::Colors, rid);
+        auto uv_buff_id = get_buff_id(buffer_types::UVs, rid);
         // Provide the float vector data to the buffers.
-        update_indices_data(indexBuffID, indices);
+        update_indices_data(index_buff_id, indices);
         update_data(
-            posBuffID, positions, buffer_types::Positions2D,
-            k_locPosition);
-        update_data(colorBuffID, colors, buffer_types::Colors, k_locColor);
-        update_data(uvBuffID, uvs, buffer_types::UVs, k_locUv);
+            pos_buff_id, positions, buffer_types::Positions2D,
+            k_loc_position);
+        update_data(color_buff_id, colors, buffer_types::Colors, k_loc_color);
+        update_data(uv_buff_id, uvs, buffer_types::UVs, k_loc_uv);
         // Do the actual rendering.
         glDrawElements(
             GL_TRIANGLE_FAN,
-            math_constants::k_numVerticesInRectangle, GL_UNSIGNED_INT, NULL);
+            math_constants::k_num_vertices_in_rectangle, GL_UNSIGNED_INT, NULL);
         use_vao_end(); // Stop using the Vertex Array Object.
     }
     
     void
     image_renderer::draw_image(
         rid rid,
-        std::string_view imageName,
-        const rectf &dest,
-        bool repeatTexture,
-        sizef textureFillAmount,
+        std::string_view image_name,
+        const rectf &destination,
+        bool repeat_texture,
+        sizef texture_fill_amount,
         colorf color){
         // Forward the method call to the main overload.
         draw_image(
-            rid, jod::hash(imageName), dest, repeatTexture,
-            textureFillAmount, color);
+            rid, jod::hash(image_name), destination, repeat_texture,
+            texture_fill_amount, color);
     }
 }
