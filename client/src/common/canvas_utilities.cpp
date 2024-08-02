@@ -1,7 +1,7 @@
 // canvas_utilities.cpp
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-///////////////////////////////////////////////////////////
+//
 
 #include "canvas_utilities.h"
 #include "client_core/graphics/graphics.h"

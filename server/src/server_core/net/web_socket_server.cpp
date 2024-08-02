@@ -1,7 +1,7 @@
 // web_socket_server.cpp
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-///////////////////////////////////////////////////////////
+//
 
 #include "web_socket_server.h"
 #include "user_connection.h"

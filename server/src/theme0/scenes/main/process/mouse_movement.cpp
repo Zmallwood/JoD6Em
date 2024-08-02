@@ -1,7 +1,7 @@
 // mouse_movement.cpp
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-///////////////////////////////////////////////////////////
+//
 
 #include "mouse_movement.h"
 #include "server_core/net/user_connection.h"

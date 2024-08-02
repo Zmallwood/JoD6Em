@@ -1,7 +1,7 @@
 // run_new_client_instance.h
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-///////////////////////////////////////////////////////////
+//
 
 #pragma once
 

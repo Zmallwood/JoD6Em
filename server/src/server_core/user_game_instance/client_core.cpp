@@ -1,7 +1,7 @@
 // client_core.cpp
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-///////////////////////////////////////////////////////////
+//
 
 #include "client_core.h"
 #include "server_core/net/user_connection.h"

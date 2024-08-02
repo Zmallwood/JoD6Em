@@ -1,7 +1,7 @@
 // setup_callbacks.cpp
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-///////////////////////////////////////////////////////////
+//
 
 #include "setup_callbacks.h"
 #include "client_core/graphics/graphics.h"

@@ -1,7 +1,7 @@
 // world_area.cpp
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-///////////////////////////////////////////////////////////
+//
 
 #include "world_area.h"
 #include "tile.h"

@@ -1,7 +1,7 @@
 // run_new_client_instance.cpp
 //
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-///////////////////////////////////////////////////////////
+//
 
 #include "run_new_client_instance.h"
 #include "client_engine.h"
