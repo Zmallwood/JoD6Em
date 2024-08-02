@@ -1,6 +1,6 @@
 /*
  * shader_program.h
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -11,16 +11,14 @@ namespace jod {
     class shader_program {
     public:
         bool create(
-            const GLchar *vertexShaderSource,
-            const GLchar *fragmentShaderSource);
+            const GLchar *vertex_shader_source,
+            const GLchar *fragment_shader_source);
         void cleanup();
         
-        GLuint m_programID = 0;
+        GLuint m_program_id = 0;
         
     private:
-        GLuint compile_shader(
-            const GLchar *shaderSource,
-            GLuint *shader,
-            GLenum shaderType);
+        GLuint compile_shader(const GLchar *shader_source, GLuint *shader,
+                              GLenum shader_type);
     };
 }
