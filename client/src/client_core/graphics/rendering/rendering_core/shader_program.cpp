@@ -1,7 +1,5 @@
 // shader_program.cpp
-//
 // Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
-//
 
 #include "shader_program.h"
 
