@@ -8,11 +8,11 @@
 
 namespace jod {
     namespace message_codes {
-        constexpr int k_drawImageInstr = 1;
-        constexpr int k_applyBuffer = 2;
-        constexpr int k_mouseDown = 3;
-        constexpr int k_canvasSize = 4;
-        constexpr int k_mousePosition = 5;
-        constexpr int k_frameFinished = 6;
+        constexpr int k_draw_image_instr = 1;
+        constexpr int k_apply_buffer = 2;
+        constexpr int k_mouse_down = 3;
+        constexpr int k_canvas_size = 4;
+        constexpr int k_mouse_position = 5;
+        constexpr int k_frame_finished = 6;
     }
 }

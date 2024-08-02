@@ -13,11 +13,11 @@ namespace jod {
         double xpos, ypos; // Declare variables to store mouse coordinates in pixels.
         // Use GLFW to get current mouse coordinates.
         glfwGetCursorPos(_<graphics>().m_window, &xpos, &ypos);
-        auto canvasSize = get_canvas_size(); // Get canvas size.
+        auto canvas_size = get_canvas_size(); // Get canvas size.
         // And use it to convert pixel coordinates to fractal coordinates.
-        auto mousePosition = pointf{
-            static_cast<float>(xpos) / canvasSize.w,
-            static_cast<float>(ypos) / canvasSize.h};
-        return mousePosition;
+        auto mouse_position = pointf{
+            static_cast<float>(xpos) / canvas_size.w,
+            static_cast<float>(ypos) / canvas_size.h};
+        return mouse_position;
     }
 }

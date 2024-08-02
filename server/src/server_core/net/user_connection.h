@@ -1,6 +1,6 @@
 /*
  * user_connection.h
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -20,14 +20,14 @@ namespace jod {
         void
         send_image_draw_instruction(
             boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
-            std::string_view imageName,
-            rectf dest);
+            std::string_view image_name,
+            rectf destination);
         
         void
         send_image_draw_instruction(
             boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
-            int imageNameHash,
-            rectf dest);
+            int image_name_hash,
+            rectf destination);
         
         void send_present_canvas_instruction(
             boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
@@ -36,19 +36,19 @@ namespace jod {
         
         std::shared_ptr<player> m_player;
         
-        std::shared_ptr<tile_hovering> m_tileHovering;
+        std::shared_ptr<tile_hovering> m_tile_hovering;
         
-        std::shared_ptr<mouse_movement> m_mouseMovement;
+        std::shared_ptr<mouse_movement> m_mouse_movement;
         
-        pointf m_mousePosition;
+        pointf m_mouse_position;
         
-        std::shared_ptr<server_engine> m_serverEngine;
+        std::shared_ptr<server_engine> m_server_engine;
         
         std::shared_ptr<cursor> m_cursor;
         
     private:
         void do_session(boost::asio::ip::tcp::socket socket);
         
-        size m_canvasSize;
+        size m_canvas_size;
     };
 }

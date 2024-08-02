@@ -62,7 +62,7 @@ namespace jod {
                 && action == GLFW_PRESS
                 && !mouse_down){
                 _<web_socket_server_connection>().send_message(
-                    message_codes::k_mouseDown);
+                    message_codes::k_mouse_down);
                 mouse_down = true;
             } else if (button == GLFW_MOUSE_BUTTON_LEFT &&
                        action == GLFW_RELEASE) {

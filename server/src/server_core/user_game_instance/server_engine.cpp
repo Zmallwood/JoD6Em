@@ -17,29 +17,29 @@ using tcp = boost::asio::ip::tcp;
 namespace jod {
     server_engine::server_engine(user_connection &user_connection)
         : m_user_connection(user_connection),
-        m_sceneManager(std::make_shared<scene_manager>(user_connection)),
-        m_mouseInput(std::make_shared<mouse_input>()){
+        m_scene_manager(std::make_shared<scene_manager>(user_connection)),
+        m_mouse_input(std::make_shared<mouse_input>()){
     }
     
     void
     server_engine::update(){
-        m_sceneManager->update_current_scene();
+        m_scene_manager->update_current_scene();
     }
     
     void
     server_engine::render(websocket::stream<tcp::socket> &ws){
-        m_sceneManager->render_current_scene(ws);
+        m_scene_manager->render_current_scene(ws);
         m_user_connection.m_cursor->render(ws);
         m_user_connection.send_present_canvas_instruction(ws);
     }
     
     void
     server_engine::on_key_down(){
-        m_sceneManager->on_key_down_current_scene();
+        m_scene_manager->on_key_down_current_scene();
     }
     
     void
     server_engine::on_mouse_down(){
-        m_sceneManager->on_mouse_down_current_scene();
+        m_scene_manager->on_mouse_down_current_scene();
     }
 }

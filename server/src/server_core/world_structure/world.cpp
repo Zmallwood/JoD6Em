@@ -9,6 +9,6 @@
 
 namespace jod {
     world::world(){
-        m_currentWorldArea = std::make_shared<world_area>();
+        m_current_world_area = std::make_shared<world_area>();
     }
 }

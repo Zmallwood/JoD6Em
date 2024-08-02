@@ -23,19 +23,19 @@ namespace jod {
         
         void on_key_down_current_scene();
         
-        void go_to(std::string_view sceneName);
+        void go_to(std::string_view scene_name);
         
     private:
         void add_scene(
-            std::string_view sceneName,
-            std::function<void()> updateAction,
+            std::string_view scene_name,
+            std::function<void()> update_action,
             std::function<void(boost::beast::websocket::stream<boost::asio::ip::
                                                                tcp::socket> &)>
-            renderAction,
-            std::function<void()> keyDownAction,
-            std::function<void()> mouseDownAction);
+            render_action,
+            std::function<void()> key_down_action,
+            std::function<void()> mouse_down_action);
         
-        int m_currentScene = 0;
+        int m_current_scene = 0;
         
         std::map<int, scene> m_scenes;
         

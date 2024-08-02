@@ -24,10 +24,10 @@ namespace jod {
         
         void on_key_down();
         
-        std::shared_ptr<mouse_input> m_mouseInput;
+        std::shared_ptr<mouse_input> m_mouse_input;
         
     private:
-        std::shared_ptr<scene_manager> m_sceneManager;
+        std::shared_ptr<scene_manager> m_scene_manager;
         
         user_connection &m_user_connection;
     };

@@ -102,10 +102,10 @@ namespace jod {
         // Create 4 vertices for an image rectangle.
         vertex2f verts[math_constants::k_num_vertices_in_rectangle];
         // Set vertices positions.
-        verts[0].pos = {gl_rect.x, gl_rect.y - gl_rect.h};
-        verts[1].pos = {gl_rect.x, gl_rect.y};
-        verts[2].pos = {gl_rect.x + gl_rect.w, gl_rect.y};
-        verts[3].pos = {gl_rect.x + gl_rect.w, gl_rect.y - gl_rect.h};
+        verts[0].position = {gl_rect.x, gl_rect.y - gl_rect.h};
+        verts[1].position = {gl_rect.x, gl_rect.y};
+        verts[2].position = {gl_rect.x + gl_rect.w, gl_rect.y};
+        verts[3].position = {gl_rect.x + gl_rect.w, gl_rect.y - gl_rect.h};
         // Set vertices texture coordinates.
         verts[0].uv = {0.0f, 1.0f / texture_fill_amount.h};
         verts[1].uv = {0.0f, 0.0f};
@@ -133,8 +133,8 @@ namespace jod {
         std::vector<float> colors;
         std::vector<float> uvs;
         for (auto &vert : verts){
-            positions.push_back(vert.pos.x);
-            positions.push_back(vert.pos.y);
+            positions.push_back(vert.position.x);
+            positions.push_back(vert.position.y);
             colors.push_back(color.r);
             colors.push_back(color.g);
             colors.push_back(color.b);

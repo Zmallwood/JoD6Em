@@ -15,6 +15,6 @@ namespace jod {
         
         void register_mouse_down();
         
-        std::shared_ptr<mouse_button> m_leftButton;
+        std::shared_ptr<mouse_button> m_left_button;
     };
 }

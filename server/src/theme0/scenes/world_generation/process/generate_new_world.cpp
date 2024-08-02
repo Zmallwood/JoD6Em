@@ -1,6 +1,6 @@
 /*
  * generate_new_world.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -12,12 +12,12 @@
 namespace jod {
     void
     generate_new_world(){
-        auto worldArea = _<world>().m_currentWorldArea;
+        auto world_area = _<world>().m_current_world_area;
         for (auto y = 0; y < 100; y++)
             for (auto x = 0; x < 100; x++)
-                worldArea->m_tiles[x][y]->m_ground = jod::hash("GroundGrass");
-        auto numLakes = 15;
-        for (auto i = 0; i < numLakes; i++){
+                world_area->m_tiles[x][y]->m_ground = jod::hash("GroundGrass");
+        auto num_lakes = 15;
+        for (auto i = 0; i < num_lakes; i++){
             auto xCenter = rand() % 100;
             auto yCenter = rand() % 100;
             auto r = 3 + rand() % 11;
@@ -27,7 +27,7 @@ namespace jod {
                     auto dx = x - xCenter;
                     auto dy = y - yCenter;
                     if (dx * dx + dy * dy <= r * r)
-                        worldArea->m_tiles[x][y]->m_ground =
+                        world_area->m_tiles[x][y]->m_ground =
                             jod::hash("GroundWater");
                 }
             }

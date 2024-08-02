@@ -1,6 +1,6 @@
 /*
  * scene.h
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -10,12 +10,12 @@ namespace jod {
     class scene {
     public:
         scene(
-            std::function<void()> updateAction,
+            std::function<void()> update_action,
             std::function<void(boost::beast::websocket::stream<boost::asio::ip::
                                                                tcp::socket> &)>
-            renderAction,
-            std::function<void()> keyDownAction,
-            std::function<void()> mouseDownAction);
+            render_action,
+            std::function<void()> key_down_action,
+            std::function<void()> mouse_down_action);
         
         void update();
         
@@ -27,13 +27,13 @@ namespace jod {
         void on_key_down();
         
     private:
-        std::function<void()> m_updateAction;
+        std::function<void()> m_update_action;
         
         std::function<void(boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &)>
-        m_renderAction;
+        m_render_action;
         
-        std::function<void()> m_keyDownAction;
+        std::function<void()> m_key_down_action;
         
-        std::function<void()> m_mouseDownAction;
+        std::function<void()> m_mouse_down_action;
     };
 }

@@ -1,6 +1,6 @@
 /*
  * tile_grid_math.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -9,9 +9,9 @@
 
 namespace jod {
     sizef
-    calc_tile_size(float aspectRatio){
-        auto tileHeight = 1.0f / _<game_properties>().numGridRows;
-        auto tileWidth = tileHeight / aspectRatio;
-        return {tileWidth, tileHeight};
+    calculate_tile_size(float aspect_ratio){
+        auto tile_height = 1.0f / _<game_properties>().k_num_grid_rows;
+        auto tile_width = tile_height / aspect_ratio;
+        return {tile_width, tile_height};
     }
 }

@@ -8,11 +8,11 @@
 #include "mouse_button.h"
 
 namespace jod {   
-    mouse_input::mouse_input() : m_leftButton(std::make_shared<mouse_button>()){
+    mouse_input::mouse_input() : m_left_button(std::make_shared<mouse_button>()){
     }
     
     void
     mouse_input::register_mouse_down(){
-        m_leftButton->register_mouse_down();
+        m_left_button->register_mouse_down();
     }
 }

@@ -1,6 +1,6 @@
 /*
  * canvas_utilities.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -18,10 +18,10 @@ namespace jod {
     
     float
     get_aspect_ratio(){
-        auto canvasSize = get_canvas_size(); // Get canvas dimensions.
+        auto canvas_size = get_canvas_size(); // Get canvas dimensions.
         // And calculate the ratio between them.
-        auto aspectRatio = static_cast<float>(canvasSize.w) / canvasSize.h;
-        return aspectRatio;
+        auto aspect_ratio = static_cast<float>(canvas_size.w) / canvas_size.h;
+        return aspect_ratio;
     }
     
     float
@@ -34,5 +34,13 @@ namespace jod {
     convert_height_to_width(float height){
         // Use aspect ratio to convert from height to corresponding width.
         return height / get_aspect_ratio();
+    }
+    
+    SDL_Color
+    to_sdl_color(colorf color) {
+        return {static_cast<unsigned char>(color.r * 255),
+                static_cast<unsigned char>(color.g * 255),
+                static_cast<unsigned char>(color.b * 255),
+                static_cast<unsigned char>(color.a * 255)};
     }
 }

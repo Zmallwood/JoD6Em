@@ -1,6 +1,6 @@
 /*
  * cursor.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -17,16 +17,20 @@ namespace jod {
     
     void
     cursor::render(websocket::stream<tcp::socket>& ws){
-        auto mousePos = m_user_connection.m_mousePosition; // Get current mouse position.
+        auto mouse_position = m_user_connection.m_mouse_position; // Get current mouse position.
         // Obtain cursor dimensions.
-        auto cursorWidth = k_cursorSize;
-        auto cursorHeight = k_cursorSize*m_user_connection.get_aspect_ratio();
+        auto cursor_width = k_cursor_size;
+        auto cursor_height = k_cursor_size*m_user_connection.get_aspect_ratio();
         // Calculate cursor position.
-        auto cursorX = mousePos.x - cursorWidth / 2;
-        auto cursorY = mousePos.y - cursorHeight / 2;
+        auto cursor_x = mouse_position.x - cursor_width / 2;
+        auto cursor_y = mouse_position.y - cursor_height / 2;
         // Create render destination rectangle.
-        auto cursorDest = rectf{cursorX, cursorY, cursorWidth, cursorHeight};
+        auto cursor_destination = rectf{
+            cursor_x, cursor_y, cursor_width,
+            cursor_height};
         // Render the cursor image.
-        m_user_connection.send_image_draw_instruction(ws, k_cursorImageName, cursorDest);
+        m_user_connection.send_image_draw_instruction(
+            ws, k_cursor_image_name,
+            cursor_destination);
     }
 }

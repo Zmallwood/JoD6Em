@@ -15,7 +15,7 @@ namespace jod {
         
         void update();
         
-        point m_hoveredCoordinate = {-1, -1};
+        point m_hovered_coordinate = {-1, -1};
         
     private:
         user_connection &m_user_connection;

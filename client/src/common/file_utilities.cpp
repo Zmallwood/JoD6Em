@@ -8,19 +8,19 @@
 
 namespace jod {
     std::string
-    file_extension(std::string_view absPath){
+    file_extension(std::string_view abs_path){
         // Find last occurrence of '.' and keep the part following it.
-        auto extension = absPath.substr(absPath.find_last_of('.') + 1);
+        auto extension = abs_path.substr(abs_path.find_last_of('.') + 1);
         return extension.data();
     }
     
     std::string
-    filename_no_extension(std::string_view absPath){
+    filename_no_extension(std::string_view abs_path){
         // Find last occurence of '/' and get the part following it.
-        auto nameWithExt =
-            std::string(absPath.substr(absPath.find_last_of('/') + 1));
+        auto name_with_ext =
+            std::string(abs_path.substr(abs_path.find_last_of('/') + 1));
         // Then only keep the part preceeding the last occurrence of '.'.
-        auto fileName = nameWithExt.substr(0, nameWithExt.find_last_of('.'));
-        return fileName;
+        auto file_name = name_with_ext.substr(0, name_with_ext.find_last_of('.'));
+        return file_name;
     }
 }

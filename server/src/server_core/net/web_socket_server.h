@@ -11,7 +11,7 @@ namespace jod {
     
     class web_socket_server {
     public:
-        void start(std::string socketAddress, std::string socketPort);
+        void start(std::string socket_address, std::string socket_port);
         
     private:
         std::vector<std::shared_ptr<user_connection> > m_user_connections;

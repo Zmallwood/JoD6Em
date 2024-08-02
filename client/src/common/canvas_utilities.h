@@ -23,5 +23,6 @@ namespace jod {
     //! \brief Converts a height to corresponding width with regards to aspect ratio.
     //! \param height The height value to convert.
     //! \return float The corresponding width.
-    float convert_height_to_width(float height);
+    
+    SDL_Color to_sdl_color(colorf color);
 }

@@ -58,47 +58,51 @@ namespace jod {
         add_scene(
             "MainScene",
             [&]{
-                m_user_connection.m_tileHovering->update();
-                m_user_connection.m_mouseMovement->update();
+                m_user_connection.m_tile_hovering->update();
+                m_user_connection.m_mouse_movement->update();
             },
             [&](websocket::stream<tcp::socket> &ws){
-                auto tileSize =
-                    calc_tile_size(m_user_connection.get_aspect_ratio());
-                auto playerCoord = m_user_connection.m_player->m_coord;
-                auto numGridRows = _<game_properties>().numGridRows;
-                auto numGridCols = numGridRows;
-                for (auto y = 0; y < numGridRows; y++){
-                    for (auto x = 0; x < numGridCols; x++){
-                        auto coordX = playerCoord.x - (numGridCols - 1) / 2 + x;
-                        auto coordY = playerCoord.y - (numGridRows - 1) / 2 + y;
-                        if (coordX < 0 || coordY < 0 || coordX >= 100 ||
-                            coordY >= 100) continue;
+                auto tile_size =
+                    calculate_tile_size(m_user_connection.get_aspect_ratio());
+                auto player_coordinate =
+                    m_user_connection.m_player->m_coordinate;
+                auto num_grid_rows = _<game_properties>().k_num_grid_rows;
+                auto num_grid_cols = num_grid_rows;
+                for (auto y = 0; y < num_grid_rows; y++){
+                    for (auto x = 0; x < num_grid_cols; x++){
+                        auto coord_x = player_coordinate.x -
+                                       (num_grid_cols - 1) / 2 + x;
+                        auto coord_y = player_coordinate.y -
+                                       (num_grid_rows - 1) / 2 + y;
+                        if (coord_x < 0 || coord_y < 0 || coord_x >= 100 ||
+                            coord_y >= 100) continue;
                         auto tile =
-                            _<world>().m_currentWorldArea->m_tiles[coordX][
-                                coordY];
+                            _<world>().m_current_world_area->m_tiles[coord_x][
+                                coord_y];
                         m_user_connection.send_image_draw_instruction(
                             ws,
                             tile->m_ground,
-                            {x * tileSize.w, y * tileSize.h, tileSize.w,
-                             tileSize.h});
-                        if (coordX ==
-                            m_user_connection.m_tileHovering->
-                            m_hoveredCoordinate.x &&
-                            coordY ==
-                            m_user_connection.m_tileHovering->
-                            m_hoveredCoordinate.y){
+                            {x * tile_size.w, y * tile_size.h, tile_size.w,
+                             tile_size.h});
+                        if (coord_x ==
+                            m_user_connection.m_tile_hovering->
+                            m_hovered_coordinate.x &&
+                            coord_y ==
+                            m_user_connection.m_tile_hovering->
+                            m_hovered_coordinate.y){
                             m_user_connection.send_image_draw_instruction(
                                 ws,
                                 "HoveredTile",
-                                {x * tileSize.w, y * tileSize.h, tileSize.w,
-                                 tileSize.h});
+                                {x * tile_size.w, y * tile_size.h, tile_size.w,
+                                 tile_size.h});
                         }
-                        if (coordX == playerCoord.x && coordY == playerCoord.y){
+                        if (coord_x == player_coordinate.x &&
+                            coord_y == player_coordinate.y){
                             m_user_connection.send_image_draw_instruction(
                                 ws, "Player", {
-                            x * tileSize.w, y * tileSize.h,
-                            tileSize.w,
-                            tileSize.h});
+                            x * tile_size.w, y * tile_size.h,
+                            tile_size.w,
+                            tile_size.h});
                         }
                     }
                 }
@@ -112,43 +116,43 @@ namespace jod {
     
     void
     scene_manager::update_current_scene(){
-        if (m_scenes.contains(m_currentScene))
-            m_scenes.at(m_currentScene).update();
+        if (m_scenes.contains(m_current_scene))
+            m_scenes.at(m_current_scene).update();
     }
     
     void
     scene_manager::render_current_scene(websocket::stream<tcp::socket> &ws){
-        if (m_scenes.contains(m_currentScene))
-            m_scenes.at(m_currentScene).render(ws);
+        if (m_scenes.contains(m_current_scene))
+            m_scenes.at(m_current_scene).render(ws);
     }
     
     void
     scene_manager::on_key_down_current_scene(){
-        if (m_scenes.contains(m_currentScene))
-            m_scenes.at(m_currentScene).on_key_down();
+        if (m_scenes.contains(m_current_scene))
+            m_scenes.at(m_current_scene).on_key_down();
     }
     
     void
     scene_manager::on_mouse_down_current_scene(){
-        if (m_scenes.contains(m_currentScene))
-            m_scenes.at(m_currentScene).on_mouse_down();
+        if (m_scenes.contains(m_current_scene))
+            m_scenes.at(m_current_scene).on_mouse_down();
     }
     
     void
-    scene_manager::go_to(std::string_view sceneName){
-        m_currentScene = jod::hash(sceneName);
+    scene_manager::go_to(std::string_view scene_name){
+        m_current_scene = jod::hash(scene_name);
     }
     
     void
     scene_manager::add_scene(
-        std::string_view sceneName,
-        std::function<void()> updateAction,
-        std::function<void(websocket::stream<tcp::socket> &)> renderAction,
-        std::function<void()> keyDownAction,
-        std::function<void()> mouseDownAction){
+        std::string_view scene_name,
+        std::function<void()> update_action,
+        std::function<void(websocket::stream<tcp::socket> &)> render_action,
+        std::function<void()> key_down_action,
+        std::function<void()> mouse_down_action){
         m_scenes.insert(
-            {jod::hash(sceneName),
-             {updateAction, renderAction, keyDownAction,
-              mouseDownAction}});
+            {jod::hash(scene_name),
+             {update_action, render_action, key_down_action,
+              mouse_down_action}});
     }
 }
