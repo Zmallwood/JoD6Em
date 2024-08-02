@@ -1,6 +1,8 @@
-// renderer_base.cpp
-
-// Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+/*
+ * renderer_base.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
 
 #include "renderer_base.h"
 #include "shader_program.h"
