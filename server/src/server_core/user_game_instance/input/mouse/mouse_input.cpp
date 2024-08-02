@@ -15,6 +15,4 @@ namespace jod {
     mouse_input::register_mouse_down(){
         m_leftButton->register_mouse_down();
     }
-    
-
 }
