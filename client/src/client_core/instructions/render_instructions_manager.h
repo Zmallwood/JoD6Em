@@ -16,9 +16,9 @@ namespace jod {
         render_instructions_manager();
         
         //! \brief Add new image draw instruction to group, called on request from server.
-        //! \param imageNameHash Hash code of image name to draw.
-        //! \param dest Destination rectangle to draw the image at.
-        void add_image_draw_instruction(int imageNameHash, rectf dest);
+        //! \param image_name_hash Hash code of image name to draw.
+        //! \param destination Destination rectangle to draw the image at.
+        void add_image_draw_instruction(int image_name_hash, rectf destination);
         
         //! \brief Copies the buffered render instructions to the active render instructions set.
         void apply_buffer();
@@ -29,13 +29,13 @@ namespace jod {
         
     private:
         std::vector<image_draw_instruction>
-        m_imageDrawInstructions; //!< Holds the image draw instructions that are executed each call to DrawCanvas().
+        m_image_draw_instructions; //!< Holds the image draw instructions that are executed each call to DrawCanvas().
         
         std::vector<image_draw_instruction>
-        m_imageDrawInstructionsBuffer; //!< Holds the buffer for the next set of draw of instructions.
+        m_image_draw_instructions_buffer; //!< Holds the buffer for the next set of draw of instructions.
         
         std::vector<rid> m_rids; //!< A set of preallocated RIDs used for drawing images, created in the constructor.
         
-        const int k_maxNumDrawInstructions = 1000; //!< No more images than this value can be rendererd in a single game frame.
+        const int k_max_num_draw_instructions = 1000; //!< No more images than this value can be rendererd in a single game frame.
     };
 }

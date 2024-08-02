@@ -13,6 +13,7 @@ namespace jod {
         bool create(
             const GLchar *vertex_shader_source,
             const GLchar *fragment_shader_source);
+            
         void cleanup();
         
         GLuint m_program_id = 0;

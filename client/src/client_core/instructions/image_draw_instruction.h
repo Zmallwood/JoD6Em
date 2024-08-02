@@ -12,8 +12,8 @@ namespace jod {
     struct image_draw_instruction {
         rid rid = -1; //!< ID for an image resource previously allocated.
         
-        int imageNameHash = 0; //!<Hash code of image name to draw.
+        int image_name_hash = 0; //!<Hash code of image name to draw.
         
-        rectf dest; //!< Destination rectangle to draw the image at.
+        rectf destination; //!< Destination rectangle to draw the image at.
     };
 }

@@ -1,6 +1,6 @@
 /*
  * setup_callbacks.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -11,12 +11,11 @@
 
 namespace jod {
     namespace {
-        void key_callback(
-            GLFWwindow *window, int key, int scancode, int action, int mods);
-        void mouse_button_callback(
-            GLFWwindow *window, int button, int action,
-            int mods);
-        void character_callback(GLFWwindow *window, unsigned int codepoint);
+        void key_callback(GLFWwindow *window, int key, int scan_code, int action,
+                          int mods);
+        void mouse_button_callback(GLFWwindow *window, int button, int action,
+                                   int mods);
+        void character_callback(GLFWwindow *window, unsigned int code_point);
         EM_BOOL touch_start_callback(int, EmscriptenTouchEvent const *, void *);
         EM_BOOL touch_end_callback(int, EmscriptenTouchEvent const *, void *);
     }
@@ -47,7 +46,7 @@ namespace jod {
     
     namespace {
         void
-        key_callback(GLFWwindow *window, int key, int scancode, int action,
+        key_callback(GLFWwindow *window, int key, int scan_code, int action,
                      int mods) {
             // if (action == GLFW_PRESS)
             //     _<KeyboardInput>().OnKeyPress(key);
@@ -58,16 +57,16 @@ namespace jod {
         void
         mouse_button_callback(GLFWwindow *window, int button, int action,
                               int mods) {
-            static bool mouseDown = false;
+            static bool mouse_down = false;
             if (button == GLFW_MOUSE_BUTTON_LEFT
                 && action == GLFW_PRESS
-                && !mouseDown){
+                && !mouse_down){
                 _<web_socket_server_connection>().send_message(
                     message_codes::k_mouseDown);
-                mouseDown = true;
+                mouse_down = true;
             } else if (button == GLFW_MOUSE_BUTTON_LEFT &&
                        action == GLFW_RELEASE) {
-                mouseDown = false;
+                mouse_down = false;
             }
             // if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
             //     _<MouseInput>().LeftButton().OnPress();
@@ -82,8 +81,8 @@ namespace jod {
         void
         character_callback(
             GLFWwindow *window,
-            unsigned int codepoint) {
-            // _<KeyboardInput>().AppendTextInput(std::string(1, (char)codepoint));
+            unsigned int code_point) {
+            // _<KeyboardInput>().AppendTextInput(std::string(1, (char)code_point));
         }
         
         EM_BOOL

@@ -146,14 +146,14 @@ namespace jod {
     renderer_base::get_uniform_location(std::string_view variable_name){
         // Get layout location of uniform variable in the shader.
         return glGetUniformLocation(
-            m_shader_program->m_programID,
+            m_shader_program->m_program_id,
             variable_name.data());
     }
     
     void
     renderer_base::use_vao_begin(GLuint vao_id) const {
         // Start using shader program and provided VAO.
-        glUseProgram(m_shader_program->m_programID);
+        glUseProgram(m_shader_program->m_program_id);
         glBindVertexArrayOES(vao_id);
     }
     

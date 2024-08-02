@@ -1,6 +1,6 @@
 /*
  * graphics.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -33,10 +33,7 @@ namespace jod {
         // Set desired alpha blending functions.
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         // Hide default system cursor.
-        glfwSetInputMode(
-            m_window,
-            GLFW_CURSOR,
-            GLFW_CURSOR_DISABLED);
+        glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     }
     
     void
