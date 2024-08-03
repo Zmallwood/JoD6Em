@@ -1,0 +1,22 @@
+/*
+ * MouseUtilities.cpp
+ * 
+ * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
+ */
+
+#include "MouseUtilities.h"
+#include "ClientCore/Graphics/Graphics.h"
+
+namespace jod {
+    pointf get_mouse_position() {
+        double xpos, ypos; // Declare variables to store mouse coordinates in pixels.
+        // Use GLFW to get current mouse coordinates.
+        glfwGetCursorPos(_<graphics>().m_window, &xpos, &ypos);
+        auto canvas_size = get_canvas_size(); // Get canvas size.
+        // And use it to convert pixel coordinates to fractal coordinates.
+        auto mouse_position = pointf{
+            static_cast<float>(xpos) / canvas_size.w,
+            static_cast<float>(ypos) / canvas_size.h};
+        return mouse_position;
+    }
+}

@@ -34,7 +34,7 @@
 			{
 				"label": "Uncrustify format",
 				"type": "shell",
-				"command": "uncrustify -c ../uncrustify.cfg -f ${file} -o ${file} --no-backup",
+				"command": "uncrustify -c ../../uncrustify.cfg -f ${file} -o ${file} --no-backup",
 				"options": {
 					"cwd": "${workspaceFolder}"
 				},
