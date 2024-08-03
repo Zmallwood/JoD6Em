@@ -1,15 +1,15 @@
 {
 	"folders": [
-		{
-			"path": "client"
-		},
-		{
-			"path": "server"
-		},
-		{
-			"path": "shared"
-		}
-	],
+        {
+            "path": "Client/ClientSource"
+        },
+        {
+            "path": "Server/ServerSource"
+        },
+        {
+            "path": "Shared/SharedSource"
+        }
+    ],
 	"settings": {
 		"files.exclude": {
             "**/.cache": true,
