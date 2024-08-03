@@ -7,7 +7,7 @@
 #include "expr_seed_randomization.h"
 
 namespace jod {
-    expr_return_struct expr_seed_randomization::evaluate() {
+    expr_return_struct expr_seed_randomization::eval() {
         srand(time(0));
         return {0};
     }

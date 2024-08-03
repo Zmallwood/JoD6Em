@@ -14,5 +14,5 @@ int main(int argc, char *argv[]) {
         std::make_shared<expr_run_game_server>(
             std::make_shared<expr_main_function_args>(
                 argc,
-                argv))).evaluate().return_code;
+                argv))).eval().return_code;
 }

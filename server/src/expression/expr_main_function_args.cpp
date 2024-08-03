@@ -14,7 +14,7 @@ namespace jod {
         : m_argc(argc), m_argv(argv){
     }
     
-    expr_return_struct expr_main_function_args::evaluate() {
+    expr_return_struct expr_main_function_args::eval() {
         if (m_argc != 3){
             std::cerr << "Usage: JoDServer <address> <port>\n"
                       << "Example:\n"

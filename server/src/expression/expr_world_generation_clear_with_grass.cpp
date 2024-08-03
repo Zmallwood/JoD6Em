@@ -10,7 +10,7 @@
 #include "server_core/world_structure/tile.h"
 
 namespace jod {
-    expr_return_struct expr_world_generation_clear_with_grass::evaluate() {
+    expr_return_struct expr_world_generation_clear_with_grass::eval() {
         auto world_area = _<world>().m_current_world_area;
         for (auto y = 0; y < 100; y++)
             for (auto x = 0; x < 100; x++)

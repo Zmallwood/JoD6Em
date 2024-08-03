@@ -11,7 +11,7 @@ namespace jod {
     public:
         expr_main_function_args(int argc, char** argv);
         
-        expr_return_struct evaluate() override;
+        expr_return_struct eval() override;
         
     private:
         int m_argc;

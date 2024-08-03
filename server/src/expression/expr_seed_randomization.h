@@ -9,6 +9,6 @@
 namespace jod {
     class expr_seed_randomization : public expr {
     public:
-        expr_return_struct evaluate() override;
+        expr_return_struct eval() override;
     };
 }

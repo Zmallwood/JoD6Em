@@ -9,6 +9,6 @@
 namespace jod {
     class expr_world_generation_generate_water : public expr {
     public:
-        expr_return_struct evaluate();
+        expr_return_struct eval();
     };
 }

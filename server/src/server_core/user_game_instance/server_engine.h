@@ -10,6 +10,7 @@ namespace jod {
     class user_connection;
     class mouse_input;
     class scene_manager;
+    class fps_counter;
 
     class server_engine {
     public:
@@ -28,6 +29,8 @@ namespace jod {
         
     private:
         std::shared_ptr<scene_manager> m_scene_manager;
+
+        std::shared_ptr<fps_counter> m_fps_counter;
         
         user_connection &m_user_connection;
     };

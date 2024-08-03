@@ -10,7 +10,7 @@
 #include "server_core/world_structure/tile.h"
 
 namespace jod {
-    expr_return_struct expr_world_generation_generate_water::evaluate() {
+    expr_return_struct expr_world_generation_generate_water::eval() {
         auto world_area = _<world>().m_current_world_area;
         auto num_lakes = 15;
         for (auto i = 0; i < num_lakes; i++){

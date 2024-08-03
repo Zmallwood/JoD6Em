@@ -14,5 +14,6 @@ namespace jod {
         constexpr int k_canvas_size = 4;
         constexpr int k_mouse_position = 5;
         constexpr int k_frame_finished = 6;
+        constexpr int k_draw_string_instr = 7;
     }
 }

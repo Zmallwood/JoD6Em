@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <string>
 namespace jod {
     class server_engine;
     class player;
@@ -28,6 +29,10 @@ namespace jod {
             boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
             int image_name_hash,
             rectf destination);
+        
+        void send_text_draw_instruction(
+            boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
+            std::string_view text, pointf position);
         
         void send_present_canvas_instruction(
             boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);

@@ -17,14 +17,14 @@ namespace jod {
         
     }
     
-    expr_return_struct expr_run_game_server::evaluate() {
-        if (auto result = expr_seed_randomization().evaluate().return_code)
+    expr_return_struct expr_run_game_server::eval() {
+        if (auto result = expr_seed_randomization().eval().return_code)
             return {result};
         
-        if (auto result = expr_generate_new_world().evaluate().return_code)
+        if (auto result = expr_generate_new_world().eval().return_code)
             return {result};
         
-        auto args_data = m_expression_args->evaluate();
+        auto args_data = m_expression_args->eval();
         
         if (auto result = args_data.return_code)
             return {result};
@@ -37,6 +37,6 @@ namespace jod {
         
         return expr_run_web_socket_server(
             expression_socket_address,
-            expression_socket_port).evaluate();
+            expression_socket_port).eval();
     }
 }

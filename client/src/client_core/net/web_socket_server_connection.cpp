@@ -168,6 +168,19 @@ namespace jod {
                 _<render_instructions_manager>().apply_buffer(); // Apply the buffered render instructions.
                 break;
             }
+            case message_codes::k_draw_string_instr:
+            {
+                auto x = read_four_bytes_at_float(bytes + 4);
+                auto y = read_four_bytes_at_float(bytes + 8);
+                auto length = read_four_bytes_as_int(bytes + 12);
+                std::string str;
+                for (auto i = 0; i < length; i++) {
+                    auto c = read_four_bytes_as_int(bytes + 16 + i*4);
+                    str += (char)c;
+                }
+                _<render_instructions_manager>().add_text_draw_instruction(str, {x,y});
+            }
+            break;
             }
         }
         

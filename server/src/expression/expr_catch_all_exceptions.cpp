@@ -14,9 +14,9 @@ namespace jod {
         
     }
     
-    expr_return_struct expr_catch_all_exceptions::evaluate() {
+    expr_return_struct expr_catch_all_exceptions::eval() {
         try{
-            return m_exception_handled_expression->evaluate();
+            return m_exception_handled_expression->eval();
         }
         catch (const std::exception &e){
             std::cerr << "Error: " << e.what() << std::endl;

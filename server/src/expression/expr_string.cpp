@@ -11,7 +11,7 @@ namespace jod {
         : m_string_value(string_value) {
     }
     
-    expr_return_struct expr_string::evaluate() {
+    expr_return_struct expr_string::eval() {
         return {0, m_string_value};
     }
 }

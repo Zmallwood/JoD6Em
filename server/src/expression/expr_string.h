@@ -11,7 +11,7 @@ namespace jod {
     public:
         expr_string(std::string_view string_value);
 
-        expr_return_struct evaluate();
+        expr_return_struct eval();
         
     private:
         std::string m_string_value;

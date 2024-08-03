@@ -12,7 +12,7 @@ namespace jod {
         expr_catch_all_exceptions(
             std::shared_ptr<expr> exception_handled_expression);
         
-        expr_return_struct evaluate() override;
+        expr_return_struct eval() override;
         
     private:
         std::shared_ptr<expr> m_exception_handled_expression;

@@ -18,11 +18,11 @@ namespace jod {
             std::shared_ptr<expr_string>
             expression_socket_port);
         
-        expr_return_struct evaluate();
+        expr_return_struct eval();
         
     private:
-        std::shared_ptr<expr> m_expression_socket_address;
-        std::shared_ptr<expr> m_expression_socket_port;
+        std::shared_ptr<expr> m_expr_socket_address;
+        std::shared_ptr<expr> m_expr_socket_port;
         std::vector<std::shared_ptr<user_connection> > m_user_connections;
     };
 }

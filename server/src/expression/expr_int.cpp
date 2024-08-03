@@ -11,7 +11,7 @@ namespace jod {
         : m_int_value(int_value) {
     }
     
-    expr_return_struct expr_int::evaluate() {
+    expr_return_struct expr_int::eval() {
         return {0, m_int_value};
     }
 }

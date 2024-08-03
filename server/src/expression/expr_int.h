@@ -11,7 +11,7 @@ namespace jod {
     public:
         expr_int(int int_value);
         
-        expr_return_struct evaluate();
+        expr_return_struct eval();
         
     private:
         int m_int_value = 0;
