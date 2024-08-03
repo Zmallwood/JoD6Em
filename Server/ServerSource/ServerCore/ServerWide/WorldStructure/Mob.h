@@ -7,9 +7,9 @@
 #pragma once
 
 namespace jod {
-    class creature {
+    class mob {
     public:
-        creature(std::string_view mob_name, int level);
+        mob(std::string_view mob_name, int level);
 
         int m_level;
         int m_type = 0;

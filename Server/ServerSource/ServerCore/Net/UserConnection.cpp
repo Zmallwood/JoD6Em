@@ -10,8 +10,8 @@
 #include "ServerCore/UserGameInstance/ServerEngine.h"
 #include "MessageCodes.h"
 #include "NetConfiguration.h"
-#include "ServerCore/CoreGameObjects/Player.h"
-#include "ServerCore/Cursor/Cursor.h"
+#include "ServerCore/UserGameInstance/CoreGameObjects/Player.h"
+#include "ServerCore/UserGameInstance/Cursor/Cursor.h"
 #include "Theme0/Scenes/Main/Process/TileHovering.h"
 #include "Theme0/Scenes/Main/Process/MouseMovement.h"
 #include "Theme0/Scenes/Main/Process/MobTargeting.h"
@@ -62,7 +62,6 @@ namespace jod {
                         m_canvas_size = {w, h};
                     }else if (*message == message_codes::k_left_mouse_down) {
                         m_server_engine->m_mouse_input->register_mouse_down(mouse_buttons::left);
-                        m_server_engine->on_mouse_down();
                     }
                     else if (*message == message_codes::k_right_mouse_down) {
                         m_server_engine->m_mouse_input->register_mouse_down(mouse_buttons::right);

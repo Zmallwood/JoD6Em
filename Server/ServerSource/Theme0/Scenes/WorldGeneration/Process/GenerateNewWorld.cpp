@@ -5,10 +5,10 @@
  */
 
 #include "GenerateNewWorld.h"
-#include "ServerCore/WorldStructure/World.h"
-#include "ServerCore/WorldStructure/WorldArea.h"
-#include "ServerCore/WorldStructure/Tile.h"
-#include "ServerCore/WorldStructure/Creature.h"
+#include "ServerCore/ServerWide/WorldStructure/World.h"
+#include "ServerCore/ServerWide/WorldStructure/WorldArea.h"
+#include "ServerCore/ServerWide/WorldStructure/Tile.h"
+#include "ServerCore/ServerWide/WorldStructure/Mob.h"
 
 namespace jod {
     void generate_new_world() {
@@ -96,7 +96,7 @@ namespace jod {
                 
                 if (x <  0 || y <0 || x>= 100 || y >= 100)continue;
                 
-                world_area->m_tiles[x][y]->m_creature = std::make_shared<creature>("MobBlueSlime", 1);
+                world_area->m_tiles[x][y]->m_mob = std::make_shared<mob>("MobBlueSlime", 1);
             }
         }
         
@@ -108,7 +108,7 @@ namespace jod {
                 auto y = y_center + rand() % 5 - rand() % 5;
                 if (x <  0 || y <0 || x>= 100 || y >= 100)continue;
                 
-                world_area->m_tiles[x][y]->m_creature = std::make_shared<creature>("MobYellowSlime", 2);
+                world_area->m_tiles[x][y]->m_mob = std::make_shared<mob>("MobYellowSlime", 2);
             }
         }
         
@@ -120,7 +120,7 @@ namespace jod {
                 auto y = y_center + rand() % 5 - rand() % 5;
                 if (x <  0 || y <0 || x>= 100 || y >= 100)continue;
                 
-                world_area->m_tiles[x][y]->m_creature = std::make_shared<creature>("MobRedSlime", 3);
+                world_area->m_tiles[x][y]->m_mob = std::make_shared<mob>("MobRedSlime", 3);
             }
         }
     }

@@ -6,7 +6,7 @@
 
 #include "TileHovering.h"
 #include "Theme0/Scenes/Main/MainSceneMath/TileGridMath.h"
-#include "ServerCore/CoreGameObjects/Player.h"
+#include "ServerCore/UserGameInstance/CoreGameObjects/Player.h"
 #include "Configuration/GameProperties.h"
 #include "ServerCore/Net/UserConnection.h"
 

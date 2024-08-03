@@ -7,8 +7,7 @@
 #include "ServerEngine.h"
 #include "Input/Mouse/MouseInput.h"
 #include "ServerCore/Net/UserConnection.h"
-#include "ServerCore/Cursor/Cursor.h"
-#include "ScenesCore/Scene.h"
+#include "ServerCore/UserGameInstance/Cursor/Cursor.h"
 #include "ScenesCore/SceneManager.h"
 #include "FPSCounter.h"
 
@@ -33,13 +32,5 @@ namespace jod {
         m_fps_counter->render(ws);
         m_user_connection.m_cursor->render(ws);
         m_user_connection.send_present_canvas_instruction(ws);
-    }
-    
-    void server_engine::on_key_down()      {
-        m_scene_manager->on_key_down_current_scene();
-    }
-    
-    void server_engine::on_mouse_down()      {
-        m_scene_manager->on_mouse_down_current_scene();
     }
 }

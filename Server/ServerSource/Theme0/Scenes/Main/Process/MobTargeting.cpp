@@ -10,9 +10,9 @@
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.h"
 #include "ServerCore/UserGameInstance/ServerEngine.h"
 #include "TileHovering.h"
-#include "ServerCore/WorldStructure/World.h"
-#include "ServerCore/WorldStructure/WorldArea.h"
-#include "ServerCore/WorldStructure/Tile.h"
+#include "ServerCore/ServerWide/WorldStructure/World.h"
+#include "ServerCore/ServerWide/WorldStructure/WorldArea.h"
+#include "ServerCore/ServerWide/WorldStructure/Tile.h"
 
 namespace jod {
     mob_targeting::mob_targeting(user_connection& user_connection)
@@ -28,8 +28,8 @@ namespace jod {
         if (mouse_down) {
             auto world_area = _<world>().m_current_world_area;
             auto tile = world_area->m_tiles[hovered_tile.x][hovered_tile.y];
-            if (tile->m_creature) {
-                m_targeted_creature = tile->m_creature;
+            if (tile->m_mob) {
+                m_targeted_creature = tile->m_mob;
             }
             else {
                 m_targeted_creature = nullptr;

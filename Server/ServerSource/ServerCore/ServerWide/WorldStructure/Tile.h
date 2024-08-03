@@ -7,12 +7,12 @@
 #pragma once
 
 namespace jod {
-    class creature;
+    class mob;
 
     class tile {
     public:
         int m_ground = 0;
         int m_object = 0;
-        std::shared_ptr<creature> m_creature;
+        std::shared_ptr<mob> m_mob;
     };
 }

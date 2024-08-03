@@ -8,7 +8,7 @@
 
 namespace jod {
     class user_connection;
-    class creature;
+    class mob;
 
     class mob_targeting {
     public:
@@ -16,7 +16,7 @@ namespace jod {
 
         void update();
 
-        std::shared_ptr<creature> m_targeted_creature;
+        std::shared_ptr<mob> m_targeted_creature;
         
     private:
         user_connection &m_user_connection;

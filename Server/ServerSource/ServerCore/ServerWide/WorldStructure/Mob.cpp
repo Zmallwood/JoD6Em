@@ -4,10 +4,10 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "Creature.h"
+#include "Mob.h"
 
 namespace jod {
-    creature::creature(std::string_view mob_name,
+    mob::mob(std::string_view mob_name,
                        int level) : m_type(jod::hash(mob_name)) {
         m_level = level;
         m_patk = level;

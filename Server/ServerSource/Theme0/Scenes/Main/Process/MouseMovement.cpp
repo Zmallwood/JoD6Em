@@ -9,7 +9,7 @@
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.h"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.h"
 #include "ServerCore/UserGameInstance/ServerEngine.h"
-#include "ServerCore/CoreGameObjects/Player.h"
+#include "ServerCore/UserGameInstance/CoreGameObjects/Player.h"
 #include "TileHovering.h"
 
 namespace jod {

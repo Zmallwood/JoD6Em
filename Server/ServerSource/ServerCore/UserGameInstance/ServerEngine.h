@@ -21,14 +21,11 @@ namespace jod {
         void render(
             boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
         
-        void on_mouse_down();
-        
-        void on_key_down();
-        
         std::shared_ptr<mouse_input> m_mouse_input;
         
-    private:
         std::shared_ptr<scene_manager> m_scene_manager;
+        
+    private:
 
         std::shared_ptr<fps_counter> m_fps_counter;
         
