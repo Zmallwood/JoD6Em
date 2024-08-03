@@ -13,15 +13,14 @@
 
 namespace jod {
     void MainMenuScene::UpdateDerived() {
-        if (m_user_connection.m_server_engine->m_mouse_input->m_left_button->is_pressed_pick_result()) {
-            m_user_connection.m_server_engine->m_scene_manager->go_to("MainScene");
+        if (m_user_connection.m_server_engine->m_mouse_input->m_left_button->
+            is_pressed_pick_result()) {
+            m_user_connection.m_server_engine->m_scene_manager->go_to(
+                "MainScene");
         }
     }
     
-    void MainMenuScene::RenderDerived(
-        boost::beast::websocket::stream<boost::asio::ip::
-                                        tcp::
-                                        socket> &webSocket) {
+    void MainMenuScene::RenderDerived(WebSocket &webSocket) {
         m_user_connection.send_image_draw_instruction(
             webSocket, "DefaultSceneBackground",
             {0.0f, 0.0f, 1.0f, 1.0f});

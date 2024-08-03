@@ -12,8 +12,7 @@ namespace jod {
 
     }
 
-    void WorldGenerationScene::RenderDerived(boost::beast::websocket::stream<boost::asio::ip::
-                                                    tcp::socket> &webSocket) {
+    void WorldGenerationScene::RenderDerived(WebSocket &webSocket) {
         
     }
 }

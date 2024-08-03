@@ -24,10 +24,8 @@ namespace jod {
         m_user_connection.m_mob_targeting->update();
     }
     
-    void MainScene::RenderDerived(
-        boost::beast::websocket::stream<boost::asio::ip::
-                                        tcp::socket> &
-        webSocket) {
+    void MainScene::RenderDerived(WebSocket &
+                                  webSocket) {
         auto tile_size =
             calculate_tile_size(m_user_connection.get_aspect_ratio());
         auto player_coordinate =

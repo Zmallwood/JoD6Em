@@ -1,6 +1,6 @@
 /*
  * WorldGenerationScene.h
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -14,7 +14,6 @@ namespace jod {
         using IScene::IScene;
         
         void UpdateDerived() override;
-        void RenderDerived(boost::beast::websocket::stream<boost::asio::ip::
-                                                    tcp::socket> &webSocket) override;
+        void RenderDerived(WebSocket &webSocket) override;
     };
 }

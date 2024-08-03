@@ -1,6 +1,6 @@
 /*
  * UserConnection.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -34,7 +34,7 @@ namespace jod {
             std::move(socket)).detach();
     }
     
-    void user_connection::do_session(tcp::socket socket)      {
+    void user_connection::do_session(tcp::socket socket) {
         try{
             // Construct the stream by moving in the socket.
             websocket::stream<tcp::socket> ws{std::move(socket)};
@@ -61,12 +61,12 @@ namespace jod {
                         auto h = (int)message[2];
                         m_canvas_size = {w, h};
                     }else if (*message == message_codes::k_left_mouse_down) {
-                        m_server_engine->m_mouse_input->register_mouse_down(mouse_buttons::left);
-                    }
-                    else if (*message == message_codes::k_right_mouse_down) {
-                        m_server_engine->m_mouse_input->register_mouse_down(mouse_buttons::right);
-                    }
-                    else if (*message == message_codes::k_mouse_position) {
+                        m_server_engine->m_mouse_input->register_mouse_down(
+                            mouse_buttons::left);
+                    }else if (*message == message_codes::k_right_mouse_down) {
+                        m_server_engine->m_mouse_input->register_mouse_down(
+                            mouse_buttons::right);
+                    }else if (*message == message_codes::k_mouse_position) {
                         auto x = message[1] / net_constants::k_float_precision;
                         auto y = message[2] / net_constants::k_float_precision;
                         m_mouse_position = {x, y};
@@ -86,16 +86,16 @@ namespace jod {
         }
     }
     
-    void user_connection::send_image_draw_instruction(
-        websocket::stream<tcp::socket> &ws,
-        std::string_view image_name,
-        rectf destination){
+    void user_connection::send_image_draw_instruction(WebSocket &ws,
+                                                      std::string_view
+                                                      image_name,
+                                                      rectf destination){
         send_image_draw_instruction(ws, jod::hash(image_name), destination);
     }
     
-    void user_connection::send_image_draw_instruction(
-        websocket::stream<tcp::socket> &ws,
-        int image_name_hash, rectf destination){
+    void user_connection::send_image_draw_instruction(WebSocket &ws,
+                                                      int image_name_hash,
+                                                      rectf destination){
         auto msg_code = message_codes::k_draw_image_instr;
         auto x = (int)(destination.x * net_constants::k_float_precision);
         auto y = (int)(destination.y * net_constants::k_float_precision);
@@ -111,9 +111,9 @@ namespace jod {
         ws.write(boost::asio::buffer(data));
     }
     
-    void user_connection::send_text_draw_instruction(
-        boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws,
-        std::string_view text, pointf position) {
+    void user_connection::send_text_draw_instruction(WebSocket &ws,
+                                                     std::string_view text,
+                                                     pointf position) {
         auto msg_code = message_codes::k_draw_string_instr;
         auto x = (int)(position.x * net_constants::k_float_precision);
         auto y = (int)(position.y * net_constants::k_float_precision);
@@ -125,18 +125,17 @@ namespace jod {
         for (auto c : text) {
             data.push_back((int)c);
         }
-
+        
         ws.write(boost::asio::buffer(data));
     }
     
-    void user_connection::send_present_canvas_instruction(
-        websocket::stream<tcp::socket> &ws){
+    void user_connection::send_present_canvas_instruction(WebSocket &ws){
         auto msg_code_present = message_codes::k_apply_buffer;
         ws.write(
             boost::asio::buffer(&msg_code_present,sizeof(msg_code_present)));
     }
     
-    float user_connection::get_aspect_ratio()       {
+    float user_connection::get_aspect_ratio() {
         return static_cast<float>(m_canvas_size.w) / m_canvas_size.h;
     }
 }

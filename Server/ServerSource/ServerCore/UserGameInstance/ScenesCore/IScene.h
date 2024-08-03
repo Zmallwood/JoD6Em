@@ -15,16 +15,13 @@ namespace jod {
         
         void Update();
         
-        void Render(boost::beast::websocket::stream<boost::asio::ip::
-                                                    tcp::socket> &webSocket);
+        void Render(WebSocket &webSocket);
         
     protected:
         virtual void UpdateDerived() = 0;
         
-        virtual void RenderDerived(
-            boost::beast::websocket::stream<boost::asio::ip::
-                                            tcp::socket>
-            &webSocket) = 0;
+        virtual void RenderDerived(WebSocket
+                                   &webSocket) = 0;
         
         user_connection &m_user_connection;
     };

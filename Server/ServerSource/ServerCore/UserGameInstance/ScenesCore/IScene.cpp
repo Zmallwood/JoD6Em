@@ -15,8 +15,7 @@ namespace jod {
         UpdateDerived();
     }
     
-    void IScene::Render(boost::beast::websocket::stream<boost::asio::ip::
-                                                        tcp::socket> &webSocket)
+    void IScene::Render(WebSocket &webSocket)
     {
         RenderDerived(webSocket);
     }

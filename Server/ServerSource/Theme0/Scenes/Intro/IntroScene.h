@@ -12,9 +12,8 @@ namespace jod {
     class IntroScene : public IScene {
     protected:
         using IScene::IScene;
-
+        
         void UpdateDerived() override;
-        void RenderDerived(boost::beast::websocket::stream<boost::asio::ip::
-                                                    tcp::socket> &webSocket) override;
+        void RenderDerived(WebSocket &webSocket) override;
     };
 }
