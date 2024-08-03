@@ -31,7 +31,7 @@ namespace jod {
         auto player_coordinate =
             m_user_connection.m_player->m_coordinate;
         auto num_grid_rows = _<game_properties>().k_num_grid_rows;
-        auto num_grid_cols = num_grid_rows;
+        auto num_grid_cols = calculate_num_grid_cols(m_user_connection.get_aspect_ratio());
         auto smallValue = 0.0001f;
         for (auto y = 0; y < num_grid_rows; y++){
             for (auto x = 0; x < num_grid_cols; x++){
@@ -44,9 +44,14 @@ namespace jod {
                 auto tile =
                     _<world>().m_current_world_area->m_tiles[coord_x][
                         coord_y];
+                auto ground = tile->m_ground;
+                if (ground == jod::hash("GroundWater")) {
+                    auto animIndex = ((std::chrono::high_resolution_clock::now().time_since_epoch().count()/1000000)%1200)/400;
+                    ground = jod::hash("GroundWater_" + std::to_string(animIndex));
+                }
                 m_user_connection.send_image_draw_instruction(
                     webSocket,
-                    tile->m_ground,
+                    ground,
                     {x * tile_size.w, y * tile_size.h,
                      tile_size.w + smallValue,
                      tile_size.h + smallValue});

@@ -21,7 +21,7 @@ namespace jod {
             calculate_tile_size(m_user_connection.get_aspect_ratio());
         auto player_coordinate = m_user_connection.m_player->m_coordinate;
         auto num_rows = _<game_properties>().k_num_grid_rows;
-        auto num_cols = num_rows;
+        auto num_cols = calculate_num_grid_cols(m_user_connection.get_aspect_ratio());
         auto tile_x =
             player_coordinate.x - (num_cols - 1) / 2 +
             static_cast<int>(m_user_connection.m_mouse_position.x /

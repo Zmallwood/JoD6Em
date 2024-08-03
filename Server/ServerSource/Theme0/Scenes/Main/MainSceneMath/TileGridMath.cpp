@@ -14,4 +14,9 @@ namespace jod {
         auto tile_width = tile_height / aspect_ratio;
         return {tile_width, tile_height};
     }
+
+    int calculate_num_grid_cols(float aspectRatio) {
+        auto tileSize = calculate_tile_size(aspectRatio);
+        return static_cast<int>(1.0f/tileSize.w);
+    }
 }
