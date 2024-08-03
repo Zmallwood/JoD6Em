@@ -1,6 +1,6 @@
 /*
  * mouse_utilities.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -8,8 +8,7 @@
 #include "client_core/graphics/graphics.h"
 
 namespace jod {
-    pointf
-    get_mouse_position(){
+    pointf get_mouse_position() {
         double xpos, ypos; // Declare variables to store mouse coordinates in pixels.
         // Use GLFW to get current mouse coordinates.
         glfwGetCursorPos(_<graphics>().m_window, &xpos, &ypos);

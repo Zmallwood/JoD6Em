@@ -17,8 +17,7 @@ namespace jod {
         void game_loop_function();
     }
     
-    void
-    client_engine::run() const {
+    void client_engine::run() const {
         _<web_socket_server_connection>().connect(); // Start network connection.
         SDL_Init(SDL_INIT_EVERYTHING); // Required by SDL2 before using it.
         setup_callbacks();
@@ -28,8 +27,7 @@ namespace jod {
         emscripten_set_main_loop(game_loop_function, 0, simulate_infinite_loop);
     }
     
-    void
-    client_engine::poll_events(){
+    void client_engine::poll_events()      {
         SDL_Event event;
         while (SDL_PollEvent(
                    &event)) { // Poll for events from user every frame.
@@ -43,8 +41,7 @@ namespace jod {
     }
     
     namespace {
-        void
-        game_loop_function(){
+        void game_loop_function()      {
             if (!_<client_engine>().m_running) // Exit main loop if user has requested it.
                 emscripten_cancel_main_loop();
             _<client_engine>().poll_events(); // Poll user events and process them.

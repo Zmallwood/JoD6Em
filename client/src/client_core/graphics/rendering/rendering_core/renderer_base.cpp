@@ -1,6 +1,6 @@
 /*
  * renderer_base.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -18,8 +18,7 @@ namespace jod {
                     std::shared_ptr<std::map<GLuint, GLuint> > > >()){
     }
     
-    GLuint
-    renderer_base::gen_new_vao_id(){
+    GLuint renderer_base::gen_new_vao_id() {
         // Generate new Vertex Array Object.
         GLuint vao_id;
         glGenVertexArraysOES(1, &vao_id);
@@ -27,8 +26,7 @@ namespace jod {
         return vao_id;
     }
     
-    GLuint
-    renderer_base::gen_new_buff_id(
+    GLuint renderer_base::gen_new_buff_id(
         buffer_types buff_type,
         GLuint vao_id){
         // Generate new Vertex Buffer Object.
@@ -43,8 +41,7 @@ namespace jod {
         return buff_id; // Return ID for newly created Vertex Buffer Object.
     }
     
-    void
-    renderer_base::set_indices_data(
+    void renderer_base::set_indices_data(
         GLuint indices_vbo_id,
         int num_indices,
         const void *data) const {
@@ -59,8 +56,7 @@ namespace jod {
             GL_DYNAMIC_DRAW);
     }
     
-    void
-    renderer_base::set_data(
+    void renderer_base::set_data(
         GLuint vbo_id,
         int num_entries,
         const void *data,
@@ -85,8 +81,7 @@ namespace jod {
         }
     }
     
-    void
-    renderer_base::set_array_buffer_data(
+    void renderer_base::set_array_buffer_data(
         GLuint vbo_id,
         int num_entries,
         const void *data,
@@ -112,8 +107,7 @@ namespace jod {
         }
     }
     
-    void
-    renderer_base::set_array_buffer_data_int(
+    void renderer_base::set_array_buffer_data_int(
         GLuint vbo_id,
         int num_entries,
         const void *data,
@@ -142,30 +136,27 @@ namespace jod {
         }
     }
     
-    GLuint
-    renderer_base::get_uniform_location(std::string_view variable_name){
+    GLuint renderer_base::get_uniform_location(
+        std::string_view variable_name) {
         // Get layout location of uniform variable in the shader.
         return glGetUniformLocation(
             m_shader_program->m_program_id,
             variable_name.data());
     }
     
-    void
-    renderer_base::use_vao_begin(GLuint vao_id) const {
+    void renderer_base::use_vao_begin(GLuint vao_id) const {
         // Start using shader program and provided VAO.
         glUseProgram(m_shader_program->m_program_id);
         glBindVertexArrayOES(vao_id);
     }
     
-    GLuint
-    renderer_base::get_buff_id(
+    GLuint renderer_base::get_buff_id(
         buffer_types buff_type,
         GLuint vao_id) const {
         return m_vbo_ids->at(buff_type)->at(vao_id); // Returns the buffer of provided type and VAO id.
     }
     
-    void
-    renderer_base::update_indices_data(
+    void renderer_base::update_indices_data(
         GLuint indices_vbo_id,
         std::vector<int> &indices) const {
         // Bind VBO with provided id, being an element array buffer.
@@ -178,8 +169,7 @@ namespace jod {
             indices.data());
     }
     
-    void
-    renderer_base::update_array_buffer_data(
+    void renderer_base::update_array_buffer_data(
         GLuint vbo_id,
         std::vector<float> &data,
         int num_floats_per_entry,
@@ -202,8 +192,7 @@ namespace jod {
         glEnableVertexAttribArray(layout_location); // Enable layout.
     }
     
-    void
-    renderer_base::update_array_buffer_data_int(
+    void renderer_base::update_array_buffer_data_int(
         GLuint vbo_id,
         std::vector<float> &data,
         int num_floats_per_entry,
@@ -228,8 +217,7 @@ namespace jod {
         glEnableVertexAttribArray(layout_location); // Enable layout.
     }
     
-    void
-    renderer_base::update_data(
+    void renderer_base::update_data(
         GLuint vbo_id,
         std::vector<float> &data,
         buffer_types buff_type,
@@ -251,14 +239,12 @@ namespace jod {
         }
     }
     
-    void
-    renderer_base::use_vao_end() const {
+    void renderer_base::use_vao_end() const {
         glBindVertexArrayOES(0); // Unbind currently used VAO.
         glUseProgram(0); // Stop using shader program.
     }
     
-    void
-    renderer_base::cleanup_base() const {
+    void renderer_base::cleanup_base() const {
         for (auto &buff_type : *m_vbo_ids) // Loop through all keys of buffer types.
             for (auto &buffer_entry : (*buff_type.second)) // Loop through all keys of VAO ids.
                 glDeleteBuffers(1, &buffer_entry.second); // Delete every VBO.

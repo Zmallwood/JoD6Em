@@ -21,25 +21,25 @@ namespace jod {
         m_fonts.insert({font_sizes::_20, font_20});
         m_fonts.insert({font_sizes::_30, font_30});
         m_fonts.insert({font_sizes::_50, font_50});
-
+        
     }
     
-    void
-    text_renderer::render_text(rid rid, std::string_view text, colorf color,
-                               bool center_align, font_sizes font_size,
-                               std::string &out_unique_name_id,
-                               sizef &out_size) const {
+    void text_renderer::render_text(rid rid, std::string_view text,
+                                    colorf color,
+                                    bool center_align, font_sizes font_size,
+                                    std::string &out_unique_name_id,
+                                    sizef &out_size) const {
         auto font = m_fonts.at(font_size)->m_font;
         
         if (!font) return;
-
+        
         auto color_sdl = to_sdl_color(color);
         auto outline_color_sdl = to_sdl_color(k_outline_color);
         auto text_outline_surface =
             TTF_RenderText_Blended(
                 m_fonts.at(font_size)->m_outline_font.get(),
                 text.data(), outline_color_sdl);
-
+        
         if (!text_outline_surface)
             return;
         auto text_surface = TTF_RenderText_Blended(
@@ -47,11 +47,11 @@ namespace jod {
             color_sdl);
         if (!text_surface)
             return;
-
+        
         glEnable(GL_TEXTURE_2D);
         auto unique_name_id = m_unqiue_name_ids.at(rid);
         auto image_id = _<image_bank>().get_image(unique_name_id);
-
+        
         glBindTexture(GL_TEXTURE_2D, image_id);
         // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -62,7 +62,7 @@ namespace jod {
         // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         auto width = text_outline_surface->w;
         auto height = text_outline_surface->h;
-
+        
         auto image = SDL_CreateRGBSurface(
             SDL_SWSURFACE, width, height, 32, 0x000000FF,
             0x0000FF00, 0x00FF0000, 0xFF000000);
@@ -88,7 +88,7 @@ namespace jod {
         text_outline_destination_rectangle = text_outline_source_rectangle;
         text_outline_destination_rectangle.y = 1;
         
-
+        
         SDL_BlitSurface(
             text_outline_surface, &text_outline_source_rectangle, image,
             &text_outline_destination_rectangle);
@@ -111,8 +111,7 @@ namespace jod {
         SDL_FreeSurface(text_outline_surface);
     }
     
-    rid
-    text_renderer::new_string(){
+    rid text_renderer::new_string() {
         static int s_id_counter = 0;
         auto id = s_id_counter++;
         auto unique_name = "RenderedImage" + std::to_string(id);
@@ -123,10 +122,10 @@ namespace jod {
         return rid_image;
     }
     
-    void
-    text_renderer::draw_string(rid rid, std::string_view text,
-                               pointf position, colorf color, bool center_align,
-                               font_sizes font_size){
+    void text_renderer::draw_string(rid rid, std::string_view text,
+                                    pointf position, colorf color,
+                                    bool center_align,
+                                    font_sizes font_size){
         std::string unique_name_id;
         sizef size;
         
@@ -166,12 +165,11 @@ namespace jod {
         _<image_renderer>().draw_image(
             rid_gl_resource, unique_name_id, rectangle,
             false);
-
+        
     }
     
-    sizef
-    text_renderer::measure_string(std::string_view text,
-                                  font_sizes font_size) const {
+    sizef text_renderer::measure_string(std::string_view text,
+                                        font_sizes font_size) const {
         auto font = m_fonts.at(font_size)->m_font;
         int text_w;
         int text_h;

@@ -1,6 +1,6 @@
 /*
  * image_bank.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -23,13 +23,11 @@ namespace jod {
             glDeleteTextures(1, &image.second); // Free every allocated image resource.
     }
     
-    GLuint
-    image_bank::get_image(std::string_view image_name) const {
+    GLuint image_bank::get_image(std::string_view image_name) const {
         return get_image(jod::hash(image_name)); // Hash the image name and call the function overload
     }
     
-    GLuint
-    image_bank::get_image(int image_name_hash) const {
+    GLuint image_bank::get_image(int image_name_hash) const {
         for (auto image : m_images) // Iterate through all the loaded images.
             // If its key, being the hash of the image name, equals
             // the hash of the specified name, then, return this image ID.
@@ -37,8 +35,8 @@ namespace jod {
         return -1; // No image with the name found, return fail value.
     }
     
-    GLuint
-    image_bank::create_blank_image(std::string_view unique_image_name) {
+    GLuint image_bank::create_blank_image(
+        std::string_view unique_image_name) {
         GLuint tex_id; // Generate new image resource,
         glGenTextures(1, &tex_id); // and get its ID.
         // Insert new image entry with image name hash as key
@@ -47,8 +45,7 @@ namespace jod {
         return tex_id; // Return the ID of the newly created blank image resource.
     }
     
-    void
-    image_bank::load_images() {
+    void image_bank::load_images() {
         using iterator = std::filesystem::recursive_directory_iterator;
         auto all_images_path = k_rel_images_path + "/";
         for (auto &entry : iterator(all_images_path)) {
@@ -64,8 +61,7 @@ namespace jod {
     }
     
     namespace {
-        GLuint
-        load_single_image(std::string_view abs_file_path) {
+        GLuint load_single_image(std::string_view abs_file_path) {
             GLuint tex_id; // Declare variable to hold the resulting ID for the loaded image file.
             // Get image data from the image file.
             auto surface = load_image_data(abs_file_path.data());
@@ -93,8 +89,7 @@ namespace jod {
             return tex_id; // Return the previously generated resource ID.
         }
         
-        SDL_Surface *
-        load_image_data(const char *file_name) {
+        SDL_Surface *load_image_data(const char *file_name) {
             int width;
             int height;
             int bytes_per_pixel;

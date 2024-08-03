@@ -1,6 +1,6 @@
 /*
  * math_lib.h
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -66,7 +66,7 @@ namespace jod {
     
     //! \brief Vertex object with position, color and UV data.
     struct vertex2f {
-        pointf position; ///< Position of this vertex with coordinates in float type.
+        pointf pos; ///< Position of this vertex with coordinates in float type.
         colorf color; ///< Color of this vertex.
         pointf uv; ///< UV coordinates of this vertex.
     };

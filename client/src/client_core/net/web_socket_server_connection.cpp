@@ -29,8 +29,7 @@ namespace jod {
         float read_four_bytes_at_float(unsigned char *bytes);
     }
     
-    void
-    web_socket_server_connection::connect(){
+    void web_socket_server_connection::connect() {
         if (!emscripten_websocket_is_supported()) return; // Check support exists.
         // Create address to connect to.
         auto server_address = "ws://" + k_host + ":" + std::to_string(k_port);
@@ -45,8 +44,7 @@ namespace jod {
         emscripten_websocket_set_onmessage_callback(ws, NULL, on_message);
     }
     
-    void
-    web_socket_server_connection::send_message(int message_type){
+    void web_socket_server_connection::send_message(int message_type) {
         switch (message_type){ // Determine message type to be sent.
         case message_codes::k_canvas_size: { // Send canvas size to server.
             auto canvas_size = get_canvas_size(); // Get canvas size in pixels.
@@ -105,10 +103,9 @@ namespace jod {
     }
     
     namespace {
-        EM_BOOL
-        on_open(int event_type,
-                const EmscriptenWebSocketOpenEvent *web_socket_event,
-                void *user_data){
+        EM_BOOL on_open(int event_type,
+                        const EmscriptenWebSocketOpenEvent *web_socket_event,
+                        void *user_data){
             // Save web socket event to WebSocketClient so it can be used from that object by its own.
             _<web_socket_server_connection>().m_web_socket_event =
                 std::shared_ptr<const EmscriptenWebSocketOpenEvent>(
@@ -126,32 +123,29 @@ namespace jod {
             return EM_TRUE;
         }
         
-        EM_BOOL
-        on_error(int event_type,
-                 const EmscriptenWebSocketErrorEvent *web_socket_event,
-                 void *user_data){
+        EM_BOOL on_error(int event_type,
+                         const EmscriptenWebSocketErrorEvent *web_socket_event,
+                         void *user_data){
             std::cout << "Web socket error.\n"; // Notify on web socket errors.
             return EM_TRUE;
         }
         
-        EM_BOOL
-        on_close(int event_type,
-                 const EmscriptenWebSocketCloseEvent *web_socket_event,
-                 void *user_data){
+        EM_BOOL on_close(int event_type,
+                         const EmscriptenWebSocketCloseEvent *web_socket_event,
+                         void *user_data){
             std::cout << "Closing web socket connection.\n"; // Notify on closing web socket connection.
             return EM_TRUE;
         }
         
-        EM_BOOL
-        on_message(int event_type,
-                   const EmscriptenWebSocketMessageEvent *web_socket_event,
-                   void *user_data){
+        EM_BOOL on_message(int event_type,
+                           const EmscriptenWebSocketMessageEvent *
+                           web_socket_event,
+                           void *user_data){
             process_incoming_message(web_socket_event->data); // Process the raw message data in bytes.
             return EM_TRUE;
         }
         
-        void
-        process_incoming_message(unsigned char *bytes){
+        void process_incoming_message(unsigned char *bytes) {
             auto message_code = read_four_bytes_as_int(bytes); // The first bytes contains the message code.
             switch (message_code){ // Perform corresponding action.
             case message_codes::k_draw_image_instr: {
@@ -177,8 +171,7 @@ namespace jod {
             }
         }
         
-        int
-        read_four_bytes_as_int(unsigned char *bytes){
+        int read_four_bytes_as_int(unsigned char *bytes) {
             // Pick out the separate bytes.
             auto b0 = (int)bytes[0];
             auto b1 = (int)bytes[1];
@@ -189,8 +182,7 @@ namespace jod {
             return result;
         }
         
-        float
-        read_four_bytes_at_float(unsigned char *bytes){
+        float read_four_bytes_at_float(unsigned char *bytes) {
             // Pick out the separate bytes.
             auto b0 = (int)bytes[0];
             auto b1 = (int)bytes[1];

@@ -14,8 +14,7 @@ namespace jod {
             m_rids.push_back(_<image_renderer>().new_image());
     }
     
-    void
-    render_instructions_manager::add_image_draw_instruction(
+    void render_instructions_manager::add_image_draw_instruction(
         int image_name_hash,
         rectf destination) {
         // Create a new image draw instruction and save it.
@@ -26,8 +25,7 @@ namespace jod {
             new_instruction);
     }
     
-    void
-    render_instructions_manager::apply_buffer(){
+    void render_instructions_manager::apply_buffer()      {
         // Replace the current instruction group with the new one.
         m_image_draw_instructions = m_image_draw_instructions_buffer;
         // Prepare the next-instructions-set for storing a new set
@@ -35,8 +33,7 @@ namespace jod {
         m_image_draw_instructions_buffer.clear();
     }
     
-    void
-    render_instructions_manager::execute_instructions(){
+    void render_instructions_manager::execute_instructions()      {
         // Execute all drawing instructions that have been added.
         for (auto &instr : m_image_draw_instructions)
             _<image_renderer>().draw_image(

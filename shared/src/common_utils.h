@@ -1,6 +1,6 @@
 /*
  * common_utils.h
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -10,8 +10,7 @@
 
 namespace jod {
     template <class T>
-    T &
-    _(){
+    T &_() {
         static T instance;
         return instance;
     }

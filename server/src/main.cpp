@@ -4,26 +4,15 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "server_core/net/web_socket_server.h"
-#include "theme0/scenes/world_generation/process/generate_new_world.h"
+#include "expression/expr_run_game_server.h"
+#include "expression/expr_main_function_args.h"
+#include "expression/expr_catch_all_exceptions.h"
 
-int
-main(int argc, char *argv[]){
-    if (argc != 3){
-        std::cerr << "Usage: websocket-server-sync <address> <port>\n"
-                  << "Example:\n"
-                  << "    websocket-server-sync 0.0.0.0 8080\n";
-        return EXIT_FAILURE;
-    }
+int main(int argc, char *argv[]) {
     using namespace jod;
-    try{
-        srand(time(0));
-        generate_new_world();
-        _<web_socket_server>().start(argv[1], argv[2]);
-    }
-    catch (const std::exception &e){
-        std::cerr << "Error: " << e.what() << std::endl;
-        return EXIT_FAILURE;
-    }
-    return EXIT_SUCCESS;
+    return expr_catch_all_exceptions(
+        std::make_shared<expr_run_game_server>(
+            std::make_shared<expr_main_function_args>(
+                argc,
+                argv))).evaluate().return_code;
 }

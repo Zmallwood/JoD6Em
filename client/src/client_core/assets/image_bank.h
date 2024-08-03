@@ -1,6 +1,6 @@
 /*
  * image_bank.h
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -18,7 +18,7 @@ namespace jod {
         
         //! \brief Get the Image object.
         //! \param image_name of image, corresponding to filename wihtout extension.
-        //! \return GLuintGLuint Resource ID of obtained image object.
+        //! \return GLuint Resource ID of obtained image object.
         GLuint get_image(std::string_view image_name) const;
         
         //! \brief Get the Image object.

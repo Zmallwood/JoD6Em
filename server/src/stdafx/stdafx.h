@@ -17,9 +17,12 @@
 #include <iostream>
 #include <functional>
 #include <map>
+#include <any>
 
 // Project.
 #include "math_lib.h"
 #include "common_utils.h"
 #include "net_configuration.h"
 #include "math.h"
+#include "expression/expr_return_struct.h"
+#include "expression/expr.h"

@@ -11,7 +11,8 @@
 
 namespace jod {
     namespace {
-        void key_callback(GLFWwindow *window, int key, int scan_code, int action,
+        void key_callback(GLFWwindow *window, int key, int scan_code,
+                          int action,
                           int mods);
         void mouse_button_callback(GLFWwindow *window, int button, int action,
                                    int mods);
@@ -20,8 +21,7 @@ namespace jod {
         EM_BOOL touch_end_callback(int, EmscriptenTouchEvent const *, void *);
     }
     
-    void
-    setup_callbacks() {
+    void setup_callbacks() {
         // Set callback for keyboard events.
         glfwSetKeyCallback(_<graphics>().m_window, key_callback);
         // Set callback for mouse events.
@@ -45,18 +45,17 @@ namespace jod {
     }
     
     namespace {
-        void
-        key_callback(GLFWwindow *window, int key, int scan_code, int action,
-                     int mods) {
+        void key_callback(GLFWwindow *window, int key, int scan_code,
+                          int action,
+                          int mods) {
             // if (action == GLFW_PRESS)
             //     _<KeyboardInput>().OnKeyPress(key);
             // else if (action == GLFW_RELEASE)
             //     _<KeyboardInput>().OnKeyRelease(key);
         }
         
-        void
-        mouse_button_callback(GLFWwindow *window, int button, int action,
-                              int mods) {
+        void mouse_button_callback(GLFWwindow *window, int button, int action,
+                                   int mods) {
             static bool mouse_down = false;
             if (button == GLFW_MOUSE_BUTTON_LEFT
                 && action == GLFW_PRESS
@@ -78,21 +77,20 @@ namespace jod {
             //     _<MouseInput>().RightButton().OnRelease();
         }
         
-        void
-        character_callback(
+        void character_callback(
             GLFWwindow *window,
             unsigned int code_point) {
             // _<KeyboardInput>().AppendTextInput(std::string(1, (char)code_point));
         }
         
-        EM_BOOL
-        touch_start_callback(int, EmscriptenTouchEvent const *, void *) {
+        EM_BOOL touch_start_callback(int, EmscriptenTouchEvent const *,
+                                     void *) {
             // _<MouseInput>().LeftButton().OnPress();
             return EM_FALSE;
         }
         
-        EM_BOOL
-        touch_end_callback(int, EmscriptenTouchEvent const *, void *) {
+        EM_BOOL touch_end_callback(int, EmscriptenTouchEvent const *,
+                                   void *) {
             // _<MouseInput>().LeftButton().OnRelease();
             return EM_FALSE;
         }

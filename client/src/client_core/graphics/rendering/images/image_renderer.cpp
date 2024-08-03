@@ -1,6 +1,6 @@
 /*
  * image_renderer.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -57,8 +57,7 @@ namespace jod {
         cleanup_base(); // Delete allocated resources for the renderer.
     }
     
-    rid
-    image_renderer::new_image(){
+    rid image_renderer::new_image() {
         auto rid = gen_new_vao_id(); // Create new Vertex Array Object.
         use_vao_begin(rid); // Use it.
         // Create buffers that are needed for 2D image rendering.
@@ -90,8 +89,7 @@ namespace jod {
         return rid; // Return the ID for the created VAO.
     }
     
-    void
-    image_renderer::draw_image(
+    void image_renderer::draw_image(
         rid rid,
         int image_name_hash,
         const rectf &destination,
@@ -102,15 +100,16 @@ namespace jod {
         // Create 4 vertices for an image rectangle.
         vertex2f verts[math_constants::k_num_vertices_in_rectangle];
         // Set vertices positions.
-        verts[0].position = {gl_rect.x, gl_rect.y - gl_rect.h};
-        verts[1].position = {gl_rect.x, gl_rect.y};
-        verts[2].position = {gl_rect.x + gl_rect.w, gl_rect.y};
-        verts[3].position = {gl_rect.x + gl_rect.w, gl_rect.y - gl_rect.h};
+        verts[0].pos = {gl_rect.x, gl_rect.y - gl_rect.h};
+        verts[1].pos = {gl_rect.x, gl_rect.y};
+        verts[2].pos = {gl_rect.x + gl_rect.w, gl_rect.y};
+        verts[3].pos = {gl_rect.x + gl_rect.w, gl_rect.y - gl_rect.h};
         // Set vertices texture coordinates.
         verts[0].uv = {0.0f, 1.0f / texture_fill_amount.h};
         verts[1].uv = {0.0f, 0.0f};
         verts[2].uv = {1.0f / texture_fill_amount.w, 0.0f};
-        verts[3].uv = {1.0f / texture_fill_amount.w, 1.0f / texture_fill_amount.h};
+        verts[3].uv = {1.0f / texture_fill_amount.w,
+                       1.0f / texture_fill_amount.h};
         glDisable(GL_DEPTH_TEST); // No need for depth testing in a 2D plane.
         // Obtain GL ID for image to be rendered.
         auto image_id = _<image_bank>().get_image(image_name_hash);
@@ -133,8 +132,8 @@ namespace jod {
         std::vector<float> colors;
         std::vector<float> uvs;
         for (auto &vert : verts){
-            positions.push_back(vert.position.x);
-            positions.push_back(vert.position.y);
+            positions.push_back(vert.pos.x);
+            positions.push_back(vert.pos.y);
             colors.push_back(color.r);
             colors.push_back(color.g);
             colors.push_back(color.b);
@@ -164,8 +163,7 @@ namespace jod {
         use_vao_end(); // Stop using the Vertex Array Object.
     }
     
-    void
-    image_renderer::draw_image(
+    void image_renderer::draw_image(
         rid rid,
         std::string_view image_name,
         const rectf &destination,
