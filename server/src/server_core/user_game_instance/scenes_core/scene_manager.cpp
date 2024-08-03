@@ -10,9 +10,11 @@
 #include "configuration/game_properties.h"
 #include "theme0/scenes/main/process/tile_hovering.h"
 #include "theme0/scenes/main/process/mouse_movement.h"
+#include "theme0/scenes/main/process/mob_targeting.h"
 #include "server_core/world_structure/world.h"
 #include "server_core/world_structure/world_area.h"
 #include "server_core/world_structure/tile.h"
+#include "server_core/world_structure/creature.h"
 #include "server_core/core_game_objects/player.h"
 #include "server_core/user_game_instance/scenes_core/scene.h"
 
@@ -60,6 +62,7 @@ namespace jod {
             [&]{
                 m_user_connection.m_tile_hovering->update();
                 m_user_connection.m_mouse_movement->update();
+                m_user_connection.m_mob_targeting->update();
             },
             [&](websocket::stream<tcp::socket> &ws){
                 auto tile_size =
@@ -96,6 +99,35 @@ namespace jod {
                                 {x * tile_size.w, y * tile_size.h, tile_size.w,
                                  tile_size.h});
                         }
+                        if (tile->m_object) {
+                            m_user_connection.send_image_draw_instruction(
+                                ws,
+                                tile->m_object,
+                                {x * tile_size.w, y * tile_size.h, tile_size.w,
+                                 tile_size.h});
+                        }
+                        if (tile->m_creature) {
+                            if (tile->m_creature ==
+                                user_connection.m_mob_targeting->
+                                m_targeted_creature){
+                                m_user_connection.send_image_draw_instruction(
+                                    ws,
+                                   "TargetedMob",
+                                    {x * tile_size.w, y * tile_size.h,
+                                     tile_size.w,
+                                     tile_size.h});
+                            }
+                            m_user_connection.send_image_draw_instruction(
+                                ws,
+                                tile->m_creature->m_type,
+                                {x * tile_size.w, y * tile_size.h, tile_size.w,
+                                 tile_size.h});
+                            m_user_connection.send_text_draw_instruction(
+                                ws,
+                                "Mob, Lvl." +
+                                std::to_string(tile->m_creature->m_level),
+                                {x*tile_size.w, (y - 0.5f)*tile_size.h});
+                        }
                         if (coord_x == player_coordinate.x &&
                             coord_y == player_coordinate.y){
                             m_user_connection.send_image_draw_instruction(
@@ -114,37 +146,32 @@ namespace jod {
         go_to("IntroScene");
     }
     
-    void
-    scene_manager::update_current_scene(){
+    void scene_manager::update_current_scene() {
         if (m_scenes.contains(m_current_scene))
             m_scenes.at(m_current_scene).update();
     }
     
-    void
-    scene_manager::render_current_scene(websocket::stream<tcp::socket> &ws){
+    void scene_manager::render_current_scene(
+        websocket::stream<tcp::socket> &ws) {
         if (m_scenes.contains(m_current_scene))
             m_scenes.at(m_current_scene).render(ws);
     }
     
-    void
-    scene_manager::on_key_down_current_scene(){
+    void scene_manager::on_key_down_current_scene() {
         if (m_scenes.contains(m_current_scene))
             m_scenes.at(m_current_scene).on_key_down();
     }
     
-    void
-    scene_manager::on_mouse_down_current_scene(){
+    void scene_manager::on_mouse_down_current_scene() {
         if (m_scenes.contains(m_current_scene))
             m_scenes.at(m_current_scene).on_mouse_down();
     }
     
-    void
-    scene_manager::go_to(std::string_view scene_name){
+    void scene_manager::go_to(std::string_view scene_name) {
         m_current_scene = jod::hash(scene_name);
     }
     
-    void
-    scene_manager::add_scene(
+    void scene_manager::add_scene(
         std::string_view scene_name,
         std::function<void()> update_action,
         std::function<void(websocket::stream<tcp::socket> &)> render_action,

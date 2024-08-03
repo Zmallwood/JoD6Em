@@ -6,13 +6,13 @@
 
 #pragma once
 
-#include <string>
 namespace jod {
     class server_engine;
     class player;
     class tile_hovering;
     class mouse_movement;
     class cursor;
+    class mob_targeting;
     
     class user_connection {
     public:
@@ -44,6 +44,8 @@ namespace jod {
         std::shared_ptr<tile_hovering> m_tile_hovering;
         
         std::shared_ptr<mouse_movement> m_mouse_movement;
+
+        std::shared_ptr<mob_targeting> m_mob_targeting;
         
         pointf m_mouse_position;
         

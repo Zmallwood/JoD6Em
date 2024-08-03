@@ -14,6 +14,7 @@
 #include "server_core/cursor/cursor.h"
 #include "theme0/scenes/main/process/tile_hovering.h"
 #include "theme0/scenes/main/process/mouse_movement.h"
+#include "theme0/scenes/main/process/mob_targeting.h"
 
 namespace beast = boost::beast;
 namespace http = beast::http;
@@ -26,7 +27,8 @@ namespace jod {
         m_player(std::make_shared<player>()),
         m_tile_hovering(std::make_shared<tile_hovering>(*this)),
         m_mouse_movement(std::make_shared<mouse_movement>(*this)),
-        m_cursor(std::make_shared<cursor>(*this)){
+        m_cursor(std::make_shared<cursor>(*this)),
+        m_mob_targeting(std::make_shared<mob_targeting>(*this)){
         std::thread(
             &user_connection::do_session, this,
             std::move(socket)).detach();
@@ -58,10 +60,14 @@ namespace jod {
                         auto w = (int)message[1];
                         auto h = (int)message[2];
                         m_canvas_size = {w, h};
-                    }else if (*message == message_codes::k_mouse_down) {
-                        m_server_engine->m_mouse_input->register_mouse_down();
+                    }else if (*message == message_codes::k_left_mouse_down) {
+                        m_server_engine->m_mouse_input->register_mouse_down(mouse_buttons::left);
                         m_server_engine->on_mouse_down();
-                    }else if (*message == message_codes::k_mouse_position) {
+                    }
+                    else if (*message == message_codes::k_right_mouse_down) {
+                        m_server_engine->m_mouse_input->register_mouse_down(mouse_buttons::right);
+                    }
+                    else if (*message == message_codes::k_mouse_position) {
                         auto x = message[1] / net_constants::k_float_precision;
                         auto y = message[2] / net_constants::k_float_precision;
                         m_mouse_position = {x, y};

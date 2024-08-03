@@ -56,16 +56,26 @@ namespace jod {
         
         void mouse_button_callback(GLFWwindow *window, int button, int action,
                                    int mods) {
-            static bool mouse_down = false;
+            static bool mouse_left_down = false;
+            static bool mouse_right_down = false;
             if (button == GLFW_MOUSE_BUTTON_LEFT
                 && action == GLFW_PRESS
-                && !mouse_down){
+                && !mouse_left_down){ 
                 _<web_socket_server_connection>().send_message(
-                    message_codes::k_mouse_down);
-                mouse_down = true;
+                    message_codes::k_left_mouse_down);
+                mouse_left_down = true;
             } else if (button == GLFW_MOUSE_BUTTON_LEFT &&
                        action == GLFW_RELEASE) {
-                mouse_down = false;
+                mouse_left_down = false;
+            }else if (button == GLFW_MOUSE_BUTTON_RIGHT
+                      && action == GLFW_PRESS
+                      && !mouse_right_down){
+                _<web_socket_server_connection>().send_message(
+                    message_codes::k_right_mouse_down);
+                mouse_right_down = true;
+            } else if (button == GLFW_MOUSE_BUTTON_RIGHT &&
+                       action == GLFW_RELEASE) {
+                mouse_right_down = false;
             }
             // if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
             //     _<MouseInput>().LeftButton().OnPress();

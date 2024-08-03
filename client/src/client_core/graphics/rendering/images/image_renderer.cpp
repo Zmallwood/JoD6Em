@@ -49,7 +49,7 @@ namespace jod {
         // Create shader program.
         m_shader_program->create(
             default_shader_images_vertex,
-            default_shader_images_fragment);
+            default_shader_images_fragment); 
         // m_locNoPixelEffect = GetUniformLocation("noPixelEffect");
     }
     

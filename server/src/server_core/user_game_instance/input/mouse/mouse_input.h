@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "mouse_buttons.h"
+
 namespace jod {
     class mouse_button;
 
@@ -13,8 +15,9 @@ namespace jod {
     public:
         mouse_input();
         
-        void register_mouse_down();
+        void register_mouse_down(mouse_buttons button);
         
         std::shared_ptr<mouse_button> m_left_button;
+        std::shared_ptr<mouse_button> m_right_button;
     };
 }

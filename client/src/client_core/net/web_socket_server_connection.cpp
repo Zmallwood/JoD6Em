@@ -62,8 +62,19 @@ namespace jod {
                     result;
             break;
         }
-        case message_codes::k_mouse_down: {
-            int msg = message_codes::k_mouse_down; // Message contains only message code.
+        case message_codes::k_left_mouse_down: {
+            int msg = message_codes::k_left_mouse_down; // Message contains only message code.
+            // Try send packet and handle failure.
+            if (auto result = emscripten_websocket_send_binary(
+                    m_web_socket_event->socket,
+                    &msg,
+                    sizeof(msg)))
+                std::cout << "Failed to emscripten_websocket_send_binary(): " <<
+                    result;
+            break;
+        }
+        case message_codes::k_right_mouse_down: {
+            int msg = message_codes::k_right_mouse_down; // Message contains only message code.
             // Try send packet and handle failure.
             if (auto result = emscripten_websocket_send_binary(
                     m_web_socket_event->socket,
