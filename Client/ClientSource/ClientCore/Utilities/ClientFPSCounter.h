@@ -8,10 +8,10 @@
 
 namespace jod {
     //! \brief Client side FPS counter rendered to the canvas.
-    class fps_counter {
+    class client_fps_counter {
     public:
         //! \brief Construct a new fps counter object by allocated rendering resources.
-        fps_counter();
+        client_fps_counter();
         
         //! \brief Compute the current FPS.
         void update();

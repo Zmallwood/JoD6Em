@@ -14,7 +14,7 @@ namespace jod {
     render_instructions_manager::render_instructions_manager(){
         // Create a sufficient amount of RIDs for drawing images and game start.
         for (auto i = 0; i < k_max_num_draw_instructions; i++)
-            m_rids.push_back(_<image_renderer>().new_image());
+            m_rids.push_back(_<ImageRenderer>().NewImage());
         
         for (auto i = 0; i < k_max_num_draw_text_instructions; i++)
             m_rids_text.push_back(_<text_renderer>().new_string());
@@ -60,7 +60,7 @@ namespace jod {
         for (auto &instr : m_image_draw_instructions){
             switch (instr.type) {
             case instruction_types::image:
-                _<image_renderer>().draw_image(
+                _<ImageRenderer>().DrawImage(
                     instr.rid,
                     instr.image_name_hash,
                     instr.destination);

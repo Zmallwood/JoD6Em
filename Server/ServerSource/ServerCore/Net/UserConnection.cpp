@@ -7,7 +7,7 @@
 #include "UserConnection.h"
 #include "ServerCore/Net/WebSocketServer.h"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.h"
-#include "ServerCore/UserGameInstance/ServerEngine.h"
+#include "ServerCore/UserGameInstance/UserGameInstanceEngine.h"
 #include "MessageCodes.h"
 #include "NetConfiguration.h"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.h"
@@ -23,7 +23,7 @@ using tcp = boost::asio::ip::tcp;
 
 namespace jod {
     user_connection::user_connection(tcp::socket socket)
-        : m_server_engine(std::make_shared<server_engine>(*this)),
+        : m_user_game_instance_engine(std::make_shared<user_game_instance_engine>(*this)),
         m_player(std::make_shared<player>()),
         m_tile_hovering(std::make_shared<tile_hovering>(*this)),
         m_mouse_movement(std::make_shared<mouse_movement>(*this)),
@@ -50,8 +50,8 @@ namespace jod {
             ws.accept(); // Accept the websocket handshake.
             ws.text(false); // Receive binary data, not text.
             while (true){
-                m_server_engine->update();
-                m_server_engine->render(ws);
+                m_user_game_instance_engine->update();
+                m_user_game_instance_engine->render(ws);
                 while (true){
                     beast::flat_buffer buffer; // This buffer will hold the incoming message.
                     ws.read(buffer); // Read a message.
@@ -61,10 +61,12 @@ namespace jod {
                         auto h = (int)message[2];
                         m_canvas_size = {w, h};
                     }else if (*message == message_codes::k_left_mouse_down) {
-                        m_server_engine->m_mouse_input->register_mouse_down(
+                        m_user_game_instance_engine->m_mouse_input->
+                        register_mouse_down(
                             mouse_buttons::left);
                     }else if (*message == message_codes::k_right_mouse_down) {
-                        m_server_engine->m_mouse_input->register_mouse_down(
+                        m_user_game_instance_engine->m_mouse_input->
+                        register_mouse_down(
                             mouse_buttons::right);
                     }else if (*message == message_codes::k_mouse_position) {
                         auto x = message[1] / net_constants::k_float_precision;

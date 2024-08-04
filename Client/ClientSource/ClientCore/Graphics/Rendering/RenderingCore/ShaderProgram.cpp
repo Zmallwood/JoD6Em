@@ -7,7 +7,7 @@
 #include "ShaderProgram.h"
 
 namespace jod {
-    bool shader_program::create(
+    bool ShaderProgram::Create(
         const GLchar *vertex_shader_source,
         const GLchar *fragment_shader_source){
         // To hold the shader IDs.
@@ -63,11 +63,11 @@ namespace jod {
         return success;
     }
     
-    void shader_program::cleanup()      {
+    void ShaderProgram::Cleanup()      {
         glDeleteProgram(m_program_id); // Delete GL program.
     }
     
-    GLuint shader_program::compile_shader(
+    GLuint ShaderProgram::compile_shader(
         const GLchar *shader_source,
         GLuint *shader,
         GLenum shader_type){

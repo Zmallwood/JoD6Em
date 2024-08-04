@@ -8,7 +8,7 @@
 #include "ServerCore/Net/UserConnection.h"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.h"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.h"
-#include "ServerCore/UserGameInstance/ServerEngine.h"
+#include "ServerCore/UserGameInstance/UserGameInstanceEngine.h"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.h"
 #include "TileHovering.h"
 
@@ -20,7 +20,7 @@ namespace jod {
     void
     mouse_movement::update(){
         auto mouse_down =
-            m_user_connection.m_server_engine->m_mouse_input->m_left_button->
+            m_user_connection.m_user_game_instance_engine->m_mouse_input->m_left_button->
             is_pressed_pick_result();
         auto player = m_user_connection.m_player;
         auto hovered_tile =

@@ -50,7 +50,7 @@ namespace jod {
         
         glEnable(GL_TEXTURE_2D);
         auto unique_name_id = m_unqiue_name_ids.at(rid);
-        auto image_id = _<image_bank>().get_image(unique_name_id);
+        auto image_id = _<ImageBank>().GetImage(unique_name_id);
         
         glBindTexture(GL_TEXTURE_2D, image_id);
         // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -115,9 +115,9 @@ namespace jod {
         static int s_id_counter = 0;
         auto id = s_id_counter++;
         auto unique_name = "RenderedImage" + std::to_string(id);
-        auto rid_image = _<image_bank>().create_blank_image(unique_name);
+        auto rid_image = _<ImageBank>().CreateBlankImage(unique_name);
         m_unqiue_name_ids.insert({rid_image, unique_name});
-        auto rid_gl_resource = _<image_renderer>().new_image();
+        auto rid_gl_resource = _<ImageRenderer>().NewImage();
         m_rids_gl_resources.insert({rid_image, rid_gl_resource});
         return rid_image;
     }
@@ -162,7 +162,7 @@ namespace jod {
         
         auto rid_gl_resource = m_rids_gl_resources.at(rid);
         
-        _<image_renderer>().draw_image(
+        _<ImageRenderer>().DrawImage(
             rid_gl_resource, unique_name_id, rectangle,
             false);
         

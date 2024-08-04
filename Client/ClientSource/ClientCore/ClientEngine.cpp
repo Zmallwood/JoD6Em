@@ -10,7 +10,7 @@
 #include "ClientCore/Net/WebSocketServerConnection.h"
 #include "Instructions/RenderInstructionsManager.h"
 #include "Input/SetupCallbacks.h"
-#include "Utilities/FPSCounter.h"
+#include "Utilities/ClientFPSCounter.h"
 
 namespace jod {
     namespace {
@@ -45,14 +45,14 @@ namespace jod {
             if (!_<client_engine>().m_running) // Exit main loop if user has requested it.
                 emscripten_cancel_main_loop();
             _<client_engine>().poll_events(); // Poll user events and process them.
-            _<fps_counter>().update();
+            _<client_fps_counter>().update();
             _<web_socket_server_connection>().send_message(
                 message_codes::k_mouse_position);
             // Clear canvas with single color to prepare for new rendering.
             _<graphics>().clear_canvas();
             // Draw canvas in its current state (current set of drawing instructions).
             _<render_instructions_manager>().execute_instructions();
-            _<fps_counter>().render();
+            _<client_fps_counter>().render();
             _<graphics>().present_canvas(); // Present canvas to users web browser.
             _<web_socket_server_connection>().send_message(
                 message_codes::k_frame_finished);

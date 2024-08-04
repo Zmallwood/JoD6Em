@@ -8,7 +8,7 @@
 #include "ServerCore/Net/UserConnection.h"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.h"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.h"
-#include "ServerCore/UserGameInstance/ServerEngine.h"
+#include "ServerCore/UserGameInstance/UserGameInstanceEngine.h"
 #include "TileHovering.h"
 #include "ServerCore/ServerWide/WorldStructure/World.h"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.h"
@@ -21,7 +21,7 @@ namespace jod {
     
     void mob_targeting::update() {
         auto mouse_down =
-            m_user_connection.m_server_engine->m_mouse_input->m_right_button->
+            m_user_connection.m_user_game_instance_engine->m_mouse_input->m_right_button->
             is_pressed_pick_result();
         auto hovered_tile =
             m_user_connection.m_tile_hovering->m_hovered_coordinate;

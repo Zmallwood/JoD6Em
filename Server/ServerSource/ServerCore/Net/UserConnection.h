@@ -7,7 +7,7 @@
 #pragma once
 
 namespace jod {
-    class server_engine;
+    class user_game_instance_engine;
     class player;
     class tile_hovering;
     class mouse_movement;
@@ -45,7 +45,7 @@ namespace jod {
         
         pointf m_mouse_position;
         
-        std::shared_ptr<server_engine> m_server_engine;
+        std::shared_ptr<user_game_instance_engine> m_user_game_instance_engine;
         
         std::shared_ptr<cursor> m_cursor;
         

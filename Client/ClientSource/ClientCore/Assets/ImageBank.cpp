@@ -9,25 +9,26 @@
 namespace jod {
     namespace {
         // Load single image from absolute file path.
-        GLuint load_single_image(std::string_view abs_file_path);
+        GLuint LoadSingleImage(std::string_view abs_file_path);
+
         // Load pure image data from file name.
-        SDL_Surface *load_image_data(const char *file_name);
+        SDL_Surface *LoadImageData(const char *file_name);
     }
     
-    image_bank::image_bank() {
-        load_images(); // Load all images in images path.
+    ImageBank::ImageBank() {
+        LoadImages(); // Load all images in images path.
     }
     
-    image_bank::~image_bank() { // Iterate through all the loaded images.
+    ImageBank::~ImageBank() { // Iterate through all the loaded images.
         for (const auto &image : m_images)
             glDeleteTextures(1, &image.second); // Free every allocated image resource.
     }
     
-    GLuint image_bank::get_image(std::string_view image_name) const {
-        return get_image(jod::hash(image_name)); // Hash the image name and call the function overload
+    GLuint ImageBank::GetImage(std::string_view image_name) const {
+        return GetImage(jod::hash(image_name)); // Hash the image name and call the function overload
     }
     
-    GLuint image_bank::get_image(int image_name_hash) const {
+    GLuint ImageBank::GetImage(int image_name_hash) const {
         for (auto image : m_images) // Iterate through all the loaded images.
             // If its key, being the hash of the image name, equals
             // the hash of the specified name, then, return this image ID.
@@ -35,7 +36,7 @@ namespace jod {
         return -1; // No image with the name found, return fail value.
     }
     
-    GLuint image_bank::create_blank_image(
+    GLuint ImageBank::CreateBlankImage(
         std::string_view unique_image_name) {
         GLuint tex_id; // Generate new image resource,
         glGenTextures(1, &tex_id); // and get its ID.
@@ -45,13 +46,13 @@ namespace jod {
         return tex_id; // Return the ID of the newly created blank image resource.
     }
     
-    void image_bank::load_images() {
+    void ImageBank::LoadImages() {
         using iterator = std::filesystem::recursive_directory_iterator;
         auto all_images_path = k_rel_images_path + "/";
         for (auto &entry : iterator(all_images_path)) {
             auto abs_path = entry.path().string(); // Create path string to load the images from.
             if (file_extension(abs_path) != "png") continue; // Only handle files with png extenstion.
-            auto tex_id = load_single_image(abs_path); // Load the current file as an image resource.
+            auto tex_id = LoadSingleImage(abs_path); // Load the current file as an image resource.
             auto image_name = filename_no_extension(
                 abs_path); // Extract its pure name without path or extension.
             // Insert a new entry into the images storage, with the
@@ -61,10 +62,10 @@ namespace jod {
     }
     
     namespace {
-        GLuint load_single_image(std::string_view abs_file_path) {
+        GLuint LoadSingleImage(std::string_view abs_file_path) {
             GLuint tex_id; // Declare variable to hold the resulting ID for the loaded image file.
             // Get image data from the image file.
-            auto surface = load_image_data(abs_file_path.data());
+            auto surface = LoadImageData(abs_file_path.data());
             glEnable(GL_TEXTURE_2D); // We will work with 2D textures.
             glGenTextures(1, &tex_id); // Generate a new OpenGL texture and get its ID.
             glBindTexture(GL_TEXTURE_2D, tex_id); // Use the newly created OpenGL texture.
@@ -89,7 +90,7 @@ namespace jod {
             return tex_id; // Return the previously generated resource ID.
         }
         
-        SDL_Surface *load_image_data(const char *file_name) {
+        SDL_Surface *LoadImageData(const char *file_name) {
             int width;
             int height;
             int bytes_per_pixel;

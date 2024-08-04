@@ -9,9 +9,9 @@
 namespace jod {
     class user_connection;
 
-    class fps_counter {
+    class server_fps_counter {
     public:
-        fps_counter(user_connection& user_connection);
+        server_fps_counter(user_connection& user_connection);
 
         void update();
         

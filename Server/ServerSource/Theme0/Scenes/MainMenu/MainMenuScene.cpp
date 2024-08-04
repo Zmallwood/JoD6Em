@@ -6,16 +6,18 @@
 
 #include "MainMenuScene.h"
 #include "ServerCore/Net/UserConnection.h"
-#include "ServerCore/UserGameInstance/ServerEngine.h"
+#include "ServerCore/UserGameInstance/UserGameInstanceEngine.h"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.h"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.h"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.h"
 
 namespace jod {
     void MainMenuScene::UpdateDerived() {
-        if (m_user_connection.m_server_engine->m_mouse_input->m_left_button->
+        if (m_user_connection.m_user_game_instance_engine->m_mouse_input->
+            m_left_button->
             is_pressed_pick_result()) {
-            m_user_connection.m_server_engine->m_scene_manager->go_to(
+            m_user_connection.m_user_game_instance_engine->m_scene_manager->
+            go_to(
                 "MainScene");
         }
     }

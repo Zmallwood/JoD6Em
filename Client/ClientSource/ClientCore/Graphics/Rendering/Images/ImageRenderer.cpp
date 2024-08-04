@@ -45,51 +45,51 @@ namespace jod {
         int m_loc_no_pixel_effect{-1}; // Location of pixelation effect switch variable in vertex shader.
     }
     
-    image_renderer::image_renderer(){
+    ImageRenderer::ImageRenderer(){
         // Create shader program.
-        m_shader_program->create(
+        m_shader_program->Create(
             default_shader_images_vertex,
             default_shader_images_fragment); 
         // m_locNoPixelEffect = GetUniformLocation("noPixelEffect");
     }
     
-    image_renderer::~image_renderer(){
-        cleanup_base(); // Delete allocated resources for the renderer.
+    ImageRenderer::~ImageRenderer(){
+        CleanupBase(); // Delete allocated resources for the renderer.
     }
     
-    rid image_renderer::new_image() {
-        auto rid = gen_new_vao_id(); // Create new Vertex Array Object.
-        use_vao_begin(rid); // Use it.
+    rid ImageRenderer::NewImage() {
+        auto rid = GenNewVAOID(); // Create new Vertex Array Object.
+        UseVAOBegin(rid); // Use it.
         // Create buffers that are needed for 2D image rendering.
-        auto index_buff_id = gen_new_buff_id(buffer_types::indices, rid);
-        auto pos_buff_id = gen_new_buff_id(buffer_types::positions_2d, rid);
-        auto color_buff_id = gen_new_buff_id(buffer_types::colors, rid);
-        auto uv_buff_id = gen_new_buff_id(buffer_types::uvs, rid);
+        auto index_buff_id = GenNewBuffID(BufferTypes::indices, rid);
+        auto pos_buff_id = GenNewBuffID(BufferTypes::positions_2d, rid);
+        auto color_buff_id = GenNewBuffID(BufferTypes::colors, rid);
+        auto uv_buff_id = GenNewBuffID(BufferTypes::uvs, rid);
         // Set buffers to empty data.
-        set_indices_data(
+        SetIndicesData(
             index_buff_id,
             math_constants::k_num_vertices_in_rectangle,
             nullptr);
-        set_data(
+        SetData(
             pos_buff_id,
             math_constants::k_num_vertices_in_rectangle,
             nullptr,
-            buffer_types::positions_2d);
-        set_data(
+            BufferTypes::positions_2d);
+        SetData(
             color_buff_id,
             math_constants::k_num_vertices_in_rectangle,
             nullptr,
-            buffer_types::colors);
-        set_data(
+            BufferTypes::colors);
+        SetData(
             uv_buff_id,
             math_constants::k_num_vertices_in_rectangle,
             nullptr,
-            buffer_types::uvs);
-        use_vao_end(); // Stop using the Vertex Array Object.
+            BufferTypes::uvs);
+        UseVAOEnd(); // Stop using the Vertex Array Object.
         return rid; // Return the ID for the created VAO.
     }
     
-    void image_renderer::draw_image(
+    void ImageRenderer::DrawImage(
         rid rid,
         int image_name_hash,
         const rectf &destination,
@@ -112,7 +112,7 @@ namespace jod {
                        1.0f / texture_fill_amount.h};
         glDisable(GL_DEPTH_TEST); // No need for depth testing in a 2D plane.
         // Obtain GL ID for image to be rendered.
-        auto image_id = _<image_bank>().get_image(image_name_hash);
+        auto image_id = _<ImageBank>().GetImage(image_name_hash);
         if (image_id == -1) return; // If requested image not found, stop the rendering.
         glBindTexture(GL_TEXTURE_2D, image_id); // Start use the image.
         // If we should repeat the texture as a pattern or fit it to the destination rectangle.
@@ -141,29 +141,29 @@ namespace jod {
             uvs.push_back(vert.uv.x);
             uvs.push_back(vert.uv.y);
         }
-        use_vao_begin(rid); // Start using the Vertex Array Object.
+        UseVAOBegin(rid); // Start using the Vertex Array Object.
         auto no_pixel_effect = true; // If pixelation effect should be used.
         // glUniform1f(m_locNoPixelEffect, noPixelEffect ? 1.0f : 0.0f);
         // Get buffer IDs for the required data contents.
-        auto index_buff_id = get_buff_id(buffer_types::indices, rid);
-        auto pos_buff_id = get_buff_id(buffer_types::positions_2d, rid);
-        auto color_buff_id = get_buff_id(buffer_types::colors, rid);
-        auto uv_buff_id = get_buff_id(buffer_types::uvs, rid);
+        auto index_buff_id = GetBuffID(BufferTypes::indices, rid);
+        auto pos_buff_id = GetBuffID(BufferTypes::positions_2d, rid);
+        auto color_buff_id = GetBuffID(BufferTypes::colors, rid);
+        auto uv_buff_id = GetBuffID(BufferTypes::uvs, rid);
         // Provide the float vector data to the buffers.
-        update_indices_data(index_buff_id, indices);
-        update_data(
-            pos_buff_id, positions, buffer_types::positions_2d,
+        UpdateIndicesData(index_buff_id, indices);
+        UpdateData(
+            pos_buff_id, positions, BufferTypes::positions_2d,
             k_loc_position);
-        update_data(color_buff_id, colors, buffer_types::colors, k_loc_color);
-        update_data(uv_buff_id, uvs, buffer_types::uvs, k_loc_uv);
+        UpdateData(color_buff_id, colors, BufferTypes::colors, k_loc_color);
+        UpdateData(uv_buff_id, uvs, BufferTypes::uvs, k_loc_uv);
         // Do the actual rendering.
         glDrawElements(
             GL_TRIANGLE_FAN,
             math_constants::k_num_vertices_in_rectangle, GL_UNSIGNED_INT, NULL);
-        use_vao_end(); // Stop using the Vertex Array Object.
+        UseVAOEnd(); // Stop using the Vertex Array Object.
     }
     
-    void image_renderer::draw_image(
+    void ImageRenderer::DrawImage(
         rid rid,
         std::string_view image_name,
         const rectf &destination,
@@ -171,7 +171,7 @@ namespace jod {
         sizef texture_fill_amount,
         colorf color){
         // Forward the method call to the main overload.
-        draw_image(
+        DrawImage(
             rid, jod::hash(image_name), destination, repeat_texture,
             texture_fill_amount, color);
     }

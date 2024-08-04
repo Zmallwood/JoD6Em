@@ -1,8 +1,9 @@
 /*
- * ServerEngine.h
+ * UserGameInstanceEngine.h
  * 
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
+
 
 #pragma once
 
@@ -10,16 +11,15 @@ namespace jod {
     class user_connection;
     class mouse_input;
     class scene_manager;
-    class fps_counter;
+    class server_fps_counter;
 
-    class server_engine {
+    class user_game_instance_engine {
     public:
-        server_engine(user_connection &user_connection);
+        user_game_instance_engine(user_connection &user_connection);
         
         void update();
         
-        void render(
-            boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
+        void render(WebSocket &ws);
         
         std::shared_ptr<mouse_input> m_mouse_input;
         
@@ -27,7 +27,7 @@ namespace jod {
         
     private:
 
-        std::shared_ptr<fps_counter> m_fps_counter;
+        std::shared_ptr<server_fps_counter> m_server_fps_counter;
         
         user_connection &m_user_connection;
     };
