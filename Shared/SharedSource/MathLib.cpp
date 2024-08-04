@@ -4,7 +4,7 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "MathLib.h"
+#include "MathLib.hpp"
 
 namespace JoD {
     GLRectF RectF::to_glrectf() const {

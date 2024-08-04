@@ -4,8 +4,8 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "WorldArea.h"
-#include "Tile.h"
+#include "WorldArea.hpp"
+#include "Tile.hpp"
 
 namespace JoD {
     WorldArea::WorldArea(){

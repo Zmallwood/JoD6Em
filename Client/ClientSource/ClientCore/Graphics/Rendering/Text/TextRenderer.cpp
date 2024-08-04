@@ -4,12 +4,12 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "TextRenderer.h"
-#include "ClientCore/Assets/ImageBank.h"
-#include "ClientCore/Graphics/Rendering/Images/ImageRenderer.h"
-#include "ClientCore/Graphics/Rendering/Text/FontSizes.h"
-#include "Common/CanvasUtilities.h"
-#include "Font.h"
+#include "TextRenderer.hpp"
+#include "ClientCore/Assets/ImageBank.hpp"
+#include "ClientCore/Graphics/Rendering/Images/ImageRenderer.hpp"
+#include "ClientCore/Graphics/Rendering/Text/FontSizes.hpp"
+#include "Common/CanvasUtilities.hpp"
+#include "Font.hpp"
 
 namespace JoD {
     TextRenderer::TextRenderer() {

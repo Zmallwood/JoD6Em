@@ -4,7 +4,7 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "IScene.h"
+#include "IScene.hpp"
 
 namespace JoD {
     IScene::IScene(UserConnection& user_connection)

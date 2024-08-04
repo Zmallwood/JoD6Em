@@ -4,7 +4,7 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "ImageBank.h"
+#include "ImageBank.hpp"
 
 namespace JoD {
     namespace {

@@ -4,12 +4,12 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "IntroScene.h"
-#include "ServerCore/Net/UserConnection.h"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.h"
-#include "ServerCore/UserGameInstance/ScenesCore/SceneManager.h"
-#include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.h"
-#include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.h"
+#include "IntroScene.hpp"
+#include "ServerCore/Net/UserConnection.hpp"
+#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
+#include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
+#include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
 
 namespace JoD {
     void IntroScene::UpdateDerived() {

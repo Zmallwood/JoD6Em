@@ -4,8 +4,8 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "MouseUtilities.h"
-#include "ClientCore/Graphics/Graphics.h"
+#include "MouseUtilities.hpp"
+#include "ClientCore/Graphics/Graphics.hpp"
 
 namespace JoD {
     PointF GetMousePosition() {

@@ -4,7 +4,7 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "Mob.h"
+#include "Mob.hpp"
 
 namespace JoD {
     Mob::Mob(std::string_view mob_name,

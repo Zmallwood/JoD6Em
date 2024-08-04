@@ -4,18 +4,18 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "UserConnection.h"
-#include "ServerCore/Net/WebSocketServer.h"
-#include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.h"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.h"
-#include "MessageCodes.h"
-#include "NetConfiguration.h"
-#include "ServerCore/UserGameInstance/CoreGameObjects/Player.h"
-#include "ServerCore/UserGameInstance/Cursor/Cursor.h"
-#include "Theme0/Scenes/Main/Process/TileHovering.h"
-#include "Theme0/Scenes/Main/Process/MouseMovement.h"
-#include "Theme0/Scenes/Main/Process/MobTargeting.h"
-#include "Theme0/Scenes/Main/Process/WorldView/WorldView.h"
+#include "UserConnection.hpp"
+#include "ServerCore/Net/WebSocketServer.hpp"
+#include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
+#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "MessageCodes.hpp"
+#include "NetConfiguration.hpp"
+#include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
+#include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
+#include "Theme0/Scenes/Main/Process/TileHovering.hpp"
+#include "Theme0/Scenes/Main/Process/MouseMovement.hpp"
+#include "Theme0/Scenes/Main/Process/MobTargeting.hpp"
+#include "Theme0/Scenes/Main/Process/WorldView/WorldView.hpp"
 
 namespace beast = boost::beast;
 namespace http = beast::http;

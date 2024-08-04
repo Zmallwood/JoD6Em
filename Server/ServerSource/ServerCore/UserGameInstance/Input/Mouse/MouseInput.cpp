@@ -4,8 +4,8 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "MouseInput.h"
-#include "MouseButton.h"
+#include "MouseInput.hpp"
+#include "MouseButton.hpp"
 
 namespace JoD {
     MouseInput::MouseInput() : m_left_button(

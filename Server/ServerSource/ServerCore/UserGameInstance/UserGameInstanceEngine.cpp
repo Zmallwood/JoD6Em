@@ -5,12 +5,12 @@
  */
 
 
-#include "UserGameInstanceEngine.h"
-#include "Input/Mouse/MouseInput.h"
-#include "ServerCore/Net/UserConnection.h"
-#include "ServerCore/UserGameInstance/Cursor/Cursor.h"
-#include "ScenesCore/SceneManager.h"
-#include "ServerFPSCounter.h"
+#include "UserGameInstanceEngine.hpp"
+#include "Input/Mouse/MouseInput.hpp"
+#include "ServerCore/Net/UserConnection.hpp"
+#include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
+#include "ScenesCore/SceneManager.hpp"
+#include "ServerFPSCounter.hpp"
 
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;

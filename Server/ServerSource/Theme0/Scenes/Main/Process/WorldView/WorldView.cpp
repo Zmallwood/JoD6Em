@@ -4,17 +4,17 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "WorldView.h"
-#include "ServerCore/Net/UserConnection.h"
-#include "Configuration/GameProperties.h"
-#include "Theme0/Scenes/Main/MainSceneMath/TileGridMath.h"
-#include "ServerCore/UserGameInstance/CoreGameObjects/Player.h"
-#include "ServerCore/ServerWide/WorldStructure/World.h"
-#include "ServerCore/ServerWide/WorldStructure/WorldArea.h"
-#include "ServerCore/ServerWide/WorldStructure/Tile.h"
-#include "ServerCore/ServerWide/WorldStructure/Mob.h"
-#include "Theme0/Scenes/Main/Process/TileHovering.h"
-#include "Theme0/Scenes/Main/Process/MobTargeting.h"
+#include "WorldView.hpp"
+#include "ServerCore/Net/UserConnection.hpp"
+#include "Configuration/GameProperties.hpp"
+#include "Theme0/Scenes/Main/MainSceneMath/TileGridMath.hpp"
+#include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
+#include "ServerCore/ServerWide/WorldStructure/World.hpp"
+#include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Mob.hpp"
+#include "Theme0/Scenes/Main/Process/TileHovering.hpp"
+#include "Theme0/Scenes/Main/Process/MobTargeting.hpp"
 
 namespace JoD {
     WorldView::WorldView(UserConnection& userConnection)

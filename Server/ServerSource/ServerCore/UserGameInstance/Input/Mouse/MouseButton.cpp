@@ -4,7 +4,7 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "MouseButton.h"
+#include "MouseButton.hpp"
 
 namespace JoD {
     void MouseButton::RegisterMouseDown()      {

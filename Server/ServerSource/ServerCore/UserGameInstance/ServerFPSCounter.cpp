@@ -4,8 +4,8 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "ServerFPSCounter.h"
-#include "ServerCore/Net/UserConnection.h"
+#include "ServerFPSCounter.hpp"
+#include "ServerCore/Net/UserConnection.hpp"
 
 namespace JoD {
     ServerFPSCounter::ServerFPSCounter(UserConnection& user_connection)

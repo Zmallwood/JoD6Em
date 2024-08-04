@@ -4,7 +4,7 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "ShaderProgram.h"
+#include "ShaderProgram.hpp"
 
 namespace JoD {
     bool ShaderProgram::Create(

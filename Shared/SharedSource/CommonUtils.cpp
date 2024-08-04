@@ -4,7 +4,7 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "CommonUtils.h"
+#include "CommonUtils.hpp"
 
 namespace JoD {
     int Hash(std::string_view text) {

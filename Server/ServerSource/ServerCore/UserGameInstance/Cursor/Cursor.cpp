@@ -4,8 +4,8 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "Cursor.h"
-#include "ServerCore/Net/UserConnection.h"
+#include "Cursor.hpp"
+#include "ServerCore/Net/UserConnection.hpp"
 
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;

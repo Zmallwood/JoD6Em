@@ -4,12 +4,12 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "MainScene.h"
-#include "ServerCore/Net/UserConnection.h"
-#include "Process/TileHovering.h"
-#include "Process/MouseMovement.h"
-#include "Process/MobTargeting.h"
-#include "Process/WorldView/WorldView.h"
+#include "MainScene.hpp"
+#include "ServerCore/Net/UserConnection.hpp"
+#include "Process/TileHovering.hpp"
+#include "Process/MouseMovement.hpp"
+#include "Process/MobTargeting.hpp"
+#include "Process/WorldView/WorldView.hpp"
 
 namespace JoD {
     void MainScene::UpdateDerived() {

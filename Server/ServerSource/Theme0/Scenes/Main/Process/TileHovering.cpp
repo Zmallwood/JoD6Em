@@ -4,11 +4,11 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "TileHovering.h"
-#include "Theme0/Scenes/Main/MainSceneMath/TileGridMath.h"
-#include "ServerCore/UserGameInstance/CoreGameObjects/Player.h"
-#include "Configuration/GameProperties.h"
-#include "ServerCore/Net/UserConnection.h"
+#include "TileHovering.hpp"
+#include "Theme0/Scenes/Main/MainSceneMath/TileGridMath.hpp"
+#include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
+#include "Configuration/GameProperties.hpp"
+#include "ServerCore/Net/UserConnection.hpp"
 
 namespace JoD {
     TileHovering::TileHovering(

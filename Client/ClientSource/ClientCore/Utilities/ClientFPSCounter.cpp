@@ -4,8 +4,8 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "ClientFPSCounter.h"
-#include "ClientCore/Graphics/Rendering/Text/TextRenderer.h"
+#include "ClientFPSCounter.hpp"
+#include "ClientCore/Graphics/Rendering/Text/TextRenderer.hpp"
 
 namespace JoD {
     ClientFPSCounter::ClientFPSCounter() {

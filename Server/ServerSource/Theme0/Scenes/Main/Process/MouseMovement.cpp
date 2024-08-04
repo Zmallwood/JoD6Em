@@ -4,13 +4,13 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "MouseMovement.h"
-#include "ServerCore/Net/UserConnection.h"
-#include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.h"
-#include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.h"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.h"
-#include "ServerCore/UserGameInstance/CoreGameObjects/Player.h"
-#include "TileHovering.h"
+#include "MouseMovement.hpp"
+#include "ServerCore/Net/UserConnection.hpp"
+#include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
+#include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
+#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
+#include "TileHovering.hpp"
 
 namespace JoD {
     MouseMovement::MouseMovement(

@@ -4,8 +4,8 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "RunNewClientInstance.h"
-#include "ClientEngine.h"
+#include "RunNewClientInstance.hpp"
+#include "ClientEngine.hpp"
 
 namespace JoD {
     void RunNewClientInstance()      {

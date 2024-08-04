@@ -4,10 +4,10 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "SetupInputCallbacks.h"
-#include "ClientCore/Graphics/Graphics.h"
-#include "ClientCore/Net/WebSocketServerConnection.h"
-#include "MessageCodes.h"
+#include "SetupInputCallbacks.hpp"
+#include "ClientCore/Graphics/Graphics.hpp"
+#include "ClientCore/Net/WebSocketServerConnection.hpp"
+#include "MessageCodes.hpp"
 
 namespace JoD {
     namespace {

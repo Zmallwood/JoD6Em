@@ -4,10 +4,10 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "WebSocketServerConnection.h"
-#include "ClientCore/Instructions/RenderInstructionsManager.h"
-#include "MessageCodes.h"
-#include "NetConfiguration.h"
+#include "WebSocketServerConnection.hpp"
+#include "ClientCore/Instructions/RenderInstructionsManager.hpp"
+#include "MessageCodes.hpp"
+#include "NetConfiguration.hpp"
 
 namespace JoD {
     namespace {

@@ -4,8 +4,8 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "RendererBase.h"
-#include "ShaderProgram.h"
+#include "RendererBase.hpp"
+#include "ShaderProgram.hpp"
 
 namespace JoD {
     RendererBase::RendererBase()

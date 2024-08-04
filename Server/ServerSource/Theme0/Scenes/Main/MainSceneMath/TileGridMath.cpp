@@ -4,8 +4,8 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "TileGridMath.h"
-#include "Configuration/GameProperties.h"
+#include "TileGridMath.hpp"
+#include "Configuration/GameProperties.hpp"
 
 namespace JoD {
     SizeF

@@ -4,7 +4,7 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "SDLDeleter.h"
+#include "SDLDeleter.hpp"
 
 namespace JoD {
     void SDLDeleter::operator()(SDL_Window *window) const {

@@ -4,13 +4,13 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "ClientEngine.h"
-#include "ClientCore/Graphics/Graphics.h"
-#include "MessageCodes.h"
-#include "ClientCore/Net/WebSocketServerConnection.h"
-#include "Instructions/RenderInstructionsManager.h"
-#include "Input/SetupInputCallbacks.h"
-#include "Utilities/ClientFPSCounter.h"
+#include "ClientEngine.hpp"
+#include "ClientCore/Graphics/Graphics.hpp"
+#include "MessageCodes.hpp"
+#include "ClientCore/Net/WebSocketServerConnection.hpp"
+#include "Instructions/RenderInstructionsManager.hpp"
+#include "Input/SetupInputCallbacks.hpp"
+#include "Utilities/ClientFPSCounter.hpp"
 
 namespace JoD {
     namespace {

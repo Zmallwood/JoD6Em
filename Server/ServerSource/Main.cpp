@@ -4,7 +4,7 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "ServerCore/RunGameServer.h"
+#include "ServerCore/RunGameServer.hpp"
 
 int main(int argc, char *argv[]) {
     try{ // Catch all exceptions that can happen during execution.

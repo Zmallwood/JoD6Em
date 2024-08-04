@@ -4,11 +4,11 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "RenderInstructionsManager.h"
-#include "ClientCore/Graphics/Rendering/Images/ImageRenderer.h"
-#include "ClientCore/Graphics/Rendering/Text/TextRenderer.h"
-#include "ClientCore/Instructions/ImageDrawInstruction.h"
-#include "ClientCore/Instructions/InstructionTypes.h"
+#include "RenderInstructionsManager.hpp"
+#include "ClientCore/Graphics/Rendering/Images/ImageRenderer.hpp"
+#include "ClientCore/Graphics/Rendering/Text/TextRenderer.hpp"
+#include "ClientCore/Instructions/ImageDrawInstruction.hpp"
+#include "ClientCore/Instructions/InstructionTypes.hpp"
 
 namespace JoD {
     RenderInstrutionsManager::RenderInstrutionsManager(){

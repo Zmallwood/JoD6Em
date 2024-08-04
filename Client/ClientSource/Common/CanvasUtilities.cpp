@@ -4,8 +4,8 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "CanvasUtilities.h"
-#include "ClientCore/Graphics/Graphics.h"
+#include "CanvasUtilities.hpp"
+#include "ClientCore/Graphics/Graphics.hpp"
 
 namespace JoD {
     Size GetCanvasSize()      {

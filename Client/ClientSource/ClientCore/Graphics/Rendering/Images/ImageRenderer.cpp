@@ -4,10 +4,10 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "ImageRenderer.h"
-#include "ClientCore/Assets/ImageBank.h"
-#include "MathLib.h"
-#include "ClientCore/Graphics/Rendering/RenderingCore/ShaderProgram.h"
+#include "ImageRenderer.hpp"
+#include "ClientCore/Assets/ImageBank.hpp"
+#include "MathLib.hpp"
+#include "ClientCore/Graphics/Rendering/RenderingCore/ShaderProgram.hpp"
 
 namespace JoD {
     namespace {

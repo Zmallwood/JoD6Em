@@ -4,7 +4,7 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "Font.h"
+#include "Font.hpp"
 
 namespace JoD {
     Font::Font(const std::string &font_file_name, int font_size) {

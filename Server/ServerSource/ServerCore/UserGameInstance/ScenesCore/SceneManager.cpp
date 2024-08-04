@@ -4,11 +4,11 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "SceneManager.h"
-#include "ServerCore/Net/UserConnection.h"
-#include "Theme0/Scenes/Intro/IntroScene.h"
-#include "Theme0/Scenes/MainMenu/MainMenuScene.h"
-#include "Theme0/Scenes/Main/MainScene.h"
+#include "SceneManager.hpp"
+#include "ServerCore/Net/UserConnection.hpp"
+#include "Theme0/Scenes/Intro/IntroScene.hpp"
+#include "Theme0/Scenes/MainMenu/MainMenuScene.hpp"
+#include "Theme0/Scenes/Main/MainScene.hpp"
 
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;

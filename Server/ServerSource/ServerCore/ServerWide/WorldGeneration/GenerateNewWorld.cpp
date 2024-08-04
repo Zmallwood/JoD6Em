@@ -4,14 +4,14 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "GenerateNewWorld.h"
-#include "ServerCore/ServerWide/WorldStructure/World.h"
-#include "ServerCore/ServerWide/WorldStructure/WorldArea.h"
-#include "ServerCore/ServerWide/WorldStructure/Tile.h"
-#include "ServerCore/ServerWide/WorldStructure/Mob.h"
+#include "GenerateNewWorld.hpp"
+#include "ServerCore/ServerWide/WorldStructure/World.hpp"
+#include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Mob.hpp"
 
 namespace JoD {
-    void generate_new_world() {
+    void GenerateNewWorld() {
         auto world_area = _<World>().m_current_world_area;
         for (auto y = 0; y < 100; y++)
             for (auto x = 0; x < 100; x++)

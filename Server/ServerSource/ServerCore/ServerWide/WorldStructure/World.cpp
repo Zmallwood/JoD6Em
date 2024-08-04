@@ -4,8 +4,8 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "World.h"
-#include "WorldArea.h"
+#include "World.hpp"
+#include "WorldArea.hpp"
 
 namespace JoD {
     World::World(){

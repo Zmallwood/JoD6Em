@@ -4,14 +4,14 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "RunGameServer.h"
-#include "ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.h"
-#include "Net/RunWebSocketServer.h"
+#include "RunGameServer.hpp"
+#include "ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.hpp"
+#include "Net/RunWebSocketServer.hpp"
 
 namespace JoD {
     void RunGameServer(char **argv) {
         srand(time(0));
-        generate_new_world();
+        GenerateNewWorld();
         RunWebSocketServer(argv[1], argv[2]);
     }
 }

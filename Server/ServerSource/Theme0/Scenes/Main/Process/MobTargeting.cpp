@@ -4,15 +4,15 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "MobTargeting.h"
-#include "ServerCore/Net/UserConnection.h"
-#include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.h"
-#include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.h"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.h"
-#include "TileHovering.h"
-#include "ServerCore/ServerWide/WorldStructure/World.h"
-#include "ServerCore/ServerWide/WorldStructure/WorldArea.h"
-#include "ServerCore/ServerWide/WorldStructure/Tile.h"
+#include "MobTargeting.hpp"
+#include "ServerCore/Net/UserConnection.hpp"
+#include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
+#include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
+#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "TileHovering.hpp"
+#include "ServerCore/ServerWide/WorldStructure/World.hpp"
+#include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 
 namespace JoD {
     MobTargeting::MobTargeting(UserConnection& user_connection)

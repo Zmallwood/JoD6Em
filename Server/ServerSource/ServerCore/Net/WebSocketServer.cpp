@@ -4,8 +4,8 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "WebSocketServer.h"
-#include "UserConnection.h"
+#include "WebSocketServer.hpp"
+#include "UserConnection.hpp"
 
 namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;

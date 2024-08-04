@@ -4,7 +4,7 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "Graphics.h"
+#include "Graphics.hpp"
 
 namespace JoD {
     namespace {
