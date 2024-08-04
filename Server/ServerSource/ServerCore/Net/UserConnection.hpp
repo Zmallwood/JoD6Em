@@ -15,34 +15,35 @@ namespace JoD {
     public:
         UserConnection(boost::asio::ip::tcp::socket socket);
         
-        void
-        SendImageDrawInstruction(WebSocket &ws,
-                                 std::string_view image_name,
-                                 RectF destination);
+        void SendImageDrawInstruction(
+            WebSocket &ws,
+            std::string_view imageName,
+            RectF destination) const;
         
-        void
-        SendImageDrawInstruction(WebSocket &ws,
-                                 int image_name_hash,
-                                 RectF destination);
+        void SendImageDrawInstruction(
+            WebSocket &ws,
+            int imageNamehash,
+            RectF destination) const;
         
-        void SendTextDrawInstruction(WebSocket &ws,
-                                     std::string_view text, PointF position);
+        void SendTextDrawInstruction(
+            WebSocket &ws,
+            std::string_view text, PointF position) const;
         
-        void SendPresentCanvasInstruction(WebSocket &ws);
+        void SendPresentCanvasInstruction(WebSocket &ws) const;
         
-        float GetAspectRatio();
+        float GetAspectRatio() const;
         
         std::shared_ptr<Player> m_player;
         
-        PointF m_mouse_position;
+        PointF m_mousePosition;
         
-        std::shared_ptr<UserGameInstanceEngine> m_user_game_instance_engine;
+        std::shared_ptr<UserGameInstanceEngine> m_userGameInstanceEngine;
         
         std::shared_ptr<Cursor> m_cursor;
         
     private:
         void DoSession(boost::asio::ip::tcp::socket socket);
         
-        Size m_canvas_size;
+        Size m_canvasSize;
     };
 }

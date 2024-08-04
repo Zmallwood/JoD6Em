@@ -11,17 +11,17 @@ namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;
 
 namespace JoD {
-    void WebSocketServer::Run(std::string socket_address,
-                                std::string socket_port) {
-        auto const address = net::ip::make_address(socket_address);
+    void WebSocketServer::Run(std::string socketAddress,
+                                std::string socketPort) {
+        auto const address = net::ip::make_address(socketAddress);
         auto const port =
-            static_cast<unsigned short>(std::atoi(socket_port.c_str()));
+            static_cast<unsigned short>(std::atoi(socketPort.c_str()));
         net::io_context ioc{1}; // The io_context is required for all I/O.
         tcp::acceptor acceptor{ioc, {address, port}}; // The acceptor receives incoming connections.
         while (true){
             tcp::socket socket{ioc}; // This will receive the new connection.
             acceptor.accept(socket); // Block until we get a connection.
-            m_user_connections.push_back(
+            m_userConnections.push_back(
                 std::make_shared<UserConnection>(
                     std::move(socket)));
         }

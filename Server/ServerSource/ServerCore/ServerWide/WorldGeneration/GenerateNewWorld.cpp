@@ -14,11 +14,11 @@
 
 namespace JoD {
     void GenerateNewWorld() {
-        auto world_area = _<World>().m_current_world_area;
-        ClearWithGrass(world_area);
-        GenerateWater(world_area);
-        GenerateRoads(world_area);
-        GenerateObjects(world_area);
-        GenerateMobs(world_area);
+        auto worldArea = _<World>().m_currentWorldArea;
+        ClearWithGrass(worldArea);
+        GenerateWater(worldArea);
+        GenerateRoads(worldArea);
+        GenerateObjects(worldArea);
+        GenerateMobs(worldArea);
     }
 }

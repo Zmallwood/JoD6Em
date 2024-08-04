@@ -13,6 +13,6 @@ namespace JoD {
     public:
         World();
         
-        std::shared_ptr<WorldArea> m_current_world_area;
+        std::shared_ptr<WorldArea> m_currentWorldArea;
     };
 }

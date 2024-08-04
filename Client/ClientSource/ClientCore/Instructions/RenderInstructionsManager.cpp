@@ -13,64 +13,64 @@
 namespace JoD {
     RenderInstrutionsManager::RenderInstrutionsManager(){
         // Create a sufficient amount of RIDs for drawing images and game start.
-        for (auto i = 0; i < k_max_num_draw_instructions; i++)
+        for (auto i = 0; i < k_maxNumDrawInstructions; i++)
             m_rids.push_back(_<ImageRenderer>().NewImage());
         
-        for (auto i = 0; i < k_max_num_draw_text_instructions; i++)
-            m_rids_text.push_back(_<TextRenderer>().NewString());
+        for (auto i = 0; i < k_maxNumDrawTextInstructions; i++)
+            m_ridsText.push_back(_<TextRenderer>().NewString());
     }
     
     void RenderInstrutionsManager::AddImageDrawInstruction(
-        int image_name_hash,
+        int imageNameHash,
         RectF destination) {
         // Create a new image draw instruction and save it.
-        auto new_instruction = ImageDrawInstruction{ InstructionTypes::image,
+        auto newInstruction = ImageDrawInstruction{ InstructionTypes::Image,
                                                        m_rids.at(
-                                                           m_rid_counter_images
+                                                           m_ridCounterImages
                                                            ++),
-                                                       image_name_hash,
+                                                       imageNameHash,
                                                        destination};
-        m_image_draw_instructions_buffer.push_back(
-            new_instruction);
+        m_imageDrawInstructionsBuffer.push_back(
+            newInstruction);
     }
     
     
     void RenderInstrutionsManager::AddTextDrawInstruction(
         std::string_view text, PointF position) {
-        auto new_instruction = ImageDrawInstruction {};
-        new_instruction.rid = m_rids_text.at(m_rid_counter_text++);
-        new_instruction.type = InstructionTypes::text;
-        new_instruction.text = text;
-        new_instruction.position = position;
-        m_image_draw_instructions_buffer.push_back(new_instruction);
+        auto newInstruction = ImageDrawInstruction {};
+        newInstruction.rid = m_ridsText.at(m_ridCounterText++);
+        newInstruction.type = InstructionTypes::Text;
+        newInstruction.text = text;
+        newInstruction.position = position;
+        m_imageDrawInstructionsBuffer.push_back(newInstruction);
     }
     
     void RenderInstrutionsManager::ApplyBuffer() {
         // Replace the current instruction group with the new one.
-        m_image_draw_instructions = m_image_draw_instructions_buffer;
+        m_imageDrawInstructions = m_imageDrawInstructionsBuffer;
         // Prepare the next-instructions-set for storing a new set
         // of instructions by clearing it.
-        m_image_draw_instructions_buffer.clear();
-        m_rid_counter_images = 0;
-        m_rid_counter_text = 0;
+        m_imageDrawInstructionsBuffer.clear();
+        m_ridCounterImages = 0;
+        m_ridCounterText = 0;
     }
     
-    void RenderInstrutionsManager::ExecuteInstructions() {
+    void RenderInstrutionsManager::ExecuteInstructions() const {
         // Execute all drawing instructions that have been added.
-        for (auto &instr : m_image_draw_instructions){
-            switch (instr.type) {
-            case InstructionTypes::image:
+        for (auto &instruction : m_imageDrawInstructions){
+            switch (instruction.type) {
+            case InstructionTypes::Image:
                 _<ImageRenderer>().DrawImage(
-                    instr.rid,
-                    instr.image_name_hash,
-                    instr.destination);
+                    instruction.rid,
+                    instruction.imageNameHash,
+                    instruction.destination);
                 break;
-            case InstructionTypes::text:
+            case InstructionTypes::Text:
                 _<TextRenderer>().DrawString(
-                    instr.rid, instr.text,
-                    instr.position);
+                    instruction.rid, instruction.text,
+                    instruction.position);
                 break;
-            case InstructionTypes::none:
+            case InstructionTypes::None:
                 break;
             }
         }

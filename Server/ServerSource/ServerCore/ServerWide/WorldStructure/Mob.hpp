@@ -9,15 +9,15 @@
 namespace JoD {
     class Mob {
     public:
-        Mob(std::string_view mob_name, int level);
+        Mob(std::string_view mobName, int level);
 
-        int m_level;
+        int m_level = 0;
         int m_type = 0;
-        int m_patk = 0;
-        int m_matk = 0;
-        int m_pdef = 0;
-        int m_mdef = 0;
-        float m_atk_speed = 0;
+        int m_pAtk = 0;
+        int m_mAtk = 0;
+        int m_pDef = 0;
+        int m_mDef = 0;
+        float m_atkSpeed = 0;
         int m_hp = 0;
         int m_exp = 0;
     };

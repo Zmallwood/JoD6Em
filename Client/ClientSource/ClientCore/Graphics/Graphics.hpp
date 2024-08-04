@@ -15,10 +15,10 @@ namespace JoD {
         Graphics();
         
         /// @brief Clear web browser before rendering new contents.
-        void ClearCanvas();
+        void ClearCanvas() const;
         
         /// @brief Present all rendered contents stored in the buffer.
-        void PresentCanvas();
+        void PresentCanvas() const;
         
         GLFWwindow *m_window = nullptr; ///< GLFW window object.
         

@@ -45,7 +45,7 @@ namespace JoD {
     }
     
     namespace {
-        void KeyCallback(GLFWwindow *window, int key, int scan_code,
+        void KeyCallback(GLFWwindow *window, int key, int scanCode,
                           int action,
                           int mods) {
             // if (action == GLFW_PRESS)
@@ -56,26 +56,26 @@ namespace JoD {
         
         void MouseButtonCallback(GLFWwindow *window, int button, int action,
                                    int mods) {
-            static bool mouse_left_down = false;
-            static bool mouse_right_down = false;
+            static bool mouseLeftDown = false;
+            static bool mouseRightDown = false;
             if (button == GLFW_MOUSE_BUTTON_LEFT
                 && action == GLFW_PRESS
-                && !mouse_left_down){ 
+                && !mouseLeftDown){ 
                 _<WebSocketServerConnection>().SendMessage(
-                    MessageCodes::k_left_mouse_down);
-                mouse_left_down = true;
+                    MessageCodes::k_leftMouseDown);
+                mouseLeftDown = true;
             } else if (button == GLFW_MOUSE_BUTTON_LEFT &&
                        action == GLFW_RELEASE) {
-                mouse_left_down = false;
+                mouseLeftDown = false;
             }else if (button == GLFW_MOUSE_BUTTON_RIGHT
                       && action == GLFW_PRESS
-                      && !mouse_right_down){
+                      && !mouseRightDown){
                 _<WebSocketServerConnection>().SendMessage(
-                    MessageCodes::k_right_mouse_down);
-                mouse_right_down = true;
+                    MessageCodes::k_rightMouseDown);
+                mouseRightDown = true;
             } else if (button == GLFW_MOUSE_BUTTON_RIGHT &&
                        action == GLFW_RELEASE) {
-                mouse_right_down = false;
+                mouseRightDown = false;
             }
             // if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
             //     _<MouseInput>().LeftButton().OnPress();
@@ -89,7 +89,7 @@ namespace JoD {
         
         void CharacterCallback(
             GLFWwindow *window,
-            unsigned int code_point) {
+            unsigned int codePoint) {
             // _<KeyboardInput>().AppendTextInput(std::string(1, (char)code_point));
         }
         

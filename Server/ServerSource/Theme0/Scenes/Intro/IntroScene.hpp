@@ -16,6 +16,6 @@ namespace JoD {
     protected:
         void UpdateDerived() override;
         
-        void RenderDerived(WebSocket &webSocket) override;
+        void RenderDerived(WebSocket &webSocket) const override;
     };
 }

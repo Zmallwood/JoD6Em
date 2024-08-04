@@ -13,6 +13,6 @@ namespace JoD {
     public:
         using IMainSceneComponent::IMainSceneComponent;
 
-        void Render(WebSocket &webSocket) override;
+        void Render(WebSocket &webSocket) const override;
     };
 }

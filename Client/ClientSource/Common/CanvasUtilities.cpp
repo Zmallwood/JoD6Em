@@ -9,17 +9,17 @@
 
 namespace JoD {
     Size GetCanvasSize()      {
-        int w, h; // To store dimensions in pixels.
+        int width, height; // To store dimensions in pixels.
         // Use GLFW to get canvas size.
-        glfwGetWindowSize(_<Graphics>().m_window, &w, &h);
-        return {w, h};
+        glfwGetWindowSize(_<Graphics>().m_window, &width, &height);
+        return {width, height};
     }
     
     float GetAspectRatio()       {
-        auto canvas_size = GetCanvasSize(); // Get canvas dimensions.
+        auto canvasSize = GetCanvasSize(); // Get canvas dimensions.
         // And calculate the ratio between them.
-        auto aspect_ratio = static_cast<float>(canvas_size.w) / canvas_size.h;
-        return aspect_ratio;
+        auto aspectRatio = static_cast<float>(canvasSize.w) / canvasSize.h;
+        return aspectRatio;
     }
     
     float ConvertWidthToHeight(float width)       {

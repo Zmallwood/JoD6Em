@@ -13,19 +13,19 @@
 
 namespace JoD {
     void MainMenuScene::UpdateDerived() {
-        if (m_user_connection.m_user_game_instance_engine->m_mouse_input->
-            m_left_button->
+        if (m_userConnection.m_userGameInstanceEngine->m_mouseInput->
+            m_leftButton->
             IsPressedPickResult()) {
-            m_user_connection.m_user_game_instance_engine->m_scene_manager->
+            m_userConnection.m_userGameInstanceEngine->m_sceneManager->
             GoTo("MainScene");
         }
     }
     
-    void MainMenuScene::RenderDerived(WebSocket &webSocket) {
-        m_user_connection.SendImageDrawInstruction(
+    void MainMenuScene::RenderDerived(WebSocket &webSocket) const {
+        m_userConnection.SendImageDrawInstruction(
             webSocket, "DefaultSceneBackground",
             {0.0f, 0.0f, 1.0f, 1.0f});
-        m_user_connection.SendImageDrawInstruction(
+        m_userConnection.SendImageDrawInstruction(
             webSocket, "JoDLogo",
             {0.4f, 0.1f, 0.2f, 0.1f});
     }

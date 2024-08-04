@@ -17,6 +17,6 @@ namespace JoD {
         
         void Update() override;
         
-        std::shared_ptr<Mob> m_targeted_creature;
+        std::shared_ptr<Mob> m_targetedCreature;
     };
 }

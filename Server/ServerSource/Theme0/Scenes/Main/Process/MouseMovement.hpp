@@ -13,8 +13,6 @@ namespace JoD {
     public:
         using IMainSceneComponent::IMainSceneComponent;
         
-        MouseMovement(UserConnection &user_connection);
-        
         void Update() override;
     };
 }

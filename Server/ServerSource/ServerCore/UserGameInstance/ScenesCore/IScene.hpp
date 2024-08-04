@@ -11,20 +11,22 @@ namespace JoD {
     
     class IScene {
     public:
-        IScene(UserConnection& user_connection);
+        IScene(UserConnection& userConnection);
         
-        virtual void Initialize() {}
+        virtual void Initialize() {
+        }
         
         void Update();
         
-        void Render(WebSocket &webSocket);
+        void Render(WebSocket &webSocket) const;
         
     protected:
         virtual void UpdateDerived() = 0;
         
-        virtual void RenderDerived(WebSocket
-                                   &webSocket) = 0;
+        virtual void RenderDerived(
+            WebSocket
+            &webSocket) const = 0;
         
-        UserConnection &m_user_connection;
+        UserConnection &m_userConnection;
     };
 }

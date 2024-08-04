@@ -10,8 +10,8 @@
 
 namespace JoD {
     void GenerateWater(std::shared_ptr<WorldArea> worldArea) {
-        auto num_lakes = 15;
-        for (auto i = 0; i < num_lakes; i++){
+        auto numLakes = 15;
+        for (auto i = 0; i < numLakes; i++){
             auto xCenter = rand() % 100;
             auto yCenter = rand() % 100;
             auto r = 3 + rand() % 11;

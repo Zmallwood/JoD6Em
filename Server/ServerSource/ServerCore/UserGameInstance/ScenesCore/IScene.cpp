@@ -7,15 +7,15 @@
 #include "IScene.hpp"
 
 namespace JoD {
-    IScene::IScene(UserConnection& user_connection)
-        : m_user_connection(user_connection) {
+    IScene::IScene(UserConnection& userConnection)
+        : m_userConnection(userConnection) {
     }
     
     void IScene::Update() {
         UpdateDerived();
     }
     
-    void IScene::Render(WebSocket &webSocket){
+    void IScene::Render(WebSocket &webSocket) const {
         RenderDerived(webSocket);
     }
 }

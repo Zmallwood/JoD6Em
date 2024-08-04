@@ -23,12 +23,12 @@ namespace JoD {
         /// @param text Text string to render.
         /// @param position Position to render at in the canvas.
         /// @param color Color of the rendered text.
-        /// @param center_align Specifies if text should be center aligned.
-        /// @param font_size Font size of the rendered text.
+        /// @param centerAlign Specifies if text should be center aligned.
+        /// @param fontSize Font size of the rendered text.
         void DrawString(RID rid, std::string_view text, PointF position,
                          ColorF color = {1.0f, 1.0f, 1.0f, 1.0f},
-                         bool center_align = false,
-                         FontSizes font_size = FontSizes::_20);
+                         bool centerAlign = false,
+                         FontSizes fontSize = FontSizes::_20) const;
         
         /// @brief Allocate resources for a text string to be rendered.
         /// @return rid Resource ID for the allocated resources.
@@ -36,24 +36,24 @@ namespace JoD {
         
         /// @brief Measure a text string with specified size and return its dimensions.
         /// @param text Text string to be measured.
-        /// @param font_size Font size to measure with.
+        /// @param fontSize Font size to measure with.
         /// @return sizef Text string dimensions.
-        SizeF MeasureString(std::string_view text, FontSizes font_size) const;
+        SizeF MeasureString(std::string_view text, FontSizes fontSize) const;
         
     private:
         void RenderText(RID rid, std::string_view text, ColorF color,
-                         bool center_align, FontSizes font_size,
-                         std::string &out_unique_name_id,
+                         bool centerAlign, FontSizes fontSize,
+                         std::string &out_uniqueNameID,
                          SizeF &out_size) const;
         
-        const std::string k_rel_fonts_path{"Resources/Fonts/"};
+        const std::string k_relFontsPath{"Resources/Fonts/"};
         
-        const ColorF k_outline_color{0.0f, 0.0f, 0.0f, 1.0f};
+        const ColorF k_outlineColor{0.0f, 0.0f, 0.0f, 1.0f};
         
         std::map<FontSizes, std::shared_ptr<Font> > m_fonts;
         
-        std::map<RID, std::string> m_unqiue_name_ids;
+        std::map<RID, std::string> m_uniqueNameIDs;
         
-        std::map<RID, RID> m_rids_gl_resources;
+        std::map<RID, RID> m_ridsGLResources;
     };
 }

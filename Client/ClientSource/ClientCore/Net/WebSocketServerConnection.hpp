@@ -12,14 +12,14 @@ namespace JoD {
     class WebSocketServerConnection {
     public:
         /// @brief Open the connection to the web socket server.
-        void Connect();
+        void Connect() const;
         
         /// @brief Send message to the server.
-        /// @param message_type Message type to be sent.
-        void SendMessage(int message_type);
+        /// @param messageType Message type to be sent.
+        void SendMessage(int messageType) const;
         
         std::shared_ptr<const EmscriptenWebSocketOpenEvent>
-        m_web_socket_event; ///< Web socket event object related to the opened connection.
+        m_webSocketEvent; ///< Web socket event object related to the opened connection.
         
     private:
         const std::string k_host = "localhost"; ///< Host name of the server to connect to.

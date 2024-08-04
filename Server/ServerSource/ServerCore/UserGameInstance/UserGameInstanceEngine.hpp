@@ -15,19 +15,19 @@ namespace JoD {
 
     class UserGameInstanceEngine {
     public:
-        UserGameInstanceEngine(UserConnection &user_connection);
+        UserGameInstanceEngine(UserConnection &userConnection);
         
         void Update();
         
-        void Render(WebSocket &ws);
+        void Render(WebSocket &ws) const;
         
-        std::shared_ptr<MouseInput> m_mouse_input;
+        std::shared_ptr<MouseInput> m_mouseInput;
         
-        std::shared_ptr<SceneManager> m_scene_manager;
+        std::shared_ptr<SceneManager> m_sceneManager;
         
     private:
-        std::shared_ptr<ServerFPSCounter> m_server_fps_counter;
+        std::shared_ptr<ServerFPSCounter> m_serverFPSCounter;
         
-        UserConnection &m_user_connection;
+        UserConnection &m_userConnection;
     };
 }

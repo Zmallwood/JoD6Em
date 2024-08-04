@@ -8,8 +8,8 @@
 
 namespace JoD {
     enum class MouseButtons {
-        none,
-        left,
-        right
+        None,
+        Left,
+        Right
     };
 }

@@ -12,19 +12,19 @@ namespace JoD {
     public:
         /// @brief Create a new shader program with provided
         ///        source for vertex and fragment shader.
-        /// @param vertex_shader_source Vertex shader source.
-        /// @param fragment_shader_source Fragment shader source.
+        /// @param vertexShaderSource Vertex shader source.
+        /// @param fragmentShaderSource Fragment shader source.
         /// @return bool True if successful, otherwise false.
-        bool Create(const GLchar *vertex_shader_source,
-                    const GLchar *fragment_shader_source);
+        bool Create(const GLchar *vertexShaderSource,
+                    const GLchar *fragmentShaderSource);
         
         /// @brief Cleans up allocated resources for this shader program.
-        void Cleanup();
+        void Cleanup() const;
         
-        GLuint m_program_id = 0; ///< Shader program ID.
+        GLuint m_programID = 0; ///< Shader program ID.
         
     private:
-        GLuint CompileShader(const GLchar *shader_source, GLuint *shader,
-                              GLenum shader_type);
+        GLuint CompileShader(const GLchar *shaderSource, GLuint *shader,
+                              GLenum shaderType) const;
     };
 }

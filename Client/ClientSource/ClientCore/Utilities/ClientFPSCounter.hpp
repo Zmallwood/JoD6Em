@@ -17,15 +17,15 @@ namespace JoD {
         void Update();
         
         /// @brief Render the computed FPS to the canvas.
-        void Render();
+        void Render() const;
         
     private:
         RID m_rid;
         
-        int m_frames_count = 0;
+        int m_framesCount = 0;
         
         int m_fps = 0;
         
-        int m_ticks_last_update = 0;
+        int m_ticksLastUpdate = 0;
     };
 }

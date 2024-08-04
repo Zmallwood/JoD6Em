@@ -8,12 +8,12 @@
 
 namespace JoD {
     void MouseButton::RegisterMouseDown()      {
-        m_is_pressed = true;
+        m_isPressed = true;
     }
     
     bool MouseButton::IsPressedPickResult()      {
-        auto result = m_is_pressed;
-        m_is_pressed = false;
+        auto result = m_isPressed;
+        m_isPressed = false;
         return result;
     }
 }

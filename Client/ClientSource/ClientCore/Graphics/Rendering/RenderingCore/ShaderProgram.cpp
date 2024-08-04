@@ -8,20 +8,20 @@
 
 namespace JoD {
     bool ShaderProgram::Create(
-        const GLchar *vertex_shader_source,
-        const GLchar *fragment_shader_source){
+        const GLchar *vertexShaderSource,
+        const GLchar *fragmentShaderSource){
         // To hold the shader IDs.
-        GLuint vertex_shader = 0;
-        GLuint fragment_shader = 0;
-        m_program_id = glCreateProgram(); // Create GL program.
+        GLuint vertexShader = 0;
+        GLuint fragmentShader = 0;
+        m_programID = glCreateProgram(); // Create GL program.
         auto success = true;
         {
             // Compile vertex shader.
-            auto vertex_shader_res = CompileShader(
-                vertex_shader_source,
-                &vertex_shader,
+            auto vertexShaderRes = CompileShader(
+                vertexShaderSource,
+                &vertexShader,
                 GL_VERTEX_SHADER);
-            if (vertex_shader_res != GL_TRUE){ // Check for errors.
+            if (vertexShaderRes != GL_TRUE){ // Check for errors.
                 std::cout << "Unable to compile vertex shader.\n";
                 success = false;
             }
@@ -29,13 +29,13 @@ namespace JoD {
         // If previous steps were successful, continue.
         if (success){
             // Attach compiled vertex shader to GL program.
-            glAttachShader(m_program_id, vertex_shader);
+            glAttachShader(m_programID, vertexShader);
             // Compile fragment shader.
-            auto fragment_shader_res = CompileShader(
-                fragment_shader_source,
-                &fragment_shader,
+            auto fragmentShaderRes = CompileShader(
+                fragmentShaderSource,
+                &fragmentShader,
                 GL_FRAGMENT_SHADER);
-            if (fragment_shader_res != GL_TRUE){ // Check for errors.
+            if (fragmentShaderRes != GL_TRUE){ // Check for errors.
                 std::cout << "Unable to compile fragment shader.\n";
                 success = false;
             }
@@ -43,40 +43,40 @@ namespace JoD {
         // If previous steps were successful, continue.
         if (success){
             // Attach fragment shader to GP program.
-            glAttachShader(m_program_id, fragment_shader);
+            glAttachShader(m_programID, fragmentShader);
             // Link the GL program with attached vertex and fragment shaders.
-            glLinkProgram(m_program_id);
+            glLinkProgram(m_programID);
             // Check for errors.
-            GLint program_success = GL_TRUE;
+            GLint programSuccess = GL_TRUE;
             glGetProgramiv(
-                m_program_id,
+                m_programID,
                 GL_LINK_STATUS,
-                &program_success);
-            if (program_success != GL_TRUE){
+                &programSuccess);
+            if (programSuccess != GL_TRUE){
                 std::cout << "Error linking shader program.\n";
                 success = false;
             }
         }
         // Delete shader resources now that they are linked into the GL program.
-        glDeleteShader(vertex_shader);
-        glDeleteShader(fragment_shader);
+        glDeleteShader(vertexShader);
+        glDeleteShader(fragmentShader);
         return success;
     }
     
-    void ShaderProgram::Cleanup()      {
-        glDeleteProgram(m_program_id); // Delete GL program.
+    void ShaderProgram::Cleanup() const {
+        glDeleteProgram(m_programID); // Delete GL program.
     }
     
     GLuint ShaderProgram::CompileShader(
         const GLchar *shader_source,
         GLuint *shader,
-        GLenum shader_type){
+        GLenum shader_type) const{
         *shader = glCreateShader(shader_type); // Create shader object.
         glShaderSource(*shader, 1, &shader_source, NULL); // Apply shader sources.
         glCompileShader(*shader); // Compile it.
         // Check for compilation errors.
-        GLint shader_compiled = GL_FALSE;
-        glGetShaderiv(*shader, GL_COMPILE_STATUS, &shader_compiled);
-        return shader_compiled;
+        GLint shaderCompiled = GL_FALSE;
+        glGetShaderiv(*shader, GL_COMPILE_STATUS, &shaderCompiled);
+        return shaderCompiled;
     }
 }

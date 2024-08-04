@@ -8,8 +8,8 @@
 
 namespace JoD {
     enum class InstructionTypes {
-        none,
-        image,
-        text
+        None,
+        Image,
+        Text
     };
 }

@@ -7,12 +7,12 @@
 #include "Font.hpp"
 
 namespace JoD {
-    Font::Font(const std::string &font_file_name, int font_size) {
+    Font::Font(std::string_view fontFileName, int fontSize) {
         m_font = std::shared_ptr<TTF_Font>(
-            TTF_OpenFont(font_file_name.c_str(), font_size), SDLDeleter());
-        m_outline_font = std::shared_ptr<TTF_Font>(
-            TTF_OpenFont(font_file_name.c_str(), font_size), SDLDeleter());
+            TTF_OpenFont(fontFileName.data(), fontSize), SDLDeleter());
+        m_outlineFont = std::shared_ptr<TTF_Font>(
+            TTF_OpenFont(fontFileName.data(), fontSize), SDLDeleter());
         
-        TTF_SetFontOutline(m_outline_font.get(), k_font_outline_width);
+        TTF_SetFontOutline(m_outlineFont.get(), k_fontOutlineWidth);
     }
 }

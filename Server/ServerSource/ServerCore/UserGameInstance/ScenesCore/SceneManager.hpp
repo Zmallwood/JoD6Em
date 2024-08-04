@@ -12,21 +12,21 @@ namespace JoD {
     
     class SceneManager {
     public:
-        SceneManager(UserConnection &user_connection);
+        SceneManager(UserConnection &userConnection);
         
         void UpdateCurrentScene();
         
-        void RenderCurrentScene(WebSocket &ws);
+        void RenderCurrentScene(WebSocket &ws) const;
         
-        void GoTo(std::string_view scene_name);
+        void GoTo(std::string_view sceneName);
         
     private:
         void AddScene(std::string_view sceneName, std::shared_ptr<IScene> scene);
         
-        int m_current_scene = 0;
+        int m_currentScene = 0;
         
         std::map<int, std::shared_ptr<IScene>> m_scenes;
         
-        UserConnection &m_user_connection;
+        UserConnection &m_userConnection;
     };
 }

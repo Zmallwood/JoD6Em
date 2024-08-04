@@ -13,6 +13,6 @@ namespace JoD {
         
         bool IsPressedPickResult();
         
-        bool m_is_pressed;
+        bool m_isPressed;
     };
 }

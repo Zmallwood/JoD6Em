@@ -13,15 +13,15 @@ namespace JoD {
     }
     
     void ClientFPSCounter::Update()      {
-        if (GetTicks() > m_ticks_last_update + 1000) {
-            m_fps = m_frames_count;
-            m_frames_count = 0;
-            m_ticks_last_update = GetTicks();
+        if (GetTicks() > m_ticksLastUpdate + 1000) {
+            m_fps = m_framesCount;
+            m_framesCount = 0;
+            m_ticksLastUpdate = GetTicks();
         }
-        m_frames_count++;
+        m_framesCount++;
     }
     
-    void ClientFPSCounter::Render()      {
+    void ClientFPSCounter::Render() const {
         _<TextRenderer>().DrawString(
             m_rid, "Client fps: " + std::to_string(m_fps),
             {0.9f, 0.05f});

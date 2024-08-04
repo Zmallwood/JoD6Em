@@ -9,10 +9,10 @@
 
 namespace JoD {
     SizeF
-    CalculateTileSize(float aspect_ratio){
-        auto tile_height = 1.0f / _<GameProperties>().k_num_grid_rows;
-        auto tile_width = tile_height / aspect_ratio;
-        return {tile_width, tile_height};
+    CalculateTileSize(float aspectRatio){
+        auto tileHeight = 1.0f / _<GameProperties>().k_numGridRows;
+        auto tileWidth = tileHeight / aspectRatio;
+        return {tileWidth, tileHeight};
     }
 
     int CalculateNumGridCols(float aspectRatio) {

@@ -15,11 +15,11 @@ using tcp = boost::asio::ip::tcp;
 
 namespace JoD {
     SceneManager::SceneManager(
-        UserConnection &user_connection) : m_user_connection(user_connection){
+        UserConnection &userConnection) : m_userConnection(userConnection){
         
-        AddScene("IntroScene", std::make_shared<IntroScene>(m_user_connection));
-        AddScene("MainMenuScene", std::make_shared<MainMenuScene>(m_user_connection));
-        AddScene("MainScene", std::make_shared<MainScene>(m_user_connection));
+        AddScene("IntroScene", std::make_shared<IntroScene>(m_userConnection));
+        AddScene("MainMenuScene", std::make_shared<MainMenuScene>(m_userConnection));
+        AddScene("MainScene", std::make_shared<MainScene>(m_userConnection));
         
         GoTo("IntroScene");
     }
@@ -31,16 +31,16 @@ namespace JoD {
     }
     
     void SceneManager::UpdateCurrentScene() {
-        if (m_scenes.contains(m_current_scene))
-            m_scenes.at(m_current_scene)->Update();
+        if (m_scenes.contains(m_currentScene))
+            m_scenes.at(m_currentScene)->Update();
     }
     
-    void SceneManager::RenderCurrentScene(WebSocket &ws) {
-        if (m_scenes.contains(m_current_scene))
-            m_scenes.at(m_current_scene)->Render(ws);
+    void SceneManager::RenderCurrentScene(WebSocket &ws) const {
+        if (m_scenes.contains(m_currentScene))
+            m_scenes.at(m_currentScene)->Render(ws);
     }
     
     void SceneManager::GoTo(std::string_view scene_name) {
-        m_current_scene = Hash(scene_name);
+        m_currentScene = Hash(scene_name);
     }
 }

@@ -22,19 +22,19 @@ namespace JoD {
                 m_mainScene.m_components.at(
                     MainSceneComponents::
                     TileHovering));
-        auto mouse_down =
-            m_userConnection.m_user_game_instance_engine->m_mouse_input->
-            m_right_button->
+        auto mouseDown =
+            m_userConnection.m_userGameInstanceEngine->m_mouseInput->
+            m_rightButton->
             IsPressedPickResult();
-        auto hovered_tile =
-            tileHovering->m_hovered_coordinate;
-        if (mouse_down) {
-            auto world_area = _<World>().m_current_world_area;
-            auto tile = world_area->m_tiles[hovered_tile.x][hovered_tile.y];
+        auto hoveredTile =
+            tileHovering->m_hoveredCoordinate;
+        if (mouseDown) {
+            auto worldArea = _<World>().m_currentWorldArea;
+            auto tile = worldArea->m_tiles[hoveredTile.x][hoveredTile.y];
             if (tile->m_mob) {
-                m_targeted_creature = tile->m_mob;
+                m_targetedCreature = tile->m_mob;
             }else {
-                m_targeted_creature = nullptr;
+                m_targetedCreature = nullptr;
             }
         }
     }

@@ -27,32 +27,32 @@ namespace JoD {
         
         /// @brief Render an image to the browser.
         /// @param rid Resource ID previously allocated.
-        /// @param image_name Name of image to render.
+        /// @param imageName Name of image to render.
         /// @param destination Destination rectangle to render the image at.
-        /// @param repeat_texture True if repeat image as pattern or false for fitting it to
-        /// @param texture_fill_amount Used to modify pattern repetition amount.
+        /// @param repeatTexture True if repeat image as pattern or false for fitting it to
+        /// @param textureFillAmount Used to modify pattern repetition amount.
         /// @param color Used to modify overall color of the image.
         void DrawImage(
             RID rid,
-            std::string_view image_name,
+            std::string_view imageName,
             const RectF &destination,
-            bool repeat_texture = false,
-            SizeF texture_fill_amount = {1.0f, 1.0f},
-            ColorF color = {1.0f, 1.0f, 1.0f});
+            bool repeatTexture = false,
+            SizeF textureFillAmount = {1.0f, 1.0f},
+            ColorF color = {1.0f, 1.0f, 1.0f}) const;
         
         /// @brief Render an image to the browser.
         /// @param rid Resource ID previously allocated.
-        /// @param image_name_hash Hash code of name of image to render.
+        /// @param imageNameHash Hash code of name of image to render.
         /// @param destination Destination rectangle to render the image at.
-        /// @param repeat_texture True if repeat image as pattern or false for fitting it to destination rectangle.
-        /// @param texture_fill_amount Used to modify pattern repetition amount.
+        /// @param repeatTexture True if repeat image as pattern or false for fitting it to destination rectangle.
+        /// @param textureFillAmount Used to modify pattern repetition amount.
         /// @param color Used to modify overall color of the image.
         void DrawImage(
             RID rid,
-            int image_name_hash,
+            int imageNameHash,
             const RectF &destination,
-            bool repeat_texture = false,
-            SizeF texture_fill_amount = {1.0f, 1.0f},
-            ColorF color = {1.0f, 1.0f, 1.0f});
+            bool repeatTexture = false,
+            SizeF textureFillAmount = {1.0f, 1.0f},
+            ColorF color = {1.0f, 1.0f, 1.0f}) const;
     };
 }

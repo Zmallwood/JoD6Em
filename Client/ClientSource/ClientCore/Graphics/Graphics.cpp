@@ -9,9 +9,9 @@
 namespace JoD {
     namespace {
         // Use javascript call to get browser-canvas width.
-        EM_JS(int, canvas_get_width, (), { return window.innerWidth; });
+        EM_JS(int, CanvasGetWidth, (), { return window.innerWidth; });
         // Use javascript call to get browser-canvas height.
-        EM_JS(int, canvas_get_height, (), { return window.innerHeight; });
+        EM_JS(int, CanvasGetHeight, (), { return window.innerHeight; });
     }
     
     Graphics::Graphics(){
@@ -23,8 +23,8 @@ namespace JoD {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
         // Create GLFW window object.
         m_window = glfwCreateWindow(
-            canvas_get_width(),
-            canvas_get_height(),
+            CanvasGetWidth(),
+            CanvasGetHeight(),
             k_title.c_str(),
             NULL,
             NULL);
@@ -36,11 +36,11 @@ namespace JoD {
         glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     }
     
-    void Graphics::ClearCanvas() {
+    void Graphics::ClearCanvas() const {
         glClear(GL_COLOR_BUFFER_BIT); // Clear canvas to prepare for rendering new contents.
     }
     
-    void Graphics::PresentCanvas() {
+    void Graphics::PresentCanvas() const {
         glfwSwapBuffers(m_window); // Present buffer to web browser.
         glfwPollEvents(); // Poll new input events from user.
         // Do not return until previously issued commands have finished.

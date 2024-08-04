@@ -11,26 +11,26 @@ namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;
 
 namespace JoD {
-    Cursor::Cursor(UserConnection& user_connection)
-        : m_user_connection(user_connection) {
+    Cursor::Cursor(UserConnection& userConnection)
+        : m_userConnection(userConnection) {
     }
     
     void
-    Cursor::Render(WebSocket& ws){
-        auto mouse_position = m_user_connection.m_mouse_position; // Get current mouse position.
+    Cursor::Render(WebSocket& ws) const {
+        auto mousePosition = m_userConnection.m_mousePosition; // Get current mouse position.
         // Obtain cursor dimensions.
-        auto cursor_width = k_cursor_size;
-        auto cursor_height = k_cursor_size*m_user_connection.GetAspectRatio();
+        auto cursorWidth = k_cursorSize;
+        auto cursorHeight = k_cursorSize*m_userConnection.GetAspectRatio();
         // Calculate cursor position.
-        auto cursor_x = mouse_position.x - cursor_width / 2;
-        auto cursor_y = mouse_position.y - cursor_height / 2;
+        auto cursorX = mousePosition.x - cursorWidth / 2;
+        auto cursorY = mousePosition.y - cursorHeight / 2;
         // Create render destination rectangle.
-        auto cursor_destination = RectF{
-            cursor_x, cursor_y, cursor_width,
-            cursor_height};
+        auto cursorDestination = RectF{
+            cursorX, cursorY, cursorWidth,
+            cursorHeight};
         // Render the cursor image.
-        m_user_connection.SendImageDrawInstruction(
-            ws, k_cursor_image_name,
-            cursor_destination);
+        m_userConnection.SendImageDrawInstruction(
+            ws, k_cursorImageName,
+            cursorDestination);
     }
 }

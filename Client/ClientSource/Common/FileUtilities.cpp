@@ -7,20 +7,20 @@
 #include "FileUtilities.hpp"
 
 namespace JoD {
-    std::string GetFileExtension(std::string_view abs_path) {
+    std::string GetFileExtension(std::string_view absPath) {
         // Find last occurrence of '.' and keep the part following it.
-        auto extension = abs_path.substr(abs_path.find_last_of('.') + 1);
+        auto extension = absPath.substr(absPath.find_last_of('.') + 1);
         return extension.data();
     }
     
-    std::string GetFilenameNoExtension(std::string_view abs_path) {
+    std::string GetFilenameNoExtension(std::string_view absPath) {
         // Find last occurence of '/' and get the part following it.
-        auto name_with_ext =
-            std::string(abs_path.substr(abs_path.find_last_of('/') + 1));
+        auto nameWithExt =
+            std::string(absPath.substr(absPath.find_last_of('/') + 1));
         // Then only keep the part preceeding the last occurrence of '.'.
-        auto file_name = name_with_ext.substr(
+        auto fileName = nameWithExt.substr(
             0,
-            name_with_ext.find_last_of('.'));
-        return file_name;
+            nameWithExt.find_last_of('.'));
+        return fileName;
     }
 }

@@ -10,38 +10,38 @@
 
 namespace JoD {
     void GenerateRoads(std::shared_ptr<WorldArea> worldArea) {
-        auto road_x = 0;
-        auto road_y = 0;
+        auto roadX = 0;
+        auto roadY = 0;
         
         for (auto i = 0; i < 25; i++) {
-            worldArea->m_tiles[road_x][road_y]->m_ground =
+            worldArea->m_tiles[roadX][roadY]->m_ground =
                 Hash("GroundCobbleStone");
-            road_x++;
-            road_y++;
+            roadX++;
+            roadY++;
         }
         
         for (auto i = 0; i < 50; i++) {
-            worldArea->m_tiles[road_x][road_y]->m_ground =
+            worldArea->m_tiles[roadX][roadY]->m_ground =
                 Hash("GroundCobbleStone");
-            road_x++;
+            roadX++;
         }
         
         for (auto i = 0; i < 50; i++) {
-            worldArea->m_tiles[road_x][road_y]->m_ground =
+            worldArea->m_tiles[roadX][roadY]->m_ground =
                 Hash("GroundCobbleStone");
-            road_y++;
+            roadY++;
         }
         
         for (auto i = 0; i < 50; i++) {
-            worldArea->m_tiles[road_x][road_y]->m_ground =
+            worldArea->m_tiles[roadX][roadY]->m_ground =
                 Hash("GroundCobbleStone");
-            road_x--;
+            roadX--;
         }
         
         for (auto i = 0; i < 25; i++) {
-            worldArea->m_tiles[road_x][road_y]->m_ground =
+            worldArea->m_tiles[roadX][roadY]->m_ground =
                 Hash("GroundCobbleStone");
-            road_y++;
+            roadY++;
         }
     }
 }

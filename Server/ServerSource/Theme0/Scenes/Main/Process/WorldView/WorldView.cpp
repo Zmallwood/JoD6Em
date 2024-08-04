@@ -18,7 +18,7 @@
 #include "Theme0/Scenes/Main/MainScene.hpp"
 
 namespace JoD {
-    void WorldView::Render(WebSocket &webSocket) {
+    void WorldView::Render(WebSocket &webSocket) const {
         auto tileHovering =
             std::static_pointer_cast<TileHovering>(m_mainScene.m_components.at(
                                                        MainSceneComponents::
@@ -27,25 +27,25 @@ namespace JoD {
             std::static_pointer_cast<MobTargeting>(m_mainScene.m_components.at(
                                                        MainSceneComponents::
                                                        MobTargeting));
-        auto tile_size =
+        auto tileSize =
             CalculateTileSize(m_userConnection.GetAspectRatio());
-        auto player_coordinate =
+        auto playerCoordinate =
             m_userConnection.m_player->m_coordinate;
-        auto num_grid_rows = _<GameProperties>().k_num_grid_rows;
-        auto num_grid_cols =
+        auto numGridRows = _<GameProperties>().k_numGridRows;
+        auto numGridCols =
             CalculateNumGridCols(m_userConnection.GetAspectRatio());
         auto smallValue = 0.0001f;
-        for (auto y = 0; y < num_grid_rows; y++){
-            for (auto x = 0; x < num_grid_cols; x++){
-                auto coord_x = player_coordinate.x -
-                               (num_grid_cols - 1) / 2 + x;
-                auto coord_y = player_coordinate.y -
-                               (num_grid_rows - 1) / 2 + y;
-                if (coord_x < 0 || coord_y < 0 || coord_x >= 100 ||
-                    coord_y >= 100) continue;
+        for (auto y = 0; y < numGridRows; y++){
+            for (auto x = 0; x < numGridCols; x++){
+                auto coordX = playerCoordinate.x -
+                               (numGridCols - 1) / 2 + x;
+                auto coordY = playerCoordinate.y -
+                               (numGridRows - 1) / 2 + y;
+                if (coordX < 0 || coordY < 0 || coordX >= 100 ||
+                    coordY >= 100) continue;
                 auto tile =
-                    _<World>().m_current_world_area->m_tiles[coord_x][
-                        coord_y];
+                    _<World>().m_currentWorldArea->m_tiles[coordX][
+                        coordY];
                 auto ground = tile->m_ground;
                 if (ground == Hash("GroundWater")) {
                     auto animIndex =
@@ -56,57 +56,57 @@ namespace JoD {
                 m_userConnection.SendImageDrawInstruction(
                     webSocket,
                     ground,
-                    {x * tile_size.w, y * tile_size.h,
-                     tile_size.w + smallValue,
-                     tile_size.h + smallValue});
-                if (coord_x ==
+                    {x * tileSize.w, y * tileSize.h,
+                     tileSize.w + smallValue,
+                     tileSize.h + smallValue});
+                if (coordX ==
                     tileHovering->
-                    m_hovered_coordinate.x &&
-                    coord_y ==
+                    m_hoveredCoordinate.x &&
+                    coordY ==
                     tileHovering->
-                    m_hovered_coordinate.y){
+                    m_hoveredCoordinate.y){
                     m_userConnection.SendImageDrawInstruction(
                         webSocket,
                         "HoveredTile",
-                        {x * tile_size.w, y * tile_size.h, tile_size.w,
-                         tile_size.h});
+                        {x * tileSize.w, y * tileSize.h, tileSize.w,
+                         tileSize.h});
                 }
                 if (tile->m_object) {
                     m_userConnection.SendImageDrawInstruction(
                         webSocket,
                         tile->m_object,
-                        {x * tile_size.w, y * tile_size.h, tile_size.w,
-                         tile_size.h});
+                        {x * tileSize.w, y * tileSize.h, tileSize.w,
+                         tileSize.h});
                 }
                 if (tile->m_mob) {
                     if (tile->m_mob ==
                         mobTargeting->
-                        m_targeted_creature){
+                        m_targetedCreature){
                         m_userConnection.SendImageDrawInstruction(
                             webSocket,
                             "TargetedMob",
-                            {x * tile_size.w, y * tile_size.h,
-                             tile_size.w,
-                             tile_size.h});
+                            {x * tileSize.w, y * tileSize.h,
+                             tileSize.w,
+                             tileSize.h});
                     }
                     m_userConnection.SendImageDrawInstruction(
                         webSocket,
                         tile->m_mob->m_type,
-                        {x * tile_size.w, y * tile_size.h, tile_size.w,
-                         tile_size.h});
+                        {x * tileSize.w, y * tileSize.h, tileSize.w,
+                         tileSize.h});
                     m_userConnection.SendTextDrawInstruction(
                         webSocket,
                         "Mob, Lvl." +
                         std::to_string(tile->m_mob->m_level),
-                        {x*tile_size.w, (y - 0.5f)*tile_size.h});
+                        {x*tileSize.w, (y - 0.5f)*tileSize.h});
                 }
-                if (coord_x == player_coordinate.x &&
-                    coord_y == player_coordinate.y){
+                if (coordX == playerCoordinate.x &&
+                    coordY == playerCoordinate.y){
                     m_userConnection.SendImageDrawInstruction(
                         webSocket, "Player", {
-                        x * tile_size.w, y * tile_size.h,
-                        tile_size.w,
-                        tile_size.h});
+                        x * tileSize.w, y * tileSize.h,
+                        tileSize.w,
+                        tileSize.h});
                 }
             }
         }

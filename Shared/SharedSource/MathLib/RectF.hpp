@@ -15,7 +15,7 @@ namespace JoD {
     struct RectF {
         /// @brief Convert this objects values to format of OpenGLs default coordinate system.
         /// @return GLRectF Converted resulting object.
-        GLRectF to_glrectf() const;
+        GLRectF ToGLRectF() const;
         
         float x = 0.0f; ///< X coordinate in float type.
         float y = 0.0f; ///< Y coordinate in float type.

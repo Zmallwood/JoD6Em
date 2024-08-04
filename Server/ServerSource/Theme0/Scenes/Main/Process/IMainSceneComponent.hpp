@@ -18,7 +18,7 @@ namespace JoD {
         virtual void Update() {
         }
         
-        virtual void Render(WebSocket &webSocket) {
+        virtual void Render(WebSocket &webSocket) const {
         }
         
     protected:

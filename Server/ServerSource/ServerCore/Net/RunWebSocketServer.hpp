@@ -7,6 +7,7 @@
 #pragma once
 
 namespace JoD {
-    void RunWebSocketServer(std::string socket_address,
-                            std::string socket_port);
+    void RunWebSocketServer(
+        std::string socketAddress,
+        std::string socketPort);
 }

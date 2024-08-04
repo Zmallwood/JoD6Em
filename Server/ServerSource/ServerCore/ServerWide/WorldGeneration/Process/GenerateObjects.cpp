@@ -10,9 +10,9 @@
 
 namespace JoD {
     void GenerateObjects(std::shared_ptr<WorldArea> worldArea) {
-        auto num_object_tree1s = 300;
+        auto numObjectsTree1s = 300;
         
-        for (auto i = 0; i < num_object_tree1s; i++) {
+        for (auto i = 0; i < numObjectsTree1s; i++) {
             auto x = rand() % 100;
             auto y = rand() % 100;
             

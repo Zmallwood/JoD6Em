@@ -9,14 +9,14 @@
 namespace JoD {
     /// @brief Available types of GL buffers that can be created.
     enum class BufferTypes {
-        indices, ///< Indices
-        positions_2d, ///< Positions in 2D coordinates
-        positions_3d, ///< Positions in 3D coordinates.
-        colors, ///< Colors.
-        uvs, ///< Texture coordinates.
-        normals, ///< Normals in 3D space.
-        bone_ids, ///< Bone IDs for skeleton animations.
-        weights, ///< Bone weights for skeleton animations.
-        misc ///< Other types of buffer data.
+        Indices, ///< Indices
+        Positions2D, ///< Positions in 2D coordinates
+        Positions3D, ///< Positions in 3D coordinates.
+        Colors, ///< Colors.
+        UVs, ///< Texture coordinates.
+        Normals, ///< Normals in 3D space.
+        BoneIDs, ///< Bone IDs for skeleton animations.
+        Weights, ///< Bone weights for skeleton animations.
+        Misc ///< Other types of buffer data.
     };
 }

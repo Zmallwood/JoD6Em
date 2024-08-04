@@ -1,6 +1,6 @@
 /*
  * WebSocketServerConnection.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -11,32 +11,36 @@
 
 namespace JoD {
     namespace {
-        EM_BOOL OnOpen(int event_type,
-                        const EmscriptenWebSocketOpenEvent *web_socket_event,
-                        void *user_data);
-        EM_BOOL OnError(int event_type,
-                         const EmscriptenWebSocketErrorEvent *web_socket_event,
-                         void *user_data);
-        EM_BOOL OnClose(int event_type,
-                         const EmscriptenWebSocketCloseEvent *web_socket_event,
-                         void *user_data);
-        EM_BOOL OnMessage(int event_type,
-                           const EmscriptenWebSocketMessageEvent *
-                           web_socket_event,
-                           void *user_data);
+        EM_BOOL OnOpen(
+            int eventType,
+            const EmscriptenWebSocketOpenEvent *webSocketEvent,
+            void *userData);
+        EM_BOOL OnError(
+            int eventType,
+            const EmscriptenWebSocketErrorEvent *webSocketEvent,
+            void *userData);
+        EM_BOOL OnClose(
+            int eventType,
+            const EmscriptenWebSocketCloseEvent *webSocketEvent,
+            void *userData);
+        EM_BOOL OnMessage(
+            int eventType,
+            const EmscriptenWebSocketMessageEvent *
+            webSocketEvent,
+            void *userData);
         void ProcessIncomingMessage(unsigned char *bytes);
         int ReadFourBytesAsInt(unsigned char *bytes);
         float ReadFourBytesAsFloat(unsigned char *bytes);
     }
     
-    void WebSocketServerConnection::Connect() {
+    void WebSocketServerConnection::Connect() const {
         if (!emscripten_websocket_is_supported()) return; // Check support exists.
         // Create address to connect to.
-        auto server_address = "ws://" + k_host + ":" + std::to_string(k_port);
+        auto serverAddress = "ws://" + k_host + ":" + std::to_string(k_port);
         // Create attributes.
-        auto ws_attrs = EmscriptenWebSocketCreateAttributes{
-            server_address.c_str(), NULL, EM_TRUE};
-        auto ws = emscripten_websocket_new(&ws_attrs); // Create the web socket and connect.
+        auto wsAttrs = EmscriptenWebSocketCreateAttributes{
+            serverAddress.c_str(), NULL, EM_TRUE};
+        auto ws = emscripten_websocket_new(&wsAttrs); // Create the web socket and connect.
         // Setup callback functions.
         emscripten_websocket_set_onopen_callback(ws, NULL, OnOpen);
         emscripten_websocket_set_onerror_callback(ws, NULL, OnError);
@@ -44,66 +48,66 @@ namespace JoD {
         emscripten_websocket_set_onmessage_callback(ws, NULL, OnMessage);
     }
     
-    void WebSocketServerConnection::SendMessage(int message_type) {
-        switch (message_type){ // Determine message type to be sent.
-        case MessageCodes::k_canvas_size: { // Send canvas size to server.
-            auto canvas_size = GetCanvasSize(); // Get canvas size in pixels.
+    void WebSocketServerConnection::SendMessage(int messageType) const {
+        switch (messageType){ // Determine message type to be sent.
+        case MessageCodes::k_canvasSize: { // Send canvas size to server.
+            auto canvasSize = GetCanvasSize(); // Get canvas size in pixels.
             int msg[3];
             // Fill data with message type and canvas size dimensions.
-            msg[0] = MessageCodes::k_canvas_size;
-            msg[1] = canvas_size.w;
-            msg[2] = canvas_size.h;
+            msg[0] = MessageCodes::k_canvasSize;
+            msg[1] = canvasSize.w;
+            msg[2] = canvasSize.h;
             // Try send packet and handle failure.
             if (auto result =
                     emscripten_websocket_send_binary(
-                        m_web_socket_event->socket,
+                        m_webSocketEvent->socket,
                         msg, 3 * sizeof(int)))
                 std::cout << "Failed to emscripten_websocket_send_binary(): " <<
                     result;
             break;
         }
-        case MessageCodes::k_left_mouse_down: {
-            int msg = MessageCodes::k_left_mouse_down; // Message contains only message code.
+        case MessageCodes::k_leftMouseDown: {
+            int msg = MessageCodes::k_leftMouseDown; // Message contains only message code.
             // Try send packet and handle failure.
             if (auto result = emscripten_websocket_send_binary(
-                    m_web_socket_event->socket,
+                    m_webSocketEvent->socket,
                     &msg,
                     sizeof(msg)))
                 std::cout << "Failed to emscripten_websocket_send_binary(): " <<
                     result;
             break;
         }
-        case MessageCodes::k_right_mouse_down: {
-            int msg = MessageCodes::k_right_mouse_down; // Message contains only message code.
+        case MessageCodes::k_rightMouseDown: {
+            int msg = MessageCodes::k_rightMouseDown; // Message contains only message code.
             // Try send packet and handle failure.
             if (auto result = emscripten_websocket_send_binary(
-                    m_web_socket_event->socket,
+                    m_webSocketEvent->socket,
                     &msg,
                     sizeof(msg)))
                 std::cout << "Failed to emscripten_websocket_send_binary(): " <<
                     result;
             break;
         }
-        case MessageCodes::k_mouse_position: {
-            auto mouse_position = GetMousePosition();
+        case MessageCodes::k_mousePosition: {
+            auto mousePosition = GetMousePosition();
             int msg[3];
-            msg[0] = MessageCodes::k_mouse_position;
-            msg[1] = (int)(mouse_position.x * net_constants::k_float_precision);
-            msg[2] = (int)(mouse_position.y * net_constants::k_float_precision);
+            msg[0] = MessageCodes::k_mousePosition;
+            msg[1] = (int)(mousePosition.x * net_constants::k_floatPrecision);
+            msg[2] = (int)(mousePosition.y * net_constants::k_floatPrecision);
             // Try send packet and handle failure.
             if (auto result = emscripten_websocket_send_binary(
-                    m_web_socket_event->socket,
+                    m_webSocketEvent->socket,
                     &msg,
                     sizeof(msg)))
                 std::cout << "Failed to emscripten_websocket_send_binary(): " <<
                     result;
             break;
         }
-        case MessageCodes::k_frame_finished: {
-            int msg = MessageCodes::k_frame_finished;
+        case MessageCodes::k_frameFinished: {
+            int msg = MessageCodes::k_frameFinished;
             // Try send packet and handle failure.
             if (auto result = emscripten_websocket_send_binary(
-                    m_web_socket_event->socket,
+                    m_webSocketEvent->socket,
                     &msg,
                     sizeof(msg)))
                 std::cout << "Failed to emscripten_websocket_send_binary(): " <<
@@ -114,54 +118,58 @@ namespace JoD {
     }
     
     namespace {
-        EM_BOOL OnOpen(int event_type,
-                        const EmscriptenWebSocketOpenEvent *web_socket_event,
-                        void *user_data){
+        EM_BOOL OnOpen(
+            int eventType,
+            const EmscriptenWebSocketOpenEvent *webSocketEvent,
+            void *userData){
             // Save web socket event to WebSocketClient so it can be used from that object by its own.
-            _<WebSocketServerConnection>().m_web_socket_event =
+            _<WebSocketServerConnection>().m_webSocketEvent =
                 std::shared_ptr<const EmscriptenWebSocketOpenEvent>(
-                    web_socket_event);
+                    webSocketEvent);
             std::cout << "Opening new connection.\n";
             // Send initial message and check result.
             if (auto result = emscripten_websocket_send_utf8_text(
-                    web_socket_event->socket,
+                    webSocketEvent->socket,
                     "Initialize connection"))
                 std::cout << "Failed to send init message to server: " <<
                     result << std::endl;
             // Send canvas size immediately to server.
             _<WebSocketServerConnection>().SendMessage(
-                MessageCodes::k_canvas_size);
+                MessageCodes::k_canvasSize);
             return EM_TRUE;
         }
         
-        EM_BOOL OnError(int event_type,
-                         const EmscriptenWebSocketErrorEvent *web_socket_event,
-                         void *user_data){
+        EM_BOOL OnError(
+            int eventType,
+            const EmscriptenWebSocketErrorEvent *webSocketEvent,
+            void *userData){
             std::cout << "Web socket error.\n"; // Notify on web socket errors.
             return EM_TRUE;
         }
         
-        EM_BOOL OnClose(int event_type,
-                         const EmscriptenWebSocketCloseEvent *web_socket_event,
-                         void *user_data){
+        EM_BOOL OnClose(
+            int eventType,
+            const EmscriptenWebSocketCloseEvent *webSocketEvent,
+            void *userData){
             std::cout << "Closing web socket connection.\n"; // Notify on closing web socket connection.
             return EM_TRUE;
         }
         
-        EM_BOOL OnMessage(int event_type,
-                           const EmscriptenWebSocketMessageEvent *
-                           web_socket_event,
-                           void *user_data){
-            ProcessIncomingMessage(web_socket_event->data); // Process the raw message data in bytes.
+        EM_BOOL OnMessage(
+            int eventType,
+            const EmscriptenWebSocketMessageEvent *
+            webSocketEvent,
+            void *userData){
+            ProcessIncomingMessage(webSocketEvent->data); // Process the raw message data in bytes.
             return EM_TRUE;
         }
         
         void ProcessIncomingMessage(unsigned char *bytes) {
-            auto message_code = ReadFourBytesAsInt(bytes); // The first bytes contains the message code.
-            switch (message_code){ // Perform corresponding action.
-            case MessageCodes::k_draw_image_instr: {
+            auto messageCode = ReadFourBytesAsInt(bytes); // The first bytes contains the message code.
+            switch (messageCode){ // Perform corresponding action.
+            case MessageCodes::k_drawImageInstr: {
                 // Next 4 bytes contains the image name hash code.
-                auto image_name_hash = ReadFourBytesAsInt(bytes + 4);
+                auto imageNameHash = ReadFourBytesAsInt(bytes + 4);
                 // Next 4 bytes contains the x coordinate.
                 auto x = ReadFourBytesAsFloat(bytes + 8);
                 // Next 4 bytes contains the y coordinate.
@@ -172,15 +180,14 @@ namespace JoD {
                 auto h = ReadFourBytesAsFloat(bytes + 20);
                 // Add the complete instruction.
                 _<RenderInstrutionsManager>().AddImageDrawInstruction(
-                    image_name_hash, {x, y, w, h});
+                    imageNameHash, {x, y, w, h});
                 break;
             }
-            case MessageCodes::k_apply_buffer: {
+            case MessageCodes::k_applyBuffer: {
                 _<RenderInstrutionsManager>().ApplyBuffer(); // Apply the buffered render instructions.
                 break;
             }
-            case MessageCodes::k_draw_string_instr:
-            {
+            case MessageCodes::k_drawStringInstr: {
                 auto x = ReadFourBytesAsFloat(bytes + 4);
                 auto y = ReadFourBytesAsFloat(bytes + 8);
                 auto length = ReadFourBytesAsInt(bytes + 12);
@@ -189,7 +196,9 @@ namespace JoD {
                     auto c = ReadFourBytesAsInt(bytes + 16 + i*4);
                     str += (char)c;
                 }
-                _<RenderInstrutionsManager>().AddTextDrawInstruction(str, {x,y});
+                _<RenderInstrutionsManager>().AddTextDrawInstruction(
+                    str,
+                    {x,y});
             }
             break;
             }
@@ -216,7 +225,7 @@ namespace JoD {
             // decimals precision.
             auto result = ((b3 << 3 * 8) + (b2 << 2 * 8) + (b1 <<
                                                             8) + b0) /
-                          net_constants::k_float_precision;
+                          net_constants::k_floatPrecision;
             return result;
         }
     }
