@@ -1,5 +1,5 @@
 /*
- * GenerateMobs.hpp
+ * GenerateRoads.hpp
  * 
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
@@ -9,5 +9,5 @@
 namespace JoD {
     class WorldArea;
 
-    void GenerateMobs(std::shared_ptr<WorldArea> worldArea);
+    void GenerateRoads(std::shared_ptr<WorldArea> worldArea);
 }

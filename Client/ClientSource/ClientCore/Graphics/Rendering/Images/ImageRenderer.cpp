@@ -6,7 +6,6 @@
 
 #include "ImageRenderer.hpp"
 #include "ClientCore/Assets/ImageBank.hpp"
-#include "MathLib.hpp"
 #include "ClientCore/Graphics/Rendering/RenderingCore/ShaderProgram.hpp"
 
 namespace JoD {

@@ -1,10 +1,11 @@
 /*
- * MathLib.cpp
+ * RectF.cpp
  * 
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "MathLib.hpp"
+#include "RectF.hpp"
+#include "GLRectF.hpp"
 
 namespace JoD {
     GLRectF RectF::to_glrectf() const {
