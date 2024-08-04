@@ -12,7 +12,7 @@ namespace JoD {
     class Cursor;
     
     class UserConnection {
-    public:
+      public:
         UserConnection(boost::asio::ip::tcp::socket socket);
         
         void SendImageDrawInstruction(
@@ -41,7 +41,7 @@ namespace JoD {
         
         std::shared_ptr<Cursor> m_cursor;
         
-    private:
+      private:
         void DoSession(boost::asio::ip::tcp::socket socket);
         
         Size m_canvasSize;

@@ -8,7 +8,7 @@
 
 namespace JoD {
     class GameProperties {
-    public:
+      public:
         const int k_numGridRows = 21;
     };
 }

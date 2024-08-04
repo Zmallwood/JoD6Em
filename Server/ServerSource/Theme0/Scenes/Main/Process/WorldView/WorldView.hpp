@@ -10,9 +10,9 @@
 
 namespace JoD {
     class WorldView : public IMainSceneComponent {
-    public:
+      public:
         using IMainSceneComponent::IMainSceneComponent;
-
+        
         void Render(WebSocket &webSocket) const override;
     };
 }

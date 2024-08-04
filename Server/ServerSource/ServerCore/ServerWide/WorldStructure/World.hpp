@@ -1,6 +1,6 @@
 /*
  * World.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -8,9 +8,9 @@
 
 namespace JoD {
     class WorldArea;
-
+    
     class World {
-    public:
+      public:
         World();
         
         std::shared_ptr<WorldArea> m_currentWorldArea;

@@ -1,6 +1,6 @@
 /*
  * WorldArea.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -8,11 +8,11 @@
 
 namespace JoD {
     class Tile;
-
+    
     class WorldArea {
-    public:
+      public:
         WorldArea();
         
-        std::vector<std::vector<std::shared_ptr<Tile> > > m_tiles;
+        std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles;
     };
 }

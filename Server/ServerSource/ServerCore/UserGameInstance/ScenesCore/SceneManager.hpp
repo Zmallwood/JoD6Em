@@ -11,7 +11,7 @@ namespace JoD {
     class IScene;
     
     class SceneManager {
-    public:
+      public:
         SceneManager(UserConnection &userConnection);
         
         void UpdateCurrentScene();
@@ -20,8 +20,9 @@ namespace JoD {
         
         void GoTo(std::string_view sceneName);
         
-    private:
-        void AddScene(std::string_view sceneName, std::shared_ptr<IScene> scene);
+      private:
+        void AddScene(std::string_view sceneName,
+                      std::shared_ptr<IScene> scene);
         
         int m_currentScene = 0;
         

@@ -1,6 +1,6 @@
 /*
  * Tile.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -8,9 +8,9 @@
 
 namespace JoD {
     class Mob;
-
+    
     class Tile {
-    public:
+      public:
         int m_ground = 0;
         int m_object = 0;
         std::shared_ptr<Mob> m_mob;

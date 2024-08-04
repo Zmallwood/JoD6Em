@@ -1,6 +1,6 @@
 /*
  * SDLDeleter.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -9,7 +9,7 @@
 namespace JoD {
     /// @brief Helper class to automatically free allocated resources for SDL objects.
     class SDLDeleter {
-    public:
+      public:
         /// @brief Cleanup of SDL_Window object.
         /// @param window Object to cleanup.
         void operator()(SDL_Window *window) const;

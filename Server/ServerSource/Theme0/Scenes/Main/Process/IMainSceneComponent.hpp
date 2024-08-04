@@ -11,7 +11,7 @@ namespace JoD {
     class UserConnection;
     
     class IMainSceneComponent {
-    public:
+      public:
         IMainSceneComponent(UserConnection& userConnection,
                             MainScene& mainScene);
         
@@ -21,7 +21,7 @@ namespace JoD {
         virtual void Render(WebSocket &webSocket) const {
         }
         
-    protected:
+      protected:
         UserConnection &m_userConnection;
         MainScene& m_mainScene;
     };

@@ -13,7 +13,7 @@ namespace JoD {
     
     /// @brief Functions as a base class for all renderers providing shared base functionality.
     class RendererBase {
-    protected:
+      protected:
         /// @brief Construct a new Renderer Base object, creating shader program and buffer storing
         ///        structures.
         RendererBase();
@@ -92,7 +92,7 @@ namespace JoD {
         
         std::shared_ptr<ShaderProgram> m_shaderProgram; ///< The shader program used for this renderer object.
         
-    private:
+      private:
         /// @brief Apply data to an array buffer of float type.
         /// @param VBOID VBO ID to set the data for.
         /// @param numEntries Number of entries to set.

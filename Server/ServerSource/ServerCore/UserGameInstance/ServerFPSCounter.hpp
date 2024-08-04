@@ -10,14 +10,14 @@ namespace JoD {
     class UserConnection;
     
     class ServerFPSCounter {
-    public:
+      public:
         ServerFPSCounter(UserConnection& userConnection);
         
         void Update();
         
         void Render(WebSocket& ws) const;
         
-    private:
+      private:
         int m_fps = 0;
         int m_framesCount = 0;
         TimePoint m_ticksLastUpdate = Now();

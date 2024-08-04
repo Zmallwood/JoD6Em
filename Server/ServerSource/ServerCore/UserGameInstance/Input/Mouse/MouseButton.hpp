@@ -1,6 +1,6 @@
 /*
  * MouseButton.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -8,7 +8,7 @@
 
 namespace JoD {
     class MouseButton {
-    public:
+      public:
         void RegisterMouseDown();
         
         bool IsPressedPickResult();

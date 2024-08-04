@@ -1,6 +1,6 @@
 /*
  * Font.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -9,7 +9,7 @@
 namespace JoD {
     /// @brief Font object used for text rendering.
     class Font {
-    public:
+      public:
         /// @brief Construct a new font object.
         /// @param fontFileName Font file name.
         /// @param fontSize Font size used for this font object.

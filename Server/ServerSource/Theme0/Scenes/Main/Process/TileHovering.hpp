@@ -10,7 +10,7 @@
 
 namespace JoD {
     class TileHovering : public IMainSceneComponent  {
-    public:
+      public:
         using IMainSceneComponent::IMainSceneComponent;
         
         void Update() override;

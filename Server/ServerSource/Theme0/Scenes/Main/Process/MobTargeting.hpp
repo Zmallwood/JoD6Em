@@ -12,7 +12,7 @@ namespace JoD {
     class Mob;
     
     class MobTargeting : public IMainSceneComponent {
-    public:
+      public:
         using IMainSceneComponent::IMainSceneComponent;
         
         void Update() override;

@@ -12,13 +12,13 @@
 
 namespace JoD {
     class MainScene : public IScene {
-    public:
+      public:
         using IScene::IScene;
-
+        
         std::map<MainSceneComponents,
                  std::shared_ptr<IMainSceneComponent>> m_components;
         
-    protected:
+      protected:
         void Initialize() override;
         
         void UpdateDerived() override;

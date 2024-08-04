@@ -1,6 +1,6 @@
 /*
  * ImageBank.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -9,7 +9,7 @@
 namespace JoD {
     /// @brief Loads and provides image resources.
     class ImageBank {
-    public:
+      public:
         /// @brief Construct a new Image Bank object.
         ImageBank();
         
@@ -32,7 +32,7 @@ namespace JoD {
         /// @return GLuint Resource ID of created image.
         GLuint CreateBlankImage(std::string_view uniqueImageName);
         
-    private:
+      private:
         void LoadImages();
         
         std::map<int, GLuint> m_images; ///< Stores images by image name hash code.

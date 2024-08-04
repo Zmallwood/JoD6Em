@@ -1,6 +1,6 @@
 /*
  * MouseInput.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -10,9 +10,9 @@
 
 namespace JoD {
     class MouseButton;
-
+    
     class MouseInput {
-    public:
+      public:
         MouseInput();
         
         void RegisterMouseDown(MouseButtons button);

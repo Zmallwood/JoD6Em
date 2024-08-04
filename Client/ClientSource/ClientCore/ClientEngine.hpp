@@ -1,6 +1,6 @@
 /*
  * ClientEngine.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -9,7 +9,7 @@
 namespace JoD {
     /// @brief Engine for the client.
     class ClientEngine {
-    public:
+      public:
         /// @brief Run the client engine.
         void Run() const;
         

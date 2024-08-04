@@ -1,6 +1,6 @@
 /*
  * MouseMovement.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -10,7 +10,7 @@
 
 namespace JoD {
     class MouseMovement : public IMainSceneComponent  {
-    public:
+      public:
         using IMainSceneComponent::IMainSceneComponent;
         
         void Update() override;

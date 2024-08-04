@@ -1,6 +1,6 @@
 /*
  * Creature.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -8,9 +8,9 @@
 
 namespace JoD {
     class Mob {
-    public:
+      public:
         Mob(std::string_view mobName, int level);
-
+        
         int m_level = 0;
         int m_type = 0;
         int m_pAtk = 0;

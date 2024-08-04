@@ -1,6 +1,6 @@
 /*
  * UserGameInstanceEngine.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -12,9 +12,9 @@ namespace JoD {
     class MouseInput;
     class SceneManager;
     class ServerFPSCounter;
-
+    
     class UserGameInstanceEngine {
-    public:
+      public:
         UserGameInstanceEngine(UserConnection &userConnection);
         
         void Update();
@@ -25,7 +25,7 @@ namespace JoD {
         
         std::shared_ptr<SceneManager> m_sceneManager;
         
-    private:
+      private:
         std::shared_ptr<ServerFPSCounter> m_serverFPSCounter;
         
         UserConnection &m_userConnection;

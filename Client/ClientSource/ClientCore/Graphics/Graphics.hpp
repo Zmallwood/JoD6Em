@@ -1,6 +1,6 @@
 /*
  * Graphics.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -9,7 +9,7 @@
 namespace JoD {
     /// @brief Initializes and handles preparing and finilizing graphics for each frame.
     class Graphics {
-    public:
+      public:
         /// @brief Construct a new Graphics object and initialize GLFW with OpenGL and applying
         ///        needed settings.
         Graphics();
@@ -22,7 +22,7 @@ namespace JoD {
         
         GLFWwindow *m_window = nullptr; ///< GLFW window object.
         
-    private:
+      private:
         const std::string
             k_title = "Journey of Dreams"; ///< Window title used if the game would be in desktop application format.
     };

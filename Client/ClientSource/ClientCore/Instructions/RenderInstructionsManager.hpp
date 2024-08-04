@@ -1,6 +1,6 @@
 /*
  * RenderInstructionsManager.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -8,10 +8,10 @@
 
 #include "ImageDrawInstruction.hpp"
 
-namespace JoD {   
+namespace JoD {
     /// @brief Holds latest set of rendering instructions and executes them.
     class RenderInstrutionsManager {
-    public:
+      public:
         /// @brief Construct a new Render Instructions Manager object.
         RenderInstrutionsManager();
         
@@ -19,7 +19,7 @@ namespace JoD {
         /// @param imageNameHash Hash code of image name to draw.
         /// @param destination Destination rectangle to draw the image at.
         void AddImageDrawInstruction(int imageNameHash, RectF destination);
-
+        
         void AddTextDrawInstruction(std::string_view text, PointF position);
         
         /// @brief Copies the buffered render instructions to the active render instructions set.
@@ -29,7 +29,7 @@ namespace JoD {
         ///        web browser.
         void ExecuteInstructions() const;
         
-    private:
+      private:
         std::vector<ImageDrawInstruction>
         m_imageDrawInstructions; ///< Holds the image draw instructions that are executed each call to DrawCanvas().
         
@@ -37,9 +37,9 @@ namespace JoD {
         m_imageDrawInstructionsBuffer; ///< Holds the buffer for the next set of draw of instructions.
         
         std::vector<RID> m_rids; ///< A set of preallocated RIDs used for drawing images, created in the constructor.
-
+        
         std::vector<RID> m_ridsText;
-
+        
         int m_ridCounterImages = 0;
         
         int m_ridCounterText = 0;

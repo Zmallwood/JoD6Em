@@ -1,6 +1,6 @@
 /*
  * ShaderProgram.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -9,7 +9,7 @@
 namespace JoD {
     /// @brief OpenGL shader program object.
     class ShaderProgram {
-    public:
+      public:
         /// @brief Create a new shader program with provided
         ///        source for vertex and fragment shader.
         /// @param vertexShaderSource Vertex shader source.
@@ -23,8 +23,8 @@ namespace JoD {
         
         GLuint m_programID = 0; ///< Shader program ID.
         
-    private:
+      private:
         GLuint CompileShader(const GLchar *shaderSource, GLuint *shader,
-                              GLenum shaderType) const;
+                             GLenum shaderType) const;
     };
 }

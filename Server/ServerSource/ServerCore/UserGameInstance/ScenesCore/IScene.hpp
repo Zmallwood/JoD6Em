@@ -10,7 +10,7 @@ namespace JoD {
     class UserConnection;
     
     class IScene {
-    public:
+      public:
         IScene(UserConnection& userConnection);
         
         virtual void Initialize() {
@@ -20,7 +20,7 @@ namespace JoD {
         
         void Render(WebSocket &webSocket) const;
         
-    protected:
+      protected:
         virtual void UpdateDerived() = 0;
         
         virtual void RenderDerived(
