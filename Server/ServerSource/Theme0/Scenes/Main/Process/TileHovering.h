@@ -6,18 +6,18 @@
 
 #pragma once
 
-namespace jod {
-    class user_connection;
+namespace JoD {
+    class UserConnection;
     
-    class tile_hovering {
+    class TileHovering {
     public:
-        tile_hovering(user_connection &user_connection);
+        TileHovering(UserConnection &user_connection);
         
-        void update();
+        void Update();
         
-        point m_hovered_coordinate = {-1, -1};
+        Point m_hovered_coordinate = {-1, -1};
         
     private:
-        user_connection &m_user_connection;
+        UserConnection &m_user_connection;
     };
 }

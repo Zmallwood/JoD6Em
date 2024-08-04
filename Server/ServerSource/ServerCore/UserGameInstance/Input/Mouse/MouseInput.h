@@ -8,16 +8,16 @@
 
 #include "MouseButtons.h"
 
-namespace jod {
-    class mouse_button;
+namespace JoD {
+    class MouseButton;
 
-    class mouse_input {
+    class MouseInput {
     public:
-        mouse_input();
+        MouseInput();
         
-        void register_mouse_down(mouse_buttons button);
+        void RegisterMouseDown(MouseButtons button);
         
-        std::shared_ptr<mouse_button> m_left_button;
-        std::shared_ptr<mouse_button> m_right_button;
+        std::shared_ptr<MouseButton> m_left_button;
+        std::shared_ptr<MouseButton> m_right_button;
     };
 }

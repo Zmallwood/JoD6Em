@@ -9,25 +9,25 @@
 #include "MessageCodes.h"
 #include "ClientCore/Net/WebSocketServerConnection.h"
 #include "Instructions/RenderInstructionsManager.h"
-#include "Input/SetupCallbacks.h"
+#include "Input/SetupInputCallbacks.h"
 #include "Utilities/ClientFPSCounter.h"
 
-namespace jod {
+namespace JoD {
     namespace {
-        void game_loop_function();
+        void GameLoopFunction();
     }
     
-    void client_engine::run() const {
-        _<web_socket_server_connection>().connect(); // Start network connection.
+    void ClientEngine::Run() const {
+        _<WebSocketServerConnection>().Connect(); // Start network connection.
         SDL_Init(SDL_INIT_EVERYTHING); // Required by SDL2 before using it.
-        setup_callbacks();
-        _<graphics>(); // Touch Graphics to initialize it.
+        SetupInputCallbacks();
+        _<Graphics>(); // Touch Graphics to initialize it.
         // Start game loop.
         auto simulate_infinite_loop = 1;
-        emscripten_set_main_loop(game_loop_function, 0, simulate_infinite_loop);
+        emscripten_set_main_loop(GameLoopFunction, 0, simulate_infinite_loop);
     }
     
-    void client_engine::poll_events()      {
+    void ClientEngine::PollEvents()      {
         SDL_Event event;
         while (SDL_PollEvent(
                    &event)) { // Poll for events from user every frame.
@@ -41,21 +41,21 @@ namespace jod {
     }
     
     namespace {
-        void game_loop_function()      {
-            if (!_<client_engine>().m_running) // Exit main loop if user has requested it.
+        void GameLoopFunction() {
+            if (!_<ClientEngine>().m_running) // Exit main loop if user has requested it.
                 emscripten_cancel_main_loop();
-            _<client_engine>().poll_events(); // Poll user events and process them.
-            _<client_fps_counter>().update();
-            _<web_socket_server_connection>().send_message(
-                message_codes::k_mouse_position);
+            _<ClientEngine>().PollEvents(); // Poll user events and process them.
+            _<ClientFPSCounter>().Update();
+            _<WebSocketServerConnection>().SendMessage(
+                MessageCodes::k_mouse_position);
             // Clear canvas with single color to prepare for new rendering.
-            _<graphics>().clear_canvas();
+            _<Graphics>().ClearCanvas();
             // Draw canvas in its current state (current set of drawing instructions).
-            _<render_instructions_manager>().execute_instructions();
-            _<client_fps_counter>().render();
-            _<graphics>().present_canvas(); // Present canvas to users web browser.
-            _<web_socket_server_connection>().send_message(
-                message_codes::k_frame_finished);
+            _<RenderInstrutionsManager>().ExecuteInstructions();
+            _<ClientFPSCounter>().Render();
+            _<Graphics>().PresentCanvas(); // Present canvas to users web browser.
+            _<WebSocketServerConnection>().SendMessage(
+                MessageCodes::k_frame_finished);
         }
     }
 }

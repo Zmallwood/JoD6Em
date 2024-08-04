@@ -1,16 +1,16 @@
 /*
  * ImageBank.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
 #include "ImageBank.h"
 
-namespace jod {
+namespace JoD {
     namespace {
         // Load single image from absolute file path.
         GLuint LoadSingleImage(std::string_view abs_file_path);
-
+        
         // Load pure image data from file name.
         SDL_Surface *LoadImageData(const char *file_name);
     }
@@ -25,7 +25,7 @@ namespace jod {
     }
     
     GLuint ImageBank::GetImage(std::string_view image_name) const {
-        return GetImage(jod::hash(image_name)); // Hash the image name and call the function overload
+        return GetImage(Hash(image_name)); // Hash the image name and call the function overload
     }
     
     GLuint ImageBank::GetImage(int image_name_hash) const {
@@ -42,7 +42,7 @@ namespace jod {
         glGenTextures(1, &tex_id); // and get its ID.
         // Insert new image entry with image name hash as key
         // and the new ID as value.
-        m_images.insert({jod::hash(unique_image_name), tex_id});
+        m_images.insert({Hash(unique_image_name), tex_id});
         return tex_id; // Return the ID of the newly created blank image resource.
     }
     
@@ -51,13 +51,13 @@ namespace jod {
         auto all_images_path = k_rel_images_path + "/";
         for (auto &entry : iterator(all_images_path)) {
             auto abs_path = entry.path().string(); // Create path string to load the images from.
-            if (file_extension(abs_path) != "png") continue; // Only handle files with png extenstion.
+            if (GetFileExtension(abs_path) != "png") continue; // Only handle files with png extenstion.
             auto tex_id = LoadSingleImage(abs_path); // Load the current file as an image resource.
-            auto image_name = filename_no_extension(
+            auto image_name = GetFilenameNoExtension(
                 abs_path); // Extract its pure name without path or extension.
             // Insert a new entry into the images storage, with the
             // image name hash as key and the resource ID as value.
-            m_images.insert({jod::hash(image_name), tex_id});
+            m_images.insert({Hash(image_name), tex_id});
         }
     }
     
@@ -76,14 +76,15 @@ namespace jod {
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
             // Transfer image data from SDL surface to OpenGL texture resource depending on
             // if the image format is RGB or RGBA (with or without alpha channel).
-            if (surface->format->BytesPerPixel == 4)
+            if (surface->format->BytesPerPixel == 4) {
                 glTexImage2D(
                     GL_TEXTURE_2D, 0, GL_RGBA, surface->w, surface->h, 0,
                     GL_RGBA, GL_UNSIGNED_BYTE, surface->pixels);
-            else
+            } else {
                 glTexImage2D(
                     GL_TEXTURE_2D, 0,  GL_RGBA, surface->w, surface->h, 0,
                     GL_RGB, GL_UNSIGNED_BYTE, surface->pixels);
+            }
             // Free SDL surface resource, its not needed anymore as the image data is
             // stored in the OpenGL texture now.
             SDL_FreeSurface(surface);

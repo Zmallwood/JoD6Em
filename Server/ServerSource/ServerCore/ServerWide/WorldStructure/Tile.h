@@ -6,13 +6,13 @@
 
 #pragma once
 
-namespace jod {
-    class mob;
+namespace JoD {
+    class Mob;
 
-    class tile {
+    class Tile {
     public:
         int m_ground = 0;
         int m_object = 0;
-        std::shared_ptr<mob> m_mob;
+        std::shared_ptr<Mob> m_mob;
     };
 }

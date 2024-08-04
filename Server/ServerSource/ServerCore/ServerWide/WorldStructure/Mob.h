@@ -6,10 +6,10 @@
 
 #pragma once
 
-namespace jod {
-    class mob {
+namespace JoD {
+    class Mob {
     public:
-        mob(std::string_view mob_name, int level);
+        Mob(std::string_view mob_name, int level);
 
         int m_level;
         int m_type = 0;

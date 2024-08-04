@@ -8,7 +8,7 @@
 
 #include "BufferTypes.h"
 
-namespace jod {      
+namespace JoD {      
     class ShaderProgram;
 
     /// @brief Functions as a base class for all renderers providing shared base functionality.

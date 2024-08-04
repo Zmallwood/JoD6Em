@@ -10,9 +10,9 @@
 namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;
 
-namespace jod {
+namespace JoD {
     void RunWebSocketServer(std::string socket_address,
                             std::string socket_port) {
-        _<web_socket_server>().run(socket_address, socket_port);
+        _<WebSocketServer>().Run(socket_address, socket_port);
     }
 }

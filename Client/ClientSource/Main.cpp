@@ -8,7 +8,7 @@
 
 int main(int argc, char *argv[]) { 
     try{ // Catch all exceptions that can happen during execution.
-        jod::run_new_client_instance(); // Run new instance of the game.
+        JoD::RunNewClientInstance(); // Run new instance of the game.
     }
     catch (const std::exception &e){
         std::cout << "Error: " << e.what() << std::endl;

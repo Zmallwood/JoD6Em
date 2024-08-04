@@ -6,12 +6,12 @@
 
 #pragma once
 
-namespace jod {
-    class user_connection;
+namespace JoD {
+    class UserConnection;
     
     class IScene {
     public:
-        IScene(user_connection& user_connection);
+        IScene(UserConnection& user_connection);
         
         void Update();
         
@@ -23,6 +23,6 @@ namespace jod {
         virtual void RenderDerived(WebSocket
                                    &webSocket) = 0;
         
-        user_connection &m_user_connection;
+        UserConnection &m_user_connection;
     };
 }

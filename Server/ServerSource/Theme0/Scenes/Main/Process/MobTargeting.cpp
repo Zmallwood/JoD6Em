@@ -14,19 +14,19 @@
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.h"
 #include "ServerCore/ServerWide/WorldStructure/Tile.h"
 
-namespace jod {
-    mob_targeting::mob_targeting(user_connection& user_connection)
+namespace JoD {
+    MobTargeting::MobTargeting(UserConnection& user_connection)
         : m_user_connection((user_connection)){
     }
     
-    void mob_targeting::update() {
+    void MobTargeting::Update() {
         auto mouse_down =
             m_user_connection.m_user_game_instance_engine->m_mouse_input->m_right_button->
-            is_pressed_pick_result();
+            IsPressedPickResult();
         auto hovered_tile =
             m_user_connection.m_tile_hovering->m_hovered_coordinate;
         if (mouse_down) {
-            auto world_area = _<world>().m_current_world_area;
+            auto world_area = _<World>().m_current_world_area;
             auto tile = world_area->m_tiles[hovered_tile.x][hovered_tile.y];
             if (tile->m_mob) {
                 m_targeted_creature = tile->m_mob;

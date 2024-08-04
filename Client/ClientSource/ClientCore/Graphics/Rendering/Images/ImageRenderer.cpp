@@ -9,7 +9,7 @@
 #include "MathLib.h"
 #include "ClientCore/Graphics/Rendering/RenderingCore/ShaderProgram.h"
 
-namespace jod {
+namespace JoD {
     namespace {
         // Vertex shader for image rendering
         const GLchar *default_shader_images_vertex =
@@ -57,7 +57,7 @@ namespace jod {
         CleanupBase(); // Delete allocated resources for the renderer.
     }
     
-    rid ImageRenderer::NewImage() {
+    RID ImageRenderer::NewImage() {
         auto rid = GenNewVAOID(); // Create new Vertex Array Object.
         UseVAOBegin(rid); // Use it.
         // Create buffers that are needed for 2D image rendering.
@@ -68,21 +68,21 @@ namespace jod {
         // Set buffers to empty data.
         SetIndicesData(
             index_buff_id,
-            math_constants::k_num_vertices_in_rectangle,
+            MathConstants::k_num_vertices_in_rectangle,
             nullptr);
         SetData(
             pos_buff_id,
-            math_constants::k_num_vertices_in_rectangle,
+            MathConstants::k_num_vertices_in_rectangle,
             nullptr,
             BufferTypes::positions_2d);
         SetData(
             color_buff_id,
-            math_constants::k_num_vertices_in_rectangle,
+            MathConstants::k_num_vertices_in_rectangle,
             nullptr,
             BufferTypes::colors);
         SetData(
             uv_buff_id,
-            math_constants::k_num_vertices_in_rectangle,
+            MathConstants::k_num_vertices_in_rectangle,
             nullptr,
             BufferTypes::uvs);
         UseVAOEnd(); // Stop using the Vertex Array Object.
@@ -90,15 +90,15 @@ namespace jod {
     }
     
     void ImageRenderer::DrawImage(
-        rid rid,
+        RID rid,
         int image_name_hash,
-        const rectf &destination,
+        const RectF &destination,
         bool repeat_texture,
-        sizef texture_fill_amount,
-        colorf color){
+        SizeF texture_fill_amount,
+        ColorF color){
         auto gl_rect = destination.to_glrectf(); // Convert destination to GL coordinate system.
         // Create 4 vertices for an image rectangle.
-        vertex2f verts[math_constants::k_num_vertices_in_rectangle];
+        Vertex2F verts[MathConstants::k_num_vertices_in_rectangle];
         // Set vertices positions.
         verts[0].pos = {gl_rect.x, gl_rect.y - gl_rect.h};
         verts[1].pos = {gl_rect.x, gl_rect.y};
@@ -125,7 +125,7 @@ namespace jod {
         }
         // Create indices for the vertices.
         auto indices = std::vector<int>(
-            math_constants::k_num_vertices_in_rectangle);
+            MathConstants::k_num_vertices_in_rectangle);
         std::iota(std::begin(indices), std::end(indices), 0);
         // Put render input into pure float vector format.
         std::vector<float> positions;
@@ -159,20 +159,20 @@ namespace jod {
         // Do the actual rendering.
         glDrawElements(
             GL_TRIANGLE_FAN,
-            math_constants::k_num_vertices_in_rectangle, GL_UNSIGNED_INT, NULL);
+            MathConstants::k_num_vertices_in_rectangle, GL_UNSIGNED_INT, NULL);
         UseVAOEnd(); // Stop using the Vertex Array Object.
     }
     
     void ImageRenderer::DrawImage(
-        rid rid,
+        RID rid,
         std::string_view image_name,
-        const rectf &destination,
+        const RectF &destination,
         bool repeat_texture,
-        sizef texture_fill_amount,
-        colorf color){
+        SizeF texture_fill_amount,
+        ColorF color){
         // Forward the method call to the main overload.
         DrawImage(
-            rid, jod::hash(image_name), destination, repeat_texture,
+            rid, Hash(image_name), destination, repeat_texture,
             texture_fill_amount, color);
     }
 }

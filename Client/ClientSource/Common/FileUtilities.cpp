@@ -6,14 +6,14 @@
 
 #include "FileUtilities.h"
 
-namespace jod {
-    std::string file_extension(std::string_view abs_path) {
+namespace JoD {
+    std::string GetFileExtension(std::string_view abs_path) {
         // Find last occurrence of '.' and keep the part following it.
         auto extension = abs_path.substr(abs_path.find_last_of('.') + 1);
         return extension.data();
     }
     
-    std::string filename_no_extension(std::string_view abs_path) {
+    std::string GetFilenameNoExtension(std::string_view abs_path) {
         // Find last occurence of '/' and get the part following it.
         auto name_with_ext =
             std::string(abs_path.substr(abs_path.find_last_of('/') + 1));

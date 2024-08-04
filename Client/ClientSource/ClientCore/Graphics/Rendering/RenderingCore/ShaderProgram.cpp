@@ -6,7 +6,7 @@
 
 #include "ShaderProgram.h"
 
-namespace jod {
+namespace JoD {
     bool ShaderProgram::Create(
         const GLchar *vertex_shader_source,
         const GLchar *fragment_shader_source){
@@ -17,7 +17,7 @@ namespace jod {
         auto success = true;
         {
             // Compile vertex shader.
-            auto vertex_shader_res = compile_shader(
+            auto vertex_shader_res = CompileShader(
                 vertex_shader_source,
                 &vertex_shader,
                 GL_VERTEX_SHADER);
@@ -31,7 +31,7 @@ namespace jod {
             // Attach compiled vertex shader to GL program.
             glAttachShader(m_program_id, vertex_shader);
             // Compile fragment shader.
-            auto fragment_shader_res = compile_shader(
+            auto fragment_shader_res = CompileShader(
                 fragment_shader_source,
                 &fragment_shader,
                 GL_FRAGMENT_SHADER);
@@ -67,7 +67,7 @@ namespace jod {
         glDeleteProgram(m_program_id); // Delete GL program.
     }
     
-    GLuint ShaderProgram::compile_shader(
+    GLuint ShaderProgram::CompileShader(
         const GLchar *shader_source,
         GLuint *shader,
         GLenum shader_type){

@@ -10,12 +10,12 @@
 #include "ServerCore/ServerWide/WorldStructure/Tile.h"
 #include "ServerCore/ServerWide/WorldStructure/Mob.h"
 
-namespace jod {
+namespace JoD {
     void generate_new_world() {
-        auto world_area = _<world>().m_current_world_area;
+        auto world_area = _<World>().m_current_world_area;
         for (auto y = 0; y < 100; y++)
             for (auto x = 0; x < 100; x++)
-                world_area->m_tiles[x][y]->m_ground = jod::hash("GroundGrass");
+                world_area->m_tiles[x][y]->m_ground = Hash("GroundGrass");
         auto num_lakes = 15;
         for (auto i = 0; i < num_lakes; i++){
             auto xCenter = rand() % 100;
@@ -28,7 +28,7 @@ namespace jod {
                     auto dy = y - yCenter;
                     if (dx * dx + dy * dy <= r * r)
                         world_area->m_tiles[x][y]->m_ground =
-                            jod::hash("GroundWater");
+                            Hash("GroundWater");
                 }
             }
         }
@@ -40,8 +40,8 @@ namespace jod {
             auto y = rand() % 100;
             
             if (world_area->m_tiles[x][y]->m_ground !=
-                jod::hash("GroundWater")) {
-                world_area->m_tiles[x][y]->m_object = jod::hash("ObjectTree1");
+                Hash("GroundWater")) {
+                world_area->m_tiles[x][y]->m_object = Hash("ObjectTree1");
             }
         }
         
@@ -50,32 +50,32 @@ namespace jod {
         
         for (auto i = 0; i < 25; i++) {
             world_area->m_tiles[road_x][road_y]->m_ground =
-                jod::hash("GroundCobbleStone");
+                Hash("GroundCobbleStone");
             road_x++;
             road_y++;
         }
         
         for (auto i = 0; i < 50; i++) {
             world_area->m_tiles[road_x][road_y]->m_ground =
-                jod::hash("GroundCobbleStone");
+                Hash("GroundCobbleStone");
             road_x++;
         }
         
         for (auto i = 0; i < 50; i++) {
             world_area->m_tiles[road_x][road_y]->m_ground =
-                jod::hash("GroundCobbleStone");
+                Hash("GroundCobbleStone");
             road_y++;
         }
         
         for (auto i = 0; i < 50; i++) {
             world_area->m_tiles[road_x][road_y]->m_ground =
-                jod::hash("GroundCobbleStone");
+                Hash("GroundCobbleStone");
             road_x--;
         }
         
         for (auto i = 0; i < 25; i++) {
             world_area->m_tiles[road_x][road_y]->m_ground =
-                jod::hash("GroundCobbleStone");
+                Hash("GroundCobbleStone");
             road_y++;
         }
         
@@ -96,7 +96,7 @@ namespace jod {
                 
                 if (x <  0 || y <0 || x>= 100 || y >= 100)continue;
                 
-                world_area->m_tiles[x][y]->m_mob = std::make_shared<mob>("MobBlueSlime", 1);
+                world_area->m_tiles[x][y]->m_mob = std::make_shared<Mob>("MobBlueSlime", 1);
             }
         }
         
@@ -108,7 +108,7 @@ namespace jod {
                 auto y = y_center + rand() % 5 - rand() % 5;
                 if (x <  0 || y <0 || x>= 100 || y >= 100)continue;
                 
-                world_area->m_tiles[x][y]->m_mob = std::make_shared<mob>("MobYellowSlime", 2);
+                world_area->m_tiles[x][y]->m_mob = std::make_shared<Mob>("MobYellowSlime", 2);
             }
         }
         
@@ -120,7 +120,7 @@ namespace jod {
                 auto y = y_center + rand() % 5 - rand() % 5;
                 if (x <  0 || y <0 || x>= 100 || y >= 100)continue;
                 
-                world_area->m_tiles[x][y]->m_mob = std::make_shared<mob>("MobRedSlime", 3);
+                world_area->m_tiles[x][y]->m_mob = std::make_shared<Mob>("MobRedSlime", 3);
             }
         }
     }

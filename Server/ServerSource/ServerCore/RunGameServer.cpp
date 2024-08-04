@@ -5,10 +5,10 @@
  */
 
 #include "RunGameServer.h"
-#include "Theme0/Scenes/WorldGeneration/Process/GenerateNewWorld.h"
+#include "ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.h"
 #include "Net/RunWebSocketServer.h"
 
-namespace jod {
+namespace JoD {
     void RunGameServer(char **argv) {
         srand(time(0));
         generate_new_world();

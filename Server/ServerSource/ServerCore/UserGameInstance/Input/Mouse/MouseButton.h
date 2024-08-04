@@ -6,12 +6,12 @@
 
 #pragma once
 
-namespace jod {
-    class mouse_button {
+namespace JoD {
+    class MouseButton {
     public:
-        void register_mouse_down();
+        void RegisterMouseDown();
         
-        bool is_pressed_pick_result();
+        bool IsPressedPickResult();
         
         bool m_is_pressed;
     };

@@ -6,8 +6,8 @@
 
 #pragma once
 
-namespace jod {
-    enum class mouse_buttons {
+namespace JoD {
+    enum class MouseButtons {
         none,
         left,
         right

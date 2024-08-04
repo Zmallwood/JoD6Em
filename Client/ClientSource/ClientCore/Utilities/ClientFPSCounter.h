@@ -1,28 +1,31 @@
 /*
  * FPSCounter.h
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
 #pragma once
 
-namespace jod {
-    //! \brief Client side FPS counter rendered to the canvas.
-    class client_fps_counter {
+namespace JoD {
+    /// @brief Client side FPS counter rendered to the canvas.
+    class ClientFPSCounter {
     public:
-        //! \brief Construct a new fps counter object by allocated rendering resources.
-        client_fps_counter();
+        /// @brief Construct a new fps counter object by allocated rendering resources.
+        ClientFPSCounter();
         
-        //! \brief Compute the current FPS.
-        void update();
+        /// @brief Compute the current FPS.
+        void Update();
         
-        //! \brief Render the computed FPS to the canvas.
-        void render();
+        /// @brief Render the computed FPS to the canvas.
+        void Render();
         
     private:
-        rid m_rid;
+        RID m_rid;
+        
         int m_frames_count = 0;
+        
         int m_fps = 0;
+        
         int m_ticks_last_update = 0;
     };
 }

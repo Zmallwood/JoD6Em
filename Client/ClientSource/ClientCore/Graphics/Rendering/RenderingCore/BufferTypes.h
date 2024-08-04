@@ -6,7 +6,7 @@
 
 #pragma once
 
-namespace jod {
+namespace JoD {
     /// @brief Available types of GL buffers that can be created.
     enum class BufferTypes {
         indices, ///< Indices

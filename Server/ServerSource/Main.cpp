@@ -7,7 +7,6 @@
 #include "ServerCore/RunGameServer.h"
 
 int main(int argc, char *argv[]) {
-    using namespace jod;
     try{ // Catch all exceptions that can happen during execution.
         if (argc != 3){
             std::cerr << "Usage: JoDServer <address> <port>\n"
@@ -15,7 +14,7 @@ int main(int argc, char *argv[]) {
                       << "    JoDServer 0.0.0.0 8080\n";
             return 1;
         }
-        RunGameServer(argv);
+        JoD::RunGameServer(argv);
     }
     catch (const std::exception &e){
         std::cout << "Error: " << e.what() << std::endl;

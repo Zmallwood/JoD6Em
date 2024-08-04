@@ -10,8 +10,8 @@
 namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;
 
-namespace jod {
-    void web_socket_server::run(std::string socket_address,
+namespace JoD {
+    void WebSocketServer::Run(std::string socket_address,
                                 std::string socket_port) {
         auto const address = net::ip::make_address(socket_address);
         auto const port =
@@ -22,7 +22,7 @@ namespace jod {
             tcp::socket socket{ioc}; // This will receive the new connection.
             acceptor.accept(socket); // Block until we get a connection.
             m_user_connections.push_back(
-                std::make_shared<user_connection>(
+                std::make_shared<UserConnection>(
                     std::move(socket)));
         }
     }

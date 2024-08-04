@@ -6,7 +6,7 @@
 
 #pragma once
 
-namespace jod {
+namespace JoD {
     /// @brief OpenGL shader program object.
     class ShaderProgram {
     public:

@@ -6,16 +6,16 @@
 
 #pragma once
 
-namespace jod {
-    class user_connection;
+namespace JoD {
+    class UserConnection;
 
-    class mouse_movement {
+    class MouseMovement {
     public:
-        mouse_movement(user_connection &user_connection);
+        MouseMovement(UserConnection &user_connection);
         
-        void update();
+        void Update();
         
     private:
-        user_connection &m_user_connection;
+        UserConnection &m_user_connection;
     };
 }

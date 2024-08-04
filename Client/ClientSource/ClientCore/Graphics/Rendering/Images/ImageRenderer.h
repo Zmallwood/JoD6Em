@@ -8,7 +8,7 @@
 
 #include "ClientCore/Graphics/Rendering/RenderingCore/RendererBase.h"
 
-namespace jod {
+namespace JoD {
     /// @brief Allocates image resources and enabled rendering images to the browser.
     class ImageRenderer : public RendererBase {
     public:
@@ -23,7 +23,7 @@ namespace jod {
         /// @brief Allocates resources for a new image and return the ID used to render with these
         ///        resources.
         /// @return rid Resource ID used to render an image with the allocated resources.
-        rid NewImage();
+        RID NewImage();
         
         /// @brief Render an image to the browser.
         /// @param rid Resource ID previously allocated.
@@ -33,12 +33,12 @@ namespace jod {
         /// @param texture_fill_amount Used to modify pattern repetition amount.
         /// @param color Used to modify overall color of the image.
         void DrawImage(
-            rid rid,
+            RID rid,
             std::string_view image_name,
-            const rectf &destination,
+            const RectF &destination,
             bool repeat_texture = false,
-            sizef texture_fill_amount = {1.0f, 1.0f},
-            colorf color = {1.0f, 1.0f, 1.0f});
+            SizeF texture_fill_amount = {1.0f, 1.0f},
+            ColorF color = {1.0f, 1.0f, 1.0f});
         
         /// @brief Render an image to the browser.
         /// @param rid Resource ID previously allocated.
@@ -48,11 +48,11 @@ namespace jod {
         /// @param texture_fill_amount Used to modify pattern repetition amount.
         /// @param color Used to modify overall color of the image.
         void DrawImage(
-            rid rid,
+            RID rid,
             int image_name_hash,
-            const rectf &destination,
+            const RectF &destination,
             bool repeat_texture = false,
-            sizef texture_fill_amount = {1.0f, 1.0f},
-            colorf color = {1.0f, 1.0f, 1.0f});
+            SizeF texture_fill_amount = {1.0f, 1.0f},
+            ColorF color = {1.0f, 1.0f, 1.0f});
     };
 }

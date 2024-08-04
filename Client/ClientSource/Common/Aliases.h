@@ -6,8 +6,8 @@
 
 #pragma once
 
-namespace jod {
-    using rid = GLuint; //!< Resource ID.
+namespace JoD {
+    using RID = GLuint; ///< Resource ID.
     
-    static auto get_ticks = SDL_GetTicks; //!< Current number of ticks now.
+    static auto GetTicks = SDL_GetTicks; ///< Current number of ticks now.
 }

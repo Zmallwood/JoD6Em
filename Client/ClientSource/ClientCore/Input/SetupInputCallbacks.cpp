@@ -4,48 +4,48 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "SetupCallbacks.h"
+#include "SetupInputCallbacks.h"
 #include "ClientCore/Graphics/Graphics.h"
 #include "ClientCore/Net/WebSocketServerConnection.h"
 #include "MessageCodes.h"
 
-namespace jod {
+namespace JoD {
     namespace {
-        void key_callback(GLFWwindow *window, int key, int scan_code,
+        void KeyCallback(GLFWwindow *window, int key, int scan_code,
                           int action,
                           int mods);
-        void mouse_button_callback(GLFWwindow *window, int button, int action,
+        void MouseButtonCallback(GLFWwindow *window, int button, int action,
                                    int mods);
-        void character_callback(GLFWwindow *window, unsigned int code_point);
-        EM_BOOL touch_start_callback(int, EmscriptenTouchEvent const *, void *);
-        EM_BOOL touch_end_callback(int, EmscriptenTouchEvent const *, void *);
+        void CharacterCallback(GLFWwindow *window, unsigned int code_point);
+        EM_BOOL TouchStartCallback(int, EmscriptenTouchEvent const *, void *);
+        EM_BOOL TouchEndCallback(int, EmscriptenTouchEvent const *, void *);
     }
     
-    void setup_callbacks() {
+    void SetupInputCallbacks() {
         // Set callback for keyboard events.
-        glfwSetKeyCallback(_<graphics>().m_window, key_callback);
+        glfwSetKeyCallback(_<Graphics>().m_window, KeyCallback);
         // Set callback for mouse events.
         glfwSetMouseButtonCallback(
-            _<graphics>().m_window,
-            mouse_button_callback);
+            _<Graphics>().m_window,
+            MouseButtonCallback);
         // Set callback for text typing events.
-        glfwSetCharCallback(_<graphics>().m_window, character_callback);
+        glfwSetCharCallback(_<Graphics>().m_window, CharacterCallback);
         // Set callback for touch start event.
         emscripten_set_touchstart_callback(
             "#canvas",
             nullptr,
             true,
-            touch_start_callback);
+            TouchStartCallback);
         // Set callback for touch end event.
         emscripten_set_touchend_callback(
             "#canvas",
             nullptr,
             true,
-            touch_end_callback);
+            TouchEndCallback);
     }
     
     namespace {
-        void key_callback(GLFWwindow *window, int key, int scan_code,
+        void KeyCallback(GLFWwindow *window, int key, int scan_code,
                           int action,
                           int mods) {
             // if (action == GLFW_PRESS)
@@ -54,15 +54,15 @@ namespace jod {
             //     _<KeyboardInput>().OnKeyRelease(key);
         }
         
-        void mouse_button_callback(GLFWwindow *window, int button, int action,
+        void MouseButtonCallback(GLFWwindow *window, int button, int action,
                                    int mods) {
             static bool mouse_left_down = false;
             static bool mouse_right_down = false;
             if (button == GLFW_MOUSE_BUTTON_LEFT
                 && action == GLFW_PRESS
                 && !mouse_left_down){ 
-                _<web_socket_server_connection>().send_message(
-                    message_codes::k_left_mouse_down);
+                _<WebSocketServerConnection>().SendMessage(
+                    MessageCodes::k_left_mouse_down);
                 mouse_left_down = true;
             } else if (button == GLFW_MOUSE_BUTTON_LEFT &&
                        action == GLFW_RELEASE) {
@@ -70,8 +70,8 @@ namespace jod {
             }else if (button == GLFW_MOUSE_BUTTON_RIGHT
                       && action == GLFW_PRESS
                       && !mouse_right_down){
-                _<web_socket_server_connection>().send_message(
-                    message_codes::k_right_mouse_down);
+                _<WebSocketServerConnection>().SendMessage(
+                    MessageCodes::k_right_mouse_down);
                 mouse_right_down = true;
             } else if (button == GLFW_MOUSE_BUTTON_RIGHT &&
                        action == GLFW_RELEASE) {
@@ -87,19 +87,19 @@ namespace jod {
             //     _<MouseInput>().RightButton().OnRelease();
         }
         
-        void character_callback(
+        void CharacterCallback(
             GLFWwindow *window,
             unsigned int code_point) {
             // _<KeyboardInput>().AppendTextInput(std::string(1, (char)code_point));
         }
         
-        EM_BOOL touch_start_callback(int, EmscriptenTouchEvent const *,
+        EM_BOOL TouchStartCallback(int, EmscriptenTouchEvent const *,
                                      void *) {
             // _<MouseInput>().LeftButton().OnPress();
             return EM_FALSE;
         }
         
-        EM_BOOL touch_end_callback(int, EmscriptenTouchEvent const *,
+        EM_BOOL TouchEndCallback(int, EmscriptenTouchEvent const *,
                                    void *) {
             // _<MouseInput>().LeftButton().OnRelease();
             return EM_FALSE;

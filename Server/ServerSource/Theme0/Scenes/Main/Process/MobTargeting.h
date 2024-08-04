@@ -6,19 +6,19 @@
 
 #pragma once
 
-namespace jod {
-    class user_connection;
-    class mob;
+namespace JoD {
+    class UserConnection;
+    class Mob;
 
-    class mob_targeting {
+    class MobTargeting {
     public:
-        mob_targeting(user_connection& user_connection);
+        MobTargeting(UserConnection& user_connection);
 
-        void update();
+        void Update();
 
-        std::shared_ptr<mob> m_targeted_creature;
+        std::shared_ptr<Mob> m_targeted_creature;
         
     private:
-        user_connection &m_user_connection;
+        UserConnection &m_user_connection;
     };
 }

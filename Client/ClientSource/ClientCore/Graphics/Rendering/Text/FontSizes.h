@@ -6,9 +6,9 @@
 
 #pragma once
 
-namespace jod {
-    //! \brief Available font sizes for text rendering.
-    enum class font_sizes {
+namespace JoD {
+    /// @brief Available font sizes for text rendering.
+    enum class FontSizes {
         _20,
         _30,
         _50

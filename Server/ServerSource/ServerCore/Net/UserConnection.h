@@ -6,52 +6,52 @@
 
 #pragma once
 
-namespace jod {
-    class user_game_instance_engine;
-    class player;
-    class tile_hovering;
-    class mouse_movement;
-    class cursor;
-    class mob_targeting;
+namespace JoD {
+    class UserGameInstanceEngine;
+    class Player;
+    class TileHovering;
+    class MouseMovement;
+    class Cursor;
+    class MobTargeting;
     
-    class user_connection {
+    class UserConnection {
     public:
-        user_connection(boost::asio::ip::tcp::socket socket);
+        UserConnection(boost::asio::ip::tcp::socket socket);
         
         void
-        send_image_draw_instruction(WebSocket &ws,
-                                    std::string_view image_name,
-                                    rectf destination);
+        SendImageDrawInstruction(WebSocket &ws,
+                                 std::string_view image_name,
+                                 RectF destination);
         
         void
-        send_image_draw_instruction(WebSocket &ws,
-                                    int image_name_hash,
-                                    rectf destination);
+        SendImageDrawInstruction(WebSocket &ws,
+                                 int image_name_hash,
+                                 RectF destination);
         
-        void send_text_draw_instruction(WebSocket &ws,
-                                        std::string_view text, pointf position);
+        void SendTextDrawInstruction(WebSocket &ws,
+                                     std::string_view text, PointF position);
         
-        void send_present_canvas_instruction(WebSocket &ws);
+        void SendPresentCanvasInstruction(WebSocket &ws);
         
-        float get_aspect_ratio();
+        float GetAspectRatio();
         
-        std::shared_ptr<player> m_player;
+        std::shared_ptr<Player> m_player;
         
-        std::shared_ptr<tile_hovering> m_tile_hovering;
+        std::shared_ptr<TileHovering> m_tile_hovering;
         
-        std::shared_ptr<mouse_movement> m_mouse_movement;
+        std::shared_ptr<MouseMovement> m_mouse_movement;
         
-        std::shared_ptr<mob_targeting> m_mob_targeting;
+        std::shared_ptr<MobTargeting> m_mob_targeting;
         
-        pointf m_mouse_position;
+        PointF m_mouse_position;
         
-        std::shared_ptr<user_game_instance_engine> m_user_game_instance_engine;
+        std::shared_ptr<UserGameInstanceEngine> m_user_game_instance_engine;
         
-        std::shared_ptr<cursor> m_cursor;
+        std::shared_ptr<Cursor> m_cursor;
         
     private:
-        void do_session(boost::asio::ip::tcp::socket socket);
+        void DoSession(boost::asio::ip::tcp::socket socket);
         
-        size m_canvas_size;
+        Size m_canvas_size;
     };
 }

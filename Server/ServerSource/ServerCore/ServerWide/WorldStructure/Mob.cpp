@@ -6,9 +6,9 @@
 
 #include "Mob.h"
 
-namespace jod {
-    mob::mob(std::string_view mob_name,
-                       int level) : m_type(jod::hash(mob_name)) {
+namespace JoD {
+    Mob::Mob(std::string_view mob_name,
+                       int level) : m_type(Hash(mob_name)) {
         m_level = level;
         m_patk = level;
         m_matk = 0;

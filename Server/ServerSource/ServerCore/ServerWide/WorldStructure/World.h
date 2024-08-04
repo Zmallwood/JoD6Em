@@ -6,13 +6,13 @@
 
 #pragma once
 
-namespace jod {
-    class world_area;
+namespace JoD {
+    class WorldArea;
 
-    class world {
+    class World {
     public:
-        world();
+        World();
         
-        std::shared_ptr<world_area> m_current_world_area;
+        std::shared_ptr<WorldArea> m_current_world_area;
     };
 }

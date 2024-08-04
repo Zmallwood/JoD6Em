@@ -6,8 +6,8 @@
 
 #pragma once
 
-namespace jod {
-    enum class instruction_types {
+namespace JoD {
+    enum class InstructionTypes {
         none,
         image,
         text

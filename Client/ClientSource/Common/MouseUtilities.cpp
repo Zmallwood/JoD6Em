@@ -7,14 +7,14 @@
 #include "MouseUtilities.h"
 #include "ClientCore/Graphics/Graphics.h"
 
-namespace jod {
-    pointf get_mouse_position() {
+namespace JoD {
+    PointF GetMousePosition() {
         double xpos, ypos; // Declare variables to store mouse coordinates in pixels.
         // Use GLFW to get current mouse coordinates.
-        glfwGetCursorPos(_<graphics>().m_window, &xpos, &ypos);
-        auto canvas_size = get_canvas_size(); // Get canvas size.
+        glfwGetCursorPos(_<Graphics>().m_window, &xpos, &ypos);
+        auto canvas_size = GetCanvasSize(); // Get canvas size.
         // And use it to convert pixel coordinates to fractal coordinates.
-        auto mouse_position = pointf{
+        auto mouse_position = PointF{
             static_cast<float>(xpos) / canvas_size.w,
             static_cast<float>(ypos) / canvas_size.h};
         return mouse_position;

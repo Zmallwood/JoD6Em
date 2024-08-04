@@ -1,6 +1,6 @@
 /*
  * TextRenderer.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -11,30 +11,30 @@
 #include "Common/CanvasUtilities.h"
 #include "Font.h"
 
-namespace jod {
-    text_renderer::text_renderer() {
+namespace JoD {
+    TextRenderer::TextRenderer() {
         TTF_Init();
         auto font_path = k_rel_fonts_path + "default_font.ttf";
-        auto font_20 = std::make_shared<font>(font_path, 20);
-        auto font_30 = std::make_shared<font>(font_path, 30);
-        auto font_50 = std::make_shared<font>(font_path, 50);
-        m_fonts.insert({font_sizes::_20, font_20});
-        m_fonts.insert({font_sizes::_30, font_30});
-        m_fonts.insert({font_sizes::_50, font_50});
+        auto font_20 = std::make_shared<Font>(font_path, 20);
+        auto font_30 = std::make_shared<Font>(font_path, 30);
+        auto font_50 = std::make_shared<Font>(font_path, 50);
+        m_fonts.insert({FontSizes::_20, font_20});
+        m_fonts.insert({FontSizes::_30, font_30});
+        m_fonts.insert({FontSizes::_50, font_50});
         
     }
     
-    void text_renderer::render_text(rid rid, std::string_view text,
-                                    colorf color,
-                                    bool center_align, font_sizes font_size,
+    void TextRenderer::RenderText(RID rid, std::string_view text,
+                                    ColorF color,
+                                    bool center_align, FontSizes font_size,
                                     std::string &out_unique_name_id,
-                                    sizef &out_size) const {
+                                    SizeF &out_size) const {
         auto font = m_fonts.at(font_size)->m_font;
         
         if (!font) return;
         
-        auto color_sdl = to_sdl_color(color);
-        auto outline_color_sdl = to_sdl_color(k_outline_color);
+        auto color_sdl = ToSDLColor(color);
+        auto outline_color_sdl = ToSDLColor(k_outline_color);
         auto text_outline_surface =
             TTF_RenderText_Blended(
                 m_fonts.at(font_size)->m_outline_font.get(),
@@ -53,20 +53,17 @@ namespace jod {
         auto image_id = _<ImageBank>().GetImage(unique_name_id);
         
         glBindTexture(GL_TEXTURE_2D, image_id);
-        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        // glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+        
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
         auto width = text_outline_surface->w;
         auto height = text_outline_surface->h;
         
         auto image = SDL_CreateRGBSurface(
             SDL_SWSURFACE, width, height, 32, 0x000000FF,
             0x0000FF00, 0x00FF0000, 0xFF000000);
-        auto canvas_size = get_canvas_size();
+        auto canvas_size = GetCanvasSize();
         
         SDL_Rect text_source_rectangle;
         SDL_Rect text_outline_source_rectangle;
@@ -81,10 +78,10 @@ namespace jod {
                      text_outline_surface ? text_outline_surface->h : 0};
         text_destination_rectangle = text_source_rectangle;
         
-        text_destination_rectangle.x += font::k_font_outline_width;
-        text_destination_rectangle.w -= 2 * font::k_font_outline_width;
-        text_destination_rectangle.y += font::k_font_outline_width;
-        text_destination_rectangle.h -= 2 * font::k_font_outline_width;
+        text_destination_rectangle.x += Font::k_font_outline_width;
+        text_destination_rectangle.w -= 2 * Font::k_font_outline_width;
+        text_destination_rectangle.y += Font::k_font_outline_width;
+        text_destination_rectangle.h -= 2 * Font::k_font_outline_width;
         text_outline_destination_rectangle = text_outline_source_rectangle;
         text_outline_destination_rectangle.y = 1;
         
@@ -111,7 +108,7 @@ namespace jod {
         SDL_FreeSurface(text_outline_surface);
     }
     
-    rid text_renderer::new_string() {
+    RID TextRenderer::NewString() {
         static int s_id_counter = 0;
         auto id = s_id_counter++;
         auto unique_name = "RenderedImage" + std::to_string(id);
@@ -122,37 +119,33 @@ namespace jod {
         return rid_image;
     }
     
-    void text_renderer::draw_string(rid rid, std::string_view text,
-                                    pointf position, colorf color,
+    void TextRenderer::DrawString(RID rid, std::string_view text,
+                                    PointF position, ColorF color,
                                     bool center_align,
-                                    font_sizes font_size){
+                                    FontSizes font_size){
         std::string unique_name_id;
-        sizef size;
+        SizeF size;
         
-        render_text(
+        RenderText(
             rid, text, color, center_align, font_size, unique_name_id,
             size);
         
-        auto canvas_size = get_canvas_size();
-        auto rectangle = rectf{position.x, position.y, size.w, size.h};
+        auto canvas_size = GetCanvasSize();
+        auto rectangle = RectF{position.x, position.y, size.w, size.h};
         int text_w;
         int text_h;
         TTF_SizeText(
             m_fonts.at(font_size)->m_font.get(), text.data(), &text_w,
             &text_h);
         
-        // rect.h *= GetAspectRatio(_<GraphicsView>()->Window());
-        // rect.y -= static_cast<float>(text_h) / canvSz.h / 2.0f;
-        
         if (center_align) {
             rectangle.x -= static_cast<float>(text_w) /
                            static_cast<float>(canvas_size.h) /
-                           2.0f / get_aspect_ratio();
+                           2.0f / GetAspectRatio();
             rectangle.y -=
                 static_cast<float>(text_h) / static_cast<float>(canvas_size.h) /
                 2.0f;
         }
-        
         
         auto scale = 1.0f;
         rectangle.x += rectangle.w / 2.0f - rectangle.w / 2.0f * scale;
@@ -165,16 +158,15 @@ namespace jod {
         _<ImageRenderer>().DrawImage(
             rid_gl_resource, unique_name_id, rectangle,
             false);
-        
     }
     
-    sizef text_renderer::measure_string(std::string_view text,
-                                        font_sizes font_size) const {
+    SizeF TextRenderer::MeasureString(std::string_view text,
+                                        FontSizes font_size) const {
         auto font = m_fonts.at(font_size)->m_font;
         int text_w;
         int text_h;
         TTF_SizeText(font.get(), text.data(), &text_w, &text_h);
-        auto canvas_size = get_canvas_size();
+        auto canvas_size = GetCanvasSize();
         return {static_cast<float>(text_w) / canvas_size.w,
                 static_cast<float>(text_h) / canvas_size.h};
     }

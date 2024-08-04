@@ -6,8 +6,8 @@
 
 #pragma once
 
-namespace jod {
-    struct game_properties {
+namespace JoD {
+    struct GameProperties {
         const int k_num_grid_rows = 21;
     };
 }

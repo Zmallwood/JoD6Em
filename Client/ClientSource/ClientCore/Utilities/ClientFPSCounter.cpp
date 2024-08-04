@@ -7,22 +7,22 @@
 #include "ClientFPSCounter.h"
 #include "ClientCore/Graphics/Rendering/Text/TextRenderer.h"
 
-namespace jod {
-    client_fps_counter::client_fps_counter() {
-        m_rid = _<text_renderer>().new_string();
+namespace JoD {
+    ClientFPSCounter::ClientFPSCounter() {
+        m_rid = _<TextRenderer>().NewString();
     }
     
-    void client_fps_counter::update()      {
-        if (get_ticks() > m_ticks_last_update + 1000) {
+    void ClientFPSCounter::Update()      {
+        if (GetTicks() > m_ticks_last_update + 1000) {
             m_fps = m_frames_count;
             m_frames_count = 0;
-            m_ticks_last_update = get_ticks();
+            m_ticks_last_update = GetTicks();
         }
         m_frames_count++;
     }
     
-    void client_fps_counter::render()      {
-        _<text_renderer>().draw_string(
+    void ClientFPSCounter::Render()      {
+        _<TextRenderer>().DrawString(
             m_rid, "Client fps: " + std::to_string(m_fps),
             {0.9f, 0.05f});
     }

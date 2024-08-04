@@ -6,5 +6,5 @@
 
 #include "Player.h"
 
-namespace jod {
+namespace JoD {
 }

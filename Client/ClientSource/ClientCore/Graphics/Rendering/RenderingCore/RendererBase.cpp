@@ -7,7 +7,7 @@
 #include "RendererBase.h"
 #include "ShaderProgram.h"
 
-namespace jod {
+namespace JoD {
     RendererBase::RendererBase()
         : m_shader_program(std::make_shared<ShaderProgram>()),
         m_vao_ids(std::make_shared<std::vector<GLuint> >()),

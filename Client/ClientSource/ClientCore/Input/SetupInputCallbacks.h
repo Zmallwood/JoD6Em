@@ -6,7 +6,7 @@
 
 #pragma once
 
-namespace jod {
-    //! \brief Set the up callbacks for input handling.
-    void setup_callbacks();
+namespace JoD {
+    /// @brief Set the up callbacks for input handling.
+    void SetupInputCallbacks();
 }

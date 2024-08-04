@@ -21,20 +21,20 @@ namespace http = beast::http;
 namespace websocket = beast::websocket;
 using tcp = boost::asio::ip::tcp;
 
-namespace jod {
-    user_connection::user_connection(tcp::socket socket)
-        : m_user_game_instance_engine(std::make_shared<user_game_instance_engine>(*this)),
-        m_player(std::make_shared<player>()),
-        m_tile_hovering(std::make_shared<tile_hovering>(*this)),
-        m_mouse_movement(std::make_shared<mouse_movement>(*this)),
-        m_cursor(std::make_shared<cursor>(*this)),
-        m_mob_targeting(std::make_shared<mob_targeting>(*this)){
+namespace JoD {
+    UserConnection::UserConnection(tcp::socket socket)
+        : m_user_game_instance_engine(std::make_shared<UserGameInstanceEngine>(*this)),
+        m_player(std::make_shared<Player>()),
+        m_tile_hovering(std::make_shared<TileHovering>(*this)),
+        m_mouse_movement(std::make_shared<MouseMovement>(*this)),
+        m_cursor(std::make_shared<Cursor>(*this)),
+        m_mob_targeting(std::make_shared<MobTargeting>(*this)){
         std::thread(
-            &user_connection::do_session, this,
+            &UserConnection::DoSession, this,
             std::move(socket)).detach();
     }
     
-    void user_connection::do_session(tcp::socket socket) {
+    void UserConnection::DoSession(tcp::socket socket) {
         try{
             // Construct the stream by moving in the socket.
             websocket::stream<tcp::socket> ws{std::move(socket)};
@@ -50,29 +50,29 @@ namespace jod {
             ws.accept(); // Accept the websocket handshake.
             ws.text(false); // Receive binary data, not text.
             while (true){
-                m_user_game_instance_engine->update();
-                m_user_game_instance_engine->render(ws);
+                m_user_game_instance_engine->Update();
+                m_user_game_instance_engine->Render(ws);
                 while (true){
                     beast::flat_buffer buffer; // This buffer will hold the incoming message.
                     ws.read(buffer); // Read a message.
                     const auto message = buffer_cast<int *>(buffer.data());
-                    if (*message == message_codes::k_canvas_size){
+                    if (*message == MessageCodes::k_canvas_size){
                         auto w = (int)message[1];
                         auto h = (int)message[2];
                         m_canvas_size = {w, h};
-                    }else if (*message == message_codes::k_left_mouse_down) {
+                    }else if (*message == MessageCodes::k_left_mouse_down) {
                         m_user_game_instance_engine->m_mouse_input->
-                        register_mouse_down(
-                            mouse_buttons::left);
-                    }else if (*message == message_codes::k_right_mouse_down) {
+                        RegisterMouseDown(
+                            MouseButtons::left);
+                    }else if (*message == MessageCodes::k_right_mouse_down) {
                         m_user_game_instance_engine->m_mouse_input->
-                        register_mouse_down(
-                            mouse_buttons::right);
-                    }else if (*message == message_codes::k_mouse_position) {
+                        RegisterMouseDown(
+                            MouseButtons::right);
+                    }else if (*message == MessageCodes::k_mouse_position) {
                         auto x = message[1] / net_constants::k_float_precision;
                         auto y = message[2] / net_constants::k_float_precision;
                         m_mouse_position = {x, y};
-                    }else if (*message == message_codes::k_frame_finished) {
+                    }else if (*message == MessageCodes::k_frame_finished) {
                         break;
                     }
                 }
@@ -88,17 +88,17 @@ namespace jod {
         }
     }
     
-    void user_connection::send_image_draw_instruction(WebSocket &ws,
+    void UserConnection::SendImageDrawInstruction(WebSocket &ws,
                                                       std::string_view
                                                       image_name,
-                                                      rectf destination){
-        send_image_draw_instruction(ws, jod::hash(image_name), destination);
+                                                      RectF destination){
+        SendImageDrawInstruction(ws, Hash(image_name), destination);
     }
     
-    void user_connection::send_image_draw_instruction(WebSocket &ws,
+    void UserConnection::SendImageDrawInstruction(WebSocket &ws,
                                                       int image_name_hash,
-                                                      rectf destination){
-        auto msg_code = message_codes::k_draw_image_instr;
+                                                      RectF destination){
+        auto msg_code = MessageCodes::k_draw_image_instr;
         auto x = (int)(destination.x * net_constants::k_float_precision);
         auto y = (int)(destination.y * net_constants::k_float_precision);
         auto w = (int)(destination.w * net_constants::k_float_precision);
@@ -113,10 +113,10 @@ namespace jod {
         ws.write(boost::asio::buffer(data));
     }
     
-    void user_connection::send_text_draw_instruction(WebSocket &ws,
+    void UserConnection::SendTextDrawInstruction(WebSocket &ws,
                                                      std::string_view text,
-                                                     pointf position) {
-        auto msg_code = message_codes::k_draw_string_instr;
+                                                     PointF position) {
+        auto msg_code = MessageCodes::k_draw_string_instr;
         auto x = (int)(position.x * net_constants::k_float_precision);
         auto y = (int)(position.y * net_constants::k_float_precision);
         auto data = std::vector<int>();
@@ -131,13 +131,13 @@ namespace jod {
         ws.write(boost::asio::buffer(data));
     }
     
-    void user_connection::send_present_canvas_instruction(WebSocket &ws){
-        auto msg_code_present = message_codes::k_apply_buffer;
+    void UserConnection::SendPresentCanvasInstruction(WebSocket &ws){
+        auto msg_code_present = MessageCodes::k_apply_buffer;
         ws.write(
             boost::asio::buffer(&msg_code_present,sizeof(msg_code_present)));
     }
     
-    float user_connection::get_aspect_ratio() {
+    float UserConnection::GetAspectRatio() {
         return static_cast<float>(m_canvas_size.w) / m_canvas_size.h;
     }
 }

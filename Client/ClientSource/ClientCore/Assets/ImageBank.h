@@ -6,7 +6,7 @@
 
 #pragma once
 
-namespace jod {
+namespace JoD {
     /// @brief Loads and provides image resources.
     class ImageBank {
     public:

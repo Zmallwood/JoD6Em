@@ -6,26 +6,25 @@
 
 #pragma once
 
-namespace jod {
-    class user_connection;
+namespace JoD {
+    class UserConnection;
     class IScene;
 
-    class scene_manager {
+    class SceneManager {
     public:
-        scene_manager(user_connection &user_connection);
+        SceneManager(UserConnection &user_connection);
         
-        void update_current_scene();
+        void UpdateCurrentScene();
         
-        void render_current_scene(
-            boost::beast::websocket::stream<boost::asio::ip::tcp::socket> &ws);
+        void RenderCurrentScene(WebSocket &ws);
         
-        void go_to(std::string_view scene_name);
+        void GoTo(std::string_view scene_name);
         
     private:
         int m_current_scene = 0;
         
         std::map<int, std::shared_ptr<IScene>> m_scenes;
         
-        user_connection &m_user_connection;
+        UserConnection &m_user_connection;
     };
  }

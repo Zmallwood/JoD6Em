@@ -6,8 +6,8 @@
 
 #include "IScene.h"
 
-namespace jod {
-    IScene::IScene(user_connection& user_connection)
+namespace JoD {
+    IScene::IScene(UserConnection& user_connection)
         : m_user_connection(user_connection) {
     }
     

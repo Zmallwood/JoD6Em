@@ -7,28 +7,27 @@
 
 #pragma once
 
-namespace jod {
-    class user_connection;
-    class mouse_input;
-    class scene_manager;
-    class server_fps_counter;
+namespace JoD {
+    class UserConnection;
+    class MouseInput;
+    class SceneManager;
+    class ServerFPSCounter;
 
-    class user_game_instance_engine {
+    class UserGameInstanceEngine {
     public:
-        user_game_instance_engine(user_connection &user_connection);
+        UserGameInstanceEngine(UserConnection &user_connection);
         
-        void update();
+        void Update();
         
-        void render(WebSocket &ws);
+        void Render(WebSocket &ws);
         
-        std::shared_ptr<mouse_input> m_mouse_input;
+        std::shared_ptr<MouseInput> m_mouse_input;
         
-        std::shared_ptr<scene_manager> m_scene_manager;
+        std::shared_ptr<SceneManager> m_scene_manager;
         
     private:
-
-        std::shared_ptr<server_fps_counter> m_server_fps_counter;
+        std::shared_ptr<ServerFPSCounter> m_server_fps_counter;
         
-        user_connection &m_user_connection;
+        UserConnection &m_user_connection;
     };
 }

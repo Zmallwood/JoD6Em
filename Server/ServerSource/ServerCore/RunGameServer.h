@@ -6,6 +6,6 @@
 
 #pragma once
 
-namespace jod {
+namespace JoD {
     void RunGameServer(char **argv);
 }

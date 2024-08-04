@@ -8,12 +8,12 @@
 
 #include <string_view>
 
-namespace jod {
+namespace JoD {
     template <class T>
     T &_() {
         static T instance;
         return instance;
     }
     
-    int hash(std::string_view text);
+    int Hash(std::string_view text);
 }

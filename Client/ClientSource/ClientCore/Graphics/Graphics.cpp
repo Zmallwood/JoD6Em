@@ -1,12 +1,12 @@
 /*
  * Graphics.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
 #include "Graphics.h"
 
-namespace jod {
+namespace JoD {
     namespace {
         // Use javascript call to get browser-canvas width.
         EM_JS(int, canvas_get_width, (), { return window.innerWidth; });
@@ -14,7 +14,7 @@ namespace jod {
         EM_JS(int, canvas_get_height, (), { return window.innerHeight; });
     }
     
-    graphics::graphics(){
+    Graphics::Graphics(){
         glfwInit(); // Initialize GLFW.
         // Use OPENGL ES, which is used for browser OpenGL.
         glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_ES_API);
@@ -36,11 +36,11 @@ namespace jod {
         glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     }
     
-    void graphics::clear_canvas()      {
+    void Graphics::ClearCanvas() {
         glClear(GL_COLOR_BUFFER_BIT); // Clear canvas to prepare for rendering new contents.
     }
     
-    void graphics::present_canvas()      {
+    void Graphics::PresentCanvas() {
         glfwSwapBuffers(m_window); // Present buffer to web browser.
         glfwPollEvents(); // Poll new input events from user.
         // Do not return until previously issued commands have finished.

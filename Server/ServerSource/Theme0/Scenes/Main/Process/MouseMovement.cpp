@@ -12,16 +12,16 @@
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.h"
 #include "TileHovering.h"
 
-namespace jod {
-    mouse_movement::mouse_movement(
-        user_connection &user_connection) : m_user_connection(user_connection){
+namespace JoD {
+    MouseMovement::MouseMovement(
+        UserConnection &user_connection) : m_user_connection(user_connection){
     }
     
     void
-    mouse_movement::update(){
+    MouseMovement::Update(){
         auto mouse_down =
             m_user_connection.m_user_game_instance_engine->m_mouse_input->m_left_button->
-            is_pressed_pick_result();
+            IsPressedPickResult();
         auto player = m_user_connection.m_player;
         auto hovered_tile =
             m_user_connection.m_tile_hovering->m_hovered_coordinate;
