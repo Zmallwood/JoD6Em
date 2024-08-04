@@ -13,6 +13,7 @@ namespace JoD {
     class MouseMovement;
     class Cursor;
     class MobTargeting;
+    class WorldView;
     
     class UserConnection {
     public:
@@ -42,6 +43,8 @@ namespace JoD {
         std::shared_ptr<MouseMovement> m_mouse_movement;
         
         std::shared_ptr<MobTargeting> m_mob_targeting;
+
+        std::shared_ptr<WorldView> m_worldView;
         
         PointF m_mouse_position;
         

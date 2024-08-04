@@ -15,6 +15,7 @@
 #include "Theme0/Scenes/Main/Process/TileHovering.h"
 #include "Theme0/Scenes/Main/Process/MouseMovement.h"
 #include "Theme0/Scenes/Main/Process/MobTargeting.h"
+#include "Theme0/Scenes/Main/Process/WorldView/WorldView.h"
 
 namespace beast = boost::beast;
 namespace http = beast::http;
@@ -28,7 +29,8 @@ namespace JoD {
         m_tile_hovering(std::make_shared<TileHovering>(*this)),
         m_mouse_movement(std::make_shared<MouseMovement>(*this)),
         m_cursor(std::make_shared<Cursor>(*this)),
-        m_mob_targeting(std::make_shared<MobTargeting>(*this)){
+        m_mob_targeting(std::make_shared<MobTargeting>(*this)),
+        m_worldView(std::make_shared<WorldView>(*this)){
         std::thread(
             &UserConnection::DoSession, this,
             std::move(socket)).detach();
