@@ -15,13 +15,18 @@
 #include "ServerCore/ServerWide/WorldStructure/Mob.hpp"
 #include "Theme0/Scenes/Main/Process/TileHovering.hpp"
 #include "Theme0/Scenes/Main/Process/MobTargeting.hpp"
+#include "Theme0/Scenes/Main/MainScene.hpp"
 
 namespace JoD {
-    WorldView::WorldView(UserConnection& userConnection)
-        : m_userConnection(userConnection) {
-    }
-    
     void WorldView::Render(WebSocket &webSocket) {
+        auto tileHovering =
+            std::static_pointer_cast<TileHovering>(m_mainScene.m_components.at(
+                                                       MainSceneComponents::
+                                                       TileHovering));
+        auto mobTargeting =
+            std::static_pointer_cast<MobTargeting>(m_mainScene.m_components.at(
+                                                       MainSceneComponents::
+                                                       MobTargeting));
         auto tile_size =
             CalculateTileSize(m_userConnection.GetAspectRatio());
         auto player_coordinate =
@@ -55,10 +60,10 @@ namespace JoD {
                      tile_size.w + smallValue,
                      tile_size.h + smallValue});
                 if (coord_x ==
-                    m_userConnection.m_tile_hovering->
+                    tileHovering->
                     m_hovered_coordinate.x &&
                     coord_y ==
-                    m_userConnection.m_tile_hovering->
+                    tileHovering->
                     m_hovered_coordinate.y){
                     m_userConnection.SendImageDrawInstruction(
                         webSocket,
@@ -75,7 +80,7 @@ namespace JoD {
                 }
                 if (tile->m_mob) {
                     if (tile->m_mob ==
-                        m_userConnection.m_mob_targeting->
+                        mobTargeting->
                         m_targeted_creature){
                         m_userConnection.SendImageDrawInstruction(
                             webSocket,

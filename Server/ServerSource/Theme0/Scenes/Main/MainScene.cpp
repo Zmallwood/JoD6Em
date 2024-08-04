@@ -10,15 +10,34 @@
 #include "Process/MouseMovement.hpp"
 #include "Process/MobTargeting.hpp"
 #include "Process/WorldView/WorldView.hpp"
+#include "Theme0/Scenes/Main/Process/MainSceneComponents.hpp"
 
 namespace JoD {
+    void MainScene::Initialize() {
+        m_components.insert(
+            {MainSceneComponents::TileHovering,
+             std::make_shared<TileHovering>(
+                 m_user_connection, *this) });
+        m_components.insert(
+            {MainSceneComponents::MouseMovement,
+             std::make_shared<MouseMovement>(
+                 m_user_connection, *this) });
+        m_components.insert(
+            {MainSceneComponents::MobTargeting,
+             std::make_shared<MobTargeting>(
+                 m_user_connection, *this) });
+        m_components.insert(
+            {MainSceneComponents::WorldView,
+             std::make_shared<WorldView>(m_user_connection, *this) });
+    }
+    
     void MainScene::UpdateDerived() {
-        m_user_connection.m_tile_hovering->Update();
-        m_user_connection.m_mouse_movement->Update();
-        m_user_connection.m_mob_targeting->Update();
+        for (auto component : m_components)
+            component.second->Update();
     }
     
     void MainScene::RenderDerived(WebSocket &webSocket) {
-        m_user_connection.m_worldView->Render(webSocket);
+        for (auto component : m_components)
+            component.second->Render(webSocket);
     }
 }

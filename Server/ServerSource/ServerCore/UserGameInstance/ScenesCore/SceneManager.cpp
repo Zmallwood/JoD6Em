@@ -17,17 +17,17 @@ namespace JoD {
     SceneManager::SceneManager(
         UserConnection &user_connection) : m_user_connection(user_connection){
         
-        m_scenes.insert(
-            {Hash("IntroScene"),
-             std::make_shared<IntroScene>(m_user_connection)});
-        m_scenes.insert(
-            {Hash("MainMenuScene"),
-             std::make_shared<MainMenuScene>(m_user_connection)});
-        m_scenes.insert(
-            {Hash("MainScene"),
-             std::make_shared<MainScene>(m_user_connection)});
+        AddScene("IntroScene", std::make_shared<IntroScene>(m_user_connection));
+        AddScene("MainMenuScene", std::make_shared<MainMenuScene>(m_user_connection));
+        AddScene("MainScene", std::make_shared<MainScene>(m_user_connection));
         
         GoTo("IntroScene");
+    }
+    
+    void SceneManager::AddScene(std::string_view sceneName,
+                                std::shared_ptr<IScene> scene) {
+        scene->Initialize();
+        m_scenes.insert({Hash(sceneName), scene});
     }
     
     void SceneManager::UpdateCurrentScene() {

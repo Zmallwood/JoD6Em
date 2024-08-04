@@ -9,11 +9,7 @@
 namespace JoD {
     class UserGameInstanceEngine;
     class Player;
-    class TileHovering;
-    class MouseMovement;
     class Cursor;
-    class MobTargeting;
-    class WorldView;
     
     class UserConnection {
     public:
@@ -37,14 +33,6 @@ namespace JoD {
         float GetAspectRatio();
         
         std::shared_ptr<Player> m_player;
-        
-        std::shared_ptr<TileHovering> m_tile_hovering;
-        
-        std::shared_ptr<MouseMovement> m_mouse_movement;
-        
-        std::shared_ptr<MobTargeting> m_mob_targeting;
-
-        std::shared_ptr<WorldView> m_worldView;
         
         PointF m_mouse_position;
         

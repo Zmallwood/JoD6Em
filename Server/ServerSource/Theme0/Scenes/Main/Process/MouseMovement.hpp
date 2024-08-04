@@ -6,16 +6,15 @@
 
 #pragma once
 
-namespace JoD {
-    class UserConnection;
+#include "IMainSceneComponent.hpp"
 
-    class MouseMovement {
+namespace JoD {
+    class MouseMovement : public IMainSceneComponent  {
     public:
+        using IMainSceneComponent::IMainSceneComponent;
+        
         MouseMovement(UserConnection &user_connection);
         
-        void Update();
-        
-    private:
-        UserConnection &m_user_connection;
+        void Update() override;
     };
 }

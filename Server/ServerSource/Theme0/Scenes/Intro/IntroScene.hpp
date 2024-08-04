@@ -10,9 +10,10 @@
 
 namespace JoD {
     class IntroScene : public IScene {
-    protected:
+    public:
         using IScene::IScene;
         
+    protected:
         void UpdateDerived() override;
         
         void RenderDerived(WebSocket &webSocket) override;

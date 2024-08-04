@@ -15,8 +15,7 @@ namespace JoD {
         UpdateDerived();
     }
     
-    void IScene::Render(WebSocket &webSocket)
-    {
+    void IScene::Render(WebSocket &webSocket){
         RenderDerived(webSocket);
     }
 }

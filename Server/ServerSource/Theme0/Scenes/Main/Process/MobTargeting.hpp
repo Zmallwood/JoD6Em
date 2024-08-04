@@ -1,24 +1,22 @@
 /*
  * MobTargeting.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
 #pragma once
 
+#include "IMainSceneComponent.hpp"
+
 namespace JoD {
-    class UserConnection;
     class Mob;
-
-    class MobTargeting {
+    
+    class MobTargeting : public IMainSceneComponent {
     public:
-        MobTargeting(UserConnection& user_connection);
-
-        void Update();
-
-        std::shared_ptr<Mob> m_targeted_creature;
+        using IMainSceneComponent::IMainSceneComponent;
         
-    private:
-        UserConnection &m_user_connection;
+        void Update() override;
+        
+        std::shared_ptr<Mob> m_targeted_creature;
     };
 }

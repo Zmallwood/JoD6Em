@@ -12,10 +12,6 @@
 #include "NetConfiguration.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
-#include "Theme0/Scenes/Main/Process/TileHovering.hpp"
-#include "Theme0/Scenes/Main/Process/MouseMovement.hpp"
-#include "Theme0/Scenes/Main/Process/MobTargeting.hpp"
-#include "Theme0/Scenes/Main/Process/WorldView/WorldView.hpp"
 
 namespace beast = boost::beast;
 namespace http = beast::http;
@@ -26,11 +22,7 @@ namespace JoD {
     UserConnection::UserConnection(tcp::socket socket)
         : m_user_game_instance_engine(std::make_shared<UserGameInstanceEngine>(*this)),
         m_player(std::make_shared<Player>()),
-        m_tile_hovering(std::make_shared<TileHovering>(*this)),
-        m_mouse_movement(std::make_shared<MouseMovement>(*this)),
-        m_cursor(std::make_shared<Cursor>(*this)),
-        m_mob_targeting(std::make_shared<MobTargeting>(*this)),
-        m_worldView(std::make_shared<WorldView>(*this)){
+        m_cursor(std::make_shared<Cursor>(*this)){
         std::thread(
             &UserConnection::DoSession, this,
             std::move(socket)).detach();

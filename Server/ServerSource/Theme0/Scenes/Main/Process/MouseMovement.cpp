@@ -11,20 +11,22 @@
 #include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "TileHovering.hpp"
+#include "Theme0/Scenes/Main/MainScene.hpp"
 
 namespace JoD {
-    MouseMovement::MouseMovement(
-        UserConnection &user_connection) : m_user_connection(user_connection){
-    }
-    
     void
     MouseMovement::Update(){
+        auto tileHovering =
+            std::static_pointer_cast<TileHovering>(
+                m_mainScene.m_components.at(
+                    MainSceneComponents::
+                    TileHovering));
         auto mouse_down =
-            m_user_connection.m_user_game_instance_engine->m_mouse_input->m_left_button->
+            m_userConnection.m_user_game_instance_engine->m_mouse_input->m_left_button->
             IsPressedPickResult();
-        auto player = m_user_connection.m_player;
+        auto player = m_userConnection.m_player;
         auto hovered_tile =
-            m_user_connection.m_tile_hovering->m_hovered_coordinate;
+            tileHovering->m_hovered_coordinate;
         if (mouse_down)
             player->m_destination = hovered_tile;
         if (std::chrono::high_resolution_clock::now() >

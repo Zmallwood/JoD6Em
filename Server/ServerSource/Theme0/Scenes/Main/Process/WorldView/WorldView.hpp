@@ -6,16 +6,13 @@
 
 #pragma once
 
+#include "Theme0/Scenes/Main/Process/IMainSceneComponent.hpp"
+
 namespace JoD {
-    class UserConnection;
-    
-    class WorldView {
+    class WorldView : public IMainSceneComponent {
     public:
-        WorldView(UserConnection& userConnection);
-        
-        void Render(WebSocket &webSocket);
-        
-    private:
-        UserConnection& m_userConnection;
+        using IMainSceneComponent::IMainSceneComponent;
+
+        void Render(WebSocket &webSocket) override;
     };
 }

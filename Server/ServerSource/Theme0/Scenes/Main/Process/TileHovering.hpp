@@ -1,23 +1,20 @@
 /*
  * TileHovering.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
 #pragma once
 
+#include "IMainSceneComponent.hpp"
+
 namespace JoD {
-    class UserConnection;
-    
-    class TileHovering {
+    class TileHovering : public IMainSceneComponent  {
     public:
-        TileHovering(UserConnection &user_connection);
+        using IMainSceneComponent::IMainSceneComponent;
         
-        void Update();
+        void Update() override;
         
         Point m_hovered_coordinate = {-1, -1};
-        
-    private:
-        UserConnection &m_user_connection;
     };
 }

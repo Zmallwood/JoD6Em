@@ -13,6 +13,8 @@ namespace JoD {
     public:
         IScene(UserConnection& user_connection);
         
+        virtual void Initialize() {}
+        
         void Update();
         
         void Render(WebSocket &webSocket);
