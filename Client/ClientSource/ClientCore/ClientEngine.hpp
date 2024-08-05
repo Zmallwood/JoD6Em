@@ -24,6 +24,6 @@ namespace JoD {
         ///
         void PollEvents();
         
-        bool m_running = true; ///< Engine is running as long as this is set to true.
+        bool m_running {true}; ///< Engine is running as long as this is set to true.
     };
 }

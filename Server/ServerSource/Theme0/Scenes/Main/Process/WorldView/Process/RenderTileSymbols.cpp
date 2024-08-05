@@ -21,12 +21,14 @@ namespace JoD {
                 mainScene.m_components.at(
                     MainSceneComponents::
                     TileHovering));
+        
         if (coordinate.x ==
             tileHovering->
             m_hoveredCoordinate.x &&
             coordinate.y ==
             tileHovering->
             m_hoveredCoordinate.y){
+            
             userConnection.SendImageDrawInstruction(
                 webSocket,
                 "HoveredTile",

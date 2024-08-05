@@ -18,14 +18,20 @@ namespace JoD {
     void MouseInput::RegisterMouseDown(MouseButtons button) {
         
         switch (button) {
-        case MouseButtons::Left:
+        
+        case MouseButtons::Left: {
+            
             m_leftButton->RegisterMouseDown();
             break;
-        case MouseButtons::Right:
+        }
+        case MouseButtons::Right: {
+            
             m_rightButton->RegisterMouseDown();
             break;
-        case MouseButtons::None:
+        }
+        case MouseButtons::None: {
             break;
+        }
         }
     }
 }

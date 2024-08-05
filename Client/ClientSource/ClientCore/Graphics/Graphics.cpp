@@ -12,18 +12,23 @@ namespace JoD {
         
         // Use javascript call to get browser-canvas width.
         EM_JS(int, CanvasGetWidth, (), { return window.innerWidth; });
+        
         // Use javascript call to get browser-canvas height.
         EM_JS(int, CanvasGetHeight, (), { return window.innerHeight; });
     }
     
     Graphics::Graphics(){
         
-        glfwInit(); // Initialize GLFW.
+        // Initialize GLFW.
+        glfwInit();
+        
         // Use OPENGL ES, which is used for browser OpenGL.
         glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_ES_API);
+        
         // Set OpenGL version.
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+        
         // Create GLFW window object.
         m_window = glfwCreateWindow(
             CanvasGetWidth(),
@@ -31,10 +36,16 @@ namespace JoD {
             k_title.c_str(),
             NULL,
             NULL);
-        glfwMakeContextCurrent(m_window); // Activate current window.
-        glEnable( GL_BLEND); // Enable alpha blending to allow transparency in rendering.
+        
+        // Activate current window.
+        glfwMakeContextCurrent(m_window);
+        
+        // Enable alpha blending to allow transparency in rendering.
+        glEnable( GL_BLEND);
+        
         // Set desired alpha blending functions.
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
         // Hide default system cursor.
         glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     }
@@ -46,8 +57,12 @@ namespace JoD {
     
     void Graphics::PresentCanvas() const {
         
-        glfwSwapBuffers(m_window); // Present buffer to web browser.
-        glfwPollEvents(); // Poll new input events from user.
+        // Present buffer to web browser.
+        glfwSwapBuffers(m_window);
+        
+        // Poll new input events from user.
+        glfwPollEvents();
+        
         // Do not return until previously issued commands have finished.
         glFinish();
     }

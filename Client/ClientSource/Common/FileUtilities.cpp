@@ -1,6 +1,6 @@
 /*
  * FileUtilities.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -12,6 +12,7 @@ namespace JoD {
         
         // Find last occurrence of '.' and keep the part following it.
         auto extension = absPath.substr(absPath.find_last_of('.') + 1);
+        
         return extension.data();
     }
     
@@ -20,11 +21,12 @@ namespace JoD {
         // Find last occurence of '/' and get the part following it.
         auto nameWithExt =
             std::string(absPath.substr(absPath.find_last_of('/') + 1));
+        
         // Then only keep the part preceeding the last occurrence of '.'.
         auto fileName = nameWithExt.substr(
             0,
             nameWithExt.find_last_of('.'));
-            
+        
         return fileName;
     }
 }

@@ -15,6 +15,7 @@ namespace JoD {
         std::shared_ptr<Tile> tile, RectF tileBounds) {
         
         if (tile->m_object) {
+            
             userConnection.SendImageDrawInstruction(
                 webSocket,
                 tile->m_object,

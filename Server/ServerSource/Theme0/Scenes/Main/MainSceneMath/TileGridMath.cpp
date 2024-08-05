@@ -13,12 +13,14 @@ namespace JoD {
         
         auto tileHeight = 1.0f / _<GameProperties>().k_numGridRows;
         auto tileWidth = tileHeight / aspectRatio;
+        
         return {tileWidth, tileHeight};
     }
     
     int CalculateNumGridCols(float aspectRatio) {
         
         auto tileSize = CalculateTileSize(aspectRatio);
+        
         return static_cast<int>(1.0f/tileSize.w);
     }
 }

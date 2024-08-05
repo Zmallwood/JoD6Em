@@ -31,8 +31,8 @@ namespace JoD {
         m_webSocketEvent; ///< Web socket event object related to the opened connection.
         
       private:
-        const std::string k_host = "localhost"; ///< Host name of the server to connect to.
+        const std::string k_host {"localhost"}; ///< Host name of the server to connect to.
         
-        const int k_port = 8765; ///< Port number to open the connection at.
+        const int k_port {8765}; ///< Port number to open the connection at.
     };
 }

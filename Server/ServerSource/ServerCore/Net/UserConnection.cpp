@@ -34,23 +34,30 @@ namespace JoD {
     void UserConnection::DoSessionNested(WebSocket* ws) {
         
         try {
+            
             while (true){
+                
                 beast::flat_buffer buffer;     // This buffer will hold the incoming message.
                 ws->read(buffer);     // Read a message.
                 const auto message = buffer_cast<int *>(buffer.data());
+                
                 if (*message == MessageCodes::k_canvasSize){
+                    
                     auto width = (int)message[1];
                     auto height = (int)message[2];
                     m_canvasSize = {width, height};
                 }else if (*message == MessageCodes::k_leftMouseDown) {
+                    
                     m_userGameInstanceEngine->m_mouseInput->
                     RegisterMouseDown(
                         MouseButtons::Left);
                 }else if (*message == MessageCodes::k_rightMouseDown) {
+                    
                     m_userGameInstanceEngine->m_mouseInput->
                     RegisterMouseDown(
                         MouseButtons::Right);
                 }else if (*message == MessageCodes::k_mousePosition) {
+                    
                     auto x = message[1] / net_constants::k_floatPrecision;
                     auto y = message[2] / net_constants::k_floatPrecision;
                     m_mousePosition = {x, y};
@@ -58,7 +65,9 @@ namespace JoD {
             }
         }
         catch (const std::exception& ex) {
+            
             std::cout << "Exception: " << ex.what() << std::endl;
+            
             return;
         }
     }
@@ -66,8 +75,10 @@ namespace JoD {
     void UserConnection::DoSession(tcp::socket socket) {
         
         try{
+            
             // Construct the stream by moving in the socket.
             websocket::stream<tcp::socket> ws{std::move(socket)};
+            
             // Set a decorator to change the Server of the handshake.
             ws.set_option(
                 websocket::stream_base::decorator(
@@ -77,21 +88,31 @@ namespace JoD {
                             std::string(BOOST_BEAST_VERSION_STRING) +
                             " websocket-server-sync");
                     }));
+                    
             ws.accept(); // Accept the websocket handshake.
+            
             ws.text(false); // Receive binary data, not text.
+            
             std::thread(&UserConnection::DoSessionNested, this, &ws).detach();
+            
             while (true){
+                
                 m_userGameInstanceEngine->Update();
                 m_userGameInstanceEngine->Render(ws);
+                
                 std::this_thread::sleep_for(std::chrono::milliseconds(140));
             }
         }
         catch (beast::system_error const &se){
+            
             // This indicates that the session was closed.
-            if (se.code() != websocket::error::closed)
+            if (se.code() != websocket::error::closed) {
+                
                 std::cerr << "Error: " << se.code().message() << std::endl;
+            }
         }
         catch (std::exception const &e){
+            
             std::cerr << "Error: " << e.what() << std::endl;
         }
     }
@@ -111,17 +132,21 @@ namespace JoD {
         RectF destination) const {
         
         auto msg_code = MessageCodes::k_drawImageInstr;
+        
         auto x = (int)(destination.x * net_constants::k_floatPrecision);
         auto y = (int)(destination.y * net_constants::k_floatPrecision);
         auto w = (int)(destination.w * net_constants::k_floatPrecision);
         auto h = (int)(destination.h * net_constants::k_floatPrecision);
+        
         auto data = std::vector<int>();
+        
         data.push_back(msg_code);
         data.push_back(imageNameHash);
         data.push_back(x);
         data.push_back(y);
         data.push_back(w);
         data.push_back(h);
+        
         ws.write(boost::asio::buffer(data));
     }
     
@@ -131,14 +156,20 @@ namespace JoD {
         PointF position) const {
         
         auto msg_code = MessageCodes::k_drawStringInstr;
+        
         auto x = (int)(position.x * net_constants::k_floatPrecision);
         auto y = (int)(position.y * net_constants::k_floatPrecision);
+        
         auto data = std::vector<int>();
+        
         data.push_back(msg_code);
         data.push_back(x);
         data.push_back(y);
+        
         data.push_back(text.length());
+        
         for (auto c : text) {
+            
             data.push_back((int)c);
         }
         
@@ -148,6 +179,7 @@ namespace JoD {
     void UserConnection::SendPresentCanvasInstruction(WebSocket &ws) const {
         
         auto msg_code_present = MessageCodes::k_applyBuffer;
+        
         ws.write(
             boost::asio::buffer(&msg_code_present,sizeof(msg_code_present)));
     }

@@ -12,6 +12,7 @@ namespace JoD {
         
         m_font = std::shared_ptr<TTF_Font>(
             TTF_OpenFont(fontFileName.data(), fontSize), SDLDeleter());
+            
         m_outlineFont = std::shared_ptr<TTF_Font>(
             TTF_OpenFont(fontFileName.data(), fontSize), SDLDeleter());
         

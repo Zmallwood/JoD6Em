@@ -16,17 +16,22 @@ namespace JoD {
         
         auto tileSize =
             CalculateTileSize(m_userConnection.GetAspectRatio());
+        
         auto playerCoordinate = m_userConnection.m_player->m_coordinate;
+        
         auto numRows = _<GameProperties>().k_numGridRows;
         auto numCols = CalculateNumGridCols(m_userConnection.GetAspectRatio());
+        
         auto tileX =
             playerCoordinate.x - (numCols - 1) / 2 +
             static_cast<int>(m_userConnection.m_mousePosition.x /
                              tileSize.w);
+        
         auto tileY =
             playerCoordinate.y - (numRows - 1) / 2 +
             static_cast<int>(m_userConnection.m_mousePosition.y /
                              tileSize.h);
+        
         m_hoveredCoordinate = {tileX, tileY};
     }
 }

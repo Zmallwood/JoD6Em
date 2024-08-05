@@ -17,6 +17,6 @@ namespace JoD {
         
         void Update() override;
         
-        Point m_hoveredCoordinate = {-1, -1};
+        Point m_hoveredCoordinate {-1, -1};
     };
 }

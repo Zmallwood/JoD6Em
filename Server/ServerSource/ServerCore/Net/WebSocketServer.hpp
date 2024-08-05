@@ -13,7 +13,7 @@ namespace JoD {
     class WebSocketServer {
         
       public:
-        void Run(std::string socketAddress, std::string socketPort);
+        void Run(std::string_view socketAddress, std::string_view socketPort);
         
       private:
         std::vector<std::shared_ptr<UserConnection>> m_userConnections;

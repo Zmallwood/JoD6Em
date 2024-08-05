@@ -21,10 +21,17 @@ namespace JoD {
     
     void ClientEngine::Run() const {
         
-        _<WebSocketServerConnection>().Connect(); // Start network connection.
-        SDL_Init(SDL_INIT_EVERYTHING); // Required by SDL2 before using it.
+        // Start network connection.
+        _<WebSocketServerConnection>().Connect();
+        
+        // Required by SDL2 before using it.
+        SDL_Init(SDL_INIT_EVERYTHING);
+        
         SetupInputCallbacks();
-        _<Graphics>(); // Touch Graphics to initialize it.
+        
+        // Touch Graphics to initialize it.
+        _<Graphics>();
+        
         // Start game loop.
         auto simulateInfiniteLoop = 1;
         emscripten_set_main_loop(GameLoopFunction, 0, simulateInfiniteLoop);
@@ -34,11 +41,16 @@ namespace JoD {
         
         SDL_Event event;
         
-        while (SDL_PollEvent(
-                   &event)) { // Poll for events from user every frame.
+        // Poll for events from user every frame.
+        while (SDL_PollEvent(&event)) {
+            
             switch (event.type){
+            
             case SDL_QUIT: {
-                m_running = false; // Quit game by stopping ClientEngine.
+                
+                // Quit game by stopping ClientEngine.
+                m_running = false;
+                
                 break;
             }
             }
@@ -49,18 +61,31 @@ namespace JoD {
         
         void GameLoopFunction() {
             
-            if (!_<ClientEngine>().m_running) // Exit main loop if user has requested it.
+            // Exit main loop if user has requested it.
+            if (!_<ClientEngine>().m_running) {
+                
                 emscripten_cancel_main_loop();
-            _<ClientEngine>().PollEvents(); // Poll user events and process them.
+            }
+            
+            // Poll user events and process them.
+            _<ClientEngine>().PollEvents();
+            
             _<ClientFPSCounter>().Update();
+            
             _<WebSocketServerConnection>().SendMessage(
                 MessageCodes::k_mousePosition);
+            
             // Clear canvas with single color to prepare for new rendering.
             _<Graphics>().ClearCanvas();
+            
             // Draw canvas in its current state (current set of drawing instructions).
             _<RenderInstrutionsManager>().ExecuteInstructions();
+            
             _<ClientFPSCounter>().Render();
-            _<Graphics>().PresentCanvas(); // Present canvas to users web browser.
+            
+            // Present canvas to users web browser.
+            _<Graphics>().PresentCanvas();
+            
             _<WebSocketServerConnection>().SendMessage(
                 MessageCodes::k_frameFinished);
         }

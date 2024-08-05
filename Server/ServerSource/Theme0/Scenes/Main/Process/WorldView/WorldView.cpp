@@ -24,31 +24,55 @@ namespace JoD {
         
         auto tileSize =
             CalculateTileSize(m_userConnection.GetAspectRatio());
+        
         auto playerCoordinate =
             m_userConnection.m_player->m_coordinate;
+        
         auto numGridRows = _<GameProperties>().k_numGridRows;
         auto numGridCols =
             CalculateNumGridCols(m_userConnection.GetAspectRatio());
+        
         auto smallValue = 0.0001f;
+        
         for (auto y = 0; y < numGridRows; y++){
+            
             for (auto x = 0; x < numGridCols; x++){
+                
                 auto coordX = playerCoordinate.x -
                               (numGridCols - 1) / 2 + x;
+                
                 auto coordY = playerCoordinate.y -
                               (numGridRows - 1) / 2 + y;
+                
                 if (coordX < 0 || coordY < 0 || coordX >= 100 ||
-                    coordY >= 100) continue;
+                    coordY >= 100) {
+                    
+                    continue;
+                }
+                
                 auto tile =
                     _<World>().m_currentWorldArea->m_tiles[coordX][
                         coordY];
+                
                 auto tileBounds = RectF {x * tileSize.w, y * tileSize.h,
                                          tileSize.w + smallValue,
                                          tileSize.h + smallValue};
+                
                 RenderGround(m_userConnection, webSocket, tile, tileBounds);
-                RenderTileSymbols(m_mainScene, m_userConnection, webSocket, {coordX, coordY}, tileBounds);
+                
+                RenderTileSymbols(
+                    m_mainScene, m_userConnection, webSocket,
+                    {coordX, coordY}, tileBounds);
+                
                 RenderObjects(m_userConnection, webSocket, tile, tileBounds);
-                RenderMobs(m_mainScene, m_userConnection, webSocket, tile, tileBounds);
-                RenderPlayer(m_userConnection, webSocket, {coordX, coordY}, tileBounds);
+                
+                RenderMobs(
+                    m_mainScene, m_userConnection, webSocket, tile,
+                    tileBounds);
+                
+                RenderPlayer(
+                    m_userConnection, webSocket, {coordX, coordY},
+                    tileBounds);
             }
         }
     }

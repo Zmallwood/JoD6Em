@@ -18,6 +18,7 @@ namespace JoD {
         if (m_userConnection.m_userGameInstanceEngine->m_mouseInput->
             m_leftButton->
             IsPressedPickResult()) {
+            
             m_userConnection.m_userGameInstanceEngine->m_sceneManager->
             GoTo("MainMenuScene");
         }
@@ -29,6 +30,7 @@ namespace JoD {
         m_userConnection.SendImageDrawInstruction(
             webSocket, "DefaultSceneBackground",
             {0.0f, 0.0f, 1.0f, 1.0f});
+        
         m_userConnection.SendImageDrawInstruction(
             webSocket, "JoDLogo",
             {0.3f, 0.2f, 0.4f, 0.2f});

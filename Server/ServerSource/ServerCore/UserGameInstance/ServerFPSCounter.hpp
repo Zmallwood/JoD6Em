@@ -20,9 +20,12 @@ namespace JoD {
         void Render(WebSocket& ws) const;
         
       private:
-        int m_fps = 0;
-        int m_framesCount = 0;
-        TimePoint m_ticksLastUpdate = Now();
+        int m_fps {0};
+        
+        int m_framesCount {0};
+        
+        TimePoint m_ticksLastUpdate {Now()};
+        
         UserConnection& m_userConnection;
     };
 }

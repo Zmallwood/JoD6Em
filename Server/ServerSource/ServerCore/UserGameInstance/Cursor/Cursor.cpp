@@ -19,17 +19,22 @@ namespace JoD {
     
     void Cursor::Render(WebSocket& ws) const {
         
-        auto mousePosition = m_userConnection.m_mousePosition; // Get current mouse position.
+        // Get current mouse position.
+        auto mousePosition = m_userConnection.m_mousePosition;
+        
         // Obtain cursor dimensions.
         auto cursorWidth = k_cursorSize;
         auto cursorHeight = k_cursorSize*m_userConnection.GetAspectRatio();
+        
         // Calculate cursor position.
         auto cursorX = mousePosition.x - cursorWidth / 2;
         auto cursorY = mousePosition.y - cursorHeight / 2;
+        
         // Create render destination rectangle.
         auto cursorDestination = RectF{
             cursorX, cursorY, cursorWidth,
             cursorHeight};
+        
         // Render the cursor image.
         m_userConnection.SendImageDrawInstruction(
             ws, k_cursorImageName,

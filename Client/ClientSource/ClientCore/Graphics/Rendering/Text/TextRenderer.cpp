@@ -16,11 +16,14 @@ namespace JoD {
     TextRenderer::TextRenderer() {
         
         TTF_Init();
+        
         auto fontPath = k_relFontsPath + "default_font.ttf";
+        
         auto font10 = std::make_shared<Font>(fontPath, 10);
         auto font20 = std::make_shared<Font>(fontPath, 20);
         auto font30 = std::make_shared<Font>(fontPath, 30);
         auto font50 = std::make_shared<Font>(fontPath, 50);
+        
         m_fonts.insert({FontSizes::_10, font10});
         m_fonts.insert({FontSizes::_20, font20});
         m_fonts.insert({FontSizes::_30, font30});
@@ -37,25 +40,37 @@ namespace JoD {
         
         auto font = m_fonts.at(fontSize)->m_font;
         
-        if (!font) return;
+        if (!font) {
+            
+            return;
+        }
         
         auto colorSDL = ToSDLColor(color);
         auto outlineColorSDL = ToSDLColor(k_outlineColor);
+        
         auto textOutlineSurface =
             TTF_RenderText_Blended(
                 m_fonts.at(fontSize)->m_outlineFont.get(),
                 text.data(), outlineColorSDL);
         
-        if (!textOutlineSurface)
+        if (!textOutlineSurface) {
+            
             return;
+        }
+        
         auto textSurface = TTF_RenderText_Blended(
             font.get(), text.data(),
             colorSDL);
-        if (!textSurface)
+        
+        if (!textSurface) {
+            
             return;
+        }
         
         glEnable(GL_TEXTURE_2D);
+        
         auto uniqueNameID = m_uniqueNameIDs.at(rid);
+        
         auto imageID = _<ImageBank>().GetImage(uniqueNameID);
         
         glBindTexture(GL_TEXTURE_2D, imageID);
@@ -69,6 +84,7 @@ namespace JoD {
         auto image = SDL_CreateRGBSurface(
             SDL_SWSURFACE, width, height, 32, 0x000000FF,
             0x0000FF00, 0x00FF0000, 0xFF000000);
+        
         auto canvasSize = GetCanvasSize();
         
         SDL_Rect textSourceRectangle;
@@ -79,15 +95,18 @@ namespace JoD {
         textSourceRectangle =
             SDL_Rect{0, 0, textSurface ? textSurface->w : 0,
                      textSurface ? textSurface->h : 0};
+        
         textOutlineSourceRectangle =
             SDL_Rect{0, 0, textOutlineSurface ? textOutlineSurface->w : 0,
                      textOutlineSurface ? textOutlineSurface->h : 0};
+        
         textDestinationRectangle = textSourceRectangle;
         
         textDestinationRectangle.x += Font::k_fontOutlineWidth;
         textDestinationRectangle.w -= 2 * Font::k_fontOutlineWidth;
         textDestinationRectangle.y += Font::k_fontOutlineWidth;
         textDestinationRectangle.h -= 2 * Font::k_fontOutlineWidth;
+        
         textOutlineDestinationRectangle = textOutlineSourceRectangle;
         textOutlineDestinationRectangle.y = 1;
         
@@ -95,6 +114,7 @@ namespace JoD {
         SDL_BlitSurface(
             textOutlineSurface, &textOutlineSourceRectangle, image,
             &textOutlineDestinationRectangle);
+        
         SDL_BlitSurface(
             textSurface, &textSourceRectangle, image,
             &textDestinationRectangle);
@@ -102,10 +122,13 @@ namespace JoD {
         glTexImage2D(
             GL_TEXTURE_2D, 0, GL_RGBA, image->w, image->h, 0, GL_RGBA,
             GL_UNSIGNED_BYTE, image->pixels);
+        
         auto outWidth = textSurface ? static_cast<float>(textSurface->w) /
                         canvasSize.w : 0;
+        
         auto outHeight = textSurface ? static_cast<float>(textSurface->h) /
                          canvasSize.h : 0;
+        
         out_uniqueNameID = uniqueNameID;
         out_size = {outWidth, outHeight};
         
@@ -117,12 +140,19 @@ namespace JoD {
     RID TextRenderer::NewString() {
         
         static int s_idCounter = 0;
+        
         auto id = s_idCounter++;
+        
         auto uniqueName = "RenderedImage" + std::to_string(id);
+        
         auto ridImage = _<ImageBank>().CreateBlankImage(uniqueName);
+        
         m_uniqueNameIDs.insert({ridImage, uniqueName});
+        
         auto ridGLResource = _<ImageRenderer>().NewImage();
+        
         m_ridsGLResources.insert({ridImage, ridGLResource});
+        
         return ridImage;
     }
     
@@ -140,17 +170,22 @@ namespace JoD {
             size);
         
         auto canvasSize = GetCanvasSize();
+        
         auto rectangle = RectF{position.x, position.y, size.w, size.h};
+        
         int textWidth;
         int textHeight;
+        
         TTF_SizeText(
             m_fonts.at(fontSize)->m_font.get(), text.data(), &textWidth,
             &textHeight);
         
         if (centerAlign) {
+            
             rectangle.x -= static_cast<float>(textWidth) /
                            static_cast<float>(canvasSize.h) /
                            2.0f / GetAspectRatio();
+            
             rectangle.y -=
                 static_cast<float>(textHeight) /
                 static_cast<float>(canvasSize.h) /
@@ -158,6 +193,7 @@ namespace JoD {
         }
         
         auto scale = 1.0f;
+        
         rectangle.x += rectangle.w / 2.0f - rectangle.w / 2.0f * scale;
         rectangle.y += rectangle.h / 2.0f - rectangle.h / 2.0f * scale;
         rectangle.w *= scale;
@@ -175,10 +211,14 @@ namespace JoD {
         FontSizes font_size) const {
         
         auto font = m_fonts.at(font_size)->m_font;
+        
         int textWidth;
         int textHeight;
+        
         TTF_SizeText(font.get(), text.data(), &textWidth, &textHeight);
+        
         auto canvasSize = GetCanvasSize();
+        
         return {static_cast<float>(textWidth) / canvasSize.w,
                 static_cast<float>(textHeight) / canvasSize.h};
     }

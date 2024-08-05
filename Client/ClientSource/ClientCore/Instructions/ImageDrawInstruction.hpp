@@ -16,11 +16,11 @@ namespace JoD {
     ///
     struct ImageDrawInstruction {
         
-        InstructionTypes type = InstructionTypes::None;
+        InstructionTypes type {InstructionTypes::None};
         
-        RID rid = -1; ///< ID for an image resource previously allocated.
+        RID rid {0}; ///< ID for an image resource previously allocated.
         
-        int imageNameHash = 0; ///<Hash code of image name to draw.
+        int imageNameHash {0}; ///<Hash code of image name to draw.
         
         RectF destination; ///< Destination rectangle to draw the image at.
         

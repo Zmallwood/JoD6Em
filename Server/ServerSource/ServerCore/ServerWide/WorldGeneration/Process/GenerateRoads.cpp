@@ -16,33 +16,43 @@ namespace JoD {
         auto roadY = 0;
         
         for (auto i = 0; i < 25; i++) {
+            
             worldArea->m_tiles[roadX][roadY]->m_ground =
                 Hash("GroundCobbleStone");
+                
             roadX++;
             roadY++;
         }
         
         for (auto i = 0; i < 50; i++) {
+            
             worldArea->m_tiles[roadX][roadY]->m_ground =
                 Hash("GroundCobbleStone");
+                
             roadX++;
         }
         
         for (auto i = 0; i < 50; i++) {
+            
             worldArea->m_tiles[roadX][roadY]->m_ground =
                 Hash("GroundCobbleStone");
+                
             roadY++;
         }
         
         for (auto i = 0; i < 50; i++) {
+            
             worldArea->m_tiles[roadX][roadY]->m_ground =
                 Hash("GroundCobbleStone");
+                
             roadX--;
         }
         
         for (auto i = 0; i < 25; i++) {
+            
             worldArea->m_tiles[roadX][roadY]->m_ground =
                 Hash("GroundCobbleStone");
+                
             roadY++;
         }
     }

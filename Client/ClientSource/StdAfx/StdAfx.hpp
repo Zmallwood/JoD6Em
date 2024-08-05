@@ -34,7 +34,6 @@
 #include "MathLib/RectF.hpp"
 #include "MathLib/Size.hpp"
 #include "MathLib/SizeF.hpp"
-#include "MathLib/Vertex2F.hpp"
 #include "Common/Aliases.hpp"
 #include "Common/FileUtilities.hpp"
 #include "Common/CanvasUtilities.hpp"

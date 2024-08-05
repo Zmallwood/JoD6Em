@@ -11,6 +11,6 @@ namespace JoD {
     class GameProperties {
         
       public:
-        const int k_numGridRows = 21;
+        const int k_numGridRows {21};
     };
 }

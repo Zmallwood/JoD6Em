@@ -23,19 +23,24 @@ namespace JoD {
                 mainScene.m_components.at(
                     MainSceneComponents::
                     MobTargeting));
+        
         if (tile->m_mob) {
+            
             if (tile->m_mob ==
                 mobTargeting->
                 m_targetedCreature){
+                
                 userConnection.SendImageDrawInstruction(
                     webSocket,
                     "TargetedMob",
                     tileBounds);
             }
+            
             userConnection.SendImageDrawInstruction(
                 webSocket,
                 tile->m_mob->m_type,
                 tileBounds);
+            
             userConnection.SendTextDrawInstruction(
                 webSocket,
                 "Mob, Lvl." +

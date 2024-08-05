@@ -26,7 +26,7 @@ namespace JoD {
         void AddScene(std::string_view sceneName,
                       std::shared_ptr<IScene> scene);
         
-        int m_currentScene = 0;
+        int m_currentScene {0};
         
         std::map<int, std::shared_ptr<IScene>> m_scenes;
         

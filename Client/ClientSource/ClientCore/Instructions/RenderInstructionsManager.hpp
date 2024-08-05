@@ -52,21 +52,21 @@ namespace JoD {
         std::vector<ImageDrawInstruction>
         m_imageDrawInstructionsBuffer2;
         
-        std::vector<ImageDrawInstruction>* m_activeBuffer =
-            &m_imageDrawInstructionsBuffer1;
-        std::vector<ImageDrawInstruction>* m_inactiveBuffer =
-            &m_imageDrawInstructionsBuffer2;
+        std::vector<ImageDrawInstruction>* m_activeBuffer {
+            &m_imageDrawInstructionsBuffer1};
+        std::vector<ImageDrawInstruction>* m_inactiveBuffer {
+            &m_imageDrawInstructionsBuffer2};
         
         std::vector<RID> m_rids; ///< A set of preallocated RIDs used for drawing images, created in the constructor.
         
         std::vector<RID> m_ridsText;
         
-        int m_ridCounterImages = 0;
+        int m_ridCounterImages {0};
         
-        int m_ridCounterText = 0;
+        int m_ridCounterText = {0};
         
-        const int k_maxNumDrawInstructions = 1000; ///< No more images than this value can be rendererd in a single game frame.
+        const int k_maxNumDrawInstructions {1000}; ///< No more images than this value can be rendererd in a single game frame.
         
-        const int k_maxNumDrawTextInstructions = 100; ///< No more images than this value can be rendererd in a single game frame.
+        const int k_maxNumDrawTextInstructions {100}; ///< No more images than this value can be rendererd in a single game frame.
     };
 }

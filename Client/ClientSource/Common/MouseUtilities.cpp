@@ -1,6 +1,6 @@
 /*
  * MouseUtilities.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -11,14 +11,21 @@ namespace JoD {
     
     PointF GetMousePosition() {
         
-        double xPos, yPos; // Declare variables to store mouse coordinates in pixels.
+        // Declare variables to store mouse coordinates in pixels.
+        double xPos;
+        double yPos;
+        
         // Use GLFW to get current mouse coordinates.
         glfwGetCursorPos(_<Graphics>().m_window, &xPos, &yPos);
-        auto canvasSize = GetCanvasSize(); // Get canvas size.
+        
+        // Get canvas size.
+        auto canvasSize = GetCanvasSize();
+        
         // And use it to convert pixel coordinates to fractal coordinates.
         auto mousePosition = PointF{
             static_cast<float>(xPos) / canvasSize.w,
             static_cast<float>(yPos) / canvasSize.h};
+        
         return mousePosition;
     }
 }

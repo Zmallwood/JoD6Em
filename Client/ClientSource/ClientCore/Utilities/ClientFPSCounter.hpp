@@ -32,10 +32,10 @@ namespace JoD {
       private:
         RID m_rid;
         
-        int m_framesCount = 0;
+        int m_framesCount {0};
         
-        int m_fps = 0;
+        int m_fps {0};
         
-        int m_ticksLastUpdate = 0;
+        int m_ticksLastUpdate {0};
     };
 }

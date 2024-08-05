@@ -20,14 +20,17 @@ namespace JoD {
             {MainSceneComponents::TileHovering,
              std::make_shared<TileHovering>(
                  m_userConnection, *this) });
+                 
         m_components.insert(
             {MainSceneComponents::MouseMovement,
              std::make_shared<MouseMovement>(
                  m_userConnection, *this) });
+                 
         m_components.insert(
             {MainSceneComponents::MobTargeting,
              std::make_shared<MobTargeting>(
                  m_userConnection, *this) });
+                 
         m_components.insert(
             {MainSceneComponents::WorldView,
              std::make_shared<WorldView>(m_userConnection, *this) });
@@ -35,13 +38,17 @@ namespace JoD {
     
     void MainScene::UpdateDerived() {
         
-        for (auto component : m_components)
+        for (auto component : m_components) {
+            
             component.second->Update();
+        }
     }
     
     void MainScene::RenderDerived(WebSocket &webSocket) const {
         
-        for (auto component : m_components)
+        for (auto component : m_components) {
+            
             component.second->Render(webSocket);
+        }
     }
 }

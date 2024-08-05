@@ -29,14 +29,18 @@ namespace JoD {
     void UserGameInstanceEngine::Update() {
         
         m_sceneManager->UpdateCurrentScene();
+        
         m_serverFPSCounter->Update();
     }
     
     void UserGameInstanceEngine::Render(WebSocket &ws) const {
         
         m_sceneManager->RenderCurrentScene(ws);
+        
         m_serverFPSCounter->Render(ws);
+        
         m_userConnection.m_cursor->Render(ws);
+        
         m_userConnection.SendPresentCanvasInstruction(ws);
     }
 }

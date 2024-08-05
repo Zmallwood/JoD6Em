@@ -10,26 +10,31 @@ namespace JoD {
     
     void SDLDeleter::operator()(SDL_Window *window) const {
         
-        SDL_DestroyWindow(window); // Destroy SDL window object.
+        // Destroy SDL window object.
+        SDL_DestroyWindow(window);
     }
     
     void SDLDeleter::operator()(SDL_Renderer *renderer) const {
         
-        SDL_DestroyRenderer(renderer); // Destroy SDL renderer object.
+        // Destroy SDL renderer object.
+        SDL_DestroyRenderer(renderer);
     }
     
     void SDLDeleter::operator()(SDL_Surface *surface) const {
         
-        SDL_FreeSurface(surface); // Free SDL surface object.
+        // Free SDL surface object.
+        SDL_FreeSurface(surface);
     }
     
     void SDLDeleter::operator()(SDL_Texture *texture) const {
         
-        SDL_DestroyTexture(texture); // Destroy SDL texture object.
+        // Destroy SDL texture object.
+        SDL_DestroyTexture(texture);
     }
     
     void SDLDeleter::operator()(TTF_Font *font) const {
         
-        TTF_CloseFont(font); // Close SDL_ttf font object.
+        // Close SDL_ttf font object.
+        TTF_CloseFont(font);
     }
 }

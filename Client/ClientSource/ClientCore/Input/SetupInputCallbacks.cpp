@@ -36,12 +36,15 @@ namespace JoD {
         
         // Set callback for keyboard events.
         glfwSetKeyCallback(_<Graphics>().m_window, KeyCallback);
+        
         // Set callback for mouse events.
         glfwSetMouseButtonCallback(
             _<Graphics>().m_window,
             MouseButtonCallback);
+        
         // Set callback for text typing events.
         glfwSetCharCallback(_<Graphics>().m_window, CharacterCallback);
+        
         // Set callback for touch start event.
         emscripten_set_touchstart_callback(
             "#canvas",
@@ -49,6 +52,7 @@ namespace JoD {
             true,
             TouchStartCallback);
         // Set callback for touch end event.
+        
         emscripten_set_touchend_callback(
             "#canvas",
             nullptr,
@@ -73,27 +77,24 @@ namespace JoD {
             GLFWwindow *window, int button, int action,
             int mods) {
             
-            static bool mouseLeftDown = false;
-            static bool mouseRightDown = false;
             if (button == GLFW_MOUSE_BUTTON_LEFT
-                && action == GLFW_PRESS
-                && !mouseLeftDown){
+                && action == GLFW_PRESS){
+                
                 _<WebSocketServerConnection>().SendMessage(
                     MessageCodes::k_leftMouseDown);
-                mouseLeftDown = true;
             } else if (button == GLFW_MOUSE_BUTTON_LEFT &&
                        action == GLFW_RELEASE) {
-                mouseLeftDown = false;
+                
             }else if (button == GLFW_MOUSE_BUTTON_RIGHT
-                      && action == GLFW_PRESS
-                      && !mouseRightDown){
+                      && action == GLFW_PRESS){
+                
                 _<WebSocketServerConnection>().SendMessage(
                     MessageCodes::k_rightMouseDown);
-                mouseRightDown = true;
             } else if (button == GLFW_MOUSE_BUTTON_RIGHT &&
                        action == GLFW_RELEASE) {
-                mouseRightDown = false;
+                
             }
+            
             // if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
             //     _<MouseInput>().LeftButton().OnPress();
             // else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)

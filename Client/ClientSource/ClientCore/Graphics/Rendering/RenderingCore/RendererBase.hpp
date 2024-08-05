@@ -201,11 +201,14 @@ namespace JoD {
         m_VBOIDs; ///< Stores IDs of all Vertex Buffer Objects.
         
         inline static const auto
-            k_numFloatsPerEntry = std::map<BufferTypes, int>{ ///< Predefined constants of number of floats for different entry types.
-            {BufferTypes::Indices, 1}, {BufferTypes::Positions2D, 2},
-            {BufferTypes::Positions3D, 3},
-            {BufferTypes::Colors, 4},  {BufferTypes::UVs, 2},
-            {BufferTypes::Normals, 3},
-            {BufferTypes::BoneIDs, 4}, {BufferTypes::Weights, 4}};
+            k_numFloatsPerEntry {std::map<BufferTypes, int>{ ///< Predefined constants of number of floats for different entry types.
+                                     {BufferTypes::Indices, 1},
+                                     {BufferTypes::Positions2D, 2},
+                                     {BufferTypes::Positions3D, 3},
+                                     {BufferTypes::Colors, 4},
+                                     {BufferTypes::UVs, 2},
+                                     {BufferTypes::Normals, 3},
+                                     {BufferTypes::BoneIDs, 4},
+                                     {BufferTypes::Weights, 4}}};
     };
 }

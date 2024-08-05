@@ -16,8 +16,10 @@ namespace JoD {
         
         auto playerCoordinate =
             userConnection.m_player->m_coordinate;
+        
         if (coordinate.x == playerCoordinate.x &&
             coordinate.y == playerCoordinate.y){
+            
             userConnection.SendImageDrawInstruction(
                 webSocket, "Player", tileBounds);
         }

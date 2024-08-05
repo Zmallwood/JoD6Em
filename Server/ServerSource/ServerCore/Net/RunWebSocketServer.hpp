@@ -9,6 +9,6 @@
 namespace JoD {
     
     void RunWebSocketServer(
-        std::string socketAddress,
-        std::string socketPort);
+        std::string_view socketAddress,
+        std::string_view socketPort);
 }

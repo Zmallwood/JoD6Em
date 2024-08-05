@@ -15,11 +15,15 @@ namespace JoD {
     RenderInstrutionsManager::RenderInstrutionsManager(){
         
         // Create a sufficient amount of RIDs for drawing images and game start.
-        for (auto i = 0; i < k_maxNumDrawInstructions; i++)
+        for (auto i = 0; i < k_maxNumDrawInstructions; i++) {
+            
             m_rids.push_back(_<ImageRenderer>().NewImage());
+        }
         
-        for (auto i = 0; i < k_maxNumDrawTextInstructions; i++)
+        for (auto i = 0; i < k_maxNumDrawTextInstructions; i++) {
+            
             m_ridsText.push_back(_<TextRenderer>().NewString());
+        }
     }
     
     void RenderInstrutionsManager::AddImageDrawInstruction(
@@ -40,10 +44,12 @@ namespace JoD {
         std::string_view text, PointF position) {
         
         auto newInstruction = ImageDrawInstruction {};
+        
         newInstruction.rid = m_ridsText.at(m_ridCounterText++);
         newInstruction.type = InstructionTypes::Text;
         newInstruction.text = text;
         newInstruction.position = position;
+        
         m_inactiveBuffer->push_back(newInstruction);
     }
     
@@ -52,9 +58,7 @@ namespace JoD {
         auto temp = m_activeBuffer;
         m_activeBuffer = m_inactiveBuffer;
         m_inactiveBuffer = temp;
-        // Replace the current instruction group with the new one.
-        // Prepare the next-instructions-set for storing a new set
-        // of instructions by clearing it.
+        
         m_inactiveBuffer->clear();
         m_ridCounterImages = 0;
         m_ridCounterText = 0;
@@ -64,20 +68,28 @@ namespace JoD {
         
         // Execute all drawing instructions that have been added.
         for (auto &instruction : *m_activeBuffer){
+            
             switch (instruction.type) {
-            case InstructionTypes::Image:
+            
+            case InstructionTypes::Image: {
+                
                 _<ImageRenderer>().DrawImage(
                     instruction.rid,
                     instruction.imageNameHash,
                     instruction.destination);
                 break;
-            case InstructionTypes::Text:
+            }
+            case InstructionTypes::Text: {
+                
                 _<TextRenderer>().DrawString(
                     instruction.rid, instruction.text,
                     instruction.position);
                 break;
-            case InstructionTypes::None:
+            }
+            case InstructionTypes::None: {
+                
                 break;
+            }
             }
         }
     }

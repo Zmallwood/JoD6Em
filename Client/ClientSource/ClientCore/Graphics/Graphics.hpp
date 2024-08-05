@@ -30,10 +30,10 @@ namespace JoD {
         ///
         void PresentCanvas() const;
         
-        GLFWwindow *m_window = nullptr; ///< GLFW window object.
+        GLFWwindow *m_window {nullptr}; ///< GLFW window object.
         
       private:
         const std::string
-            k_title = "Journey of Dreams"; ///< Window title used if the game would be in desktop application format.
+            k_title {"Journey of Dreams"}; ///< Window title used if the game would be in desktop application format.
     };
 }
