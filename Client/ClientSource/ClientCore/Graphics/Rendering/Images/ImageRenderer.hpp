@@ -11,7 +11,7 @@
 namespace JoD {
 
     ///
-    /// @brief Allocates image resources and enabled rendering images to the browser.
+    /// Allocates image resources and enabled rendering images to the browser.
     ///
     class ImageRenderer : public RendererBase {
       public:
