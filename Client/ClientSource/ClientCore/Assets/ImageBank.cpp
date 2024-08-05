@@ -7,7 +7,9 @@
 #include "ImageBank.hpp"
 
 namespace JoD {
+    
     namespace {
+        
         // Load single image from absolute file path.
         GLuint LoadSingleImage(std::string_view absFilePath);
         
@@ -16,45 +18,82 @@ namespace JoD {
     }
     
     ImageBank::ImageBank() {
-        LoadImages(); // Load all images in images path.
+        
+        // Load all images in images path.
+        LoadImages();
     }
     
-    ImageBank::~ImageBank() { // Iterate through all the loaded images.
-        for (const auto &image : m_images)
-            glDeleteTextures(1, &image.second); // Free every allocated image resource.
+    ImageBank::~ImageBank() {
+        
+        // Iterate through all the loaded images.
+        for (const auto &image : m_images) {
+            
+            // Free every allocated image resource.
+            glDeleteTextures(1, &image.second);
+        }
     }
     
     GLuint ImageBank::GetImage(std::string_view imageName) const {
-        return GetImage(Hash(imageName)); // Hash the image name and call the function overload
+        
+        // Hash the image name and call the function overload
+        return GetImage(Hash(imageName));
     }
     
     GLuint ImageBank::GetImage(int imageNameHash) const {
-        for (auto image : m_images) // Iterate through all the loaded images.
+        
+        // Iterate through all the loaded images.
+        for (auto &image : m_images) {
+            
             // If its key, being the hash of the image name, equals
             // the hash of the specified name, then, return this image ID.
-            if (image.first == imageNameHash) return image.second;
-        return -1; // No image with the name found, return fail value.
+            if (image.first == imageNameHash) {
+                
+                return image.second;
+            }
+        }
+        
+        // No image with the name found, return fail value.
+        return -1;
     }
     
     GLuint ImageBank::CreateBlankImage(
         std::string_view uniqueImageName) {
-        GLuint texID; // Generate new image resource,
-        glGenTextures(1, &texID); // and get its ID.
+        
+        // Generate new texture resource,
+        GLuint texID;
+        glGenTextures(1, &texID);
+        
         // Insert new image entry with image name hash as key
         // and the new ID as value.
         m_images.insert({Hash(uniqueImageName), texID});
-        return texID; // Return the ID of the newly created blank image resource.
+        
+        // Return the ID of the newly created blank image resource.
+        return texID;
     }
     
     void ImageBank::LoadImages() {
+        
         using iterator = std::filesystem::recursive_directory_iterator;
+        
         auto allImagesPath = k_relImagesPath + "/";
+        
         for (auto &entry : iterator(allImagesPath)) {
-            auto absPath = entry.path().string(); // Create path string to load the images from.
-            if (GetFileExtension(absPath) != "png") continue; // Only handle files with png extenstion.
-            auto texID = LoadSingleImage(absPath); // Load the current file as an image resource.
-            auto imageName = GetFilenameNoExtension(
-                absPath); // Extract its pure name without path or extension.
+            
+            // Create path string to load the images from.
+            auto absPath = entry.path().string();
+            
+            // Only handle files with png extenstion.
+            if (GetFileExtension(absPath) != "png") {
+                
+                continue;
+            }
+            
+            // Load the current file as an image resource.
+            auto texID = LoadSingleImage(absPath);
+            
+            // Extract its pure name without path or extension.
+            auto imageName = GetFilenameNoExtension(absPath);
+            
             // Insert a new entry into the images storage, with the
             // image name hash as key and the resource ID as value.
             m_images.insert({Hash(imageName), texID});
@@ -62,52 +101,73 @@ namespace JoD {
     }
     
     namespace {
+        
         GLuint LoadSingleImage(std::string_view absFilePath) {
-            GLuint texID; // Declare variable to hold the resulting ID for the loaded image file.
+            
+            // Declare variable to hold the resulting ID for the loaded image file.
+            GLuint texID;
+            
             // Get image data from the image file.
             auto surface = LoadImageData(absFilePath.data());
-            glEnable(GL_TEXTURE_2D); // We will work with 2D textures.
-            glGenTextures(1, &texID); // Generate a new OpenGL texture and get its ID.
-            glBindTexture(GL_TEXTURE_2D, texID); // Use the newly created OpenGL texture.
+            
+            // We will work with 2D textures.
+            glEnable(GL_TEXTURE_2D);
+            
+            // Generate a new OpenGL texture and get its ID.
+            glGenTextures(1, &texID);
+            
+            // Use the newly created OpenGL texture.
+            glBindTexture(GL_TEXTURE_2D, texID);
+            
             // Apply necessary texture parameters.
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            
             // Transfer image data from SDL surface to OpenGL texture resource depending on
             // if the image format is RGB or RGBA (with or without alpha channel).
             if (surface->format->BytesPerPixel == 4) {
+                
                 glTexImage2D(
                     GL_TEXTURE_2D, 0, GL_RGBA, surface->w, surface->h, 0,
                     GL_RGBA, GL_UNSIGNED_BYTE, surface->pixels);
             } else {
+                
                 glTexImage2D(
                     GL_TEXTURE_2D, 0,  GL_RGBA, surface->w, surface->h, 0,
                     GL_RGB, GL_UNSIGNED_BYTE, surface->pixels);
             }
+            
             // Free SDL surface resource, its not needed anymore as the image data is
             // stored in the OpenGL texture now.
             SDL_FreeSurface(surface);
-            return texID; // Return the previously generated resource ID.
+            
+            // Return the previously generated resource ID.
+            return texID;
         }
         
         SDL_Surface *LoadImageData(const char *fileName) {
+            
             int width;
             int height;
             int bytesPerPixel;
+            
             // Read data.
             void *data = stbi_load(
-                fileName, &width, &height, &bytesPerPixel,
-                0);
+                fileName, &width, &height, &bytesPerPixel, 0);
+            
             // Calculate pitch.
             int pitch;
             pitch = width * bytesPerPixel;
             pitch = (pitch + 3) & ~3;
+            
             // Setup relevance bitmask.
             int rMask;
             int gMask;
             int bMask;
             int aMask;
+            
 #if SDL_BYTEORDER == SDL_LIL_ENDIAN
             rMask = 0x000000FF;
             gMask = 0x0000FF00;
@@ -120,16 +180,22 @@ namespace JoD {
             bMask = 0x0000FF00 >> s;
             aMask = 0x000000FF >> s;
 #endif
+            
             // Create SDL surface from image data.
             auto surface = SDL_CreateRGBSurfaceFrom(
                 data, width, height,
                 bytesPerPixel * 8, pitch, rMask, gMask, bMask, aMask);
+            
             // If surface creation failed, then free image data and return nullptr.
             if (!surface) {
+                
                 stbi_image_free(data);
+                
                 return nullptr;
             }
-            return surface; // Else if surface creation was successful, return the surface.
+            
+            // Else if surface creation was successful, return the surface.
+            return surface;
         }
     }
 }

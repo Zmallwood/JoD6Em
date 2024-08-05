@@ -80,30 +80,6 @@ namespace JoD {
                 m_userGameInstanceEngine->Update();
                 m_userGameInstanceEngine->Render(ws);
                 std::this_thread::sleep_for(std::chrono::milliseconds(140));
-                // while (true){
-                //     beast::flat_buffer buffer; // This buffer will hold the incoming message.
-                //     ws.read(buffer); // Read a message.
-                //     const auto message = buffer_cast<int *>(buffer.data());
-                //     if (*message == MessageCodes::k_canvasSize){
-                //         auto width = (int)message[1];
-                //         auto height = (int)message[2];
-                //         m_canvasSize = {width, height};
-                //     }else if (*message == MessageCodes::k_leftMouseDown) {
-                //         m_userGameInstanceEngine->m_mouseInput->
-                //         RegisterMouseDown(
-                //             MouseButtons::Left);
-                //     }else if (*message == MessageCodes::k_rightMouseDown) {
-                //         m_userGameInstanceEngine->m_mouseInput->
-                //         RegisterMouseDown(
-                //             MouseButtons::Right);
-                //     }else if (*message == MessageCodes::k_mousePosition) {
-                //         auto x = message[1] / net_constants::k_floatPrecision;
-                //         auto y = message[2] / net_constants::k_floatPrecision;
-                //         m_mousePosition = {x, y};
-                //     }else if (*message == MessageCodes::k_frameFinished) {
-                //         break;
-                //     }
-                // }
             }
         }
         catch (beast::system_error const &se){
