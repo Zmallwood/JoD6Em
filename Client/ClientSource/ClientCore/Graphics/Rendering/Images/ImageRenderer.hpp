@@ -9,7 +9,7 @@
 #include "ClientCore/Graphics/Rendering/RenderingCore/RendererBase.hpp"
 
 namespace JoD {
-
+    
     ///
     /// Allocates image resources and enabled rendering images to the browser.
     ///
@@ -17,19 +17,18 @@ namespace JoD {
       public:
         ///
         /// Construct a new Image Renderer object by creating the GL shader program associates
-        ///        with image rendering.
+        /// with image rendering.
         ///
         ImageRenderer();
         
         ///
         /// Destroy the Image Renderer object by cleaning up allocated resources associated
-        ///        with image rendering.
+        /// with image rendering.
         ///
         ~ImageRenderer();
         
-        /// Allocates reso
-        ///urces for a new image and return the ID used to render with these
-        ///        resources.
+        /// Allocates resources for a new image and return the ID used to render with these
+        /// resources.
         /// @return rid Resource ID used to render an image with the allocated resources.
         ///
         RID NewImage();
