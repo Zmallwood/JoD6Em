@@ -15,9 +15,11 @@ namespace JoD {
     TextRenderer::TextRenderer() {
         TTF_Init();
         auto fontPath = k_relFontsPath + "default_font.ttf";
+        auto font10 = std::make_shared<Font>(fontPath, 10);
         auto font20 = std::make_shared<Font>(fontPath, 20);
         auto font30 = std::make_shared<Font>(fontPath, 30);
         auto font50 = std::make_shared<Font>(fontPath, 50);
+        m_fonts.insert({FontSizes::_10, font10});
         m_fonts.insert({FontSizes::_20, font20});
         m_fonts.insert({FontSizes::_30, font30});
         m_fonts.insert({FontSizes::_50, font50});

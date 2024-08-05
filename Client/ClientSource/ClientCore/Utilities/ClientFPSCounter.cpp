@@ -24,6 +24,6 @@ namespace JoD {
     void ClientFPSCounter::Render() const {
         _<TextRenderer>().DrawString(
             m_rid, "Client fps: " + std::to_string(m_fps),
-            {0.9f, 0.05f});
+            {0.8f, 0.05f});
     }
 }

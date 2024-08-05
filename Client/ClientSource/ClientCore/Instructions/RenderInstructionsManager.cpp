@@ -1,6 +1,6 @@
 /*
  * RenderInstructionsManager.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -23,15 +23,13 @@ namespace JoD {
     void RenderInstrutionsManager::AddImageDrawInstruction(
         int imageNameHash,
         RectF destination) {
-        // Create a new image draw instruction and save it.
-        auto newInstruction = ImageDrawInstruction{ InstructionTypes::Image,
-                                                       m_rids.at(
-                                                           m_ridCounterImages
-                                                           ++),
-                                                       imageNameHash,
-                                                       destination};
-        m_imageDrawInstructionsBuffer.push_back(
-            newInstruction);
+        m_inactiveBuffer->emplace_back(
+            InstructionTypes::Image,
+            m_rids.at(
+                m_ridCounterImages
+                ++),
+            imageNameHash,
+            destination);
     }
     
     
@@ -42,22 +40,24 @@ namespace JoD {
         newInstruction.type = InstructionTypes::Text;
         newInstruction.text = text;
         newInstruction.position = position;
-        m_imageDrawInstructionsBuffer.push_back(newInstruction);
+        m_inactiveBuffer->push_back(newInstruction);
     }
     
     void RenderInstrutionsManager::ApplyBuffer() {
+        auto temp = m_activeBuffer;
+        m_activeBuffer = m_inactiveBuffer;
+        m_inactiveBuffer = temp;
         // Replace the current instruction group with the new one.
-        m_imageDrawInstructions = m_imageDrawInstructionsBuffer;
         // Prepare the next-instructions-set for storing a new set
         // of instructions by clearing it.
-        m_imageDrawInstructionsBuffer.clear();
+        m_inactiveBuffer->clear();
         m_ridCounterImages = 0;
         m_ridCounterText = 0;
     }
     
     void RenderInstrutionsManager::ExecuteInstructions() const {
         // Execute all drawing instructions that have been added.
-        for (auto &instruction : m_imageDrawInstructions){
+        for (auto &instruction : *m_activeBuffer){
             switch (instruction.type) {
             case InstructionTypes::Image:
                 _<ImageRenderer>().DrawImage(

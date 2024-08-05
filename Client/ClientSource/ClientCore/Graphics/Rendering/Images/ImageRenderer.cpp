@@ -1,6 +1,6 @@
 /*
  * ImageRenderer.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -16,14 +16,47 @@ namespace JoD {
         constexpr int k_locColor{1}; // Location of color variable in vertex shader.
         constexpr int k_locUV{2}; // Location of UV variable in vertex shader.
         int m_locNoPixelEffect{-1}; // Location of pixelation effect switch variable in vertex shader.
+        std::vector<int> defaultIndices;
     }
     
     ImageRenderer::ImageRenderer(){
         // Create shader program.
         m_shaderProgram->Create(
             g_defaultShaderImagesVertex,
-            g_defaultShaderImagesFragment); 
+            g_defaultShaderImagesFragment);
         // m_locNoPixelEffect = GetUniformLocation("noPixelEffect");
+
+        // Create indices for the vertices.
+        defaultIndices = std::vector<int>(
+            MathConstants::k_numVerticesInRectangle);
+        std::iota(std::begin(defaultIndices), std::end(defaultIndices), 0);
+
+                m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        m_defaultColorsWhite.push_back(1.0f);
+        
+        // Set vertices texture coordinates.
+        m_defaultUVs.push_back(0.0f);
+        m_defaultUVs.push_back(1.0f);
+        m_defaultUVs.push_back(0.0f);
+        m_defaultUVs.push_back(0.0f);
+        m_defaultUVs.push_back(1.0f);
+        m_defaultUVs.push_back(0.0f);
+        m_defaultUVs.push_back(1.0f);
+        m_defaultUVs.push_back(1.0f);
     }
     
     ImageRenderer::~ImageRenderer(){
@@ -71,18 +104,7 @@ namespace JoD {
         ColorF color) const {
         auto glRect = destination.ToGLRectF(); // Convert destination to GL coordinate system.
         // Create 4 vertices for an image rectangle.
-        Vertex2F verts[MathConstants::k_numVerticesInRectangle];
-        // Set vertices positions.
-        verts[0].pos = {glRect.x, glRect.y - glRect.h};
-        verts[1].pos = {glRect.x, glRect.y};
-        verts[2].pos = {glRect.x + glRect.w, glRect.y};
-        verts[3].pos = {glRect.x + glRect.w, glRect.y - glRect.h};
-        // Set vertices texture coordinates.
-        verts[0].uv = {0.0f, 1.0f / textureFillAmount.h};
-        verts[1].uv = {0.0f, 0.0f};
-        verts[2].uv = {1.0f / textureFillAmount.w, 0.0f};
-        verts[3].uv = {1.0f / textureFillAmount.w,
-                       1.0f / textureFillAmount.h};
+        
         glDisable(GL_DEPTH_TEST); // No need for depth testing in a 2D plane.
         // Obtain GL ID for image to be rendered.
         auto imageID = _<ImageBank>().GetImage(imageNameHash);
@@ -96,24 +118,21 @@ namespace JoD {
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         }
-        // Create indices for the vertices.
-        auto indices = std::vector<int>(
-            MathConstants::k_numVerticesInRectangle);
-        std::iota(std::begin(indices), std::end(indices), 0);
+        
         // Put render input into pure float vector format.
         std::vector<float> positions;
-        std::vector<float> colors;
-        std::vector<float> uvs;
-        for (auto &vert : verts){
-            positions.push_back(vert.pos.x);
-            positions.push_back(vert.pos.y);
-            colors.push_back(color.r);
-            colors.push_back(color.g);
-            colors.push_back(color.b);
-            colors.push_back(color.a);
-            uvs.push_back(vert.uv.x);
-            uvs.push_back(vert.uv.y);
-        }
+        
+        positions.push_back(glRect.x);
+        positions.push_back(glRect.y - glRect.h);
+        positions.push_back(glRect.x);
+        positions.push_back(glRect.y);
+        positions.push_back(glRect.x + glRect.w);
+        positions.push_back(glRect.y);
+        positions.push_back(glRect.x + glRect.w);
+        positions.push_back(glRect.y - glRect.h);
+        
+
+        
         UseVAOBegin(rid); // Start using the Vertex Array Object.
         auto noPixelEffect = true; // If pixelation effect should be used.
         // glUniform1f(m_locNoPixelEffect, noPixelEffect ? 1.0f : 0.0f);
@@ -123,12 +142,41 @@ namespace JoD {
         auto colorBuffID = GetBuffID(BufferTypes::Colors, rid);
         auto uvBuffID = GetBuffID(BufferTypes::UVs, rid);
         // Provide the float vector data to the buffers.
-        UpdateIndicesData(indexBuffID, indices);
+        UpdateIndicesData(indexBuffID, defaultIndices);
         UpdateData(
             posBuffID, positions, BufferTypes::Positions2D,
             k_locPosition);
-        UpdateData(colorBuffID, colors, BufferTypes::Colors, k_locColor);
-        UpdateData(uvBuffID, uvs, BufferTypes::UVs, k_locUV);
+        if (color.r == 1.0f && color.g == 1.0f
+            && color.b == 1.0f && color.a == 1.0f) {
+            UpdateData(
+                colorBuffID, m_defaultColorsWhite, BufferTypes::Colors,
+                k_locColor);
+        }else {
+            std::vector<float> colors;
+            for (auto i = 0; i < 4; i++) {
+                colors.push_back(color.r);
+                colors.push_back(color.g);
+                colors.push_back(color.b);
+                colors.push_back(color.a);
+            }
+            UpdateData(
+                colorBuffID, colors, BufferTypes::Colors,
+                k_locColor);
+        }
+        if (textureFillAmount.w == 1.0f && textureFillAmount.h == 1.0f) {
+            UpdateData(uvBuffID, m_defaultUVs, BufferTypes::UVs, k_locUV);
+        } else {
+            std::vector<float> uvs;
+            uvs.push_back(0.0f);
+            uvs.push_back(1.0f / textureFillAmount.h);
+            uvs.push_back(0.0f);
+            uvs.push_back(0.0f);
+            uvs.push_back(1.0f / textureFillAmount.w);
+            uvs.push_back(0.0f);
+            uvs.push_back(1.0f / textureFillAmount.w);
+            uvs.push_back(1.0f / textureFillAmount.h);
+            UpdateData(uvBuffID, uvs, BufferTypes::UVs, k_locUV);
+        }
         // Do the actual rendering.
         glDrawElements(
             GL_TRIANGLE_FAN,
@@ -142,7 +190,7 @@ namespace JoD {
         const RectF &destination,
         bool repeatTexture,
         SizeF textureFillAmount,
-        ColorF color) const{
+        ColorF color) const {
         // Forward the method call to the main overload.
         DrawImage(
             rid, Hash(imageName), destination, repeatTexture,

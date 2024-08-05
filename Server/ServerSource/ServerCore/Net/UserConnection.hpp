@@ -43,6 +43,7 @@ namespace JoD {
         
       private:
         void DoSession(boost::asio::ip::tcp::socket socket);
+        void DoSessionNested(WebSocket* ws);
         
         Size m_canvasSize;
     };

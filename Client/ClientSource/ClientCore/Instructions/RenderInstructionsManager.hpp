@@ -34,8 +34,14 @@ namespace JoD {
         m_imageDrawInstructions; ///< Holds the image draw instructions that are executed each call to DrawCanvas().
         
         std::vector<ImageDrawInstruction>
-        m_imageDrawInstructionsBuffer; ///< Holds the buffer for the next set of draw of instructions.
+        m_imageDrawInstructionsBuffer1; ///< Holds the buffer for the next set of draw of instructions.
         
+        std::vector<ImageDrawInstruction>
+        m_imageDrawInstructionsBuffer2; 
+
+        std::vector<ImageDrawInstruction>* m_activeBuffer = &m_imageDrawInstructionsBuffer1;
+        std::vector<ImageDrawInstruction>* m_inactiveBuffer = &m_imageDrawInstructionsBuffer2;
+
         std::vector<RID> m_rids; ///< A set of preallocated RIDs used for drawing images, created in the constructor.
         
         std::vector<RID> m_ridsText;

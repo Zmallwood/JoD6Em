@@ -80,7 +80,7 @@ namespace JoD {
         /// @param layoutLocation The layout location in the shader for the data.
         void UpdateData(
             GLuint VBOID,
-            std::vector<float> &data,
+            const std::vector<float> &data,
             BufferTypes buffType,
             int layoutLocation) const;
         
@@ -126,7 +126,7 @@ namespace JoD {
         /// @param layoutLocation Layout location of the data in the shader.
         void UpdateArrayBufferData(
             GLuint VBOID,
-            std::vector<float> &data,
+            const std::vector<float> &data,
             int numFloatsPerEntry,
             int layoutLocation) const;
         
@@ -137,7 +137,7 @@ namespace JoD {
         /// @param layoutLocation Layout location of the data in the shader.
         void UpdateArrayBufferDataInt(
             GLuint VBOID,
-            std::vector<float> &data,
+            const std::vector<float> &data,
             int numFloatsPerEntry,
             int layoutLocation) const;
         

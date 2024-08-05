@@ -171,7 +171,7 @@ namespace JoD {
     
     void RendererBase::UpdateArrayBufferData(
         GLuint VBOID,
-        std::vector<float> &data,
+        const std::vector<float> &data,
         int numFloatsPerEntry,
         int layoutLocation) const {
         // Bind VBO with provided id, being an array buffer.
@@ -194,7 +194,7 @@ namespace JoD {
     
     void RendererBase::UpdateArrayBufferDataInt(
         GLuint VBOID,
-        std::vector<float> &data,
+        const std::vector<float> &data,
         int numFloatsPerEntry,
         int layoutLocation) const {
         // Bind VBO with provided id, being an array buffer.
@@ -219,7 +219,7 @@ namespace JoD {
     
     void RendererBase::UpdateData(
         GLuint VBOID,
-        std::vector<float> &data,
+        const std::vector<float> &data,
         BufferTypes buffType,
         int layoutLocation) const {
         if (buffType == BufferTypes::BoneIDs){ // Does the buffer hold BoneID data?

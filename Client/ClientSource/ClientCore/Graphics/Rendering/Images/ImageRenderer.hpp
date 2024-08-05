@@ -54,5 +54,9 @@ namespace JoD {
             bool repeatTexture = false,
             SizeF textureFillAmount = {1.0f, 1.0f},
             ColorF color = {1.0f, 1.0f, 1.0f}) const;
+        
+      private:
+        std::vector<float> m_defaultColorsWhite;
+        std::vector<float> m_defaultUVs;
     };
 }
