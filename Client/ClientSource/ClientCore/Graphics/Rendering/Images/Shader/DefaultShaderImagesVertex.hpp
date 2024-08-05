@@ -7,6 +7,7 @@
 #pragma once
 
 namespace JoD {
+    
     // Vertex shader for image rendering
     inline static const GLchar *g_defaultShaderImagesVertex =
         "#version 300 es\n"
