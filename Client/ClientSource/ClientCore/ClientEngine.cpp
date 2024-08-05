@@ -1,6 +1,6 @@
 /*
  * ClientEngine.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -13,11 +13,14 @@
 #include "Utilities/ClientFPSCounter.hpp"
 
 namespace JoD {
+    
     namespace {
+        
         void GameLoopFunction();
     }
     
     void ClientEngine::Run() const {
+        
         _<WebSocketServerConnection>().Connect(); // Start network connection.
         SDL_Init(SDL_INIT_EVERYTHING); // Required by SDL2 before using it.
         SetupInputCallbacks();
@@ -28,7 +31,9 @@ namespace JoD {
     }
     
     void ClientEngine::PollEvents() {
+        
         SDL_Event event;
+        
         while (SDL_PollEvent(
                    &event)) { // Poll for events from user every frame.
             switch (event.type){
@@ -41,7 +46,9 @@ namespace JoD {
     }
     
     namespace {
+        
         void GameLoopFunction() {
+            
             if (!_<ClientEngine>().m_running) // Exit main loop if user has requested it.
                 emscripten_cancel_main_loop();
             _<ClientEngine>().PollEvents(); // Poll user events and process them.

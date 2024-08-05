@@ -12,10 +12,12 @@
 #include "Theme0/Scenes/Main/Process/MobTargeting.hpp"
 
 namespace JoD {
+    
     void RenderMobs(
         MainScene& mainScene, UserConnection& userConnection,
         WebSocket &webSocket,
         std::shared_ptr<Tile> tile, RectF tileBounds) {
+        
         auto mobTargeting =
             std::static_pointer_cast<MobTargeting>(
                 mainScene.m_components.at(

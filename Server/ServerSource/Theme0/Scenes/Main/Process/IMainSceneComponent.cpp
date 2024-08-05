@@ -7,8 +7,10 @@
 #include "IMainSceneComponent.hpp"
 
 namespace JoD {
+    
     IMainSceneComponent::IMainSceneComponent(UserConnection& userConnection,
                                              MainScene& mainScene)
         : m_userConnection(userConnection), m_mainScene(mainScene){
+        
     }
 }

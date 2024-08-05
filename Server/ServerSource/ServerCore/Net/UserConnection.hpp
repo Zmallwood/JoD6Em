@@ -9,9 +9,7 @@
 namespace JoD {
     
     class UserGameInstanceEngine;
-    
     class Player;
-    
     class Cursor;
     
     class UserConnection {

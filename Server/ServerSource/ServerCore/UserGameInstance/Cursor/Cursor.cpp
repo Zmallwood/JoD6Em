@@ -1,6 +1,6 @@
 /*
  * Cursor.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -11,12 +11,14 @@ namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;
 
 namespace JoD {
+    
     Cursor::Cursor(UserConnection& userConnection)
         : m_userConnection(userConnection) {
+        
     }
     
-    void
-    Cursor::Render(WebSocket& ws) const {
+    void Cursor::Render(WebSocket& ws) const {
+        
         auto mousePosition = m_userConnection.m_mousePosition; // Get current mouse position.
         // Obtain cursor dimensions.
         auto cursorWidth = k_cursorSize;

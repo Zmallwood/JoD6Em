@@ -11,7 +11,9 @@
 #include "ClientCore/Instructions/InstructionTypes.hpp"
 
 namespace JoD {
+    
     RenderInstrutionsManager::RenderInstrutionsManager(){
+        
         // Create a sufficient amount of RIDs for drawing images and game start.
         for (auto i = 0; i < k_maxNumDrawInstructions; i++)
             m_rids.push_back(_<ImageRenderer>().NewImage());
@@ -23,6 +25,7 @@ namespace JoD {
     void RenderInstrutionsManager::AddImageDrawInstruction(
         int imageNameHash,
         RectF destination) {
+        
         m_inactiveBuffer->emplace_back(
             InstructionTypes::Image,
             m_rids.at(
@@ -35,6 +38,7 @@ namespace JoD {
     
     void RenderInstrutionsManager::AddTextDrawInstruction(
         std::string_view text, PointF position) {
+        
         auto newInstruction = ImageDrawInstruction {};
         newInstruction.rid = m_ridsText.at(m_ridCounterText++);
         newInstruction.type = InstructionTypes::Text;
@@ -44,6 +48,7 @@ namespace JoD {
     }
     
     void RenderInstrutionsManager::ApplyBuffer() {
+        
         auto temp = m_activeBuffer;
         m_activeBuffer = m_inactiveBuffer;
         m_inactiveBuffer = temp;
@@ -56,6 +61,7 @@ namespace JoD {
     }
     
     void RenderInstrutionsManager::ExecuteInstructions() const {
+        
         // Execute all drawing instructions that have been added.
         for (auto &instruction : *m_activeBuffer){
             switch (instruction.type) {

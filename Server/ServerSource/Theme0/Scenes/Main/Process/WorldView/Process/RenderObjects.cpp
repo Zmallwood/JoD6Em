@@ -9,9 +9,11 @@
 #include "ServerCore/Net/UserConnection.hpp"
 
 namespace JoD {
+    
     void RenderObjects(
         UserConnection& userConnection, WebSocket &webSocket,
         std::shared_ptr<Tile> tile, RectF tileBounds) {
+        
         if (tile->m_object) {
             userConnection.SendImageDrawInstruction(
                 webSocket,

@@ -9,7 +9,9 @@
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 
 namespace JoD {
+    
     void GenerateWater(std::shared_ptr<WorldArea> worldArea) {
+        
         auto numLakes = 15;
         for (auto i = 0; i < numLakes; i++){
             auto xCenter = rand() % 100;

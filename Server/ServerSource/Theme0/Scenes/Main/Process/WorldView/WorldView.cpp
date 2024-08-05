@@ -19,7 +19,9 @@
 #include "Process/RenderPlayer.hpp"
 
 namespace JoD {
+    
     void WorldView::Render(WebSocket &webSocket) const {
+        
         auto tileSize =
             CalculateTileSize(m_userConnection.GetAspectRatio());
         auto playerCoordinate =

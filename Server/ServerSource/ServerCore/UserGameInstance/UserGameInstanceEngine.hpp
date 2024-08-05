@@ -10,11 +10,8 @@
 namespace JoD {
     
     class UserConnection;
-    
     class MouseInput;
-    
     class SceneManager;
-    
     class ServerFPSCounter;
     
     class UserGameInstanceEngine {

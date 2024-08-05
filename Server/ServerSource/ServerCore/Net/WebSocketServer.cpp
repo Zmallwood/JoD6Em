@@ -1,6 +1,6 @@
 /*
  * WebSocketServer.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -11,8 +11,11 @@ namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;
 
 namespace JoD {
-    void WebSocketServer::Run(std::string socketAddress,
-                                std::string socketPort) {
+    
+    void WebSocketServer::Run(
+        std::string socketAddress,
+        std::string socketPort) {
+        
         auto const address = net::ip::make_address(socketAddress);
         auto const port =
             static_cast<unsigned short>(std::atoi(socketPort.c_str()));

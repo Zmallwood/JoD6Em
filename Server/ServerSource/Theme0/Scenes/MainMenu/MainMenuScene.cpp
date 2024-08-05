@@ -12,7 +12,9 @@
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
 
 namespace JoD {
+    
     void MainMenuScene::UpdateDerived() {
+        
         if (m_userConnection.m_userGameInstanceEngine->m_mouseInput->
             m_leftButton->
             IsPressedPickResult()) {
@@ -22,6 +24,7 @@ namespace JoD {
     }
     
     void MainMenuScene::RenderDerived(WebSocket &webSocket) const {
+        
         m_userConnection.SendImageDrawInstruction(
             webSocket, "DefaultSceneBackground",
             {0.0f, 0.0f, 1.0f, 1.0f});

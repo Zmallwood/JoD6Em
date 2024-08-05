@@ -8,7 +8,9 @@
 #include "Tile.hpp"
 
 namespace JoD {
+    
     WorldArea::WorldArea(){
+        
         for (auto x = 0; x < 100; x++){
             m_tiles.push_back(std::vector<std::shared_ptr<Tile>>());
             for (auto y = 0; y < 100; y++)

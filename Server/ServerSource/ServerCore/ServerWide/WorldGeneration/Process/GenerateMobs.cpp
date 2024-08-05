@@ -10,13 +10,14 @@
 #include "ServerCore/ServerWide/WorldStructure/Mob.hpp"
 
 namespace JoD {
+    
     void GenerateMobs(std::shared_ptr<WorldArea> worldArea) {
+        
         auto numBlueSlimeGroups = 6;
         auto numYellowSlimeGroups = 6;
         auto numRedSlimeGroups = 6;
         
         auto numMobsInGroup = 6;
-        
         
         for (auto i = 0; i < numBlueSlimeGroups; i++) {
             auto xCenter = rand() % 50 + 50;

@@ -1,15 +1,17 @@
 /*
  * ShaderProgram.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
 #include "ShaderProgram.hpp"
 
 namespace JoD {
+    
     bool ShaderProgram::Create(
         const GLchar *vertexShaderSource,
         const GLchar *fragmentShaderSource){
+        
         // To hold the shader IDs.
         GLuint vertexShader = 0;
         GLuint fragmentShader = 0;
@@ -64,13 +66,15 @@ namespace JoD {
     }
     
     void ShaderProgram::Cleanup() const {
+        
         glDeleteProgram(m_programID); // Delete GL program.
     }
     
     GLuint ShaderProgram::CompileShader(
         const GLchar *shader_source,
         GLuint *shader,
-        GLenum shader_type) const{
+        GLenum shader_type) const {
+        
         *shader = glCreateShader(shader_type); // Create shader object.
         glShaderSource(*shader, 1, &shader_source, NULL); // Apply shader sources.
         glCompileShader(*shader); // Compile it.

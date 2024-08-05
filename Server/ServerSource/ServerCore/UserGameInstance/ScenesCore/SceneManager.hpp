@@ -9,7 +9,6 @@
 namespace JoD {
     
     class UserConnection;
-    
     class IScene;
     
     class SceneManager {

@@ -1,6 +1,6 @@
 /*
  * TileHovering.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -11,8 +11,9 @@
 #include "ServerCore/Net/UserConnection.hpp"
 
 namespace JoD {
-    void
-    TileHovering::Update(){
+    
+    void TileHovering::Update(){
+        
         auto tileSize =
             CalculateTileSize(m_userConnection.GetAspectRatio());
         auto playerCoordinate = m_userConnection.m_player->m_coordinate;

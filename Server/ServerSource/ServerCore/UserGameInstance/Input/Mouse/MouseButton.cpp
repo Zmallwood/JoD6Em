@@ -7,11 +7,14 @@
 #include "MouseButton.hpp"
 
 namespace JoD {
-    void MouseButton::RegisterMouseDown()      {
+    
+    void MouseButton::RegisterMouseDown() {
+        
         m_isPressed = true;
     }
     
-    bool MouseButton::IsPressedPickResult()      {
+    bool MouseButton::IsPressedPickResult() {
+        
         auto result = m_isPressed;
         m_isPressed = false;
         return result;

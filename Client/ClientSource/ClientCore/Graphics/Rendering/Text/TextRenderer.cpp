@@ -12,7 +12,9 @@
 #include "Font.hpp"
 
 namespace JoD {
+    
     TextRenderer::TextRenderer() {
+        
         TTF_Init();
         auto fontPath = k_relFontsPath + "default_font.ttf";
         auto font10 = std::make_shared<Font>(fontPath, 10);
@@ -32,6 +34,7 @@ namespace JoD {
         bool centerAlign, FontSizes fontSize,
         std::string &out_uniqueNameID,
         SizeF &out_size) const {
+        
         auto font = m_fonts.at(fontSize)->m_font;
         
         if (!font) return;
@@ -112,6 +115,7 @@ namespace JoD {
     }
     
     RID TextRenderer::NewString() {
+        
         static int s_idCounter = 0;
         auto id = s_idCounter++;
         auto uniqueName = "RenderedImage" + std::to_string(id);
@@ -127,6 +131,7 @@ namespace JoD {
         PointF position, ColorF color,
         bool centerAlign,
         FontSizes fontSize) const {
+        
         std::string uniqueNameID;
         SizeF size;
         
@@ -168,6 +173,7 @@ namespace JoD {
     SizeF TextRenderer::MeasureString(
         std::string_view text,
         FontSizes font_size) const {
+        
         auto font = m_fonts.at(font_size)->m_font;
         int textWidth;
         int textHeight;

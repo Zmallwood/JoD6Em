@@ -13,7 +13,9 @@
 #include "Process/GenerateRoads.hpp"
 
 namespace JoD {
+    
     void GenerateNewWorld() {
+        
         auto worldArea = _<World>().m_currentWorldArea;
         ClearWithGrass(worldArea);
         GenerateWater(worldArea);

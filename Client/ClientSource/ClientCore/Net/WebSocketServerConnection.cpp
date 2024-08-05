@@ -10,30 +10,39 @@
 #include "NetConfiguration.hpp"
 
 namespace JoD {
+    
     namespace {
+        
         EM_BOOL OnOpen(
             int eventType,
             const EmscriptenWebSocketOpenEvent *webSocketEvent,
             void *userData);
+        
         EM_BOOL OnError(
             int eventType,
             const EmscriptenWebSocketErrorEvent *webSocketEvent,
             void *userData);
+        
         EM_BOOL OnClose(
             int eventType,
             const EmscriptenWebSocketCloseEvent *webSocketEvent,
             void *userData);
+        
         EM_BOOL OnMessage(
             int eventType,
             const EmscriptenWebSocketMessageEvent *
             webSocketEvent,
             void *userData);
+        
         void ProcessIncomingMessage(unsigned char *bytes);
+        
         int ReadFourBytesAsInt(unsigned char *bytes);
+        
         float ReadFourBytesAsFloat(unsigned char *bytes);
     }
     
     void WebSocketServerConnection::Connect() const {
+        
         if (!emscripten_websocket_is_supported()) return; // Check support exists.
         // Create address to connect to.
         auto serverAddress = "ws://" + k_host + ":" + std::to_string(k_port);
@@ -49,6 +58,7 @@ namespace JoD {
     }
     
     void WebSocketServerConnection::SendMessage(int messageType) const {
+        
         switch (messageType){ // Determine message type to be sent.
         case MessageCodes::k_canvasSize: { // Send canvas size to server.
             auto canvasSize = GetCanvasSize(); // Get canvas size in pixels.
@@ -118,10 +128,12 @@ namespace JoD {
     }
     
     namespace {
+        
         EM_BOOL OnOpen(
             int eventType,
             const EmscriptenWebSocketOpenEvent *webSocketEvent,
             void *userData){
+            
             // Save web socket event to WebSocketClient so it can be used from that object by its own.
             _<WebSocketServerConnection>().m_webSocketEvent =
                 std::shared_ptr<const EmscriptenWebSocketOpenEvent>(
@@ -143,6 +155,7 @@ namespace JoD {
             int eventType,
             const EmscriptenWebSocketErrorEvent *webSocketEvent,
             void *userData){
+            
             std::cout << "Web socket error.\n"; // Notify on web socket errors.
             return EM_TRUE;
         }
@@ -151,6 +164,7 @@ namespace JoD {
             int eventType,
             const EmscriptenWebSocketCloseEvent *webSocketEvent,
             void *userData){
+            
             std::cout << "Closing web socket connection.\n"; // Notify on closing web socket connection.
             return EM_TRUE;
         }
@@ -160,11 +174,13 @@ namespace JoD {
             const EmscriptenWebSocketMessageEvent *
             webSocketEvent,
             void *userData){
+            
             ProcessIncomingMessage(webSocketEvent->data); // Process the raw message data in bytes.
             return EM_TRUE;
         }
         
         void ProcessIncomingMessage(unsigned char *bytes) {
+            
             auto messageCode = ReadFourBytesAsInt(bytes); // The first bytes contains the message code.
             switch (messageCode){ // Perform corresponding action.
             case MessageCodes::k_drawImageInstr: {
@@ -205,6 +221,7 @@ namespace JoD {
         }
         
         int ReadFourBytesAsInt(unsigned char *bytes) {
+            
             // Pick out the separate bytes.
             auto b0 = (int)bytes[0];
             auto b1 = (int)bytes[1];
@@ -216,6 +233,7 @@ namespace JoD {
         }
         
         float ReadFourBytesAsFloat(unsigned char *bytes) {
+            
             // Pick out the separate bytes.
             auto b0 = (int)bytes[0];
             auto b1 = (int)bytes[1];

@@ -9,7 +9,9 @@
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 
 namespace JoD {
+    
     void GenerateObjects(std::shared_ptr<WorldArea> worldArea) {
+        
         auto numObjectsTree1s = 300;
         
         for (auto i = 0; i < numObjectsTree1s; i++) {

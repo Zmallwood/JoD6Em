@@ -7,7 +7,9 @@
 #include "Graphics.hpp"
 
 namespace JoD {
+    
     namespace {
+        
         // Use javascript call to get browser-canvas width.
         EM_JS(int, CanvasGetWidth, (), { return window.innerWidth; });
         // Use javascript call to get browser-canvas height.
@@ -15,6 +17,7 @@ namespace JoD {
     }
     
     Graphics::Graphics(){
+        
         glfwInit(); // Initialize GLFW.
         // Use OPENGL ES, which is used for browser OpenGL.
         glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_ES_API);
@@ -37,10 +40,12 @@ namespace JoD {
     }
     
     void Graphics::ClearCanvas() const {
+        
         glClear(GL_COLOR_BUFFER_BIT); // Clear canvas to prepare for rendering new contents.
     }
     
     void Graphics::PresentCanvas() const {
+        
         glfwSwapBuffers(m_window); // Present buffer to web browser.
         glfwPollEvents(); // Poll new input events from user.
         // Do not return until previously issued commands have finished.

@@ -7,6 +7,7 @@
 #include "ClientCore/RunNewClientInstance.hpp"
 
 int main(int argc, char *argv[]) { 
+    
     try{ // Catch all exceptions that can happen during execution.
         JoD::RunNewClientInstance(); // Run new instance of the game.
     }

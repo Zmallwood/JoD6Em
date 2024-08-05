@@ -8,7 +8,9 @@
 #include "ClientCore/Graphics/Graphics.hpp"
 
 namespace JoD {
+    
     PointF GetMousePosition() {
+        
         double xPos, yPos; // Declare variables to store mouse coordinates in pixels.
         // Use GLFW to get current mouse coordinates.
         glfwGetCursorPos(_<Graphics>().m_window, &xPos, &yPos);

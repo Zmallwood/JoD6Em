@@ -1,14 +1,16 @@
 /*
  * Creature.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
 #include "Mob.hpp"
 
 namespace JoD {
+    
     Mob::Mob(std::string_view mobName,
-                       int level) : m_type(Hash(mobName)) {
+             int level) : m_type(Hash(mobName)) {
+        
         m_level = level;
         m_pAtk = level;
         m_mAtk = 0;

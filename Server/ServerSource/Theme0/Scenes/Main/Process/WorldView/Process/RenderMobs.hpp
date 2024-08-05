@@ -9,9 +9,7 @@
 namespace JoD {
     
     class MainScene;
-    
     class UserConnection;
-    
     class Tile;
     
     void RenderMobs(

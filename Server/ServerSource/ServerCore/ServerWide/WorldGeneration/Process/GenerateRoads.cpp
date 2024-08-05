@@ -9,7 +9,9 @@
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 
 namespace JoD {
+    
     void GenerateRoads(std::shared_ptr<WorldArea> worldArea) {
+        
         auto roadX = 0;
         auto roadY = 0;
         

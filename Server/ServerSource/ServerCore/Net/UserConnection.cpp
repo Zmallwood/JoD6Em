@@ -19,17 +19,20 @@ namespace websocket = beast::websocket;
 using tcp = boost::asio::ip::tcp;
 
 namespace JoD {
+    
     UserConnection::UserConnection(tcp::socket socket)
         : m_userGameInstanceEngine(std::make_shared<UserGameInstanceEngine>(
                                        *this)),
         m_player(std::make_shared<Player>()),
         m_cursor(std::make_shared<Cursor>(*this)){
+        
         std::thread(
             &UserConnection::DoSession, this,
             std::move(socket)).detach();
     }
     
     void UserConnection::DoSessionNested(WebSocket* ws) {
+        
         try {
             while (true){
                 beast::flat_buffer buffer;     // This buffer will hold the incoming message.
@@ -61,6 +64,7 @@ namespace JoD {
     }
     
     void UserConnection::DoSession(tcp::socket socket) {
+        
         try{
             // Construct the stream by moving in the socket.
             websocket::stream<tcp::socket> ws{std::move(socket)};
@@ -97,6 +101,7 @@ namespace JoD {
         std::string_view
         imageName,
         RectF destination) const {
+        
         SendImageDrawInstruction(ws, Hash(imageName), destination);
     }
     
@@ -104,6 +109,7 @@ namespace JoD {
         WebSocket &ws,
         int imageNameHash,
         RectF destination) const {
+        
         auto msg_code = MessageCodes::k_drawImageInstr;
         auto x = (int)(destination.x * net_constants::k_floatPrecision);
         auto y = (int)(destination.y * net_constants::k_floatPrecision);
@@ -123,6 +129,7 @@ namespace JoD {
         WebSocket &ws,
         std::string_view text,
         PointF position) const {
+        
         auto msg_code = MessageCodes::k_drawStringInstr;
         auto x = (int)(position.x * net_constants::k_floatPrecision);
         auto y = (int)(position.y * net_constants::k_floatPrecision);
@@ -139,12 +146,14 @@ namespace JoD {
     }
     
     void UserConnection::SendPresentCanvasInstruction(WebSocket &ws) const {
+        
         auto msg_code_present = MessageCodes::k_applyBuffer;
         ws.write(
             boost::asio::buffer(&msg_code_present,sizeof(msg_code_present)));
     }
     
     float UserConnection::GetAspectRatio() const {
+        
         return static_cast<float>(m_canvasSize.w) / m_canvasSize.h;
     }
 }

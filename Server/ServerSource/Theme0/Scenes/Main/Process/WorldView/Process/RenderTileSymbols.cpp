@@ -10,10 +10,12 @@
 #include "Theme0/Scenes/Main/MainScene.hpp"
 
 namespace JoD {
+    
     void RenderTileSymbols(
         MainScene& mainScene, UserConnection& userConnection,
         WebSocket &webSocket,
         Point coordinate, RectF tileBounds) {
+        
         auto tileHovering =
             std::static_pointer_cast<TileHovering>(
                 mainScene.m_components.at(

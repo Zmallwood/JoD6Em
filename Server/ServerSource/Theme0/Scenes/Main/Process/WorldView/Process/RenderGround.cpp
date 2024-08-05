@@ -9,9 +9,11 @@
 #include "ServerCore/Net/UserConnection.hpp"
 
 namespace JoD {
+    
     void RenderGround(
         UserConnection& userConnection, WebSocket &webSocket,
         std::shared_ptr<Tile> tile, RectF tileBounds) {
+        
         auto ground = tile->m_ground;
         if (ground == Hash("GroundWater")) {
             auto animIndex =

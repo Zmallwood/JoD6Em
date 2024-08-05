@@ -9,7 +9,9 @@
 #include "Net/RunWebSocketServer.hpp"
 
 namespace JoD {
+    
     void RunGameServer(char **argv) {
+        
         srand(time(0));
         GenerateNewWorld();
         RunWebSocketServer(argv[1], argv[2]);

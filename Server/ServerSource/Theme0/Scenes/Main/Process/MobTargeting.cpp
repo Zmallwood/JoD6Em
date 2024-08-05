@@ -16,7 +16,9 @@
 #include "Theme0/Scenes/Main/MainScene.hpp"
 
 namespace JoD {
+    
     void MobTargeting::Update() {
+        
         auto tileHovering =
             std::static_pointer_cast<TileHovering>(
                 m_mainScene.m_components.at(

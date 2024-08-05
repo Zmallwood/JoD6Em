@@ -13,7 +13,9 @@
 #include "Theme0/Scenes/Main/Process/MainSceneComponents.hpp"
 
 namespace JoD {
+    
     void MainScene::Initialize() {
+        
         m_components.insert(
             {MainSceneComponents::TileHovering,
              std::make_shared<TileHovering>(
@@ -32,11 +34,13 @@ namespace JoD {
     }
     
     void MainScene::UpdateDerived() {
+        
         for (auto component : m_components)
             component.second->Update();
     }
     
     void MainScene::RenderDerived(WebSocket &webSocket) const {
+        
         for (auto component : m_components)
             component.second->Render(webSocket);
     }

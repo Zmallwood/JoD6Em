@@ -1,6 +1,6 @@
 /*
  * MouseMovement.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -14,15 +14,17 @@
 #include "Theme0/Scenes/Main/MainScene.hpp"
 
 namespace JoD {
-    void
-    MouseMovement::Update(){
+    
+    void MouseMovement::Update(){
+        
         auto tileHovering =
             std::static_pointer_cast<TileHovering>(
                 m_mainScene.m_components.at(
                     MainSceneComponents::
                     TileHovering));
         auto mouseDown =
-            m_userConnection.m_userGameInstanceEngine->m_mouseInput->m_leftButton->
+            m_userConnection.m_userGameInstanceEngine->m_mouseInput->
+            m_leftButton->
             IsPressedPickResult();
         auto player = m_userConnection.m_player;
         auto hoveredTile =
@@ -32,9 +34,10 @@ namespace JoD {
         if (std::chrono::high_resolution_clock::now() >
             player->m_ticksLastMove +
             std::chrono::high_resolution_clock::duration(
-                std::chrono::milliseconds(static_cast<int>(1000/
-                                                           player->
-                                                           m_movementSpeed)))){
+                std::chrono::milliseconds(
+                    static_cast<int>(1000/
+                                     player->
+                                     m_movementSpeed)))){
             if (player->m_destination.x != -1 && player->m_destination.y != -1){
                 auto dx = player->m_destination.x - player->m_coordinate.x;
                 auto dy = player->m_destination.y - player->m_coordinate.y;
