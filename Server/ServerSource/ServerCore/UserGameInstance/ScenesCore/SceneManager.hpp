@@ -7,10 +7,13 @@
 #pragma once
 
 namespace JoD {
+    
     class UserConnection;
+    
     class IScene;
     
     class SceneManager {
+        
       public:
         SceneManager(UserConnection &userConnection);
         

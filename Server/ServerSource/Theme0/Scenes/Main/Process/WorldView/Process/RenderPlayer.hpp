@@ -7,7 +7,9 @@
 #pragma once
 
 namespace JoD {
+    
     class UserConnection;
+    
     class Tile;
     
     void RenderPlayer(

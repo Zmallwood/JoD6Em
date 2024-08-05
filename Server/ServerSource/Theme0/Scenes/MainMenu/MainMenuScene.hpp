@@ -9,7 +9,9 @@
 #include "ServerCore/UserGameInstance/ScenesCore/IScene.hpp"
 
 namespace JoD {
+    
     class MainMenuScene : public IScene {
+        
       public:
         using IScene::IScene;
         

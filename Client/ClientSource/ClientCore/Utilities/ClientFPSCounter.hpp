@@ -7,10 +7,12 @@
 #pragma once
 
 namespace JoD {
+    
     ///
     /// Client side FPS counter rendered to the canvas.
     ///
     class ClientFPSCounter {
+        
       public:
         ///
         /// Construct a new fps counter object by allocated rendering resources.

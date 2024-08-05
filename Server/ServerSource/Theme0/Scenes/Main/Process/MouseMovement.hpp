@@ -9,7 +9,9 @@
 #include "IMainSceneComponent.hpp"
 
 namespace JoD {
+    
     class MouseMovement : public IMainSceneComponent  {
+        
       public:
         using IMainSceneComponent::IMainSceneComponent;
         

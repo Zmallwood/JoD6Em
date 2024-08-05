@@ -7,10 +7,12 @@
 #pragma once
 
 namespace JoD {
+    
     class MainScene;
     class UserConnection;
     
     class IMainSceneComponent {
+        
       public:
         IMainSceneComponent(UserConnection& userConnection,
                             MainScene& mainScene);

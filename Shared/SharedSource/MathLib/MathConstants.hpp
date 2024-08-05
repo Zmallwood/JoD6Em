@@ -7,7 +7,9 @@
 #pragma once
 
 namespace JoD {
+    
     namespace MathConstants {
+        
         inline static constexpr int k_numVerticesInRectangle = 4; ///< To avoid magic number.
     }
 }

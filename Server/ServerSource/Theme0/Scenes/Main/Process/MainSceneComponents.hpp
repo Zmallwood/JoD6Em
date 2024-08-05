@@ -7,10 +7,15 @@
 #pragma once
 
 namespace JoD {
+    
     enum class MainSceneComponents {
+        
         MobTargeting,
+        
         MouseMovement,
+        
         TileHovering,
+        
         WorldView
     };
 }

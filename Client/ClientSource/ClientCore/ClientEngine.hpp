@@ -7,10 +7,12 @@
 #pragma once
 
 namespace JoD {
+    
     ///
     /// Engine for the client.
     ///
     class ClientEngine {
+        
       public:
         ///
         /// Run the client engine.

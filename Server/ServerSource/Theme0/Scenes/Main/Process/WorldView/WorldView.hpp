@@ -9,7 +9,9 @@
 #include "Theme0/Scenes/Main/Process/IMainSceneComponent.hpp"
 
 namespace JoD {
+    
     class WorldView : public IMainSceneComponent {
+        
       public:
         using IMainSceneComponent::IMainSceneComponent;
         

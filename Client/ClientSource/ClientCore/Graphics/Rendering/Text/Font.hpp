@@ -7,10 +7,12 @@
 #pragma once
 
 namespace JoD {
+
     ///
     /// Font object used for text rendering.
     ///
     class Font {
+        
       public:
         ///
         /// Construct a new font object.

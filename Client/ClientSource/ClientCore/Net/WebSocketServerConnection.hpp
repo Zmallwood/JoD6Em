@@ -7,11 +7,13 @@
 #pragma once
 
 namespace JoD {
+    
     ///
     /// Connects to to web socket server and enables sending messages over the connection
     /// after it has opened.
     ///
     class WebSocketServerConnection {
+        
       public:
         ///
         /// Open the connection to the web socket server.

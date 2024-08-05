@@ -7,10 +7,12 @@
 #pragma once
 
 namespace JoD {
+    
     ///
     /// Initializes and handles preparing and finilizing graphics for each frame.
     ///
     class Graphics {
+        
       public:
         ///
         /// Construct a new Graphics object and initialize GLFW with OpenGL and applying

@@ -7,11 +7,15 @@
 #pragma once
 
 namespace JoD {
+    
     class UserGameInstanceEngine;
+    
     class Player;
+    
     class Cursor;
     
     class UserConnection {
+        
       public:
         UserConnection(boost::asio::ip::tcp::socket socket);
         
@@ -43,6 +47,7 @@ namespace JoD {
         
       private:
         void DoSession(boost::asio::ip::tcp::socket socket);
+        
         void DoSessionNested(WebSocket* ws);
         
         Size m_canvasSize;

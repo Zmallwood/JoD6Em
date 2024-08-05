@@ -9,9 +9,11 @@
 #include "IMainSceneComponent.hpp"
 
 namespace JoD {
+    
     class Mob;
     
     class MobTargeting : public IMainSceneComponent {
+        
       public:
         using IMainSceneComponent::IMainSceneComponent;
         

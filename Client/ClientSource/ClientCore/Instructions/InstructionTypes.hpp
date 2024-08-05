@@ -7,9 +7,13 @@
 #pragma once
 
 namespace JoD {
+    
     enum class InstructionTypes {
+        
         None,
+        
         Image,
+        
         Text
     };
 }

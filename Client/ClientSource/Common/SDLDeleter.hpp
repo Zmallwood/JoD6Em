@@ -7,10 +7,12 @@
 #pragma once
 
 namespace JoD {
+    
     ///
     /// Helper class to automatically free allocated resources for SDL objects.
     ///
     class SDLDeleter {
+        
       public:
         ///
         /// Cleanup of SDL_Window object.

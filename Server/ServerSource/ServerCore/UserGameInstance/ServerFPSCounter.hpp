@@ -7,9 +7,11 @@
 #pragma once
 
 namespace JoD {
+    
     class UserConnection;
     
     class ServerFPSCounter {
+        
       public:
         ServerFPSCounter(UserConnection& userConnection);
         

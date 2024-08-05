@@ -9,10 +9,12 @@
 #include "ImageDrawInstruction.hpp"
 
 namespace JoD {
+    
     ///
     /// Holds latest set of rendering instructions and executes them.
     ///
     class RenderInstrutionsManager {
+        
       public:
         ///
         /// Construct a new Render Instructions Manager object.

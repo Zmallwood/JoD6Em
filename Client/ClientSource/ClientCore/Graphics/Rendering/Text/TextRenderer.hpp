@@ -9,12 +9,14 @@
 #include "FontSizes.hpp"
 
 namespace JoD {
+    
     class Font;
     
     ///
     /// Renderer used to allocated resources for, and render, text to the canvas.
     ///
     class TextRenderer {
+        
       public:
         ///
         /// Construct a new text renderer object by initializing

@@ -7,9 +7,11 @@
 #pragma once
 
 namespace JoD {
+    
     class WorldArea;
     
     class World {
+        
       public:
         World();
         

@@ -7,6 +7,7 @@
 #pragma once
 
 namespace JoD {
+    
     ///
     /// Get the mouse position in the canvas in the web browser.
     ///

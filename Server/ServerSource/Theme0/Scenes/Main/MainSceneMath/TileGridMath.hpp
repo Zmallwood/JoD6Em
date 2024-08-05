@@ -7,6 +7,8 @@
 #pragma once
 
 namespace JoD {
+    
     SizeF CalculateTileSize(float aspectRatio);
+    
     int CalculateNumGridCols(float aspectRatio);
 }

@@ -7,9 +7,13 @@
 #pragma once
 
 namespace JoD {
+    
     enum class MouseButtons {
+        
         None,
+        
         Left,
+        
         Right
     };
 }

@@ -7,9 +7,11 @@
 #pragma once
 
 namespace JoD {
+    
     class Mob;
     
     class Tile {
+        
       public:
         int m_ground = 0;
         int m_object = 0;

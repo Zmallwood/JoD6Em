@@ -11,7 +11,9 @@
 #include "Process/IMainSceneComponent.hpp"
 
 namespace JoD {
+    
     class MainScene : public IScene {
+        
       public:
         using IScene::IScene;
         

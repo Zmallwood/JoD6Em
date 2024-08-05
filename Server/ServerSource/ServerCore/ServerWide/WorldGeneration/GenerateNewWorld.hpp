@@ -7,5 +7,6 @@
 #pragma once
 
 namespace JoD {
+    
     void GenerateNewWorld();
 }

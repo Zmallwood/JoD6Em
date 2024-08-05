@@ -7,9 +7,14 @@
 #pragma once
 
 namespace JoD {
-    /// @brief Size with float dimension.
+    
+    ///
+    /// Size with float dimension.
+    ///
     struct SizeF {
+        
         float w = 0.0f; ///< Width in float type.
+        
         float h = 0.0f; ///< Height in float type.
     };
 }

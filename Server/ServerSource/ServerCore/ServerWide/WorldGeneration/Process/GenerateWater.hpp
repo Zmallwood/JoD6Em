@@ -7,7 +7,8 @@
 #pragma once
 
 namespace JoD {
+    
     class WorldArea;
-
+    
     void GenerateWater(std::shared_ptr<WorldArea> worldArea);
 }

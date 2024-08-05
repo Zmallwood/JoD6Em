@@ -7,14 +7,20 @@
 #pragma once
 
 namespace JoD {
+    
     class GLRectF;
-
-    /// @brief Rectangle object with float dimensions, ment to represent a rectangle in standard
-    ///        screen coordinates, with 0,0 being in top left corner and 1,1 being in bottom right
-    ///        corner.
+    
+    ///
+    /// Rectangle object with float dimensions, ment to represent a rectangle in standard
+    /// screen coordinates, with 0,0 being in top left corner and 1,1 being in bottom right
+    /// corner.
+    ///
     struct RectF {
-        /// @brief Convert this objects values to format of OpenGLs default coordinate system.
+        ///
+        /// Convert this objects values to format of OpenGLs default coordinate system.
+        ///
         /// @return GLRectF Converted resulting object.
+        ///
         GLRectF ToGLRectF() const;
         
         float x = 0.0f; ///< X coordinate in float type.

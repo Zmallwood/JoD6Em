@@ -9,9 +9,11 @@
 #include "MouseButtons.hpp"
 
 namespace JoD {
+    
     class MouseButton;
     
     class MouseInput {
+        
       public:
         MouseInput();
         

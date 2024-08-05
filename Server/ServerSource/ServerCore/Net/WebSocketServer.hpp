@@ -7,9 +7,11 @@
 #pragma once
 
 namespace JoD {
+    
     class UserConnection;
     
     class WebSocketServer {
+        
       public:
         void Run(std::string socketAddress, std::string socketPort);
         

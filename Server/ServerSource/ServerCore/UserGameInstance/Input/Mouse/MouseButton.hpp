@@ -7,7 +7,9 @@
 #pragma once
 
 namespace JoD {
+    
     class MouseButton {
+        
       public:
         void RegisterMouseDown();
         

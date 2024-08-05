@@ -7,7 +7,9 @@
 #pragma once
 
 namespace JoD {
+    
     class Mob {
+        
       public:
         Mob(std::string_view mobName, int level);
         

@@ -7,7 +7,9 @@
 #pragma once
 
 namespace JoD {
+    
     namespace MessageCodes {
+        
         constexpr int k_drawImageInstr = 1;
         
         constexpr int k_applyBuffer = 2;

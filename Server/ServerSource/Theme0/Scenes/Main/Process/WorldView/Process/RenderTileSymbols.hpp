@@ -7,7 +7,9 @@
 #pragma once
 
 namespace JoD {
+    
     class MainScene;
+    
     class UserConnection;
     
     void RenderTileSymbols(

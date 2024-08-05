@@ -9,11 +9,13 @@
 #include "InstructionTypes.hpp"
 
 namespace JoD {
+    
     ///
     /// Holds data for doing a image drawing operation, created when such a request is
     /// incoming from the server.
     ///
     struct ImageDrawInstruction {
+        
         InstructionTypes type = InstructionTypes::None;
         
         RID rid = -1; ///< ID for an image resource previously allocated.

@@ -7,6 +7,7 @@
 #pragma once
 
 namespace JoD {
+    
     ///
     /// Get the size of canvas in the web browser.
     ///

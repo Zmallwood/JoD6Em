@@ -7,7 +7,8 @@
 #pragma once
 
 namespace JoD {
+    
     class WorldArea;
-
+    
     void GenerateMobs(std::shared_ptr<WorldArea> worldArea);
 }
