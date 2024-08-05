@@ -9,7 +9,10 @@
 #include "ClientCore/Graphics/Rendering/RenderingCore/RendererBase.hpp"
 
 namespace JoD {
+
+    ///
     /// @brief Allocates image resources and enabled rendering images to the browser.
+    ///
     class ImageRenderer : public RendererBase {
       public:
         ///
