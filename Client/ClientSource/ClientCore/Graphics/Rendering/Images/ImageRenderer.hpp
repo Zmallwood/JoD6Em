@@ -14,6 +14,7 @@ namespace JoD {
     /// Allocates image resources and enabled rendering images to the browser.
     ///
     class ImageRenderer : public RendererBase {
+        
       public:
         ///
         /// Construct a new Image Renderer object by creating the GL shader program associates

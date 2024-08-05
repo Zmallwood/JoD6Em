@@ -7,12 +7,17 @@
 #pragma once
 
 namespace JoD {
+    ///
     /// Font object used for text rendering.
+    ///
     class Font {
       public:
+        ///
         /// Construct a new font object.
+        ///
         /// @param fontFileName Font file name.
         /// @param fontSize Font size used for this font object.
+        ///
         Font(std::string_view fontFileName, int fontSize);
         
         std::shared_ptr<TTF_Font> m_font; ///< Regular SDL font object.

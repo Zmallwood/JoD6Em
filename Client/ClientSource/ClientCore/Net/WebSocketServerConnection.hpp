@@ -7,15 +7,22 @@
 #pragma once
 
 namespace JoD {
+    ///
     /// Connects to to web socket server and enables sending messages over the connection
     /// after it has opened.
+    ///
     class WebSocketServerConnection {
       public:
+        ///
         /// Open the connection to the web socket server.
+        ///
         void Connect() const;
         
+        ///
         /// Send message to the server.
+        ///
         /// @param messageType Message type to be sent.
+        ///
         void SendMessage(int messageType) const;
         
         std::shared_ptr<const EmscriptenWebSocketOpenEvent>

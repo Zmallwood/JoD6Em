@@ -9,12 +9,14 @@
 #include "BufferTypes.hpp"
 
 namespace JoD {
+    
     class ShaderProgram;
     
     ///
     /// Functions as a base class for all renderers providing shared base functionality.
     ///
     class RendererBase {
+        
       protected:
         ///
         /// Construct a new Renderer Base object, creating shader program and buffer storing
