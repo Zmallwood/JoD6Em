@@ -7,10 +7,10 @@
 #pragma once
 
 namespace JoD {
-    /// @brief Font object used for text rendering.
+    /// Font object used for text rendering.
     class Font {
       public:
-        /// @brief Construct a new font object.
+        /// Construct a new font object.
         /// @param fontFileName Font file name.
         /// @param fontSize Font size used for this font object.
         Font(std::string_view fontFileName, int fontSize);

@@ -29,12 +29,14 @@ namespace JoD {
         
         /// Allocates resources for a new image and return the ID used to render with these
         /// resources.
+        ///
         /// @return rid Resource ID used to render an image with the allocated resources.
         ///
         RID NewImage();
         
         ///
         /// Render an image to the browser.
+        ///
         /// @param rid Resource ID previously allocated.
         /// @param imageName Name of image to render.
         /// @param destination Destination rectangle to render the image at.
@@ -52,6 +54,7 @@ namespace JoD {
         
         ///
         /// Render an image to the browser.
+        ///
         /// @param rid Resource ID previously allocated.
         /// @param imageNameHash Hash code of name of image to render.
         /// @param destination Destination rectangle to render the image at.
@@ -69,6 +72,7 @@ namespace JoD {
         
       private:
         std::vector<float> m_defaultColorsWhite;
+        
         std::vector<float> m_defaultUVs;
     };
 }

@@ -7,7 +7,9 @@
 #pragma once
 
 namespace JoD {
-    /// @brief Available types of GL buffers that can be created.
+    ///
+    /// Available types of GL buffers that can be created.
+    ///
     enum class BufferTypes {
         Indices, ///< Indices
         Positions2D, ///< Positions in 2D coordinates

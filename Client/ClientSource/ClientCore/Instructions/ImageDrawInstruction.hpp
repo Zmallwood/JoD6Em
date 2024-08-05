@@ -9,8 +9,8 @@
 #include "InstructionTypes.hpp"
 
 namespace JoD {
-    /// @brief Holds data for doing a image drawing operation, created when such a request is
-    ///        incoming from the server.
+    /// Holds data for doing a image drawing operation, created when such a request is
+    /// incoming from the server.
     struct ImageDrawInstruction {
         InstructionTypes type = InstructionTypes::None;
 

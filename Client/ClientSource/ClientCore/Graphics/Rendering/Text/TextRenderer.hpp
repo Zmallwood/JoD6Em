@@ -11,14 +11,14 @@
 namespace JoD {
     class Font;
     
-    /// @brief Renderer used to allocated resources for, and render, text to the canvas.
+    /// Renderer used to allocated resources for, and render, text to the canvas.
     class TextRenderer {
       public:
-        /// @brief Construct a new text renderer object by initializing
-        ///        font objects for different sizes.
+        /// Construct a new text renderer object by initializing
+        /// font objects for different sizes.
         TextRenderer();
         
-        /// @brief Draw a text string to the canvas.
+        /// Draw a text string to the canvas.
         /// @param rid Resource ID previously allocated.
         /// @param text Text string to render.
         /// @param position Position to render at in the canvas.
@@ -30,11 +30,11 @@ namespace JoD {
                         bool centerAlign = false,
                         FontSizes fontSize = FontSizes::_10) const;
         
-        /// @brief Allocate resources for a text string to be rendered.
+        /// Allocate resources for a text string to be rendered.
         /// @return rid Resource ID for the allocated resources.
         RID NewString();
         
-        /// @brief Measure a text string with specified size and return its dimensions.
+        /// Measure a text string with specified size and return its dimensions.
         /// @param text Text string to be measured.
         /// @param fontSize Font size to measure with.
         /// @return sizef Text string dimensions.

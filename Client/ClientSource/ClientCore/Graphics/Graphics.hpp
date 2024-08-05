@@ -7,17 +7,17 @@
 #pragma once
 
 namespace JoD {
-    /// @brief Initializes and handles preparing and finilizing graphics for each frame.
+    /// Initializes and handles preparing and finilizing graphics for each frame.
     class Graphics {
       public:
-        /// @brief Construct a new Graphics object and initialize GLFW with OpenGL and applying
-        ///        needed settings.
+        /// Construct a new Graphics object and initialize GLFW with OpenGL and applying
+        /// needed settings.
         Graphics();
         
-        /// @brief Clear web browser before rendering new contents.
+        /// Clear web browser before rendering new contents.
         void ClearCanvas() const;
         
-        /// @brief Present all rendered contents stored in the buffer.
+        /// Present all rendered contents stored in the buffer.
         void PresentCanvas() const;
         
         GLFWwindow *m_window = nullptr; ///< GLFW window object.

@@ -7,12 +7,12 @@
 #pragma once
 
 namespace JoD {
-    /// @brief Return file extensions for file with absolute path.
+    /// Return file extensions for file with absolute path.
     /// @param absPath Path to file.
     /// @return std::string File extension.
     std::string GetFileExtension(std::string_view absPath);
     
-    /// @brief Return file name without path or extension.
+    /// Return file name without path or extension.
     /// @param absPath Path to file.
     /// @return std::string Trimmed file name.
     std::string GetFilenameNoExtension(std::string_view absPath);

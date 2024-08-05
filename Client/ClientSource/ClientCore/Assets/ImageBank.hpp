@@ -25,6 +25,7 @@ namespace JoD {
         
         ///
         /// Get the Image object.
+        ///
         /// @param imageName of image, corresponding to filename wihtout extension.
         /// @return GLuint Resource ID of obtained image object.
         ///
@@ -32,6 +33,7 @@ namespace JoD {
         
         ///
         /// Get the Image object.
+        ///
         /// @param imageNameHash Hash code of image name, corresponding to hash code of filename
         ///                      wihtout extension.
         /// @return GLuint Resource ID of obtained image object.
@@ -40,6 +42,7 @@ namespace JoD {
         
         ///
         /// Create a blank image object.
+        ///
         /// @param uniqueImageName Name of newly created blank image.
         /// @return GLuint Resource ID of created image.
         ///

@@ -7,14 +7,14 @@
 #pragma once
 
 namespace JoD {
-    /// @brief Connects to to web socket server and enables sending messages over the connection
-    ///        after it has opened.
+    /// Connects to to web socket server and enables sending messages over the connection
+    /// after it has opened.
     class WebSocketServerConnection {
       public:
-        /// @brief Open the connection to the web socket server.
+        /// Open the connection to the web socket server.
         void Connect() const;
         
-        /// @brief Send message to the server.
+        /// Send message to the server.
         /// @param messageType Message type to be sent.
         void SendMessage(int messageType) const;
         

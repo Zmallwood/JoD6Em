@@ -7,6 +7,6 @@
 #pragma once
 
 namespace JoD {
-    /// @brief Start new game instance.
+    /// Start new game instance.
     void RunNewClientInstance();
 }
