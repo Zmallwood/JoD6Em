@@ -25,5 +25,9 @@ namespace JoD {
         constexpr int k_drawStringInstr {7};
         
         constexpr int k_rightMouseDown {8};
+        
+        constexpr int k_requestImageDimensions {9};
+        
+        constexpr int k_provideImageDimensions {10};
     }
 }

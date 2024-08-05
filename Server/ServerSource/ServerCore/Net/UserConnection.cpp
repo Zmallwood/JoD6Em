@@ -12,6 +12,7 @@
 #include "NetConfiguration.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
+#include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
 
 namespace beast = boost::beast;
 namespace http = beast::http;
@@ -61,6 +62,13 @@ namespace JoD {
                     auto x = message[1] / net_constants::k_floatPrecision;
                     auto y = message[2] / net_constants::k_floatPrecision;
                     m_mousePosition = {x, y};
+                }else if (*message == MessageCodes::k_provideImageDimensions) {
+                    
+                    auto imageNameHash = (int)message[1];
+                    auto width = (int)message[2];
+                    auto height = (int)message[3];
+                    
+                    _<ImageDimensions>().m_dimensions[imageNameHash] = {width, height};
                 }
             }
         }
@@ -88,7 +96,7 @@ namespace JoD {
                             std::string(BOOST_BEAST_VERSION_STRING) +
                             " websocket-server-sync");
                     }));
-                    
+            
             ws.accept(); // Accept the websocket handshake.
             
             ws.text(false); // Receive binary data, not text.
@@ -182,6 +190,18 @@ namespace JoD {
         
         ws.write(
             boost::asio::buffer(&msg_code_present,sizeof(msg_code_present)));
+    }
+    
+    void UserConnection::SendRequestImageDimensions(WebSocket &ws,
+                                                    int imageNameHash) const {
+        auto msg_code = MessageCodes::k_requestImageDimensions;
+        
+        auto data = std::vector<int>();
+        
+        data.push_back(msg_code);
+        data.push_back(imageNameHash);
+        
+        ws.write(boost::asio::buffer(data));
     }
     
     float UserConnection::GetAspectRatio() const {

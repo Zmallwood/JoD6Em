@@ -8,6 +8,7 @@
 #include "ClientCore/Instructions/RenderInstructionsManager.hpp"
 #include "MessageCodes.hpp"
 #include "NetConfiguration.hpp"
+#include "ClientCore/Assets/ImageBank.hpp"
 
 namespace JoD {
     
@@ -61,6 +62,20 @@ namespace JoD {
         emscripten_websocket_set_onerror_callback(ws, NULL, OnError);
         emscripten_websocket_set_onclose_callback(ws, NULL, OnClose);
         emscripten_websocket_set_onmessage_callback(ws, NULL, OnMessage);
+    }
+    
+    
+    void WebSocketServerConnection::SendMessage(int *data, int length) const {
+        std::cout << "SEND\n";
+        // Try send packet and handle failure.
+        if (auto result =
+                emscripten_websocket_send_binary(
+                    m_webSocketEvent->socket,
+                    data, length*sizeof(int))) {
+            
+            std::cout << "Failed to emscripten_websocket_send_binary(): " <<
+                result;
+        }
     }
     
     void WebSocketServerConnection::SendMessage(int messageType) const {
@@ -284,6 +299,27 @@ namespace JoD {
                 _<RenderInstrutionsManager>().AddTextDrawInstruction(
                     str,
                     {x,y});
+                
+                break;
+            }
+            case MessageCodes::k_requestImageDimensions: {
+                
+                auto imageNameHash = ReadFourBytesAsInt(bytes + 4);
+                
+                auto dimensions =
+                    _<ImageBank>().GetImageDimensions(imageNameHash);
+                
+                int msg[4];
+                
+                // Fill data with message type and canvas size dimensions.
+                msg[0] = MessageCodes::k_provideImageDimensions;
+                msg[1] = imageNameHash;
+                msg[2] = dimensions.w;
+                msg[3] = dimensions.h;
+                
+                std::cout << "SEND\n";
+                
+                _<WebSocketServerConnection>().SendMessage(msg, 4);
                 
                 break;
             }

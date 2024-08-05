@@ -5,13 +5,14 @@
  */
 
 #include "ImageBank.hpp"
+#include <GLES2/gl2.h>
 
 namespace JoD {
     
     namespace {
         
         // Load single image from absolute file path.
-        GLuint LoadSingleImage(std::string_view absFilePath);
+        std::pair<GLuint, Size> LoadSingleImage(std::string_view absFilePath);
         
         // Load pure image data from file name.
         SDL_Surface *LoadImageData(const char *fileName);
@@ -71,6 +72,17 @@ namespace JoD {
         return texID;
     }
     
+    Size ImageBank::GetImageDimensions(int imageNameHash) const {
+        if (m_imageDimensions.contains(imageNameHash)) {
+            
+            std::cout << "Find dimensions\n";
+            return m_imageDimensions.at(imageNameHash);
+        }
+        
+        std::cout << "Dont find dimensions\n";
+        return {0, 0};
+    }
+    
     void ImageBank::LoadImages() {
         
         using iterator = std::filesystem::recursive_directory_iterator;
@@ -89,20 +101,21 @@ namespace JoD {
             }
             
             // Load the current file as an image resource.
-            auto texID = LoadSingleImage(absPath);
+            auto imageData = LoadSingleImage(absPath);
             
             // Extract its pure name without path or extension.
             auto imageName = GetFilenameNoExtension(absPath);
             
             // Insert a new entry into the images storage, with the
             // image name hash as key and the resource ID as value.
-            m_images.insert({Hash(imageName), texID});
+            m_images.insert({Hash(imageName), imageData.first});
+            m_imageDimensions.insert({Hash(imageName), imageData.second});
         }
     }
     
     namespace {
         
-        GLuint LoadSingleImage(std::string_view absFilePath) {
+        std::pair<GLuint, Size> LoadSingleImage(std::string_view absFilePath) {
             
             // Declare variable to hold the resulting ID for the loaded image file.
             GLuint texID;
@@ -139,12 +152,14 @@ namespace JoD {
                     GL_RGB, GL_UNSIGNED_BYTE, surface->pixels);
             }
             
+            auto dimensions = Size {surface->w, surface->h};
+            
             // Free SDL surface resource, its not needed anymore as the image data is
             // stored in the OpenGL texture now.
             SDL_FreeSurface(surface);
             
             // Return the previously generated resource ID.
-            return texID;
+            return {texID, dimensions};
         }
         
         SDL_Surface *LoadImageData(const char *fileName) {

@@ -33,6 +33,8 @@ namespace JoD {
         
         void SendPresentCanvasInstruction(WebSocket &ws) const;
         
+        void SendRequestImageDimensions(WebSocket &ws, int imageNameHash) const;
+        
         float GetAspectRatio() const;
         
         std::shared_ptr<Player> m_player;

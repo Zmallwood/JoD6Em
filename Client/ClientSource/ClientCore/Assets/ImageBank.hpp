@@ -49,10 +49,14 @@ namespace JoD {
         ///
         GLuint CreateBlankImage(std::string_view uniqueImageName);
         
+        Size GetImageDimensions(int imageNameHash) const;
+        
       private:
         void LoadImages();
         
         std::map<int, GLuint> m_images; ///< Stores images by image name hash code.
+        
+        std::map<int, Size> m_imageDimensions;
         
         const std::string k_relImagesPath{"Resources/Images"}; ///< Path to images location.
     };
