@@ -194,7 +194,9 @@ namespace JoD {
                 colorBuffID, m_defaultColorsWhite, BufferTypes::Colors,
                 k_locColor);
         }else {
+            
             std::vector<float> colors;
+            
             for (auto i = 0; i < 4; i++) {
                 
                 colors.push_back(color.r);
