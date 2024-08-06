@@ -15,5 +15,6 @@ namespace JoD {
         
       public:
         const int k_numGridRows {21}; ///< Number of rows in tile grid in world view.
+        const Size k_worldAreaSize {100, 100};
     };
 }

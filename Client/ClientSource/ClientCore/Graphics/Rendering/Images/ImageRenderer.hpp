@@ -51,7 +51,7 @@ namespace JoD {
             const BoxF &destination,
             bool repeatTexture = false,
             SizeF textureFillAmount = {1.0f, 1.0f},
-            ColorF color = {1.0f, 1.0f, 1.0f}) const;
+            ColorF color = Colors::white) const;
         
         ///
         /// Render an image to the browser.
@@ -69,6 +69,6 @@ namespace JoD {
             const BoxF &destination,
             bool repeatTexture = false,
             SizeF textureFillAmount = {1.0f, 1.0f},
-            ColorF color = {1.0f, 1.0f, 1.0f}) const;
+            ColorF color = Colors::white) const;
     };
 }

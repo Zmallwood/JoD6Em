@@ -24,6 +24,7 @@ namespace JoD {
             
             m_ticksLastUpdate = Now();
         }
+        
         m_framesCount++;
     }
     

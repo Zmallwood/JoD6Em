@@ -22,6 +22,10 @@ namespace JoD {
         ///
         WorldArea();
         
+        Size GetSize() const;
+        
+        bool IsValidCoord(Point coord) const;
+        
         std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles; ///< Tile grid.
         std::map<std::shared_ptr<Mob>, Point>
         m_mobPositions; ///< Helper structure which maps mobs to their positions.

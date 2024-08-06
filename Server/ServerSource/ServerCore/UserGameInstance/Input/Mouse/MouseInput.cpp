@@ -22,11 +22,13 @@ namespace JoD {
         case MouseButtons::Left: {
             
             m_leftButton->RegisterMouseDown();
+            
             break;
         }
         case MouseButtons::Right: {
             
             m_rightButton->RegisterMouseDown();
+            
             break;
         }
         case MouseButtons::None: {

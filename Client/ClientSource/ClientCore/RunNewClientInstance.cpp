@@ -12,6 +12,6 @@ namespace JoD {
     void RunNewClientInstance() {
         
         // Access ClientEngine and run it.
-        _<ClientEngine>().Run();  
+        _<ClientEngine>().Run();
     }
 }

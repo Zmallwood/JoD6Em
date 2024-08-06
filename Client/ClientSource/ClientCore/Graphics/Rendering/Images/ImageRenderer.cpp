@@ -14,14 +14,15 @@ namespace JoD {
     
     namespace {
         
-        constexpr int k_locPosition{0}; // Location of position variable in vertex shader.
-        constexpr int k_locColor{1}; // Location of color variable in vertex shader.
-        constexpr int k_locUV{2}; // Location of UV variable in vertex shader.
         int locNoPixelEffect{-1}; // Location of pixelation effect switch variable in vertex shader.
         std::vector<int> defaultIndices;
         std::vector<float> k_defaultColorsWhite = std::vector<float>(16, 1.0f); ///< A set of floats representing the default white image color.
         std::vector<float> k_defaultUVs ///< A set of floats representing a default UV coordinates layout for an image.
             = {0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f};
+            
+        constexpr int k_locPosition{0}; // Location of position variable in vertex shader.
+        constexpr int k_locColor{1}; // Location of color variable in vertex shader.
+        constexpr int k_locUV{2}; // Location of UV variable in vertex shader.
     }
     
     ImageRenderer::ImageRenderer(){
@@ -155,8 +156,7 @@ namespace JoD {
             posBuffID, positions, BufferTypes::Positions2D,
             k_locPosition);
         
-        if (color.r == 1.0f && color.g == 1.0f
-            && color.b == 1.0f && color.a == 1.0f) {
+        if (color == Colors::white) {
             
             UpdateData(
                 colorBuffID, k_defaultColorsWhite, BufferTypes::Colors,

@@ -337,9 +337,11 @@ namespace JoD {
             
             // Shift the bytes to form an integer, then divide it with 10000.0 to get a float with 4
             // decimals precision.
-            auto result = ((b3 << 3 * 8) + (b2 << 2 * 8) + (b1 <<
-                                                            8) + b0) /
-                          NetConstants::k_floatPrecision;
+            auto result =
+                ((b3 << 3 * 8)
+                 + (b2 << 2 * 8)
+                 + (b1 << 8) + b0) /
+                NetConstants::k_floatPrecision;
             
             return result;
         }

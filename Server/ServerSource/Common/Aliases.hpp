@@ -21,5 +21,5 @@ namespace JoD {
                    std::chrono::milliseconds;
     
     static auto Now = ///< Get current point in time.
-        std::chrono::high_resolution_clock::now;
+                      std::chrono::high_resolution_clock::now;
 }

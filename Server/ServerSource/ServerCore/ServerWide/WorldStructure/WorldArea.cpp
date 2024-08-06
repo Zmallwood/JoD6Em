@@ -21,4 +21,25 @@ namespace JoD {
             }
         }
     }
+    
+    Size WorldArea::GetSize() const {
+        
+        auto width = static_cast<int>(m_tiles.size());
+        auto height = 0;
+        
+        if (m_tiles.size() > 0) {
+            
+            height = m_tiles.at(0).size();
+        }
+        
+        return {width, height};
+    }
+    
+    bool WorldArea::IsValidCoord(Point coord) const {
+        
+        auto size = GetSize();
+        
+        return coord.x >= 0 && coord.y >= 0 && coord.x < size.w &&
+               coord.y < size.h;
+    }
 }

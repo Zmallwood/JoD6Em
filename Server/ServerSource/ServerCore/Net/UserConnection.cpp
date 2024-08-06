@@ -65,8 +65,8 @@ namespace JoD {
                     auto width = (int)data[2];
                     auto height = (int)data[3];
                     
-                    _<ImageDimensions>().m_dimensions[imageNameHash] = {width,
-                                                                        height};
+                    _<ImageDimensions>().m_dimensions[imageNameHash] =
+                    {width, height};
                 }
             }
         }
@@ -192,8 +192,10 @@ namespace JoD {
             boost::asio::buffer(&messageCode,sizeof(messageCode)));
     }
     
-    void UserConnection::SendRequestImageDimensions(WebSocket &webSocket,
-                                                    int imageNameHash) const {
+    void UserConnection::SendRequestImageDimensions(
+        WebSocket &webSocket,
+        int imageNameHash) const {
+            
         auto messageCode = MessageCodes::k_requestImageDimensions;
         
         auto data = std::vector<int>();

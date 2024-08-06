@@ -11,6 +11,7 @@
 #include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "TileHovering.hpp"
+#include "MobTargeting.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 
 namespace JoD {
@@ -22,6 +23,12 @@ namespace JoD {
                 m_mainScene.m_components.at(
                     MainSceneComponents::
                     TileHovering));
+                    
+        auto mobTargeting =
+            std::static_pointer_cast<MobTargeting>(
+                m_mainScene.m_components.at(
+                    MainSceneComponents::
+                    MobTargeting));
         
         auto mouseDown =
             m_userConnection.m_userGameInstanceEngine->m_mouseInput->
@@ -36,6 +43,7 @@ namespace JoD {
         if (mouseDown) {
             
             player->m_destination = hoveredTile;
+            mobTargeting->m_targetedCreature = nullptr;
         }
         
         if (std::chrono::high_resolution_clock::now() >
@@ -85,8 +93,10 @@ namespace JoD {
                 }
                 
                 if (dx || dy) {
+                    
                     player->m_ticksLastMove = Now();
                 } else  {
+                    
                     player->m_destination = {-1, -1};
                 }
             }

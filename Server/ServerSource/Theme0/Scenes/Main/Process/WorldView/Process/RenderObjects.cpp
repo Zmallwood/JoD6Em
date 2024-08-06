@@ -19,11 +19,11 @@ namespace JoD {
         if (tile->m_object) {
             
             auto foundImageDim = false;
-            Size s;
+            Size imageDimensions;
             
             if (_<ImageDimensions>().m_dimensions.contains(tile->m_object->m_type)) {
                 
-                s = _<ImageDimensions>().m_dimensions.at(tile->m_object->m_type);
+                imageDimensions = _<ImageDimensions>().m_dimensions.at(tile->m_object->m_type);
                 foundImageDim = true;
             }
             
@@ -36,8 +36,8 @@ namespace JoD {
                 return;
             }
             
-            auto width = s.w/60.0f*tileBounds.w;
-            auto height = s.h/60.0f*tileBounds.h;
+            auto width = imageDimensions.w/60.0f*tileBounds.w;
+            auto height = imageDimensions.h/60.0f*tileBounds.h;
             
             auto newBounds = BoxF{tileBounds.x + tileBounds.w/2 - width/2,
                                    tileBounds.y + tileBounds.h - height, width, height};

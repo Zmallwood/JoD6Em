@@ -28,6 +28,7 @@
 #include "MathLib/BoxF.hpp"
 #include "MathLib/Size.hpp"
 #include "MathLib/SizeF.hpp"
+#include "MathLib/Colors.hpp"
 #include "Common/Aliases.hpp"
 #include "CommonUtils.hpp"
 #include "NetConfiguration.hpp"
