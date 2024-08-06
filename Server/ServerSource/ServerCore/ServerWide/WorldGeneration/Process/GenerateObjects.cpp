@@ -10,33 +10,35 @@
 
 namespace JoD {
     
+    namespace {
+        
+        void GenerateObjectOfType(
+            std::shared_ptr<WorldArea> worldArea, std::string_view objectName,
+            int amount);
+    }
+    
     void GenerateObjects(std::shared_ptr<WorldArea> worldArea) {
         
-        auto numObjectsTree1s = 300;
+        GenerateObjectOfType(worldArea, "ObjectTree1", 300);
+        GenerateObjectOfType(worldArea, "ObjectTree2", 300);
+    }
+    
+    namespace {
         
-        for (auto i = 0; i < numObjectsTree1s; i++) {
+        void GenerateObjectOfType(
+            std::shared_ptr<WorldArea> worldArea, std::string_view objectName,
+            int amount) {
             
-            auto x = rand() % 100;
-            auto y = rand() % 100;
-            
-            if (worldArea->m_tiles[x][y]->m_ground !=
-                Hash("GroundWater")) {
+            for (auto i = 0; i < amount; i++) {
                 
-                worldArea->m_tiles[x][y]->m_object = Hash("ObjectTree1");
-            }
-        }
-        
-        auto numObjectsTree2s = 300;
-        
-        for (auto i = 0; i < numObjectsTree2s; i++) {
-            
-            auto x = rand() % 100;
-            auto y = rand() % 100;
-            
-            if (worldArea->m_tiles[x][y]->m_ground !=
-                Hash("GroundWater")) {
+                auto x = rand() % 100;
+                auto y = rand() % 100;
                 
-                worldArea->m_tiles[x][y]->m_object = Hash("ObjectTree2");
+                if (worldArea->m_tiles[x][y]->m_ground !=
+                    Hash("GroundWater")) {
+                    
+                    worldArea->m_tiles[x][y]->m_object = Hash(objectName);
+                }
             }
         }
     }

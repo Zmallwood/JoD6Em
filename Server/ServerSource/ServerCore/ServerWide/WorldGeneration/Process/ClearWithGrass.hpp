@@ -10,5 +10,10 @@ namespace JoD {
     
     class WorldArea;
     
+    ///
+    /// Clears a world area with grass as ground.
+    /// 
+    /// @param worldArea World area to clear.
+    ///
     void ClearWithGrass(std::shared_ptr<WorldArea> worldArea);
 }

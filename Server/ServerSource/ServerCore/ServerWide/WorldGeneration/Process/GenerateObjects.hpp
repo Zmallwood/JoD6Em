@@ -10,5 +10,10 @@ namespace JoD {
     
     class WorldArea;
     
+    ///
+    /// Generates different kind of objects to a world area.
+    /// 
+    /// @param worldArea World area to generate objects on.
+    ///
     void GenerateObjects(std::shared_ptr<WorldArea> worldArea);
 }

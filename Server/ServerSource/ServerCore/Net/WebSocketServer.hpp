@@ -26,6 +26,6 @@ namespace JoD {
         
       private:
         std::vector<std::shared_ptr<UserConnection>>
-        m_userConnections; ///< All connection users.
+        m_userConnections; ///< Holds all connected users.
     };
 }

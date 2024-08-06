@@ -10,5 +10,10 @@ namespace JoD {
     
     class WorldArea;
     
+    ///
+    /// Generates roads on a world area.
+    /// 
+    /// @param worldArea World area to generate roads on.
+    ///
     void GenerateRoads(std::shared_ptr<WorldArea> worldArea);
 }

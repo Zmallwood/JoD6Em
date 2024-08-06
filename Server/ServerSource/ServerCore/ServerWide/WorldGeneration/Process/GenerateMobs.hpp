@@ -10,5 +10,10 @@ namespace JoD {
     
     class WorldArea;
     
+    ///
+    /// Generates different kind of mobs on a world area.
+    /// 
+    /// @param worldArea World area to generate mobs on.
+    ///
     void GenerateMobs(std::shared_ptr<WorldArea> worldArea);
 }

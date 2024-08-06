@@ -8,12 +8,15 @@
 
 namespace JoD {
     
+    ///
+    /// Available types of mouse buttons.
+    ///
     enum class MouseButtons {
         
-        None,
+        None, ///< Not defined.
         
-        Left,
+        Left, ///< Left mouse button.
         
-        Right
+        Right ///< Right mouse button.
     };
 }

@@ -1,6 +1,6 @@
 /*
  * World.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -9,8 +9,8 @@
 
 namespace JoD {
     
-    World::World(){
+    World::World()
+        : m_currentWorldArea(std::make_shared<WorldArea>()){
         
-        m_currentWorldArea = std::make_shared<WorldArea>();
     }
 }
