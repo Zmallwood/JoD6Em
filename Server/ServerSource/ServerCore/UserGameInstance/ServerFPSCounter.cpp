@@ -27,10 +27,10 @@ namespace JoD {
         m_framesCount++;
     }
     
-    void ServerFPSCounter::Render(WebSocket& ws) const {
+    void ServerFPSCounter::Render(WebSocket& webSocket) const {
         
         m_userConnection.SendTextDrawInstruction(
-            ws,
+            webSocket,
             "Server fps: " + std::to_string(m_fps), {0.8f, 0.1f});
     }
 }
