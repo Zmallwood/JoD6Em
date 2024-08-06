@@ -21,11 +21,8 @@ namespace JoD {
         
       private:
         int m_fps {0};
-        
         int m_framesCount {0};
-        
         TimePoint m_ticksLastUpdate {Now()};
-        
         UserConnection& m_userConnection;
     };
 }

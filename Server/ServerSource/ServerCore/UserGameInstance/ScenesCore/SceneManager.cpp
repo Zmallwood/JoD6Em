@@ -45,11 +45,11 @@ namespace JoD {
         }
     }
     
-    void SceneManager::RenderCurrentScene(WebSocket &ws) const {
+    void SceneManager::RenderCurrentScene(WebSocket &webSocket) const {
         
         if (m_scenes.contains(m_currentScene)) {
             
-            m_scenes.at(m_currentScene)->Render(ws);
+            m_scenes.at(m_currentScene)->Render(webSocket);
         }
     }
     
