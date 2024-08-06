@@ -202,47 +202,60 @@ namespace JoD {
         bool centerAlign,
         FontSizes fontSize) const {
         
+        // Undefined variables will be set in the RenderText function call.
         std::string uniqueNameID;
         SizeF size;
         
+        // Execute the actual text rendering operations.
         RenderText(
             rid, text, color, centerAlign, fontSize, uniqueNameID,
             size);
         
         auto canvasSize = GetCanvasSize();
         
-        auto rectangle = BoxF{position.x, position.y, size.w, size.h};
+        // Create final render destination box.
+        auto box = BoxF{position.x, position.y, size.w, size.h};
         
+        // Undefined variables, will get values from TTF_SizeText.
         int textWidth;
         int textHeight;
         
+        // Measure the rendered text.
         TTF_SizeText(
             m_fonts.at(fontSize)->m_font.get(), text.data(), &textWidth,
             &textHeight);
         
+        // If the text should be aligned at its center.
         if (centerAlign) {
             
-            rectangle.x -= static_cast<float>(textWidth) /
-                           static_cast<float>(canvasSize.h) /
-                           2.0f / GetAspectRatio();
+            // Move the text x coordinate accordingly.
+            box.x -=
+                static_cast<float>(textWidth) /
+                static_cast<float>(canvasSize.h) /
+                2.0f / GetAspectRatio();
             
-            rectangle.y -=
+            // Move the text y coordinate accordingly.
+            box.y -=
                 static_cast<float>(textHeight) /
                 static_cast<float>(canvasSize.h) /
                 2.0f;
         }
         
+        // Ability to scale the text before rendering.
         auto scale = 1.0f;
         
-        rectangle.x += rectangle.w / 2.0f - rectangle.w / 2.0f * scale;
-        rectangle.y += rectangle.h / 2.0f - rectangle.h / 2.0f * scale;
-        rectangle.w *= scale;
-        rectangle.h *= scale;
+        box.x += box.w / 2.0f - box.w / 2.0f * scale;
+        box.y += box.h / 2.0f - box.h / 2.0f * scale;
+        box.w *= scale;
+        box.h *= scale;
         
+        // Get the RID associated with the image onto which the
+        // text has been rendered.
         auto ridGLResource = m_ridsGLResources.at(rid);
         
+        // Do the actual rendering operation.
         _<ImageRenderer>().DrawImage(
-            ridGLResource, uniqueNameID, rectangle,
+            ridGLResource, uniqueNameID, box,
             false);
     }
     
@@ -250,15 +263,19 @@ namespace JoD {
         std::string_view text,
         FontSizes font_size) const {
         
+        // Get the main font object.
         auto font = m_fonts.at(font_size)->m_font;
         
+        // To be filled with rendered text dimensions.
         int textWidth;
         int textHeight;
         
+        // Get the dimensions.
         TTF_SizeText(font.get(), text.data(), &textWidth, &textHeight);
         
         auto canvasSize = GetCanvasSize();
         
+        // Return the normalized dimensions.
         return {static_cast<float>(textWidth) / canvasSize.w,
                 static_cast<float>(textHeight) / canvasSize.h};
     }
