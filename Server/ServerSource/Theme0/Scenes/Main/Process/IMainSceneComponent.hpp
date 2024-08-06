@@ -11,20 +11,38 @@ namespace JoD {
     class MainScene;
     class UserConnection;
     
+    ///
+    /// Base class for all components contained in MainScene.
+    ///
     class IMainSceneComponent {
         
       public:
-        IMainSceneComponent(UserConnection& userConnection,
-                            MainScene& mainScene);
+        ///
+        /// Takes and stores references to key objects for the user.
+        ///
+        /// @param userConnection User connection associated with user.
+        /// @param mainScene Main scene associated with user.
+        ///
+        IMainSceneComponent(
+            UserConnection& userConnection,
+            MainScene& mainScene);
         
+        ///
+        /// Optionally overridable for inheriting component classes.
+        ///
         virtual void Update() {
         }
         
+        ///
+        /// Optionally overridable for inheriting component classes.
+        /// 
+        /// @param webSocket Web socket object associated with user.
+        ///
         virtual void Render(WebSocket &webSocket) const {
         }
         
       protected:
-        UserConnection &m_userConnection;
-        MainScene& m_mainScene;
+        UserConnection &m_userConnection; ///< User connection object associated with user.
+        MainScene& m_mainScene; ///< Main scene associated with user.
     };
 }
