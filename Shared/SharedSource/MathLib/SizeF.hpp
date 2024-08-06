@@ -14,7 +14,6 @@ namespace JoD {
     struct SizeF {
         
         float w {0.0f}; ///< Width in float type.
-        
         float h {0.0f}; ///< Height in float type.
     };
 }

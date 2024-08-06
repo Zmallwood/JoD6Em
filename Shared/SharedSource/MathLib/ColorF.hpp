@@ -14,11 +14,8 @@ namespace JoD {
     struct ColorF {
         
         float r {0.0f}; ///< Red component in float type in range 0.0 - 1.0.
-        
         float g {0.0f}; ///< Green component in float type in range 0.0 - 1.0.
-        
         float b {0.0f}; ///< Blue component in float type in range 0.0 - 1.0.
-        
         float a {1.0f}; ///< Alpha component in float type in range 0.0 - 1.0.
     };
 }

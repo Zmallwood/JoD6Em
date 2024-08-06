@@ -14,7 +14,6 @@ namespace JoD {
     struct Size {
         
         int w {0}; ///< Width in int type.
-        
         int h {0}; ///< Height in int type.
     };
 }
