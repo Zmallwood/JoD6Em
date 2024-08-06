@@ -39,22 +39,31 @@ namespace JoD {
                 auto dx = pos.x - player->m_coordinate.x;
                 auto dy = pos.y - player->m_coordinate.y;
                 
-                auto absDx = std::abs(dx);
-                auto absDy = std::abs(dy);
-                
-                auto normX = 0;
-                auto normY = 0;
-                
-                if (dx) {
-                    normX = dx/absDx;
+                if (dx < 0 && dy < 0) {
+                    
+                    player->TryMoveNorthWest();
+                }else if (dx == 0 && dy < 0)  {
+                    
+                    player->TryMoveNorth();
+                }else if (dx > 0 && dy < 0)  {
+                    
+                    player->TryMoveNorthEast();
+                }else if (dx > 0 && dy == 0)  {
+                    
+                    player->TryMoveEast();
+                }else if (dx > 0 && dy > 0)  {
+                    
+                    player->TryMoveSouthEast();
+                }else if (dx == 0 && dy > 0)  {
+                    
+                    player->TryMoveSouth();
+                }else if (dx < 0 && dy > 0)  {
+                    
+                    player->TryMoveSouthWest();
+                }else if (dx < 0 && dy == 0)  {
+                    
+                    player->TryMoveWest();
                 }
-                
-                if (dy) {
-                    normY = dy/absDy;
-                }
-                
-                player->m_coordinate.x += normX;
-                player->m_coordinate.y += normY;
                 
                 player->m_ticksLastMove = Now();
             }
