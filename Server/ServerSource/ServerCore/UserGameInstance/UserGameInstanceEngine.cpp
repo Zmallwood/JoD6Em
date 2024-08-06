@@ -36,15 +36,15 @@ namespace JoD {
         m_serverFPSCounter->Update();
     }
     
-    void UserGameInstanceEngine::Render(WebSocket &ws) const {
+    void UserGameInstanceEngine::Render(WebSocket &webSocket) const {
         
-        m_sceneManager->RenderCurrentScene(ws);
+        m_sceneManager->RenderCurrentScene(webSocket);
         
-        m_serverFPSCounter->Render(ws);
+        m_serverFPSCounter->Render(webSocket);
         
-        m_cursor->Render(ws);
+        m_cursor->Render(webSocket);
         
-        m_userConnection.SendPresentCanvasInstruction(ws);
+        m_userConnection.SendPresentCanvasInstruction(webSocket);
     }
     
     float UserGameInstanceEngine::GetAspectRatio() const {

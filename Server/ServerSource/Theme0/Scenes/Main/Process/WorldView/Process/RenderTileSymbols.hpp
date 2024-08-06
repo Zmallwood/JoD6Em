@@ -11,6 +11,15 @@ namespace JoD {
     class MainScene;
     class UserConnection;
     
+    ///
+    /// Renders symbols on tile in the world view.
+    /// 
+    /// @param mainScene Main scene associated with user.
+    /// @param userConnection User connection associated with user.
+    /// @param webSocket Web socket associated with user.
+    /// @param coordinate Coordinate for the tile for which the function is called.
+    /// @param tileBounds Bounds area of tile for which the function is called.
+    ///
     void RenderTileSymbols(
         MainScene& mainScene, UserConnection& userConnection,
         WebSocket &webSocket,
