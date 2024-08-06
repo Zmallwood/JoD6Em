@@ -7,6 +7,7 @@
 #include "GenerateObjects.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Object.hpp"
 
 namespace JoD {
     
@@ -40,7 +41,7 @@ namespace JoD {
                 
                 if (ground != Hash("GroundWater") && ground != Hash("GroundCobbleStone")) {
                     
-                    worldArea->m_tiles[x][y]->m_object = Hash(objectName);
+                    worldArea->m_tiles[x][y]->m_object = std::make_shared<Object>(objectName);
                 }
             }
         }

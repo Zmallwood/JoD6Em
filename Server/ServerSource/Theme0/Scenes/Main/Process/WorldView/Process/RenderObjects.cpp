@@ -6,6 +6,7 @@
 
 #include "RenderObjects.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Object.hpp"
 #include "ServerCore/Net/UserConnection.hpp"
 #include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
 
@@ -20,9 +21,9 @@ namespace JoD {
             auto foundImageDim = false;
             Size s;
             
-            if (_<ImageDimensions>().m_dimensions.contains(tile->m_object)) {
+            if (_<ImageDimensions>().m_dimensions.contains(tile->m_object->m_type)) {
                 
-                s = _<ImageDimensions>().m_dimensions.at(tile->m_object);
+                s = _<ImageDimensions>().m_dimensions.at(tile->m_object->m_type);
                 foundImageDim = true;
             }
             
@@ -30,7 +31,7 @@ namespace JoD {
                 
                 userConnection.SendRequestImageDimensions(
                     webSocket,
-                    tile->m_object);
+                    tile->m_object->m_type);
                 
                 return;
             }
@@ -43,7 +44,7 @@ namespace JoD {
             
             userConnection.SendImageDrawInstruction(
                 webSocket,
-                tile->m_object,
+                tile->m_object->m_type,
                 newBounds);
         }
     }
