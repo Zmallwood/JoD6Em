@@ -34,8 +34,16 @@ namespace JoD {
                     continue;
                 }
                 
-                worldArea->m_tiles[x][y]->m_mob =
-                    std::make_shared<Mob>("MobBlueSlime", 1);
+                if (worldArea->m_tiles[x][y]->m_mob) {
+                    
+                    continue;
+                }
+                
+                auto newMob = std::make_shared<Mob>("MobBlueSlime", 1);
+                
+                worldArea->m_mobPositions.insert({newMob, {x, y}});
+                
+                worldArea->m_tiles[x][y]->m_mob = newMob;
             }
         }
         
@@ -54,8 +62,16 @@ namespace JoD {
                     continue;
                 }
                 
-                worldArea->m_tiles[x][y]->m_mob =
-                    std::make_shared<Mob>("MobYellowSlime", 2);
+                if (worldArea->m_tiles[x][y]->m_mob) {
+                    
+                    continue;
+                }
+                
+                auto newMob = std::make_shared<Mob>("MobYellowSlime", 2);
+                
+                worldArea->m_mobPositions.insert({newMob, {x, y}});
+                
+                worldArea->m_tiles[x][y]->m_mob = newMob;
             }
         }
         
@@ -74,8 +90,16 @@ namespace JoD {
                     continue;
                 }
                 
-                worldArea->m_tiles[x][y]->m_mob =
-                    std::make_shared<Mob>("MobRedSlime", 3);
+                if (worldArea->m_tiles[x][y]->m_mob) {
+                    
+                    continue;
+                }
+                
+                auto newMob = std::make_shared<Mob>("MobRedSlime", 3);
+                
+                worldArea->m_mobPositions.insert({newMob, {x, y}});
+                
+                worldArea->m_tiles[x][y]->m_mob = newMob;
             }
         }
     }

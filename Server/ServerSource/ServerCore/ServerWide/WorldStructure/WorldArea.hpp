@@ -9,6 +9,7 @@
 namespace JoD {
     
     class Tile;
+    class Mob;
     
     class WorldArea {
         
@@ -16,5 +17,6 @@ namespace JoD {
         WorldArea();
         
         std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles;
+        std::map<std::shared_ptr<Mob>, Point> m_mobPositions;
     };
 }

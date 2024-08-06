@@ -14,10 +14,13 @@
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
+#include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 
 namespace JoD {
     
     void MobTargeting::Update() {
+        
+        auto player = m_userConnection.m_userGameInstanceEngine->m_player;
         
         auto tileHovering =
             std::static_pointer_cast<TileHovering>(
@@ -35,6 +38,8 @@ namespace JoD {
         
         if (mouseDown) {
             
+            player->m_destination = {-1, -1};
+            
             auto worldArea = _<World>().m_currentWorldArea;
             
             auto tile = worldArea->m_tiles[hoveredTile.x][hoveredTile.y];
@@ -42,6 +47,7 @@ namespace JoD {
             if (tile->m_mob) {
                 
                 m_targetedCreature = tile->m_mob;
+                
             }else {
                 
                 m_targetedCreature = nullptr;

@@ -69,9 +69,13 @@ namespace JoD {
                 
                 player->m_coordinate.x += normX;
                 player->m_coordinate.y += normY;
+                
+                if (dx || dy) {
+                    player->m_ticksLastMove = Now();
+                } else  {
+                    player->m_destination = {-1, -1};
+                }
             }
-            
-            player->m_ticksLastMove = Now();
         }
     }
 }

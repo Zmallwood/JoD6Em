@@ -9,6 +9,7 @@
 #include "Process/TileHovering.hpp"
 #include "Process/MouseMovement.hpp"
 #include "Process/MobTargeting.hpp"
+#include "Process/CombatMovement.hpp"
 #include "Process/WorldView/WorldView.hpp"
 #include "Theme0/Scenes/Main/Process/MainSceneComponents.hpp"
 
@@ -34,6 +35,10 @@ namespace JoD {
         m_components.insert(
             {MainSceneComponents::WorldView,
              std::make_shared<WorldView>(m_userConnection, *this) });
+                 
+        m_components.insert(
+            {MainSceneComponents::CombatMovement,
+             std::make_shared<CombatMovement>(m_userConnection, *this) });
     }
     
     void MainScene::UpdateDerived() {

@@ -16,6 +16,8 @@ namespace JoD {
         
         TileHovering,
         
-        WorldView
+        WorldView,
+        
+        CombatMovement
     };
 }
