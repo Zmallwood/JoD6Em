@@ -21,6 +21,8 @@ namespace JoD {
         
         GenerateObjectOfType(worldArea, "ObjectTree1", 300);
         GenerateObjectOfType(worldArea, "ObjectTree2", 300);
+        GenerateObjectOfType(worldArea, "ObjectBush1", 200);
+        GenerateObjectOfType(worldArea, "ObjectPinkFlower", 200);
     }
     
     namespace {
@@ -34,8 +36,9 @@ namespace JoD {
                 auto x = rand() % 100;
                 auto y = rand() % 100;
                 
-                if (worldArea->m_tiles[x][y]->m_ground !=
-                    Hash("GroundWater")) {
+                auto ground = worldArea->m_tiles[x][y]->m_ground;
+                
+                if (ground != Hash("GroundWater") && ground != Hash("GroundCobbleStone")) {
                     
                     worldArea->m_tiles[x][y]->m_object = Hash(objectName);
                 }

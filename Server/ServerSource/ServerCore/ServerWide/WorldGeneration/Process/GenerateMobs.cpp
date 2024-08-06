@@ -39,6 +39,11 @@ namespace JoD {
                     continue;
                 }
                 
+                if (worldArea->m_tiles[x][y]->m_ground == Hash("GroundWater")) {
+                    
+                    continue;
+                }
+                
                 auto newMob = std::make_shared<Mob>("MobBlueSlime", 1);
                 
                 worldArea->m_mobPositions.insert({newMob, {x, y}});
@@ -67,6 +72,11 @@ namespace JoD {
                     continue;
                 }
                 
+                if (worldArea->m_tiles[x][y]->m_ground == Hash("GroundWater")) {
+                    
+                    continue;
+                }
+                
                 auto newMob = std::make_shared<Mob>("MobYellowSlime", 2);
                 
                 worldArea->m_mobPositions.insert({newMob, {x, y}});
@@ -91,6 +101,11 @@ namespace JoD {
                 }
                 
                 if (worldArea->m_tiles[x][y]->m_mob) {
+                    
+                    continue;
+                }
+                
+                if (worldArea->m_tiles[x][y]->m_ground == Hash("GroundWater")) {
                     
                     continue;
                 }
