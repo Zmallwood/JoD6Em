@@ -34,7 +34,6 @@ namespace JoD {
         GLuint m_programID {0}; ///< Shader program ID.
         
       private:
-        
         ///
         /// Compiles provided shader source of specified type and outputs the compiled shared object.
         ///

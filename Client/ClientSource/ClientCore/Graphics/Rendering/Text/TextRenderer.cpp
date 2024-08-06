@@ -15,20 +15,23 @@ namespace JoD {
     
     TextRenderer::TextRenderer() {
         
+        // Required to call before using SDL_ttf.
         TTF_Init();
         
+        // Construct font path.
         auto fontPath = k_relFontsPath + "default_font.ttf";
         
+        // Create font objects for all sizes.
         auto font10 = std::make_shared<Font>(fontPath, 10);
         auto font20 = std::make_shared<Font>(fontPath, 20);
         auto font30 = std::make_shared<Font>(fontPath, 30);
         auto font50 = std::make_shared<Font>(fontPath, 50);
         
+        // Store the font objects by their sizes.
         m_fonts.insert({FontSizes::_10, font10});
         m_fonts.insert({FontSizes::_20, font20});
         m_fonts.insert({FontSizes::_30, font30});
         m_fonts.insert({FontSizes::_50, font50});
-        
     }
     
     void TextRenderer::RenderText(
@@ -38,100 +41,129 @@ namespace JoD {
         std::string &out_uniqueNameID,
         SizeF &out_dimensions) const {
         
+        // Get main font object.
         auto font = m_fonts.at(fontSize)->m_font;
         
+        // Check that its been created correctly.
         if (!font) {
             
             return;
         }
         
+        // Create SDL-type colors.
         auto colorSDL = ToSDLColor(color);
         auto outlineColorSDL = ToSDLColor(k_outlineColor);
         
+        // Render text outline onto surface.
         auto textOutlineSurface =
             TTF_RenderText_Blended(
                 m_fonts.at(fontSize)->m_outlineFont.get(),
                 text.data(), outlineColorSDL);
         
+        // Check that the surface was created correctly.
         if (!textOutlineSurface) {
             
             return;
         }
         
+        // Render main text onto surface.
         auto textSurface = TTF_RenderText_Blended(
             font.get(), text.data(),
             colorSDL);
         
+        // Check that the surface was created correctly.
         if (!textSurface) {
             
             return;
         }
         
+        // Start using 2D textures.
         glEnable(GL_TEXTURE_2D);
         
+        // Get image name for previously created blank image.
         auto uniqueNameID = m_uniqueNameIDs.at(rid);
         
+        // Get image ID for the preallocated blank image.
         auto imageID = _<ImageBank>().GetImage(uniqueNameID);
         
+        // Bind this image.
         glBindTexture(GL_TEXTURE_2D, imageID);
         
+        // Set necessary texture parameters.
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         
+        // Get dimensions of rendered outline surface.
         auto width = textOutlineSurface->w;
         auto height = textOutlineSurface->h;
         
+        // Create empty RGB surface.
         auto image = SDL_CreateRGBSurface(
             SDL_SWSURFACE, width, height, 32, 0x000000FF,
             0x0000FF00, 0x00FF0000, 0xFF000000);
         
         auto canvasSize = GetCanvasSize();
         
-        SDL_Rect textSourceRectangle;
-        SDL_Rect textOutlineSourceRectangle;
-        SDL_Rect textDestinationRectangle;
-        SDL_Rect textOutlineDestinationRectangle;
+        // Create boxes for source and destination
+        // for main and outline renderings.
+        SDL_Rect textSourceBox;
+        SDL_Rect textOutlineSourceBox;
+        SDL_Rect textDestBox;
+        SDL_Rect textOutlineDestBox;
         
-        textSourceRectangle =
+        // Source bounds for main font rendering.
+        textSourceBox =
             SDL_Rect{0, 0, textSurface ? textSurface->w : 0,
                      textSurface ? textSurface->h : 0};
         
-        textOutlineSourceRectangle =
+        // Source bounds for outline font rendering.
+        textOutlineSourceBox =
             SDL_Rect{0, 0, textOutlineSurface ? textOutlineSurface->w : 0,
                      textOutlineSurface ? textOutlineSurface->h : 0};
         
-        textDestinationRectangle = textSourceRectangle;
+        // Destination bounds for main font rendering.
+        textDestBox = textSourceBox;
+        textDestBox.x += Font::k_fontOutlineWidth;
+        textDestBox.w -= 2 * Font::k_fontOutlineWidth;
+        textDestBox.y += Font::k_fontOutlineWidth;
+        textDestBox.h -= 2 * Font::k_fontOutlineWidth;
         
-        textDestinationRectangle.x += Font::k_fontOutlineWidth;
-        textDestinationRectangle.w -= 2 * Font::k_fontOutlineWidth;
-        textDestinationRectangle.y += Font::k_fontOutlineWidth;
-        textDestinationRectangle.h -= 2 * Font::k_fontOutlineWidth;
+        // Destination bounds for outline font rendering.
+        textOutlineDestBox = textOutlineSourceBox;
+        textOutlineDestBox.y = 1;
         
-        textOutlineDestinationRectangle = textOutlineSourceRectangle;
-        textOutlineDestinationRectangle.y = 1;
-        
-        
+        // Blit outline font rendering onto final image surface.
         SDL_BlitSurface(
-            textOutlineSurface, &textOutlineSourceRectangle, image,
-            &textOutlineDestinationRectangle);
+            textOutlineSurface, &textOutlineSourceBox, image,
+            &textOutlineDestBox);
         
+        // Blit main font rendering onto final image surface.
         SDL_BlitSurface(
-            textSurface, &textSourceRectangle, image,
-            &textDestinationRectangle);
+            textSurface, &textSourceBox, image,
+            &textDestBox);
         
+        // Transform SDL surface pixels into GL texture.
         glTexImage2D(
             GL_TEXTURE_2D, 0, GL_RGBA, image->w, image->h, 0, GL_RGBA,
             GL_UNSIGNED_BYTE, image->pixels);
         
-        auto outWidth = textSurface ? static_cast<float>(textSurface->w) /
-                        canvasSize.w : 0;
+        // Get final rendered with.
+        auto outWidth =
+            textSurface ? static_cast<float>(textSurface->w) /
+            canvasSize.w : 0;
         
-        auto outHeight = textSurface ? static_cast<float>(textSurface->h) /
-                         canvasSize.h : 0;
+        // Get final rendered height.
+        auto outHeight =
+            textSurface ? static_cast<float>(textSurface->h) /
+            canvasSize.h : 0;
         
+        // Send the unique name ID to out-parameter.
         out_uniqueNameID = uniqueNameID;
+        
+        // Send the dimensions to out parameter.
         out_dimensions = {outWidth, outHeight};
         
+        // Free surfaces not needed anymore.
         SDL_FreeSurface(image);
         SDL_FreeSurface(textSurface);
         SDL_FreeSurface(textOutlineSurface);
@@ -139,20 +171,28 @@ namespace JoD {
     
     RID TextRenderer::NewString() {
         
+        // Number of strings been preallocated.
         static int s_idCounter = 0;
         
+        // Set this new strings ID.
         auto id = s_idCounter++;
         
+        // Produce an unique image name based on the ID.
         auto uniqueName = "RenderedImage" + std::to_string(id);
         
+        // Create a blank image with the above name.
         auto ridImage = _<ImageBank>().CreateBlankImage(uniqueName);
         
+        // Store the images ID and unique name.
         m_uniqueNameIDs.insert({ridImage, uniqueName});
         
+        // Allocate image resources from the ImageRenderer.
         auto ridGLResource = _<ImageRenderer>().NewImage();
         
+        // Store also the ImageRenderer resource ID.
         m_ridsGLResources.insert({ridImage, ridGLResource});
         
+        // Return the RID for the newly created blank image.
         return ridImage;
     }
     
