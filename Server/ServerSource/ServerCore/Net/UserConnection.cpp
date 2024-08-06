@@ -107,7 +107,7 @@ namespace JoD {
                 m_userGameInstanceEngine->Update();
                 m_userGameInstanceEngine->Render(ws);
                 
-                std::this_thread::sleep_for(std::chrono::milliseconds(140));
+                std::this_thread::sleep_for(std::chrono::milliseconds(70));
             }
         }
         catch (beast::system_error const &se){

@@ -25,7 +25,7 @@ namespace JoD {
             m_ticksLastUpdate = GetTicks();
         }
         
-        m_framesCount++;
+        m_framesCount++; 
     }
     
     void ClientFPSCounter::Render() const {

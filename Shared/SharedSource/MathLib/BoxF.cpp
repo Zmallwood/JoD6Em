@@ -1,8 +1,9 @@
 /*
- * RectF.cpp
+ * BoxF.cpp
  * 
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
+
 
 #include "BoxF.hpp"
 #include "GLBoxF.hpp"

@@ -25,5 +25,19 @@ namespace JoD {
                 worldArea->m_tiles[x][y]->m_object = Hash("ObjectTree1");
             }
         }
+        
+        auto numObjectsTree2s = 300;
+        
+        for (auto i = 0; i < numObjectsTree2s; i++) {
+            
+            auto x = rand() % 100;
+            auto y = rand() % 100;
+            
+            if (worldArea->m_tiles[x][y]->m_ground !=
+                Hash("GroundWater")) {
+                
+                worldArea->m_tiles[x][y]->m_object = Hash("ObjectTree2");
+            }
+        }
     }
 }
