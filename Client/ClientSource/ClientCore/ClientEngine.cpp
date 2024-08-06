@@ -85,9 +85,6 @@ namespace JoD {
             
             // Present canvas to users web browser.
             _<Graphics>().PresentCanvas();
-            
-            _<WebSocketServerConnection>().SendMessage(
-                MessageCodes::k_frameFinished);
         }
     }
 }

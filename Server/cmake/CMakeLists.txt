@@ -10,7 +10,9 @@ add_executable(JoDServer
     ${sources}
     ${sources_shared}
 )
-target_include_directories(JoDServer PRIVATE ../ServerSource ../../Shared/SharedSource /usr/include/python3.12/)
+#target_include_directories(JoDServer PRIVATE ../ServerSource ../../Shared/SharedSource /usr/include/python3.12/)
+target_include_directories(JoDServer PRIVATE ../ServerSource ../../Shared/SharedSource)
 
 target_precompile_headers(JoDServer PRIVATE ../ServerSource/StdAfx/StdAfx.hpp)
-target_link_libraries(JoDServer python3.12)
+#target_link_libraries(JoDServer python3.12)
+target_link_libraries(JoDServer)

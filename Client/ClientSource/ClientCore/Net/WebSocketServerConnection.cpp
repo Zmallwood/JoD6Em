@@ -152,8 +152,8 @@ namespace JoD {
             int data[3];
             
             data[0] = MessageCodes::k_mousePosition;
-            data[1] = (int)(mousePosition.x * net_constants::k_floatPrecision);
-            data[2] = (int)(mousePosition.y * net_constants::k_floatPrecision);
+            data[1] = (int)(mousePosition.x * NetConstants::k_floatPrecision);
+            data[2] = (int)(mousePosition.y * NetConstants::k_floatPrecision);
             
             // Try send packet and handle failure.
             if (auto result = emscripten_websocket_send_binary(
@@ -165,21 +165,6 @@ namespace JoD {
                     result;
             }
             
-            break;
-        }
-        case MessageCodes::k_frameFinished: {
-            
-            int data = MessageCodes::k_frameFinished;
-            
-            // Try send packet and handle failure.
-            if (auto result = emscripten_websocket_send_binary(
-                    m_webSocketEvent->socket,
-                    &data,
-                    sizeof(data))) {
-                
-                std::cout << "Failed to emscripten_websocket_send_binary(): " <<
-                    result;
-            }
             break;
         }
         }
@@ -354,7 +339,7 @@ namespace JoD {
             // decimals precision.
             auto result = ((b3 << 3 * 8) + (b2 << 2 * 8) + (b1 <<
                                                             8) + b0) /
-                          net_constants::k_floatPrecision;
+                          NetConstants::k_floatPrecision;
             
             return result;
         }

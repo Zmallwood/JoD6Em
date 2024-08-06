@@ -1,6 +1,6 @@
 /*
  * NetConfiguration.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -8,8 +8,12 @@
 
 namespace JoD {
     
-    namespace net_constants {
+    ///
+    /// Commonly used constants related to networking.
+    ///
+    namespace NetConstants {
         
-        constexpr float k_floatPrecision {10000.0f};
+        constexpr float k_floatPrecision ///< Determines number of decimals for a sent float over web sockets.
+        {10000.0f};
     }
 }

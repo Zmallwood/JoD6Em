@@ -56,8 +56,8 @@ namespace JoD {
                         MouseButtons::Right);
                 }else if (*data == MessageCodes::k_mousePosition) {
                     
-                    auto x = data[1] / net_constants::k_floatPrecision;
-                    auto y = data[2] / net_constants::k_floatPrecision;
+                    auto x = data[1] / NetConstants::k_floatPrecision;
+                    auto y = data[2] / NetConstants::k_floatPrecision;
                     m_userGameInstanceEngine->m_mousePosition = {x, y};
                 }else if (*data == MessageCodes::k_provideImageDimensions) {
                     
@@ -140,10 +140,10 @@ namespace JoD {
         
         auto messageCode = MessageCodes::k_drawImageInstr;
         
-        auto x = (int)(destination.x * net_constants::k_floatPrecision);
-        auto y = (int)(destination.y * net_constants::k_floatPrecision);
-        auto w = (int)(destination.w * net_constants::k_floatPrecision);
-        auto h = (int)(destination.h * net_constants::k_floatPrecision);
+        auto x = (int)(destination.x * NetConstants::k_floatPrecision);
+        auto y = (int)(destination.y * NetConstants::k_floatPrecision);
+        auto w = (int)(destination.w * NetConstants::k_floatPrecision);
+        auto h = (int)(destination.h * NetConstants::k_floatPrecision);
         
         auto data = std::vector<int>();
         
@@ -164,8 +164,8 @@ namespace JoD {
         
         auto messageCode = MessageCodes::k_drawStringInstr;
         
-        auto x = (int)(position.x * net_constants::k_floatPrecision);
-        auto y = (int)(position.y * net_constants::k_floatPrecision);
+        auto x = (int)(position.x * NetConstants::k_floatPrecision);
+        auto y = (int)(position.y * NetConstants::k_floatPrecision);
         
         auto data = std::vector<int>();
         
