@@ -5,6 +5,7 @@
  */
 
 #include "ServerCore/RunGameServer.hpp"
+#include <cstdlib>
 
 int main(int argc, char *argv[]) {
     
@@ -17,7 +18,7 @@ int main(int argc, char *argv[]) {
                       << "Example:\n"
                       << "    JoDServer 0.0.0.0 8080\n";
             
-            return 1;
+            return EXIT_FAILURE;
         }
         
         JoD::RunGameServer(argv);
@@ -27,7 +28,7 @@ int main(int argc, char *argv[]) {
         std::cout << "Error: " << e.what() << std::endl;
         
         // An exception occured, exit game.
-        return 1;
+        return EXIT_FAILURE;
     }
-    return 0;
+    return EXIT_SUCCESS;
 }

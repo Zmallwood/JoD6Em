@@ -13,5 +13,5 @@ namespace JoD {
     
     void RenderObjects(
         UserConnection& userConnection, WebSocket &webSocket,
-        std::shared_ptr<Tile> tile, RectF tileBounds);
+        std::shared_ptr<Tile> tile, BoxF tileBounds);
 }

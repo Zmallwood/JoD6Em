@@ -1,5 +1,5 @@
 /*
- * ImageDimensions.hpp
+ * ImageEntry.hpp
  *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
@@ -8,9 +8,9 @@
 
 namespace JoD {
     
-    class ImageDimensions {
+    struct ImageEntry {
         
-      public:
-        std::map<int, Size> m_dimensions;
+        GLuint id {0};
+        Size dimensions;
     };
 }

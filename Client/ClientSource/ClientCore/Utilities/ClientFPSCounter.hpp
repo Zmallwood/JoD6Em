@@ -30,12 +30,9 @@ namespace JoD {
         void Render() const;
         
       private:
-        RID m_rid;
-        
-        int m_framesCount {0};
-        
-        int m_fps {0};
-        
-        int m_ticksLastUpdate {0};
+        RID m_rid {0}; ///< RID used to render the FPS text.
+        int m_framesCount {0}; ///< Number of frames counted since last FPS update.
+        int m_fps {0}; ///< Last calculated FPS value.
+        int m_ticksLastUpdate {0}; ///< Ticks at the time of last FPS update.
     };
 }

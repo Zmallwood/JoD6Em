@@ -5,14 +5,13 @@
  */
 
 #include "ImageBank.hpp"
-#include <GLES2/gl2.h>
 
 namespace JoD {
     
     namespace {
         
         // Load single image from absolute file path.
-        std::pair<GLuint, Size> LoadSingleImage(std::string_view absFilePath);
+        ImageEntry LoadSingleImage(std::string_view absFilePath);
         
         // Load pure image data from file name.
         SDL_Surface *LoadImageData(const char *fileName);
@@ -30,7 +29,7 @@ namespace JoD {
         for (const auto &image : m_images) {
             
             // Free every allocated image resource.
-            glDeleteTextures(1, &image.second);
+            glDeleteTextures(1, &image.second.id);
         }
     }
     
@@ -49,7 +48,7 @@ namespace JoD {
             // the hash of the specified name, then, return this image ID.
             if (image.first == imageNameHash) {
                 
-                return image.second;
+                return image.second.id;
             }
         }
         
@@ -66,20 +65,19 @@ namespace JoD {
         
         // Insert new image entry with image name hash as key
         // and the new ID as value.
-        m_images.insert({Hash(uniqueImageName), texID});
+        m_images.insert({Hash(uniqueImageName), {texID, {0, 0}}});
         
         // Return the ID of the newly created blank image resource.
         return texID;
     }
     
     Size ImageBank::GetImageDimensions(int imageNameHash) const {
-        if (m_imageDimensions.contains(imageNameHash)) {
+        
+        if (m_images.contains(imageNameHash)) {
             
-            std::cout << "Find dimensions\n";
-            return m_imageDimensions.at(imageNameHash);
+            return m_images.at(imageNameHash).dimensions;
         }
         
-        std::cout << "Dont find dimensions\n";
         return {0, 0};
     }
     
@@ -101,21 +99,20 @@ namespace JoD {
             }
             
             // Load the current file as an image resource.
-            auto imageData = LoadSingleImage(absPath);
+            auto imageEntry = LoadSingleImage(absPath);
             
             // Extract its pure name without path or extension.
             auto imageName = GetFilenameNoExtension(absPath);
             
             // Insert a new entry into the images storage, with the
             // image name hash as key and the resource ID as value.
-            m_images.insert({Hash(imageName), imageData.first});
-            m_imageDimensions.insert({Hash(imageName), imageData.second});
+            m_images.insert({Hash(imageName), imageEntry});
         }
     }
     
     namespace {
         
-        std::pair<GLuint, Size> LoadSingleImage(std::string_view absFilePath) {
+        ImageEntry LoadSingleImage(std::string_view absFilePath) {
             
             // Declare variable to hold the resulting ID for the loaded image file.
             GLuint texID;

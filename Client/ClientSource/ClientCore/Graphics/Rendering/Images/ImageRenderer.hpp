@@ -48,7 +48,7 @@ namespace JoD {
         void DrawImage(
             RID rid,
             std::string_view imageName,
-            const RectF &destination,
+            const BoxF &destination,
             bool repeatTexture = false,
             SizeF textureFillAmount = {1.0f, 1.0f},
             ColorF color = {1.0f, 1.0f, 1.0f}) const;
@@ -66,14 +66,9 @@ namespace JoD {
         void DrawImage(
             RID rid,
             int imageNameHash,
-            const RectF &destination,
+            const BoxF &destination,
             bool repeatTexture = false,
             SizeF textureFillAmount = {1.0f, 1.0f},
             ColorF color = {1.0f, 1.0f, 1.0f}) const;
-        
-      private:
-        std::vector<float> m_defaultColorsWhite;
-        
-        std::vector<float> m_defaultUVs;
     };
 }

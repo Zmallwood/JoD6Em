@@ -8,12 +8,15 @@
 
 namespace JoD {
     
+    ///
+    /// Types of instructions that can be recieved from the server.
+    ///
     enum class InstructionTypes {
         
-        None,
+        None, ///< No instruction.
         
-        Image,
+        DrawImage, ///< Draw an image to the canvas.
         
-        Text
+        DrawText ///< Draw text to the canvas.
     };
 }

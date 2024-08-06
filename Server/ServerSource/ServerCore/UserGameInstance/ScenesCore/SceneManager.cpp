@@ -26,7 +26,7 @@ namespace JoD {
         
         AddScene("MainScene", std::make_shared<MainScene>(m_userConnection));
         
-        GoTo("IntroScene");
+        GoToScene("IntroScene");
     }
     
     void SceneManager::AddScene(std::string_view sceneName,
@@ -53,7 +53,7 @@ namespace JoD {
         }
     }
     
-    void SceneManager::GoTo(std::string_view scene_name) {
+    void SceneManager::GoToScene(std::string_view scene_name) {
         
         m_currentScene = Hash(scene_name);
     }

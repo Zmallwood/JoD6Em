@@ -14,7 +14,7 @@ namespace JoD {
     void RenderTileSymbols(
         MainScene& mainScene, UserConnection& userConnection,
         WebSocket &webSocket,
-        Point coordinate, RectF tileBounds) {
+        Point coordinate, BoxF tileBounds) {
         
         auto tileHovering =
             std::static_pointer_cast<TileHovering>(

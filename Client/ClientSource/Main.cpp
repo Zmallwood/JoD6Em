@@ -5,6 +5,7 @@
  */
 
 #include "ClientCore/RunNewClientInstance.hpp"
+#include <cstdlib>
 
 int main(int argc, char *argv[]) { 
     
@@ -18,9 +19,9 @@ int main(int argc, char *argv[]) {
         std::cout << "Error: " << e.what() << std::endl;
         
         // An exception occured, exit game.
-        return 1;
+        return EXIT_FAILURE;
     } 
     
     // No exceptions occured.
-    return 0;
+    return EXIT_SUCCESS;
 }  

@@ -45,7 +45,10 @@ namespace JoD {
     void WebSocketServerConnection::Connect() const {
         
         // Check support exists.
-        if (!emscripten_websocket_is_supported()) return;
+        if (!emscripten_websocket_is_supported()) {
+            
+            return;
+        }
         
         // Create address to connect to.
         auto serverAddress = "ws://" + k_host + ":" + std::to_string(k_port);
@@ -66,7 +69,7 @@ namespace JoD {
     
     
     void WebSocketServerConnection::SendMessage(int *data, int length) const {
-        std::cout << "SEND\n";
+        
         // Try send packet and handle failure.
         if (auto result =
                 emscripten_websocket_send_binary(
@@ -89,18 +92,18 @@ namespace JoD {
             // Get canvas size in pixels.
             auto canvasSize = GetCanvasSize();
             
-            int msg[3];
+            int data[3];
             
             // Fill data with message type and canvas size dimensions.
-            msg[0] = MessageCodes::k_canvasSize;
-            msg[1] = canvasSize.w;
-            msg[2] = canvasSize.h;
+            data[0] = MessageCodes::k_canvasSize;
+            data[1] = canvasSize.w;
+            data[2] = canvasSize.h;
             
             // Try send packet and handle failure.
             if (auto result =
                     emscripten_websocket_send_binary(
                         m_webSocketEvent->socket,
-                        msg, 3 * sizeof(int))) {
+                        data, 3 * sizeof(int))) {
                 
                 std::cout << "Failed to emscripten_websocket_send_binary(): " <<
                     result;
@@ -111,13 +114,13 @@ namespace JoD {
         case MessageCodes::k_leftMouseDown: {
             
             // Message contains only message code.
-            int msg = MessageCodes::k_leftMouseDown;
+            int data = MessageCodes::k_leftMouseDown;
             
             // Try send packet and handle failure.
             if (auto result = emscripten_websocket_send_binary(
                     m_webSocketEvent->socket,
-                    &msg,
-                    sizeof(msg))) {
+                    &data,
+                    sizeof(data))) {
                 
                 std::cout << "Failed to emscripten_websocket_send_binary(): " <<
                     result;
@@ -128,13 +131,13 @@ namespace JoD {
         case MessageCodes::k_rightMouseDown: {
             
             // Message contains only message code.
-            int msg = MessageCodes::k_rightMouseDown;
+            int data = MessageCodes::k_rightMouseDown;
             
             // Try send packet and handle failure.
             if (auto result = emscripten_websocket_send_binary(
                     m_webSocketEvent->socket,
-                    &msg,
-                    sizeof(msg))) {
+                    &data,
+                    sizeof(data))) {
                 
                 std::cout << "Failed to emscripten_websocket_send_binary(): " <<
                     result;
@@ -146,17 +149,17 @@ namespace JoD {
             
             auto mousePosition = GetMousePosition();
             
-            int msg[3];
+            int data[3];
             
-            msg[0] = MessageCodes::k_mousePosition;
-            msg[1] = (int)(mousePosition.x * net_constants::k_floatPrecision);
-            msg[2] = (int)(mousePosition.y * net_constants::k_floatPrecision);
+            data[0] = MessageCodes::k_mousePosition;
+            data[1] = (int)(mousePosition.x * net_constants::k_floatPrecision);
+            data[2] = (int)(mousePosition.y * net_constants::k_floatPrecision);
             
             // Try send packet and handle failure.
             if (auto result = emscripten_websocket_send_binary(
                     m_webSocketEvent->socket,
-                    &msg,
-                    sizeof(msg))) {
+                    &data,
+                    sizeof(data))) {
                 
                 std::cout << "Failed to emscripten_websocket_send_binary(): " <<
                     result;
@@ -166,13 +169,13 @@ namespace JoD {
         }
         case MessageCodes::k_frameFinished: {
             
-            int msg = MessageCodes::k_frameFinished;
+            int data = MessageCodes::k_frameFinished;
             
             // Try send packet and handle failure.
             if (auto result = emscripten_websocket_send_binary(
                     m_webSocketEvent->socket,
-                    &msg,
-                    sizeof(msg))) {
+                    &data,
+                    sizeof(data))) {
                 
                 std::cout << "Failed to emscripten_websocket_send_binary(): " <<
                     result;
@@ -272,14 +275,14 @@ namespace JoD {
                 auto h = ReadFourBytesAsFloat(bytes + 20);
                 
                 // Add the complete instruction.
-                _<RenderInstrutionsManager>().AddImageDrawInstruction(
+                _<RenderInstructionsManager>().AddImageDrawInstruction(
                     imageNameHash, {x, y, w, h});
                 
                 break;
             }
             case MessageCodes::k_applyBuffer: {
                 
-                _<RenderInstrutionsManager>().ApplyBuffer(); // Apply the buffered render instructions.
+                _<RenderInstructionsManager>().ApplyBuffer(); // Apply the buffered render instructions.
                 
                 break;
             }
@@ -292,11 +295,12 @@ namespace JoD {
                 std::string str;
                 
                 for (auto i = 0; i < length; i++) {
+                    
                     auto c = ReadFourBytesAsInt(bytes + 16 + i*4);
                     str += (char)c;
                 }
                 
-                _<RenderInstrutionsManager>().AddTextDrawInstruction(
+                _<RenderInstructionsManager>().AddTextDrawInstruction(
                     str,
                     {x,y});
                 
@@ -309,17 +313,15 @@ namespace JoD {
                 auto dimensions =
                     _<ImageBank>().GetImageDimensions(imageNameHash);
                 
-                int msg[4];
+                int data[4];
                 
                 // Fill data with message type and canvas size dimensions.
-                msg[0] = MessageCodes::k_provideImageDimensions;
-                msg[1] = imageNameHash;
-                msg[2] = dimensions.w;
-                msg[3] = dimensions.h;
+                data[0] = MessageCodes::k_provideImageDimensions;
+                data[1] = imageNameHash;
+                data[2] = dimensions.w;
+                data[3] = dimensions.h;
                 
-                std::cout << "SEND\n";
-                
-                _<WebSocketServerConnection>().SendMessage(msg, 4);
+                _<WebSocketServerConnection>().SendMessage(data, 4);
                 
                 break;
             }

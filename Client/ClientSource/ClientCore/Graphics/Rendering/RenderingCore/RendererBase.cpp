@@ -9,14 +9,21 @@
 
 namespace JoD {
     
+    namespace {
+        const auto k_numFloatsPerEntry // Predefined constants of number of floats for different entry types.
+        {std::map<BufferTypes, int> {
+             {BufferTypes::Indices, 1},
+             {BufferTypes::Positions2D, 2},
+             {BufferTypes::Positions3D, 3},
+             {BufferTypes::Colors, 4},
+             {BufferTypes::UVs, 2},
+             {BufferTypes::Normals, 3},
+             {BufferTypes::BoneIDs, 4},
+             {BufferTypes::Weights, 4}}};
+    }
+    
     RendererBase::RendererBase()
-        : m_shaderProgram(std::make_shared<ShaderProgram>()),
-        m_VAOIDs(std::make_shared<std::vector<GLuint>>()),
-        m_VBOIDs(
-            std::make_shared<
-                std::map<
-                    BufferTypes,
-                    std::shared_ptr<std::map<GLuint, GLuint>>>>()){
+        : m_shaderProgram(std::make_shared<ShaderProgram>()){
         
     }
     
@@ -27,7 +34,7 @@ namespace JoD {
         glGenVertexArraysOES(1, &vaoID);
         
         // Store newly created VAO id.
-        m_VAOIDs->push_back(vaoID);
+        m_VAOIDs.push_back(vaoID);
         
         return vaoID;
     }
@@ -41,14 +48,14 @@ namespace JoD {
         glGenBuffers(1, &buffID);
         
         // If necessary storing structures not created yet, create them.
-        if (!m_VBOIDs->contains(buffType)) {
+        if (!m_VBOIDs.contains(buffType)) {
             
-            m_VBOIDs->insert(
+            m_VBOIDs.insert(
                 {buffType, std::make_shared<std::map<GLuint, GLuint>>()});
         }
         
         // Store newly created VBO id, with the VAO id as one of keys.
-        (*(*m_VBOIDs)[buffType])[vaoID] = buffID;
+        (*(m_VBOIDs)[buffType])[vaoID] = buffID;
         
         // Return ID for newly created Vertex Buffer Object.
         return buffID;
@@ -194,7 +201,7 @@ namespace JoD {
         GLuint VAOID) const {
         
         // Returns the buffer of provided type and VAO id.
-        return m_VBOIDs->at(buffType)->at(VAOID);
+        return m_VBOIDs.at(buffType)->at(VAOID);
     }
     
     void RendererBase::UpdateIndicesData(
@@ -309,7 +316,7 @@ namespace JoD {
     void RendererBase::CleanupBase() const {
         
         // Loop through all keys of buffer types.
-        for (auto &buff_type : *m_VBOIDs) {
+        for (auto &buff_type : m_VBOIDs) {
             
             // Loop through all keys of VAO ids.
             for (auto &buffer_entry : (*buff_type.second)) {
@@ -320,7 +327,7 @@ namespace JoD {
         }
         
         // Loop through all VAO ids.
-        for (auto vao_id : *m_VAOIDs) {
+        for (auto vao_id : m_VAOIDs) {
             
             // And delete them.
             glDeleteVertexArraysOES(1, &vao_id);

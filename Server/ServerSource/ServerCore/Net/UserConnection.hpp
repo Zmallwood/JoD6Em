@@ -9,47 +9,89 @@
 namespace JoD {
     
     class UserGameInstanceEngine;
-    class Player;
-    class Cursor;
     
+    ///
+    /// Created for each user that connects to the web socket server.
+    ///
     class UserConnection {
         
       public:
+        ///
+        /// Starts a web socket loop thread for the user.
+        ///
+        /// @param socket Socket object obtained from web
+        ///               socket server and associated with the user.
+        ///
         UserConnection(boost::asio::ip::tcp::socket socket);
         
+        ///
+        /// Send an image drawing instruction to the user.
+        ///
+        /// @param webSocket Socket object.
+        /// @param imageName Name of image to draw.
+        /// @param destination Destination to draw the image at.
+        ///
         void SendImageDrawInstruction(
-            WebSocket &ws,
+            WebSocket &webSocket,
             std::string_view imageName,
-            RectF destination) const;
+            BoxF destination) const;
         
+        ///
+        /// Send an image drawing instruction to the user.
+        ///
+        /// @param webSocket Socket object.
+        /// @param imageNamehash Hash code of image name to draw.
+        /// @param destination Destination to draw the image at.
+        ///
         void SendImageDrawInstruction(
-            WebSocket &ws,
+            WebSocket &webSocket,
             int imageNamehash,
-            RectF destination) const;
+            BoxF destination) const;
         
+        ///
+        /// Send a text drawing instruction to the user.
+        ///
+        /// @param webSocket Socket object.
+        /// @param text Text to draw.
+        /// @param position Position to draw the text at.
+        ///
         void SendTextDrawInstruction(
-            WebSocket &ws,
+            WebSocket &webSocket,
             std::string_view text, PointF position) const;
         
-        void SendPresentCanvasInstruction(WebSocket &ws) const;
+        ///
+        /// Send instruction to present canvas to the user.
+        ///
+        /// @param webSocket Socket object.
+        ///
+        void SendPresentCanvasInstruction(WebSocket &webSocket) const;
         
-        void SendRequestImageDimensions(WebSocket &ws, int imageNameHash) const;
+        ///
+        /// Send request to user to retrieve dimensions for an image.
+        ///
+        /// @param webSocket Socket object.
+        /// @param imageNameHash Hash code of image name to get dimensions for.
+        ///
+        void SendRequestImageDimensions(
+            WebSocket &webSocket,
+            int imageNameHash) const;
         
-        float GetAspectRatio() const;
-        
-        std::shared_ptr<Player> m_player;
-        
-        PointF m_mousePosition;
-        
-        std::shared_ptr<UserGameInstanceEngine> m_userGameInstanceEngine;
-        
-        std::shared_ptr<Cursor> m_cursor;
+        std::shared_ptr<UserGameInstanceEngine>
+        m_userGameInstanceEngine; ///< Engine running for this specific user.
         
       private:
+        ///
+        /// Running game loop for user.
+        ///
+        /// @param socket Socket object.
+        ///
         void DoSession(boost::asio::ip::tcp::socket socket);
         
-        void DoSessionNested(WebSocket* ws);
-        
-        Size m_canvasSize;
+        ///
+        /// Running loop for reading incoming web socket messages and handle them.
+        /// 
+        /// @param webSocket Socket object.
+        ///
+        void DoSessionNested(WebSocket* webSocket);
     };
 }

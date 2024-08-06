@@ -6,20 +6,20 @@
 
 #pragma once
 
-#include "ImageDrawInstruction.hpp"
+#include "DrawInstruction.hpp"
 
 namespace JoD {
     
     ///
     /// Holds latest set of rendering instructions and executes them.
     ///
-    class RenderInstrutionsManager {
+    class RenderInstructionsManager {
         
       public:
         ///
         /// Construct a new Render Instructions Manager object.
         ///
-        RenderInstrutionsManager();
+        RenderInstructionsManager();
         
         ///
         /// Add new image draw instruction to group, called on request from server.
@@ -27,7 +27,7 @@ namespace JoD {
         /// @param imageNameHash Hash code of image name to draw.
         /// @param destination Destination rectangle to draw the image at.
         ///
-        void AddImageDrawInstruction(int imageNameHash, RectF destination);
+        void AddImageDrawInstruction(int imageNameHash, BoxF destination);
         
         void AddTextDrawInstruction(std::string_view text, PointF position);
         
@@ -43,30 +43,20 @@ namespace JoD {
         void ExecuteInstructions() const;
         
       private:
-        std::vector<ImageDrawInstruction>
-        m_imageDrawInstructions; ///< Holds the image draw instructions that are executed each call to DrawCanvas().
+        std::vector<DrawInstruction>
+        m_drawInstructionsBuffer1; ///< One of two instruction buffers.
+        std::vector<DrawInstruction>
+        m_drawInstructionsBuffer2; ///< One of two instruction buffers.
+        std::vector<DrawInstruction>* m_activeBuffer {
+            &m_drawInstructionsBuffer1}; ///< Pointer to active buffer which instructions are executed each frame.
+        std::vector<DrawInstruction>* m_inactiveBuffer {
+            &m_drawInstructionsBuffer2}; ///< Pointer to inactive buffer which is being populated with instructions,
+        std::vector<RID> m_ridsImages; ///< A set of preallocated RIDs used for drawing images, created in the constructor.
+        std::vector<RID> m_ridsText; ///< A set of preallocated RIDs used for drawing text, created in the constructor
+        int m_ridCounterImages {0}; ///< Hold index for a free to use RID element in m_rids.
+        int m_ridCounterText {0}; ///< Hold index for a free to use RID element in m_ridsText.
         
-        std::vector<ImageDrawInstruction>
-        m_imageDrawInstructionsBuffer1; ///< Holds the buffer for the next set of draw of instructions.
-        
-        std::vector<ImageDrawInstruction>
-        m_imageDrawInstructionsBuffer2;
-        
-        std::vector<ImageDrawInstruction>* m_activeBuffer {
-            &m_imageDrawInstructionsBuffer1};
-        std::vector<ImageDrawInstruction>* m_inactiveBuffer {
-            &m_imageDrawInstructionsBuffer2};
-        
-        std::vector<RID> m_rids; ///< A set of preallocated RIDs used for drawing images, created in the constructor.
-        
-        std::vector<RID> m_ridsText;
-        
-        int m_ridCounterImages {0};
-        
-        int m_ridCounterText = {0};
-        
-        const int k_maxNumDrawInstructions {1000}; ///< No more images than this value can be rendererd in a single game frame.
-        
-        const int k_maxNumDrawTextInstructions {100}; ///< No more images than this value can be rendererd in a single game frame.
+        const int k_maxNumImageDrawInstructions {1000}; ///< No more images than this value can be rendererd in a single game frame.
+        const int k_maxNumTextDrawInstructions {100}; ///< No more images than this value can be rendererd in a single game frame.
     };
 }

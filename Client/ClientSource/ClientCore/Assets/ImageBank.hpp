@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "ImageEntry.hpp"
+
 namespace JoD {
     
     ///
@@ -49,14 +51,21 @@ namespace JoD {
         ///
         GLuint CreateBlankImage(std::string_view uniqueImageName);
         
+        ///
+        ///  Get image dimensions for provided image name hash code.
+        /// 
+        /// @param imageNameHash Image name hash code to get dimensions for.
+        /// @return Size Image dimensions.
+        ///
         Size GetImageDimensions(int imageNameHash) const;
         
       private:
+        ///
+        ///  Loads all images from file system and storesboth the images and their dimensions.
+        ///
         void LoadImages();
         
-        std::map<int, GLuint> m_images; ///< Stores images by image name hash code.
-        
-        std::map<int, Size> m_imageDimensions;
+        std::map<int, ImageEntry> m_images; ///< Stores images as entries by image name hash code.
         
         const std::string k_relImagesPath{"Resources/Images"}; ///< Path to images location.
     };

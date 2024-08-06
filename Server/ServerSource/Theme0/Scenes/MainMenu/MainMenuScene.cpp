@@ -20,7 +20,7 @@ namespace JoD {
             IsPressedPickResult()) {
             
             m_userConnection.m_userGameInstanceEngine->m_sceneManager->
-            GoTo("MainScene");
+            GoToScene("MainScene");
         }
     }
     

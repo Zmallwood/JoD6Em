@@ -36,7 +36,7 @@ namespace JoD {
         ColorF color,
         bool centerAlign, FontSizes fontSize,
         std::string &out_uniqueNameID,
-        SizeF &out_size) const {
+        SizeF &out_dimensions) const {
         
         auto font = m_fonts.at(fontSize)->m_font;
         
@@ -130,7 +130,7 @@ namespace JoD {
                          canvasSize.h : 0;
         
         out_uniqueNameID = uniqueNameID;
-        out_size = {outWidth, outHeight};
+        out_dimensions = {outWidth, outHeight};
         
         SDL_FreeSurface(image);
         SDL_FreeSurface(textSurface);
@@ -171,7 +171,7 @@ namespace JoD {
         
         auto canvasSize = GetCanvasSize();
         
-        auto rectangle = RectF{position.x, position.y, size.w, size.h};
+        auto rectangle = BoxF{position.x, position.y, size.w, size.h};
         
         int textWidth;
         int textHeight;

@@ -12,7 +12,7 @@ namespace JoD {
     /// Rectangle object with float dimensions, ment to represent a rectangle for OpenGLs
     /// default coordinate system.
     ///
-    struct GLRectF {
+    struct GLBoxF {
         
         float x {0.0f}; ///< X coordinate in float type.
         

@@ -79,7 +79,7 @@ namespace JoD {
             _<Graphics>().ClearCanvas();
             
             // Draw canvas in its current state (current set of drawing instructions).
-            _<RenderInstrutionsManager>().ExecuteInstructions();
+            _<RenderInstructionsManager>().ExecuteInstructions();
             
             _<ClientFPSCounter>().Render();
             

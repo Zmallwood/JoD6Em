@@ -20,7 +20,7 @@ namespace JoD {
         
         void RenderCurrentScene(WebSocket &ws) const;
         
-        void GoTo(std::string_view sceneName);
+        void GoToScene(std::string_view sceneName);
         
       private:
         void AddScene(std::string_view sceneName,

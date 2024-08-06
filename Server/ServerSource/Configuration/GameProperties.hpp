@@ -8,9 +8,12 @@
 
 namespace JoD {
     
+    ///
+    /// Holds game configuration parameters.
+    ///
     class GameProperties {
         
       public:
-        const int k_numGridRows {21};
+        const int k_numGridRows {21}; ///< Number of rows in tile grid in world view.
     };
 }

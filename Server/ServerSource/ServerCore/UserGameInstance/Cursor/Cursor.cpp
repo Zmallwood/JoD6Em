@@ -6,6 +6,7 @@
 
 #include "Cursor.hpp"
 #include "ServerCore/Net/UserConnection.hpp"
+#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
 
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;
@@ -20,18 +21,18 @@ namespace JoD {
     void Cursor::Render(WebSocket& ws) const {
         
         // Get current mouse position.
-        auto mousePosition = m_userConnection.m_mousePosition;
+        auto mousePosition = m_userConnection.m_userGameInstanceEngine->m_mousePosition;
         
         // Obtain cursor dimensions.
         auto cursorWidth = k_cursorSize;
-        auto cursorHeight = k_cursorSize*m_userConnection.GetAspectRatio();
+        auto cursorHeight = k_cursorSize*m_userConnection.m_userGameInstanceEngine->GetAspectRatio();
         
         // Calculate cursor position.
         auto cursorX = mousePosition.x - cursorWidth / 2;
         auto cursorY = mousePosition.y - cursorHeight / 2;
         
         // Create render destination rectangle.
-        auto cursorDestination = RectF{
+        auto cursorDestination = BoxF{
             cursorX, cursorY, cursorWidth,
             cursorHeight};
         

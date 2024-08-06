@@ -8,20 +8,20 @@
 
 namespace JoD {
     
-    class GLRectF;
+    class GLBoxF;
     
     ///
     /// Rectangle object with float dimensions, ment to represent a rectangle in standard
     /// screen coordinates, with 0,0 being in top left corner and 1,1 being in bottom right
     /// corner.
     ///
-    struct RectF {
+    struct BoxF {
         ///
         /// Convert this objects values to format of OpenGLs default coordinate system.
         ///
         /// @return GLRectF Converted resulting object.
         ///
-        GLRectF ToGLRectF() const;
+        GLBoxF ToGLBoxF() const;
         
         float x {0.0f}; ///< X coordinate in float type.
         

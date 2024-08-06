@@ -14,19 +14,14 @@ namespace JoD {
     
     namespace {
         
-        // Location of position variable in vertex shader.
-        constexpr int k_locPosition{0};
-        
-        // Location of color variable in vertex shader.
-        constexpr int k_locColor{1};
-        
-        // Location of UV variable in vertex shader.
-        constexpr int k_locUV{2};
-        
-        // Location of pixelation effect switch variable in vertex shader.
-        int m_locNoPixelEffect{-1};
-        
+        constexpr int k_locPosition{0}; // Location of position variable in vertex shader.
+        constexpr int k_locColor{1}; // Location of color variable in vertex shader.
+        constexpr int k_locUV{2}; // Location of UV variable in vertex shader.
+        int locNoPixelEffect{-1}; // Location of pixelation effect switch variable in vertex shader.
         std::vector<int> defaultIndices;
+        std::vector<float> k_defaultColorsWhite = std::vector<float>(16, 1.0f); ///< A set of floats representing the default white image color.
+        std::vector<float> k_defaultUVs ///< A set of floats representing a default UV coordinates layout for an image.
+            = {0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f};
     }
     
     ImageRenderer::ImageRenderer(){
@@ -42,33 +37,6 @@ namespace JoD {
         defaultIndices = std::vector<int>(
             MathConstants::k_numVerticesInRectangle);
         std::iota(std::begin(defaultIndices), std::end(defaultIndices), 0);
-        
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        m_defaultColorsWhite.push_back(1.0f);
-        
-        // Set vertices texture coordinates.
-        m_defaultUVs.push_back(0.0f);
-        m_defaultUVs.push_back(1.0f);
-        m_defaultUVs.push_back(0.0f);
-        m_defaultUVs.push_back(0.0f);
-        m_defaultUVs.push_back(1.0f);
-        m_defaultUVs.push_back(0.0f);
-        m_defaultUVs.push_back(1.0f);
-        m_defaultUVs.push_back(1.0f);
     }
     
     ImageRenderer::~ImageRenderer(){
@@ -122,13 +90,13 @@ namespace JoD {
     void ImageRenderer::DrawImage(
         RID rid,
         int imageNameHash,
-        const RectF &destination,
+        const BoxF &destination,
         bool repeatTexture,
         SizeF textureFillAmount,
         ColorF color) const {
         
         // Convert destination to GL coordinate system.
-        auto glRect = destination.ToGLRectF();
+        auto glRect = destination.ToGLBoxF();
         
         // No need for depth testing in a 2D plane.
         glDisable(GL_DEPTH_TEST);
@@ -191,7 +159,7 @@ namespace JoD {
             && color.b == 1.0f && color.a == 1.0f) {
             
             UpdateData(
-                colorBuffID, m_defaultColorsWhite, BufferTypes::Colors,
+                colorBuffID, k_defaultColorsWhite, BufferTypes::Colors,
                 k_locColor);
         }else {
             
@@ -211,7 +179,7 @@ namespace JoD {
         }
         if (textureFillAmount.w == 1.0f && textureFillAmount.h == 1.0f) {
             
-            UpdateData(uvBuffID, m_defaultUVs, BufferTypes::UVs, k_locUV);
+            UpdateData(uvBuffID, k_defaultUVs, BufferTypes::UVs, k_locUV);
         } else {
             
             std::vector<float> uvs;
@@ -240,7 +208,7 @@ namespace JoD {
     void ImageRenderer::DrawImage(
         RID rid,
         std::string_view imageName,
-        const RectF &destination,
+        const BoxF &destination,
         bool repeatTexture,
         SizeF textureFillAmount,
         ColorF color) const {

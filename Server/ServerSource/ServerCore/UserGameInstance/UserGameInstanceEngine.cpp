@@ -11,6 +11,7 @@
 #include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
 #include "ScenesCore/SceneManager.hpp"
 #include "ServerFPSCounter.hpp"
+#include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;
@@ -22,7 +23,9 @@ namespace JoD {
         : m_userConnection(userConnection),
         m_sceneManager(std::make_shared<SceneManager>(userConnection)),
         m_mouseInput(std::make_shared<MouseInput>()),
-        m_serverFPSCounter(std::make_shared<ServerFPSCounter>(userConnection)){
+        m_serverFPSCounter(std::make_shared<ServerFPSCounter>(userConnection)),
+        m_player(std::make_shared<Player>()),
+        m_cursor(std::make_shared<Cursor>(userConnection)){
         
     }
     
@@ -39,8 +42,13 @@ namespace JoD {
         
         m_serverFPSCounter->Render(ws);
         
-        m_userConnection.m_cursor->Render(ws);
+        m_cursor->Render(ws);
         
         m_userConnection.SendPresentCanvasInstruction(ws);
+    }
+    
+    float UserGameInstanceEngine::GetAspectRatio() const {
+        
+        return static_cast<float>(m_canvasSize.w) / m_canvasSize.h;
     }
 }

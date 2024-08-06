@@ -17,20 +17,21 @@
 #include "Process/RenderObjects.hpp"
 #include "Process/RenderMobs.hpp"
 #include "Process/RenderPlayer.hpp"
+#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
 
 namespace JoD {
     
     void WorldView::Render(WebSocket &webSocket) const {
         
         auto tileSize =
-            CalculateTileSize(m_userConnection.GetAspectRatio());
+            CalculateTileSize(m_userConnection.m_userGameInstanceEngine->GetAspectRatio());
         
         auto playerCoordinate =
-            m_userConnection.m_player->m_coordinate;
+            m_userConnection.m_userGameInstanceEngine->m_player->m_coordinate;
         
         auto numGridRows = _<GameProperties>().k_numGridRows;
         auto numGridCols =
-            CalculateNumGridCols(m_userConnection.GetAspectRatio());
+            CalculateNumGridCols(m_userConnection.m_userGameInstanceEngine->GetAspectRatio());
         
         auto smallValue = 0.0001f;
         
@@ -54,7 +55,7 @@ namespace JoD {
                     _<World>().m_currentWorldArea->m_tiles[coordX][
                         coordY];
                 
-                auto tileBounds = RectF {x * tileSize.w, y * tileSize.h,
+                auto tileBounds = BoxF {x * tileSize.w, y * tileSize.h,
                                          tileSize.w + smallValue,
                                          tileSize.h + smallValue};
                 

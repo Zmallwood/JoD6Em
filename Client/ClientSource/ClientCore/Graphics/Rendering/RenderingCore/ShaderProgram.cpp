@@ -94,21 +94,21 @@ namespace JoD {
     
     GLuint ShaderProgram::CompileShader(
         const GLchar *shader_source,
-        GLuint *shader,
+        GLuint *out_shader,
         GLenum shader_type) const {
         
         // Create shader object.
-        *shader = glCreateShader(shader_type);
+        *out_shader = glCreateShader(shader_type);
         
         // Apply shader sources.
-        glShaderSource(*shader, 1, &shader_source, NULL);
+        glShaderSource(*out_shader, 1, &shader_source, NULL);
         
         // Compile it.
-        glCompileShader(*shader);
+        glCompileShader(*out_shader);
         
         // Check for compilation errors.
         GLint shaderCompiled = GL_FALSE;
-        glGetShaderiv(*shader, GL_COMPILE_STATUS, &shaderCompiled);
+        glGetShaderiv(*out_shader, GL_COMPILE_STATUS, &shaderCompiled);
         
         return shaderCompiled;
     }

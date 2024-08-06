@@ -13,5 +13,5 @@ namespace JoD {
     
     void RenderPlayer(
         UserConnection& userConnection, WebSocket &webSocket,
-        Point coordinate, RectF tileBounds);
+        Point coordinate, BoxF tileBounds);
 }

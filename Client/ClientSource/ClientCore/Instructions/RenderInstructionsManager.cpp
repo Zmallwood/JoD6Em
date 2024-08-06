@@ -7,32 +7,32 @@
 #include "RenderInstructionsManager.hpp"
 #include "ClientCore/Graphics/Rendering/Images/ImageRenderer.hpp"
 #include "ClientCore/Graphics/Rendering/Text/TextRenderer.hpp"
-#include "ClientCore/Instructions/ImageDrawInstruction.hpp"
+#include "ClientCore/Instructions/DrawInstruction.hpp"
 #include "ClientCore/Instructions/InstructionTypes.hpp"
 
 namespace JoD {
     
-    RenderInstrutionsManager::RenderInstrutionsManager(){
+    RenderInstructionsManager::RenderInstructionsManager(){
         
         // Create a sufficient amount of RIDs for drawing images and game start.
-        for (auto i = 0; i < k_maxNumDrawInstructions; i++) {
+        for (auto i = 0; i < k_maxNumImageDrawInstructions; i++) {
             
-            m_rids.push_back(_<ImageRenderer>().NewImage());
+            m_ridsImages.push_back(_<ImageRenderer>().NewImage());
         }
         
-        for (auto i = 0; i < k_maxNumDrawTextInstructions; i++) {
+        for (auto i = 0; i < k_maxNumTextDrawInstructions; i++) {
             
             m_ridsText.push_back(_<TextRenderer>().NewString());
         }
     }
     
-    void RenderInstrutionsManager::AddImageDrawInstruction(
+    void RenderInstructionsManager::AddImageDrawInstruction(
         int imageNameHash,
-        RectF destination) {
+        BoxF destination) {
         
         m_inactiveBuffer->emplace_back(
-            InstructionTypes::Image,
-            m_rids.at(
+            InstructionTypes::DrawImage,
+            m_ridsImages.at(
                 m_ridCounterImages
                 ++),
             imageNameHash,
@@ -40,20 +40,20 @@ namespace JoD {
     }
     
     
-    void RenderInstrutionsManager::AddTextDrawInstruction(
+    void RenderInstructionsManager::AddTextDrawInstruction(
         std::string_view text, PointF position) {
         
-        auto newInstruction = ImageDrawInstruction {};
+        auto newInstruction = DrawInstruction {};
         
         newInstruction.rid = m_ridsText.at(m_ridCounterText++);
-        newInstruction.type = InstructionTypes::Text;
+        newInstruction.type = InstructionTypes::DrawText;
         newInstruction.text = text;
         newInstruction.position = position;
         
         m_inactiveBuffer->push_back(newInstruction);
     }
     
-    void RenderInstrutionsManager::ApplyBuffer() {
+    void RenderInstructionsManager::ApplyBuffer() {
         
         auto temp = m_activeBuffer;
         m_activeBuffer = m_inactiveBuffer;
@@ -64,14 +64,14 @@ namespace JoD {
         m_ridCounterText = 0;
     }
     
-    void RenderInstrutionsManager::ExecuteInstructions() const {
+    void RenderInstructionsManager::ExecuteInstructions() const {
         
         // Execute all drawing instructions that have been added.
         for (auto &instruction : *m_activeBuffer){
             
             switch (instruction.type) {
             
-            case InstructionTypes::Image: {
+            case InstructionTypes::DrawImage: {
                 
                 _<ImageRenderer>().DrawImage(
                     instruction.rid,
@@ -79,7 +79,7 @@ namespace JoD {
                     instruction.destination);
                 break;
             }
-            case InstructionTypes::Text: {
+            case InstructionTypes::DrawText: {
                 
                 _<TextRenderer>().DrawString(
                     instruction.rid, instruction.text,

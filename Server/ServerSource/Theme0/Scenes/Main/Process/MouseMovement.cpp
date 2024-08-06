@@ -28,7 +28,7 @@ namespace JoD {
             m_leftButton->
             IsPressedPickResult();
         
-        auto player = m_userConnection.m_player;
+        auto player = m_userConnection.m_userGameInstanceEngine->m_player;
         
         auto hoveredTile =
             tileHovering->m_hoveredCoordinate;

@@ -27,6 +27,12 @@ namespace JoD {
         ///
         void SendMessage(int messageType) const;
         
+        ///
+        ///  Send message to the server.
+        /// 
+        /// @param data Int array data to send.
+        /// @param length Length of the int array data.
+        ///
         void SendMessage(int *data, int length) const;
         
         std::shared_ptr<const EmscriptenWebSocketOpenEvent>
@@ -34,7 +40,6 @@ namespace JoD {
         
       private:
         const std::string k_host {"localhost"}; ///< Host name of the server to connect to.
-        
         const int k_port {8765}; ///< Port number to open the connection at.
     };
 }
