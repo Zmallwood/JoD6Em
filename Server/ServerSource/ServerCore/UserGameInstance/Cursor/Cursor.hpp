@@ -32,7 +32,6 @@ namespace JoD {
         
       private:
         UserConnection& m_userConnection; ///< User connection object for associated user.
-        
         const std::string k_cursorImageName {"CursorDefault"}; ///< Image name for default cursor style.
         const float k_cursorSize {0.03f}; ///< Size of rendered cursor symbol.
     };

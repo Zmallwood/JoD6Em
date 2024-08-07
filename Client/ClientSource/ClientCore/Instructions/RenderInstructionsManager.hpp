@@ -55,7 +55,6 @@ namespace JoD {
         std::vector<RID> m_ridsText; ///< A set of preallocated RIDs used for drawing text, created in the constructor
         int m_ridCounterImages {0}; ///< Hold index for a free to use RID element in m_rids.
         int m_ridCounterText {0}; ///< Hold index for a free to use RID element in m_ridsText.
-        
         const int k_maxNumImageDrawInstructions {1000}; ///< No more images than this value can be rendererd in a single game frame.
         const int k_maxNumTextDrawInstructions {100}; ///< No more images than this value can be rendererd in a single game frame.
     };
