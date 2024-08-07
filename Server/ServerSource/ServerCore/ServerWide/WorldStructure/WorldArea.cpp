@@ -6,16 +6,17 @@
 
 #include "WorldArea.hpp"
 #include "Tile.hpp"
+#include "Configuration/GameProperties.hpp"
 
 namespace JoD {
     
     WorldArea::WorldArea(){
         
-        for (auto x = 0; x < 100; x++){
+        for (auto x = 0; x < _<GameProperties>().k_worldAreaSize.w; x++){
             
             m_tiles.push_back(std::vector<std::shared_ptr<Tile>>());
             
-            for (auto y = 0; y < 100; y++) {
+            for (auto y = 0; y < _<GameProperties>().k_worldAreaSize.h; y++) {
                 
                 m_tiles.at(x).push_back(std::make_shared<Tile>());
             }

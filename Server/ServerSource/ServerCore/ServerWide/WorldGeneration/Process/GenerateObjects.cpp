@@ -8,6 +8,7 @@
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Object.hpp"
+#include "Configuration/GameProperties.hpp"
 
 namespace JoD {
     
@@ -34,8 +35,8 @@ namespace JoD {
             
             for (auto i = 0; i < amount; i++) {
                 
-                const auto x = rand() % 100;
-                const auto y = rand() % 100;
+                const auto x = rand() % _<GameProperties>().k_worldAreaSize.w;
+                const auto y = rand() % _<GameProperties>().k_worldAreaSize.h;
                 
                 const auto ground = worldArea->m_tiles[x][y]->m_ground;
                 

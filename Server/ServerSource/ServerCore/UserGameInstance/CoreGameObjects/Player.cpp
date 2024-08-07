@@ -53,12 +53,12 @@ namespace JoD {
     
     void Player::TryMoveToCoord(Point coord) {
         
-        if (coord.x < 0 || coord.y < 0 || coord.x >= 100 || coord.y >= 100) {
+        const auto worldArea = _<World>().m_currentWorldArea;
+        
+        if (!worldArea->IsValidCoord(coord)) {
             
             return;
         }
-        
-        const auto worldArea = _<World>().m_currentWorldArea;
         
         const auto tile = worldArea->m_tiles[coord.x][coord.y];
         

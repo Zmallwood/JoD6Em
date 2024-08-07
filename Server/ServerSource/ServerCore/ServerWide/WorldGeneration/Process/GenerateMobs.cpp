@@ -29,7 +29,7 @@ namespace JoD {
                 const auto x = xCenter + rand() % 5 - rand() % 5;
                 const auto y = yCenter + rand() % 5 - rand() % 5;
                 
-                if (x <  0 || y <0 || x>= 100 || y >= 100) {
+                if (!worldArea->IsValidCoord({x,y})) {
                     
                     continue;
                 }
@@ -62,7 +62,7 @@ namespace JoD {
                 const auto x = xCenter + rand() % 5 - rand() % 5;
                 const auto y = yCenter + rand() % 5 - rand() % 5;
                 
-                if (x <  0 || y <0 || x>= 100 || y >= 100) {
+                if (!worldArea->IsValidCoord({x,y})) {
                     
                     continue;
                 }
@@ -95,7 +95,7 @@ namespace JoD {
                 const auto x = xCenter + rand() % 5 - rand() % 5;
                 const auto y = yCenter + rand() % 5 - rand() % 5;
                 
-                if (x <  0 || y <0 || x>= 100 || y >= 100) {
+                if (!worldArea->IsValidCoord({x,y})) {
                     
                     continue;
                 }

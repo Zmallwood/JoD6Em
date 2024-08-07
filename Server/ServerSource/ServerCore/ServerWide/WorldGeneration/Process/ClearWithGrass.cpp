@@ -7,14 +7,15 @@
 #include "ClearWithGrass.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "Configuration/GameProperties.hpp"
 
 namespace JoD {
     
     void ClearWithGrass(std::shared_ptr<WorldArea> worldArea) {
         
-        for (auto y = 0; y < 100; y++) {
+        for (auto y = 0; y < _<GameProperties>().k_worldAreaSize.h; y++) {
             
-            for (auto x = 0; x < 100; x++) {
+            for (auto x = 0; x < _<GameProperties>().k_worldAreaSize.w; x++) {
                 
                 worldArea->m_tiles[x][y]->m_ground = Hash("GroundGrass");
             }

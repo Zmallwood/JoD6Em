@@ -7,6 +7,7 @@
 #include "GenerateWater.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "Configuration/GameProperties.hpp"
 
 namespace JoD {
     
@@ -16,8 +17,8 @@ namespace JoD {
         
         for (auto i = 0; i < numLakes; i++){
             
-            const auto xCenter = rand() % 100;
-            const auto yCenter = rand() % 100;
+            const auto xCenter = rand() % _<GameProperties>().k_worldAreaSize.w;
+            const auto yCenter = rand() % _<GameProperties>().k_worldAreaSize.h;
             
             const auto r = 3 + rand() % 11;
             
@@ -25,7 +26,7 @@ namespace JoD {
                 
                 for (auto x = xCenter - r; x <= xCenter + r; x++){
                     
-                    if (x < 0 || y < 0 || x >= 100 || y >= 100) {
+                    if (!worldArea->IsValidCoord({x, y})) {
                         
                         continue;
                     }

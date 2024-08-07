@@ -47,8 +47,7 @@ namespace JoD {
                 const auto coordY = playerCoordinate.y -
                                     (numGridRows - 1) / 2 + y;
                 
-                if (coordX < 0 || coordY < 0 || coordX >= 100 ||
-                    coordY >= 100) {
+                if (!_<World>().m_currentWorldArea->IsValidCoord({coordX, coordY})) {
                     
                     continue;
                 }
