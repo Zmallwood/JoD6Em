@@ -33,7 +33,7 @@ namespace JoD {
         /// @param data Int array data to send.
         /// @param length Length of the int array data.
         ///
-        void SendMessage(int *data, int length) const;
+        void SendMessage(const int *data, int length) const;
         
         std::shared_ptr<const EmscriptenWebSocketOpenEvent>
         m_webSocketEvent; ///< Web socket event object related to the opened connection.

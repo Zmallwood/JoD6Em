@@ -22,7 +22,7 @@ namespace JoD {
         /// @param socket Socket object obtained from web
         ///               socket server and associated with the user.
         ///
-        UserConnection(boost::asio::ip::tcp::socket socket);
+        UserConnection(Socket socket);
         
         ///
         /// Send an image drawing instruction to the user.
@@ -85,7 +85,7 @@ namespace JoD {
         ///
         /// @param socket Socket object.
         ///
-        void DoSession(boost::asio::ip::tcp::socket socket);
+        void DoSession(Socket socket);
         
         ///
         /// Running loop for reading incoming web socket messages and handle them.

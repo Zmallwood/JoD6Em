@@ -68,13 +68,13 @@ namespace JoD {
     }
     
     
-    void WebSocketServerConnection::SendMessage(int *data, int length) const {
+    void WebSocketServerConnection::SendMessage(const int *data, int length) const {
         
         // Try send packet and handle failure.
         if (auto result =
                 emscripten_websocket_send_binary(
                     m_webSocketEvent->socket,
-                    data, length*sizeof(int))) {
+                    (void*)data, length*sizeof(int))) {
             
             std::cout << "Failed to emscripten_websocket_send_binary(): " <<
                 result;
