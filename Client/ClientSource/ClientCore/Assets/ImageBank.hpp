@@ -100,7 +100,6 @@ namespace JoD {
         void LoadImages();
         
         std::map<int, ImageEntry> m_images; ///< Stores images as entries by image name hash code.
-        
         const std::string k_relImagesPath{"Resources/Images"}; ///< Path to images location.
     };
 }
