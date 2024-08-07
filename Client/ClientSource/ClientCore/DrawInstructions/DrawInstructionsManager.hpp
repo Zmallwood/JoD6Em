@@ -1,6 +1,6 @@
 /*
- * RenderInstructionsManager.hpp
- *
+ * DrawInstructionsManager.hpp
+ * 
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -13,13 +13,13 @@ namespace JoD {
     ///
     /// Holds latest set of rendering instructions and executes them.
     ///
-    class RenderInstructionsManager {
+    class DrawInstructionsManager {
         
       public:
         ///
-        /// Construct a new Render Instructions Manager object.
+        /// Construct a new Draw Instructions Manager object.
         ///
-        RenderInstructionsManager();
+        DrawInstructionsManager();
         
         ///
         /// Add new image draw instruction to group, called on request from server.

@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "InstructionTypes.hpp"
+#include "DrawInstructionTypes.hpp"
 
 namespace JoD {
     
@@ -16,7 +16,7 @@ namespace JoD {
     ///
     struct DrawInstruction {
         
-        InstructionTypes type {InstructionTypes::None}; ///< Type of instruction, such as draw unage or draw text.
+        DrawInstructionTypes type {DrawInstructionTypes::None}; ///< Type of instruction, such as draw unage or draw text.
         RID rid {0}; ///< ID for an image resource previously allocated.
         int imageNameHash {0}; ///<Hash code of image name to draw.
         BoxF destination; ///< Destination rectangle to draw the image at.

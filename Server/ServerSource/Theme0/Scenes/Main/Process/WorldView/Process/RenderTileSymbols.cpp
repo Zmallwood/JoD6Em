@@ -10,6 +10,7 @@
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
+#include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {
     
@@ -33,7 +34,7 @@ namespace JoD {
             tileHovering->
             m_hoveredCoordinate.y){
             
-            userConnection.SendImageDrawInstruction(
+            SendImageDrawInstruction(
                 webSocket,
                 "HoveredTile",
                 tileBounds);
@@ -42,7 +43,7 @@ namespace JoD {
         if (coordinate.x == player->m_destination.x &&
             coordinate.y == player->m_destination.y) {
             
-            userConnection.SendImageDrawInstruction(
+            SendImageDrawInstruction(
                 webSocket,
                 "DestinationSymbol",
                 tileBounds);

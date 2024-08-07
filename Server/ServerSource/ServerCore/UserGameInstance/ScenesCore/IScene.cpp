@@ -5,13 +5,12 @@
  */
 
 #include "IScene.hpp"
-#include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
 
 namespace JoD {
     
     IScene::IScene(UserConnection& userConnection)
         : m_userConnection(userConnection),
-        m_gui(std::make_shared<GUI>()) {
+        m_gui(std::make_unique<GUI>()) {
         
     }
     

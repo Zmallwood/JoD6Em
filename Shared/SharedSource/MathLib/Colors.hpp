@@ -13,5 +13,6 @@ namespace JoD {
     namespace Colors {
         
         inline static ColorF white {1.0f, 1.0f, 1.0f, 1.0f};
+        inline static ColorF wheat {1.0f, 1.0f, 0.8f, 1.0f};
     }
 }

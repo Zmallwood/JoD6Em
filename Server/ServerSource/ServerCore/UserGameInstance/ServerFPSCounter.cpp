@@ -6,6 +6,7 @@
 
 #include "ServerFPSCounter.hpp"
 #include "ServerCore/Net/UserConnection.hpp"
+#include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {
     
@@ -30,7 +31,7 @@ namespace JoD {
     
     void ServerFPSCounter::Render(WebSocket& webSocket) const {
         
-        m_userConnection.SendTextDrawInstruction(
+        SendTextDrawInstruction(
             webSocket,
             "Server fps: " + std::to_string(m_fps), {0.8f, 0.1f});
     }

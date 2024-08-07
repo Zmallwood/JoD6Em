@@ -7,6 +7,7 @@
 #include "RenderGround.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "ServerCore/Net/UserConnection.hpp"
+#include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {
     
@@ -25,7 +26,7 @@ namespace JoD {
             ground = Hash("GroundWater_" + std::to_string(animIndex));
         }
         
-        userConnection.SendImageDrawInstruction(
+        SendImageDrawInstruction(
             webSocket,
             ground,
             tileBounds);

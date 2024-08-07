@@ -6,6 +6,7 @@
 
 #include "Cursor.hpp"
 #include "ServerCore/Net/UserConnection.hpp"
+#include "ServerCore/Net/InstructionsSending.hpp"
 #include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
 
 namespace JoD {
@@ -34,7 +35,7 @@ namespace JoD {
             cursorHeight};
         
         // Render the cursor image.
-        m_userConnection.SendImageDrawInstruction(
+        SendImageDrawInstruction(
             webSocket, k_cursorImageName,
             cursorDestination);
     }

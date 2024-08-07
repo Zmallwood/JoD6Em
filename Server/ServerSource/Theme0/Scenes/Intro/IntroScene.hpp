@@ -17,6 +17,11 @@ namespace JoD {
         
       public:
         ///
+        /// Adds GUI components and components to the scene.
+        ///
+        void Initialize() override;
+        
+        ///
         /// Use base class ctor.
         ///
         using IScene::IScene;

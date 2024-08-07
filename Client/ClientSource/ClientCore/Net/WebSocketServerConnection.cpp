@@ -5,7 +5,7 @@
  */
 
 #include "WebSocketServerConnection.hpp"
-#include "ClientCore/Instructions/RenderInstructionsManager.hpp"
+#include "ClientCore/DrawInstructions/DrawInstructionsManager.hpp"
 #include "MessageCodes.hpp"
 #include "NetConfiguration.hpp"
 #include "ClientCore/Assets/ImageBank.hpp"
@@ -260,14 +260,14 @@ namespace JoD {
                 auto h = ReadFourBytesAsFloat(bytes + 20);
                 
                 // Add the complete instruction.
-                _<RenderInstructionsManager>().AddImageDrawInstruction(
+                _<DrawInstructionsManager>().AddImageDrawInstruction(
                     imageNameHash, {x, y, w, h});
                 
                 break;
             }
             case MessageCodes::k_applyBuffer: {
                 
-                _<RenderInstructionsManager>().ApplyBuffer(); // Apply the buffered render instructions.
+                _<DrawInstructionsManager>().ApplyBuffer(); // Apply the buffered render instructions.
                 
                 break;
             }
@@ -285,7 +285,7 @@ namespace JoD {
                     str += (char)c;
                 }
                 
-                _<RenderInstructionsManager>().AddTextDrawInstruction(
+                _<DrawInstructionsManager>().AddTextDrawInstruction(
                     str,
                     {x,y});
                 

@@ -8,6 +8,7 @@
 #include "ServerCore/Net/UserConnection.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {
     
@@ -21,7 +22,7 @@ namespace JoD {
         if (coordinate.x == playerCoordinate.x &&
             coordinate.y == playerCoordinate.y){
             
-            userConnection.SendImageDrawInstruction(
+            SendImageDrawInstruction(
                 webSocket, "Player", tileBounds);
         }
     }

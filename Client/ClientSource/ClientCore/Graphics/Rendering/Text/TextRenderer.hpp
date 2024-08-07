@@ -35,7 +35,7 @@ namespace JoD {
         ///
         void DrawString(
             RID rid, std::string_view text, PointF position,
-            ColorF color = {1.0f, 1.0f, 1.0f, 1.0f},
+            ColorF color = Colors::wheat,
             bool centerAlign = false,
             FontSizes fontSize = FontSizes::_20) const;
         

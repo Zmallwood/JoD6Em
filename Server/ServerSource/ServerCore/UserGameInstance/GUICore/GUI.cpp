@@ -9,9 +9,18 @@
 namespace JoD {
     void GUI::Update() {
         
+        for (auto& component : m_components) {
+            
+            component->Update();
+        }
     }
     
     void GUI::Render(WebSocket &webSocket) const {
         
+        
+        for (auto& component : m_components) {
+            
+            component->Render(webSocket);
+        }
     }
 }

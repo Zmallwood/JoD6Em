@@ -12,6 +12,7 @@
 #include "ScenesCore/SceneManager.hpp"
 #include "ServerFPSCounter.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
+#include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {
     
@@ -41,7 +42,7 @@ namespace JoD {
         
         m_cursor->Render(webSocket);
         
-        m_userConnection.SendPresentCanvasInstruction(webSocket);
+        SendPresentCanvasInstruction(webSocket);
     }
     
     float UserGameInstanceEngine::GetAspectRatio() const {

@@ -10,6 +10,7 @@
 #include "ServerCore/Net/UserConnection.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "Theme0/Scenes/Main/Process/MobTargeting.hpp"
+#include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {
     
@@ -30,18 +31,18 @@ namespace JoD {
                 mobTargeting->
                 m_targetedCreature){
                 
-                userConnection.SendImageDrawInstruction(
+                SendImageDrawInstruction(
                     webSocket,
                     "TargetedMob",
                     tileBounds);
             }
             
-            userConnection.SendImageDrawInstruction(
+            SendImageDrawInstruction(
                 webSocket,
                 tile->m_mob->m_type,
                 tileBounds);
             
-            userConnection.SendTextDrawInstruction(
+            SendTextDrawInstruction(
                 webSocket,
                 "Mob, Lvl." +
                 std::to_string(tile->m_mob->m_level),

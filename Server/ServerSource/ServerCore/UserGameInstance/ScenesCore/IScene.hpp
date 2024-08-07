@@ -6,10 +6,11 @@
 
 #pragma once
 
+#include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
+
 namespace JoD {
     
     class UserConnection;
-    class GUI;
     
     ///
     /// Pure virtual IScene class of which all scenes inherits.
@@ -59,6 +60,6 @@ namespace JoD {
             &webSocket) const = 0;
         
         UserConnection &m_userConnection; ///< User connection object for current user.
-        std::shared_ptr<GUI> m_gui;
+        std::unique_ptr<GUI> m_gui;
     };
 }

@@ -10,6 +10,7 @@
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
+#include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {
     
@@ -26,11 +27,11 @@ namespace JoD {
     
     void MainMenuScene::RenderDerived(WebSocket &webSocket) const {
         
-        m_userConnection.SendImageDrawInstruction(
+        SendImageDrawInstruction(
             webSocket, "DefaultSceneBackground",
             {0.0f, 0.0f, 1.0f, 1.0f});
         
-        m_userConnection.SendImageDrawInstruction(
+        SendImageDrawInstruction(
             webSocket, "JoDLogo",
             {0.4f, 0.1f, 0.2f, 0.1f});
     }

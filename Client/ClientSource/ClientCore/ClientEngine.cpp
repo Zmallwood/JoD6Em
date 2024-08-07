@@ -8,7 +8,7 @@
 #include "ClientCore/Graphics/Graphics.hpp"
 #include "MessageCodes.hpp"
 #include "ClientCore/Net/WebSocketServerConnection.hpp"
-#include "Instructions/RenderInstructionsManager.hpp"
+#include "DrawInstructions/DrawInstructionsManager.hpp"
 #include "Input/SetupInputCallbacks.hpp"
 #include "Utilities/ClientFPSCounter.hpp"
 
@@ -79,7 +79,7 @@ namespace JoD {
             _<Graphics>().ClearCanvas();
             
             // Draw canvas in its current state (current set of drawing instructions).
-            _<RenderInstructionsManager>().ExecuteInstructions();
+            _<DrawInstructionsManager>().ExecuteInstructions();
             
             _<ClientFPSCounter>().Render();
             

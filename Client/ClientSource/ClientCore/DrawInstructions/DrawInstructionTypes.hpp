@@ -1,5 +1,5 @@
 /*
- * InstructionTypes.hpp
+ * DrawInstructionTypes.hpp
  * 
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
@@ -11,7 +11,7 @@ namespace JoD {
     ///
     /// Types of instructions that can be recieved from the server.
     ///
-    enum class InstructionTypes {
+    enum class DrawInstructionTypes {
         
         None, ///< No instruction.
         
