@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "WorldArea.hpp"
+
 namespace JoD {
     
     class WorldArea;
@@ -22,6 +24,6 @@ namespace JoD {
         ///
         World();
         
-        std::shared_ptr<WorldArea> m_currentWorldArea; ///< Currently only a single world area in the world.
+        std::unique_ptr<WorldArea> m_currentWorldArea; ///< Currently only a single world area in the world.
     };
 }

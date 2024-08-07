@@ -7,7 +7,6 @@
 #include "UserConnection.hpp"
 #include "ServerCore/Net/WebSocketServer.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
 #include "MessageCodes.hpp"
 #include "NetConfiguration.hpp"
 #include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
@@ -18,7 +17,7 @@ namespace JoD {
     
     UserConnection::UserConnection(Socket socket)
         : m_userGameInstanceEngine(
-            std::make_shared<UserGameInstanceEngine>(
+            std::make_unique<UserGameInstanceEngine>(
                 *this)){
         
         std::thread(

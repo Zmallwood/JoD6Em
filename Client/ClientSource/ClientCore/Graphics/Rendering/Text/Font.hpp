@@ -22,8 +22,8 @@ namespace JoD {
         ///
         Font(std::string_view fontFileName, int fontSize);
         
-        std::shared_ptr<TTF_Font> m_font; ///< Regular SDL font object.
-        std::shared_ptr<TTF_Font> m_outlineFont; ///< Outline SDL font object.
+        std::unique_ptr<TTF_Font, SDLDeleter> m_font; ///< Regular SDL font object.
+        std::unique_ptr<TTF_Font, SDLDeleter> m_outlineFont; ///< Outline SDL font object.
         static constexpr int k_fontOutlineWidth{2}; ///< Font outline width.
     };
 }

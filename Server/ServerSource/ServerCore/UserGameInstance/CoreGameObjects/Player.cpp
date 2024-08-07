@@ -53,7 +53,7 @@ namespace JoD {
     
     void Player::TryMoveToCoord(Point coord) {
         
-        const auto worldArea = _<World>().m_currentWorldArea;
+        const auto &worldArea = _<World>().m_currentWorldArea;
         
         if (!worldArea->IsValidCoord(coord)) {
             

@@ -11,7 +11,7 @@
 
 namespace JoD {
     
-    void GenerateWater(std::shared_ptr<WorldArea> worldArea) {
+    void GenerateWater(const std::unique_ptr<WorldArea> &worldArea) {
         
         const auto numLakes = 15;
         

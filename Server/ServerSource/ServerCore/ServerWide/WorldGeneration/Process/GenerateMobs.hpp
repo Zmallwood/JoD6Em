@@ -15,5 +15,5 @@ namespace JoD {
     /// 
     /// @param worldArea World area to generate mobs on.
     ///
-    void GenerateMobs(std::shared_ptr<WorldArea> worldArea);
+    void GenerateMobs(const std::unique_ptr<WorldArea> &worldArea);
 }

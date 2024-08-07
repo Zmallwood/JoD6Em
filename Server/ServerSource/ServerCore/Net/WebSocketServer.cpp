@@ -5,7 +5,6 @@
  */
 
 #include "WebSocketServer.hpp"
-#include "UserConnection.hpp"
 
 using namespace boost::asio;
 using namespace boost::asio::ip;
@@ -35,7 +34,7 @@ namespace JoD {
             acceptor.accept(socket);
             
             m_userConnections.push_back(
-                std::make_shared<UserConnection>(
+                std::make_unique<UserConnection>(
                     std::move(socket)));
         }
     }

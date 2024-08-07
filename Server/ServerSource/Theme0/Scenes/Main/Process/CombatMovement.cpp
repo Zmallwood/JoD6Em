@@ -27,7 +27,7 @@ namespace JoD {
         
         if (mobTargeting->m_targetedCreature) {
             
-            const auto worldArea = _<World>().m_currentWorldArea;
+            const auto &worldArea = _<World>().m_currentWorldArea;
             const auto pos =
                 worldArea->m_mobPositions.at(mobTargeting->m_targetedCreature);
             

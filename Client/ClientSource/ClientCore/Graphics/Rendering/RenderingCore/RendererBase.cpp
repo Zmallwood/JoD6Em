@@ -23,7 +23,7 @@ namespace JoD {
     }
     
     RendererBase::RendererBase()
-        : m_shaderProgram(std::make_shared<ShaderProgram>()){
+        : m_shaderProgram(std::make_unique<ShaderProgram>()){
         
     }
     
@@ -51,11 +51,11 @@ namespace JoD {
         if (!m_VBOIDs.contains(buffType)) {
             
             m_VBOIDs.insert(
-                {buffType, std::make_shared<std::map<GLuint, GLuint>>()});
+                {buffType, std::map<GLuint, GLuint>()});
         }
         
         // Store newly created VBO id, with the VAO id as one of keys.
-        (*(m_VBOIDs)[buffType])[vaoID] = buffID;
+        (m_VBOIDs)[buffType][vaoID] = buffID;
         
         // Return ID for newly created Vertex Buffer Object.
         return buffID;
@@ -201,7 +201,7 @@ namespace JoD {
         GLuint VAOID) const {
         
         // Returns the buffer of provided type and VAO id.
-        return m_VBOIDs.at(buffType)->at(VAOID);
+        return m_VBOIDs.at(buffType).at(VAOID);
     }
     
     void RendererBase::UpdateIndicesData(
@@ -319,7 +319,7 @@ namespace JoD {
         for (const auto &buff_type : m_VBOIDs) {
             
             // Loop through all keys of VAO ids.
-            for (const auto &buffer_entry : (*buff_type.second)) {
+            for (const auto &buffer_entry : buff_type.second) {
                 
                 // Delete every VBO.
                 glDeleteBuffers(1, &buffer_entry.second);

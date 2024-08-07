@@ -15,5 +15,5 @@ namespace JoD {
     /// 
     /// @param worldArea World area to clear.
     ///
-    void ClearWithGrass(std::shared_ptr<WorldArea> worldArea);
+    void ClearWithGrass(const std::unique_ptr<WorldArea> &worldArea);
 }

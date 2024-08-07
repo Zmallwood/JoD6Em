@@ -15,11 +15,11 @@ namespace JoD {
     namespace {
         
         void GenerateObjectOfType(
-            std::shared_ptr<WorldArea> worldArea, std::string_view objectName,
+            const std::unique_ptr<WorldArea> &worldArea, std::string_view objectName,
             int amount);
     }
     
-    void GenerateObjects(std::shared_ptr<WorldArea> worldArea) {
+    void GenerateObjects(const std::unique_ptr<WorldArea> &worldArea) {
         
         GenerateObjectOfType(worldArea, "ObjectTree1", 300);
         GenerateObjectOfType(worldArea, "ObjectTree2", 300);
@@ -30,7 +30,7 @@ namespace JoD {
     namespace {
         
         void GenerateObjectOfType(
-            std::shared_ptr<WorldArea> worldArea, std::string_view objectName,
+            const std::unique_ptr<WorldArea> &worldArea, std::string_view objectName,
             int amount) {
             
             for (auto i = 0; i < amount; i++) {
@@ -42,7 +42,7 @@ namespace JoD {
                 
                 if (ground != Hash("GroundWater") && ground != Hash("GroundCobbleStone")) {
                     
-                    worldArea->m_tiles[x][y]->m_object = std::make_shared<Object>(objectName);
+                    worldArea->m_tiles[x][y]->m_object = std::make_unique<Object>(objectName);
                 }
             }
         }

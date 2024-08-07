@@ -9,7 +9,6 @@
 #include "ClientCore/Graphics/Rendering/Images/ImageRenderer.hpp"
 #include "ClientCore/Graphics/Rendering/Text/FontSizes.hpp"
 #include "Common/CanvasUtilities.hpp"
-#include "Font.hpp"
 
 namespace JoD {
     
@@ -22,16 +21,16 @@ namespace JoD {
         const auto fontPath = k_relFontsPath + "default_font.ttf";
         
         // Create font objects for all sizes.
-        const auto font10 = std::make_shared<Font>(fontPath, 10);
-        const auto font20 = std::make_shared<Font>(fontPath, 20);
-        const auto font30 = std::make_shared<Font>(fontPath, 30);
-        const auto font50 = std::make_shared<Font>(fontPath, 50);
+        auto font10 = std::make_unique<const Font>(fontPath, 10);
+        auto font20 = std::make_unique<const Font>(fontPath, 20);
+        auto font30 = std::make_unique<const Font>(fontPath, 30);
+        auto font50 = std::make_unique<const Font>(fontPath, 50);
         
         // Store the font objects by their sizes.
-        m_fonts.insert({FontSizes::_10, font10});
-        m_fonts.insert({FontSizes::_20, font20});
-        m_fonts.insert({FontSizes::_30, font30});
-        m_fonts.insert({FontSizes::_50, font50});
+        m_fonts.insert({FontSizes::_10, std::move(font10)});
+        m_fonts.insert({FontSizes::_20, std::move(font20)});
+        m_fonts.insert({FontSizes::_30, std::move(font30)});
+        m_fonts.insert({FontSizes::_50, std::move(font50)});
     }
     
     void TextRenderer::RenderText(
@@ -42,7 +41,7 @@ namespace JoD {
         SizeF &out_dimensions) const {
         
         // Get main font object.
-        const auto font = m_fonts.at(fontSize)->m_font;
+        const auto &font = m_fonts.at(fontSize)->m_font;
         
         // Check that its been created correctly.
         if (!font) {
@@ -264,7 +263,7 @@ namespace JoD {
         FontSizes font_size) const {
         
         // Get the main font object.
-        const auto font = m_fonts.at(font_size)->m_font;
+        const auto &font = m_fonts.at(font_size)->m_font;
         
         // To be filled with rendered text dimensions.
         int textWidth;

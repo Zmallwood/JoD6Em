@@ -127,7 +127,7 @@ namespace JoD {
         ///
         void CleanupBase() const;
         
-        std::shared_ptr<ShaderProgram> m_shaderProgram; ///< The shader program used for this renderer object.
+        std::unique_ptr<ShaderProgram> m_shaderProgram; ///< The shader program used for this renderer object.
         
       private:
         ///
@@ -191,7 +191,7 @@ namespace JoD {
             int layoutLocation) const;
         
         std::vector<GLuint> m_VAOIDs;  ///< Stores IDs of all Vertex Array Objects.
-        std::map<BufferTypes, std::shared_ptr<std::map<GLuint,GLuint>>>
+        std::map<BufferTypes, std::map<GLuint,GLuint>>
         m_VBOIDs; ///< Stores IDs of all Vertex Buffer Objects.
     };
 }

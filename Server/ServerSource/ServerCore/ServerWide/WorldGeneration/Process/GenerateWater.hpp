@@ -15,5 +15,5 @@ namespace JoD {
     /// 
     /// @param worldArea World area to generate water on.
     ///
-    void GenerateWater(std::shared_ptr<WorldArea> worldArea);
+    void GenerateWater(const std::unique_ptr<WorldArea> &worldArea);
 }

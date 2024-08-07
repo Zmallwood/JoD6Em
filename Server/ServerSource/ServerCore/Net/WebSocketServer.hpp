@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "UserConnection.hpp"
+
 namespace JoD {
     
     class UserConnection;
@@ -25,7 +27,7 @@ namespace JoD {
         void Run(std::string_view socketAddress, std::string_view socketPort);
         
       private:
-        std::vector<std::shared_ptr<UserConnection>>
+        std::vector<std::unique_ptr<UserConnection>>
         m_userConnections; ///< Holds all connected users.
     };
 }

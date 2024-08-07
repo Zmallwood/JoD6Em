@@ -7,10 +7,9 @@
 #pragma once
 
 #include "FontSizes.hpp"
+#include "Font.hpp"
 
 namespace JoD {
-    
-    class Font;
     
     ///
     /// Renderer used to allocated resources for, and render, text to the canvas.
@@ -74,7 +73,7 @@ namespace JoD {
             std::string &out_uniqueNameID,
             SizeF &out_dimensions) const;
         
-        std::map<FontSizes, std::shared_ptr<const Font>> m_fonts; ///< Stored font objects of different sizes.
+        std::map<FontSizes, std::unique_ptr<const Font>> m_fonts; ///< Stored font objects of different sizes.
         std::map<RID, std::string> m_uniqueNameIDs; ///< Unique names of images created to render text.
         std::map<RID, RID> m_ridsGLResources; ///< Map where key is imageID and value is RID used with ImageRenderer.
         const std::string k_relFontsPath{"Resources/Fonts/"}; ///< File system path to fonts location.

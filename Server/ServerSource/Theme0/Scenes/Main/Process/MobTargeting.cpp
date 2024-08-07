@@ -41,7 +41,7 @@ namespace JoD {
             
             player->m_destination = {-1, -1};
             
-            const auto worldArea = _<World>().m_currentWorldArea;
+            const auto &worldArea = _<World>().m_currentWorldArea;
             
             const auto tile = worldArea->m_tiles[hoveredTile.x][hoveredTile.y];
             

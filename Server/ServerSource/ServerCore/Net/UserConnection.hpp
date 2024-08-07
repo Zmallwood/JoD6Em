@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+
 namespace JoD {
     
     class UserGameInstanceEngine;
@@ -76,7 +78,7 @@ namespace JoD {
             WebSocket &webSocket,
             int imageNameHash) const;
         
-        std::shared_ptr<UserGameInstanceEngine>
+        std::unique_ptr<UserGameInstanceEngine>
         m_userGameInstanceEngine; ///< Engine running for this specific user.
         
       private:

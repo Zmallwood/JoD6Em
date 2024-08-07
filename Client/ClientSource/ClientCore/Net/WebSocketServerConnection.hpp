@@ -35,7 +35,7 @@ namespace JoD {
         ///
         void SendMessage(const int *data, int length) const;
         
-        std::shared_ptr<const EmscriptenWebSocketOpenEvent>
+        std::unique_ptr<const EmscriptenWebSocketOpenEvent>
         m_webSocketEvent; ///< Web socket event object related to the opened connection.
         
       private:
