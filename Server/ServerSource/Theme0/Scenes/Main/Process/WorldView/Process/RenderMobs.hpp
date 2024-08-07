@@ -22,7 +22,7 @@ namespace JoD {
     /// @param tileBounds Bounds area of the tile, which mob is to be rendered.
     ///
     void RenderMobs(
-        MainScene& mainScene, UserConnection& userConnection,
+        const MainScene& mainScene, const UserConnection& userConnection,
         WebSocket &webSocket,
-        std::shared_ptr<Tile> tile, BoxF tileBounds);
+        std::shared_ptr<const Tile> tile, BoxF tileBounds);
 }

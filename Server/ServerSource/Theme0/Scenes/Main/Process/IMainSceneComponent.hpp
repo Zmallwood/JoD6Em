@@ -24,8 +24,8 @@ namespace JoD {
         /// @param mainScene Main scene associated with user.
         ///
         IMainSceneComponent(
-            UserConnection& userConnection,
-            MainScene& mainScene);
+            const UserConnection& userConnection,
+            const MainScene& mainScene);
         
         ///
         /// Optionally overridable for inheriting component classes.
@@ -42,7 +42,7 @@ namespace JoD {
         }
         
       protected:
-        UserConnection &m_userConnection; ///< User connection object associated with user.
-        MainScene& m_mainScene; ///< Main scene associated with user.
+        const UserConnection &m_userConnection; ///< User connection object associated with user.
+        const MainScene& m_mainScene; ///< Main scene associated with user.
     };
 }

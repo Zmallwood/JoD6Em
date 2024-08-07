@@ -22,7 +22,7 @@ namespace JoD {
         ///
         /// @param userConnection User connection reference for the current user.
         ///
-        ServerFPSCounter(UserConnection& userConnection);
+        ServerFPSCounter(const UserConnection& userConnection);
         
         ///
         /// Update the object by producing the final FPS value.
@@ -40,6 +40,6 @@ namespace JoD {
         int m_fps {0}; ///< Last calculated FPS value.
         int m_framesCount {0}; ///< Counting of nummer of frames reached in one second.
         TimePoint m_ticksLastUpdate {Now()}; ///< Last time the FPS was calculated.
-        UserConnection& m_userConnection; ///< Reference to user connection for associated user.
+        const UserConnection& m_userConnection; ///< Reference to user connection for associated user.
     };
 }

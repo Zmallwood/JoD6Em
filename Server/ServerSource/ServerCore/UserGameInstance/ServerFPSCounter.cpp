@@ -9,7 +9,7 @@
 
 namespace JoD {
     
-    ServerFPSCounter::ServerFPSCounter(UserConnection& userConnection)
+    ServerFPSCounter::ServerFPSCounter(const UserConnection& userConnection)
         : m_userConnection(userConnection) {
         
     }

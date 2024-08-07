@@ -8,8 +8,8 @@
 
 namespace JoD {
     
-    IMainSceneComponent::IMainSceneComponent(UserConnection& userConnection,
-                                             MainScene& mainScene)
+    IMainSceneComponent::IMainSceneComponent(const UserConnection& userConnection,
+                                             const MainScene& mainScene)
         : m_userConnection(userConnection), m_mainScene(mainScene){
         
     }

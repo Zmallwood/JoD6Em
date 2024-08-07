@@ -21,7 +21,7 @@ namespace JoD {
         /// 
         /// @param userConnection User connection object for current user.
         ///
-        Cursor(UserConnection& userConnection);
+        Cursor(const UserConnection& userConnection);
         
         ///
         /// Render the cursor to canvas.
@@ -31,7 +31,7 @@ namespace JoD {
         void Render(WebSocket& webSocket) const;
         
       private:
-        UserConnection& m_userConnection; ///< User connection object for associated user.
+        const UserConnection& m_userConnection; ///< User connection object for associated user.
         const std::string k_cursorImageName {"CursorDefault"}; ///< Image name for default cursor style.
         const float k_cursorSize {0.03f}; ///< Size of rendered cursor symbol.
     };

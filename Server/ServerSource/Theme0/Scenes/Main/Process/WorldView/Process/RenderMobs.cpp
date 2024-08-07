@@ -14,9 +14,9 @@
 namespace JoD {
     
     void RenderMobs(
-        MainScene& mainScene, UserConnection& userConnection,
+        const MainScene& mainScene, const UserConnection& userConnection,
         WebSocket &webSocket,
-        std::shared_ptr<Tile> tile, BoxF tileBounds) {
+        std::shared_ptr<const Tile> tile, BoxF tileBounds) {
         
         const auto mobTargeting =
             std::static_pointer_cast<MobTargeting>(

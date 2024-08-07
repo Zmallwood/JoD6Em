@@ -10,7 +10,7 @@
 
 namespace JoD {
     
-    Cursor::Cursor(UserConnection& userConnection)
+    Cursor::Cursor(const UserConnection& userConnection)
         : m_userConnection(userConnection) {
         
     }

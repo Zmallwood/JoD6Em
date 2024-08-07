@@ -20,6 +20,6 @@ namespace JoD {
     /// @param tileBounds Bounds area of tile of which objects are to be rendered.
     ///
     void RenderObjects(
-        UserConnection& userConnection, WebSocket &webSocket,
-        std::shared_ptr<Tile> tile, BoxF tileBounds);
+        const UserConnection& userConnection, WebSocket &webSocket,
+        std::shared_ptr<const Tile> tile, BoxF tileBounds);
 }

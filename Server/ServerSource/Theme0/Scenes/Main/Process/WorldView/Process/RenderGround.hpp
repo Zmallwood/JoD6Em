@@ -20,6 +20,6 @@ namespace JoD {
     /// @param tileBounds Bounds area of the tile which ground is to be rendered.
     ///
     void RenderGround(
-        UserConnection& userConnection, WebSocket &webSocket,
-        std::shared_ptr<Tile> tile, BoxF tileBounds);
+        const UserConnection& userConnection, WebSocket &webSocket,
+        std::shared_ptr<const Tile> tile, BoxF tileBounds);
 }

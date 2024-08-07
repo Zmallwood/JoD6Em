@@ -12,7 +12,7 @@
 namespace JoD {
     
     void RenderPlayer(
-        UserConnection& userConnection, WebSocket &webSocket,
+        const UserConnection& userConnection, WebSocket &webSocket,
         Point coordinate, BoxF tileBounds) {
         
         const auto playerCoordinate =

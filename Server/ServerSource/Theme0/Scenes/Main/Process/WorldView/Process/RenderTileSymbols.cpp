@@ -14,7 +14,7 @@
 namespace JoD {
     
     void RenderTileSymbols(
-        MainScene& mainScene, UserConnection& userConnection,
+        const MainScene& mainScene, const UserConnection& userConnection,
         WebSocket &webSocket,
         Point coordinate, BoxF tileBounds) {
         
