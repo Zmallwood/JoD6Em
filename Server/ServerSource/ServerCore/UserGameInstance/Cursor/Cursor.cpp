@@ -8,9 +8,6 @@
 #include "ServerCore/Net/UserConnection.hpp"
 #include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
 
-namespace websocket = boost::beast::websocket;
-using tcp = boost::asio::ip::tcp;
-
 namespace JoD {
     
     Cursor::Cursor(UserConnection& userConnection)

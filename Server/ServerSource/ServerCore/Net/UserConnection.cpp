@@ -12,14 +12,11 @@
 #include "NetConfiguration.hpp"
 #include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
 
-namespace beast = boost::beast;
-namespace http = beast::http;
-namespace websocket = beast::websocket;
-using tcp = boost::asio::ip::tcp;
+using namespace boost::beast;
 
 namespace JoD {
     
-    UserConnection::UserConnection(tcp::socket socket)
+    UserConnection::UserConnection(Socket socket)
         : m_userGameInstanceEngine(
             std::make_shared<UserGameInstanceEngine>(
                 *this)){
@@ -35,8 +32,8 @@ namespace JoD {
             
             while (true){
                 
-                beast::flat_buffer buffer;     // This buffer will hold the incoming message.
-                webSocket->read(buffer);     // Read a message.
+                flat_buffer buffer; // This buffer will hold the incoming message.
+                webSocket->read(buffer); // Read a message.
                 const auto data = buffer_cast<int *>(buffer.data());
                 
                 if (*data == MessageCodes::k_canvasSize){
@@ -78,7 +75,7 @@ namespace JoD {
         }
     }
     
-    void UserConnection::DoSession(tcp::socket socket) {
+    void UserConnection::DoSession(Socket socket) {
         
         try{
             
@@ -100,7 +97,9 @@ namespace JoD {
             
             webSocket.text(false); // Receive binary data, not text.
             
-            std::thread(&UserConnection::DoSessionNested, this, &webSocket).detach();
+            std::thread(
+                &UserConnection::DoSessionNested, this,
+                &webSocket).detach();
             
             while (true){
                 
@@ -110,7 +109,7 @@ namespace JoD {
                 std::this_thread::sleep_for(std::chrono::milliseconds(70));
             }
         }
-        catch (beast::system_error const &se){
+        catch (system_error const &se){
             
             // This indicates that the session was closed.
             if (se.code() != websocket::error::closed) {
@@ -195,7 +194,7 @@ namespace JoD {
     void UserConnection::SendRequestImageDimensions(
         WebSocket &webSocket,
         int imageNameHash) const {
-            
+        
         const auto messageCode = MessageCodes::k_requestImageDimensions;
         
         auto data = std::vector<int>();

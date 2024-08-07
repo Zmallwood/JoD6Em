@@ -7,9 +7,6 @@
 #include "RunWebSocketServer.hpp"
 #include "WebSocketServer.hpp"
 
-namespace net = boost::asio;
-using tcp = boost::asio::ip::tcp;
-
 namespace JoD {
     
     void RunWebSocketServer(

@@ -8,6 +8,8 @@
 
 namespace JoD {
     
+    using Socket = boost::asio::ip::tcp::socket;
+    
     using WebSocket = ///< Web socket object.
                       boost::beast::websocket::stream<boost::asio::ip::tcp::socket>;
     

@@ -10,9 +10,6 @@
 #include "Theme0/Scenes/MainMenu/MainMenuScene.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 
-namespace websocket = boost::beast::websocket;
-using tcp = boost::asio::ip::tcp;
-
 namespace JoD {
     
     SceneManager::SceneManager(
@@ -29,8 +26,9 @@ namespace JoD {
         GoToScene("IntroScene");
     }
     
-    void SceneManager::AddScene(std::string_view sceneName,
-                                std::shared_ptr<IScene> scene) {
+    void SceneManager::AddScene(
+        std::string_view sceneName,
+        std::shared_ptr<IScene> scene) {
         
         scene->Initialize();
         

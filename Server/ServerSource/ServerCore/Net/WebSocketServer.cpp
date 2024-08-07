@@ -7,8 +7,8 @@
 #include "WebSocketServer.hpp"
 #include "UserConnection.hpp"
 
-namespace net = boost::asio;
-using tcp = boost::asio::ip::tcp;
+using namespace boost::asio;
+using namespace boost::asio::ip;
 
 namespace JoD {
     
@@ -16,12 +16,12 @@ namespace JoD {
         std::string_view socketAddress,
         std::string_view socketPort) {
         
-        const auto address = net::ip::make_address(socketAddress);
+        const auto address = ip::make_address(socketAddress);
         const auto port =
             static_cast<unsigned short>(std::atoi(socketPort.data()));
         
         // The io_context is required for all I/O.
-        net::io_context ioc{1};
+        io_context ioc{1};
         
         // The acceptor receives incoming connections.
         tcp::acceptor acceptor{ioc, {address, port}};

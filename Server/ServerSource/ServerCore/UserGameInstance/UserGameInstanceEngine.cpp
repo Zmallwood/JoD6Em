@@ -13,9 +13,6 @@
 #include "ServerFPSCounter.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 
-namespace websocket = boost::beast::websocket;
-using tcp = boost::asio::ip::tcp;
-
 namespace JoD {
     
     UserGameInstanceEngine::UserGameInstanceEngine(
