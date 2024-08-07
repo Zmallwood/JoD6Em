@@ -19,10 +19,10 @@ namespace JoD {
         glfwGetCursorPos(_<Graphics>().m_window, &xPos, &yPos);
         
         // Get canvas size.
-        auto canvasSize = GetCanvasSize();
+        const auto canvasSize = GetCanvasSize();
         
         // And use it to convert pixel coordinates to fractal coordinates.
-        auto mousePosition = PointF{
+        const auto mousePosition = PointF{
             static_cast<float>(xPos) / canvasSize.w,
             static_cast<float>(yPos) / canvasSize.h};
         

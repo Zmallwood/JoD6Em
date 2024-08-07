@@ -23,7 +23,7 @@ namespace JoD {
         
         {
             // Compile vertex shader.
-            auto vertexShaderRes = CompileShader(
+            const auto vertexShaderRes = CompileShader(
                 vertexShaderSource,
                 &vertexShader,
                 GL_VERTEX_SHADER);
@@ -43,7 +43,7 @@ namespace JoD {
             glAttachShader(m_programID, vertexShader);
             
             // Compile fragment shader.
-            auto fragmentShaderRes = CompileShader(
+            const auto fragmentShaderRes = CompileShader(
                 fragmentShaderSource,
                 &fragmentShader,
                 GL_FRAGMENT_SHADER);
@@ -72,7 +72,7 @@ namespace JoD {
                 m_programID,
                 GL_LINK_STATUS,
                 &programSuccess);
-                
+            
             if (programSuccess != GL_TRUE){
                 
                 std::cout << "Error linking shader program.\n";

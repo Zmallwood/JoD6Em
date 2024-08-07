@@ -15,22 +15,28 @@ namespace JoD {
     
     void TileHovering::Update(){
         
-        auto tileSize =
-            CalculateTileSize(m_userConnection.m_userGameInstanceEngine->GetAspectRatio());
+        const auto tileSize =
+            CalculateTileSize(
+                m_userConnection.m_userGameInstanceEngine->GetAspectRatio());
         
-        auto playerCoordinate = m_userConnection.m_userGameInstanceEngine->m_player->m_coordinate;
+        const auto playerCoordinate =
+            m_userConnection.m_userGameInstanceEngine->m_player->m_coordinate;
         
-        auto numRows = _<GameProperties>().k_numGridRows;
-        auto numCols = CalculateNumGridCols(m_userConnection.m_userGameInstanceEngine->GetAspectRatio());
+        const auto numRows = _<GameProperties>().k_numGridRows;
+        const auto numCols =
+            CalculateNumGridCols(
+                m_userConnection.m_userGameInstanceEngine->GetAspectRatio());
         
-        auto tileX =
+        const auto tileX =
             playerCoordinate.x - (numCols - 1) / 2 +
-            static_cast<int>(m_userConnection.m_userGameInstanceEngine->m_mousePosition.x /
+            static_cast<int>(m_userConnection.m_userGameInstanceEngine->
+                             m_mousePosition.x /
                              tileSize.w);
         
-        auto tileY =
+        const auto tileY =
             playerCoordinate.y - (numRows - 1) / 2 +
-            static_cast<int>(m_userConnection.m_userGameInstanceEngine->m_mousePosition.y /
+            static_cast<int>(m_userConnection.m_userGameInstanceEngine->
+                             m_mousePosition.y /
                              tileSize.h);
         
         m_hoveredCoordinate = {tileX, tileY};

@@ -18,7 +18,7 @@ namespace JoD {
         WebSocket &webSocket,
         std::shared_ptr<Tile> tile, BoxF tileBounds) {
         
-        auto mobTargeting =
+        const auto mobTargeting =
             std::static_pointer_cast<MobTargeting>(
                 mainScene.m_components.at(
                     MainSceneComponents::

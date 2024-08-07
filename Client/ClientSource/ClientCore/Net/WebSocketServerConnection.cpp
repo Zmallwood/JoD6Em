@@ -51,20 +51,20 @@ namespace JoD {
         }
         
         // Create address to connect to.
-        auto serverAddress = "ws://" + k_host + ":" + std::to_string(k_port);
+        const auto serverAddress = "ws://" + k_host + ":" + std::to_string(k_port);
         
         // Create attributes.
         auto wsAttrs = EmscriptenWebSocketCreateAttributes{
             serverAddress.c_str(), NULL, EM_TRUE};
         
         // Create the web socket and connect.
-        auto ws = emscripten_websocket_new(&wsAttrs);
+        const auto webSocket = emscripten_websocket_new(&wsAttrs);
         
         // Setup callback functions.
-        emscripten_websocket_set_onopen_callback(ws, NULL, OnOpen);
-        emscripten_websocket_set_onerror_callback(ws, NULL, OnError);
-        emscripten_websocket_set_onclose_callback(ws, NULL, OnClose);
-        emscripten_websocket_set_onmessage_callback(ws, NULL, OnMessage);
+        emscripten_websocket_set_onopen_callback(webSocket, nullptr, OnOpen);
+        emscripten_websocket_set_onerror_callback(webSocket, nullptr, OnError);
+        emscripten_websocket_set_onclose_callback(webSocket, nullptr, OnClose);
+        emscripten_websocket_set_onmessage_callback(webSocket, nullptr, OnMessage);
     }
     
     

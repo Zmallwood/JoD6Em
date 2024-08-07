@@ -58,9 +58,9 @@ namespace JoD {
             return;
         }
         
-        auto worldArea = _<World>().m_currentWorldArea;
+        const auto worldArea = _<World>().m_currentWorldArea;
         
-        auto tile = worldArea->m_tiles[coord.x][coord.y];
+        const auto tile = worldArea->m_tiles[coord.x][coord.y];
         
         if (tile->m_ground == Hash("GroundWater")) {
             

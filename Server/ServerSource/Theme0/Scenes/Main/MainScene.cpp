@@ -43,7 +43,7 @@ namespace JoD {
     
     void MainScene::UpdateDerived() {
         
-        for (auto component : m_components) {
+        for (const auto component : m_components) {
             
             component.second->Update();
         }
@@ -51,7 +51,7 @@ namespace JoD {
     
     void MainScene::RenderDerived(WebSocket &webSocket) const {
         
-        for (auto component : m_components) {
+        for (const auto component : m_components) {
             
             component.second->Render(webSocket);
         }

@@ -18,26 +18,26 @@ namespace JoD {
     
     void MouseMovement::Update(){
         
-        auto tileHovering =
+        const std::shared_ptr<const TileHovering> tileHovering =
             std::static_pointer_cast<TileHovering>(
                 m_mainScene.m_components.at(
                     MainSceneComponents::
                     TileHovering));
                     
-        auto mobTargeting =
+        const std::shared_ptr<MobTargeting> mobTargeting =
             std::static_pointer_cast<MobTargeting>(
                 m_mainScene.m_components.at(
                     MainSceneComponents::
                     MobTargeting));
         
-        auto mouseDown =
+        const auto mouseDown =
             m_userConnection.m_userGameInstanceEngine->m_mouseInput->
             m_leftButton->
             IsPressedPickResult();
         
         auto player = m_userConnection.m_userGameInstanceEngine->m_player;
         
-        auto hoveredTile =
+        const auto hoveredTile =
             tileHovering->m_hoveredCoordinate;
         
         if (mouseDown) {
@@ -56,8 +56,8 @@ namespace JoD {
             
             if (player->m_destination.x != -1 && player->m_destination.y != -1){
                 
-                auto dx = player->m_destination.x - player->m_coordinate.x;
-                auto dy = player->m_destination.y - player->m_coordinate.y;
+                const auto dx = player->m_destination.x - player->m_coordinate.x;
+                const auto dy = player->m_destination.y - player->m_coordinate.y;
                 
                 if (dx < 0 && dy < 0) {
                     

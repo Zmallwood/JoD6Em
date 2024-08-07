@@ -24,10 +24,10 @@ namespace JoD {
     float GetAspectRatio() {
         
         // Get canvas dimensions.
-        auto canvasSize = GetCanvasSize();
+        const auto canvasSize = GetCanvasSize();
         
         // And calculate the ratio between them.
-        auto aspectRatio = static_cast<float>(canvasSize.w) / canvasSize.h;
+        const auto aspectRatio = static_cast<float>(canvasSize.w) / canvasSize.h;
         
         return aspectRatio;
     }

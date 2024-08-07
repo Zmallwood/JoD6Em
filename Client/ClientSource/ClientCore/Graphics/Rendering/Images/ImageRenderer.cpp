@@ -16,9 +16,11 @@ namespace JoD {
         
         int locNoPixelEffect{-1}; // Location of pixelation effect switch variable in vertex shader.
         std::vector<int> defaultIndices;
-        std::vector<float> k_defaultColorsWhite = std::vector<float>(16, 1.0f); ///< A set of floats representing the default white image color.
-        std::vector<float> k_defaultUVs ///< A set of floats representing a default UV coordinates layout for an image.
-            = {0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f};
+        const std::vector<float> k_defaultColorsWhite = std::vector<float>(
+            16,
+            1.0f);                                                                    ///< A set of floats representing the default white image color.
+        const std::vector<float> k_defaultUVs ///< A set of floats representing a default UV coordinates layout for an image.
+        {0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f};
         constexpr int k_locPosition{0}; // Location of position variable in vertex shader.
         constexpr int k_locColor{1}; // Location of color variable in vertex shader.
         constexpr int k_locUV{2}; // Location of UV variable in vertex shader.
@@ -48,16 +50,16 @@ namespace JoD {
     RID ImageRenderer::NewImage() {
         
         // Create new Vertex Array Object.
-        auto rid = GenNewVAOID();
+        const auto rid = GenNewVAOID();
         
         // Use it.
         UseVAOBegin(rid);
         
         // Create buffers that are needed for 2D image rendering.
-        auto indexBuffID = GenNewBuffID(BufferTypes::Indices, rid);
-        auto posBuffID = GenNewBuffID(BufferTypes::Positions2D, rid);
-        auto colorBuffID = GenNewBuffID(BufferTypes::Colors, rid);
-        auto uvBuffID = GenNewBuffID(BufferTypes::UVs, rid);
+        const auto indexBuffID = GenNewBuffID(BufferTypes::Indices, rid);
+        const auto posBuffID = GenNewBuffID(BufferTypes::Positions2D, rid);
+        const auto colorBuffID = GenNewBuffID(BufferTypes::Colors, rid);
+        const auto uvBuffID = GenNewBuffID(BufferTypes::UVs, rid);
         
         // Set buffers to empty data.
         SetIndicesData(
@@ -96,13 +98,13 @@ namespace JoD {
         ColorF color) const {
         
         // Convert destination to GL coordinate system.
-        auto glRect = destination.ToGLBoxF();
+        const auto glRect = destination.ToGLBoxF();
         
         // No need for depth testing in a 2D plane.
         glDisable(GL_DEPTH_TEST);
         
         // Obtain GL ID for image to be rendered.
-        auto imageID = _<ImageBank>().GetImage(imageNameHash);
+        const auto imageID = _<ImageBank>().GetImage(imageNameHash);
         
         if (imageID == -1) {
             
@@ -139,15 +141,15 @@ namespace JoD {
         UseVAOBegin(rid);
         
         // If pixelation effect should be used.
-        auto noPixelEffect = true;
+        const auto noPixelEffect = true;
         
         // glUniform1f(m_locNoPixelEffect, noPixelEffect ? 1.0f : 0.0f);
         
         // Get buffer IDs for the required data contents.
-        auto indexBuffID = GetBuffID(BufferTypes::Indices, rid);
-        auto posBuffID = GetBuffID(BufferTypes::Positions2D, rid);
-        auto colorBuffID = GetBuffID(BufferTypes::Colors, rid);
-        auto uvBuffID = GetBuffID(BufferTypes::UVs, rid);
+        const auto indexBuffID = GetBuffID(BufferTypes::Indices, rid);
+        const auto posBuffID = GetBuffID(BufferTypes::Positions2D, rid);
+        const auto colorBuffID = GetBuffID(BufferTypes::Colors, rid);
+        const auto uvBuffID = GetBuffID(BufferTypes::UVs, rid);
         
         // Provide the float vector data to the buffers.
         UpdateIndicesData(indexBuffID, defaultIndices);

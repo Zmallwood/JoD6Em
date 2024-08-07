@@ -23,27 +23,29 @@ namespace JoD {
     
     void WorldView::Render(WebSocket &webSocket) const {
         
-        auto tileSize =
-            CalculateTileSize(m_userConnection.m_userGameInstanceEngine->GetAspectRatio());
+        const auto tileSize =
+            CalculateTileSize(
+                m_userConnection.m_userGameInstanceEngine->GetAspectRatio());
         
-        auto playerCoordinate =
+        const auto playerCoordinate =
             m_userConnection.m_userGameInstanceEngine->m_player->m_coordinate;
         
-        auto numGridRows = _<GameProperties>().k_numGridRows;
-        auto numGridCols =
-            CalculateNumGridCols(m_userConnection.m_userGameInstanceEngine->GetAspectRatio());
+        const auto numGridRows = _<GameProperties>().k_numGridRows;
+        const auto numGridCols =
+            CalculateNumGridCols(
+                m_userConnection.m_userGameInstanceEngine->GetAspectRatio());
         
-        auto smallValue = 0.0001f;
+        const auto smallValue = 0.0001f;
         
         for (auto y = 0; y < numGridRows; y++){
             
             for (auto x = 0; x < numGridCols; x++){
                 
-                auto coordX = playerCoordinate.x -
-                              (numGridCols - 1) / 2 + x;
+                const auto coordX = playerCoordinate.x -
+                                    (numGridCols - 1) / 2 + x;
                 
-                auto coordY = playerCoordinate.y -
-                              (numGridRows - 1) / 2 + y;
+                const auto coordY = playerCoordinate.y -
+                                    (numGridRows - 1) / 2 + y;
                 
                 if (coordX < 0 || coordY < 0 || coordX >= 100 ||
                     coordY >= 100) {
@@ -51,13 +53,14 @@ namespace JoD {
                     continue;
                 }
                 
-                auto tile =
+                const auto tile =
                     _<World>().m_currentWorldArea->m_tiles[coordX][
                         coordY];
                 
-                auto tileBounds = BoxF {x * tileSize.w, y * tileSize.h,
-                                         tileSize.w + smallValue,
-                                         tileSize.h + smallValue};
+                const auto tileBounds = BoxF {
+                    x * tileSize.w, y * tileSize.h,
+                    tileSize.w + smallValue,
+                    tileSize.h + smallValue};
                 
                 RenderGround(m_userConnection, webSocket, tile, tileBounds);
                 

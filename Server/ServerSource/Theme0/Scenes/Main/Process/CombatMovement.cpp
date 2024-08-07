@@ -16,9 +16,10 @@
 
 namespace JoD {
     void CombatMovement::Update() {
-        auto player = m_userConnection.m_userGameInstanceEngine->m_player;
+        const std::shared_ptr<Player> player =
+            m_userConnection.m_userGameInstanceEngine->m_player;
         
-        auto mobTargeting =
+        const std::shared_ptr<MobTargeting> mobTargeting =
             std::static_pointer_cast<MobTargeting>(
                 m_mainScene.m_components.at(
                     MainSceneComponents::
@@ -26,41 +27,42 @@ namespace JoD {
         
         if (mobTargeting->m_targetedCreature) {
             
-            auto worldArea = _<World>().m_currentWorldArea;
-            auto pos =
+            const auto worldArea = _<World>().m_currentWorldArea;
+            const auto pos =
                 worldArea->m_mobPositions.at(mobTargeting->m_targetedCreature);
             
             if (Now() > player->m_ticksLastMove +
                 Duration(
                     Millis(
-                        static_cast<int>(1000/
-                                         player->m_movementSpeed)))) {
+                        static_cast<int>(
+                            1000/
+                            player->m_movementSpeed)))) {
                 
-                auto dx = pos.x - player->m_coordinate.x;
-                auto dy = pos.y - player->m_coordinate.y;
+                const auto dx = pos.x - player->m_coordinate.x;
+                const auto dy = pos.y - player->m_coordinate.y;
                 
                 if (dx < 0 && dy < 0) {
                     
                     player->TryMoveNorthWest();
-                }else if (dx == 0 && dy < 0)  {
+                }else if (dx == 0 && dy < 0) {
                     
                     player->TryMoveNorth();
-                }else if (dx > 0 && dy < 0)  {
+                }else if (dx > 0 && dy < 0) {
                     
                     player->TryMoveNorthEast();
-                }else if (dx > 0 && dy == 0)  {
+                }else if (dx > 0 && dy == 0) {
                     
                     player->TryMoveEast();
-                }else if (dx > 0 && dy > 0)  {
+                }else if (dx > 0 && dy > 0) {
                     
                     player->TryMoveSouthEast();
-                }else if (dx == 0 && dy > 0)  {
+                }else if (dx == 0 && dy > 0) {
                     
                     player->TryMoveSouth();
-                }else if (dx < 0 && dy > 0)  {
+                }else if (dx < 0 && dy > 0) {
                     
                     player->TryMoveSouthWest();
-                }else if (dx < 0 && dy == 0)  {
+                }else if (dx < 0 && dy == 0) {
                     
                     player->TryMoveWest();
                 }

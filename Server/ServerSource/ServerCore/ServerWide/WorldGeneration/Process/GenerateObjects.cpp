@@ -34,10 +34,10 @@ namespace JoD {
             
             for (auto i = 0; i < amount; i++) {
                 
-                auto x = rand() % 100;
-                auto y = rand() % 100;
+                const auto x = rand() % 100;
+                const auto y = rand() % 100;
                 
-                auto ground = worldArea->m_tiles[x][y]->m_ground;
+                const auto ground = worldArea->m_tiles[x][y]->m_ground;
                 
                 if (ground != Hash("GroundWater") && ground != Hash("GroundCobbleStone")) {
                     

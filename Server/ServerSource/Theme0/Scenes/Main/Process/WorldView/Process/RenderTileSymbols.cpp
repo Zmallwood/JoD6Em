@@ -18,9 +18,9 @@ namespace JoD {
         WebSocket &webSocket,
         Point coordinate, BoxF tileBounds) {
         
-        auto player = userConnection.m_userGameInstanceEngine->m_player;
+        const auto player = userConnection.m_userGameInstanceEngine->m_player;
         
-        auto tileHovering =
+        const auto tileHovering =
             std::static_pointer_cast<TileHovering>(
                 mainScene.m_components.at(
                     MainSceneComponents::

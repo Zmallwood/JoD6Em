@@ -16,8 +16,8 @@ namespace JoD {
         std::string_view socketAddress,
         std::string_view socketPort) {
         
-        auto const address = net::ip::make_address(socketAddress);
-        auto const port =
+        const auto address = net::ip::make_address(socketAddress);
+        const auto port =
             static_cast<unsigned short>(std::atoi(socketPort.data()));
         
         // The io_context is required for all I/O.

@@ -19,13 +19,13 @@ namespace JoD {
         TTF_Init();
         
         // Construct font path.
-        auto fontPath = k_relFontsPath + "default_font.ttf";
+        const auto fontPath = k_relFontsPath + "default_font.ttf";
         
         // Create font objects for all sizes.
-        auto font10 = std::make_shared<Font>(fontPath, 10);
-        auto font20 = std::make_shared<Font>(fontPath, 20);
-        auto font30 = std::make_shared<Font>(fontPath, 30);
-        auto font50 = std::make_shared<Font>(fontPath, 50);
+        const auto font10 = std::make_shared<Font>(fontPath, 10);
+        const auto font20 = std::make_shared<Font>(fontPath, 20);
+        const auto font30 = std::make_shared<Font>(fontPath, 30);
+        const auto font50 = std::make_shared<Font>(fontPath, 50);
         
         // Store the font objects by their sizes.
         m_fonts.insert({FontSizes::_10, font10});
@@ -42,7 +42,7 @@ namespace JoD {
         SizeF &out_dimensions) const {
         
         // Get main font object.
-        auto font = m_fonts.at(fontSize)->m_font;
+        const auto font = m_fonts.at(fontSize)->m_font;
         
         // Check that its been created correctly.
         if (!font) {
@@ -51,11 +51,11 @@ namespace JoD {
         }
         
         // Create SDL-type colors.
-        auto colorSDL = ToSDLColor(color);
-        auto outlineColorSDL = ToSDLColor(k_outlineColor);
+        const auto colorSDL = ToSDLColor(color);
+        const auto outlineColorSDL = ToSDLColor(k_outlineColor);
         
         // Render text outline onto surface.
-        auto textOutlineSurface =
+        const auto textOutlineSurface =
             TTF_RenderText_Blended(
                 m_fonts.at(fontSize)->m_outlineFont.get(),
                 text.data(), outlineColorSDL);
@@ -67,7 +67,7 @@ namespace JoD {
         }
         
         // Render main text onto surface.
-        auto textSurface = TTF_RenderText_Blended(
+        const auto textSurface = TTF_RenderText_Blended(
             font.get(), text.data(),
             colorSDL);
         
@@ -81,10 +81,10 @@ namespace JoD {
         glEnable(GL_TEXTURE_2D);
         
         // Get image name for previously created blank image.
-        auto uniqueNameID = m_uniqueNameIDs.at(rid);
+        const auto uniqueNameID = m_uniqueNameIDs.at(rid);
         
         // Get image ID for the preallocated blank image.
-        auto imageID = _<ImageBank>().GetImage(uniqueNameID);
+        const auto imageID = _<ImageBank>().GetImage(uniqueNameID);
         
         // Bind this image.
         glBindTexture(GL_TEXTURE_2D, imageID);
@@ -94,15 +94,15 @@ namespace JoD {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         
         // Get dimensions of rendered outline surface.
-        auto width = textOutlineSurface->w;
-        auto height = textOutlineSurface->h;
+        const auto width = textOutlineSurface->w;
+        const auto height = textOutlineSurface->h;
         
         // Create empty RGB surface.
         auto image = SDL_CreateRGBSurface(
             SDL_SWSURFACE, width, height, 32, 0x000000FF,
             0x0000FF00, 0x00FF0000, 0xFF000000);
         
-        auto canvasSize = GetCanvasSize();
+        const auto canvasSize = GetCanvasSize();
         
         // Create boxes for source and destination
         // for main and outline renderings.
@@ -148,12 +148,12 @@ namespace JoD {
             GL_UNSIGNED_BYTE, image->pixels);
         
         // Get final rendered with.
-        auto outWidth =
+        const auto outWidth =
             textSurface ? static_cast<float>(textSurface->w) /
             canvasSize.w : 0;
         
         // Get final rendered height.
-        auto outHeight =
+        const auto outHeight =
             textSurface ? static_cast<float>(textSurface->h) /
             canvasSize.h : 0;
         
@@ -175,19 +175,19 @@ namespace JoD {
         static int s_idCounter = 0;
         
         // Set this new strings ID.
-        auto id = s_idCounter++;
+        const auto id = s_idCounter++;
         
         // Produce an unique image name based on the ID.
-        auto uniqueName = "RenderedImage" + std::to_string(id);
+        const auto uniqueName = "RenderedImage" + std::to_string(id);
         
         // Create a blank image with the above name.
-        auto ridImage = _<ImageBank>().CreateBlankImage(uniqueName);
+        const auto ridImage = _<ImageBank>().CreateBlankImage(uniqueName);
         
         // Store the images ID and unique name.
         m_uniqueNameIDs.insert({ridImage, uniqueName});
         
         // Allocate image resources from the ImageRenderer.
-        auto ridGLResource = _<ImageRenderer>().NewImage();
+        const auto ridGLResource = _<ImageRenderer>().NewImage();
         
         // Store also the ImageRenderer resource ID.
         m_ridsGLResources.insert({ridImage, ridGLResource});
@@ -211,7 +211,7 @@ namespace JoD {
             rid, text, color, centerAlign, fontSize, uniqueNameID,
             size);
         
-        auto canvasSize = GetCanvasSize();
+        const auto canvasSize = GetCanvasSize();
         
         // Create final render destination box.
         auto box = BoxF{position.x, position.y, size.w, size.h};
@@ -242,7 +242,7 @@ namespace JoD {
         }
         
         // Ability to scale the text before rendering.
-        auto scale = 1.0f;
+        const auto scale = 1.0f;
         
         box.x += box.w / 2.0f - box.w / 2.0f * scale;
         box.y += box.h / 2.0f - box.h / 2.0f * scale;
@@ -251,7 +251,7 @@ namespace JoD {
         
         // Get the RID associated with the image onto which the
         // text has been rendered.
-        auto ridGLResource = m_ridsGLResources.at(rid);
+        const auto ridGLResource = m_ridsGLResources.at(rid);
         
         // Do the actual rendering operation.
         _<ImageRenderer>().DrawImage(
@@ -264,7 +264,7 @@ namespace JoD {
         FontSizes font_size) const {
         
         // Get the main font object.
-        auto font = m_fonts.at(font_size)->m_font;
+        const auto font = m_fonts.at(font_size)->m_font;
         
         // To be filled with rendered text dimensions.
         int textWidth;
@@ -273,7 +273,7 @@ namespace JoD {
         // Get the dimensions.
         TTF_SizeText(font.get(), text.data(), &textWidth, &textHeight);
         
-        auto canvasSize = GetCanvasSize();
+        const auto canvasSize = GetCanvasSize();
         
         // Return the normalized dimensions.
         return {static_cast<float>(textWidth) / canvasSize.w,

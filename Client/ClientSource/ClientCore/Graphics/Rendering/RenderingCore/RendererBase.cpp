@@ -316,10 +316,10 @@ namespace JoD {
     void RendererBase::CleanupBase() const {
         
         // Loop through all keys of buffer types.
-        for (auto &buff_type : m_VBOIDs) {
+        for (const auto &buff_type : m_VBOIDs) {
             
             // Loop through all keys of VAO ids.
-            for (auto &buffer_entry : (*buff_type.second)) {
+            for (const auto &buffer_entry : (*buff_type.second)) {
                 
                 // Delete every VBO.
                 glDeleteBuffers(1, &buffer_entry.second);
@@ -327,7 +327,7 @@ namespace JoD {
         }
         
         // Loop through all VAO ids.
-        for (auto vao_id : m_VAOIDs) {
+        for (const auto vao_id : m_VAOIDs) {
             
             // And delete them.
             glDeleteVertexArraysOES(1, &vao_id);

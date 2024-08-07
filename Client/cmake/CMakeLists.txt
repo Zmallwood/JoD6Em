@@ -5,7 +5,7 @@ set (CXX_STANDARD_REQUIRED ON)
 set(CMAKE_TOOLCHAIN_FILE $ENV{EMSDK_HOME}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake)
 set(CMAKE_EXECUTABLE_SUFFIX ".html")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_CXX_FLAGS "-flto=auto -sUSE_SDL=2 -sUSE_SDL_TTF=2 -sUSE_SDL_IMAGE=2 -sUSE_WEBGL2=1 -sSTB_IMAGE -sUSE_GLFW=3 --preload-file ${CMAKE_SOURCE_DIR}/../preloaded_files@/ --shell-file ${CMAKE_SOURCE_DIR}/../html/shell_minimal.html")
+set(CMAKE_CXX_FLAGS "-sUSE_SDL=2 -sUSE_SDL_TTF=2 -sUSE_SDL_IMAGE=2 -sUSE_WEBGL2=1 -sSTB_IMAGE -sUSE_GLFW=3 --preload-file ${CMAKE_SOURCE_DIR}/../preloaded_files@/ --shell-file ${CMAKE_SOURCE_DIR}/../html/shell_minimal.html ")
 file(GLOB_RECURSE sources ../ClientSource/**.cpp)
 file(GLOB_RECURSE sources_shared ../../Shared/SharedSource/**.cpp)
 add_executable(JourneyOfDreams 

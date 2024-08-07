@@ -33,7 +33,7 @@ namespace JoD {
         _<Graphics>();
         
         // Start game loop.
-        auto simulateInfiniteLoop = 1;
+        const auto simulateInfiniteLoop = 1;
         emscripten_set_main_loop(GameLoopFunction, 0, simulateInfiniteLoop);
     }
     

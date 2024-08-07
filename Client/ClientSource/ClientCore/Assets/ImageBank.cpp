@@ -42,7 +42,7 @@ namespace JoD {
     GLuint ImageBank::GetImage(int imageNameHash) const {
         
         // Iterate through all the loaded images.
-        for (auto &image : m_images) {
+        for (const auto &image : m_images) {
             
             // If its key, being the hash of the image name, equals
             // the hash of the specified name, then, return this image ID.
@@ -85,12 +85,12 @@ namespace JoD {
         
         using iterator = std::filesystem::recursive_directory_iterator;
         
-        auto allImagesPath = k_relImagesPath + "/";
+        const auto allImagesPath = k_relImagesPath + "/";
         
         for (auto &entry : iterator(allImagesPath)) {
             
             // Create path string to load the images from.
-            auto absPath = entry.path().string();
+            const auto absPath = entry.path().string();
             
             // Only handle files with png extenstion.
             if (GetFileExtension(absPath) != "png") {
@@ -99,10 +99,10 @@ namespace JoD {
             }
             
             // Load the current file as an image resource.
-            auto imageEntry = LoadSingleImage(absPath);
+            const auto imageEntry = LoadSingleImage(absPath);
             
             // Extract its pure name without path or extension.
-            auto imageName = GetFilenameNoExtension(absPath);
+            const auto imageName = GetFilenameNoExtension(absPath);
             
             // Insert a new entry into the images storage, with the
             // image name hash as key and the resource ID as value.
@@ -118,7 +118,7 @@ namespace JoD {
             GLuint texID;
             
             // Get image data from the image file.
-            auto surface = LoadImageData(absFilePath.data());
+            const auto surface = LoadImageData(absFilePath.data());
             
             // We will work with 2D textures.
             glEnable(GL_TEXTURE_2D);
@@ -149,7 +149,7 @@ namespace JoD {
                     GL_RGB, GL_UNSIGNED_BYTE, surface->pixels);
             }
             
-            auto dimensions = Size {surface->w, surface->h};
+            const auto dimensions = Size {surface->w, surface->h};
             
             // Free SDL surface resource, its not needed anymore as the image data is
             // stored in the OpenGL texture now.
@@ -194,7 +194,7 @@ namespace JoD {
 #endif
             
             // Create SDL surface from image data.
-            auto surface = SDL_CreateRGBSurfaceFrom(
+            const auto surface = SDL_CreateRGBSurfaceFrom(
                 data, width, height,
                 bytesPerPixel * 8, pitch, rMask, gMask, bMask, aMask);
             

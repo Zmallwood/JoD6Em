@@ -24,7 +24,7 @@ namespace JoD {
     
     Size WorldArea::GetSize() const {
         
-        auto width = static_cast<int>(m_tiles.size());
+        const auto width = static_cast<int>(m_tiles.size());
         auto height = 0;
         
         if (m_tiles.size() > 0) {
@@ -37,7 +37,7 @@ namespace JoD {
     
     bool WorldArea::IsValidCoord(Point coord) const {
         
-        auto size = GetSize();
+        const auto size = GetSize();
         
         return coord.x >= 0 && coord.y >= 0 && coord.x < size.w &&
                coord.y < size.h;

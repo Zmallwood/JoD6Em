@@ -41,8 +41,8 @@ namespace JoD {
                 
                 if (*data == MessageCodes::k_canvasSize){
                     
-                    auto width = (int)data[1];
-                    auto height = (int)data[2];
+                    const auto width = (int)data[1];
+                    const auto height = (int)data[2];
                     m_userGameInstanceEngine->m_canvasSize = {width, height};
                 }else if (*data == MessageCodes::k_leftMouseDown) {
                     
@@ -56,14 +56,14 @@ namespace JoD {
                         MouseButtons::Right);
                 }else if (*data == MessageCodes::k_mousePosition) {
                     
-                    auto x = data[1] / NetConstants::k_floatPrecision;
-                    auto y = data[2] / NetConstants::k_floatPrecision;
+                    const auto x = data[1] / NetConstants::k_floatPrecision;
+                    const auto y = data[2] / NetConstants::k_floatPrecision;
                     m_userGameInstanceEngine->m_mousePosition = {x, y};
                 }else if (*data == MessageCodes::k_provideImageDimensions) {
                     
-                    auto imageNameHash = (int)data[1];
-                    auto width = (int)data[2];
-                    auto height = (int)data[3];
+                    const auto imageNameHash = (int)data[1];
+                    const auto width = (int)data[2];
+                    const auto height = (int)data[3];
                     
                     _<ImageDimensions>().m_dimensions[imageNameHash] =
                     {width, height};
@@ -83,10 +83,10 @@ namespace JoD {
         try{
             
             // Construct the stream by moving in the socket.
-            WebSocket ws{std::move(socket)};
+            WebSocket webSocket{std::move(socket)};
             
             // Set a decorator to change the Server of the handshake.
-            ws.set_option(
+            webSocket.set_option(
                 websocket::stream_base::decorator(
                     [](websocket::response_type &res){
                         
@@ -96,16 +96,16 @@ namespace JoD {
                             " websocket-server-sync");
                     }));
             
-            ws.accept(); // Accept the websocket handshake.
+            webSocket.accept(); // Accept the websocket handshake.
             
-            ws.text(false); // Receive binary data, not text.
+            webSocket.text(false); // Receive binary data, not text.
             
-            std::thread(&UserConnection::DoSessionNested, this, &ws).detach();
+            std::thread(&UserConnection::DoSessionNested, this, &webSocket).detach();
             
             while (true){
                 
                 m_userGameInstanceEngine->Update();
-                m_userGameInstanceEngine->Render(ws);
+                m_userGameInstanceEngine->Render(webSocket);
                 
                 std::this_thread::sleep_for(std::chrono::milliseconds(70));
             }
@@ -138,12 +138,12 @@ namespace JoD {
         int imageNameHash,
         BoxF destination) const {
         
-        auto messageCode = MessageCodes::k_drawImageInstr;
+        const auto messageCode = MessageCodes::k_drawImageInstr;
         
-        auto x = (int)(destination.x * NetConstants::k_floatPrecision);
-        auto y = (int)(destination.y * NetConstants::k_floatPrecision);
-        auto w = (int)(destination.w * NetConstants::k_floatPrecision);
-        auto h = (int)(destination.h * NetConstants::k_floatPrecision);
+        const auto x = (int)(destination.x * NetConstants::k_floatPrecision);
+        const auto y = (int)(destination.y * NetConstants::k_floatPrecision);
+        const auto w = (int)(destination.w * NetConstants::k_floatPrecision);
+        const auto h = (int)(destination.h * NetConstants::k_floatPrecision);
         
         auto data = std::vector<int>();
         
@@ -162,10 +162,10 @@ namespace JoD {
         std::string_view text,
         PointF position) const {
         
-        auto messageCode = MessageCodes::k_drawStringInstr;
+        const auto messageCode = MessageCodes::k_drawStringInstr;
         
-        auto x = (int)(position.x * NetConstants::k_floatPrecision);
-        auto y = (int)(position.y * NetConstants::k_floatPrecision);
+        const auto x = (int)(position.x * NetConstants::k_floatPrecision);
+        const auto y = (int)(position.y * NetConstants::k_floatPrecision);
         
         auto data = std::vector<int>();
         
@@ -186,7 +186,7 @@ namespace JoD {
     void UserConnection::SendPresentCanvasInstruction(
         WebSocket &webSocket) const {
         
-        auto messageCode = MessageCodes::k_applyBuffer;
+        const auto messageCode = MessageCodes::k_applyBuffer;
         
         webSocket.write(
             boost::asio::buffer(&messageCode,sizeof(messageCode)));
@@ -196,7 +196,7 @@ namespace JoD {
         WebSocket &webSocket,
         int imageNameHash) const {
             
-        auto messageCode = MessageCodes::k_requestImageDimensions;
+        const auto messageCode = MessageCodes::k_requestImageDimensions;
         
         auto data = std::vector<int>();
         

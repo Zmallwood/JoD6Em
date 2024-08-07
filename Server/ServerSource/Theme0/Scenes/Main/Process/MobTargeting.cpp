@@ -20,29 +20,30 @@ namespace JoD {
     
     void MobTargeting::Update() {
         
-        auto player = m_userConnection.m_userGameInstanceEngine->m_player;
+        const std::shared_ptr<Player> player =
+            m_userConnection.m_userGameInstanceEngine->m_player;
         
-        auto tileHovering =
+        const std::shared_ptr<const TileHovering> tileHovering =
             std::static_pointer_cast<TileHovering>(
                 m_mainScene.m_components.at(
                     MainSceneComponents::
                     TileHovering));
         
-        auto mouseDown =
+        const auto mouseDown =
             m_userConnection.m_userGameInstanceEngine->m_mouseInput->
             m_rightButton->
             IsPressedPickResult();
         
-        auto hoveredTile =
+        const auto hoveredTile =
             tileHovering->m_hoveredCoordinate;
         
         if (mouseDown) {
             
             player->m_destination = {-1, -1};
             
-            auto worldArea = _<World>().m_currentWorldArea;
+            const auto worldArea = _<World>().m_currentWorldArea;
             
-            auto tile = worldArea->m_tiles[hoveredTile.x][hoveredTile.y];
+            const auto tile = worldArea->m_tiles[hoveredTile.x][hoveredTile.y];
             
             if (tile->m_mob) {
                 

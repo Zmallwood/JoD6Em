@@ -13,12 +13,20 @@ namespace JoD {
     ///
     /// Allocates image resources and enabled rendering images to the browser.
     ///
+    /// @details SDL2s own 2D rendering capabilities could have been used instead.
+    ///          But creating a custom 2D image rendering functionality is good for
+    ///          learning purposes and provides full control of the shader source
+    ///          being used. This allows creating advances shader effects if wish
+    ///          to in the future.
+    ///
     class ImageRenderer : public RendererBase {
         
       public:
         ///
         /// Construct a new Image Renderer object by creating the GL shader program associates
         /// with image rendering.
+        ///
+        /// @details Creates the shader program,,,
         ///
         ImageRenderer();
         

@@ -36,10 +36,10 @@ namespace JoD {
                 return;
             }
             
-            auto width = imageDimensions.w/60.0f*tileBounds.w;
-            auto height = imageDimensions.h/60.0f*tileBounds.h;
+            const auto width = imageDimensions.w/60.0f*tileBounds.w;
+            const auto height = imageDimensions.h/60.0f*tileBounds.h;
             
-            auto newBounds = BoxF{tileBounds.x + tileBounds.w/2 - width/2,
+            const auto newBounds = BoxF{tileBounds.x + tileBounds.w/2 - width/2,
                                    tileBounds.y + tileBounds.h - height, width, height};
             
             userConnection.SendImageDrawInstruction(

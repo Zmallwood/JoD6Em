@@ -55,7 +55,7 @@ namespace JoD {
     
     void RenderInstructionsManager::ApplyBuffer() {
         
-        auto temp = m_activeBuffer;
+        const auto temp = m_activeBuffer;
         m_activeBuffer = m_inactiveBuffer;
         m_inactiveBuffer = temp;
         
@@ -67,7 +67,7 @@ namespace JoD {
     void RenderInstructionsManager::ExecuteInstructions() const {
         
         // Execute all drawing instructions that have been added.
-        for (auto &instruction : *m_activeBuffer){
+        for (const auto &instruction : *m_activeBuffer){
             
             switch (instruction.type) {
             

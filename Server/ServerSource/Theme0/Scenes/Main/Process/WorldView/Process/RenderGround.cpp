@@ -18,7 +18,7 @@ namespace JoD {
         
         if (ground == Hash("GroundWater")) {
             
-            auto animIndex =
+            const auto animIndex =
                 ((std::chrono::high_resolution_clock::now().
                   time_since_epoch().count()/1000000)%1200)/400;
             

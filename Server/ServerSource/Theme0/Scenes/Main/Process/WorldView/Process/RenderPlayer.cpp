@@ -15,7 +15,7 @@ namespace JoD {
         UserConnection& userConnection, WebSocket &webSocket,
         Point coordinate, BoxF tileBounds) {
         
-        auto playerCoordinate =
+        const auto playerCoordinate =
             userConnection.m_userGameInstanceEngine->m_player->m_coordinate;
         
         if (coordinate.x == playerCoordinate.x &&
