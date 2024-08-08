@@ -12,7 +12,7 @@
 namespace JoD {
     
     void RenderGround(
-        const UserConnection& userConnection, WebSocket &webSocket,
+        WebSocket &webSocket,
         std::shared_ptr<const Tile> tile, BoxF tileBounds) {
         
         auto ground = tile->m_ground;

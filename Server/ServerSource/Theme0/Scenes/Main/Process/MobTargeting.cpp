@@ -21,7 +21,7 @@ namespace JoD {
     void MobTargeting::Update() {
         
         const std::shared_ptr<Player> player =
-            m_userConnection.m_userGameInstanceEngine->m_player;
+            m_userGameInstanceEngine.m_player;
         
         const std::shared_ptr<const TileHovering> tileHovering =
             std::static_pointer_cast<TileHovering>(
@@ -30,7 +30,7 @@ namespace JoD {
                     TileHovering));
         
         const auto mouseDown =
-            m_userConnection.m_userGameInstanceEngine->m_mouseInput->
+            m_userGameInstanceEngine.m_mouseInput->
             m_rightButton->
             IsPressedPickResult();
         

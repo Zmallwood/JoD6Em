@@ -8,8 +8,8 @@
 
 namespace JoD {
     
-    IScene::IScene(UserConnection& userConnection)
-        : m_userConnection(userConnection),
+    IScene::IScene(UserGameInstanceEngine& userGameInstanceEngine)
+        : m_userGameInstanceEngine(userGameInstanceEngine),
         m_gui(std::make_unique<GUI>()) {
         
     }

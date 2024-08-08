@@ -10,11 +10,6 @@
 
 namespace JoD {
     
-    ServerFPSCounter::ServerFPSCounter(const UserConnection& userConnection)
-        : m_userConnection(userConnection) {
-        
-    }
-    
     void ServerFPSCounter::Update() {
         
         if (Now() > m_ticksLastUpdate + Duration(Millis(1000))) {

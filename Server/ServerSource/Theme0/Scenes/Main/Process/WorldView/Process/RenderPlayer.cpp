@@ -13,11 +13,11 @@
 namespace JoD {
     
     void RenderPlayer(
-        const UserConnection& userConnection, WebSocket &webSocket,
+        const UserGameInstanceEngine& userGameInstanceEngine, WebSocket &webSocket,
         Point coordinate, BoxF tileBounds) {
         
         const auto playerCoordinate =
-            userConnection.m_userGameInstanceEngine->m_player->m_coordinate;
+            userGameInstanceEngine.m_player->m_coordinate;
         
         if (coordinate.x == playerCoordinate.x &&
             coordinate.y == playerCoordinate.y){

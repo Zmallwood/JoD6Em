@@ -17,7 +17,7 @@
 namespace JoD {
     void CombatMovement::Update() {
         const std::shared_ptr<Player> player =
-            m_userConnection.m_userGameInstanceEngine->m_player;
+            m_userGameInstanceEngine.m_player;
         
         const std::shared_ptr<MobTargeting> mobTargeting =
             std::static_pointer_cast<MobTargeting>(

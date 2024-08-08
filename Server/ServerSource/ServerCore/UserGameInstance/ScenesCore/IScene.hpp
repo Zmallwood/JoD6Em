@@ -10,7 +10,7 @@
 
 namespace JoD {
     
-    class UserConnection;
+    class UserGameInstanceEngine;
     
     ///
     /// Pure virtual IScene class of which all scenes inherits.
@@ -23,7 +23,7 @@ namespace JoD {
         /// 
         /// @param userConnection User connection associated with current user.
         ///
-        IScene(UserConnection& userConnection);
+        IScene(UserGameInstanceEngine& userGameInstanceEngine);
         
         ///
         /// Called once for inherited scenes when a new user
@@ -59,7 +59,7 @@ namespace JoD {
             WebSocket
             &webSocket) const = 0;
         
-        UserConnection &m_userConnection; ///< User connection object for current user.
+        UserGameInstanceEngine &m_userGameInstanceEngine; ///< User connection object for current user.
         std::unique_ptr<GUI> m_gui;
     };
 }

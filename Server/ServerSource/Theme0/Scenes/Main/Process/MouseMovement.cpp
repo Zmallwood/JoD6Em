@@ -31,11 +31,11 @@ namespace JoD {
                     MobTargeting));
         
         const auto mouseDown =
-            m_userConnection.m_userGameInstanceEngine->m_mouseInput->
+            m_userGameInstanceEngine.m_mouseInput->
             m_leftButton->
             IsPressedPickResult();
         
-        auto player = m_userConnection.m_userGameInstanceEngine->m_player;
+        auto player = m_userGameInstanceEngine.m_player;
         
         const auto hoveredTile =
             tileHovering->m_hoveredCoordinate;

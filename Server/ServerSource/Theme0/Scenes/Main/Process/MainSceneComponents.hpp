@@ -14,13 +14,9 @@ namespace JoD {
     enum class MainSceneComponents {
         
         MobTargeting, ///< Handles targeting of mobs in the world.
-        
         MouseMovement, ///< Handles moving by clicking with mouse.
-        
         TileHovering, ///< Handles hovered of the tile currently under the cursor.
-        
         WorldView, ///< Core game world viewing as a 2D tile grid on canvas.
-        
         CombatMovement ///< Handles combat movement such as chasing targeted mob.
     };
 }

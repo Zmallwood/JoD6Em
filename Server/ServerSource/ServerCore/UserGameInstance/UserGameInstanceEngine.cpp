@@ -16,14 +16,12 @@
 
 namespace JoD {
     
-    UserGameInstanceEngine::UserGameInstanceEngine(
-        UserConnection &userConnection)
-        : m_userConnection(userConnection),
-        m_sceneManager(std::make_shared<SceneManager>(userConnection)),
+    UserGameInstanceEngine::UserGameInstanceEngine()
+        : m_sceneManager(std::make_shared<SceneManager>(*this)),
         m_mouseInput(std::make_shared<MouseInput>()),
-        m_serverFPSCounter(std::make_shared<ServerFPSCounter>(userConnection)),
+        m_serverFPSCounter(std::make_shared<ServerFPSCounter>()),
         m_player(std::make_shared<Player>()),
-        m_cursor(std::make_shared<Cursor>(userConnection)){
+        m_cursor(std::make_shared<Cursor>(*this)){
         
     }
     

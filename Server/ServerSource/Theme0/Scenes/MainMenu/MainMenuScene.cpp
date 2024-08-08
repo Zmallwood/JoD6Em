@@ -16,11 +16,11 @@ namespace JoD {
     
     void MainMenuScene::UpdateDerived() {
         
-        if (m_userConnection.m_userGameInstanceEngine->m_mouseInput->
+        if (m_userGameInstanceEngine.m_mouseInput->
             m_leftButton->
             IsPressedPickResult()) {
             
-            m_userConnection.m_userGameInstanceEngine->m_sceneManager->
+            m_userGameInstanceEngine.m_sceneManager->
             GoToScene("MainScene");
         }
     }

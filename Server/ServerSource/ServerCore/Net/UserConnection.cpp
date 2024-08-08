@@ -17,8 +17,7 @@ namespace JoD {
     
     UserConnection::UserConnection(Socket socket)
         : m_userGameInstanceEngine(
-            std::make_unique<UserGameInstanceEngine>(
-                *this)){
+            std::make_unique<UserGameInstanceEngine>()){
         
         std::thread(
             &UserConnection::DoSession, this,

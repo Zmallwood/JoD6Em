@@ -14,9 +14,7 @@ namespace JoD {
     enum class DrawInstructionTypes {
         
         None, ///< No instruction.
-        
         DrawImage, ///< Draw an image to the canvas.
-        
         DrawText ///< Draw text to the canvas.
     };
 }

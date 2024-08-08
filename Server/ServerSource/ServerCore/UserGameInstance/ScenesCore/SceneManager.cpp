@@ -13,15 +13,15 @@
 namespace JoD {
     
     SceneManager::SceneManager(
-        UserConnection &userConnection) : m_userConnection(userConnection){
+        UserGameInstanceEngine &userGameInstanceEngine) : m_userGameInstanceEngine(userGameInstanceEngine){
         
-        AddScene("IntroScene", std::make_shared<IntroScene>(m_userConnection));
+        AddScene("IntroScene", std::make_shared<IntroScene>(m_userGameInstanceEngine));
         
         AddScene(
             "MainMenuScene",
-            std::make_shared<MainMenuScene>(m_userConnection));
+            std::make_shared<MainMenuScene>(m_userGameInstanceEngine));
         
-        AddScene("MainScene", std::make_shared<MainScene>(m_userConnection));
+        AddScene("MainScene", std::make_shared<MainScene>(m_userGameInstanceEngine));
         
         GoToScene("IntroScene");
     }

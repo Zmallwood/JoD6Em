@@ -8,7 +8,7 @@
 
 namespace JoD {
     
-    class UserConnection;
+    class UserGameInstanceEngine;
     class IScene;
     
     ///
@@ -24,7 +24,7 @@ namespace JoD {
         /// 
         /// @param userConnection User connection reference forwarding.
         ///
-        SceneManager(UserConnection &userConnection);
+        SceneManager(UserGameInstanceEngine &userGameInstanceEngine);
         
         ///
         /// Updates the scene currently being presented.
@@ -57,6 +57,6 @@ namespace JoD {
         
         int m_currentScene {0}; ///< Hash code of name of the currently presented scene.
         std::map<int, std::shared_ptr<IScene>> m_scenes; ///< All scenes that has been added in ctor.
-        UserConnection &m_userConnection; ///< User connection reference for the associated user.
+        UserGameInstanceEngine &m_userGameInstanceEngine; ///< User connection reference for the associated user.
     };
 }

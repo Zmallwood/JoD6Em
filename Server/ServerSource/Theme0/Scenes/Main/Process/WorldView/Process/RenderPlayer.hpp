@@ -8,19 +8,19 @@
 
 namespace JoD {
     
-    class UserConnection;
+    class UserGameInstanceEngine;
     class Tile;
     
     ///
     /// Renders player on tile in the world view if player object is
     /// located on the tile with provided coords.
     /// 
-    /// @param userConnection User connection object associated with user.
+    /// @param userGameInstanceEngine User game instance engine object associated with user.
     /// @param webSocket Web socket object associated with user.
     /// @param coordinate Coordinate of tile the function is called for.
     /// @param tileBounds Bounds area of tile the function is called for.
     ///
     void RenderPlayer(
-        const UserConnection& userConnection, WebSocket &webSocket,
+        const UserGameInstanceEngine& userGameInstanceEngine, WebSocket &webSocket,
         Point coordinate, BoxF tileBounds);
 }

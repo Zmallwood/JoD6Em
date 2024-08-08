@@ -8,7 +8,7 @@
 
 namespace JoD {
     
-    class UserConnection;
+    class UserGameInstanceEngine;
     
     ///
     /// Custom cursor object which replaces the default system cursor.
@@ -21,7 +21,7 @@ namespace JoD {
         /// 
         /// @param userConnection User connection object for current user.
         ///
-        Cursor(const UserConnection& userConnection);
+        Cursor(const UserGameInstanceEngine& userGameInstanceEngine);
         
         ///
         /// Render the cursor to canvas.
@@ -31,7 +31,7 @@ namespace JoD {
         void Render(WebSocket& webSocket) const;
         
       private:
-        const UserConnection& m_userConnection; ///< User connection object for associated user.
+        const UserGameInstanceEngine& m_userGameInstanceEngine; ///< User connection object for associated user.
         const std::string k_cursorImageName {"CursorDefault"}; ///< Image name for default cursor style.
         const float k_cursorSize {0.03f}; ///< Size of rendered cursor symbol.
     };

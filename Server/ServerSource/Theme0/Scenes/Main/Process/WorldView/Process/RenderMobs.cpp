@@ -15,7 +15,7 @@
 namespace JoD {
     
     void RenderMobs(
-        const MainScene& mainScene, const UserConnection& userConnection,
+        const MainScene& mainScene,
         WebSocket &webSocket,
         std::shared_ptr<const Tile> tile, BoxF tileBounds) {
         

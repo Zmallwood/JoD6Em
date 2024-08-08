@@ -25,15 +25,15 @@ namespace JoD {
         
         const auto tileSize =
             CalculateTileSize(
-                m_userConnection.m_userGameInstanceEngine->GetAspectRatio());
+                m_userGameInstanceEngine.GetAspectRatio());
         
         const auto playerCoordinate =
-            m_userConnection.m_userGameInstanceEngine->m_player->m_coordinate;
+            m_userGameInstanceEngine.m_player->m_coordinate;
         
         const auto numGridRows = _<GameProperties>().k_numGridRows;
         const auto numGridCols =
             CalculateNumGridCols(
-                m_userConnection.m_userGameInstanceEngine->GetAspectRatio());
+                m_userGameInstanceEngine.GetAspectRatio());
         
         const auto smallValue = 0.0001f;
         
@@ -61,20 +61,20 @@ namespace JoD {
                     tileSize.w + smallValue,
                     tileSize.h + smallValue};
                 
-                RenderGround(m_userConnection, webSocket, tile, tileBounds);
+                RenderGround(webSocket, tile, tileBounds);
                 
                 RenderTileSymbols(
-                    m_mainScene, m_userConnection, webSocket,
+                    m_mainScene, m_userGameInstanceEngine, webSocket,
                     {coordX, coordY}, tileBounds);
                 
-                RenderObjects(m_userConnection, webSocket, tile, tileBounds);
+                RenderObjects(webSocket, tile, tileBounds);
                 
                 RenderMobs(
-                    m_mainScene, m_userConnection, webSocket, tile,
+                    m_mainScene, webSocket, tile,
                     tileBounds);
                 
                 RenderPlayer(
-                    m_userConnection, webSocket, {coordX, coordY},
+                    m_userGameInstanceEngine, webSocket, {coordX, coordY},
                     tileBounds);
             }
         }

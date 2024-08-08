@@ -14,9 +14,7 @@ namespace JoD {
     enum class MouseButtons {
         
         None, ///< Not defined.
-        
         Left, ///< Left mouse button.
-        
         Right ///< Right mouse button.
     };
 }

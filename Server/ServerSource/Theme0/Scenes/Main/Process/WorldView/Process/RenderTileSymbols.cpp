@@ -15,11 +15,11 @@
 namespace JoD {
     
     void RenderTileSymbols(
-        const MainScene& mainScene, const UserConnection& userConnection,
+        const MainScene& mainScene, const UserGameInstanceEngine& userGameInstanceEngine,
         WebSocket &webSocket,
         Point coordinate, BoxF tileBounds) {
         
-        const auto player = userConnection.m_userGameInstanceEngine->m_player;
+        const auto player = userGameInstanceEngine.m_player;
         
         const auto tileHovering =
             std::static_pointer_cast<TileHovering>(

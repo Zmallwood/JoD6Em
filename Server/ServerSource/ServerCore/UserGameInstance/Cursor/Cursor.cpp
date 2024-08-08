@@ -11,19 +11,19 @@
 
 namespace JoD {
     
-    Cursor::Cursor(const UserConnection& userConnection)
-        : m_userConnection(userConnection) {
+    Cursor::Cursor(const UserGameInstanceEngine& userGameInstanceEngine)
+        : m_userGameInstanceEngine(userGameInstanceEngine) {
         
     }
     
     void Cursor::Render(WebSocket& webSocket) const {
         
         // Get current mouse position.
-        const auto mousePosition = m_userConnection.m_userGameInstanceEngine->m_mousePosition;
+        const auto mousePosition = m_userGameInstanceEngine.m_mousePosition;
         
         // Obtain cursor dimensions.
         const auto cursorWidth = k_cursorSize;
-        const auto cursorHeight = k_cursorSize*m_userConnection.m_userGameInstanceEngine->GetAspectRatio();
+        const auto cursorHeight = k_cursorSize*m_userGameInstanceEngine.GetAspectRatio();
         
         // Calculate cursor position.
         const auto cursorX = mousePosition.x - cursorWidth / 2;

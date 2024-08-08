@@ -9,7 +9,6 @@
 
 namespace JoD {
     
-    class UserConnection;
     class MouseInput;
     class SceneManager;
     class ServerFPSCounter;
@@ -25,9 +24,7 @@ namespace JoD {
         ///
         /// Stores an user connection reference and initializes members.
         ///
-        /// @param userConnection Iser connection associated with the user.
-        ///
-        UserGameInstanceEngine(UserConnection &userConnection);
+        UserGameInstanceEngine();
         
         ///
         /// Updates everything that needs it in the game loop.
@@ -57,6 +54,5 @@ namespace JoD {
         
       private:
         std::shared_ptr<ServerFPSCounter> m_serverFPSCounter; ///< Server side FPS counter.
-        UserConnection &m_userConnection; ///< User connection associated with user.
     };
 }
