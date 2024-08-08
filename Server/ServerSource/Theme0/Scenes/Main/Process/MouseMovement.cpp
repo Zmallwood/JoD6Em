@@ -8,7 +8,7 @@
 #include "ServerCore/Net/UserConnection.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "TileHovering.hpp"
 #include "MobTargeting.hpp"
@@ -31,33 +31,33 @@ namespace JoD {
                     MobTargeting));
         
         const auto mouseDown =
-            m_userGameInstanceEngine.m_mouseInput->
-            m_leftButton->
+            m_engineInstance.MouseInput()->
+            LeftButton()->
             IsPressedPickResult();
         
-        auto player = m_userGameInstanceEngine.m_player;
+        auto &player = m_engineInstance.Player();
         
         const auto hoveredTile =
             tileHovering->m_hoveredCoordinate;
         
         if (mouseDown) {
             
-            player->m_destCoord = hoveredTile;
+            player->SetDestCoord(hoveredTile);
             mobTargeting->m_targetedCreature = nullptr;
         }
         
         if (std::chrono::high_resolution_clock::now() >
-            player->m_ticksLastMove +
+            player->TicksLastMove() +
             std::chrono::high_resolution_clock::duration(
                 std::chrono::milliseconds(
                     static_cast<int>(1000/
                                      player->
-                                     m_movementSpeed)))){
+                                     MovementSpeed())))){
             
-            if (player->m_destCoord.has_value()){
+            if (player->DestCoord().has_value()){
                 
-                const auto dx = player->m_destCoord->x - player->m_coord.x;
-                const auto dy = player->m_destCoord->y - player->m_coord.y;
+                const auto dx = player->DestCoord()->x - player->Coord().x;
+                const auto dy = player->DestCoord()->y - player->Coord().y;
                 
                 if (dx < 0 && dy < 0) {
                     
@@ -94,10 +94,10 @@ namespace JoD {
                 
                 if (dx || dy) {
                     
-                    player->m_ticksLastMove = Now();
+                    player->SetTicksLastMove(Now());
                 } else  {
                     
-                    player->m_destCoord = std::nullopt;
+                    player->SetDestCoord(std::nullopt);
                 }
             }
         }

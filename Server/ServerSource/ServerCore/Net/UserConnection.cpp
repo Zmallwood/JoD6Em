@@ -16,8 +16,8 @@ using namespace boost::beast;
 namespace JoD {
     
     UserConnection::UserConnection(Socket socket)
-        : m_userGameInstanceEngine(
-            std::make_unique<UserGameInstanceEngine>()){
+        : m_engineInstance(
+            std::make_unique<EngineInstance>()){
         
         std::thread(
             &UserConnection::DoSession, this,
@@ -38,22 +38,22 @@ namespace JoD {
                     
                     const auto width = (int)data[1];
                     const auto height = (int)data[2];
-                    m_userGameInstanceEngine->m_canvasSize = {width, height};
+                    m_engineInstance->SetCanvasSize({width, height});
                 }else if (*data == MessageCodes::k_leftMouseDown) {
                     
-                    m_userGameInstanceEngine->m_mouseInput->
+                    m_engineInstance->MouseInput()->
                     RegisterMouseDown(
                         MouseButtons::Left);
                 }else if (*data == MessageCodes::k_rightMouseDown) {
                     
-                    m_userGameInstanceEngine->m_mouseInput->
+                    m_engineInstance->MouseInput()->
                     RegisterMouseDown(
                         MouseButtons::Right);
                 }else if (*data == MessageCodes::k_mousePosition) {
                     
                     const auto x = data[1] / NetConstants::k_floatPrecision;
                     const auto y = data[2] / NetConstants::k_floatPrecision;
-                    m_userGameInstanceEngine->m_mousePosition = {x, y};
+                    m_engineInstance->SetMousePosition({x, y});
                 }else if (*data == MessageCodes::k_provideImageDimensions) {
                     
                     const auto imageNameHash = (int)data[1];
@@ -102,8 +102,8 @@ namespace JoD {
             
             while (true){
                 
-                m_userGameInstanceEngine->Update();
-                m_userGameInstanceEngine->Render(webSocket);
+                m_engineInstance->Update();
+                m_engineInstance->Render(webSocket);
                 
                 std::this_thread::sleep_for(std::chrono::milliseconds(70));
             }

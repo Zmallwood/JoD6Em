@@ -8,7 +8,7 @@
 #include "ServerCore/Net/UserConnection.hpp"
 #include "Theme0/Scenes/Main/Process/TileHovering.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 
@@ -16,11 +16,11 @@ namespace JoD {
     
     void RenderTileSymbols(
         const MainScene& mainScene,
-        const UserGameInstanceEngine& userGameInstanceEngine,
+        const EngineInstance& engineInstance,
         WebSocket &webSocket,
         Point coordinate, BoxF tileBounds) {
         
-        const auto player = userGameInstanceEngine.m_player;
+        const auto &player = engineInstance.Player();
         
         const auto tileHovering =
             std::static_pointer_cast<TileHovering>(
@@ -36,8 +36,8 @@ namespace JoD {
                 tileBounds);
         }
         
-        if (player->m_destCoord.has_value() &&
-            coordinate == player->m_destCoord) {
+        if (player->DestCoord().has_value() &&
+            coordinate == player->DestCoord()) {
             
             SendImageDrawInstruction(
                 webSocket,

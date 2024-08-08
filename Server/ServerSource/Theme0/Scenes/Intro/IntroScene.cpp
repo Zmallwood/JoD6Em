@@ -6,7 +6,7 @@
 
 #include "IntroScene.hpp"
 #include "ServerCore/Net/UserConnection.hpp"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
@@ -17,16 +17,16 @@ namespace JoD {
     
     void IntroScene::Initialize() {
         
-        m_guiLabelStartText = m_gui->AddComponent<GUILabel>(PointF{0.5f, 0.5f}, "Press to start");
+        m_guiLabelStartText = GUI()->AddComponent<GUILabel>(PointF{0.5f, 0.5f}, "Press to start");
     }
     
     void IntroScene::UpdateDerived() {
         
-        if (m_userGameInstanceEngine.m_mouseInput->
-            m_leftButton->
+        if (EngineInstance().MouseInput()->
+            LeftButton()->
             IsPressedPickResult()) {
             
-            m_userGameInstanceEngine.m_sceneManager->
+            EngineInstance().SceneManager()->
             GoToScene("MainMenuScene");
         }
         

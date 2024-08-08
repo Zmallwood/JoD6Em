@@ -13,26 +13,26 @@
 namespace JoD {
     
     SceneManager::SceneManager(
-        UserGameInstanceEngine &userGameInstanceEngine) : m_userGameInstanceEngine(userGameInstanceEngine){
+        EngineInstance &engineInstance) : m_engineInstance(engineInstance){
         
-        AddScene("IntroScene", std::make_shared<IntroScene>(m_userGameInstanceEngine));
+        AddScene("IntroScene", std::make_unique<IntroScene>(m_engineInstance));
         
         AddScene(
             "MainMenuScene",
-            std::make_shared<MainMenuScene>(m_userGameInstanceEngine));
+            std::make_unique<MainMenuScene>(m_engineInstance));
         
-        AddScene("MainScene", std::make_shared<MainScene>(m_userGameInstanceEngine));
+        AddScene("MainScene", std::make_unique<MainScene>(m_engineInstance));
         
         GoToScene("IntroScene");
     }
     
     void SceneManager::AddScene(
         std::string_view sceneName,
-        std::shared_ptr<IScene> scene) {
+        std::unique_ptr<IScene> scene) {
         
         scene->Initialize();
         
-        m_scenes.insert({Hash(sceneName), scene});
+        m_scenes.insert({Hash(sceneName), std::move(scene)});
     }
     
     void SceneManager::UpdateCurrentScene() {

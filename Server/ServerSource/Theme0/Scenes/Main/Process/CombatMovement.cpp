@@ -6,7 +6,7 @@
 
 #include "CombatMovement.hpp"
 #include "ServerCore/Net/UserConnection.hpp"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "MobTargeting.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
@@ -16,8 +16,8 @@
 
 namespace JoD {
     void CombatMovement::Update() {
-        const std::shared_ptr<Player> player =
-            m_userGameInstanceEngine.m_player;
+        const std::unique_ptr<Player> &player =
+            m_engineInstance.Player();
         
         const std::shared_ptr<MobTargeting> mobTargeting =
             std::static_pointer_cast<MobTargeting>(
@@ -31,15 +31,15 @@ namespace JoD {
             const auto pos =
                 worldArea->GetMobCoord(mobTargeting->m_targetedCreature).value();
             
-            if (Now() > player->m_ticksLastMove +
+            if (Now() > player->TicksLastMove() +
                 Duration(
                     Millis(
                         static_cast<int>(
                             1000/
-                            player->m_movementSpeed)))) {
+                            player->MovementSpeed())))) {
                 
-                const auto dx = pos.x - player->m_coord.x;
-                const auto dy = pos.y - player->m_coord.y;
+                const auto dx = pos.x - player->Coord().x;
+                const auto dy = pos.y - player->Coord().y;
                 
                 if (dx < 0 && dy < 0) {
                     
@@ -67,7 +67,7 @@ namespace JoD {
                     player->TryMoveWest();
                 }
                 
-                player->m_ticksLastMove = Now();
+                player->SetTicksLastMove(Now());
             }
         }
     }

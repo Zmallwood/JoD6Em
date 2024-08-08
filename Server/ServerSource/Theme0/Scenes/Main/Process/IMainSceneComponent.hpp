@@ -9,7 +9,7 @@
 namespace JoD {
     
     class MainScene;
-    class UserGameInstanceEngine;
+    class EngineInstance;
     
     ///
     /// Base class for all components contained in MainScene.
@@ -24,7 +24,7 @@ namespace JoD {
         /// @param mainScene Main scene associated with user.
         ///
         IMainSceneComponent(
-            const UserGameInstanceEngine& userGameInstanceEngine,
+            const EngineInstance& engineInstance,
             const MainScene& mainScene);
         
         ///
@@ -42,7 +42,7 @@ namespace JoD {
         }
         
       protected:
-        const UserGameInstanceEngine &m_userGameInstanceEngine; ///< User connection object associated with user.
+        const EngineInstance &m_engineInstance; ///< User connection object associated with user.
         const MainScene& m_mainScene; ///< Main scene associated with user.
     };
 }

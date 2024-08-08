@@ -20,25 +20,25 @@ namespace JoD {
         m_components.insert(
             {MainSceneComponents::TileHovering,
              std::make_shared<TileHovering>(
-                 m_userGameInstanceEngine, *this) });
+                 EngineInstance(), *this) });
                  
         m_components.insert(
             {MainSceneComponents::MouseMovement,
              std::make_shared<MouseMovement>(
-                 m_userGameInstanceEngine, *this) });
+                 EngineInstance(), *this) });
                  
         m_components.insert(
             {MainSceneComponents::MobTargeting,
              std::make_shared<MobTargeting>(
-                 m_userGameInstanceEngine, *this) });
+                 EngineInstance(), *this) });
                  
         m_components.insert(
             {MainSceneComponents::WorldView,
-             std::make_shared<WorldView>(m_userGameInstanceEngine, *this) });
+             std::make_shared<WorldView>(EngineInstance(), *this) });
                  
         m_components.insert(
             {MainSceneComponents::CombatMovement,
-             std::make_shared<CombatMovement>(m_userGameInstanceEngine, *this) });
+             std::make_shared<CombatMovement>(EngineInstance(), *this) });
     }
     
     void MainScene::UpdateDerived() {

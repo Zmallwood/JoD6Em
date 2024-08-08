@@ -8,9 +8,9 @@
 
 namespace JoD {
     
-    IMainSceneComponent::IMainSceneComponent(const UserGameInstanceEngine& userGameInstanceEngine,
+    IMainSceneComponent::IMainSceneComponent(const EngineInstance& engineInstance,
                                              const MainScene& mainScene)
-        : m_userGameInstanceEngine(userGameInstanceEngine), m_mainScene(mainScene){
+        : m_engineInstance(engineInstance), m_mainScene(mainScene){
         
     }
 }

@@ -7,23 +7,23 @@
 #include "Cursor.hpp"
 #include "ServerCore/Net/UserConnection.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 
 namespace JoD {
     
-    Cursor::Cursor(const UserGameInstanceEngine& userGameInstanceEngine)
-        : m_userGameInstanceEngine(userGameInstanceEngine) {
+    Cursor::Cursor(const EngineInstance& engineInstance)
+        : m_engineInstance(engineInstance) {
         
     }
     
     void Cursor::Render(WebSocket& webSocket) const {
         
         // Get current mouse position.
-        const auto mousePosition = m_userGameInstanceEngine.m_mousePosition;
+        const auto mousePosition = m_engineInstance.MousePosition();
         
         // Obtain cursor dimensions.
         const auto cursorWidth = k_cursorSize;
-        const auto cursorHeight = k_cursorSize*m_userGameInstanceEngine.GetAspectRatio();
+        const auto cursorHeight = k_cursorSize*m_engineInstance.GetAspectRatio();
         
         // Calculate cursor position.
         const auto cursorX = mousePosition.x - cursorWidth / 2;

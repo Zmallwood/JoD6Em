@@ -17,7 +17,7 @@
 #include "Process/RenderObjects.hpp"
 #include "Process/RenderMobs.hpp"
 #include "Process/RenderPlayer.hpp"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 
 namespace JoD {
     
@@ -25,15 +25,15 @@ namespace JoD {
         
         const auto tileSize =
             CalculateTileSize(
-                m_userGameInstanceEngine.GetAspectRatio());
+                m_engineInstance.GetAspectRatio());
         
         const auto playerCoordinate =
-            m_userGameInstanceEngine.m_player->m_coord;
+            m_engineInstance.Player()->Coord();
         
         const auto numGridRows = _<GameProperties>().GetNumGridRows();
         const auto numGridCols =
             CalculateNumGridCols(
-                m_userGameInstanceEngine.GetAspectRatio());
+                m_engineInstance.GetAspectRatio());
         
         const auto smallValue = 0.0001f;
         
@@ -64,7 +64,7 @@ namespace JoD {
                 RenderGround(webSocket, tile, tileBounds);
                 
                 RenderTileSymbols(
-                    m_mainScene, m_userGameInstanceEngine, webSocket,
+                    m_mainScene, m_engineInstance, webSocket,
                     {coordX, coordY}, tileBounds);
                 
                 RenderObjects(webSocket, tile, tileBounds);
@@ -74,7 +74,7 @@ namespace JoD {
                     tileBounds);
                 
                 RenderPlayer(
-                    m_userGameInstanceEngine, webSocket, {coordX, coordY},
+                    m_engineInstance, webSocket, {coordX, coordY},
                     tileBounds);
             }
         }

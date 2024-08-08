@@ -6,11 +6,9 @@
 
 #pragma once
 
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 
 namespace JoD {
-    
-    class UserGameInstanceEngine;
     
     ///
     /// Created for each user that connects to the web socket server.
@@ -41,7 +39,7 @@ namespace JoD {
         ///
         void DoSessionNested(WebSocket* webSocket);
         
-        std::unique_ptr<UserGameInstanceEngine>
-        m_userGameInstanceEngine; ///< Engine running for this specific user.
+        std::unique_ptr<EngineInstance>
+        m_engineInstance; ///< Engine running for this specific user.
     };
 }

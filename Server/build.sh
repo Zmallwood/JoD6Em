@@ -1,5 +1,5 @@
 #!/bin/sh
 
 cd cmake
-cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 .;
-make;
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -G "Ninja" .;
+ninja;

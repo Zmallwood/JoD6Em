@@ -8,9 +8,9 @@
 
 namespace JoD {
     
-    IScene::IScene(UserGameInstanceEngine& userGameInstanceEngine)
-        : m_userGameInstanceEngine(userGameInstanceEngine),
-        m_gui(std::make_unique<GUI>()) {
+    IScene::IScene(JoD::EngineInstance& engineInstance)
+        : m_engineInstance(engineInstance),
+        m_gui(std::make_unique<JoD::GUI>()) {
         
     }
     

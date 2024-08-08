@@ -22,12 +22,13 @@ namespace JoD {
         
         ///
         /// Get the buttons pressed state and resets it at the same time.
-        /// 
+        ///
         /// @return true Button is currently being pressed down.
         /// @return false Button is currently not being pressed down.
         ///
         bool IsPressedPickResult();
         
+      private:
         bool m_isPressed {false}; ///< Pressed down state.
     };
 }

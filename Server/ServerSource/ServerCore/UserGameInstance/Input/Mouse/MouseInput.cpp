@@ -5,13 +5,12 @@
  */
 
 #include "MouseInput.hpp"
-#include "MouseButton.hpp"
 
 namespace JoD {
     
     MouseInput::MouseInput() : m_leftButton(
-            std::make_shared<MouseButton>()),
-        m_rightButton(std::make_shared<MouseButton>()){
+            std::make_unique<MouseButton>()),
+        m_rightButton(std::make_unique<MouseButton>()){
         
     }
     

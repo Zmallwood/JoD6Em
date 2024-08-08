@@ -9,7 +9,7 @@
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "Configuration/GameProperties.hpp"
 #include "ServerCore/Net/UserConnection.hpp"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 
 namespace JoD {
     
@@ -17,26 +17,26 @@ namespace JoD {
         
         const auto tileSize =
             CalculateTileSize(
-                m_userGameInstanceEngine.GetAspectRatio());
+                m_engineInstance.GetAspectRatio());
         
         const auto playerCoordinate =
-            m_userGameInstanceEngine.m_player->m_coord;
+            m_engineInstance.Player()->Coord();
         
         const auto numRows = _<GameProperties>().GetNumGridRows();
         const auto numCols =
             CalculateNumGridCols(
-                m_userGameInstanceEngine.GetAspectRatio());
+                m_engineInstance.GetAspectRatio());
         
         const auto tileX =
             playerCoordinate.x - (numCols - 1) / 2 +
-            static_cast<int>(m_userGameInstanceEngine.
-                             m_mousePosition.x /
+            static_cast<int>(m_engineInstance.
+                             MousePosition().x /
                              tileSize.w);
         
         const auto tileY =
             playerCoordinate.y - (numRows - 1) / 2 +
-            static_cast<int>(m_userGameInstanceEngine.
-                             m_mousePosition.y /
+            static_cast<int>(m_engineInstance.
+                             MousePosition().y /
                              tileSize.h);
         
         m_hoveredCoordinate = {tileX, tileY};

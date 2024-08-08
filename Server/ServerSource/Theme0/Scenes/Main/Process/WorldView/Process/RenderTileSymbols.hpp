@@ -9,19 +9,19 @@
 namespace JoD {
     
     class MainScene;
-    class UserGameInstanceEngine;
+    class EngineInstance;
     
     ///
     /// Renders symbols on tile in the world view.
     /// 
     /// @param mainScene Main scene associated with user.
-    /// @param userGameInstanceEngine User game instance engine associated with user.
+    /// @param engineInstance User game instance engine associated with user.
     /// @param webSocket Web socket associated with user.
     /// @param coordinate Coordinate for the tile for which the function is called.
     /// @param tileBounds Bounds area of tile for which the function is called.
     ///
     void RenderTileSymbols(
-        const MainScene& mainScene, const UserGameInstanceEngine& userGameInstanceEngine,
+        const MainScene& mainScene, const EngineInstance& engineInstance,
         WebSocket &webSocket,
         Point coordinate, BoxF tileBounds);
 }

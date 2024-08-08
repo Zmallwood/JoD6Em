@@ -8,7 +8,7 @@
 
 namespace JoD {
     
-    class UserGameInstanceEngine;
+    class EngineInstance;
     class Tile;
     
     ///

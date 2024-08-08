@@ -8,7 +8,7 @@
 #include "ServerCore/Net/UserConnection.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "TileHovering.hpp"
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
@@ -21,8 +21,8 @@ namespace JoD {
     
     void MobTargeting::Update() {
         
-        const std::shared_ptr<Player> player =
-            m_userGameInstanceEngine.m_player;
+        const std::unique_ptr<Player> &player =
+            m_engineInstance.Player();
         
         const std::shared_ptr<const TileHovering> tileHovering =
             std::static_pointer_cast<TileHovering>(
@@ -31,8 +31,8 @@ namespace JoD {
                     TileHovering));
         
         const auto mouseDown =
-            m_userGameInstanceEngine.m_mouseInput->
-            m_rightButton->
+            m_engineInstance.MouseInput()->
+            RightButton()->
             IsPressedPickResult();
         
         const auto hoveredTile =
@@ -40,7 +40,7 @@ namespace JoD {
         
         if (mouseDown) {
             
-            player->m_destCoord = std::nullopt;
+            player->SetDestCoord(std::nullopt);
             
             const auto &worldArea = _<World>().GetCurrentWorldArea();
             

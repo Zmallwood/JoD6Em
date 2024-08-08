@@ -6,10 +6,11 @@
 
 #pragma once
 
+#include "IScene.hpp"
+
 namespace JoD {
     
-    class UserGameInstanceEngine;
-    class IScene;
+    class EngineInstance;
     
     ///
     /// One instance is created for every connecting user. Initializes,
@@ -24,7 +25,7 @@ namespace JoD {
         /// 
         /// @param userConnection User connection reference forwarding.
         ///
-        SceneManager(UserGameInstanceEngine &userGameInstanceEngine);
+        SceneManager(EngineInstance &engineInstance);
         
         ///
         /// Updates the scene currently being presented.
@@ -53,10 +54,10 @@ namespace JoD {
         /// @param scene The scene object to add.
         ///
         void AddScene(std::string_view sceneName,
-                      std::shared_ptr<IScene> scene);
+                      std::unique_ptr<IScene> scene);
         
         int m_currentScene {0}; ///< Hash code of name of the currently presented scene.
-        std::map<int, std::shared_ptr<IScene>> m_scenes; ///< All scenes that has been added in ctor.
-        UserGameInstanceEngine &m_userGameInstanceEngine; ///< User connection reference for the associated user.
+        std::map<int, std::unique_ptr<IScene>> m_scenes; ///< All scenes that has been added in ctor.
+        EngineInstance &m_engineInstance; ///< User connection reference for the associated user.
     };
 }

@@ -7,20 +7,19 @@
 #include "RenderPlayer.hpp"
 #include "ServerCore/Net/UserConnection.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
-#include "ServerCore/UserGameInstance/UserGameInstanceEngine.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {
     
     void RenderPlayer(
-        const UserGameInstanceEngine& userGameInstanceEngine, WebSocket &webSocket,
+        const EngineInstance& engineInstance, WebSocket &webSocket,
         Point coordinate, BoxF tileBounds) {
         
         const auto playerCoordinate =
-            userGameInstanceEngine.m_player->m_coord;
+            engineInstance.Player()->Coord();
         
-        if (coordinate.x == playerCoordinate.x &&
-            coordinate.y == playerCoordinate.y){
+        if (coordinate == playerCoordinate){
             
             SendImageDrawInstruction(
                 webSocket, "Player", tileBounds);

@@ -10,7 +10,7 @@
 
 namespace JoD {
     
-    class UserGameInstanceEngine;
+    class EngineInstance;
     
     ///
     /// Pure virtual IScene class of which all scenes inherits.
@@ -20,10 +20,10 @@ namespace JoD {
       public:
         ///
         /// Construct a new IScene object by forwarding a reference of user connection.
-        /// 
+        ///
         /// @param userConnection User connection associated with current user.
         ///
-        IScene(UserGameInstanceEngine& userGameInstanceEngine);
+        IScene(JoD::EngineInstance& engineInstance);
         
         ///
         /// Called once for inherited scenes when a new user
@@ -39,7 +39,7 @@ namespace JoD {
         
         ///
         /// Called each frame in the user engines game loop.
-        /// 
+        ///
         /// @param webSocket Web socket object associated with the user.
         ///
         void Render(WebSocket &webSocket) const;
@@ -52,14 +52,25 @@ namespace JoD {
         
         ///
         /// Inheriting scenes specific render operations, called each frame.
-        /// 
+        ///
         /// @param webSocket Web socket object associated with the user.
         ///
         virtual void RenderDerived(
             WebSocket
             &webSocket) const = 0;
         
-        UserGameInstanceEngine &m_userGameInstanceEngine; ///< User connection object for current user.
-        std::unique_ptr<GUI> m_gui;
+        JoD::EngineInstance& EngineInstance() const {
+            
+            return m_engineInstance;
+        }
+        
+        const std::unique_ptr<JoD::GUI>& GUI() const {
+            
+            return m_gui;
+        }
+        
+      private:
+        JoD::EngineInstance &m_engineInstance; ///< User connection object for current user.
+        std::unique_ptr<JoD::GUI> m_gui;
     };
 }
