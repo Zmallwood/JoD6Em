@@ -15,6 +15,16 @@ namespace JoD {
         
         void Render(WebSocket &webSocket) const;
         
-        std::vector<std::unique_ptr<GUIComponent>> m_components;
+        template<class T, class... Args>
+        std::shared_ptr<T> AddComponent(Args... args) {
+            
+            auto newComponent = std::make_shared<T>(args...);
+            
+            m_components.push_back(newComponent);
+            
+            return newComponent;
+        }
+        
+        std::vector<std::shared_ptr<GUIComponent>> m_components;
     };
 }

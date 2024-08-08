@@ -17,7 +17,7 @@ namespace JoD {
     
     void IntroScene::Initialize() {
         
-        m_gui->m_components.push_back(std::make_unique<GUILabel>(PointF{0.5f, 0.5f}, "Press to start"));
+        m_guiLabelStartText = m_gui->AddComponent<GUILabel>(PointF{0.5f, 0.5f}, "Press to start");
     }
     
     void IntroScene::UpdateDerived() {
@@ -29,6 +29,12 @@ namespace JoD {
             m_userConnection.m_userGameInstanceEngine->m_sceneManager->
             GoToScene("MainMenuScene");
         }
+        
+        auto now = Now();
+        
+        auto showStartText = (now.time_since_epoch().count() % 2000000)/1000000;
+        
+        m_guiLabelStartText->SetVisible(showStartText);
     }
     
     void IntroScene::RenderDerived(WebSocket

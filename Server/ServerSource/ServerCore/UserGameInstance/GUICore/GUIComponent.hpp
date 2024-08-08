@@ -12,14 +12,26 @@ namespace JoD {
         
       public:
         GUIComponent(PointF position);
-      
-        virtual void Update() {
+        
+        void Update();
+        
+        void Render(WebSocket &webSocket);
+        
+        virtual void UpdateDerived() {
+            
         }
         
-        virtual void Render(WebSocket &webSocket) {
+        virtual void RenderDerived(WebSocket &webSocket) {
+            
+        }
+        
+        void SetVisible(bool value) {
+            
+            m_visible = value;
         }
         
       protected:
         PointF m_position;
+        bool m_visible {true};
     };
 }

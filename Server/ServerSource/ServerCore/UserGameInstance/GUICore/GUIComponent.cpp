@@ -11,4 +11,19 @@ namespace JoD {
     : m_position(position) {
         
     }
+    
+    void GUIComponent::Update() {
+        
+        UpdateDerived();
+    }
+    
+    void GUIComponent::Render(WebSocket &webSocket) {
+        
+        if (!m_visible) {
+            
+            return;
+        }
+        
+        RenderDerived(webSocket);
+    }
 }

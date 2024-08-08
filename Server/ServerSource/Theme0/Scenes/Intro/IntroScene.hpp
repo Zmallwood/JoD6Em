@@ -10,6 +10,8 @@
 
 namespace JoD {
     
+    class GUILabel;
+    
     ///
     /// The first scene presented to the user on game start.
     ///
@@ -38,5 +40,8 @@ namespace JoD {
         /// @param webSocket Web socket object for user.
         ///
         void RenderDerived(WebSocket &webSocket) const override;
+        
+      private:
+        std::shared_ptr<GUILabel> m_guiLabelStartText;
     };
 }
