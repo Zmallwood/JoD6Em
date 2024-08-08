@@ -13,11 +13,11 @@ namespace JoD {
     
     void ClearWithGrass(const std::unique_ptr<WorldArea> &worldArea) {
         
-        for (auto y = 0; y < _<GameProperties>().k_worldAreaSize.h; y++) {
+        for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
             
-            for (auto x = 0; x < _<GameProperties>().k_worldAreaSize.w; x++) {
+            for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w; x++) {
                 
-                worldArea->m_tiles[x][y]->m_ground = Hash("GroundGrass");
+                worldArea->m_tiles[x][y]->SetGround(Hash("GroundGrass"));
             }
         }
     }

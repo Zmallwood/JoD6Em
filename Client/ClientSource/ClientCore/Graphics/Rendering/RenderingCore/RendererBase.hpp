@@ -127,7 +127,11 @@ namespace JoD {
         ///
         void CleanupBase() const;
         
-        std::unique_ptr<ShaderProgram> m_shaderProgram; ///< The shader program used for this renderer object.
+      protected:
+        const std::unique_ptr<ShaderProgram>& GetShaderProgram() {
+            
+            return m_shaderProgram;
+        }
         
       private:
         ///
@@ -193,5 +197,6 @@ namespace JoD {
         std::vector<GLuint> m_VAOIDs;  ///< Stores IDs of all Vertex Array Objects.
         std::map<BufferTypes, std::map<GLuint,GLuint>>
         m_VBOIDs; ///< Stores IDs of all Vertex Buffer Objects.
+        std::unique_ptr<ShaderProgram> m_shaderProgram; ///< The shader program used for this renderer object.
     };
 }

@@ -16,7 +16,7 @@ namespace JoD {
     
     void GenerateNewWorld() {
         
-        const auto& worldArea = _<World>().m_currentWorldArea;
+        const auto& worldArea = _<World>().GetCurrentWorldArea();
         
         ClearWithGrass(worldArea);
         GenerateWater(worldArea);

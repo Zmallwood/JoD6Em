@@ -11,7 +11,7 @@ namespace JoD {
     
     SizeF CalculateTileSize(float aspectRatio){
         
-        const auto tileHeight = 1.0f / _<GameProperties>().k_numGridRows;
+        const auto tileHeight = 1.0f / _<GameProperties>().GetNumGridRows();
         const auto tileWidth = tileHeight / aspectRatio;
         
         return {tileWidth, tileHeight};

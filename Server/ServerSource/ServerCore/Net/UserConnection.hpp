@@ -26,9 +26,6 @@ namespace JoD {
         ///
         UserConnection(Socket socket);
         
-        std::unique_ptr<UserGameInstanceEngine>
-        m_userGameInstanceEngine; ///< Engine running for this specific user.
-        
       private:
         ///
         /// Running game loop for user.
@@ -43,5 +40,8 @@ namespace JoD {
         /// @param webSocket Socket object.
         ///
         void DoSessionNested(WebSocket* webSocket);
+        
+        std::unique_ptr<UserGameInstanceEngine>
+        m_userGameInstanceEngine; ///< Engine running for this specific user.
     };
 }

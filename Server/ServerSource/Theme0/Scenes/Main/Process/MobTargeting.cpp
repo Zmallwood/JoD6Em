@@ -41,13 +41,13 @@ namespace JoD {
             
             player->m_destination = {-1, -1};
             
-            const auto &worldArea = _<World>().m_currentWorldArea;
+            const auto &worldArea = _<World>().GetCurrentWorldArea();
             
             const auto tile = worldArea->m_tiles[hoveredTile.x][hoveredTile.y];
             
-            if (tile->m_mob) {
+            if (tile->GetMob()) {
                 
-                m_targetedCreature = tile->m_mob;
+                m_targetedCreature = tile->GetMob();
                 
             }else {
                 

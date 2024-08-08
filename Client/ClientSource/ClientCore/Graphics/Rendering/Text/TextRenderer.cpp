@@ -41,7 +41,7 @@ namespace JoD {
         SizeF &out_dimensions) const {
         
         // Get main font object.
-        const auto &font = m_fonts.at(fontSize)->m_font;
+        const auto &font = m_fonts.at(fontSize)->GetFont();
         
         // Check that its been created correctly.
         if (!font) {
@@ -56,7 +56,7 @@ namespace JoD {
         // Render text outline onto surface.
         const auto textOutlineSurface =
             TTF_RenderText_Blended(
-                m_fonts.at(fontSize)->m_outlineFont.get(),
+                m_fonts.at(fontSize)->GetOutlineFont().get(),
                 text.data(), outlineColorSDL);
         
         // Check that the surface was created correctly.
@@ -122,10 +122,10 @@ namespace JoD {
         
         // Destination bounds for main font rendering.
         textDestBox = textSourceBox;
-        textDestBox.x += Font::k_fontOutlineWidth;
-        textDestBox.w -= 2 * Font::k_fontOutlineWidth;
-        textDestBox.y += Font::k_fontOutlineWidth;
-        textDestBox.h -= 2 * Font::k_fontOutlineWidth;
+        textDestBox.x += Font::GetFontOutlineWidth();
+        textDestBox.w -= 2 * Font::GetFontOutlineWidth();
+        textDestBox.y += Font::GetFontOutlineWidth();
+        textDestBox.h -= 2 * Font::GetFontOutlineWidth();
         
         // Destination bounds for outline font rendering.
         textOutlineDestBox = textOutlineSourceBox;
@@ -221,7 +221,7 @@ namespace JoD {
         
         // Measure the rendered text.
         TTF_SizeText(
-            m_fonts.at(fontSize)->m_font.get(), text.data(), &textWidth,
+            m_fonts.at(fontSize)->GetFont().get(), text.data(), &textWidth,
             &textHeight);
         
         // If the text should be aligned at its center.
@@ -263,7 +263,7 @@ namespace JoD {
         FontSizes font_size) const {
         
         // Get the main font object.
-        const auto &font = m_fonts.at(font_size)->m_font;
+        const auto &font = m_fonts.at(font_size)->GetFont();
         
         // To be filled with rendered text dimensions.
         int textWidth;

@@ -24,6 +24,12 @@ namespace JoD {
         ///
         void PollEvents();
         
+        bool GetRunning() const {
+            
+            return m_running;
+        }
+        
+      private:
         bool m_running {true}; ///< Engine is running as long as this is set to true.
     };
 }

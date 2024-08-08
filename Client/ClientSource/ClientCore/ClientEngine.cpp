@@ -62,7 +62,7 @@ namespace JoD {
         void GameLoopFunction() {
             
             // Exit main loop if user has requested it.
-            if (!_<ClientEngine>().m_running) {
+            if (!_<ClientEngine>().GetRunning()) {
                 
                 emscripten_cancel_main_loop();
             }

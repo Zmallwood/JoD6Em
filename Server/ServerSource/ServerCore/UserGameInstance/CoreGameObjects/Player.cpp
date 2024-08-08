@@ -53,7 +53,7 @@ namespace JoD {
     
     void Player::TryMoveToCoord(Point coord) {
         
-        const auto &worldArea = _<World>().m_currentWorldArea;
+        const auto &worldArea = _<World>().GetCurrentWorldArea();
         
         if (!worldArea->IsValidCoord(coord)) {
             
@@ -62,17 +62,17 @@ namespace JoD {
         
         const auto tile = worldArea->m_tiles[coord.x][coord.y];
         
-        if (tile->m_ground == Hash("GroundWater")) {
+        if (tile->GetGround() == Hash("GroundWater")) {
             
             return;
         }
         
-        if (tile->m_object) {
+        if (tile->GetObject()) {
             
             return;
         }
         
-        if (tile->m_mob) {
+        if (tile->GetMob()) {
             
             return;
         }

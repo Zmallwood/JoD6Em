@@ -7,7 +7,7 @@
 #pragma once
 
 namespace JoD {
-
+    
     ///
     /// Font object used for text rendering.
     ///
@@ -22,6 +22,22 @@ namespace JoD {
         ///
         Font(std::string_view fontFileName, int fontSize);
         
+        const std::unique_ptr<TTF_Font, SDLDeleter>& GetFont() const {
+            
+            return m_font;
+        }
+        
+        const std::unique_ptr<TTF_Font, SDLDeleter>& GetOutlineFont() const {
+            
+            return m_outlineFont;
+        }
+        
+        static constexpr int GetFontOutlineWidth() {
+            
+            return k_fontOutlineWidth;
+        }
+        
+      private:
         std::unique_ptr<TTF_Font, SDLDeleter> m_font; ///< Regular SDL font object.
         std::unique_ptr<TTF_Font, SDLDeleter> m_outlineFont; ///< Outline SDL font object.
         static constexpr int k_fontOutlineWidth{2}; ///< Font outline width.

@@ -22,8 +22,19 @@ namespace JoD {
         ///
         Mob(std::string_view mobName, int level);
         
-        int m_level {0}; ///< Level, as provided in ctor.
+        int GetType() const {
+            
+            return m_type;
+        }
+        
+        int GetLevel() const {
+            
+            return m_level;
+        }
+        
+      private:
         int m_type {0}; ///< Hash code of mob type name.
+        int m_level {0}; ///< Level, as provided in ctor.
         int m_pAtk {0}; ///< Physical attack.
         int m_mAtk {0}; ///< Magic attack.
         int m_pDef {0}; ///< Physical defense.

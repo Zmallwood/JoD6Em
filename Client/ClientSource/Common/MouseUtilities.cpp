@@ -16,7 +16,7 @@ namespace JoD {
         double yPos;
         
         // Use GLFW to get current mouse coordinates.
-        glfwGetCursorPos(_<Graphics>().m_window, &xPos, &yPos);
+        glfwGetCursorPos(_<Graphics>().GetWindow(), &xPos, &yPos);
         
         // Get canvas size.
         const auto canvasSize = GetCanvasSize();

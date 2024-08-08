@@ -25,9 +25,9 @@ namespace JoD {
                     MainSceneComponents::
                     MobTargeting));
         
-        if (tile->m_mob) {
+        if (tile->GetMob()) {
             
-            if (tile->m_mob ==
+            if (tile->GetMob() ==
                 mobTargeting->
                 m_targetedCreature){
                 
@@ -39,13 +39,13 @@ namespace JoD {
             
             SendImageDrawInstruction(
                 webSocket,
-                tile->m_mob->m_type,
+                tile->GetMob()->GetType(),
                 tileBounds);
             
             SendTextDrawInstruction(
                 webSocket,
                 "Mob, Lvl." +
-                std::to_string(tile->m_mob->m_level),
+                std::to_string(tile->GetMob()->GetLevel()),
                 {tileBounds.x, tileBounds.y - 0.5f*tileBounds.h});
         }
     }

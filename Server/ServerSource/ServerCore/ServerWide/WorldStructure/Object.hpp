@@ -11,6 +11,12 @@ namespace JoD {
       public:
         Object(std::string_view objectName);
         
+        int GetType() const {
+            
+            return m_type;
+        }
+        
+      private:
         int m_type {0};
     };
 }

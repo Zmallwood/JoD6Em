@@ -31,7 +31,10 @@ namespace JoD {
         ///
         void Cleanup() const;
         
-        GLuint m_programID {0}; ///< Shader program ID.
+        GLuint GetProgramID() const {
+            
+            return m_programID;
+        }
         
       private:
         ///
@@ -45,5 +48,7 @@ namespace JoD {
         GLuint CompileShader(
             const GLchar *shaderSource, GLuint *out_shader,
             GLenum shaderType) const;
+        
+        GLuint m_programID {0}; ///< Shader program ID.
     };
 }

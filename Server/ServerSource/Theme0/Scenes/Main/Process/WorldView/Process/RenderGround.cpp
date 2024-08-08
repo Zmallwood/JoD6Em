@@ -15,7 +15,7 @@ namespace JoD {
         WebSocket &webSocket,
         std::shared_ptr<const Tile> tile, BoxF tileBounds) {
         
-        auto ground = tile->m_ground;
+        auto ground = tile->GetGround();
         
         if (ground == Hash("GroundWater")) {
             

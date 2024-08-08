@@ -35,15 +35,15 @@ namespace JoD {
     void SetupInputCallbacks() {
         
         // Set callback for keyboard events.
-        glfwSetKeyCallback(_<Graphics>().m_window, KeyCallback);
+        glfwSetKeyCallback(_<Graphics>().GetWindow(), KeyCallback);
         
         // Set callback for mouse events.
         glfwSetMouseButtonCallback(
-            _<Graphics>().m_window,
+            _<Graphics>().GetWindow(),
             MouseButtonCallback);
         
         // Set callback for text typing events.
-        glfwSetCharCallback(_<Graphics>().m_window, CharacterCallback);
+        glfwSetCharCallback(_<Graphics>().GetWindow(), CharacterCallback);
         
         // Set callback for touch start event.
         emscripten_set_touchstart_callback(

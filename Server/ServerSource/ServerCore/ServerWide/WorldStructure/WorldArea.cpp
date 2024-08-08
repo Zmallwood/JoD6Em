@@ -12,11 +12,11 @@ namespace JoD {
     
     WorldArea::WorldArea(){
         
-        for (auto x = 0; x < _<GameProperties>().k_worldAreaSize.w; x++){
+        for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w; x++){
             
             m_tiles.push_back(std::vector<std::shared_ptr<Tile>>());
             
-            for (auto y = 0; y < _<GameProperties>().k_worldAreaSize.h; y++) {
+            for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
                 
                 m_tiles.at(x).push_back(std::make_shared<Tile>());
             }

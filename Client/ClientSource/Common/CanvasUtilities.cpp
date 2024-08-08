@@ -16,7 +16,7 @@ namespace JoD {
         int height;
         
         // Use GLFW to get canvas size.
-        glfwGetWindowSize(_<Graphics>().m_window, &width, &height);
+        glfwGetWindowSize(_<Graphics>().GetWindow(), &width, &height);
         
         return {width, height};
     }

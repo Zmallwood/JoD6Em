@@ -17,14 +17,16 @@ namespace JoD {
         WebSocket &webSocket,
         std::shared_ptr<const Tile> tile, BoxF tileBounds) {
         
-        if (tile->m_object) {
+        if (tile->GetObject()) {
             
             auto foundImageDim = false;
             Size imageDimensions;
             
-            if (_<ImageDimensions>().m_dimensions.contains(tile->m_object->m_type)) {
+            auto dim = _<ImageDimensions>().GetDimension(tile->GetObject()->GetType());
+            
+            if (dim.has_value()) {
                 
-                imageDimensions = _<ImageDimensions>().m_dimensions.at(tile->m_object->m_type);
+                imageDimensions = *dim;
                 foundImageDim = true;
             }
             
@@ -32,7 +34,7 @@ namespace JoD {
                 
                 SendRequestImageDimensions(
                     webSocket,
-                    tile->m_object->m_type);
+                    tile->GetObject()->GetType());
                 
                 return;
             }
@@ -45,7 +47,7 @@ namespace JoD {
             
             SendImageDrawInstruction(
                 webSocket,
-                tile->m_object->m_type,
+                tile->GetObject()->GetType(),
                 newBounds);
         }
     }

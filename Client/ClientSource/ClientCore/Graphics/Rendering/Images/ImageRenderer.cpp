@@ -29,7 +29,7 @@ namespace JoD {
     ImageRenderer::ImageRenderer(){
         
         // Create shader program.
-        m_shaderProgram->Create(
+        GetShaderProgram()->Create(
             g_defaultShaderImagesVertex,
             g_defaultShaderImagesFragment);
         

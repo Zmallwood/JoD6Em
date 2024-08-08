@@ -34,12 +34,12 @@ namespace JoD {
                     continue;
                 }
                 
-                if (worldArea->m_tiles[x][y]->m_mob) {
+                if (worldArea->m_tiles[x][y]->GetMob()) {
                     
                     continue;
                 }
                 
-                if (worldArea->m_tiles[x][y]->m_ground == Hash("GroundWater")) {
+                if (worldArea->m_tiles[x][y]->GetGround() == Hash("GroundWater")) {
                     
                     continue;
                 }
@@ -48,7 +48,7 @@ namespace JoD {
                 
                 worldArea->m_mobPositions.insert({newMob, {x, y}});
                 
-                worldArea->m_tiles[x][y]->m_mob = newMob;
+                worldArea->m_tiles[x][y]->SetMob(newMob);
             }
         }
         
@@ -67,12 +67,12 @@ namespace JoD {
                     continue;
                 }
                 
-                if (worldArea->m_tiles[x][y]->m_mob) {
+                if (worldArea->m_tiles[x][y]->GetMob()) {
                     
                     continue;
                 }
                 
-                if (worldArea->m_tiles[x][y]->m_ground == Hash("GroundWater")) {
+                if (worldArea->m_tiles[x][y]->GetGround() == Hash("GroundWater")) {
                     
                     continue;
                 }
@@ -81,7 +81,7 @@ namespace JoD {
                 
                 worldArea->m_mobPositions.insert({newMob, {x, y}});
                 
-                worldArea->m_tiles[x][y]->m_mob = newMob;
+                worldArea->m_tiles[x][y]->SetMob(newMob);
             }
         }
         
@@ -100,12 +100,12 @@ namespace JoD {
                     continue;
                 }
                 
-                if (worldArea->m_tiles[x][y]->m_mob) {
+                if (worldArea->m_tiles[x][y]->GetMob()) {
                     
                     continue;
                 }
                 
-                if (worldArea->m_tiles[x][y]->m_ground == Hash("GroundWater")) {
+                if (worldArea->m_tiles[x][y]->GetGround() == Hash("GroundWater")) {
                     
                     continue;
                 }
@@ -114,7 +114,7 @@ namespace JoD {
                 
                 worldArea->m_mobPositions.insert({newMob, {x, y}});
                 
-                worldArea->m_tiles[x][y]->m_mob = newMob;
+                worldArea->m_tiles[x][y]->SetMob(newMob);
             }
         }
     }

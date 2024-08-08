@@ -60,8 +60,9 @@ namespace JoD {
                     const auto width = (int)data[2];
                     const auto height = (int)data[3];
                     
-                    _<ImageDimensions>().m_dimensions[imageNameHash] =
-                    {width, height};
+                    _<ImageDimensions>().SetDimension(
+                        imageNameHash,
+                        {width, height});
                 }
             }
         }

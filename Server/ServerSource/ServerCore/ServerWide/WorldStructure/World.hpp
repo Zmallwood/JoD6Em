@@ -24,6 +24,12 @@ namespace JoD {
         ///
         World();
         
+        const std::unique_ptr<WorldArea> &GetCurrentWorldArea() const {
+            
+            return m_currentWorldArea;
+        }
+        
+      private:
         std::unique_ptr<WorldArea> m_currentWorldArea; ///< Currently only a single world area in the world.
     };
 }

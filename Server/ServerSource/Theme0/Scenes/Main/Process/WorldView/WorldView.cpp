@@ -30,7 +30,7 @@ namespace JoD {
         const auto playerCoordinate =
             m_userGameInstanceEngine.m_player->m_coordinate;
         
-        const auto numGridRows = _<GameProperties>().k_numGridRows;
+        const auto numGridRows = _<GameProperties>().GetNumGridRows();
         const auto numGridCols =
             CalculateNumGridCols(
                 m_userGameInstanceEngine.GetAspectRatio());
@@ -47,13 +47,13 @@ namespace JoD {
                 const auto coordY = playerCoordinate.y -
                                     (numGridRows - 1) / 2 + y;
                 
-                if (!_<World>().m_currentWorldArea->IsValidCoord({coordX, coordY})) {
+                if (!_<World>().GetCurrentWorldArea()->IsValidCoord({coordX, coordY})) {
                     
                     continue;
                 }
                 
                 const auto tile =
-                    _<World>().m_currentWorldArea->m_tiles[coordX][
+                    _<World>().GetCurrentWorldArea()->m_tiles[coordX][
                         coordY];
                 
                 const auto tileBounds = BoxF {
