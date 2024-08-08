@@ -13,42 +13,42 @@ namespace JoD {
     
     void Player::TryMoveNorth() {
         
-        TryMoveToCoord({m_coordinate.x, m_coordinate.y - 1});
+        TryMoveToCoord({m_coord.x, m_coord.y - 1});
     }
     
     void Player::TryMoveEast() {
         
-        TryMoveToCoord({m_coordinate.x + 1, m_coordinate.y});
+        TryMoveToCoord({m_coord.x + 1, m_coord.y});
     }
     
     void Player::TryMoveSouth() {
         
-        TryMoveToCoord({m_coordinate.x, m_coordinate.y + 1});
+        TryMoveToCoord({m_coord.x, m_coord.y + 1});
     }
     
     void Player::TryMoveWest() {
         
-        TryMoveToCoord({m_coordinate.x - 1, m_coordinate.y});
+        TryMoveToCoord({m_coord.x - 1, m_coord.y});
     }
     
     void Player::TryMoveNorthEast() {
         
-        TryMoveToCoord({m_coordinate.x + 1, m_coordinate.y - 1});
+        TryMoveToCoord({m_coord.x + 1, m_coord.y - 1});
     }
     
     void Player::TryMoveSouthEast() {
         
-        TryMoveToCoord({m_coordinate.x + 1, m_coordinate.y + 1});
+        TryMoveToCoord({m_coord.x + 1, m_coord.y + 1});
     }
     
     void Player::TryMoveSouthWest() {
         
-        TryMoveToCoord({m_coordinate.x - 1, m_coordinate.y + 1});
+        TryMoveToCoord({m_coord.x - 1, m_coord.y + 1});
     }
     
     void Player::TryMoveNorthWest() {
         
-        TryMoveToCoord({m_coordinate.x - 1, m_coordinate.y - 1});
+        TryMoveToCoord({m_coord.x - 1, m_coord.y - 1});
     }
     
     void Player::TryMoveToCoord(Point coord) {
@@ -60,7 +60,7 @@ namespace JoD {
             return;
         }
         
-        const auto tile = worldArea->m_tiles[coord.x][coord.y];
+        const auto tile = worldArea->GetTile(coord);
         
         if (tile->GetGround() == Hash("GroundWater")) {
             
@@ -77,6 +77,6 @@ namespace JoD {
             return;
         }
         
-        m_coordinate = coord;
+        m_coord = coord;
     }
 }

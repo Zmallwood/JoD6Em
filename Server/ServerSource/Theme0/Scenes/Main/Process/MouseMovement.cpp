@@ -42,7 +42,7 @@ namespace JoD {
         
         if (mouseDown) {
             
-            player->m_destination = hoveredTile;
+            player->m_destCoord = hoveredTile;
             mobTargeting->m_targetedCreature = nullptr;
         }
         
@@ -54,10 +54,10 @@ namespace JoD {
                                      player->
                                      m_movementSpeed)))){
             
-            if (player->m_destination.x != -1 && player->m_destination.y != -1){
+            if (player->m_destCoord.has_value()){
                 
-                const auto dx = player->m_destination.x - player->m_coordinate.x;
-                const auto dy = player->m_destination.y - player->m_coordinate.y;
+                const auto dx = player->m_destCoord->x - player->m_coord.x;
+                const auto dy = player->m_destCoord->y - player->m_coord.y;
                 
                 if (dx < 0 && dy < 0) {
                     
@@ -97,7 +97,7 @@ namespace JoD {
                     player->m_ticksLastMove = Now();
                 } else  {
                     
-                    player->m_destination = {-1, -1};
+                    player->m_destCoord = std::nullopt;
                 }
             }
         }

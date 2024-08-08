@@ -7,6 +7,7 @@
 #include "WorldArea.hpp"
 #include "Tile.hpp"
 #include "Configuration/GameProperties.hpp"
+#include <optional>
 
 namespace JoD {
     
@@ -16,7 +17,8 @@ namespace JoD {
             
             m_tiles.push_back(std::vector<std::shared_ptr<Tile>>());
             
-            for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
+            for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h;
+                 y++) {
                 
                 m_tiles.at(x).push_back(std::make_shared<Tile>());
             }
@@ -42,5 +44,34 @@ namespace JoD {
         
         return coord.x >= 0 && coord.y >= 0 && coord.x < size.w &&
                coord.y < size.h;
+    }
+    
+    std::shared_ptr<Tile> WorldArea::GetTile(Point coord) const {
+        if (IsValidCoord(coord)) {
+            
+            return m_tiles.at(coord.x).at(coord.y);
+        }
+        
+        return nullptr;
+    }
+    
+    std::shared_ptr<Tile> WorldArea::GetTile(int xCoord, int yCoord) const {
+        
+        return GetTile({xCoord, yCoord});
+    }
+    
+    void WorldArea::RegisterMobPosition(std::shared_ptr<Mob> mob, Point coord) {
+        
+        m_mobPositions.insert({mob, coord});
+    }
+    
+    std::optional<Point> WorldArea::GetMobCoord(std::shared_ptr<Mob> mob) const {
+        
+        if (m_mobPositions.contains(mob)) {
+            
+            return m_mobPositions.at(mob);
+        }
+        
+        return std::nullopt;
     }
 }

@@ -17,7 +17,7 @@ namespace JoD {
         
         for (auto i = 0; i < 25; i++) {
             
-            worldArea->m_tiles[roadX][roadY]->SetGround(
+            worldArea->GetTile(roadX, roadY)->SetGround(
                 Hash("GroundCobbleStone"));
                 
             roadX++;
@@ -26,7 +26,7 @@ namespace JoD {
         
         for (auto i = 0; i < 50; i++) {
             
-            worldArea->m_tiles[roadX][roadY]->SetGround(
+            worldArea->GetTile(roadX, roadY)->SetGround(
                 Hash("GroundCobbleStone"));
                 
             roadX++;
@@ -34,7 +34,7 @@ namespace JoD {
         
         for (auto i = 0; i < 50; i++) {
             
-            worldArea->m_tiles[roadX][roadY]->SetGround(
+            worldArea->GetTile(roadX, roadY)->SetGround(
                 Hash("GroundCobbleStone"));
                 
             roadY++;
@@ -42,7 +42,7 @@ namespace JoD {
         
         for (auto i = 0; i < 50; i++) {
             
-            worldArea->m_tiles[roadX][roadY]->SetGround(
+            worldArea->GetTile(roadX, roadY)->SetGround(
                 Hash("GroundCobbleStone"));
                 
             roadX--;
@@ -50,7 +50,7 @@ namespace JoD {
         
         for (auto i = 0; i < 25; i++) {
             
-            worldArea->m_tiles[roadX][roadY]->SetGround(Hash("GroundCobbleStone"));
+            worldArea->GetTile(roadX, roadY)->SetGround(Hash("GroundCobbleStone"));
                 
             roadY++;
         }

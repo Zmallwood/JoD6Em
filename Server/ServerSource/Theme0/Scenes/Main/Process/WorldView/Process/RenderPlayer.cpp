@@ -17,7 +17,7 @@ namespace JoD {
         Point coordinate, BoxF tileBounds) {
         
         const auto playerCoordinate =
-            userGameInstanceEngine.m_player->m_coordinate;
+            userGameInstanceEngine.m_player->m_coord;
         
         if (coordinate.x == playerCoordinate.x &&
             coordinate.y == playerCoordinate.y){

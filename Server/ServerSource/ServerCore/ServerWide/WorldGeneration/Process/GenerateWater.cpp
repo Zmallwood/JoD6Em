@@ -36,7 +36,7 @@ namespace JoD {
                     
                     if (dx * dx + dy * dy <= r * r) {
                         
-                        worldArea->m_tiles[x][y]->SetGround(
+                        worldArea->GetTile(x, y)->SetGround(
                             Hash("GroundWater"));
                     }
                 }

@@ -38,11 +38,11 @@ namespace JoD {
                 const auto x = rand() % _<GameProperties>().GetWorldAreaSize().w;
                 const auto y = rand() % _<GameProperties>().GetWorldAreaSize().h;
                 
-                const auto ground = worldArea->m_tiles[x][y]->GetGround();
+                const auto ground = worldArea->GetTile(x, y)->GetGround();
                 
                 if (ground != Hash("GroundWater") && ground != Hash("GroundCobbleStone")) {
                     
-                    worldArea->m_tiles[x][y]->SetObject(std::make_unique<Object>(objectName));
+                    worldArea->GetTile(x, y)->SetObject(std::make_unique<Object>(objectName));
                 }
             }
         }

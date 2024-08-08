@@ -15,7 +15,8 @@
 namespace JoD {
     
     void RenderTileSymbols(
-        const MainScene& mainScene, const UserGameInstanceEngine& userGameInstanceEngine,
+        const MainScene& mainScene,
+        const UserGameInstanceEngine& userGameInstanceEngine,
         WebSocket &webSocket,
         Point coordinate, BoxF tileBounds) {
         
@@ -27,12 +28,7 @@ namespace JoD {
                     MainSceneComponents::
                     TileHovering));
         
-        if (coordinate.x ==
-            tileHovering->
-            m_hoveredCoordinate.x &&
-            coordinate.y ==
-            tileHovering->
-            m_hoveredCoordinate.y){
+        if (coordinate == tileHovering->m_hoveredCoordinate){
             
             SendImageDrawInstruction(
                 webSocket,
@@ -40,8 +36,8 @@ namespace JoD {
                 tileBounds);
         }
         
-        if (coordinate.x == player->m_destination.x &&
-            coordinate.y == player->m_destination.y) {
+        if (player->m_destCoord.has_value() &&
+            coordinate == player->m_destCoord) {
             
             SendImageDrawInstruction(
                 webSocket,

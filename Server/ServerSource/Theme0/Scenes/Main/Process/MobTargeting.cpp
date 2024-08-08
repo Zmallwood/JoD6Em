@@ -15,6 +15,7 @@
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
+#include <optional>
 
 namespace JoD {
     
@@ -39,11 +40,11 @@ namespace JoD {
         
         if (mouseDown) {
             
-            player->m_destination = {-1, -1};
+            player->m_destCoord = std::nullopt;
             
             const auto &worldArea = _<World>().GetCurrentWorldArea();
             
-            const auto tile = worldArea->m_tiles[hoveredTile.x][hoveredTile.y];
+            const auto tile = worldArea->GetTile(hoveredTile);
             
             if (tile->GetMob()) {
                 

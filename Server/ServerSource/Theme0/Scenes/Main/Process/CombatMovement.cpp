@@ -29,7 +29,7 @@ namespace JoD {
             
             const auto &worldArea = _<World>().GetCurrentWorldArea();
             const auto pos =
-                worldArea->m_mobPositions.at(mobTargeting->m_targetedCreature);
+                worldArea->GetMobCoord(mobTargeting->m_targetedCreature).value();
             
             if (Now() > player->m_ticksLastMove +
                 Duration(
@@ -38,8 +38,8 @@ namespace JoD {
                             1000/
                             player->m_movementSpeed)))) {
                 
-                const auto dx = pos.x - player->m_coordinate.x;
-                const auto dy = pos.y - player->m_coordinate.y;
+                const auto dx = pos.x - player->m_coord.x;
+                const auto dy = pos.y - player->m_coord.y;
                 
                 if (dx < 0 && dy < 0) {
                     

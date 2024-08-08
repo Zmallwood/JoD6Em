@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <optional>
 namespace JoD {
     
     ///
@@ -30,8 +31,8 @@ namespace JoD {
         
         void TryMoveNorthWest();
         
-        Point m_coordinate {5, 5}; ///< Coordinate on the current world area.
-        Point m_destination {-1, -1}; ///< Destination to which the player is moving.
+        Point m_coord {5, 5}; ///< Coordinate on the current world area.
+        std::optional<Point> m_destCoord {std::nullopt}; ///< Destination to which the player is moving.
         TimePoint m_ticksLastMove {Now()}; ///< Last time the player moved one step.
         float m_movementSpeed {5.0f}; ///< Base movement speed.
         

@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <optional>
 namespace JoD {
     
     class Tile;
@@ -26,6 +27,15 @@ namespace JoD {
         
         bool IsValidCoord(Point coord) const;
         
+        std::shared_ptr<Tile> GetTile(Point coord) const;
+        
+        std::shared_ptr<Tile> GetTile(int xCoord, int yCoord) const;
+        
+        void RegisterMobPosition(std::shared_ptr<Mob> mob, Point coord);
+        
+        std::optional<Point> GetMobCoord(std::shared_ptr<Mob> mob) const;
+        
+      private:
         std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles; ///< Tile grid.
         std::map<std::shared_ptr<Mob>, Point>
         m_mobPositions; ///< Helper structure which maps mobs to their positions.

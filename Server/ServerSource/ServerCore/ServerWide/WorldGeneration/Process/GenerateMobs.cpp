@@ -34,21 +34,21 @@ namespace JoD {
                     continue;
                 }
                 
-                if (worldArea->m_tiles[x][y]->GetMob()) {
+                if (worldArea->GetTile(x, y)->GetMob()) {
                     
                     continue;
                 }
                 
-                if (worldArea->m_tiles[x][y]->GetGround() == Hash("GroundWater")) {
+                if (worldArea->GetTile(x, y)->GetGround() == Hash("GroundWater")) {
                     
                     continue;
                 }
                 
                 const auto newMob = std::make_shared<Mob>("MobBlueSlime", 1);
                 
-                worldArea->m_mobPositions.insert({newMob, {x, y}});
+                worldArea->RegisterMobPosition(newMob, {x, y});
                 
-                worldArea->m_tiles[x][y]->SetMob(newMob);
+                worldArea->GetTile(x, y)->SetMob(newMob);
             }
         }
         
@@ -67,21 +67,21 @@ namespace JoD {
                     continue;
                 }
                 
-                if (worldArea->m_tiles[x][y]->GetMob()) {
+                if (worldArea->GetTile(x, y)->GetMob()) {
                     
                     continue;
                 }
                 
-                if (worldArea->m_tiles[x][y]->GetGround() == Hash("GroundWater")) {
+                if (worldArea->GetTile(x, y)->GetGround() == Hash("GroundWater")) {
                     
                     continue;
                 }
                 
                 const auto newMob = std::make_shared<Mob>("MobYellowSlime", 2);
                 
-                worldArea->m_mobPositions.insert({newMob, {x, y}});
+                worldArea->RegisterMobPosition(newMob, {x, y});
                 
-                worldArea->m_tiles[x][y]->SetMob(newMob);
+                worldArea->GetTile(x, y)->SetMob(newMob);
             }
         }
         
@@ -100,21 +100,21 @@ namespace JoD {
                     continue;
                 }
                 
-                if (worldArea->m_tiles[x][y]->GetMob()) {
+                if (worldArea->GetTile(x, y)->GetMob()) {
                     
                     continue;
                 }
                 
-                if (worldArea->m_tiles[x][y]->GetGround() == Hash("GroundWater")) {
+                if (worldArea->GetTile(x, y)->GetGround() == Hash("GroundWater")) {
                     
                     continue;
                 }
                 
                 const auto newMob = std::make_shared<Mob>("MobRedSlime", 3);
                 
-                worldArea->m_mobPositions.insert({newMob, {x, y}});
+                worldArea->RegisterMobPosition(newMob, {x, y});
                 
-                worldArea->m_tiles[x][y]->SetMob(newMob);
+                worldArea->GetTile(x, y)->SetMob(newMob);
             }
         }
     }

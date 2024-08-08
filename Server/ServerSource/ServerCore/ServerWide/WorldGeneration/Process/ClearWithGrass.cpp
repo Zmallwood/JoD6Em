@@ -17,7 +17,7 @@ namespace JoD {
             
             for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w; x++) {
                 
-                worldArea->m_tiles[x][y]->SetGround(Hash("GroundGrass"));
+                worldArea->GetTile(x, y)->SetGround(Hash("GroundGrass"));
             }
         }
     }

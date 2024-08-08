@@ -28,7 +28,7 @@ namespace JoD {
                 m_userGameInstanceEngine.GetAspectRatio());
         
         const auto playerCoordinate =
-            m_userGameInstanceEngine.m_player->m_coordinate;
+            m_userGameInstanceEngine.m_player->m_coord;
         
         const auto numGridRows = _<GameProperties>().GetNumGridRows();
         const auto numGridCols =
@@ -53,8 +53,8 @@ namespace JoD {
                 }
                 
                 const auto tile =
-                    _<World>().GetCurrentWorldArea()->m_tiles[coordX][
-                        coordY];
+                    _<World>().GetCurrentWorldArea()->GetTile(coordX,
+                        coordY);
                 
                 const auto tileBounds = BoxF {
                     x * tileSize.w, y * tileSize.h,
