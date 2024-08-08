@@ -46,7 +46,7 @@ build cmake_object_order_depends_target_JoDServer: phony || .
 
 build CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch: CXX_COMPILER__JoDServer_unscanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx.cxx | CMakeFiles/JoDServer.dir/cmake_pch.hxx || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch.d
-  FLAGS = -std=gnu++20 -Winvalid-pch -x c++-header -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -x c++-header -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir
@@ -54,7 +54,7 @@ build CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch: CXX_COMPILER__JoDServer_unscan
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Main.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Main.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Main.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Main.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Main.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Main.cpp.o.ddi.i
@@ -62,7 +62,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Main.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Main.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Main.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Main.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Main.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource
@@ -71,7 +71,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/InstructionsSending.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/InstructionsSending.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/InstructionsSending.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/InstructionsSending.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/InstructionsSending.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/InstructionsSending.cpp.o.ddi.i
@@ -79,7 +79,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/InstructionsSending.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/InstructionsSending.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/InstructionsSending.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/InstructionsSending.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/InstructionsSending.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net
@@ -88,7 +88,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/RunWebSocketServer.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/RunWebSocketServer.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/RunWebSocketServer.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/RunWebSocketServer.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/RunWebSocketServer.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/RunWebSocketServer.cpp.o.ddi.i
@@ -96,7 +96,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/RunWebSocketServer.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/RunWebSocketServer.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/RunWebSocketServer.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/RunWebSocketServer.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/RunWebSocketServer.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net
@@ -105,7 +105,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/UserConnection.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/UserConnection.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/UserConnection.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/UserConnection.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/UserConnection.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/UserConnection.cpp.o.ddi.i
@@ -113,7 +113,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/UserConnection.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/UserConnection.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/UserConnection.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/UserConnection.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/UserConnection.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net
@@ -122,7 +122,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/WebSocketServer.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/WebSocketServer.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/WebSocketServer.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/WebSocketServer.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/WebSocketServer.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/WebSocketServer.cpp.o.ddi.i
@@ -130,7 +130,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/WebSocketServer.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/WebSocketServer.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/WebSocketServer.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/WebSocketServer.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/WebSocketServer.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net
@@ -139,7 +139,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/RunGameServer.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/RunGameServer.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/RunGameServer.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/RunGameServer.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/RunGameServer.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/RunGameServer.cpp.o.ddi.i
@@ -147,7 +147,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/RunGameServer.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/RunGameServer.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/RunGameServer.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/RunGameServer.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/RunGameServer.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore
@@ -156,7 +156,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation/ImageDimensions.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation/ImageDimensions.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation/ImageDimensions.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation/ImageDimensions.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation/ImageDimensions.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation/ImageDimensions.cpp.o.ddi.i
@@ -164,7 +164,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation/ImageDimensions.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation/ImageDimensions.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation/ImageDimensions.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation/ImageDimensions.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation/ImageDimensions.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation
@@ -173,7 +173,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.cpp.o.ddi.i
@@ -181,7 +181,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration
@@ -190,7 +190,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/ClearWithGrass.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/ClearWithGrass.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/ClearWithGrass.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/ClearWithGrass.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/ClearWithGrass.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/ClearWithGrass.cpp.o.ddi.i
@@ -198,7 +198,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/ClearWithGrass.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/ClearWithGrass.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/ClearWithGrass.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/ClearWithGrass.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/ClearWithGrass.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process
@@ -207,7 +207,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateMobs.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateMobs.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateMobs.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateMobs.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateMobs.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateMobs.cpp.o.ddi.i
@@ -215,7 +215,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateMobs.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateMobs.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateMobs.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateMobs.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateMobs.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process
@@ -224,7 +224,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateObjects.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateObjects.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateObjects.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateObjects.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateObjects.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateObjects.cpp.o.ddi.i
@@ -232,7 +232,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateObjects.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateObjects.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateObjects.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateObjects.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateObjects.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process
@@ -241,7 +241,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateRoads.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateRoads.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateRoads.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateRoads.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateRoads.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateRoads.cpp.o.ddi.i
@@ -249,7 +249,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateRoads.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateRoads.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateRoads.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateRoads.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateRoads.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process
@@ -258,7 +258,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateWater.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateWater.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateWater.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateWater.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateWater.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateWater.cpp.o.ddi.i
@@ -266,7 +266,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateWater.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateWater.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateWater.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateWater.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateWater.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process
@@ -275,7 +275,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Mob.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Mob.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Mob.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Mob.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Mob.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Mob.cpp.o.ddi.i
@@ -283,7 +283,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Mob.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Mob.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Mob.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Mob.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Mob.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure
@@ -292,7 +292,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Object.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Object.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Object.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Object.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Object.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Object.cpp.o.ddi.i
@@ -300,7 +300,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Object.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Object.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Object.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Object.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Object.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure
@@ -309,7 +309,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/World.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/World.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/World.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/World.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/World.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/World.cpp.o.ddi.i
@@ -317,7 +317,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/World.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/World.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/World.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/World.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/World.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure
@@ -326,7 +326,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/WorldArea.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/WorldArea.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/WorldArea.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/WorldArea.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/WorldArea.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/WorldArea.cpp.o.ddi.i
@@ -334,7 +334,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/WorldArea.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/WorldArea.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/WorldArea.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/WorldArea.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/WorldArea.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure
@@ -343,7 +343,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects/Player.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects/Player.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects/Player.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects/Player.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects/Player.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects/Player.cpp.o.ddi.i
@@ -351,7 +351,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects/Player.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects/Player.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects/Player.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects/Player.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects/Player.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects
@@ -360,7 +360,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor/Cursor.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor/Cursor.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor/Cursor.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor/Cursor.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor/Cursor.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor/Cursor.cpp.o.ddi.i
@@ -368,7 +368,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor/Cursor.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor/Cursor.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor/Cursor.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor/Cursor.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor/Cursor.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor
@@ -377,7 +377,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/EngineInstance.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/EngineInstance.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/EngineInstance.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/EngineInstance.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/EngineInstance.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/EngineInstance.cpp.o.ddi.i
@@ -385,7 +385,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/EngineInstance.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/EngineInstance.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/EngineInstance.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/EngineInstance.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/EngineInstance.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance
@@ -394,7 +394,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUI.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUI.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUI.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUI.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUI.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUI.cpp.o.ddi.i
@@ -402,7 +402,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUI.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUI.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUI.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUI.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUI.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore
@@ -411,7 +411,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUIComponent.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUIComponent.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUIComponent.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUIComponent.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUIComponent.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUIComponent.cpp.o.ddi.i
@@ -419,7 +419,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUIComponent.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUIComponent.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUIComponent.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUIComponent.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUIComponent.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore
@@ -428,7 +428,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUILabel.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUILabel.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUILabel.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUILabel.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUILabel.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUILabel.cpp.o.ddi.i
@@ -436,7 +436,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUILabel.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUILabel.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUILabel.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUILabel.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUILabel.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore
@@ -445,7 +445,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseButton.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseButton.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseButton.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseButton.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseButton.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseButton.cpp.o.ddi.i
@@ -453,7 +453,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseButton.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseButton.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseButton.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseButton.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseButton.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse
@@ -462,7 +462,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseInput.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseInput.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseInput.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseInput.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseInput.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseInput.cpp.o.ddi.i
@@ -470,7 +470,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseInput.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseInput.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseInput.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseInput.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseInput.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse
@@ -479,7 +479,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/IScene.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/IScene.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/IScene.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/IScene.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/IScene.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/IScene.cpp.o.ddi.i
@@ -487,7 +487,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/IScene.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/IScene.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/IScene.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/IScene.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/IScene.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore
@@ -496,7 +496,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/SceneManager.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/SceneManager.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/SceneManager.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/SceneManager.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/SceneManager.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/SceneManager.cpp.o.ddi.i
@@ -504,7 +504,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/SceneManager.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/SceneManager.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/SceneManager.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/SceneManager.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/SceneManager.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore
@@ -513,7 +513,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ServerFPSCounter.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ServerFPSCounter.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ServerFPSCounter.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ServerFPSCounter.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ServerFPSCounter.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ServerFPSCounter.cpp.o.ddi.i
@@ -521,7 +521,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ServerFPSCounter.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ServerFPSCounter.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ServerFPSCounter.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ServerFPSCounter.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ServerFPSCounter.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance
@@ -530,7 +530,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro/IntroScene.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro/IntroScene.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro/IntroScene.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro/IntroScene.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro/IntroScene.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro/IntroScene.cpp.o.ddi.i
@@ -538,7 +538,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro/IntroScene.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro/IntroScene.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro/IntroScene.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro/IntroScene.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro/IntroScene.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro
@@ -547,7 +547,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainScene.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainScene.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainScene.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainScene.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainScene.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainScene.cpp.o.ddi.i
@@ -555,7 +555,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainScene.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainScene.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainScene.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainScene.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainScene.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main
@@ -564,7 +564,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath/TileGridMath.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath/TileGridMath.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath/TileGridMath.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath/TileGridMath.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath/TileGridMath.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath/TileGridMath.cpp.o.ddi.i
@@ -572,7 +572,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath/TileGridMath.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath/TileGridMath.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath/TileGridMath.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath/TileGridMath.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath/TileGridMath.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath
@@ -581,7 +581,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/CombatMovement.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/CombatMovement.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/CombatMovement.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/CombatMovement.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/CombatMovement.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/CombatMovement.cpp.o.ddi.i
@@ -589,7 +589,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/CombatMovement.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/CombatMovement.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/CombatMovement.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/CombatMovement.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/CombatMovement.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process
@@ -598,7 +598,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/IMainSceneComponent.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/IMainSceneComponent.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/IMainSceneComponent.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/IMainSceneComponent.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/IMainSceneComponent.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/IMainSceneComponent.cpp.o.ddi.i
@@ -606,7 +606,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/IMainSceneComponent.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/IMainSceneComponent.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/IMainSceneComponent.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/IMainSceneComponent.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/IMainSceneComponent.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process
@@ -615,7 +615,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MobTargeting.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MobTargeting.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MobTargeting.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MobTargeting.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MobTargeting.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MobTargeting.cpp.o.ddi.i
@@ -623,7 +623,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MobTargeting.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MobTargeting.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MobTargeting.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MobTargeting.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MobTargeting.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process
@@ -632,7 +632,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MouseMovement.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MouseMovement.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MouseMovement.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MouseMovement.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MouseMovement.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MouseMovement.cpp.o.ddi.i
@@ -640,7 +640,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MouseMovement.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MouseMovement.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MouseMovement.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MouseMovement.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MouseMovement.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process
@@ -649,7 +649,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/TileHovering.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/TileHovering.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/TileHovering.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/TileHovering.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/TileHovering.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/TileHovering.cpp.o.ddi.i
@@ -657,7 +657,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/TileHovering.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/TileHovering.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/TileHovering.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/TileHovering.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/TileHovering.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process
@@ -666,7 +666,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderGround.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderGround.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderGround.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderGround.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderGround.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderGround.cpp.o.ddi.i
@@ -674,7 +674,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderGround.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderGround.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderGround.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderGround.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderGround.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process
@@ -683,7 +683,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderMobs.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderMobs.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderMobs.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderMobs.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderMobs.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderMobs.cpp.o.ddi.i
@@ -691,7 +691,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderMobs.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderMobs.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderMobs.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderMobs.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderMobs.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process
@@ -700,7 +700,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderObjects.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderObjects.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderObjects.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderObjects.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderObjects.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderObjects.cpp.o.ddi.i
@@ -708,7 +708,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderObjects.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderObjects.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderObjects.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderObjects.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderObjects.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process
@@ -717,7 +717,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderPlayer.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderPlayer.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderPlayer.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderPlayer.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderPlayer.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderPlayer.cpp.o.ddi.i
@@ -725,7 +725,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderPlayer.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderPlayer.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderPlayer.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderPlayer.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderPlayer.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process
@@ -734,7 +734,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderTileSymbols.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderTileSymbols.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderTileSymbols.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderTileSymbols.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderTileSymbols.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderTileSymbols.cpp.o.ddi.i
@@ -742,7 +742,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderTileSymbols.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderTileSymbols.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderTileSymbols.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderTileSymbols.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderTileSymbols.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process
@@ -751,7 +751,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/WorldView.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/WorldView.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/WorldView.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/WorldView.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/WorldView.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/WorldView.cpp.o.ddi.i
@@ -759,7 +759,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/WorldView.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/WorldView.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/WorldView.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/WorldView.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/WorldView.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView
@@ -768,7 +768,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu/MainMenuScene.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu/MainMenuScene.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu/MainMenuScene.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu/MainMenuScene.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu/MainMenuScene.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu/MainMenuScene.cpp.o.ddi.i
@@ -776,7 +776,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu/MainMenuScene.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu/MainMenuScene.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu/MainMenuScene.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu/MainMenuScene.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu/MainMenuScene.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu
@@ -785,7 +785,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Ser
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/CommonUtils.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/CommonUtils.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/CommonUtils.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/CommonUtils.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/CommonUtils.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/CommonUtils.cpp.o.ddi.i
@@ -793,7 +793,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Sha
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/CommonUtils.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/CommonUtils.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/CommonUtils.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/CommonUtils.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/CommonUtils.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource
@@ -802,7 +802,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Sha
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/BoxF.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/BoxF.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/BoxF.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/BoxF.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/BoxF.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/BoxF.cpp.o.ddi.i
@@ -810,7 +810,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Sha
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/BoxF.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/BoxF.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/BoxF.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/BoxF.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/BoxF.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib
@@ -819,7 +819,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Sha
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/ColorF.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/ColorF.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/ColorF.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/ColorF.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/ColorF.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/ColorF.cpp.o.ddi.i
@@ -827,7 +827,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Sha
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/ColorF.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/ColorF.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/ColorF.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/ColorF.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/ColorF.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib
@@ -836,7 +836,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Sha
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/Point.cpp.o.ddi: CXX_SCAN__JoDServer_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/Point.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_JoDServer
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/Point.cpp.o.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/Point.cpp.o.ddi
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJ_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/Point.cpp.o
   PREPROCESSED_OUTPUT_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/Point.cpp.o.ddi.i
@@ -844,7 +844,7 @@ build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Sha
 build CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/Point.cpp.o: CXX_COMPILER__JoDServer_scanned_ /home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/Point.cpp | CMakeFiles/JoDServer.dir/cmake_pch.hxx CMakeFiles/JoDServer.dir/cmake_pch.hxx.gch CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/Point.cpp.o.modmap || cmake_object_order_depends_target_JoDServer CMakeFiles/JoDServer.dir/CXX.dd
   DEP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/Point.cpp.o.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/Point.cpp.o.modmap
-  FLAGS = -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
+  FLAGS = -fdiagnostics-color=always -std=gnu++20 -Winvalid-pch -include /home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/CMakeFiles/JoDServer.dir/cmake_pch.hxx
   INCLUDES = -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../ServerSource -I/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/cmake/../../Shared/SharedSource
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   OBJECT_FILE_DIR = CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib
@@ -861,6 +861,7 @@ build CMakeFiles/JoDServer.dir/CXX.dd | /home/andreas/code/hobby_cpp/JoD6Em/Repo
 # Link the executable bin/JoDServer
 
 build bin/JoDServer: CXX_EXECUTABLE_LINKER__JoDServer_ CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Main.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/InstructionsSending.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/RunWebSocketServer.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/UserConnection.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/Net/WebSocketServer.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/RunGameServer.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/AssetsInformation/ImageDimensions.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/ClearWithGrass.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateMobs.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateObjects.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateRoads.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldGeneration/Process/GenerateWater.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Mob.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/Object.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/World.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/ServerWide/WorldStructure/WorldArea.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/CoreGameObjects/Player.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Cursor/Cursor.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/EngineInstance.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUI.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUIComponent.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/GUICore/GUILabel.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseButton.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/Input/Mouse/MouseInput.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/IScene.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ScenesCore/SceneManager.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/ServerCore/UserGameInstance/ServerFPSCounter.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Intro/IntroScene.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainScene.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/MainSceneMath/TileGridMath.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/CombatMovement.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/IMainSceneComponent.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MobTargeting.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/MouseMovement.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/TileHovering.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderGround.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderMobs.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderObjects.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderPlayer.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/Process/RenderTileSymbols.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/Main/Process/WorldView/WorldView.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Server/ServerSource/Theme0/Scenes/MainMenu/MainMenuScene.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/CommonUtils.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/BoxF.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/ColorF.cpp.o CMakeFiles/JoDServer.dir/home/andreas/code/hobby_cpp/JoD6Em/Repository/Shared/SharedSource/MathLib/Point.cpp.o
+  FLAGS = -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/JoDServer.dir
   POST_BUILD = :
   PRE_LINK = :

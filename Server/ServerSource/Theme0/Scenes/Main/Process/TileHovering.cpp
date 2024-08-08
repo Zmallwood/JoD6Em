@@ -17,25 +17,25 @@ namespace JoD {
         
         const auto tileSize =
             CalculateTileSize(
-                m_engineInstance.GetAspectRatio());
+                EngineInstance().GetAspectRatio());
         
         const auto playerCoordinate =
-            m_engineInstance.Player()->Coord();
+            EngineInstance().Player()->Coord();
         
         const auto numRows = _<GameProperties>().GetNumGridRows();
         const auto numCols =
             CalculateNumGridCols(
-                m_engineInstance.GetAspectRatio());
+                EngineInstance().GetAspectRatio());
         
         const auto tileX =
             playerCoordinate.x - (numCols - 1) / 2 +
-            static_cast<int>(m_engineInstance.
+            static_cast<int>(EngineInstance().
                              MousePosition().x /
                              tileSize.w);
         
         const auto tileY =
             playerCoordinate.y - (numRows - 1) / 2 +
-            static_cast<int>(m_engineInstance.
+            static_cast<int>(EngineInstance().
                              MousePosition().y /
                              tileSize.h);
         

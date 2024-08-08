@@ -22,16 +22,16 @@ namespace JoD {
     void MobTargeting::Update() {
         
         const std::unique_ptr<Player> &player =
-            m_engineInstance.Player();
+            EngineInstance().Player();
         
         const std::shared_ptr<const TileHovering> tileHovering =
             std::static_pointer_cast<TileHovering>(
-                m_mainScene.m_components.at(
+                EngineInstance().SceneManager()->GetScene<MainScene>("MainScene")->m_components.at(
                     MainSceneComponents::
                     TileHovering));
         
         const auto mouseDown =
-            m_engineInstance.MouseInput()->
+            EngineInstance().MouseInput()->
             RightButton()->
             IsPressedPickResult();
         

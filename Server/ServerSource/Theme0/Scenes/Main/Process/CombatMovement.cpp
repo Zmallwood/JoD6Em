@@ -17,11 +17,11 @@
 namespace JoD {
     void CombatMovement::Update() {
         const std::unique_ptr<Player> &player =
-            m_engineInstance.Player();
+            EngineInstance().Player();
         
         const std::shared_ptr<MobTargeting> mobTargeting =
             std::static_pointer_cast<MobTargeting>(
-                m_mainScene.m_components.at(
+                EngineInstance().SceneManager()->GetScene<MainScene>("MainScene")->m_components.at(
                     MainSceneComponents::
                     MobTargeting));
         

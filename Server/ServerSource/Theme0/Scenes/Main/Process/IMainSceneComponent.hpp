@@ -8,7 +8,6 @@
 
 namespace JoD {
     
-    class MainScene;
     class EngineInstance;
     
     ///
@@ -24,8 +23,7 @@ namespace JoD {
         /// @param mainScene Main scene associated with user.
         ///
         IMainSceneComponent(
-            const EngineInstance& engineInstance,
-            const MainScene& mainScene);
+            const EngineInstance& engineInstance);
         
         ///
         /// Optionally overridable for inheriting component classes.
@@ -35,14 +33,19 @@ namespace JoD {
         
         ///
         /// Optionally overridable for inheriting component classes.
-        /// 
+        ///
         /// @param webSocket Web socket object associated with user.
         ///
         virtual void Render(WebSocket &webSocket) const {
         }
         
       protected:
-        const EngineInstance &m_engineInstance; ///< User connection object associated with user.
-        const MainScene& m_mainScene; ///< Main scene associated with user.
+        const JoD::EngineInstance& EngineInstance() const {
+            
+            return m_engineInstance;
+        }
+        
+      private:
+        const JoD::EngineInstance &m_engineInstance; ///< User connection object associated with user.
     };
 }

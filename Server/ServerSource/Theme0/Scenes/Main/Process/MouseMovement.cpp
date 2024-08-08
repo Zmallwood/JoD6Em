@@ -18,24 +18,26 @@ namespace JoD {
     
     void MouseMovement::Update(){
         
+        auto &mainScene = *EngineInstance().SceneManager()->GetScene<MainScene>("MainScene");
+        
         const std::shared_ptr<const TileHovering> tileHovering =
             std::static_pointer_cast<TileHovering>(
-                m_mainScene.m_components.at(
+                mainScene.m_components.at(
                     MainSceneComponents::
                     TileHovering));
                     
         const std::shared_ptr<MobTargeting> mobTargeting =
             std::static_pointer_cast<MobTargeting>(
-                m_mainScene.m_components.at(
+                mainScene.m_components.at(
                     MainSceneComponents::
                     MobTargeting));
         
         const auto mouseDown =
-            m_engineInstance.MouseInput()->
+            EngineInstance().MouseInput()->
             LeftButton()->
             IsPressedPickResult();
         
-        auto &player = m_engineInstance.Player();
+        auto &player = EngineInstance().Player();
         
         const auto hoveredTile =
             tileHovering->m_hoveredCoordinate;

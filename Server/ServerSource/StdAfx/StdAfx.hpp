@@ -18,6 +18,7 @@
 #include <any>
 #include <thread>
 #include <chrono>
+#include <optional>
 
 // Project.
 #include "MathLib/MathConstants.hpp"

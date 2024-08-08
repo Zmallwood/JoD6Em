@@ -25,15 +25,17 @@ namespace JoD {
         
         const auto tileSize =
             CalculateTileSize(
-                m_engineInstance.GetAspectRatio());
+                EngineInstance().GetAspectRatio());
         
         const auto playerCoordinate =
-            m_engineInstance.Player()->Coord();
+            EngineInstance().Player()->Coord();
         
         const auto numGridRows = _<GameProperties>().GetNumGridRows();
         const auto numGridCols =
             CalculateNumGridCols(
-                m_engineInstance.GetAspectRatio());
+                EngineInstance().GetAspectRatio());
+                
+        auto &mainScene = *EngineInstance().SceneManager()->GetScene<MainScene>("MainScene");
         
         const auto smallValue = 0.0001f;
         
@@ -64,17 +66,17 @@ namespace JoD {
                 RenderGround(webSocket, tile, tileBounds);
                 
                 RenderTileSymbols(
-                    m_mainScene, m_engineInstance, webSocket,
+                    mainScene, EngineInstance(), webSocket,
                     {coordX, coordY}, tileBounds);
                 
                 RenderObjects(webSocket, tile, tileBounds);
                 
                 RenderMobs(
-                    m_mainScene, webSocket, tile,
+                    mainScene, webSocket, tile,
                     tileBounds);
                 
                 RenderPlayer(
-                    m_engineInstance, webSocket, {coordX, coordY},
+                    EngineInstance(), webSocket, {coordX, coordY},
                     tileBounds);
             }
         }
