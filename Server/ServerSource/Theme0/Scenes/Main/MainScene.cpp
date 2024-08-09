@@ -11,11 +11,16 @@
 #include "Process/MobTargeting.hpp"
 #include "Process/CombatMovement.hpp"
 #include "Process/WorldView/WorldView.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "Theme0/Scenes/Main/Process/MainSceneComponents.hpp"
+#include "MainSceneGUI/GUITextConsole.hpp"
+#include "ServerCore/UserGameInstance/TextOutput/TextOut.hpp"
 
 namespace JoD {
     
     void MainScene::Initialize() {
+        
+        GUI()->AddComponent<GUITextConsole>();
         
         m_components.insert(
             {MainSceneComponents::TileHovering,
@@ -39,6 +44,11 @@ namespace JoD {
         m_components.insert(
             {MainSceneComponents::CombatMovement,
              std::make_shared<CombatMovement>(this->EngineInstance()) });
+    }
+    
+    void MainScene::OnEnter() {
+        
+        EngineInstance().TextOut()->Print("Entering world.");
     }
     
     void MainScene::UpdateDerived(UserID userID) {

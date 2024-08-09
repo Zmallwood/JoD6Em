@@ -54,5 +54,10 @@ namespace JoD {
     void SceneManager::GoToScene(std::string_view scene_name) {
         
         m_currentScene = Hash(scene_name);
+        
+        if (m_scenes.contains(m_currentScene)) {
+            
+            m_scenes.at(m_currentScene)->OnEnter();
+        }
     }
 }

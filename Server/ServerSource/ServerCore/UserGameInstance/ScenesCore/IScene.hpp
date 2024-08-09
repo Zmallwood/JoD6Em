@@ -32,6 +32,10 @@ namespace JoD {
         virtual void Initialize() {
         }
         
+        virtual void OnEnter() {
+            
+        }
+        
         ///
         /// Called each frame in the user engines game loop.
         ///

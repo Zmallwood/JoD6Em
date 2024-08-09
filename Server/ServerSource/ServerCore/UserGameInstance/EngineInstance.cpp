@@ -16,7 +16,8 @@ namespace JoD {
         m_mouseInput(std::make_unique<JoD::MouseInput>()),
         m_serverFPSCounter(std::make_unique<ServerFPSCounter>()),
         m_player(std::make_unique<JoD::Player>()),
-        m_cursor(std::make_unique<Cursor>(*this)){
+        m_cursor(std::make_unique<Cursor>(*this)),
+        m_textOut(std::make_unique<JoD::TextOut>()){
         
     }
     

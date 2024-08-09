@@ -32,6 +32,8 @@ namespace JoD {
         ///
         void Initialize() override;
         
+        void OnEnter() override;
+        
         ///
         /// Update game logic.
         ///
