@@ -6,7 +6,7 @@
 
 #include "GUITextConsole.hpp"
 #include "ServerCore/ServerWide/EngineInstancesManager.hpp"
-#include "ServerCore/UserGameInstance/TextOutput/TextOut.hpp"
+#include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 

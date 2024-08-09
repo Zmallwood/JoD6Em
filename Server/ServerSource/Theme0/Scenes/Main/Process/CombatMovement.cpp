@@ -15,7 +15,7 @@
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 
 namespace JoD {
-    void CombatMovement::Update() {
+    void CombatMovement::Update(UserID userID) {
         const std::unique_ptr<Player> &player =
             EngineInstance().Player();
         

@@ -24,7 +24,7 @@ namespace JoD {
         ///
         /// Override base class methdo.
         ///
-        void Update() override;
+        void Update(UserID userID) override;
         
         Point m_hoveredCoordinate {-1, -1}; ///< Currently hovered tile coordinate, {-1, -1} means none.
     };

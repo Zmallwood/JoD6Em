@@ -14,7 +14,7 @@
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "Theme0/Scenes/Main/Process/MainSceneComponents.hpp"
 #include "MainSceneGUI/GUITextConsole.hpp"
-#include "ServerCore/UserGameInstance/TextOutput/TextOut.hpp"
+#include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
 
 namespace JoD {
     
@@ -55,7 +55,7 @@ namespace JoD {
         
         for (const auto component : m_components) {
             
-            component.second->Update();
+            component.second->Update(userID);
         }
     }
     
@@ -63,7 +63,7 @@ namespace JoD {
         
         for (const auto component : m_components) {
             
-            component.second->Render(webSocket);
+            component.second->Render(userID, webSocket);
         }
     }
 }

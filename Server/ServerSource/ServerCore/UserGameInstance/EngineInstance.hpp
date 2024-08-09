@@ -11,7 +11,7 @@
 #include "ServerFPSCounter.hpp"
 #include "ScenesCore/SceneManager.hpp"
 #include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
-#include "TextOutput/TextOut.hpp"
+#include "TextOutput/TextMessages.hpp"
 
 namespace JoD {
     
@@ -75,7 +75,7 @@ namespace JoD {
             return m_player;
         }
         
-        const std::unique_ptr<JoD::TextOut> &TextOut() const {
+        const std::unique_ptr<JoD::TextMessages> &TextOut() const {
             
             return m_textOut;
         }
@@ -88,6 +88,6 @@ namespace JoD {
         std::unique_ptr<JoD::Player> m_player; ///< Player instance for the user.
         std::unique_ptr<Cursor> m_cursor; ///< Custom cursor which replaces default system cursor.
         std::unique_ptr<ServerFPSCounter> m_serverFPSCounter; ///< Server side FPS counter.
-        std::unique_ptr<JoD::TextOut> m_textOut;
+        std::unique_ptr<JoD::TextMessages> m_textOut;
     };
 }

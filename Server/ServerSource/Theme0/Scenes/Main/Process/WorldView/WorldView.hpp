@@ -26,6 +26,6 @@ namespace JoD {
         /// 
         /// @param webSocket Web socket associated with user.
         ///
-        void Render(WebSocket &webSocket) const override;
+        void Render(UserID userID, WebSocket &webSocket) const override;
     };
 }

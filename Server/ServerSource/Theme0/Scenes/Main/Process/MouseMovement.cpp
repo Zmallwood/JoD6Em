@@ -16,7 +16,7 @@
 
 namespace JoD {
     
-    void MouseMovement::Update(){
+    void MouseMovement::Update(UserID userID){
         
         auto &mainScene = *EngineInstance().SceneManager()->GetScene<MainScene>("MainScene");
         

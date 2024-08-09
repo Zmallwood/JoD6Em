@@ -26,7 +26,7 @@ namespace JoD {
         ///
         /// Override base class method.
         ///
-        void Update() override;
+        void Update(UserID userID) override;
         
         std::shared_ptr<Mob> TargetedCreature() const {
             

@@ -19,7 +19,7 @@
 
 namespace JoD {
     
-    void MobTargeting::Update() {
+    void MobTargeting::Update(UserID userID) {
         
         const std::unique_ptr<Player> &player =
             EngineInstance().Player();

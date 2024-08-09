@@ -25,6 +25,6 @@ namespace JoD {
         ///
         /// Override base class method.
         ///
-        void Update() override;
+        void Update(UserID userID) override;
     };
 }

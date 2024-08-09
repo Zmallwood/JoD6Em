@@ -1,14 +1,14 @@
 /*
- * TextOut.cpp
+ * TextMessages.cpp
  * 
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "TextOut.hpp"
+#include "TextMessages.hpp"
 
 namespace JoD {
 
-    void TextOut::Print(std::string_view message) {
+    void TextMessages::Print(std::string_view message) {
         
         m_data.push_back(message.data());
     }

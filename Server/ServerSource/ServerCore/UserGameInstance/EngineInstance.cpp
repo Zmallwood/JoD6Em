@@ -17,7 +17,7 @@ namespace JoD {
         m_serverFPSCounter(std::make_unique<ServerFPSCounter>()),
         m_player(std::make_unique<JoD::Player>()),
         m_cursor(std::make_unique<Cursor>(*this)),
-        m_textOut(std::make_unique<JoD::TextOut>()){
+        m_textOut(std::make_unique<JoD::TextMessages>()){
         
     }
     

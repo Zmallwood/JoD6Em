@@ -28,7 +28,7 @@ namespace JoD {
         ///
         /// Optionally overridable for inheriting component classes.
         ///
-        virtual void Update() {
+        virtual void Update(UserID userID) {
         }
         
         ///
@@ -36,7 +36,7 @@ namespace JoD {
         ///
         /// @param webSocket Web socket object associated with user.
         ///
-        virtual void Render(WebSocket &webSocket) const {
+        virtual void Render(UserID userID, WebSocket &webSocket) const {
         }
         
       protected:
