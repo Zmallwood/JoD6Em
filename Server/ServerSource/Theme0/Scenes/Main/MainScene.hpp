@@ -8,9 +8,10 @@
 
 #include "ServerCore/UserGameInstance/ScenesCore/IScene.hpp"
 #include "Process/MainSceneComponents.hpp"
-#include "Process/IMainSceneComponent.hpp"
 
 namespace JoD {
+    
+    class IMainSceneComponent;
     
     ///
     /// The main scene where the playing takes place.
@@ -18,10 +19,9 @@ namespace JoD {
     class MainScene : public IScene {
         
       public:
-        ///
-        /// Use base class ctor.
-        ///
-        using IScene::IScene;
+        MainScene(JoD::EngineInstance& engineInstance);
+        
+        ~MainScene();
         
         IMainSceneComponent *GetComponent(
             MainSceneComponents mainSceneComponent) const;
@@ -47,7 +47,8 @@ namespace JoD {
         void RenderDerived(UserID userID, WebSocket &webSocket) const override;
         
       private:
-        std::map<MainSceneComponents, std::unique_ptr<IMainSceneComponent>>
-        m_components; ///< Contains sub components for the scene.
+        struct Impl;
+        
+        std::unique_ptr<Impl> m_pImpl;
     };
 }

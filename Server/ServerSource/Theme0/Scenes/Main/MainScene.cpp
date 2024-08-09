@@ -16,33 +16,48 @@
 #include "MainSceneGUI/GUITextConsole.hpp"
 #include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
+#include "Process/IMainSceneComponent.hpp"
 
 namespace JoD {
+    
+    struct MainScene::Impl {
+        std::map<MainSceneComponents, std::unique_ptr<IMainSceneComponent>>
+        components; ///< Contains sub components for the scene.
+    };
+    
+    MainScene::MainScene(JoD::EngineInstance& engineInstance):
+    IScene(engineInstance), m_pImpl(std::make_unique<Impl>()) {
+        
+    }
+    
+    MainScene::~MainScene() {
+        
+    }
     
     void MainScene::Initialize() {
         
         GUI()->AddComponent<GUITextConsole>();
         
-        m_components.insert(
+        m_pImpl->components.insert(
             {MainSceneComponents::TileHovering,
              std::make_unique<TileHovering>(
                  this->EngineInstance()) });
                  
-        m_components.insert(
+        m_pImpl->components.insert(
             {MainSceneComponents::MouseMovement,
              std::make_unique<MouseMovement>(
                  this->EngineInstance()) });
                  
-        m_components.insert(
+        m_pImpl->components.insert(
             {MainSceneComponents::MobTargeting,
              std::make_unique<MobTargeting>(
                  this->EngineInstance()) });
                  
-        m_components.insert(
+        m_pImpl->components.insert(
             {MainSceneComponents::WorldView,
              std::make_unique<WorldView>(this->EngineInstance()) });
                  
-        m_components.insert(
+        m_pImpl->components.insert(
             {MainSceneComponents::CombatMovement,
              std::make_unique<CombatMovement>(this->EngineInstance()) });
     }
@@ -54,7 +69,7 @@ namespace JoD {
     
     void MainScene::UpdateDerived(UserID userID) {
         
-        for (const auto& component : m_components) {
+        for (const auto& component : m_pImpl->components) {
             
             component.second->Update(userID);
         }
@@ -62,7 +77,7 @@ namespace JoD {
     
     void MainScene::RenderDerived(UserID userID, WebSocket &webSocket) const {
         
-        for (const auto& component : m_components) {
+        for (const auto& component : m_pImpl->components) {
             
             component.second->Render(userID, webSocket);
         }
@@ -70,9 +85,9 @@ namespace JoD {
     
     IMainSceneComponent *MainScene::GetComponent(MainSceneComponents mainSceneComponent) const {
         
-        if (m_components.contains(mainSceneComponent)) {
+        if (m_pImpl->components.contains(mainSceneComponent)) {
             
-            return m_components.at(mainSceneComponent).get();
+            return m_pImpl->components.at(mainSceneComponent).get();
         }
         
         return nullptr;
