@@ -18,6 +18,8 @@ namespace JoD {
         
         std::optional<Size> GetDimension(int imageNameHash) const;
         
+        std::optional<Size> GetDimension(std::string_view imageName) const;
+        
       private:
         std::map<int, Size> m_dimensions; ///< Stored image dimensions with image name hash code as key.
     };

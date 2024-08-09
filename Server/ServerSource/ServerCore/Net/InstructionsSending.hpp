@@ -60,4 +60,8 @@ namespace JoD {
     void SendRequestImageDimensions(
         WebSocket &webSocket,
         int imageNameHash);
+        
+    void SendRequestImageDimensions(
+        WebSocket &webSocket,
+        std::string_view imageName);
 }

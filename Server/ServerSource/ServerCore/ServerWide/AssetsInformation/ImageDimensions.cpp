@@ -21,6 +21,11 @@ namespace JoD {
             return m_dimensions.at(imageNameHash);
         }
         
-        return std::nullopt;
+        return std::nullopt; 
+    }
+    
+    std::optional<Size> ImageDimensions::GetDimension(std::string_view imageName) const {
+        
+        return GetDimension(Hash(imageName));
     }
 }

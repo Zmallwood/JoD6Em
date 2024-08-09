@@ -1,6 +1,6 @@
 /*
  * InstructionsSending.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -91,5 +91,11 @@ namespace JoD {
         data.push_back(imageNameHash);
         
         webSocket.write(boost::asio::buffer(data));
+    }
+    
+    void SendRequestImageDimensions(
+        WebSocket &webSocket,
+        std::string_view imageName) {
+        SendRequestImageDimensions(webSocket, Hash(imageName));
     }
 }

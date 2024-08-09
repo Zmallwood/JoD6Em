@@ -43,7 +43,7 @@ namespace JoD {
             const auto height = imageDimensions.h/60.0f*tileBounds.h;
             
             const auto newBounds = BoxF{tileBounds.x + tileBounds.w/2 - width/2,
-                                   tileBounds.y + tileBounds.h - height, width, height};
+                                   tileBounds.y + tileBounds.h/2 - height, width, height};
             
             SendImageDrawInstruction(
                 webSocket,
