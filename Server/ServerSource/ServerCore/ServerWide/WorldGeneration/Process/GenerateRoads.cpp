@@ -10,7 +10,7 @@
 
 namespace JoD {
     
-    void GenerateRoads(const std::unique_ptr<WorldArea> &worldArea) {
+    void GenerateRoads(WorldArea* worldArea) {
         
         auto roadX = 0;
         auto roadY = 0;

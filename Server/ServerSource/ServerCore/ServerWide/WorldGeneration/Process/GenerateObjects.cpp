@@ -15,11 +15,11 @@ namespace JoD {
     namespace {
         
         void GenerateObjectOfType(
-            const std::unique_ptr<WorldArea> &worldArea, std::string_view objectName,
+            WorldArea* worldArea, std::string_view objectName,
             int amount);
     }
     
-    void GenerateObjects(const std::unique_ptr<WorldArea> &worldArea) {
+    void GenerateObjects(WorldArea* worldArea) {
         
         GenerateObjectOfType(worldArea, "ObjectTree1", 300);
         GenerateObjectOfType(worldArea, "ObjectTree2", 300);
@@ -30,7 +30,7 @@ namespace JoD {
     namespace {
         
         void GenerateObjectOfType(
-            const std::unique_ptr<WorldArea> &worldArea, std::string_view objectName,
+            WorldArea* worldArea, std::string_view objectName,
             int amount) {
             
             for (auto i = 0; i < amount; i++) {

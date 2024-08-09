@@ -5,34 +5,44 @@
  */
 
 #include "WorldArea.hpp"
-#include "Tile.hpp"
 #include "Configuration/GameProperties.hpp"
-#include <optional>
+#include "Tile.hpp"
 
 namespace JoD {
     
-    WorldArea::WorldArea(){
+    struct WorldArea::Impl {
+        std::vector<std::vector<std::unique_ptr<Tile>>> tiles; ///< Tile grid.
+        std::map<std::shared_ptr<Mob>, Point>
+        mobPositions; ///< Helper structure which maps mobs to their positions.
+    };
+    
+    WorldArea::WorldArea()
+    : m_pImpl(std::make_unique<Impl>()){
         
         for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w; x++){
             
-            m_tiles.push_back(std::vector<std::shared_ptr<Tile>>());
+            m_pImpl->tiles.push_back(std::vector<std::unique_ptr<Tile>>());
             
             for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h;
                  y++) {
                 
-                m_tiles.at(x).push_back(std::make_shared<Tile>());
+                m_pImpl->tiles.at(x).push_back(std::make_unique<Tile>());
             }
         }
     }
     
+    WorldArea::~WorldArea() {
+        
+    }
+    
     Size WorldArea::GetSize() const {
         
-        const auto width = static_cast<int>(m_tiles.size());
+        const auto width = static_cast<int>(m_pImpl->tiles.size());
         auto height = 0;
         
-        if (m_tiles.size() > 0) {
+        if (m_pImpl->tiles.size() > 0) {
             
-            height = m_tiles.at(0).size();
+            height = m_pImpl->tiles.at(0).size();
         }
         
         return {width, height};
@@ -46,30 +56,30 @@ namespace JoD {
                coord.y < size.h;
     }
     
-    std::shared_ptr<Tile> WorldArea::GetTile(Point coord) const {
+    Tile* WorldArea::GetTile(Point coord) const {
         if (IsValidCoord(coord)) {
             
-            return m_tiles.at(coord.x).at(coord.y);
+            return m_pImpl->tiles.at(coord.x).at(coord.y).get();
         }
         
         return nullptr;
     }
     
-    std::shared_ptr<Tile> WorldArea::GetTile(int xCoord, int yCoord) const {
+    Tile* WorldArea::GetTile(int xCoord, int yCoord) const {
         
         return GetTile({xCoord, yCoord});
     }
     
     void WorldArea::RegisterMobPosition(std::shared_ptr<Mob> mob, Point coord) {
         
-        m_mobPositions.insert({mob, coord});
+        m_pImpl->mobPositions.insert({mob, coord});
     }
     
     std::optional<Point> WorldArea::GetMobCoord(std::shared_ptr<Mob> mob) const {
         
-        if (m_mobPositions.contains(mob)) {
+        if (m_pImpl->mobPositions.contains(mob)) {
             
-            return m_mobPositions.at(mob);
+            return m_pImpl->mobPositions.at(mob);
         }
         
         return std::nullopt;

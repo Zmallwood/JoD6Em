@@ -8,6 +8,7 @@
 #include "ServerCore/Net/InstructionsSending.hpp"
 #include "ServerCore/ServerWide/EngineInstancesManager.hpp"
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
+#include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
 
 namespace JoD {
     GUIButton::GUIButton(BoxF bounds, std::string_view text,
@@ -27,7 +28,7 @@ namespace JoD {
         auto &mouseInput =
             _<EngineInstancesManager>().GetInstance(userID)->MouseInput();
             
-        if (m_hovered && mouseInput->LeftButton()->IsPressed()) {
+        if (m_hovered && mouseInput->LeftButton().IsPressed()) {
             
             m_action();
         }

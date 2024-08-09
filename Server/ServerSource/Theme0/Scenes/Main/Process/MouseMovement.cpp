@@ -34,7 +34,7 @@ namespace JoD {
         
         const auto mouseDown =
             EngineInstance().MouseInput()->
-            LeftButton()->
+            LeftButton().
             IsPressedPickResult();
         
         auto &player = EngineInstance().Player();

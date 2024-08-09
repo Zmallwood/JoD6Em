@@ -9,6 +9,7 @@
 #include "GUIComponent.hpp"
 
 namespace JoD {
+    
     class GUIButton : public GUIComponent {
       public:
         GUIButton(BoxF bounds, std::string_view text, std::function<void()> action);

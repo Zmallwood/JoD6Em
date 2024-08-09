@@ -15,5 +15,5 @@ namespace JoD {
     /// 
     /// @param worldArea World area to generate objects on.
     ///
-    void GenerateObjects(const std::unique_ptr<WorldArea> &worldArea);
+    void GenerateObjects(WorldArea* worldArea);
 }

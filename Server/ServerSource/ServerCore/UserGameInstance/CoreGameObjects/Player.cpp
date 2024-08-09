@@ -60,7 +60,7 @@ namespace JoD {
             return;
         }
         
-        const auto tile = worldArea->GetTile(coord);
+        const auto &tile = worldArea->GetTile(coord);
         
         if (tile->GetGround() == Hash("GroundWater")) {
             

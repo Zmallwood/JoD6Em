@@ -54,7 +54,7 @@ namespace JoD {
                     continue;
                 }
                 
-                const auto tile =
+                auto tile =
                     _<World>().GetCurrentWorldArea()->GetTile(coordX,
                         coordY);
                 

@@ -23,7 +23,7 @@ namespace JoD {
     void IntroScene::UpdateDerived(UserID userID) {
         
         if (EngineInstance().MouseInput()->
-            LeftButton()->
+            LeftButton().
             IsPressedPickResult()) {
             
             EngineInstance().SceneManager()->

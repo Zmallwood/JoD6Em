@@ -11,7 +11,7 @@
 
 namespace JoD {
     
-    void ClearWithGrass(const std::unique_ptr<WorldArea> &worldArea) {
+    void ClearWithGrass(WorldArea* worldArea) {
         
         for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
             

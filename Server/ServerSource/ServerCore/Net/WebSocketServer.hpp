@@ -6,11 +6,8 @@
 
 #pragma once
 
-#include "UserConnection.hpp"
 
 namespace JoD {
-    
-    class UserConnection;
     
     ///
     /// Core web socker server object handling all incoming user connections.
@@ -18,6 +15,10 @@ namespace JoD {
     class WebSocketServer {
         
       public:
+        WebSocketServer();
+        
+        ~WebSocketServer();
+      
         ///
         /// Run web socket server and start listening for incoming connections.
         ///
@@ -27,7 +28,8 @@ namespace JoD {
         void Run(std::string_view socketAddress, std::string_view socketPort);
         
       private:
-        std::vector<std::unique_ptr<UserConnection>>
-        m_userConnections; ///< Holds all connected users.
+        struct Impl;
+        
+        std::unique_ptr<Impl> m_pImpl;
     };
 }

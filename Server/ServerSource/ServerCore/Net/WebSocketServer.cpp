@@ -5,11 +5,26 @@
  */
 
 #include "WebSocketServer.hpp"
+#include "UserConnection.hpp"
 
 using namespace boost::asio;
 using namespace boost::asio::ip;
 
 namespace JoD {
+    
+    struct WebSocketServer::Impl {
+        
+        std::vector<std::unique_ptr<UserConnection>>
+        userConnections; ///< Holds all connected users.
+    };
+    
+    WebSocketServer::WebSocketServer()
+    : m_pImpl(std::make_unique<Impl>()) {
+        
+    }
+    
+    WebSocketServer::~WebSocketServer() {
+    }
     
     void WebSocketServer::Run(
         std::string_view socketAddress,
@@ -33,7 +48,7 @@ namespace JoD {
             // Block until we get a connection.
             acceptor.accept(socket);
             
-            m_userConnections.push_back(
+            m_pImpl->userConnections.push_back(
                 std::make_unique<UserConnection>(
                     std::move(socket)));
         }

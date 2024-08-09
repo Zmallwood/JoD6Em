@@ -6,25 +6,36 @@
 
 #include "UserConnection.hpp"
 #include "ServerCore/Net/WebSocketServer.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
 #include "MessageCodes.hpp"
 #include "NetConfiguration.hpp"
 #include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/ServerWide/EngineInstancesManager.hpp"
 
 using namespace boost::beast;
 
 namespace JoD {
     
-    UserConnection::UserConnection(Socket socket)
-        : m_engineInstance(
-            std::make_unique<EngineInstance>()){
+    struct UserConnection::Impl {
+        std::unique_ptr<EngineInstance>
+        engineInstance; ///< Engine running for this specific user.
+    };
+    
+    UserConnection::UserConnection(Socket socket) : m_pImpl(std::make_unique<Impl>()) {
                 
-        auto userID = _<EngineInstancesManager>().RegisterEngineInstance(*m_engineInstance);
+        m_pImpl->engineInstance = std::make_unique<EngineInstance>();
+                
+        auto userID = _<EngineInstancesManager>().RegisterEngineInstance(*m_pImpl->engineInstance);
                 
         std::thread(
             &UserConnection::DoSession, this, userID,
             std::move(socket)).detach();
+    }
+    
+    UserConnection::~UserConnection() {
+        
     }
     
     void UserConnection::DoSessionNested(WebSocket* webSocket) {
@@ -41,32 +52,32 @@ namespace JoD {
                     
                     const auto width = (int)data[1];
                     const auto height = (int)data[2];
-                    m_engineInstance->SetCanvasSize({width, height});
+                    m_pImpl->engineInstance->SetCanvasSize({width, height});
                 }else if (*data == MessageCodes::k_leftMouseDown) {
                     
-                    m_engineInstance->MouseInput()->
+                    m_pImpl->engineInstance->MouseInput()->
                     RegisterMouseDown(
                         MouseButtons::Left);
                 }else if (*data == MessageCodes::k_leftMouseUp) {
                     
-                    m_engineInstance->MouseInput()->
+                    m_pImpl->engineInstance->MouseInput()->
                     RegisterMouseUp(
                         MouseButtons::Left);
                 }else if (*data == MessageCodes::k_rightMouseDown) {
                     
-                    m_engineInstance->MouseInput()->
+                    m_pImpl->engineInstance->MouseInput()->
                     RegisterMouseDown(
                         MouseButtons::Right);
                 }else if (*data == MessageCodes::k_rightMouseUp) {
                     
-                    m_engineInstance->MouseInput()->
+                    m_pImpl->engineInstance->MouseInput()->
                     RegisterMouseUp(
                         MouseButtons::Right);
                 }else if (*data == MessageCodes::k_mousePosition) {
                     
                     const auto x = data[1] / NetConstants::k_floatPrecision;
                     const auto y = data[2] / NetConstants::k_floatPrecision;
-                    m_engineInstance->SetMousePosition({x, y});
+                    m_pImpl->engineInstance->SetMousePosition({x, y});
                 }else if (*data == MessageCodes::k_provideImageDimensions) {
                     
                     const auto imageNameHash = (int)data[1];
@@ -115,8 +126,8 @@ namespace JoD {
             
             while (true){
                 
-                m_engineInstance->Update(userID);
-                m_engineInstance->Render(userID, webSocket);
+                m_pImpl->engineInstance->Update(userID);
+                m_pImpl->engineInstance->Render(userID, webSocket);
                 
                 std::this_thread::sleep_for(std::chrono::milliseconds(70));
             }

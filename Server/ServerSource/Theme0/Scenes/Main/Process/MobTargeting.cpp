@@ -32,7 +32,7 @@ namespace JoD {
         
         const auto mouseDown =
             EngineInstance().MouseInput()->
-            RightButton()->
+            RightButton().
             IsPressedPickResult();
         
         const auto hoveredTile =
@@ -44,7 +44,7 @@ namespace JoD {
             
             const auto &worldArea = _<World>().GetCurrentWorldArea();
             
-            const auto tile = worldArea->GetTile(hoveredTile.value());
+            const auto &tile = worldArea->GetTile(hoveredTile.value());
             
             if (tile->GetMob()) {
                 

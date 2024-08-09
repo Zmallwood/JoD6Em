@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include "WorldArea.hpp"
-
 namespace JoD {
     
     class WorldArea;
@@ -24,12 +22,13 @@ namespace JoD {
         ///
         World();
         
-        const std::unique_ptr<WorldArea> &GetCurrentWorldArea() const {
-            
-            return m_currentWorldArea;
-        }
+        ~World();
+        
+        WorldArea* GetCurrentWorldArea() const;
         
       private:
-        std::unique_ptr<WorldArea> m_currentWorldArea; ///< Currently only a single world area in the world.
+        struct Impl;
+        
+        std::unique_ptr<Impl> m_pImpl;
     };
 }

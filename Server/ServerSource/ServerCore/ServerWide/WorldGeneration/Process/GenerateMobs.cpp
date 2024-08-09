@@ -11,7 +11,7 @@
 
 namespace JoD {
     
-    void GenerateMobs(const std::unique_ptr<WorldArea> &worldArea) {
+    void GenerateMobs(WorldArea* worldArea) {
         
         const auto numBlueSlimeGroups = 6;
         const auto numYellowSlimeGroups = 6;

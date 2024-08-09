@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
-
 namespace JoD {
     
     ///
@@ -24,6 +22,8 @@ namespace JoD {
         ///
         UserConnection(Socket socket);
         
+        ~UserConnection();
+        
       private:
         ///
         /// Running game loop for user.
@@ -34,12 +34,13 @@ namespace JoD {
         
         ///
         /// Running loop for reading incoming web socket messages and handle them.
-        /// 
+        ///
         /// @param webSocket Socket object.
         ///
         void DoSessionNested(WebSocket* webSocket);
         
-        std::unique_ptr<EngineInstance>
-        m_engineInstance; ///< Engine running for this specific user.
+        struct Impl;
+        
+        std::unique_ptr<Impl> m_pImpl;
     };
 }

@@ -15,5 +15,5 @@ namespace JoD {
     /// 
     /// @param worldArea World area to generate roads on.
     ///
-    void GenerateRoads(const std::unique_ptr<WorldArea> &worldArea);
+    void GenerateRoads(WorldArea* worldArea);
 }

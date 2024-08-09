@@ -6,11 +6,10 @@
 
 #pragma once
 
-#include "Object.hpp"
-
 namespace JoD {
     
     class Mob;
+    class Object;
     
     ///
     /// Represents a square tile in the game world.
@@ -18,39 +17,25 @@ namespace JoD {
     class Tile {
         
       public:
-        int GetGround() const {
-            
-            return m_ground;
-        }
+        Tile();
         
-        void SetGround(int value) {
-            
-            m_ground = value;
-        }
+        ~Tile();
+      
+        int GetGround() const;
         
-        const std::unique_ptr<Object> &GetObject() const {
-            
-            return m_object;
-        }
+        void SetGround(int value);
         
-        void SetObject(std::unique_ptr<Object> value) {
-            
-            m_object = std::move(value);
-        }
+        Object* GetObject() const;
         
-        const std::shared_ptr<Mob> GetMob() const {
-            
-            return m_mob;
-        }
+        void SetObject(std::unique_ptr<Object> value);
         
-        void SetMob(std::shared_ptr<Mob> value) {
-            
-            m_mob = value;
-        }
+        const std::shared_ptr<Mob> GetMob() const;
+        
+        void SetMob(std::shared_ptr<Mob> value) ;
         
       private:
-        int m_ground {0}; ///< Hash code for ground type.
-        std::unique_ptr<Object> m_object; ///< Hash code for object type name, nullptr means no object.
-        std::shared_ptr<Mob> m_mob; ///< Mob currently occupying this tile, nullptr means no mob.
+        struct Impl;
+        
+        std::unique_ptr<Impl> m_pImpl;
     };
 }

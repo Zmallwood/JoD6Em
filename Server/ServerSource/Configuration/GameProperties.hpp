@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <experimental/propagate_const>
+
 namespace JoD {
     
     ///
@@ -14,18 +16,17 @@ namespace JoD {
     class GameProperties {
         
       public:
-        int GetNumGridRows() const {
-            
-            return k_numGridRows;
-        }
+        GameProperties();
         
-        Size GetWorldAreaSize() const {
-            
-            return k_worldAreaSize;
-        }
+        ~GameProperties();
+        
+        int GetNumGridRows() const;
+        
+        Size GetWorldAreaSize() const;
         
       private:
-        const int k_numGridRows {21}; ///< Number of rows in tile grid in world view.
-        const Size k_worldAreaSize {100, 100};
+        struct Impl;
+        
+        std::unique_ptr<Impl> m_pImpl;
     };
 }

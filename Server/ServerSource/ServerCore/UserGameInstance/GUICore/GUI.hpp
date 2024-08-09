@@ -9,6 +9,7 @@
 #include "GUIComponent.hpp"
 
 namespace JoD {
+    
     class GUI {
       public:
         void Update(UserID userID);

@@ -7,9 +7,10 @@
 #pragma once
 
 #include "MouseButtons.hpp"
-#include "MouseButton.hpp"
 
 namespace JoD {
+    
+    class MouseButton;
     
     ///
     /// Manages mouse input for a single user.
@@ -23,6 +24,8 @@ namespace JoD {
         ///
         MouseInput();
         
+        ~MouseInput();
+        
         ///
         /// Registers one of the mouse buttons as having been pressed down.
         ///
@@ -32,18 +35,13 @@ namespace JoD {
         
         void RegisterMouseUp(MouseButtons button);
         
-        const std::unique_ptr<MouseButton> &LeftButton() const {
-            
-            return m_leftButton;
-        }
+        MouseButton &LeftButton() const;
         
-        const std::unique_ptr<MouseButton> &RightButton() const {
-            
-            return m_rightButton;
-        }
+        MouseButton &RightButton() const;
         
       private:
-        std::unique_ptr<MouseButton> m_leftButton; ///< Left mouse button.
-        std::unique_ptr<MouseButton> m_rightButton; ///< Right mouse button.
+        struct Impl;
+        
+        std::unique_ptr<Impl> m_pImpl;
     };
 }
