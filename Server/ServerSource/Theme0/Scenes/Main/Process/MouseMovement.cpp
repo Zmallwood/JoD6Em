@@ -45,7 +45,7 @@ namespace JoD {
         if (mouseDown) {
             
             player->SetDestCoord(hoveredTile);
-            mobTargeting->m_targetedCreature = nullptr;
+            mobTargeting->SetTargetedCreature(nullptr);
         }
         
         if (std::chrono::high_resolution_clock::now() >

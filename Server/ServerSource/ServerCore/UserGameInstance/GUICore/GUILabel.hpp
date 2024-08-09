@@ -13,11 +13,12 @@ namespace JoD {
     class GUILabel : public GUIComponent {
         
       public:
-        GUILabel(PointF position, std::string_view text);
+        GUILabel(PointF position, std::string_view text, bool centerAligned = false);
         
         void RenderDerived(WebSocket& webSocket) override;
         
       private:
         std::string m_text;
+        bool m_centerAligned {false};
     };
 }

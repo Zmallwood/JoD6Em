@@ -25,11 +25,11 @@ namespace JoD {
                     MainSceneComponents::
                     MobTargeting));
         
-        if (mobTargeting->m_targetedCreature) {
+        if (mobTargeting->TargetedCreature()) {
             
             const auto &worldArea = _<World>().GetCurrentWorldArea();
             const auto pos =
-                worldArea->GetMobCoord(mobTargeting->m_targetedCreature).value();
+                worldArea->GetMobCoord(mobTargeting->TargetedCreature()).value();
             
             if (Now() > player->TicksLastMove() +
                 Duration(

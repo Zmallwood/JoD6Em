@@ -38,10 +38,11 @@ namespace JoD {
     /// @param webSocket Socket object.
     /// @param text Text to draw.
     /// @param position Position to draw the text at.
+    /// @param centerAlign
     ///
     void SendTextDrawInstruction(
         WebSocket &webSocket,
-        std::string_view text, PointF position);
+        std::string_view text, PointF position, bool centerAlign = false);
     
     ///
     /// Send instruction to present canvas to the user.

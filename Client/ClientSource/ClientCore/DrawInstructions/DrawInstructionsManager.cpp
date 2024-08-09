@@ -41,7 +41,7 @@ namespace JoD {
     
     
     void DrawInstructionsManager::AddTextDrawInstruction(
-        std::string_view text, PointF position) {
+        std::string_view text, PointF position, bool centerAlign) {
         
         auto newInstruction = DrawInstruction {};
         
@@ -49,6 +49,7 @@ namespace JoD {
         newInstruction.type = DrawInstructionTypes::DrawText;
         newInstruction.text = text;
         newInstruction.position = position;
+        newInstruction.centerAligned = centerAlign;
         
         m_inactiveBuffer->push_back(newInstruction);
     }
@@ -83,7 +84,9 @@ namespace JoD {
                 
                 _<TextRenderer>().DrawString(
                     instruction.rid, instruction.text,
-                    instruction.position);
+                    instruction.position,
+                    Colors::wheat,
+                    instruction.centerAligned);
                 break;
             }
             case DrawInstructionTypes::None: {

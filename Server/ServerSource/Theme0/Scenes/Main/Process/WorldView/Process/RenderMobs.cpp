@@ -29,7 +29,7 @@ namespace JoD {
             
             if (tile->GetMob() ==
                 mobTargeting->
-                m_targetedCreature){
+                TargetedCreature()){
                 
                 SendImageDrawInstruction(
                     webSocket,

@@ -29,7 +29,7 @@ namespace JoD {
         ///
         void AddImageDrawInstruction(int imageNameHash, BoxF destination);
         
-        void AddTextDrawInstruction(std::string_view text, PointF position);
+        void AddTextDrawInstruction(std::string_view text, PointF position, bool centerAlign);
         
         ///
         /// Copies the buffered render instructions to the active render instructions set.

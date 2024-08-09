@@ -275,19 +275,21 @@ namespace JoD {
                 
                 auto x = ReadFourBytesAsFloat(bytes + 4);
                 auto y = ReadFourBytesAsFloat(bytes + 8);
-                auto length = ReadFourBytesAsInt(bytes + 12);
+                auto centerAlign = ReadFourBytesAsInt(bytes + 12) != 0 ? true : false;
+                auto length = ReadFourBytesAsInt(bytes + 16);
                 
                 std::string str;
                 
                 for (auto i = 0; i < length; i++) {
                     
-                    auto c = ReadFourBytesAsInt(bytes + 16 + i*4);
+                    auto c = ReadFourBytesAsInt(bytes + 20 + i*4);
                     str += (char)c;
                 }
                 
                 _<DrawInstructionsManager>().AddTextDrawInstruction(
                     str,
-                    {x,y});
+                    {x,y},
+                    centerAlign);
                 
                 break;
             }

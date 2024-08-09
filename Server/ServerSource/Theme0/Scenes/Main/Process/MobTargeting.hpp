@@ -28,6 +28,17 @@ namespace JoD {
         ///
         void Update() override;
         
+        std::shared_ptr<Mob> TargetedCreature() const {
+            
+            return m_targetedCreature;
+        }
+        
+        void SetTargetedCreature(std::shared_ptr<Mob> value) {
+            
+            m_targetedCreature = value;
+        }
+        
+      private:
         std::shared_ptr<Mob>
         m_targetedCreature; ///< Currently targeted creature, nullptr means no target.
     };

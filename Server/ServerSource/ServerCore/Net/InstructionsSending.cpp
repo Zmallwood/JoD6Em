@@ -45,7 +45,8 @@ namespace JoD {
     void SendTextDrawInstruction(
         WebSocket &webSocket,
         std::string_view text,
-        PointF position) {
+        PointF position,
+        bool centerAlign) {
         
         const auto messageCode = MessageCodes::k_drawStringInstr;
         
@@ -57,6 +58,7 @@ namespace JoD {
         data.push_back(messageCode);
         data.push_back(x);
         data.push_back(y);
+        data.push_back(centerAlign ? 1 : 0);
         
         data.push_back(text.length());
         
