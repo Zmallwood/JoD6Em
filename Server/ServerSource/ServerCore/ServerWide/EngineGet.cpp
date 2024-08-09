@@ -11,7 +11,6 @@ namespace JoD {
     
     struct EngineGet::Impl {
         std::map<UserID, std::unique_ptr<EngineInstance>> engineInstances;
-        inline static UserID s_currentUserID {0};
     };
     
     EngineGet::EngineGet() : m_pImpl(std::make_unique<Impl>()) {
@@ -24,7 +23,7 @@ namespace JoD {
     
     UserID EngineGet::RegisterEngineInstance() {
         
-        auto userID = m_pImpl->s_currentUserID++;
+        auto userID = s_currentUserID++;
         
         m_pImpl->engineInstances.insert({userID, std::make_unique<EngineInstance>(userID)});
         

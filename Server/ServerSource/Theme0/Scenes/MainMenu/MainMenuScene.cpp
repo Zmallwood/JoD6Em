@@ -19,7 +19,7 @@ namespace JoD {
     
     void MainMenuScene::Initialize(UserID userID) {
         
-        GUI()->AddComponent<GUIButton>(BoxF{0.45f, 0.4f, 0.1f, 0.05f}, "Login", [&] {
+        GUI()->AddComponent<GUIButton>(BoxF{0.45f, 0.4f, 0.1f, 0.05f}, "Login", [=] {
             
             _<EngineGet>().GetSceneManager(userID)->
             GoToScene(userID, "MainScene");

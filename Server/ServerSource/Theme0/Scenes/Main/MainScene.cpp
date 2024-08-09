@@ -62,6 +62,8 @@ namespace JoD {
     
     void MainScene::OnEnter(UserID userID) {
         
+        std::cout << "User " << userID << " entered MainScene\n";
+        
         _<EngineGet>().GetTextMessages(userID)->Print("Entering world.");
     }
     

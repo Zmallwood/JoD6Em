@@ -23,8 +23,10 @@ namespace JoD {
     };
     
     UserConnection::UserConnection(Socket socket) : m_pImpl(std::make_unique<Impl>()) {
-                
+        
         m_pImpl->userID = _<EngineGet>().RegisterEngineInstance();
+        
+        std::cout << "User connected, got ID: " << m_pImpl->userID << std::endl;
                 
         std::thread(
             &UserConnection::DoSession, this, m_pImpl->userID,

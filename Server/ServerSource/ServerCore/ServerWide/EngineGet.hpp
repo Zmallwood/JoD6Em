@@ -40,5 +40,7 @@ namespace JoD {
         struct Impl;
         
         std::unique_ptr<Impl> m_pImpl;
+        
+        inline static UserID s_currentUserID {0};
     };
 }
