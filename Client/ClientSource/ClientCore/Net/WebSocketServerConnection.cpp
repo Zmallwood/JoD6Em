@@ -212,9 +212,8 @@ namespace JoD {
             void *userData){
             
             // Save web socket event to WebSocketClient so it can be used from that object by its own.
-            _<WebSocketServerConnection>().m_webSocketEvent =
-                std::unique_ptr<const EmscriptenWebSocketOpenEvent>(
-                    webSocketEvent);
+            _<WebSocketServerConnection>().SetWebSocketEvent(std::unique_ptr<const EmscriptenWebSocketOpenEvent>(
+                    webSocketEvent));
             
             std::cout << "Opening new connection.\n";
             

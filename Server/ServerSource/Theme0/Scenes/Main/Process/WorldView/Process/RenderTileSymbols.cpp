@@ -24,11 +24,11 @@ namespace JoD {
         
         const auto tileHovering =
             std::static_pointer_cast<TileHovering>(
-                mainScene.m_components.at(
+                mainScene.GetComponent(
                     MainSceneComponents::
                     TileHovering));
         
-        if (coordinate == tileHovering->m_hoveredCoordinate){
+        if (tileHovering->HoveredCoordinate().has_value() && coordinate == tileHovering->HoveredCoordinate()){
             
             SendImageDrawInstruction(
                 webSocket,

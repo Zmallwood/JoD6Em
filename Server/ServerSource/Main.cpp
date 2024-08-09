@@ -5,7 +5,6 @@
  */
 
 #include "ServerCore/RunGameServer.hpp"
-#include <cstdlib>
 
 int main(int argc, char *argv[]) {
     

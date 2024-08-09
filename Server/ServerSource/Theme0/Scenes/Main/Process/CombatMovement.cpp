@@ -21,7 +21,7 @@ namespace JoD {
         
         const std::shared_ptr<MobTargeting> mobTargeting =
             std::static_pointer_cast<MobTargeting>(
-                EngineInstance().SceneManager()->GetScene<MainScene>("MainScene")->m_components.at(
+                EngineInstance().SceneManager()->GetScene<MainScene>("MainScene")->GetComponent(
                     MainSceneComponents::
                     MobTargeting));
         

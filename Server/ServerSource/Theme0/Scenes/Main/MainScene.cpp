@@ -66,4 +66,14 @@ namespace JoD {
             component.second->Render(userID, webSocket);
         }
     }
+    
+    std::shared_ptr<IMainSceneComponent> MainScene::GetComponent(MainSceneComponents mainSceneComponent) const {
+        
+        if (m_components.contains(mainSceneComponent)) {
+            
+            return m_components.at(mainSceneComponent);
+        }
+        
+        return nullptr;
+    }
 }

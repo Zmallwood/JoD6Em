@@ -23,8 +23,8 @@ namespace JoD {
         ///
         using IScene::IScene;
         
-        std::map<MainSceneComponents, std::shared_ptr<IMainSceneComponent>>
-        m_components; ///< Contains sub components for the scene.
+        std::shared_ptr<IMainSceneComponent> GetComponent(
+            MainSceneComponents mainSceneComponent) const;
         
       protected:
         ///
@@ -45,5 +45,9 @@ namespace JoD {
         /// @param webSocket Web socket object for user.
         ///
         void RenderDerived(UserID userID, WebSocket &webSocket) const override;
+        
+      private:
+        std::map<MainSceneComponents, std::shared_ptr<IMainSceneComponent>>
+        m_components; ///< Contains sub components for the scene.
     };
 }

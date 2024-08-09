@@ -21,7 +21,7 @@ namespace JoD {
         
         const auto mobTargeting =
             std::static_pointer_cast<MobTargeting>(
-                mainScene.m_components.at(
+                mainScene.GetComponent(
                     MainSceneComponents::
                     MobTargeting));
         

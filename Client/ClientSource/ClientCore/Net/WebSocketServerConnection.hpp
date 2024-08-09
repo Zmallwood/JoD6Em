@@ -29,16 +29,20 @@ namespace JoD {
         
         ///
         ///  Send message to the server.
-        /// 
+        ///
         /// @param data Int array data to send.
         /// @param length Length of the int array data.
         ///
         void SendMessage(const int *data, int length) const;
         
-        std::unique_ptr<const EmscriptenWebSocketOpenEvent>
-        m_webSocketEvent; ///< Web socket event object related to the opened connection.
+        void SetWebSocketEvent(std::unique_ptr<const EmscriptenWebSocketOpenEvent> value) {
+            
+            m_webSocketEvent = std::move(value);
+        }
         
       private:
+        std::unique_ptr<const EmscriptenWebSocketOpenEvent>
+        m_webSocketEvent; ///< Web socket event object related to the opened connection.
         const std::string k_host {"localhost"}; ///< Host name of the server to connect to.
         const int k_port {8765}; ///< Port number to open the connection at.
     };

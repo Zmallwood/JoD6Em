@@ -26,7 +26,7 @@ namespace JoD {
         
         const std::shared_ptr<const TileHovering> tileHovering =
             std::static_pointer_cast<TileHovering>(
-                EngineInstance().SceneManager()->GetScene<MainScene>("MainScene")->m_components.at(
+                EngineInstance().SceneManager()->GetScene<MainScene>("MainScene")->GetComponent(
                     MainSceneComponents::
                     TileHovering));
         
@@ -36,15 +36,15 @@ namespace JoD {
             IsPressedPickResult();
         
         const auto hoveredTile =
-            tileHovering->m_hoveredCoordinate;
+            tileHovering->HoveredCoordinate();
         
-        if (mouseDown) {
+        if (mouseDown && hoveredTile.has_value()) {
             
             player->SetDestCoord(std::nullopt);
             
             const auto &worldArea = _<World>().GetCurrentWorldArea();
             
-            const auto tile = worldArea->GetTile(hoveredTile);
+            const auto tile = worldArea->GetTile(hoveredTile.value());
             
             if (tile->GetMob()) {
                 

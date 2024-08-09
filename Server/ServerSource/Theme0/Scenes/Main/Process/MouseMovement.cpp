@@ -22,13 +22,13 @@ namespace JoD {
         
         const std::shared_ptr<const TileHovering> tileHovering =
             std::static_pointer_cast<TileHovering>(
-                mainScene.m_components.at(
+                mainScene.GetComponent(
                     MainSceneComponents::
                     TileHovering));
                     
         const std::shared_ptr<MobTargeting> mobTargeting =
             std::static_pointer_cast<MobTargeting>(
-                mainScene.m_components.at(
+                mainScene.GetComponent(
                     MainSceneComponents::
                     MobTargeting));
         
@@ -40,11 +40,11 @@ namespace JoD {
         auto &player = EngineInstance().Player();
         
         const auto hoveredTile =
-            tileHovering->m_hoveredCoordinate;
+            tileHovering->HoveredCoordinate();
         
-        if (mouseDown) {
+        if (mouseDown && hoveredTile.has_value()) {
             
-            player->SetDestCoord(hoveredTile);
+            player->SetDestCoord(hoveredTile.value());
             mobTargeting->SetTargetedCreature(nullptr);
         }
         

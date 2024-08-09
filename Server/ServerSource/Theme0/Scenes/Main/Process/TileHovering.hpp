@@ -26,6 +26,12 @@ namespace JoD {
         ///
         void Update(UserID userID) override;
         
-        Point m_hoveredCoordinate {-1, -1}; ///< Currently hovered tile coordinate, {-1, -1} means none.
+        std::optional<Point> HoveredCoordinate() const {
+            
+            return m_hoveredCoordinate;
+        }
+        
+      private:
+        std::optional<Point> m_hoveredCoordinate {std::nullopt}; ///< Currently hovered tile coordinate, {-1, -1} means none.
     };
 }
