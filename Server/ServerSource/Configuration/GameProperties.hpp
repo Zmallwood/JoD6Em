@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include <experimental/propagate_const>
-
 namespace JoD {
     
     ///

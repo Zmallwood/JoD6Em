@@ -6,10 +6,9 @@
 
 #pragma once
 
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
-
 namespace JoD {
     
+    class EngineInstance;
     class Player;
     class SceneManager;
     class MouseInput;
@@ -17,10 +16,14 @@ namespace JoD {
     
     class EngineGet {
       public:
+        EngineGet();
+        
+        ~EngineGet();
+        
         UserID RegisterEngineInstance();
         
         EngineInstance* GetInstance(UserID userID) const;
-
+        
         std::optional<PointF> GetMousePosition(UserID userID) const;
         
         std::optional<float> GetAspectRatio(UserID userID) const;
@@ -34,7 +37,8 @@ namespace JoD {
         TextMessages* GetTextMessages(UserID userID) const;
         
       private:
-        std::map<UserID, std::unique_ptr<EngineInstance>> m_engineInstances;
-        inline static UserID s_currentUserID {0};
+        struct Impl;
+        
+        std::unique_ptr<Impl> m_pImpl;
     };
 }

@@ -5,23 +5,37 @@
  */
 
 #include "EngineGet.hpp"
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 
 namespace JoD {
     
+    struct EngineGet::Impl {
+        std::map<UserID, std::unique_ptr<EngineInstance>> engineInstances;
+        inline static UserID s_currentUserID {0};
+    };
+    
+    EngineGet::EngineGet() : m_pImpl(std::make_unique<Impl>()) {
+        
+    }
+    
+    EngineGet::~EngineGet() {
+        
+    }
+    
     UserID EngineGet::RegisterEngineInstance() {
         
-        auto userID = s_currentUserID++;
+        auto userID = m_pImpl->s_currentUserID++;
         
-        m_engineInstances.insert({userID, std::make_unique<EngineInstance>(userID)});
+        m_pImpl->engineInstances.insert({userID, std::make_unique<EngineInstance>(userID)});
         
         return userID;
     }
     
     EngineInstance* EngineGet::GetInstance(UserID userID) const {
         
-        if (m_engineInstances.contains(userID)) {
+        if (m_pImpl->engineInstances.contains(userID)) {
             
-            return m_engineInstances.at(userID).get();
+            return m_pImpl->engineInstances.at(userID).get();
         }
         
         return nullptr;
@@ -29,9 +43,9 @@ namespace JoD {
     
     std::optional<PointF> EngineGet::GetMousePosition(UserID userID) const {
         
-        if (m_engineInstances.contains(userID)) {
+        if (m_pImpl->engineInstances.contains(userID)) {
             
-            return m_engineInstances.at(userID)->MousePosition();
+            return m_pImpl->engineInstances.at(userID)->MousePosition();
         }
         
         return std::nullopt;
@@ -39,9 +53,9 @@ namespace JoD {
         
     std::optional<float> EngineGet::GetAspectRatio(UserID userID) const {
         
-        if (m_engineInstances.contains(userID)) {
+        if (m_pImpl->engineInstances.contains(userID)) {
             
-            return m_engineInstances.at(userID)->GetAspectRatio();
+            return m_pImpl->engineInstances.at(userID)->GetAspectRatio();
         }
         
         return std::nullopt;
@@ -49,9 +63,9 @@ namespace JoD {
     
     Player* EngineGet::GetPlayer(UserID userID) const {
         
-        if (m_engineInstances.contains(userID)) {
+        if (m_pImpl->engineInstances.contains(userID)) {
             
-            return m_engineInstances.at(userID)->Player();
+            return m_pImpl->engineInstances.at(userID)->Player();
         }
         
         return nullptr;
@@ -59,9 +73,9 @@ namespace JoD {
     
     SceneManager* EngineGet::GetSceneManager(UserID userID) const {
         
-        if (m_engineInstances.contains(userID)) {
+        if (m_pImpl->engineInstances.contains(userID)) {
             
-            return m_engineInstances.at(userID)->SceneManager();
+            return m_pImpl->engineInstances.at(userID)->SceneManager();
         }
         
         return nullptr;
@@ -69,9 +83,9 @@ namespace JoD {
     
     MouseInput* EngineGet::GetMouseInput(UserID userID) const {
         
-        if (m_engineInstances.contains(userID)) {
+        if (m_pImpl->engineInstances.contains(userID)) {
             
-            return m_engineInstances.at(userID)->MouseInput();
+            return m_pImpl->engineInstances.at(userID)->MouseInput();
         }
         
         return nullptr;
@@ -79,9 +93,9 @@ namespace JoD {
     
     TextMessages* EngineGet::GetTextMessages(UserID userID) const {
         
-        if (m_engineInstances.contains(userID)) {
+        if (m_pImpl->engineInstances.contains(userID)) {
             
-            return m_engineInstances.at(userID)->TextMessages();
+            return m_pImpl->engineInstances.at(userID)->TextMessages();
         }
         
         return nullptr;
