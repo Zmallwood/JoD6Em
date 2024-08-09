@@ -35,20 +35,20 @@ namespace JoD {
         ///
         /// Called each frame in the user engines game loop.
         ///
-        void Update();
+        void Update(UserID userID);
         
         ///
         /// Called each frame in the user engines game loop.
         ///
         /// @param webSocket Web socket object associated with the user.
         ///
-        void Render(WebSocket &webSocket) const;
+        void Render(UserID userID, WebSocket &webSocket) const;
         
       protected:
         ///
         /// Inheriting scenes specific update operations, called each frame.
         ///
-        virtual void UpdateDerived() = 0;
+        virtual void UpdateDerived(UserID userID) {}
         
         ///
         /// Inheriting scenes specific render operations, called each frame.
@@ -56,8 +56,9 @@ namespace JoD {
         /// @param webSocket Web socket object associated with the user.
         ///
         virtual void RenderDerived(
+            UserID userID,
             WebSocket
-            &webSocket) const = 0;
+            &webSocket) const {}
         
         JoD::EngineInstance& EngineInstance() const {
             

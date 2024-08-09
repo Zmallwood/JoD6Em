@@ -21,17 +21,15 @@ namespace JoD {
         ///
         using IScene::IScene;
         
-      protected:
-        ///
-        /// Update game logic.
-        ///
-        void UpdateDerived() override;
+        void Initialize() override;
         
+      protected:
+      
         ///
         /// Render the scene to canvas.
         ///
         /// @param webSocket Web socket object for user.
         ///
-        void RenderDerived(WebSocket &webSocket) const override;
+        void RenderDerived(UserID userID, WebSocket &webSocket) const override;
     };
 }

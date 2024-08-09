@@ -11,9 +11,9 @@
 namespace JoD {
     class GUI {
       public:
-        void Update();
+        void Update(UserID userID);
         
-        void Render(WebSocket &webSocket) const;
+        void Render(UserID userID, WebSocket &webSocket) const;
         
         template<class T, class ... Args>
         std::shared_ptr<T> AddComponent(Args... args) {

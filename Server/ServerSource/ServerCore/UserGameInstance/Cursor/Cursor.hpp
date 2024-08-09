@@ -28,7 +28,7 @@ namespace JoD {
         /// 
         /// @param webSocket Users web socket object.
         ///
-        void Render(WebSocket& webSocket) const;
+        void Render(UserID userID, WebSocket& webSocket) const;
         
       private:
         const EngineInstance& m_engineInstance; ///< User connection object for associated user.

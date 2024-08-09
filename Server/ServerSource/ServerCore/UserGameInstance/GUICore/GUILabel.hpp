@@ -15,7 +15,7 @@ namespace JoD {
       public:
         GUILabel(PointF position, std::string_view text, bool centerAligned = false);
         
-        void RenderDerived(WebSocket& webSocket) override;
+        void RenderDerived(UserID userID, WebSocket& webSocket) const override;
         
       private:
         std::string m_text;

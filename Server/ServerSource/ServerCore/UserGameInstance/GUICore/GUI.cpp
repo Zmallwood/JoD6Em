@@ -7,20 +7,20 @@
 #include "GUI.hpp"
 
 namespace JoD {
-    void GUI::Update() {
+    void GUI::Update(UserID userID) {
         
         for (auto& component : m_components) {
             
-            component->Update();
+            component->Update(userID);
         }
     }
     
-    void GUI::Render(WebSocket &webSocket) const {
+    void GUI::Render(UserID userID, WebSocket &webSocket) const {
         
         
         for (auto& component : m_components) {
             
-            component->Render(webSocket);
+            component->Render(userID, webSocket);
         }
     }
 }

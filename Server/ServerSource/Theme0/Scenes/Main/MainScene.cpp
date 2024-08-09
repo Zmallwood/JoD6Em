@@ -41,7 +41,7 @@ namespace JoD {
              std::make_shared<CombatMovement>(this->EngineInstance()) });
     }
     
-    void MainScene::UpdateDerived() {
+    void MainScene::UpdateDerived(UserID userID) {
         
         for (const auto component : m_components) {
             
@@ -49,7 +49,7 @@ namespace JoD {
         }
     }
     
-    void MainScene::RenderDerived(WebSocket &webSocket) const {
+    void MainScene::RenderDerived(UserID userID, WebSocket &webSocket) const {
         
         for (const auto component : m_components) {
             

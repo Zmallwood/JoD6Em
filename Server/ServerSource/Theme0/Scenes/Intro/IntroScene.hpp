@@ -32,14 +32,14 @@ namespace JoD {
         ///
         /// Update game logic.
         ///
-        void UpdateDerived() override;
+        void UpdateDerived(UserID userID) override;
         
         ///
         /// Render the scene to canvas.
         ///
         /// @param webSocket Web socket object for user.
         ///
-        void RenderDerived(WebSocket &webSocket) const override;
+        void RenderDerived(UserID userID, WebSocket &webSocket) const override;
         
       private:
         std::shared_ptr<GUILabel> m_guiLabelStartText;

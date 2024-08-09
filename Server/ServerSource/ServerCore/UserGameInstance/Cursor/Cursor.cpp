@@ -16,7 +16,7 @@ namespace JoD {
         
     }
     
-    void Cursor::Render(WebSocket& webSocket) const {
+    void Cursor::Render(UserID userID, WebSocket& webSocket) const {
         
         // Get current mouse position.
         const auto mousePosition = m_engineInstance.MousePosition();

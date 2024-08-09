@@ -85,6 +85,8 @@ namespace JoD {
             } else if (button == GLFW_MOUSE_BUTTON_LEFT &&
                        action == GLFW_RELEASE) {
                 
+                _<WebSocketServerConnection>().SendMessage(
+                    MessageCodes::k_leftMouseUp);
             }else if (button == GLFW_MOUSE_BUTTON_RIGHT
                       && action == GLFW_PRESS){
                 
@@ -93,6 +95,8 @@ namespace JoD {
             } else if (button == GLFW_MOUSE_BUTTON_RIGHT &&
                        action == GLFW_RELEASE) {
                 
+                _<WebSocketServerConnection>().SendMessage(
+                    MessageCodes::k_rightMouseUp);
             }
             
             // if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)

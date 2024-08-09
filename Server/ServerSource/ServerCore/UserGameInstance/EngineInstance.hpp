@@ -29,14 +29,14 @@ namespace JoD {
         ///
         /// Updates everything that needs it in the game loop.
         ///
-        void Update();
+        void Update(UserID userID);
         
         ///
         /// Renders everything that needs it in the game loop.
         /// 
         /// @param webSocket Web socket object associated with the users connection.
         ///
-        void Render(WebSocket &webSocket) const;
+        void Render(UserID userID, WebSocket &webSocket) const;
         
         ///
         /// Get the Aspect Ratio for the web browser canvas of the user.

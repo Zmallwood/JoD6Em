@@ -30,6 +30,8 @@ namespace JoD {
         ///
         void RegisterMouseDown(MouseButtons button);
         
+        void RegisterMouseUp(MouseButtons button);
+        
         const std::unique_ptr<MouseButton> &LeftButton() const {
             
             return m_leftButton;

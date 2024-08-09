@@ -35,19 +35,19 @@ namespace JoD {
         m_scenes.insert({Hash(sceneName), std::move(scene)});
     }
     
-    void SceneManager::UpdateCurrentScene() {
+    void SceneManager::UpdateCurrentScene(UserID userID) {
         
         if (m_scenes.contains(m_currentScene)) {
             
-            m_scenes.at(m_currentScene)->Update();
+            m_scenes.at(m_currentScene)->Update(userID);
         }
     }
     
-    void SceneManager::RenderCurrentScene(WebSocket &webSocket) const {
+    void SceneManager::RenderCurrentScene(UserID userID, WebSocket &webSocket) const {
         
         if (m_scenes.contains(m_currentScene)) {
             
-            m_scenes.at(m_currentScene)->Render(webSocket);
+            m_scenes.at(m_currentScene)->Render(userID, webSocket);
         }
     }
     

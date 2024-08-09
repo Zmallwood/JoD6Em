@@ -8,6 +8,8 @@
 
 namespace JoD {
     
+    using UserID = unsigned long long;
+    
     using Socket = boost::asio::ip::tcp::socket;
     
     using WebSocket = ///< Web socket object.

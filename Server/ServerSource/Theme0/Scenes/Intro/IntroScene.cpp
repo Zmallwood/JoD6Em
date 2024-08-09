@@ -20,7 +20,7 @@ namespace JoD {
         m_guiLabelStartText = GUI()->AddComponent<GUILabel>(PointF{0.5f, 0.5f}, "Press to start", true);
     }
     
-    void IntroScene::UpdateDerived() {
+    void IntroScene::UpdateDerived(UserID userID) {
         
         if (EngineInstance().MouseInput()->
             LeftButton()->
@@ -37,7 +37,7 @@ namespace JoD {
         m_guiLabelStartText->SetVisible(showStartText);
     }
     
-    void IntroScene::RenderDerived(WebSocket
+    void IntroScene::RenderDerived(UserID userID, WebSocket
                                    &webSocket) const {
         
         SendImageDrawInstruction(

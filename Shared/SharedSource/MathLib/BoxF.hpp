@@ -8,7 +8,9 @@
 
 namespace JoD {
     
+    class PointF;
     class GLBoxF;
+    class SizeF;
     
     ///
     /// Rectangle object with float dimensions, ment to represent a rectangle in standard
@@ -22,6 +24,14 @@ namespace JoD {
         /// @return GLRectF Converted resulting object.
         ///
         GLBoxF ToGLBoxF() const;
+        
+        PointF GetPosition() const;
+        
+        SizeF GetSize() const;
+        
+        bool Contains(PointF point) const;
+        
+        PointF GetCenter() const;
         
         float x {0.0f}; ///< X coordinate in float type.
         float y {0.0f}; ///< Y coordinate in float type.

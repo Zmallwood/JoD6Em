@@ -10,6 +10,7 @@
 #include "MessageCodes.hpp"
 #include "NetConfiguration.hpp"
 #include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
+#include "ServerCore/ServerWide/EngineInstancesManager.hpp"
 
 using namespace boost::beast;
 
@@ -18,9 +19,11 @@ namespace JoD {
     UserConnection::UserConnection(Socket socket)
         : m_engineInstance(
             std::make_unique<EngineInstance>()){
-        
+                
+        auto userID = _<EngineInstancesManager>().RegisterEngineInstance(*m_engineInstance);
+                
         std::thread(
-            &UserConnection::DoSession, this,
+            &UserConnection::DoSession, this, userID,
             std::move(socket)).detach();
     }
     
@@ -44,10 +47,20 @@ namespace JoD {
                     m_engineInstance->MouseInput()->
                     RegisterMouseDown(
                         MouseButtons::Left);
+                }else if (*data == MessageCodes::k_leftMouseUp) {
+                    
+                    m_engineInstance->MouseInput()->
+                    RegisterMouseUp(
+                        MouseButtons::Left);
                 }else if (*data == MessageCodes::k_rightMouseDown) {
                     
                     m_engineInstance->MouseInput()->
                     RegisterMouseDown(
+                        MouseButtons::Right);
+                }else if (*data == MessageCodes::k_rightMouseUp) {
+                    
+                    m_engineInstance->MouseInput()->
+                    RegisterMouseUp(
                         MouseButtons::Right);
                 }else if (*data == MessageCodes::k_mousePosition) {
                     
@@ -74,7 +87,7 @@ namespace JoD {
         }
     }
     
-    void UserConnection::DoSession(Socket socket) {
+    void UserConnection::DoSession(UserID userID, Socket socket) {
         
         try{
             
@@ -102,8 +115,8 @@ namespace JoD {
             
             while (true){
                 
-                m_engineInstance->Update();
-                m_engineInstance->Render(webSocket);
+                m_engineInstance->Update(userID);
+                m_engineInstance->Render(userID, webSocket);
                 
                 std::this_thread::sleep_for(std::chrono::milliseconds(70));
             }

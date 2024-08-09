@@ -14,17 +14,17 @@ namespace JoD {
         
     }
     
-    void IScene::Update() {
+    void IScene::Update(UserID userID) {
         
-        m_gui->Update();
+        m_gui->Update(userID);
         
-        UpdateDerived();
+        UpdateDerived(userID);
     }
     
-    void IScene::Render(WebSocket &webSocket) const {
+    void IScene::Render(UserID userID, WebSocket &webSocket) const {
         
-        RenderDerived(webSocket);
+        RenderDerived(userID, webSocket);
         
-        m_gui->Render(webSocket);
+        m_gui->Render(userID, webSocket);
     }
 }

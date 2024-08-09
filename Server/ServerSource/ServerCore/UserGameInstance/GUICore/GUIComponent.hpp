@@ -13,15 +13,15 @@ namespace JoD {
       public:
         GUIComponent(PointF position);
         
-        void Update();
+        void Update(UserID userID);
         
-        void Render(WebSocket &webSocket);
+        void Render(UserID userID, WebSocket &webSocket) const;
         
-        virtual void UpdateDerived() {
+        virtual void UpdateDerived(UserID userID) {
             
         }
         
-        virtual void RenderDerived(WebSocket &webSocket) {
+        virtual void RenderDerived(UserID userID, WebSocket &webSocket) const {
             
         }
         

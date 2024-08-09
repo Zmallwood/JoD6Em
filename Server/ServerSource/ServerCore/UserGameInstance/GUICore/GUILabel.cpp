@@ -13,7 +13,7 @@ namespace JoD {
         
     }
     
-    void GUILabel::RenderDerived(WebSocket& webSocket){
+    void GUILabel::RenderDerived(UserID userID, WebSocket& webSocket) const {
         
         SendTextDrawInstruction(webSocket, m_text, m_position, m_centerAligned);
     }

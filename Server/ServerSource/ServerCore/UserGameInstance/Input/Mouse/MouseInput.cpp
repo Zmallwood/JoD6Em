@@ -36,4 +36,27 @@ namespace JoD {
         }
         }
     }
+    
+    void MouseInput::RegisterMouseUp(MouseButtons button) {
+        
+        switch (button) {
+        
+        case MouseButtons::Left: {
+            
+            m_leftButton->RegisterMouseUp();
+            
+            break;
+        }
+        case MouseButtons::Right: {
+            
+            m_rightButton->RegisterMouseUp();
+            
+            break;
+        }
+        case MouseButtons::None: {
+            
+            break;
+        }
+        }
+    }
 }

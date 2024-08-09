@@ -128,6 +128,40 @@ namespace JoD {
             
             break;
         }
+        case MessageCodes::k_leftMouseUp: {
+            
+            // Message contains only message code.
+            int data = MessageCodes::k_leftMouseUp;
+            
+            // Try send packet and handle failure.
+            if (auto result = emscripten_websocket_send_binary(
+                    m_webSocketEvent->socket,
+                    &data,
+                    sizeof(data))) {
+                
+                std::cout << "Failed to emscripten_websocket_send_binary(): " <<
+                    result;
+            }
+            
+            break;
+        }
+        case MessageCodes::k_rightMouseUp: {
+            
+            // Message contains only message code.
+            int data = MessageCodes::k_rightMouseUp;
+            
+            // Try send packet and handle failure.
+            if (auto result = emscripten_websocket_send_binary(
+                    m_webSocketEvent->socket,
+                    &data,
+                    sizeof(data))) {
+                
+                std::cout << "Failed to emscripten_websocket_send_binary(): " <<
+                    result;
+            }
+            
+            break;
+        }
         case MessageCodes::k_rightMouseDown: {
             
             // Message contains only message code.

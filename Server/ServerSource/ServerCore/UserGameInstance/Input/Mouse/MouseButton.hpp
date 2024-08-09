@@ -20,6 +20,8 @@ namespace JoD {
         ///
         void RegisterMouseDown();
         
+        void RegisterMouseUp();
+        
         ///
         /// Get the buttons pressed state and resets it at the same time.
         ///
@@ -27,6 +29,11 @@ namespace JoD {
         /// @return false Button is currently not being pressed down.
         ///
         bool IsPressedPickResult();
+        
+        bool IsPressed() const {
+            
+            return m_isPressed;
+        }
         
       private:
         bool m_isPressed {false}; ///< Pressed down state.

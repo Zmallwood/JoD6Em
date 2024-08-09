@@ -22,5 +22,7 @@ namespace JoD {
         constexpr int k_rightMouseDown {7}; ///< Tells server right mouse button has been pressed.
         constexpr int k_requestImageDimensions {8}; ///< Server request image dimensions from client.
         constexpr int k_provideImageDimensions {9}; ///< Client provides requested image dimensions to server.
+        constexpr int k_leftMouseUp {10};
+        constexpr int k_rightMouseUp {11};
     }
 }

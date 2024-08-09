@@ -20,20 +20,20 @@ namespace JoD {
         
     }
     
-    void EngineInstance::Update() {
+    void EngineInstance::Update(UserID userID) {
         
-        m_sceneManager->UpdateCurrentScene();
+        m_sceneManager->UpdateCurrentScene(userID);
         
         m_serverFPSCounter->Update();
     }
     
-    void EngineInstance::Render(WebSocket &webSocket) const {
+    void EngineInstance::Render(UserID userID, WebSocket &webSocket) const {
         
-        m_sceneManager->RenderCurrentScene(webSocket);
+        m_sceneManager->RenderCurrentScene(userID, webSocket);
         
         m_serverFPSCounter->Render(webSocket);
         
-        m_cursor->Render(webSocket);
+        m_cursor->Render(userID, webSocket);
         
         SendPresentCanvasInstruction(webSocket);
     }

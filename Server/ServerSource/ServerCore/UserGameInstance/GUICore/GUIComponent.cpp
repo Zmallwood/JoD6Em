@@ -12,18 +12,18 @@ namespace JoD {
         
     }
     
-    void GUIComponent::Update() {
+    void GUIComponent::Update(UserID userID) {
         
-        UpdateDerived();
+        UpdateDerived(userID);
     }
     
-    void GUIComponent::Render(WebSocket &webSocket) {
+    void GUIComponent::Render(UserID userID, WebSocket &webSocket) const {
         
         if (!m_visible) {
             
             return;
         }
         
-        RenderDerived(webSocket);
+        RenderDerived(userID, webSocket);
     }
 }

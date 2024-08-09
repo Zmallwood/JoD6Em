@@ -30,14 +30,14 @@ namespace JoD {
         ///
         /// Updates the scene currently being presented.
         ///
-        void UpdateCurrentScene();
+        void UpdateCurrentScene(UserID userID);
         
         ///
         /// Renders the scene currently being presented.
         ///
         /// @param webSocket Web socket object for the current user.
         ///
-        void RenderCurrentScene(WebSocket &webSocket) const;
+        void RenderCurrentScene(UserID userID, WebSocket &webSocket) const;
         
         ///
         /// Move from the currently presented scene to another one.

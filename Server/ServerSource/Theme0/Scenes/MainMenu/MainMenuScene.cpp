@@ -11,21 +11,20 @@
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
+#include "ServerCore/UserGameInstance/GUICore/GUIButton.hpp"
 
 namespace JoD {
     
-    void MainMenuScene::UpdateDerived() {
+    void MainMenuScene::Initialize() {
         
-        if (EngineInstance().MouseInput()->
-            LeftButton()->
-            IsPressedPickResult()) {
+        GUI()->AddComponent<GUIButton>(BoxF{0.45f, 0.4f, 0.1f, 0.05f}, "New game", [&] {
             
             EngineInstance().SceneManager()->
             GoToScene("MainScene");
-        }
+        });
     }
     
-    void MainMenuScene::RenderDerived(WebSocket &webSocket) const {
+    void MainMenuScene::RenderDerived(UserID userID, WebSocket &webSocket) const {
         
         SendImageDrawInstruction(
             webSocket, "DefaultSceneBackground",

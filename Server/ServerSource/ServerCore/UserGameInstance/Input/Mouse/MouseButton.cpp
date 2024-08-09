@@ -13,6 +13,11 @@ namespace JoD {
         m_isPressed = true; 
     }
     
+    void MouseButton::RegisterMouseUp() {
+        
+        m_isPressed = false; 
+    }
+    
     bool MouseButton::IsPressedPickResult() {
         
         const auto result = m_isPressed;
