@@ -19,7 +19,7 @@ namespace JoD {
     class MainScene : public IScene {
         
       public:
-        MainScene(JoD::EngineInstance& engineInstance);
+        MainScene();
         
         ~MainScene();
         
@@ -30,9 +30,9 @@ namespace JoD {
         ///
         /// Adds components to the scene.
         ///
-        void Initialize() override;
+        void Initialize(UserID userID) override;
         
-        void OnEnter() override;
+        void OnEnter(UserID userID) override;
         
         ///
         /// Update game logic.

@@ -13,22 +13,23 @@
 #include "ServerCore/Net/InstructionsSending.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUILabel.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
-    void IntroScene::Initialize() {
+    void IntroScene::Initialize(UserID userID) {
         
         m_guiLabelStartText = GUI()->AddComponent<GUILabel>(PointF{0.5f, 0.5f}, "Press to start", true);
     }
     
     void IntroScene::UpdateDerived(UserID userID) {
         
-        if (EngineInstance().MouseInput()->
+        if (_<EngineGet>().GetMouseInput(userID)->
             LeftButton().
             IsPressedPickResult()) {
             
-            EngineInstance().SceneManager()->
-            GoToScene("MainMenuScene");
+            _<EngineGet>().GetSceneManager(userID)->
+            GoToScene(userID, "MainMenuScene");
         }
         
         auto now = Now();

@@ -6,16 +6,18 @@
 
 #pragma once
 
+#include "ServerCore/UserGameInstance/EngineInstance.hpp"
+
 namespace JoD {
     
-    class EngineInstance;
     class Player;
     class SceneManager;
     class MouseInput;
+    class TextMessages;
     
     class EngineGet {
       public:
-        UserID RegisterEngineInstance(EngineInstance& engineInstance);
+        UserID RegisterEngineInstance();
         
         EngineInstance* GetInstance(UserID userID) const;
 
@@ -29,8 +31,10 @@ namespace JoD {
         
         MouseInput* GetMouseInput(UserID userID) const;
         
+        TextMessages* GetTextMessages(UserID userID) const;
+        
       private:
-        std::map<UserID, EngineInstance*> m_engineInstances;
+        std::map<UserID, std::unique_ptr<EngineInstance>> m_engineInstances;
         inline static UserID s_currentUserID {0};
     };
 }

@@ -19,18 +19,15 @@ using namespace boost::beast;
 namespace JoD {
     
     struct UserConnection::Impl {
-        std::unique_ptr<EngineInstance>
-        engineInstance; ///< Engine running for this specific user.
+        UserID userID;
     };
     
     UserConnection::UserConnection(Socket socket) : m_pImpl(std::make_unique<Impl>()) {
                 
-        m_pImpl->engineInstance = std::make_unique<EngineInstance>();
-                
-        auto userID = _<EngineGet>().RegisterEngineInstance(*m_pImpl->engineInstance);
+        m_pImpl->userID = _<EngineGet>().RegisterEngineInstance();
                 
         std::thread(
-            &UserConnection::DoSession, this, userID,
+            &UserConnection::DoSession, this, m_pImpl->userID,
             std::move(socket)).detach();
     }
     
@@ -52,32 +49,32 @@ namespace JoD {
                     
                     const auto width = (int)data[1];
                     const auto height = (int)data[2];
-                    m_pImpl->engineInstance->SetCanvasSize({width, height});
+                    _<EngineGet>().GetInstance(m_pImpl->userID)->SetCanvasSize({width, height});
                 }else if (*data == MessageCodes::k_leftMouseDown) {
                     
-                    m_pImpl->engineInstance->MouseInput()->
+                    _<EngineGet>().GetInstance(m_pImpl->userID)->MouseInput()->
                     RegisterMouseDown(
                         MouseButtons::Left);
                 }else if (*data == MessageCodes::k_leftMouseUp) {
                     
-                    m_pImpl->engineInstance->MouseInput()->
+                    _<EngineGet>().GetInstance(m_pImpl->userID)->MouseInput()->
                     RegisterMouseUp(
                         MouseButtons::Left);
                 }else if (*data == MessageCodes::k_rightMouseDown) {
                     
-                    m_pImpl->engineInstance->MouseInput()->
+                    _<EngineGet>().GetInstance(m_pImpl->userID)->MouseInput()->
                     RegisterMouseDown(
                         MouseButtons::Right);
                 }else if (*data == MessageCodes::k_rightMouseUp) {
                     
-                    m_pImpl->engineInstance->MouseInput()->
+                    _<EngineGet>().GetInstance(m_pImpl->userID)->MouseInput()->
                     RegisterMouseUp(
                         MouseButtons::Right);
                 }else if (*data == MessageCodes::k_mousePosition) {
                     
                     const auto x = data[1] / NetConstants::k_floatPrecision;
                     const auto y = data[2] / NetConstants::k_floatPrecision;
-                    m_pImpl->engineInstance->SetMousePosition({x, y});
+                    _<EngineGet>().GetInstance(m_pImpl->userID)->SetMousePosition({x, y});
                 }else if (*data == MessageCodes::k_provideImageDimensions) {
                     
                     const auto imageNameHash = (int)data[1];
@@ -126,8 +123,8 @@ namespace JoD {
             
             while (true){
                 
-                m_pImpl->engineInstance->Update(userID);
-                m_pImpl->engineInstance->Render(userID, webSocket);
+                _<EngineGet>().GetInstance(m_pImpl->userID)->Update(userID);
+                _<EngineGet>().GetInstance(m_pImpl->userID)->Render(userID, webSocket);
                 
                 std::this_thread::sleep_for(std::chrono::milliseconds(70));
             }

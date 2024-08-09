@@ -8,7 +8,6 @@
 
 namespace JoD {
     
-    class EngineInstance;
     class GUI;
     
     ///
@@ -22,7 +21,7 @@ namespace JoD {
         ///
         /// @param userConnection User connection associated with current user.
         ///
-        IScene(JoD::EngineInstance& engineInstance);
+        IScene();
         
         ~IScene();
         
@@ -30,10 +29,10 @@ namespace JoD {
         /// Called once for inherited scenes when a new user
         /// has connected and initializes a new set of scenes.
         ///
-        virtual void Initialize() {
+        virtual void Initialize(UserID userID) {
         }
         
-        virtual void OnEnter() {
+        virtual void OnEnter(UserID userID) {
             
         }
         
@@ -64,8 +63,6 @@ namespace JoD {
             UserID userID,
             WebSocket
             &webSocket) const {}
-        
-        JoD::EngineInstance& EngineInstance() const;
         
         const std::unique_ptr<JoD::GUI>& GUI() const;
         

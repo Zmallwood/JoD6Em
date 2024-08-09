@@ -22,9 +22,7 @@ namespace JoD {
         
         GUIPanel::RenderDerived(userID, webSocket);
         
-        auto engineInstance = _<EngineGet>().GetInstance(userID);
-        
-        auto textOut = engineInstance->TextOut();
+        auto textOut = _<EngineGet>().GetTextMessages(userID);
         
         auto& textData = textOut->Data();
         

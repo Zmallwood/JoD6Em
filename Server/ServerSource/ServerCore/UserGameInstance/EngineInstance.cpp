@@ -28,10 +28,10 @@ namespace JoD {
         std::unique_ptr<JoD::TextMessages> textMessages;
     };
     
-    EngineInstance::EngineInstance()
+    EngineInstance::EngineInstance(UserID userID)
         : m_pImpl(std::make_unique<Impl>()) {
         
-        m_pImpl->sceneManager = std::make_unique<JoD::SceneManager>(*this);
+        m_pImpl->sceneManager = std::make_unique<JoD::SceneManager>(userID, *this);
         m_pImpl->mouseInput = std::make_unique<JoD::MouseInput>();
         m_pImpl->serverFPSCounter = std::make_unique<ServerFPSCounter>();
         m_pImpl->player = std::make_unique<JoD::Player>();
@@ -96,7 +96,7 @@ namespace JoD {
         return m_pImpl->player.get();
     }
     
-    JoD::TextMessages *EngineInstance::TextOut() const {
+    JoD::TextMessages *EngineInstance::TextMessages() const {
         
         return m_pImpl->textMessages.get();
     }

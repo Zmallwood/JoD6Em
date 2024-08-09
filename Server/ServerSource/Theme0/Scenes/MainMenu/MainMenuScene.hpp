@@ -21,7 +21,7 @@ namespace JoD {
         ///
         using IScene::IScene;
         
-        void Initialize() override;
+        void Initialize(UserID userID) override;
         
       protected:
       

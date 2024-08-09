@@ -17,6 +17,7 @@
 #include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
 #include "Process/IMainSceneComponent.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
@@ -25,8 +26,8 @@ namespace JoD {
         components; ///< Contains sub components for the scene.
     };
     
-    MainScene::MainScene(JoD::EngineInstance& engineInstance):
-    IScene(engineInstance), m_pImpl(std::make_unique<Impl>()) {
+    MainScene::MainScene():
+    IScene(), m_pImpl(std::make_unique<Impl>()) {
         
     }
     
@@ -34,7 +35,7 @@ namespace JoD {
         
     }
     
-    void MainScene::Initialize() {
+    void MainScene::Initialize(UserID userID) {
         
         GUI()->AddComponent<GUITextConsole>();
         
@@ -59,9 +60,9 @@ namespace JoD {
              std::make_unique<CombatMovement>() });
     }
     
-    void MainScene::OnEnter() {
+    void MainScene::OnEnter(UserID userID) {
         
-        EngineInstance().TextOut()->Print("Entering world.");
+        _<EngineGet>().GetTextMessages(userID)->Print("Entering world.");
     }
     
     void MainScene::UpdateDerived(UserID userID) {

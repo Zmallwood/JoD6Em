@@ -10,14 +10,12 @@
 namespace JoD {
     
     struct IScene::Impl {
-        JoD::EngineInstance *engineInstance; ///< User connection object for current user.
         std::unique_ptr<JoD::GUI> gui;
     };
     
-    IScene::IScene(JoD::EngineInstance& engineInstance)
+    IScene::IScene()
         : m_pImpl(std::make_unique<Impl>()) {
         
-        m_pImpl->engineInstance = &engineInstance;
         m_pImpl->gui = std::make_unique<JoD::GUI>();
     }
     
@@ -37,11 +35,6 @@ namespace JoD {
         RenderDerived(userID, webSocket);
         
         m_pImpl->gui->Render(userID, webSocket);
-    }
-
-    JoD::EngineInstance& IScene::EngineInstance() const {
-        
-        return *m_pImpl->engineInstance;
     }
     
     const std::unique_ptr<JoD::GUI>& IScene::GUI() const {

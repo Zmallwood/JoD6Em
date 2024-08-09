@@ -18,17 +18,17 @@ namespace JoD {
     };
     
     SceneManager::SceneManager(
-        EngineInstance &engineInstance) : m_pImpl(std::make_unique<Impl>()){
+        UserID userID, EngineInstance &engineInstance) : m_pImpl(std::make_unique<Impl>()){
             
-        AddScene("IntroScene", std::make_unique<IntroScene>(engineInstance));
+        AddScene(userID, "IntroScene", std::make_unique<IntroScene>());
         
-        AddScene(
+        AddScene(userID,
             "MainMenuScene",
-            std::make_unique<MainMenuScene>(engineInstance));
+            std::make_unique<MainMenuScene>());
         
-        AddScene("MainScene", std::make_unique<MainScene>(engineInstance));
+        AddScene(userID, "MainScene", std::make_unique<MainScene>());
         
-        GoToScene("IntroScene");
+        GoToScene(userID, "IntroScene");
     }
     
     SceneManager::~SceneManager() {
@@ -36,10 +36,11 @@ namespace JoD {
     }
     
     void SceneManager::AddScene(
+        UserID userID,
         std::string_view sceneName,
         std::unique_ptr<IScene> scene) {
         
-        scene->Initialize();
+        scene->Initialize(userID);
         
         m_pImpl->scenes.insert({Hash(sceneName), std::move(scene)});
     }
@@ -65,13 +66,13 @@ namespace JoD {
         }
     }
     
-    void SceneManager::GoToScene(std::string_view scene_name) {
+    void SceneManager::GoToScene(UserID userID, std::string_view scene_name) {
         
         m_pImpl->currentScene = Hash(scene_name);
         
         if (m_pImpl->scenes.contains(m_pImpl->currentScene)) {
             
-            m_pImpl->scenes.at(m_pImpl->currentScene)->OnEnter();
+            m_pImpl->scenes.at(m_pImpl->currentScene)->OnEnter(userID);
         }
     }
 }

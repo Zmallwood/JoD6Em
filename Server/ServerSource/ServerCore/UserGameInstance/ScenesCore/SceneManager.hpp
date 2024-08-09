@@ -24,7 +24,7 @@ namespace JoD {
         ///
         /// @param userConnection User connection reference forwarding.
         ///
-        SceneManager(EngineInstance &engineInstance);
+        SceneManager(UserID userID, EngineInstance &engineInstance);
         
         ~SceneManager();
         
@@ -45,7 +45,7 @@ namespace JoD {
         ///
         /// @param sceneName Name of the scene to go to.
         ///
-        void GoToScene(std::string_view sceneName);
+        void GoToScene(UserID userID, std::string_view sceneName);
         
         template<class T>
         const T* GetScene(
@@ -68,7 +68,7 @@ namespace JoD {
         /// @param sceneName Name of the scene to add.
         /// @param scene The scene object to add.
         ///
-        void AddScene(std::string_view sceneName,
+        void AddScene(UserID userID, std::string_view sceneName,
                       std::unique_ptr<IScene> scene);
         
         std::map<int, std::unique_ptr<IScene>> &GetScenes() const;

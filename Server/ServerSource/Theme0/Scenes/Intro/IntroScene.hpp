@@ -21,7 +21,7 @@ namespace JoD {
         ///
         /// Adds GUI components and components to the scene.
         ///
-        void Initialize() override;
+        void Initialize(UserID userID) override;
         
         ///
         /// Use base class ctor.

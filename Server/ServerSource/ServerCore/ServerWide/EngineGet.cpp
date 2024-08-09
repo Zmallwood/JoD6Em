@@ -5,16 +5,14 @@
  */
 
 #include "EngineGet.hpp"
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 
 namespace JoD {
     
-    UserID EngineGet::RegisterEngineInstance(EngineInstance&
-                                                        engineInstance) {
+    UserID EngineGet::RegisterEngineInstance() {
         
         auto userID = s_currentUserID++;
         
-        m_engineInstances.insert({userID, &engineInstance});
+        m_engineInstances.insert({userID, std::make_unique<EngineInstance>(userID)});
         
         return userID;
     }
@@ -23,7 +21,7 @@ namespace JoD {
         
         if (m_engineInstances.contains(userID)) {
             
-            return m_engineInstances.at(userID);
+            return m_engineInstances.at(userID).get();
         }
         
         return nullptr;
@@ -74,6 +72,16 @@ namespace JoD {
         if (m_engineInstances.contains(userID)) {
             
             return m_engineInstances.at(userID)->MouseInput();
+        }
+        
+        return nullptr;
+    }
+    
+    TextMessages* EngineGet::GetTextMessages(UserID userID) const {
+        
+        if (m_engineInstances.contains(userID)) {
+            
+            return m_engineInstances.at(userID)->TextMessages();
         }
         
         return nullptr;

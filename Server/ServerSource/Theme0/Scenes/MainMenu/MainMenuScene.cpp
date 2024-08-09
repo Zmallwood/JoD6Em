@@ -13,15 +13,16 @@
 #include "ServerCore/Net/InstructionsSending.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUIButton.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
-    void MainMenuScene::Initialize() {
+    void MainMenuScene::Initialize(UserID userID) {
         
         GUI()->AddComponent<GUIButton>(BoxF{0.45f, 0.4f, 0.1f, 0.05f}, "Login", [&] {
             
-            EngineInstance().SceneManager()->
-            GoToScene("MainScene");
+            _<EngineGet>().GetSceneManager(userID)->
+            GoToScene(userID, "MainScene");
         });
     }
     
