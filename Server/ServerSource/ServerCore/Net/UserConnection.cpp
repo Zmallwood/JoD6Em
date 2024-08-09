@@ -12,7 +12,7 @@
 #include "NetConfiguration.hpp"
 #include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
-#include "ServerCore/ServerWide/EngineInstancesManager.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 using namespace boost::beast;
 
@@ -27,7 +27,7 @@ namespace JoD {
                 
         m_pImpl->engineInstance = std::make_unique<EngineInstance>();
                 
-        auto userID = _<EngineInstancesManager>().RegisterEngineInstance(*m_pImpl->engineInstance);
+        auto userID = _<EngineGet>().RegisterEngineInstance(*m_pImpl->engineInstance);
                 
         std::thread(
             &UserConnection::DoSession, this, userID,

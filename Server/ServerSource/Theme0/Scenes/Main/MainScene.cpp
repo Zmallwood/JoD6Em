@@ -40,26 +40,23 @@ namespace JoD {
         
         m_pImpl->components.insert(
             {MainSceneComponents::TileHovering,
-             std::make_unique<TileHovering>(
-                 this->EngineInstance()) });
+             std::make_unique<TileHovering>() });
                  
         m_pImpl->components.insert(
             {MainSceneComponents::MouseMovement,
-             std::make_unique<MouseMovement>(
-                 this->EngineInstance()) });
+             std::make_unique<MouseMovement>() });
                  
         m_pImpl->components.insert(
             {MainSceneComponents::MobTargeting,
-             std::make_unique<MobTargeting>(
-                 this->EngineInstance()) });
+             std::make_unique<MobTargeting>() });
                  
         m_pImpl->components.insert(
             {MainSceneComponents::WorldView,
-             std::make_unique<WorldView>(this->EngineInstance()) });
+             std::make_unique<WorldView>() });
                  
         m_pImpl->components.insert(
             {MainSceneComponents::CombatMovement,
-             std::make_unique<CombatMovement>(this->EngineInstance()) });
+             std::make_unique<CombatMovement>() });
     }
     
     void MainScene::OnEnter() {

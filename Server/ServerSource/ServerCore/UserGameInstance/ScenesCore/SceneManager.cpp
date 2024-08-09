@@ -5,7 +5,6 @@
  */
 
 #include "SceneManager.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
 #include "Theme0/Scenes/Intro/IntroScene.hpp"
 #include "Theme0/Scenes/MainMenu/MainMenuScene.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
@@ -16,21 +15,18 @@ namespace JoD {
     struct SceneManager::Impl {
         int currentScene {0}; ///< Hash code of name of the currently presented scene.
         std::map<int, std::unique_ptr<IScene>> scenes; ///< All scenes that has been added in ctor.
-        EngineInstance *engineInstance; ///< User connection reference for the associated user.
     };
     
     SceneManager::SceneManager(
         EngineInstance &engineInstance) : m_pImpl(std::make_unique<Impl>()){
             
-        m_pImpl->engineInstance = &engineInstance;
-        
-        AddScene("IntroScene", std::make_unique<IntroScene>(*m_pImpl->engineInstance));
+        AddScene("IntroScene", std::make_unique<IntroScene>(engineInstance));
         
         AddScene(
             "MainMenuScene",
-            std::make_unique<MainMenuScene>(*m_pImpl->engineInstance));
+            std::make_unique<MainMenuScene>(engineInstance));
         
-        AddScene("MainScene", std::make_unique<MainScene>(*m_pImpl->engineInstance));
+        AddScene("MainScene", std::make_unique<MainScene>(engineInstance));
         
         GoToScene("IntroScene");
     }

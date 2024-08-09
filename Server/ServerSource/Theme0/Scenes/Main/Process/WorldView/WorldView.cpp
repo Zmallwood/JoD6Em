@@ -5,7 +5,6 @@
  */
 
 #include "WorldView.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
 #include "Configuration/GameProperties.hpp"
 #include "Theme0/Scenes/Main/MainSceneMath/TileGridMath.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
@@ -17,8 +16,8 @@
 #include "Process/RenderObjects.hpp"
 #include "Process/RenderMobs.hpp"
 #include "Process/RenderPlayer.hpp"
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
@@ -26,17 +25,17 @@ namespace JoD {
         
         const auto tileSize =
             CalculateTileSize(
-                EngineInstance().GetAspectRatio());
+                _<EngineGet>().GetAspectRatio(userID).value());
         
         const auto playerCoordinate =
-            EngineInstance().Player()->Coord();
+            _<EngineGet>().GetPlayer(userID)->Coord();
         
         const auto numGridRows = _<GameProperties>().GetNumGridRows();
         const auto numGridCols =
             CalculateNumGridCols(
-                EngineInstance().GetAspectRatio());
+                _<EngineGet>().GetAspectRatio(userID).value());
                 
-        auto &mainScene = *EngineInstance().SceneManager()->GetScene<MainScene>("MainScene");
+        auto &mainScene = *_<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene");
         
         const auto smallValue = 0.0001f;
         
@@ -67,7 +66,7 @@ namespace JoD {
                 RenderGround(webSocket, tile, tileBounds);
                 
                 RenderTileSymbols(
-                    mainScene, EngineInstance(), webSocket,
+                    mainScene, userID, webSocket,
                     {coordX, coordY}, tileBounds);
                 
                 RenderObjects(webSocket, tile, tileBounds);
@@ -77,7 +76,7 @@ namespace JoD {
                     tileBounds);
                 
                 RenderPlayer(
-                    EngineInstance(), webSocket, {coordX, coordY},
+                    userID, webSocket, {coordX, coordY},
                     tileBounds);
             }
         }

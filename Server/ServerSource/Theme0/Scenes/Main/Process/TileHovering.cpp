@@ -8,8 +8,7 @@
 #include "Theme0/Scenes/Main/MainSceneMath/TileGridMath.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "Configuration/GameProperties.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
@@ -17,26 +16,26 @@ namespace JoD {
         
         const auto tileSize =
             CalculateTileSize(
-                EngineInstance().GetAspectRatio());
+                _<EngineGet>().GetAspectRatio(userID).value());
         
         const auto playerCoordinate =
-            EngineInstance().Player()->Coord();
+            _<EngineGet>().GetPlayer(userID)->Coord();
         
         const auto numRows = _<GameProperties>().GetNumGridRows();
         const auto numCols =
             CalculateNumGridCols(
-                EngineInstance().GetAspectRatio());
+                _<EngineGet>().GetAspectRatio(userID).value());
         
         const auto tileX =
             playerCoordinate.x - (numCols - 1) / 2 +
-            static_cast<int>(EngineInstance().
-                             MousePosition().x /
+            static_cast<int>(_<EngineGet>().
+                             GetMousePosition(userID).value().x /
                              tileSize.w);
         
         const auto tileY =
             playerCoordinate.y - (numRows - 1) / 2 +
-            static_cast<int>(EngineInstance().
-                             MousePosition().y /
+            static_cast<int>(_<EngineGet>().
+                             GetMousePosition(userID).value().y /
                              tileSize.h);
         
         m_hoveredCoordinate = {tileX, tileY};

@@ -6,7 +6,7 @@
 
 #include "GUIButton.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
-#include "ServerCore/ServerWide/EngineInstancesManager.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
@@ -22,12 +22,12 @@ namespace JoD {
     void GUIButton::UpdateDerived(UserID userID) {
         
         auto mousePosition =
-            _<EngineInstancesManager>().GetInstance(userID)->MousePosition();
+            _<EngineGet>().GetInstance(userID)->MousePosition();
         
         m_hovered = GetBounds().Contains(mousePosition);
         
         auto mouseInput =
-            _<EngineInstancesManager>().GetInstance(userID)->MouseInput();
+            _<EngineGet>().GetInstance(userID)->MouseInput();
             
         if (m_hovered && mouseInput->LeftButton().IsPressed()) {
             

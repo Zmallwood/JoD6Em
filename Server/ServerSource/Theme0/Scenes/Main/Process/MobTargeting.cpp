@@ -5,10 +5,8 @@
  */
 
 #include "MobTargeting.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "TileHovering.hpp"
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
@@ -16,22 +14,23 @@
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
     void MobTargeting::Update(UserID userID) {
         
         auto player =
-            EngineInstance().Player();
+            _<EngineGet>().GetPlayer(userID);
         
         auto tileHovering =
             static_cast<TileHovering*>(
-                EngineInstance().SceneManager()->GetScene<MainScene>("MainScene")->GetComponent(
+                _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene")->GetComponent(
                     MainSceneComponents::
                     TileHovering));
         
         const auto mouseDown =
-            EngineInstance().MouseInput()->
+            _<EngineGet>().GetMouseInput(userID)->
             RightButton().
             IsPressedPickResult();
         

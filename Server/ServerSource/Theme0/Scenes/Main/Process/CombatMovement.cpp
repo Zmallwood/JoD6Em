@@ -5,24 +5,22 @@
  */
 
 #include "CombatMovement.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "MobTargeting.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     void CombatMovement::Update(UserID userID) {
         auto player =
-            EngineInstance().Player();
+            _<EngineGet>().GetPlayer(userID);
         
         auto mobTargeting =
             static_cast<MobTargeting*>(
-                EngineInstance().SceneManager()->GetScene<MainScene>("MainScene")->GetComponent(
+                _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene")->GetComponent(
                     MainSceneComponents::
                     MobTargeting));
         

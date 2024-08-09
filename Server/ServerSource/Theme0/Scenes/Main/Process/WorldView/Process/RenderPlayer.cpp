@@ -9,15 +9,16 @@
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
     void RenderPlayer(
-        const EngineInstance& engineInstance, WebSocket &webSocket,
+        UserID userID, WebSocket &webSocket,
         Point coordinate, BoxF tileBounds) {
         
         const auto playerCoordinate =
-            engineInstance.Player()->Coord();
+            _<EngineGet>().GetPlayer(userID)->Coord();
         
         if (coordinate == playerCoordinate){
             

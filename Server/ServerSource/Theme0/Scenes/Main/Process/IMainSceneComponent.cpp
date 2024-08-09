@@ -8,8 +8,4 @@
 
 namespace JoD {
     
-    IMainSceneComponent::IMainSceneComponent(const JoD::EngineInstance& engineInstance)
-        : m_engineInstance(engineInstance){
-        
-    }
 }

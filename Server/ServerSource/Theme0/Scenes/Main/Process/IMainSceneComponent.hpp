@@ -16,14 +16,6 @@ namespace JoD {
     class IMainSceneComponent {
         
       public:
-        ///
-        /// Takes and stores references to key objects for the user.
-        ///
-        /// @param userConnection User connection associated with user.
-        /// @param mainScene Main scene associated with user.
-        ///
-        IMainSceneComponent(
-            const EngineInstance& engineInstance);
         
         ///
         /// Optionally overridable for inheriting component classes.
@@ -38,14 +30,5 @@ namespace JoD {
         ///
         virtual void Render(UserID userID, WebSocket &webSocket) const {
         }
-        
-      protected:
-        const JoD::EngineInstance& EngineInstance() const {
-            
-            return m_engineInstance;
-        }
-        
-      private:
-        const JoD::EngineInstance &m_engineInstance; ///< User connection object associated with user.
     };
 }

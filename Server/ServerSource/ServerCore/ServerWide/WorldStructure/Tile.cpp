@@ -13,6 +13,7 @@ namespace JoD {
         int ground {0}; ///< Hash code for ground type.
         std::unique_ptr<Object> object; ///< Hash code for object type name, nullptr means no object.
         std::shared_ptr<Mob> mob; ///< Mob currently occupying this tile, nullptr means no mob.
+        int elevation {0};
     };
     
     Tile::Tile()

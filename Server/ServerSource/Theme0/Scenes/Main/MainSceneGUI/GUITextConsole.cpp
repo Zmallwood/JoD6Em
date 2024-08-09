@@ -5,7 +5,7 @@
  */
 
 #include "GUITextConsole.hpp"
-#include "ServerCore/ServerWide/EngineInstancesManager.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 #include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
@@ -22,7 +22,7 @@ namespace JoD {
         
         GUIPanel::RenderDerived(userID, webSocket);
         
-        auto engineInstance = _<EngineInstancesManager>().GetInstance(userID);
+        auto engineInstance = _<EngineGet>().GetInstance(userID);
         
         auto textOut = engineInstance->TextOut();
         

@@ -9,7 +9,6 @@
 namespace JoD {
     
     class MainScene;
-    class EngineInstance;
     class Tile;
     
     ///

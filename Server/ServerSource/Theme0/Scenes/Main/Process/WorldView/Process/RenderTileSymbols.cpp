@@ -11,16 +11,17 @@
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
     void RenderTileSymbols(
         const MainScene& mainScene,
-        const EngineInstance& engineInstance,
+        UserID userID,
         WebSocket &webSocket,
         Point coordinate, BoxF tileBounds) {
         
-        const auto &player = engineInstance.Player();
+        const auto &player = _<EngineGet>().GetPlayer(userID);
         
         auto tileHovering =
             static_cast<TileHovering*>(

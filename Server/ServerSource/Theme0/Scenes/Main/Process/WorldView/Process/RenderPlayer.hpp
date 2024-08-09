@@ -21,6 +21,6 @@ namespace JoD {
     /// @param tileBounds Bounds area of tile the function is called for.
     ///
     void RenderPlayer(
-        const EngineInstance& engineInstance, WebSocket &webSocket,
+        UserID userID, WebSocket &webSocket,
         Point coordinate, BoxF tileBounds);
 }

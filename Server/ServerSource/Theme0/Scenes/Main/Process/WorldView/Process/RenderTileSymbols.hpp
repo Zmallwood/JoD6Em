@@ -21,7 +21,7 @@ namespace JoD {
     /// @param tileBounds Bounds area of tile for which the function is called.
     ///
     void RenderTileSymbols(
-        const MainScene& mainScene, const EngineInstance& engineInstance,
+        const MainScene& mainScene, UserID userID,
         WebSocket &webSocket,
         Point coordinate, BoxF tileBounds);
 }
