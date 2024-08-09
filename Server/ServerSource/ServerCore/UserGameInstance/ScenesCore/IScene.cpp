@@ -5,18 +5,29 @@
  */
 
 #include "IScene.hpp"
+#include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
 
 namespace JoD {
     
+    struct IScene::Impl {
+        JoD::EngineInstance *engineInstance; ///< User connection object for current user.
+        std::unique_ptr<JoD::GUI> gui;
+    };
+    
     IScene::IScene(JoD::EngineInstance& engineInstance)
-        : m_engineInstance(engineInstance),
-        m_gui(std::make_unique<JoD::GUI>()) {
+        : m_pImpl(std::make_unique<Impl>()) {
+        
+        m_pImpl->engineInstance = &engineInstance;
+        m_pImpl->gui = std::make_unique<JoD::GUI>();
+    }
+    
+    IScene::~IScene() {
         
     }
     
     void IScene::Update(UserID userID) {
         
-        m_gui->Update(userID);
+        m_pImpl->gui->Update(userID);
         
         UpdateDerived(userID);
     }
@@ -25,6 +36,16 @@ namespace JoD {
         
         RenderDerived(userID, webSocket);
         
-        m_gui->Render(userID, webSocket);
+        m_pImpl->gui->Render(userID, webSocket);
+    }
+
+    JoD::EngineInstance& IScene::EngineInstance() const {
+        
+        return *m_pImpl->engineInstance;
+    }
+    
+    const std::unique_ptr<JoD::GUI>& IScene::GUI() const {
+        
+        return m_pImpl->gui;
     }
 }

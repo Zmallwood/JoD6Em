@@ -15,17 +15,17 @@
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
-#include <optional>
+#include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 
 namespace JoD {
     
     void MobTargeting::Update(UserID userID) {
         
-        const std::unique_ptr<Player> &player =
+        auto player =
             EngineInstance().Player();
         
-        const std::shared_ptr<const TileHovering> tileHovering =
-            std::static_pointer_cast<TileHovering>(
+        auto tileHovering =
+            static_cast<TileHovering*>(
                 EngineInstance().SceneManager()->GetScene<MainScene>("MainScene")->GetComponent(
                     MainSceneComponents::
                     TileHovering));

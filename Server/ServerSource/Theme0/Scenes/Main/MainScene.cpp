@@ -15,6 +15,7 @@
 #include "Theme0/Scenes/Main/Process/MainSceneComponents.hpp"
 #include "MainSceneGUI/GUITextConsole.hpp"
 #include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
+#include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
 
 namespace JoD {
     
@@ -24,26 +25,26 @@ namespace JoD {
         
         m_components.insert(
             {MainSceneComponents::TileHovering,
-             std::make_shared<TileHovering>(
+             std::make_unique<TileHovering>(
                  this->EngineInstance()) });
                  
         m_components.insert(
             {MainSceneComponents::MouseMovement,
-             std::make_shared<MouseMovement>(
+             std::make_unique<MouseMovement>(
                  this->EngineInstance()) });
                  
         m_components.insert(
             {MainSceneComponents::MobTargeting,
-             std::make_shared<MobTargeting>(
+             std::make_unique<MobTargeting>(
                  this->EngineInstance()) });
                  
         m_components.insert(
             {MainSceneComponents::WorldView,
-             std::make_shared<WorldView>(this->EngineInstance()) });
+             std::make_unique<WorldView>(this->EngineInstance()) });
                  
         m_components.insert(
             {MainSceneComponents::CombatMovement,
-             std::make_shared<CombatMovement>(this->EngineInstance()) });
+             std::make_unique<CombatMovement>(this->EngineInstance()) });
     }
     
     void MainScene::OnEnter() {
@@ -53,7 +54,7 @@ namespace JoD {
     
     void MainScene::UpdateDerived(UserID userID) {
         
-        for (const auto component : m_components) {
+        for (const auto& component : m_components) {
             
             component.second->Update(userID);
         }
@@ -61,17 +62,17 @@ namespace JoD {
     
     void MainScene::RenderDerived(UserID userID, WebSocket &webSocket) const {
         
-        for (const auto component : m_components) {
+        for (const auto& component : m_components) {
             
             component.second->Render(userID, webSocket);
         }
     }
     
-    std::shared_ptr<IMainSceneComponent> MainScene::GetComponent(MainSceneComponents mainSceneComponent) const {
+    IMainSceneComponent *MainScene::GetComponent(MainSceneComponents mainSceneComponent) const {
         
         if (m_components.contains(mainSceneComponent)) {
             
-            return m_components.at(mainSceneComponent);
+            return m_components.at(mainSceneComponent).get();
         }
         
         return nullptr;

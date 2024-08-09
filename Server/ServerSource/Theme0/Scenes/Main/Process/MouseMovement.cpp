@@ -13,6 +13,7 @@
 #include "TileHovering.hpp"
 #include "MobTargeting.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
+#include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 
 namespace JoD {
     
@@ -20,14 +21,14 @@ namespace JoD {
         
         auto &mainScene = *EngineInstance().SceneManager()->GetScene<MainScene>("MainScene");
         
-        const std::shared_ptr<const TileHovering> tileHovering =
-            std::static_pointer_cast<TileHovering>(
+        auto tileHovering =
+            static_cast<TileHovering*>(
                 mainScene.GetComponent(
                     MainSceneComponents::
                     TileHovering));
                     
-        const std::shared_ptr<MobTargeting> mobTargeting =
-            std::static_pointer_cast<MobTargeting>(
+        auto mobTargeting =
+            static_cast<MobTargeting*>(
                 mainScene.GetComponent(
                     MainSceneComponents::
                     MobTargeting));
@@ -37,7 +38,7 @@ namespace JoD {
             LeftButton().
             IsPressedPickResult();
         
-        auto &player = EngineInstance().Player();
+        auto player = EngineInstance().Player();
         
         const auto hoveredTile =
             tileHovering->HoveredCoordinate();

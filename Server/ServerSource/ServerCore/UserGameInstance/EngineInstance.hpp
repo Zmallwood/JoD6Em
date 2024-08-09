@@ -6,14 +6,12 @@
 
 #pragma once
 
-#include "Input/Mouse/MouseInput.hpp"
-#include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
-#include "ServerFPSCounter.hpp"
-#include "ScenesCore/SceneManager.hpp"
-#include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
-#include "TextOutput/TextMessages.hpp"
-
 namespace JoD {
+    
+    class MouseInput;
+    class Player;
+    class SceneManager;
+    class TextMessages;
     
     ///
     /// An instance of this engine is created for every connected user.
@@ -25,6 +23,8 @@ namespace JoD {
         /// Stores an user connection reference and initializes members.
         ///
         EngineInstance();
+        
+        ~EngineInstance();
         
         ///
         /// Updates everything that needs it in the game loop.
@@ -45,49 +45,23 @@ namespace JoD {
         ///
         float GetAspectRatio() const;
         
-        PointF MousePosition() const {
-            
-            return m_mousePosition;
-        }
+        PointF MousePosition() const;
         
-        void SetMousePosition(PointF value) {
-            
-            m_mousePosition = value;
-        }
+        void SetMousePosition(PointF value);
         
-        void SetCanvasSize(Size value) {
-            
-            m_canvasSize = value;
-        }
+        void SetCanvasSize(Size value);
         
-        const std::unique_ptr<JoD::MouseInput> &MouseInput() const {
-            
-            return m_mouseInput;
-        }
+        JoD::MouseInput* MouseInput() const;
         
-        const std::unique_ptr<JoD::SceneManager> &SceneManager() const {
-            
-            return m_sceneManager;
-        }
+        JoD::SceneManager *SceneManager() const;
         
-        const std::unique_ptr<JoD::Player> &Player() const {
-            
-            return m_player;
-        }
+        JoD::Player *Player() const;
         
-        const std::unique_ptr<JoD::TextMessages> &TextOut() const {
-            
-            return m_textOut;
-        }
+        JoD::TextMessages *TextOut() const;
         
       private:
-        PointF m_mousePosition; ///< Current mosue position in the browser canvas.
-        Size m_canvasSize; ///< Size of canvas in browser.
-        std::unique_ptr<JoD::MouseInput> m_mouseInput; ///< Handles mouse input and provides state.
-        std::unique_ptr<JoD::SceneManager> m_sceneManager; ///< Manages game scenes for the user s instance.
-        std::unique_ptr<JoD::Player> m_player; ///< Player instance for the user.
-        std::unique_ptr<Cursor> m_cursor; ///< Custom cursor which replaces default system cursor.
-        std::unique_ptr<ServerFPSCounter> m_serverFPSCounter; ///< Server side FPS counter.
-        std::unique_ptr<JoD::TextMessages> m_textOut;
+        struct Impl;
+        
+        std::unique_ptr<Impl> m_pImpl;
     };
 }

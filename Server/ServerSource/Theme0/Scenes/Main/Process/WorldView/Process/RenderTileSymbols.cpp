@@ -22,8 +22,8 @@ namespace JoD {
         
         const auto &player = engineInstance.Player();
         
-        const auto tileHovering =
-            std::static_pointer_cast<TileHovering>(
+        auto tileHovering =
+            static_cast<TileHovering*>(
                 mainScene.GetComponent(
                     MainSceneComponents::
                     TileHovering));

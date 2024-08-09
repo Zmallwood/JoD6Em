@@ -20,7 +20,7 @@ namespace JoD {
         Tile* tile, BoxF tileBounds) {
         
         const auto mobTargeting =
-            std::static_pointer_cast<MobTargeting>(
+            static_cast<MobTargeting*>(
                 mainScene.GetComponent(
                     MainSceneComponents::
                     MobTargeting));

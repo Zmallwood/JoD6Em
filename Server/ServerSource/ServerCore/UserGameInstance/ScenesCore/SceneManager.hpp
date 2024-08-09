@@ -6,11 +6,10 @@
 
 #pragma once
 
-#include "IScene.hpp"
-
 namespace JoD {
     
     class EngineInstance;
+    class IScene;
     
     ///
     /// One instance is created for every connecting user. Initializes,
@@ -26,6 +25,8 @@ namespace JoD {
         /// @param userConnection User connection reference forwarding.
         ///
         SceneManager(EngineInstance &engineInstance);
+        
+        ~SceneManager();
         
         ///
         /// Updates the scene currently being presented.
@@ -52,9 +53,9 @@ namespace JoD {
             
             auto hashCode = Hash(sceneName);
             
-            if (m_scenes.contains(hashCode)) {
+            if (GetScenes().contains(hashCode)) {
                 
-                return static_cast<T*>(m_scenes.at(hashCode).get());
+                return static_cast<T*>(GetScenes().at(hashCode).get());
             }
             
             return nullptr;
@@ -70,8 +71,10 @@ namespace JoD {
         void AddScene(std::string_view sceneName,
                       std::unique_ptr<IScene> scene);
         
-        int m_currentScene {0}; ///< Hash code of name of the currently presented scene.
-        std::map<int, std::unique_ptr<IScene>> m_scenes; ///< All scenes that has been added in ctor.
-        EngineInstance &m_engineInstance; ///< User connection reference for the associated user.
+        std::map<int, std::unique_ptr<IScene>> &GetScenes() const;
+                      
+        struct Impl;
+        
+        std::unique_ptr<Impl> m_pImpl;
     };
 }

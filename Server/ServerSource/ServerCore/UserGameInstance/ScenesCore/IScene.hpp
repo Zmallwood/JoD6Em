@@ -6,11 +6,10 @@
 
 #pragma once
 
-#include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
-
 namespace JoD {
     
     class EngineInstance;
+    class GUI;
     
     ///
     /// Pure virtual IScene class of which all scenes inherits.
@@ -24,6 +23,8 @@ namespace JoD {
         /// @param userConnection User connection associated with current user.
         ///
         IScene(JoD::EngineInstance& engineInstance);
+        
+        ~IScene();
         
         ///
         /// Called once for inherited scenes when a new user
@@ -64,18 +65,13 @@ namespace JoD {
             WebSocket
             &webSocket) const {}
         
-        JoD::EngineInstance& EngineInstance() const {
-            
-            return m_engineInstance;
-        }
+        JoD::EngineInstance& EngineInstance() const;
         
-        const std::unique_ptr<JoD::GUI>& GUI() const {
-            
-            return m_gui;
-        }
+        const std::unique_ptr<JoD::GUI>& GUI() const;
         
       private:
-        JoD::EngineInstance &m_engineInstance; ///< User connection object for current user.
-        std::unique_ptr<JoD::GUI> m_gui;
+        struct Impl;
+        
+        std::unique_ptr<Impl> m_pImpl;
     };
 }

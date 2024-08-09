@@ -13,14 +13,15 @@
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 
 namespace JoD {
     void CombatMovement::Update(UserID userID) {
-        const std::unique_ptr<Player> &player =
+        auto player =
             EngineInstance().Player();
         
-        const std::shared_ptr<MobTargeting> mobTargeting =
-            std::static_pointer_cast<MobTargeting>(
+        auto mobTargeting =
+            static_cast<MobTargeting*>(
                 EngineInstance().SceneManager()->GetScene<MainScene>("MainScene")->GetComponent(
                     MainSceneComponents::
                     MobTargeting));

@@ -24,7 +24,7 @@ namespace JoD {
         
         auto engineInstance = _<EngineInstancesManager>().GetInstance(userID);
         
-        auto &textOut = engineInstance->TextOut();
+        auto textOut = engineInstance->TextOut();
         
         auto& textData = textOut->Data();
         

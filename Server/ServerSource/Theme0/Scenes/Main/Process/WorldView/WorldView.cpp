@@ -18,6 +18,7 @@
 #include "Process/RenderMobs.hpp"
 #include "Process/RenderPlayer.hpp"
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
+#include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 
 namespace JoD {
     
