@@ -62,8 +62,17 @@ namespace JoD {
                     x * tileSize.w, y * tileSize.h,
                     tileSize.w + smallValue,
                     tileSize.h + smallValue};
+                    
+                Tile* tileW = nullptr;
+                Tile* tileN = nullptr;
                 
-                RenderGround(webSocket, tile, tileBounds);
+                if (coordX > 0) {
+                    
+                    tileW = _<World>().GetCurrentWorldArea()->GetTile(coordX - 1, coordY);
+                    tileN = _<World>().GetCurrentWorldArea()->GetTile(coordX, coordY - 1);
+                }
+                
+                RenderGround(webSocket, tile, tileBounds, tileW, tileN);
                 
                 RenderTileSymbols(
                     mainScene, userID, webSocket,

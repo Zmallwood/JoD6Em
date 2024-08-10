@@ -56,6 +56,11 @@ namespace JoD {
                coord.y < size.h;
     }
     
+    bool WorldArea::IsValidCoord(int x, int y) const {
+        
+        return IsValidCoord({x, y});
+    }
+    
     Tile* WorldArea::GetTile(Point coord) const {
         if (IsValidCoord(coord)) {
             

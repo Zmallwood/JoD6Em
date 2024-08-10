@@ -28,6 +28,8 @@ namespace JoD {
         
         bool IsValidCoord(Point coord) const;
         
+        bool IsValidCoord(int x, int y) const;
+        
         Tile* GetTile(Point coord) const;
         
         Tile* GetTile(int xCoord, int yCoord) const;

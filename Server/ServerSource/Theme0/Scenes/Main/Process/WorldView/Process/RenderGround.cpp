@@ -13,7 +13,32 @@ namespace JoD {
     
     void RenderGround(
         WebSocket &webSocket,
-        Tile* tile, BoxF tileBounds) {
+        Tile* tile, BoxF tileBounds, Tile* tileW, Tile* tileN) {
+        
+        auto elevation = tile->GetElevation();
+        
+        for (auto i = 0; i < elevation; i++) {
+            
+            auto boundsElevS = BoxF {tileBounds.x - tileBounds.w*0.25f,
+                                     tileBounds.y, tileBounds.w*1.25f,
+                                     tileBounds.h};
+            auto boundsElevE = BoxF {tileBounds.x,
+                                     tileBounds.y - tileBounds.h*0.25f,
+                                     tileBounds.w, tileBounds.h*1.25f};
+            
+            SendImageDrawInstruction(
+                webSocket,
+                "ElevationS",
+                boundsElevS);
+            
+            SendImageDrawInstruction(
+                webSocket,
+                "ElevationE",
+                boundsElevE);
+            
+            tileBounds.x -= tileBounds.w/4;
+            tileBounds.y -= tileBounds.h/4;
+        }
         
         auto ground = tile->GetGround();
         
@@ -30,5 +55,29 @@ namespace JoD {
             webSocket,
             ground,
             tileBounds);
+        
+        if (tileW) {
+            
+            if (tileW->GetElevation() < tile->GetElevation()) {
+                
+                
+                SendImageDrawInstruction(
+                    webSocket,
+                    "ElevationW",
+                    tileBounds);
+            }
+        }
+        
+        if (tileN) {
+            
+            if (tileN->GetElevation() < tile->GetElevation()) {
+                
+                
+                SendImageDrawInstruction(
+                    webSocket,
+                    "ElevationN",
+                    tileBounds);
+            }
+        }
     }
 }

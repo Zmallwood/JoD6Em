@@ -33,6 +33,10 @@ namespace JoD {
         
         void SetMob(std::shared_ptr<Mob> value) ;
         
+        int GetElevation() const;
+        
+        void SetElevation(int value);
+        
       private:
         struct Impl;
         

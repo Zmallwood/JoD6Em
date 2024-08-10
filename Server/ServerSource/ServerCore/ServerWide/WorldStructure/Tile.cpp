@@ -54,4 +54,14 @@ namespace JoD {
         
         m_pImpl->mob = value;
     }
+        
+    int Tile::GetElevation() const {
+        
+        return m_pImpl->elevation;
+    }
+    
+    void Tile::SetElevation(int value) {
+        
+        m_pImpl->elevation = value;
+    }
 }
