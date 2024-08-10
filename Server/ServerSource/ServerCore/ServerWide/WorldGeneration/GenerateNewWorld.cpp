@@ -12,6 +12,7 @@
 #include "Process/GenerateWater.hpp"
 #include "Process/GenerateRoads.hpp"
 #include "Process/GenerateElevation.hpp"
+#include "Process/GenerateRock.hpp"
 
 namespace JoD {
     
@@ -22,6 +23,7 @@ namespace JoD {
         ClearWithGrass(worldArea);
         GenerateWater(worldArea);
         GenerateElevation(worldArea);
+        GenerateRock(worldArea);
         GenerateRoads(worldArea);
         GenerateObjects(worldArea);
         GenerateMobs(worldArea);

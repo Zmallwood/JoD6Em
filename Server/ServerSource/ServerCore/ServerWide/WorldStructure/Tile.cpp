@@ -35,6 +35,11 @@ namespace JoD {
         m_pImpl->ground = value;
     }
     
+    void Tile::SetGround(std::string_view imageName) {
+        
+        SetGround(Hash(imageName));
+    }
+    
     Object* Tile::GetObject() const {
         
         return m_pImpl->object.get();

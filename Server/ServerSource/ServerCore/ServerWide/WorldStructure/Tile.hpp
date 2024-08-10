@@ -25,6 +25,8 @@ namespace JoD {
         
         void SetGround(int value);
         
+        void SetGround(std::string_view imageName);
+        
         Object* GetObject() const;
         
         void SetObject(std::unique_ptr<Object> value);

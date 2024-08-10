@@ -17,8 +17,16 @@ namespace JoD {
         
         for (auto i = 0; i < 25; i++) {
             
-            worldArea->GetTile(roadX, roadY)->SetGround(
-                Hash("GroundCobbleStone"));
+            auto tile = worldArea->GetTile(roadX, roadY);
+            
+            if (tile->GetGround() != Hash("GroundWater")) {
+                
+                tile->SetGround("GroundCobbleStone");
+            }
+            else {
+                
+                tile->SetGround("GroundBridge");
+            }
                 
             roadX++;
             roadY++;
@@ -26,31 +34,64 @@ namespace JoD {
         
         for (auto i = 0; i < 50; i++) {
             
-            worldArea->GetTile(roadX, roadY)->SetGround(
-                Hash("GroundCobbleStone"));
+            auto tile = worldArea->GetTile(roadX, roadY);
+            
+            if (tile->GetGround() != Hash("GroundWater")) {
+                
+                tile->SetGround("GroundCobbleStone");
+            }
+            else {
+                
+                tile->SetGround("GroundBridge");
+            }
                 
             roadX++;
         }
         
         for (auto i = 0; i < 50; i++) {
             
-            worldArea->GetTile(roadX, roadY)->SetGround(
-                Hash("GroundCobbleStone"));
+            auto tile = worldArea->GetTile(roadX, roadY);
+            
+            if (tile->GetGround() != Hash("GroundWater")) {
+                
+                tile->SetGround("GroundCobbleStone");
+            }
+            else {
+                
+                tile->SetGround("GroundBridge");
+            }
                 
             roadY++;
         }
         
         for (auto i = 0; i < 50; i++) {
             
-            worldArea->GetTile(roadX, roadY)->SetGround(
-                Hash("GroundCobbleStone"));
+            auto tile = worldArea->GetTile(roadX, roadY);
+            
+            if (tile->GetGround() != Hash("GroundWater")) {
+                
+                tile->SetGround("GroundCobbleStone");
+            }
+            else {
+                
+                tile->SetGround("GroundBridge");
+            }
                 
             roadX--;
         }
         
         for (auto i = 0; i < 25; i++) {
             
-            worldArea->GetTile(roadX, roadY)->SetGround(Hash("GroundCobbleStone"));
+            auto tile = worldArea->GetTile(roadX, roadY);
+            
+            if (tile->GetGround() != Hash("GroundWater")) {
+                
+                tile->SetGround("GroundCobbleStone");
+            }
+            else {
+                
+                tile->SetGround("GroundBridge");
+            }
                 
             roadY++;
         }
