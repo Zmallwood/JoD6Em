@@ -6,6 +6,7 @@
 
 
 #include "EngineInstance.hpp"
+#include "Common/Aliases.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 #include "Input/Mouse/MouseInput.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
@@ -17,6 +18,10 @@
 namespace JoD {
     
     struct EngineInstance::Impl {
+        Impl(Socket socket)
+        : webSocket(std::move(socket))
+        {}
+        
         PointF mousePosition; ///< Current mosue position in the browser canvas.
         Size canvasSize; ///< Size of canvas in browser.
         std::unique_ptr<JoD::MouseInput> mouseInput; ///< Handles mouse input and provides state.
@@ -25,10 +30,11 @@ namespace JoD {
         std::unique_ptr<Cursor> cursor; ///< Custom cursor which replaces default system cursor.
         std::unique_ptr<ServerFPSCounter> serverFPSCounter; ///< Server side FPS counter.
         std::unique_ptr<JoD::TextMessages> textMessages;
+        WebSocket webSocket;
     };
     
-    EngineInstance::EngineInstance(UserID userID)
-        : m_pImpl(std::make_unique<Impl>()) {
+    EngineInstance::EngineInstance(UserID userID, Socket socket)
+        : m_pImpl(std::make_unique<Impl>(std::move(socket))) {
         
         m_pImpl->sceneManager = std::make_unique<JoD::SceneManager>(
             userID,
@@ -101,5 +107,10 @@ namespace JoD {
     JoD::TextMessages *EngineInstance::GetTextMessages() const {
         
         return m_pImpl->textMessages.get();
+    }
+    
+    WebSocket *EngineInstance::GetWebSocket() const {
+        
+        return &m_pImpl->webSocket;
     }
 }

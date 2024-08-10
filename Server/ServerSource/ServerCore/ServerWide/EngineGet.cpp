@@ -21,11 +21,11 @@ namespace JoD {
         
     }
     
-    UserID EngineGet::RegisterEngineInstance() {
+    UserID EngineGet::RegisterEngineInstance(Socket socket) {
         
         auto userID = s_currentUserID++;
         
-        m_pImpl->engineInstances.insert({userID, std::make_unique<EngineInstance>(userID)});
+        m_pImpl->engineInstances.insert({userID, std::make_unique<EngineInstance>(userID, std::move(socket))});
         
         return userID;
     }
@@ -95,6 +95,16 @@ namespace JoD {
         if (m_pImpl->engineInstances.contains(userID)) {
             
             return m_pImpl->engineInstances.at(userID)->GetTextMessages();
+        }
+        
+        return nullptr;
+    }
+    
+    WebSocket *EngineGet::GetWebSocket(UserID userID) const {
+        
+        if (m_pImpl->engineInstances.contains(userID)) {
+            
+            return m_pImpl->engineInstances.at(userID)->GetWebSocket();
         }
         
         return nullptr;

@@ -22,7 +22,7 @@ namespace JoD {
         ///
         /// Stores an user connection reference and initializes members.
         ///
-        EngineInstance(UserID userID);
+        EngineInstance(UserID userID, Socket socket);
         
         ~EngineInstance();
         
@@ -58,6 +58,8 @@ namespace JoD {
         JoD::Player *GetPlayer() const;
         
         JoD::TextMessages *GetTextMessages() const;
+        
+        WebSocket *GetWebSocket() const;
         
       private:
         struct Impl;

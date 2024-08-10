@@ -30,7 +30,7 @@ namespace JoD {
         ///
         /// @param socket Socket object.
         ///
-        void DoSession(UserID userID, Socket socket);
+        void DoSession(UserID userID);
         
         ///
         /// Running loop for reading incoming web socket messages and handle them.

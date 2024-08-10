@@ -20,7 +20,7 @@ namespace JoD {
         
         ~EngineGet();
         
-        UserID RegisterEngineInstance();
+        UserID RegisterEngineInstance(Socket socket);
         
         EngineInstance* GetInstance(UserID userID) const;
         
@@ -36,6 +36,8 @@ namespace JoD {
         
         TextMessages* GetTextMessages(UserID userID) const;
         
+        WebSocket *GetWebSocket(UserID userID) const;
+                
       private:
         struct Impl;
         
