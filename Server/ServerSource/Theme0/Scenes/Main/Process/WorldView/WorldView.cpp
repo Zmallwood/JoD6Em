@@ -9,6 +9,7 @@
 #include "Theme0/Scenes/Main/MainSceneMath/TileGridMath.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "Process/RenderGround.hpp"
@@ -30,11 +31,15 @@ namespace JoD {
         const auto playerCoordinate =
             _<EngineGet>().GetPlayer(userID)->Coord();
         
+        auto playerElev =
+            _<World>().GetCurrentWorldArea()->GetTile(
+                playerCoordinate)->GetElevation();
+        
         const auto numGridRows = _<GameProperties>().GetNumGridRows();
         const auto numGridCols =
             CalculateNumGridCols(
                 _<EngineGet>().GetAspectRatio(userID).value());
-                
+        
         auto &mainScene = *_<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene");
         
         const auto smallValue = 0.0001f;
@@ -49,30 +54,48 @@ namespace JoD {
                 const auto coordY = playerCoordinate.y -
                                     (numGridRows - 1) / 2 + y;
                 
-                if (!_<World>().GetCurrentWorldArea()->IsValidCoord({coordX, coordY})) {
+                if (!_<World>().GetCurrentWorldArea()->IsValidCoord({coordX,
+                                                                     coordY})) {
                     
                     continue;
                 }
                 
                 auto tile =
-                    _<World>().GetCurrentWorldArea()->GetTile(coordX,
+                    _<World>().GetCurrentWorldArea()->GetTile(
+                        coordX,
                         coordY);
                 
-                const auto tileBounds = BoxF {
-                    x * tileSize.w, y * tileSize.h,
+                auto elev = tile->GetElevation();
+                
+                const auto groundBounds = BoxF {
+                    x * tileSize.w + playerElev*tileSize.w*0.25f,
+                    y * tileSize.h + playerElev*tileSize.h*0.25f,
                     tileSize.w + smallValue,
                     tileSize.h + smallValue};
-                    
+                
                 Tile* tileW = nullptr;
                 Tile* tileN = nullptr;
                 
                 if (coordX > 0) {
                     
-                    tileW = _<World>().GetCurrentWorldArea()->GetTile(coordX - 1, coordY);
-                    tileN = _<World>().GetCurrentWorldArea()->GetTile(coordX, coordY - 1);
+                    tileW = _<World>().GetCurrentWorldArea()->GetTile(coordX -
+                                                                      1,
+                                                                      coordY);
+                    tileN = _<World>().GetCurrentWorldArea()->GetTile(coordX,
+                                                                      coordY -
+                                                                      1);
                 }
                 
-                RenderGround(webSocket, tile, tileBounds, tileW, tileN);
+                RenderGround(webSocket, tile, groundBounds, tileW, tileN,
+                             playerElev);
+                
+                
+                
+                const auto tileBounds = BoxF {
+                    x * tileSize.w + (playerElev - elev)*tileSize.w*0.25f,
+                    y * tileSize.h + (playerElev - elev)*tileSize.h*0.25f,
+                    tileSize.w + smallValue,
+                    tileSize.h + smallValue};
                 
                 RenderTileSymbols(
                     mainScene, userID, webSocket,
@@ -84,9 +107,15 @@ namespace JoD {
                     mainScene, webSocket, tile,
                     tileBounds);
                 
+                auto playerBounds =  BoxF {
+                    x * tileSize.w,
+                    y * tileSize.h,
+                    tileSize.w + smallValue,
+                    tileSize.h + smallValue};
+                
                 RenderPlayer(
                     userID, webSocket, {coordX, coordY},
-                    tileBounds);
+                    playerBounds);
             }
         }
     }

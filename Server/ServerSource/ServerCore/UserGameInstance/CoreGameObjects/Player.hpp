@@ -89,6 +89,6 @@ namespace JoD {
         float m_movementSpeed {5.0f}; ///< Base movement speed.
         int m_experience {0};
         TimePoint m_ticksLastAttackOnOther {Now()};
-        float m_attackSpeed {2.0f};
+        float m_attackSpeed {1.4f};
     };
 }

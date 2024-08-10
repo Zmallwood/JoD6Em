@@ -13,7 +13,7 @@ namespace JoD {
     
     void RenderGround(
         WebSocket &webSocket,
-        Tile* tile, BoxF tileBounds, Tile* tileW, Tile* tileN) {
+        Tile* tile, BoxF tileBounds, Tile* tileW, Tile* tileN, int playerElev) {
         
         auto elevation = tile->GetElevation();
         
