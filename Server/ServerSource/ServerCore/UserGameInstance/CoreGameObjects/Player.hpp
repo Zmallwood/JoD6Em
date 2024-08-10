@@ -60,6 +60,26 @@ namespace JoD {
             return m_movementSpeed;
         }
         
+        float GetExperience() const {
+            
+            return m_experience;
+        }
+        
+        TimePoint TicksLastAttackOnOther() const {
+            
+            return m_ticksLastAttackOnOther;
+        }
+        
+        void SetTicksLastAttackOnOther(TimePoint value) {
+            
+            m_ticksLastAttackOnOther = value;
+        }
+        
+        float AttackSpeed() const {
+            
+            return m_attackSpeed;
+        }
+        
       private:
         void TryMoveToCoord(UserID userID, Point coord);
         
@@ -67,5 +87,8 @@ namespace JoD {
         std::optional<Point> m_destCoord {std::nullopt}; ///< Destination to which the player is moving.
         TimePoint m_ticksLastMove {Now()}; ///< Last time the player moved one step.
         float m_movementSpeed {5.0f}; ///< Base movement speed.
+        int m_experience {0};
+        TimePoint m_ticksLastAttackOnOther {Now()};
+        float m_attackSpeed {2.0f};
     };
 }

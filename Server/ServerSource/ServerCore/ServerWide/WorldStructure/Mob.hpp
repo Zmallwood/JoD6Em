@@ -22,6 +22,8 @@ namespace JoD {
         ///
         Mob(std::string_view mobName, int level);
         
+        void Hit(int damage);
+        
         int GetType() const {
             
             return m_type;
@@ -30,6 +32,11 @@ namespace JoD {
         int GetLevel() const {
             
             return m_level;
+        }
+        
+        TimePoint GetTicksLastHitFromOther() const {
+            
+            return m_ticksLastHitFromOther;
         }
         
       private:
@@ -42,5 +49,6 @@ namespace JoD {
         float m_atkSpeed {0}; ///< Attack speed.
         int m_hp {0}; ///< Health points.
         int m_exp {0}; ///< Experience gained when defeating this mob.
+        TimePoint m_ticksLastHitFromOther {Now()};
     };
 }

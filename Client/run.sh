@@ -1,3 +1,3 @@
 #!/bin/bash
 cd cmake/bin
-python -m http.server
+python3 -m http.server

@@ -9,10 +9,11 @@
 #include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
+#include "GUIExpBar.hpp"
 
 namespace JoD {
     GUITextConsole::GUITextConsole()
-        : GUIPanel({0.0f, 1.0f - k_height, k_width, k_height}) {
+        : GUIPanel({0.0f, 1.0f - k_height - GUIExpBar::GetHeight(), k_width, k_height}) {
         
     }
     

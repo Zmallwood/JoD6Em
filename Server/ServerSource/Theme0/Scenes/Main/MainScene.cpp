@@ -9,11 +9,13 @@
 #include "Process/TileHovering.hpp"
 #include "Process/MouseMovement.hpp"
 #include "Process/MobTargeting.hpp"
+#include "Process/Combat.hpp"
 #include "Process/CombatMovement.hpp"
 #include "Process/WorldView/WorldView.hpp"
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "Theme0/Scenes/Main/Process/MainSceneComponents.hpp"
 #include "MainSceneGUI/GUITextConsole.hpp"
+#include "MainSceneGUI/GUIExpBar.hpp"
 #include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
 #include "Process/IMainSceneComponent.hpp"
@@ -39,6 +41,8 @@ namespace JoD {
         
         GUI()->AddComponent<GUITextConsole>();
         
+        GUI()->AddComponent<GUIExpBar>();
+        
         m_pImpl->components.insert(
             {MainSceneComponents::TileHovering,
              std::make_unique<TileHovering>() });
@@ -58,6 +62,10 @@ namespace JoD {
         m_pImpl->components.insert(
             {MainSceneComponents::CombatMovement,
              std::make_unique<CombatMovement>() });
+                 
+        m_pImpl->components.insert(
+            {MainSceneComponents::Combat,
+             std::make_unique<Combat>() });
     }
     
     void MainScene::OnEnter(UserID userID) {

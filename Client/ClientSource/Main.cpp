@@ -7,14 +7,14 @@
 #include "ClientCore/RunNewClientInstance.hpp"
 #include <cstdlib>
 
-int main(int argc, char *argv[]) { 
+int main(int argc, char *argv[]) {  
     
     // Catch all exceptions that can happen during execution.
     try{
         
         // Run new instance of the game.
-        JoD::RunNewClientInstance();    
-    }
+        JoD::RunNewClientInstance();
+    } 
     catch (const std::exception &e){
         std::cout << "Error: " << e.what() << std::endl;
         

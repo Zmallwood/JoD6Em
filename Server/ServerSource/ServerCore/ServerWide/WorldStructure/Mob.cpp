@@ -20,4 +20,10 @@ namespace JoD {
         m_hp = level*5;
         m_exp = level*5;
     }
+    
+    void Mob::Hit(int damage) {
+        
+        m_hp -= damage;
+        m_ticksLastHitFromOther = Now();
+    }
 }
