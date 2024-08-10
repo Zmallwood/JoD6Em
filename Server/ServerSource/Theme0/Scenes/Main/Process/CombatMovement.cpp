@@ -24,21 +24,21 @@ namespace JoD {
                     MainSceneComponents::
                     MobTargeting));
         
-        if (mobTargeting->TargetedCreature()) {
+        if (mobTargeting->GetTargetedCreature()) {
             
             const auto &worldArea = _<World>().GetCurrentWorldArea();
             const auto pos =
-                worldArea->GetMobCoord(mobTargeting->TargetedCreature()).value();
+                worldArea->GetMobCoord(mobTargeting->GetTargetedCreature()).value();
             
-            if (Now() > player->TicksLastMove() +
+            if (Now() > player->GetTicksLastMove() +
                 Duration(
                     Millis(
                         static_cast<int>(
                             1000/
-                            player->MovementSpeed())))) {
+                            player->GetMovementSpeed())))) {
                 
-                const auto dx = pos.x - player->Coord().x;
-                const auto dy = pos.y - player->Coord().y;
+                const auto dx = pos.x - player->GetCoord().x;
+                const auto dy = pos.y - player->GetCoord().y;
                 
                 if (dx < 0 && dy < 0) {
                     

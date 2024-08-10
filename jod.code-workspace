@@ -8,6 +8,9 @@
         },
         {
             "path": "Shared/SharedSource"
+        },
+        {
+            "path": "WorldEditor/WorldEditorSource"
         }
     ],
 	"settings": {

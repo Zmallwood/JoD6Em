@@ -7,7 +7,6 @@
 #include "RenderObjects.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Object.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
 #include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 

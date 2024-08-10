@@ -8,7 +8,6 @@
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
-#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     

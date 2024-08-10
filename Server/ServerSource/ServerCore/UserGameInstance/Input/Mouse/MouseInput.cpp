@@ -70,12 +70,12 @@ namespace JoD {
         }
     }
     
-    MouseButton &MouseInput::LeftButton() const {
+    MouseButton &MouseInput::GetLeftButton() const {
         
         return *m_pImpl->leftButton;
     }
     
-    MouseButton &MouseInput::RightButton() const {
+    MouseButton &MouseInput::GetRightButton() const {
         
         return *m_pImpl->rightButton;
     }

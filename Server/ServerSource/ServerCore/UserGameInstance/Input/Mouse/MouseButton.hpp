@@ -28,9 +28,9 @@ namespace JoD {
         /// @return true Button is currently being pressed down.
         /// @return false Button is currently not being pressed down.
         ///
-        bool IsPressedPickResult();
+        bool GetIsPressedPickResult();
         
-        bool IsPressed() const {
+        bool GetIsPressed() const {
             
             return m_isPressed;
         }

@@ -29,41 +29,41 @@ namespace JoD {
                     MainSceneComponents::
                     MobTargeting));
         
-        if (mobTargeting->TargetedCreature()) {
+        if (mobTargeting->GetTargetedCreature()) {
             
             const auto &worldArea = _<World>().GetCurrentWorldArea();
             const auto pos =
-                worldArea->GetMobCoord(mobTargeting->TargetedCreature()).value();
+                worldArea->GetMobCoord(mobTargeting->GetTargetedCreature()).value();
             
-            auto playerCoord = player->Coord();
+            auto playerCoord = player->GetCoord();
             
             auto absDx = std::abs(pos.x - playerCoord.x);
             auto absDy = std::abs(pos.y - playerCoord.y);
             
             if (absDx <= 1 && absDy <= 1) {
                 
-                if (Now() > player->TicksLastAttackOnOther() +
+                if (Now() > player->GetTicksLastAttackOnOther() +
                     Duration(
                         Millis(
                             static_cast<int>(
                                 1000/
-                                player->AttackSpeed())))) {
+                                player->GetAttackSpeed())))) {
                                 
                     
                     
                     player->SetTicksLastAttackOnOther(Now());
                     
-                    mobTargeting->TargetedCreature()->Hit(1);
+                    mobTargeting->GetTargetedCreature()->Hit(1);
                     
                     worldArea->GetTile(pos)->SetGroundCover(Hash("GroundCoverPoolOfBlood"));
                     
-                    if (mobTargeting->TargetedCreature()->GetHP() <= 0) {
+                    if (mobTargeting->GetTargetedCreature()->GetHP() <= 0) {
                         
                         worldArea->GetTile(pos)->SetObject(std::make_unique<Object>("ObjectBoneRemains"));
                         
-                        player->AddExperience(mobTargeting->TargetedCreature()->GetExp());
+                        player->AddExperience(mobTargeting->GetTargetedCreature()->GetExp());
                         
-                        worldArea->RemoveMobPosition(mobTargeting->TargetedCreature());
+                        worldArea->RemoveMobPosition(mobTargeting->GetTargetedCreature());
                         
                         mobTargeting->SetTargetedCreature(nullptr);
                         

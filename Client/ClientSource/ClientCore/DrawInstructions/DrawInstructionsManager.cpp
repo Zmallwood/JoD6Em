@@ -7,8 +7,6 @@
 #include "DrawInstructionsManager.hpp"
 #include "ClientCore/Graphics/Rendering/Images/ImageRenderer.hpp"
 #include "ClientCore/Graphics/Rendering/Text/TextRenderer.hpp"
-#include "DrawInstruction.hpp"
-#include "DrawInstructionTypes.hpp"
 
 namespace JoD {
     

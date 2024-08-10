@@ -18,7 +18,7 @@ namespace JoD {
         m_isPressed = false; 
     }
     
-    bool MouseButton::IsPressedPickResult() {
+    bool MouseButton::GetIsPressedPickResult() {
         
         const auto result = m_isPressed;
         

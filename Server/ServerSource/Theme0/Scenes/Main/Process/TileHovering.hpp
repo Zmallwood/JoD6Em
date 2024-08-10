@@ -26,7 +26,7 @@ namespace JoD {
         ///
         void Update(UserID userID) override;
         
-        std::optional<Point> HoveredCoordinate() const {
+        std::optional<Point> GetHoveredCoordinate() const {
             
             return m_hoveredCoordinate;
         }

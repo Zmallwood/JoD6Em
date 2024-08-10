@@ -45,19 +45,19 @@ namespace JoD {
         ///
         float GetAspectRatio() const;
         
-        PointF MousePosition() const;
+        PointF GetMousePosition() const;
         
         void SetMousePosition(PointF value);
         
         void SetCanvasSize(Size value);
         
-        JoD::MouseInput* MouseInput() const;
+        JoD::MouseInput* GetMouseInput() const;
         
-        JoD::SceneManager *SceneManager() const;
+        JoD::SceneManager *GetSceneManager() const;
         
-        JoD::Player *Player() const;
+        JoD::Player *GetPlayer() const;
         
-        JoD::TextMessages *TextMessages() const;
+        JoD::TextMessages *GetTextMessages() const;
         
       private:
         struct Impl;

@@ -34,13 +34,13 @@ namespace JoD {
         
         const auto mouseDown =
             _<EngineGet>().GetMouseInput(userID)->
-            LeftButton().
-            IsPressedPickResult();
+            GetLeftButton().
+            GetIsPressedPickResult();
         
         auto player = _<EngineGet>().GetPlayer(userID);
         
         const auto hoveredTile =
-            tileHovering->HoveredCoordinate();
+            tileHovering->GetHoveredCoordinate();
         
         if (mouseDown && hoveredTile.has_value()) {
             
@@ -49,17 +49,17 @@ namespace JoD {
         }
         
         if (std::chrono::high_resolution_clock::now() >
-            player->TicksLastMove() +
+            player->GetTicksLastMove() +
             std::chrono::high_resolution_clock::duration(
                 std::chrono::milliseconds(
                     static_cast<int>(1000/
                                      player->
-                                     MovementSpeed())))){
+                                     GetMovementSpeed())))){
             
-            if (player->DestCoord().has_value()){
+            if (player->GetDestCoord().has_value()){
                 
-                const auto dx = player->DestCoord()->x - player->Coord().x;
-                const auto dy = player->DestCoord()->y - player->Coord().y;
+                const auto dx = player->GetDestCoord()->x - player->GetCoord().x;
+                const auto dy = player->GetDestCoord()->y - player->GetCoord().y;
                 
                 if (dx < 0 && dy < 0) {
                     

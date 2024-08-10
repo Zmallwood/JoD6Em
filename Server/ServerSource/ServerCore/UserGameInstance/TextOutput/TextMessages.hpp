@@ -13,7 +13,7 @@ namespace JoD {
       public:
         void Print(std::string_view message);
         
-        const std::vector<std::string>& Data() const {
+        const std::vector<std::string>& GetData() const {
             
             return m_data;
         }

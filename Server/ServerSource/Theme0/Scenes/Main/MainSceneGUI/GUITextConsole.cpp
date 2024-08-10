@@ -7,7 +7,6 @@
 #include "GUITextConsole.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
 #include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 #include "GUIExpBar.hpp"
 
@@ -25,7 +24,7 @@ namespace JoD {
         
         auto textOut = _<EngineGet>().GetTextMessages(userID);
         
-        auto& textData = textOut->Data();
+        auto& textData = textOut->GetData();
         
         auto lineY = m_position.y + k_margin;
         

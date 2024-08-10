@@ -44,7 +44,7 @@ namespace JoD {
         
         if (m_pImpl->engineInstances.contains(userID)) {
             
-            return m_pImpl->engineInstances.at(userID)->MousePosition();
+            return m_pImpl->engineInstances.at(userID)->GetMousePosition();
         }
         
         return std::nullopt;
@@ -64,7 +64,7 @@ namespace JoD {
         
         if (m_pImpl->engineInstances.contains(userID)) {
             
-            return m_pImpl->engineInstances.at(userID)->Player();
+            return m_pImpl->engineInstances.at(userID)->GetPlayer();
         }
         
         return nullptr;
@@ -74,7 +74,7 @@ namespace JoD {
         
         if (m_pImpl->engineInstances.contains(userID)) {
             
-            return m_pImpl->engineInstances.at(userID)->SceneManager();
+            return m_pImpl->engineInstances.at(userID)->GetSceneManager();
         }
         
         return nullptr;
@@ -84,7 +84,7 @@ namespace JoD {
         
         if (m_pImpl->engineInstances.contains(userID)) {
             
-            return m_pImpl->engineInstances.at(userID)->MouseInput();
+            return m_pImpl->engineInstances.at(userID)->GetMouseInput();
         }
         
         return nullptr;
@@ -94,7 +94,7 @@ namespace JoD {
         
         if (m_pImpl->engineInstances.contains(userID)) {
             
-            return m_pImpl->engineInstances.at(userID)->TextMessages();
+            return m_pImpl->engineInstances.at(userID)->GetTextMessages();
         }
         
         return nullptr;

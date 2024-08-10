@@ -35,9 +35,9 @@ namespace JoD {
         
         void RegisterMouseUp(MouseButtons button);
         
-        MouseButton &LeftButton() const;
+        MouseButton &GetLeftButton() const;
         
-        MouseButton &RightButton() const;
+        MouseButton &GetRightButton() const;
         
       private:
         struct Impl;

@@ -5,9 +5,7 @@
  */
 
 #include "RenderPlayer.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
 #include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
@@ -19,7 +17,7 @@ namespace JoD {
         Point coordinate, BoxF tileBounds) {
         
         const auto playerCoordinate =
-            _<EngineGet>().GetPlayer(userID)->Coord();
+            _<EngineGet>().GetPlayer(userID)->GetCoord();
         
         if (coordinate == playerCoordinate){
             

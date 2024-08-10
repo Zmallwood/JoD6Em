@@ -30,12 +30,12 @@ namespace JoD {
         
         void TryMoveNorthWest(UserID userID);
         
-        Point Coord() const {
+        Point GetCoord() const {
             
             return m_coord;
         }
         
-        std::optional<Point> DestCoord() const {
+        std::optional<Point> GetDestCoord() const {
             
             return m_destCoord;
         }
@@ -45,7 +45,7 @@ namespace JoD {
             m_destCoord = value;
         }
         
-        TimePoint TicksLastMove() const {
+        TimePoint GetTicksLastMove() const {
             
             return m_ticksLastMove;
         }
@@ -55,7 +55,7 @@ namespace JoD {
             m_ticksLastMove = value;
         }
         
-        float MovementSpeed() const {
+        float GetMovementSpeed() const {
             
             return m_movementSpeed;
         }
@@ -70,7 +70,7 @@ namespace JoD {
             m_experience += value;
         }
         
-        TimePoint TicksLastAttackOnOther() const {
+        TimePoint GetTicksLastAttackOnOther() const {
             
             return m_ticksLastAttackOnOther;
         }
@@ -80,7 +80,7 @@ namespace JoD {
             m_ticksLastAttackOnOther = value;
         }
         
-        float AttackSpeed() const {
+        float GetAttackSpeed() const {
             
             return m_attackSpeed;
         }

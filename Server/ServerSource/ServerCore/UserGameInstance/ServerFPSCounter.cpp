@@ -5,7 +5,6 @@
  */
 
 #include "ServerFPSCounter.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {

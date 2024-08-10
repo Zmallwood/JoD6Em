@@ -7,8 +7,6 @@
 #include "TextRenderer.hpp"
 #include "ClientCore/Assets/ImageBank.hpp"
 #include "ClientCore/Graphics/Rendering/Images/ImageRenderer.hpp"
-#include "ClientCore/Graphics/Rendering/Text/FontSizes.hpp"
-#include "Common/CanvasUtilities.hpp"
 
 namespace JoD {
     

@@ -31,11 +31,11 @@ namespace JoD {
         
         const auto mouseDown =
             _<EngineGet>().GetMouseInput(userID)->
-            RightButton().
-            IsPressedPickResult();
+            GetRightButton().
+            GetIsPressedPickResult();
         
         const auto hoveredTile =
-            tileHovering->HoveredCoordinate();
+            tileHovering->GetHoveredCoordinate();
         
         if (mouseDown && hoveredTile.has_value()) {
             

@@ -5,8 +5,6 @@
  */
 
 #include "IntroScene.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
@@ -25,8 +23,8 @@ namespace JoD {
     void IntroScene::UpdateDerived(UserID userID) {
         
         if (_<EngineGet>().GetMouseInput(userID)->
-            LeftButton().
-            IsPressedPickResult()) {
+            GetLeftButton().
+            GetIsPressedPickResult()) {
             
             _<EngineGet>().GetSceneManager(userID)->
             GoToScene(userID, "MainMenuScene");

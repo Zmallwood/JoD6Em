@@ -7,7 +7,6 @@
 #include "WebSocketServerConnection.hpp"
 #include "ClientCore/DrawInstructions/DrawInstructionsManager.hpp"
 #include "MessageCodes.hpp"
-#include "NetConfiguration.hpp"
 #include "ClientCore/Assets/ImageBank.hpp"
 
 namespace JoD {

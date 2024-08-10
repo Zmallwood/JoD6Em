@@ -7,7 +7,9 @@
 #pragma once
 
 namespace JoD {
+    
     class Object {
+        
       public:
         Object(std::string_view objectName);
         

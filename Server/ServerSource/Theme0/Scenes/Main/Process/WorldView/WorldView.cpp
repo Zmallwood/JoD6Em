@@ -29,7 +29,7 @@ namespace JoD {
                 _<EngineGet>().GetAspectRatio(userID).value());
         
         const auto playerCoordinate =
-            _<EngineGet>().GetPlayer(userID)->Coord();
+            _<EngineGet>().GetPlayer(userID)->GetCoord();
         
         auto playerElev =
             _<World>().GetCurrentWorldArea()->GetTile(

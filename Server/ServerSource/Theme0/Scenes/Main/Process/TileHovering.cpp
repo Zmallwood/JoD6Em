@@ -19,7 +19,7 @@ namespace JoD {
                 _<EngineGet>().GetAspectRatio(userID).value());
         
         const auto playerCoordinate =
-            _<EngineGet>().GetPlayer(userID)->Coord();
+            _<EngineGet>().GetPlayer(userID)->GetCoord();
         
         const auto numRows = _<GameProperties>().GetNumGridRows();
         const auto numCols =

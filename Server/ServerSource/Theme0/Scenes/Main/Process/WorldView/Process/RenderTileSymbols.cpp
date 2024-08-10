@@ -5,10 +5,8 @@
  */
 
 #include "RenderTileSymbols.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
 #include "Theme0/Scenes/Main/Process/TileHovering.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
@@ -29,7 +27,7 @@ namespace JoD {
                     MainSceneComponents::
                     TileHovering));
         
-        if (tileHovering->HoveredCoordinate().has_value() && coordinate == tileHovering->HoveredCoordinate()){
+        if (tileHovering->GetHoveredCoordinate().has_value() && coordinate == tileHovering->GetHoveredCoordinate()){
             
             SendImageDrawInstruction(
                 webSocket,
@@ -37,8 +35,8 @@ namespace JoD {
                 tileBounds);
         }
         
-        if (player->DestCoord().has_value() &&
-            coordinate == player->DestCoord()) {
+        if (player->GetDestCoord().has_value() &&
+            coordinate == player->GetDestCoord()) {
             
             SendImageDrawInstruction(
                 webSocket,

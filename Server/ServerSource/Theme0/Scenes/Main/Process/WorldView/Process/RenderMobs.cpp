@@ -7,7 +7,6 @@
 #include "RenderMobs.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Mob.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "Theme0/Scenes/Main/Process/MobTargeting.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
@@ -34,7 +33,7 @@ namespace JoD {
             
             if (tile->GetMob() ==
                 mobTargeting->
-                TargetedCreature()){
+                GetTargetedCreature()){
                 
                 SendImageDrawInstruction(
                     webSocket,

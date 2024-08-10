@@ -5,11 +5,8 @@
  */
 
 #include "UserConnection.hpp"
-#include "ServerCore/Net/WebSocketServer.hpp"
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
 #include "MessageCodes.hpp"
-#include "NetConfiguration.hpp"
 #include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
@@ -54,22 +51,22 @@ namespace JoD {
                     _<EngineGet>().GetInstance(m_pImpl->userID)->SetCanvasSize({width, height});
                 }else if (*data == MessageCodes::k_leftMouseDown) {
                     
-                    _<EngineGet>().GetInstance(m_pImpl->userID)->MouseInput()->
+                    _<EngineGet>().GetInstance(m_pImpl->userID)->GetMouseInput()->
                     RegisterMouseDown(
                         MouseButtons::Left);
                 }else if (*data == MessageCodes::k_leftMouseUp) {
                     
-                    _<EngineGet>().GetInstance(m_pImpl->userID)->MouseInput()->
+                    _<EngineGet>().GetInstance(m_pImpl->userID)->GetMouseInput()->
                     RegisterMouseUp(
                         MouseButtons::Left);
                 }else if (*data == MessageCodes::k_rightMouseDown) {
                     
-                    _<EngineGet>().GetInstance(m_pImpl->userID)->MouseInput()->
+                    _<EngineGet>().GetInstance(m_pImpl->userID)->GetMouseInput()->
                     RegisterMouseDown(
                         MouseButtons::Right);
                 }else if (*data == MessageCodes::k_rightMouseUp) {
                     
-                    _<EngineGet>().GetInstance(m_pImpl->userID)->MouseInput()->
+                    _<EngineGet>().GetInstance(m_pImpl->userID)->GetMouseInput()->
                     RegisterMouseUp(
                         MouseButtons::Right);
                 }else if (*data == MessageCodes::k_mousePosition) {

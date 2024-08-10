@@ -5,15 +5,12 @@
  */
 
 #include "MainScene.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
 #include "Process/TileHovering.hpp"
 #include "Process/MouseMovement.hpp"
 #include "Process/MobTargeting.hpp"
 #include "Process/Combat.hpp"
 #include "Process/CombatMovement.hpp"
 #include "Process/WorldView/WorldView.hpp"
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
-#include "Theme0/Scenes/Main/Process/MainSceneComponents.hpp"
 #include "MainSceneGUI/GUITextConsole.hpp"
 #include "MainSceneGUI/GUIExpBar.hpp"
 #include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"

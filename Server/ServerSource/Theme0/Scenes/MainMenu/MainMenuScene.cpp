@@ -5,11 +5,7 @@
  */
 
 #include "MainMenuScene.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
-#include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
-#include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
-#include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUIButton.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUI.hpp"

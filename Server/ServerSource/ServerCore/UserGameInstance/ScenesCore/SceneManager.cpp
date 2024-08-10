@@ -8,7 +8,6 @@
 #include "Theme0/Scenes/Intro/IntroScene.hpp"
 #include "Theme0/Scenes/MainMenu/MainMenuScene.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
-#include "IScene.hpp"
 
 namespace JoD {
     

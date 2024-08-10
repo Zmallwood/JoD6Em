@@ -28,7 +28,7 @@ namespace JoD {
         ///
         void Update(UserID userID) override;
         
-        std::shared_ptr<Mob> TargetedCreature() const {
+        std::shared_ptr<Mob> GetTargetedCreature() const {
             
             return m_targetedCreature;
         }

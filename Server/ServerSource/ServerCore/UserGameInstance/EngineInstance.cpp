@@ -6,7 +6,6 @@
 
 
 #include "EngineInstance.hpp"
-#include "ServerCore/Net/UserConnection.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 #include "Input/Mouse/MouseInput.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
@@ -69,7 +68,7 @@ namespace JoD {
                m_pImpl->canvasSize.h;
     }
     
-    PointF EngineInstance::MousePosition() const {
+    PointF EngineInstance::GetMousePosition() const {
         
         return m_pImpl->mousePosition;
     }
@@ -84,22 +83,22 @@ namespace JoD {
         m_pImpl->canvasSize = value;
     }
     
-    JoD::MouseInput *EngineInstance::MouseInput() const {
+    JoD::MouseInput *EngineInstance::GetMouseInput() const {
         
         return m_pImpl->mouseInput.get();
     }
     
-    JoD::SceneManager *EngineInstance::SceneManager() const {
+    JoD::SceneManager *EngineInstance::GetSceneManager() const {
         
         return m_pImpl->sceneManager.get();
     }
     
-    JoD::Player *EngineInstance::Player() const {
+    JoD::Player *EngineInstance::GetPlayer() const {
         
         return m_pImpl->player.get();
     }
     
-    JoD::TextMessages *EngineInstance::TextMessages() const {
+    JoD::TextMessages *EngineInstance::GetTextMessages() const {
         
         return m_pImpl->textMessages.get();
     }
