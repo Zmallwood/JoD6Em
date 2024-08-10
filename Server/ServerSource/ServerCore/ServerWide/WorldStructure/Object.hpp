@@ -18,7 +18,13 @@ namespace JoD {
             return m_type;
         }
         
+        TimePoint GetCreationTime() const {
+            
+            return m_creationTime;
+        }
+        
       private:
         int m_type {0};
+        TimePoint m_creationTime;
     };
 }

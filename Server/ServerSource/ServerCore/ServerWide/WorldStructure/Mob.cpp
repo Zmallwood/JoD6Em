@@ -23,7 +23,17 @@ namespace JoD {
     
     void Mob::Hit(int damage) {
         
+        if (IsDead()) {
+            
+            return;
+        }
+        
         m_hp -= damage;
         m_ticksLastHitFromOther = Now();
+    }
+    
+    bool Mob::IsDead() const {
+        
+        return m_hp <= 0;
     }
 }

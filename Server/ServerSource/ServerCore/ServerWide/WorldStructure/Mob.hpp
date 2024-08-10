@@ -49,6 +49,8 @@ namespace JoD {
             return m_ticksLastHitFromOther;
         }
         
+        bool IsDead() const;
+        
       private:
         int m_type {0}; ///< Hash code of mob type name.
         int m_level {0}; ///< Level, as provided in ctor.
