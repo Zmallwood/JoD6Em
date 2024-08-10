@@ -8,50 +8,51 @@
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
-    void Player::TryMoveNorth() {
+    void Player::TryMoveNorth(UserID userID) {
         
-        TryMoveToCoord({m_coord.x, m_coord.y - 1});
+        TryMoveToCoord(userID, {m_coord.x, m_coord.y - 1});
     }
     
-    void Player::TryMoveEast() {
+    void Player::TryMoveEast(UserID userID) {
         
-        TryMoveToCoord({m_coord.x + 1, m_coord.y});
+        TryMoveToCoord(userID, {m_coord.x + 1, m_coord.y});
     }
     
-    void Player::TryMoveSouth() {
+    void Player::TryMoveSouth(UserID userID) {
         
-        TryMoveToCoord({m_coord.x, m_coord.y + 1});
+        TryMoveToCoord(userID, {m_coord.x, m_coord.y + 1});
     }
     
-    void Player::TryMoveWest() {
+    void Player::TryMoveWest(UserID userID) {
         
-        TryMoveToCoord({m_coord.x - 1, m_coord.y});
+        TryMoveToCoord(userID, {m_coord.x - 1, m_coord.y});
     }
     
-    void Player::TryMoveNorthEast() {
+    void Player::TryMoveNorthEast(UserID userID) {
         
-        TryMoveToCoord({m_coord.x + 1, m_coord.y - 1});
+        TryMoveToCoord(userID, {m_coord.x + 1, m_coord.y - 1});
     }
     
-    void Player::TryMoveSouthEast() {
+    void Player::TryMoveSouthEast(UserID userID) {
         
-        TryMoveToCoord({m_coord.x + 1, m_coord.y + 1});
+        TryMoveToCoord(userID, {m_coord.x + 1, m_coord.y + 1});
     }
     
-    void Player::TryMoveSouthWest() {
+    void Player::TryMoveSouthWest(UserID userID) {
         
-        TryMoveToCoord({m_coord.x - 1, m_coord.y + 1});
+        TryMoveToCoord(userID, {m_coord.x - 1, m_coord.y + 1});
     }
     
-    void Player::TryMoveNorthWest() {
+    void Player::TryMoveNorthWest(UserID userID) {
         
-        TryMoveToCoord({m_coord.x - 1, m_coord.y - 1});
+        TryMoveToCoord(userID, {m_coord.x - 1, m_coord.y - 1});
     }
     
-    void Player::TryMoveToCoord(Point coord) {
+    void Player::TryMoveToCoord(UserID userID, Point coord) {
         
         const auto &worldArea = _<World>().GetCurrentWorldArea();
         

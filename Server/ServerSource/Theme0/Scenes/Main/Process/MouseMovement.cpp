@@ -63,35 +63,35 @@ namespace JoD {
                 
                 if (dx < 0 && dy < 0) {
                     
-                    player->TryMoveNorthWest();
+                    player->TryMoveNorthWest(userID);
                 }
                 else if (dx == 0 && dy < 0) {
                     
-                    player->TryMoveNorth();
+                    player->TryMoveNorth(userID);
                 }
                 else if (dx > 0 && dy < 0) {
                     
-                    player->TryMoveNorthEast();
+                    player->TryMoveNorthEast(userID);
                 }
                 else if (dx > 0 && dy == 0) {
                     
-                    player->TryMoveEast();
+                    player->TryMoveEast(userID);
                 }
                 else if (dx > 0 && dy > 0) {
                     
-                    player->TryMoveSouthEast();
+                    player->TryMoveSouthEast(userID);
                 }
                 else if (dx == 0 && dy > 0) {
                     
-                    player->TryMoveSouth();
+                    player->TryMoveSouth(userID);
                 }
                 else if (dx < 0 && dy > 0) {
                     
-                    player->TryMoveSouthWest();
+                    player->TryMoveSouthWest(userID);
                 }
                 else if (dx < 0 && dy == 0) {
                     
-                    player->TryMoveWest();
+                    player->TryMoveWest(userID);
                 }
                 
                 if (dx || dy) {

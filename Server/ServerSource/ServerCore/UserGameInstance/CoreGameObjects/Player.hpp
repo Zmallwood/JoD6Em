@@ -14,21 +14,21 @@ namespace JoD {
     class Player {
         
       public:
-        void TryMoveNorth();
+        void TryMoveNorth(UserID userID);
         
-        void TryMoveEast();
+        void TryMoveEast(UserID userID);
         
-        void TryMoveSouth();
+        void TryMoveSouth(UserID userID);
         
-        void TryMoveWest();
+        void TryMoveWest(UserID userID);
         
-        void TryMoveNorthEast();
+        void TryMoveNorthEast(UserID userID);
         
-        void TryMoveSouthEast();
+        void TryMoveSouthEast(UserID userID);
         
-        void TryMoveSouthWest();
+        void TryMoveSouthWest(UserID userID);
         
-        void TryMoveNorthWest();
+        void TryMoveNorthWest(UserID userID);
         
         Point Coord() const {
             
@@ -61,7 +61,7 @@ namespace JoD {
         }
         
       private:
-        void TryMoveToCoord(Point coord);
+        void TryMoveToCoord(UserID userID, Point coord);
         
         Point m_coord {5, 5}; ///< Coordinate on the current world area.
         std::optional<Point> m_destCoord {std::nullopt}; ///< Destination to which the player is moving.

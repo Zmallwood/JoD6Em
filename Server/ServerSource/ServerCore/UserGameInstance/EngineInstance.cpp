@@ -31,7 +31,9 @@ namespace JoD {
     EngineInstance::EngineInstance(UserID userID)
         : m_pImpl(std::make_unique<Impl>()) {
         
-        m_pImpl->sceneManager = std::make_unique<JoD::SceneManager>(userID, *this);
+        m_pImpl->sceneManager = std::make_unique<JoD::SceneManager>(
+            userID,
+            *this);
         m_pImpl->mouseInput = std::make_unique<JoD::MouseInput>();
         m_pImpl->serverFPSCounter = std::make_unique<ServerFPSCounter>();
         m_pImpl->player = std::make_unique<JoD::Player>();
@@ -63,7 +65,8 @@ namespace JoD {
     
     float EngineInstance::GetAspectRatio() const {
         
-        return static_cast<float>(m_pImpl->canvasSize.w) / m_pImpl->canvasSize.h;
+        return static_cast<float>(m_pImpl->canvasSize.w) /
+               m_pImpl->canvasSize.h;
     }
     
     PointF EngineInstance::MousePosition() const {
