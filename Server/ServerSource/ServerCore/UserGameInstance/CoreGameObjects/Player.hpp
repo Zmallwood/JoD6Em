@@ -65,6 +65,11 @@ namespace JoD {
             return m_experience;
         }
         
+        void AddExperience(int value) {
+            
+            m_experience += value;
+        }
+        
         TimePoint TicksLastAttackOnOther() const {
             
             return m_ticksLastAttackOnOther;

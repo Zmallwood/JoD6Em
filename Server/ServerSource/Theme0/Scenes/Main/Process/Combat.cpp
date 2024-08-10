@@ -61,11 +61,14 @@ namespace JoD {
                         
                         worldArea->GetTile(pos)->SetObject(std::make_unique<Object>("ObjectBoneRemains"));
                         
+                        player->AddExperience(mobTargeting->TargetedCreature()->GetExp());
+                        
                         worldArea->RemoveMobPosition(mobTargeting->TargetedCreature());
                         
                         mobTargeting->SetTargetedCreature(nullptr);
                         
                         worldArea->GetTile(pos)->SetMob(nullptr);
+                        
                     }
                 }
             }

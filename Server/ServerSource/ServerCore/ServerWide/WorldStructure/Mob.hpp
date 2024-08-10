@@ -39,6 +39,11 @@ namespace JoD {
             return m_hp;
         }
         
+        int GetExp() const {
+            
+            return m_exp;
+        }
+        
         TimePoint GetTicksLastHitFromOther() const {
             
             return m_ticksLastHitFromOther;
