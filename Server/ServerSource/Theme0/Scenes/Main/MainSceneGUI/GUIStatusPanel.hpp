@@ -15,6 +15,8 @@ namespace JoD {
       public:
         GUIStatusPanel();
         
+        void RenderDerived(UserID userID) const override;
+        
       private:
         static constexpr float k_width {0.15f};
         static constexpr float k_height {0.12f};

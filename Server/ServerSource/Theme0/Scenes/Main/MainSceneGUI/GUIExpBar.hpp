@@ -26,6 +26,6 @@ namespace JoD {
         
       private:
         float m_filledAmount {0.0f};
-        static constexpr float k_height {0.04f};
+        static constexpr float k_height {0.03f};
     };
 }

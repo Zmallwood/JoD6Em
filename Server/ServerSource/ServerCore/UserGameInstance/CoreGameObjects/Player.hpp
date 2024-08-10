@@ -30,6 +30,11 @@ namespace JoD {
         
         void TryMoveNorthWest(UserID userID);
         
+        std::string GetName() const {
+            
+            return m_name;
+        }
+        
         Point GetCoord() const {
             
             return m_coord;
@@ -88,6 +93,7 @@ namespace JoD {
       private:
         void TryMoveToCoord(UserID userID, Point coord);
         
+        std::string m_name {"Unnamed player"};
         Point m_coord {5, 5}; ///< Coordinate on the current world area.
         std::optional<Point> m_destCoord {std::nullopt}; ///< Destination to which the player is moving.
         TimePoint m_ticksLastMove {Now()}; ///< Last time the player moved one step.
