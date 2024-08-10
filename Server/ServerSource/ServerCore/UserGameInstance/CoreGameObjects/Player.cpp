@@ -8,7 +8,9 @@
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Object.hpp"
 #include "ServerCore/ServerWide/WorldStructure/ObjectsPile.hpp"
+#include "Configuration/ObjectsIndex.hpp"
 
 namespace JoD {
     
@@ -68,12 +70,23 @@ namespace JoD {
             return;
         }
         
-        if (tile->GetObjectsPile().HasObjects()) {
+        if (tile->GetMob()) {
             
             return;
         }
         
-        if (tile->GetMob()) {
+        auto canWalkThroughObject = !tile->GetObjectsPile().HasObjects();
+        
+        for (auto object : tile->GetObjectsPile().GetObjects()) {
+            
+            if (_<ObjectsIndex>().CanWalkThroughObject(object->GetType())) {
+                
+                canWalkThroughObject = true;
+                break;
+            }
+        }
+        
+        if (!canWalkThroughObject) {
             
             return;
         }
