@@ -36,6 +36,8 @@ namespace JoD {
         
         void RegisterMobPosition(std::shared_ptr<Mob> mob, Point coord);
         
+        void RemoveMobPosition(std::shared_ptr<Mob> mob);
+        
         std::optional<Point> GetMobCoord(std::shared_ptr<Mob> mob) const;
         
       private:

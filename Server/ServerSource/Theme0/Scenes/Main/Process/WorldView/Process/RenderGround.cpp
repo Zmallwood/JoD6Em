@@ -56,6 +56,16 @@ namespace JoD {
             ground,
             tileBounds);
         
+        auto groundCover = tile->GetGroundCover();
+        
+        if (groundCover) {
+            
+            SendImageDrawInstruction(
+                webSocket,
+                groundCover,
+                tileBounds);
+        }
+        
         if (tileW) {
             
             if (tileW->GetElevation() < tile->GetElevation()) {

@@ -11,6 +11,8 @@
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Object.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Mob.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 
@@ -52,6 +54,19 @@ namespace JoD {
                     player->SetTicksLastAttackOnOther(Now());
                     
                     mobTargeting->TargetedCreature()->Hit(1);
+                    
+                    worldArea->GetTile(pos)->SetGroundCover(Hash("GroundCoverPoolOfBlood"));
+                    
+                    if (mobTargeting->TargetedCreature()->GetHP() <= 0) {
+                        
+                        worldArea->GetTile(pos)->SetObject(std::make_unique<Object>("ObjectBoneRemains"));
+                        
+                        worldArea->RemoveMobPosition(mobTargeting->TargetedCreature());
+                        
+                        mobTargeting->SetTargetedCreature(nullptr);
+                        
+                        worldArea->GetTile(pos)->SetMob(nullptr);
+                    }
                 }
             }
         }

@@ -14,6 +14,7 @@ namespace JoD {
         std::unique_ptr<Object> object; ///< Hash code for object type name, nullptr means no object.
         std::shared_ptr<Mob> mob; ///< Mob currently occupying this tile, nullptr means no mob.
         int elevation {0};
+        int groundCover {0};
     };
     
     Tile::Tile()
@@ -68,5 +69,16 @@ namespace JoD {
     void Tile::SetElevation(int value) {
         
         m_pImpl->elevation = value;
+    }
+        
+    int Tile::GetGroundCover() const {
+        
+        
+        return m_pImpl->groundCover;
+    }
+    
+    void Tile::SetGroundCover(int value) {
+        
+        m_pImpl->groundCover = value;
     }
 }

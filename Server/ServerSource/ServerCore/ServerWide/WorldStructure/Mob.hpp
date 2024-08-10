@@ -34,6 +34,11 @@ namespace JoD {
             return m_level;
         }
         
+        int GetHP() const {
+            
+            return m_hp;
+        }
+        
         TimePoint GetTicksLastHitFromOther() const {
             
             return m_ticksLastHitFromOther;

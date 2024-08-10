@@ -57,7 +57,6 @@ namespace JoD {
             if (Now() < tile->GetMob()->GetTicksLastHitFromOther() + Duration(
                     Millis(
                         static_cast<int>(
-                            1000/
                             k_showHitEffectDuration)))) {
                 
                 SendImageDrawInstruction(

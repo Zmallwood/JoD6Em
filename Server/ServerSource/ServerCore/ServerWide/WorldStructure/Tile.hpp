@@ -39,6 +39,10 @@ namespace JoD {
         
         void SetElevation(int value);
         
+        int GetGroundCover() const;
+        
+        void SetGroundCover(int value);
+        
       private:
         struct Impl;
         

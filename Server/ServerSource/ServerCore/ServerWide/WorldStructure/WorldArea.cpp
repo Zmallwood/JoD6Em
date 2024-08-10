@@ -80,6 +80,14 @@ namespace JoD {
         m_pImpl->mobPositions.insert({mob, coord});
     }
     
+    void WorldArea::RemoveMobPosition(std::shared_ptr<Mob> mob) {
+        
+        if (m_pImpl->mobPositions.contains(mob)) {
+            
+            m_pImpl->mobPositions.erase(mob);
+        }
+    }
+    
     std::optional<Point> WorldArea::GetMobCoord(std::shared_ptr<Mob> mob) const {
         
         if (m_pImpl->mobPositions.contains(mob)) {
