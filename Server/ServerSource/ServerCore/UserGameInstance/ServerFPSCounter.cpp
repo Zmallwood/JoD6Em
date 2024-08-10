@@ -6,6 +6,7 @@
 
 #include "ServerFPSCounter.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
@@ -23,7 +24,9 @@ namespace JoD {
         m_framesCount++;
     }
     
-    void ServerFPSCounter::Render(WebSocket& webSocket) const {
+    void ServerFPSCounter::Render(UserID userID) const {
+        
+        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         SendTextDrawInstruction(
             webSocket,

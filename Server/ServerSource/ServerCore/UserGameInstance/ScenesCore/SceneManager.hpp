@@ -38,7 +38,7 @@ namespace JoD {
         ///
         /// @param webSocket Web socket object for the current user.
         ///
-        void RenderCurrentScene(UserID userID, WebSocket &webSocket) const;
+        void RenderCurrentScene(UserID userID) const;
         
         ///
         /// Move from the currently presented scene to another one.

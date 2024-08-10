@@ -28,7 +28,7 @@ namespace JoD {
         ///
         /// @param webSocket Web socket object associated with user.
         ///
-        virtual void Render(UserID userID, WebSocket &webSocket) const {
+        virtual void Render(UserID userID) const {
         }
     };
 }

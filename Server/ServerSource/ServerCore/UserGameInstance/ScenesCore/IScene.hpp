@@ -46,7 +46,7 @@ namespace JoD {
         ///
         /// @param webSocket Web socket object associated with the user.
         ///
-        void Render(UserID userID, WebSocket &webSocket) const;
+        void Render(UserID userID) const;
         
       protected:
         ///
@@ -60,9 +60,7 @@ namespace JoD {
         /// @param webSocket Web socket object associated with the user.
         ///
         virtual void RenderDerived(
-            UserID userID,
-            WebSocket
-            &webSocket) const {}
+            UserID userID) const {}
         
         const std::unique_ptr<JoD::GUI>& GUI() const;
         

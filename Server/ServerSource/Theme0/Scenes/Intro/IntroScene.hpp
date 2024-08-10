@@ -39,7 +39,7 @@ namespace JoD {
         ///
         /// @param webSocket Web socket object for user.
         ///
-        void RenderDerived(UserID userID, WebSocket &webSocket) const override;
+        void RenderDerived(UserID userID) const override;
         
       private:
         std::shared_ptr<GUILabel> m_guiLabelStartText;

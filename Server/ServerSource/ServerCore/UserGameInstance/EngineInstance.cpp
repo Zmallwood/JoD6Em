@@ -14,6 +14,7 @@
 #include "ScenesCore/SceneManager.hpp"
 #include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
 #include "TextOutput/TextMessages.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
@@ -57,13 +58,15 @@ namespace JoD {
         m_pImpl->serverFPSCounter->Update();
     }
     
-    void EngineInstance::Render(UserID userID, WebSocket &webSocket) const {
+    void EngineInstance::Render(UserID userID) const {
         
-        m_pImpl->sceneManager->RenderCurrentScene(userID, webSocket);
+        m_pImpl->sceneManager->RenderCurrentScene(userID);
         
-        m_pImpl->serverFPSCounter->Render(webSocket);
+        m_pImpl->serverFPSCounter->Render(userID);
         
         m_pImpl->cursor->Render(userID);
+        
+        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         SendPresentCanvasInstruction(webSocket);
     }

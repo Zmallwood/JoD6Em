@@ -22,7 +22,9 @@
 
 namespace JoD {
     
-    void WorldView::Render(UserID userID, WebSocket &webSocket) const {
+    void WorldView::Render(UserID userID) const {
+        
+        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         const auto tileSize =
             CalculateTileSize(

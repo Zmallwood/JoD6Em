@@ -37,8 +37,9 @@ namespace JoD {
         m_guiLabelStartText->SetVisible(showStartText);
     }
     
-    void IntroScene::RenderDerived(UserID userID, WebSocket
-                                   &webSocket) const {
+    void IntroScene::RenderDerived(UserID userID) const {
+        
+        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         SendImageDrawInstruction(
             webSocket, "DefaultSceneBackground",

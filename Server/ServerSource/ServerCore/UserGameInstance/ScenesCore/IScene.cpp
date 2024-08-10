@@ -30,9 +30,9 @@ namespace JoD {
         UpdateDerived(userID);
     }
     
-    void IScene::Render(UserID userID, WebSocket &webSocket) const {
+    void IScene::Render(UserID userID) const {
         
-        RenderDerived(userID, webSocket);
+        RenderDerived(userID);
         
         m_pImpl->gui->Render(userID);
     }

@@ -80,11 +80,11 @@ namespace JoD {
         }
     }
     
-    void MainScene::RenderDerived(UserID userID, WebSocket &webSocket) const {
+    void MainScene::RenderDerived(UserID userID) const {
         
         for (const auto& component : m_pImpl->components) {
             
-            component.second->Render(userID, webSocket);
+            component.second->Render(userID);
         }
     }
     

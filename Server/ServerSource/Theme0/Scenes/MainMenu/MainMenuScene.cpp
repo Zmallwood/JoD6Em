@@ -22,7 +22,9 @@ namespace JoD {
         });
     }
     
-    void MainMenuScene::RenderDerived(UserID userID, WebSocket &webSocket) const {
+    void MainMenuScene::RenderDerived(UserID userID) const {
+        
+        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         SendImageDrawInstruction(
             webSocket, "DefaultSceneBackground",

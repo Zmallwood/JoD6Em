@@ -36,7 +36,7 @@ namespace JoD {
         /// 
         /// @param webSocket Web socket object associated with the users connection.
         ///
-        void Render(UserID userID, WebSocket &webSocket) const;
+        void Render(UserID userID) const;
         
         ///
         /// Get the Aspect Ratio for the web browser canvas of the user.

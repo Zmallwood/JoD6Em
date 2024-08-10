@@ -129,9 +129,7 @@ namespace JoD {
             while (true){
                 
                 _<EngineGet>().GetInstance(m_pImpl->userID)->Update(userID);
-                _<EngineGet>().GetInstance(m_pImpl->userID)->Render(
-                    userID,
-                    webSocket);
+                _<EngineGet>().GetInstance(m_pImpl->userID)->Render(userID);
                 
                 std::this_thread::sleep_for(std::chrono::milliseconds(70));
             }

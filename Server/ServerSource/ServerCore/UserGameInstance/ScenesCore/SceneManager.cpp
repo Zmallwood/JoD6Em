@@ -57,11 +57,11 @@ namespace JoD {
         }
     }
     
-    void SceneManager::RenderCurrentScene(UserID userID, WebSocket &webSocket) const {
+    void SceneManager::RenderCurrentScene(UserID userID) const {
         
         if (m_pImpl->scenes.contains(m_pImpl->currentScene)) {
             
-            m_pImpl->scenes.at(m_pImpl->currentScene)->Render(userID, webSocket);
+            m_pImpl->scenes.at(m_pImpl->currentScene)->Render(userID);
         }
     }
     

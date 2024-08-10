@@ -25,7 +25,7 @@ namespace JoD {
         /// 
         /// @param webSocket Web socket object for the current user.
         ///
-        void Render(WebSocket& webSocket) const;
+        void Render(UserID userID) const;
         
       private:
         int m_fps {0}; ///< Last calculated FPS value.
