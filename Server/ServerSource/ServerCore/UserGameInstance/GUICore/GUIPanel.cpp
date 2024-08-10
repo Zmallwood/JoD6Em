@@ -6,6 +6,7 @@
 
 #include "GUIPanel.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
@@ -14,7 +15,9 @@ namespace JoD {
         
     }
     
-    void GUIPanel::RenderDerived(UserID userID, WebSocket& webSocket) const {
+    void GUIPanel::RenderDerived(UserID userID) const {
+        
+        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         SendImageDrawInstruction(webSocket, "GUIPanelBground", GetBounds());
     }

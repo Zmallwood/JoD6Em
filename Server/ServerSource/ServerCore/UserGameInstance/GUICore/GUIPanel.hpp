@@ -14,7 +14,7 @@ namespace JoD {
       public:
         GUIPanel(BoxF bounds);
         
-        void RenderDerived(UserID userID, WebSocket& webSocket) const override;
+        void RenderDerived(UserID userID) const override;
         
       private:
         BoxF GetBounds() const;

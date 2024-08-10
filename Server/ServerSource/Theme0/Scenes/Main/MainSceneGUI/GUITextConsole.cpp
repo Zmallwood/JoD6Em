@@ -17,10 +17,11 @@ namespace JoD {
     }
     
     
-    void GUITextConsole::RenderDerived(UserID userID,
-                                       WebSocket& webSocket) const {
+    void GUITextConsole::RenderDerived(UserID userID) const {
         
-        GUIPanel::RenderDerived(userID, webSocket);
+        GUIPanel::RenderDerived(userID);
+        
+        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         auto textOut = _<EngineGet>().GetTextMessages(userID);
         

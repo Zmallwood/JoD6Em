@@ -27,7 +27,9 @@ namespace JoD {
         m_filledAmount = GetFractionalExpProgress(exp);
     }
     
-    void GUIExpBar::RenderDerived(UserID userID, WebSocket &webSocket) const {
+    void GUIExpBar::RenderDerived(UserID userID) const {
+        
+        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         auto boundsBground = BoxF {m_position.x, m_position.y, 1.0f, k_height};
         

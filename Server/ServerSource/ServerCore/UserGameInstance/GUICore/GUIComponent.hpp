@@ -15,13 +15,13 @@ namespace JoD {
         
         void Update(UserID userID);
         
-        void Render(UserID userID, WebSocket &webSocket) const;
+        void Render(UserID userID) const;
         
         virtual void UpdateDerived(UserID userID) {
             
         }
         
-        virtual void RenderDerived(UserID userID, WebSocket &webSocket) const {
+        virtual void RenderDerived(UserID userID) const {
             
         }
         

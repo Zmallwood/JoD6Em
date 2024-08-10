@@ -15,7 +15,7 @@ namespace JoD {
       public:
         GUITextConsole();
         
-        void RenderDerived(UserID userID, WebSocket& webSocket) const override;
+        void RenderDerived(UserID userID) const override;
         
       private:
         static constexpr float k_width {0.35f};

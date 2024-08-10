@@ -17,7 +17,7 @@ namespace JoD {
         
         void UpdateDerived(UserID userID) override;
         
-        void RenderDerived(UserID userID, WebSocket &webSocket) const override;
+        void RenderDerived(UserID userID) const override;
         
         static constexpr float GetHeight() {
             

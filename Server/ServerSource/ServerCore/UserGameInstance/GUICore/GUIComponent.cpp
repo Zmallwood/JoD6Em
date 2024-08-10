@@ -17,13 +17,13 @@ namespace JoD {
         UpdateDerived(userID);
     }
     
-    void GUIComponent::Render(UserID userID, WebSocket &webSocket) const {
+    void GUIComponent::Render(UserID userID) const {
         
         if (!m_visible) {
             
             return;
         }
         
-        RenderDerived(userID, webSocket);
+        RenderDerived(userID);
     }
 }

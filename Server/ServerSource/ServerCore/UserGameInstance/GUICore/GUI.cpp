@@ -15,12 +15,12 @@ namespace JoD {
         }
     }
     
-    void GUI::Render(UserID userID, WebSocket &webSocket) const {
+    void GUI::Render(UserID userID) const {
         
         
         for (auto& component : m_components) {
             
-            component->Render(userID, webSocket);
+            component->Render(userID);
         }
     }
 }

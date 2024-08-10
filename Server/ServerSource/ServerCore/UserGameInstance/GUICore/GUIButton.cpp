@@ -33,7 +33,10 @@ namespace JoD {
         }
     }
     
-    void GUIButton::RenderDerived(UserID userID, WebSocket& webSocket) const {
+    void GUIButton::RenderDerived(UserID userID) const {
+        
+        
+        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         std::string imageName =
             m_hovered ? "GUIButtonHoveredBground" : "GUIButtonBground";

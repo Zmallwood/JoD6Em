@@ -63,7 +63,7 @@ namespace JoD {
         
         m_pImpl->serverFPSCounter->Render(webSocket);
         
-        m_pImpl->cursor->Render(userID, webSocket);
+        m_pImpl->cursor->Render(userID);
         
         SendPresentCanvasInstruction(webSocket);
     }

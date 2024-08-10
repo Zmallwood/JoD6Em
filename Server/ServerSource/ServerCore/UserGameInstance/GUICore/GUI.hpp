@@ -14,7 +14,7 @@ namespace JoD {
       public:
         void Update(UserID userID);
         
-        void Render(UserID userID, WebSocket &webSocket) const;
+        void Render(UserID userID) const;
         
         template<class T, class ... Args>
         std::shared_ptr<T> AddComponent(Args... args) {

@@ -34,7 +34,7 @@ namespace JoD {
         
         RenderDerived(userID, webSocket);
         
-        m_pImpl->gui->Render(userID, webSocket);
+        m_pImpl->gui->Render(userID);
     }
     
     const std::unique_ptr<JoD::GUI>& IScene::GUI() const {

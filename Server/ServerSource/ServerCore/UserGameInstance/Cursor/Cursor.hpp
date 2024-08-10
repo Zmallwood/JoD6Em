@@ -20,7 +20,7 @@ namespace JoD {
         /// 
         /// @param webSocket Users web socket object.
         ///
-        void Render(UserID userID, WebSocket& webSocket) const;
+        void Render(UserID userID) const;
         
       private:
         const std::string k_cursorImageName {"CursorDefault"}; ///< Image name for default cursor style.

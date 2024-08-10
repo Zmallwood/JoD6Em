@@ -10,7 +10,9 @@
 
 namespace JoD {
     
-    void Cursor::Render(UserID userID, WebSocket& webSocket) const {
+    void Cursor::Render(UserID userID) const {
+        
+        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         // Get current mouse position.
         const auto mousePosition = _<EngineGet>().GetMousePosition(userID).value();
