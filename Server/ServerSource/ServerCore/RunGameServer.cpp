@@ -7,6 +7,7 @@
 #include "RunGameServer.hpp"
 #include "ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.hpp"
 #include "Net/RunWebSocketServer.hpp"
+#include "WorldProcessing/BeginProcessWorld.hpp"
 
 namespace JoD {
     
@@ -15,6 +16,8 @@ namespace JoD {
         srand(time(0));
         
         GenerateNewWorld();
+        
+        BeginProcessWorld();
         
         RunWebSocketServer(argv[1], argv[2]);
     }
