@@ -1,24 +1,24 @@
 /*
  * Tile.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
 #include "Tile.hpp"
-#include "Object.hpp"
+#include "ObjectsPile.hpp"
 
 namespace JoD {
     
     struct Tile::Impl {
         int ground {0}; ///< Hash code for ground type.
-        std::unique_ptr<Object> object; ///< Hash code for object type name, nullptr means no object.
         std::shared_ptr<Mob> mob; ///< Mob currently occupying this tile, nullptr means no mob.
         int elevation {0};
         int groundCover {0};
+        ObjectsPile objectsPile;
     };
     
     Tile::Tile()
-    : m_pImpl(std::make_unique<Impl>()) {
+        : m_pImpl(std::make_unique<Impl>()) {
         
     }
     
@@ -41,16 +41,6 @@ namespace JoD {
         SetGround(Hash(imageName));
     }
     
-    Object* Tile::GetObject() const {
-        
-        return m_pImpl->object.get();
-    }
-    
-    void Tile::SetObject(std::unique_ptr<Object> value) {
-        
-        m_pImpl->object = std::move(value);
-    }
-    
     const std::shared_ptr<Mob> Tile::GetMob() const {
         
         return m_pImpl->mob;
@@ -60,7 +50,7 @@ namespace JoD {
         
         m_pImpl->mob = value;
     }
-        
+    
     int Tile::GetElevation() const {
         
         return m_pImpl->elevation;
@@ -70,7 +60,7 @@ namespace JoD {
         
         m_pImpl->elevation = value;
     }
-        
+    
     int Tile::GetGroundCover() const {
         
         
@@ -80,5 +70,11 @@ namespace JoD {
     void Tile::SetGroundCover(int value) {
         
         m_pImpl->groundCover = value;
+    }
+    
+    
+    ObjectsPile &Tile::GetObjectsPile() const {
+        
+        return m_pImpl->objectsPile;
     }
 }

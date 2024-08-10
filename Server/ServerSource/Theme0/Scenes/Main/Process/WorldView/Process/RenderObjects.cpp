@@ -7,6 +7,7 @@
 #include "RenderObjects.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Object.hpp"
+#include "ServerCore/ServerWide/WorldStructure/ObjectsPile.hpp"
 #include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 
@@ -16,38 +17,45 @@ namespace JoD {
         WebSocket &webSocket,
         Tile* tile, BoxF tileBounds) {
         
-        if (tile->GetObject()) {
+        for (auto object : tile->GetObjectsPile().GetObjects()) {
             
-            auto foundImageDim = false;
-            Size imageDimensions;
-            
-            auto dim = _<ImageDimensions>().GetDimension(tile->GetObject()->GetType());
-            
-            if (dim.has_value()) {
+            if (object) {
                 
-                imageDimensions = *dim;
-                foundImageDim = true;
-            }
-            
-            if (!foundImageDim) {
+                auto foundImageDim = false;
+                Size imageDimensions;
                 
-                SendRequestImageDimensions(
+                auto dim =
+                    _<ImageDimensions>().GetDimension(
+                        object->GetType());
+                
+                if (dim.has_value()) {
+                    
+                    imageDimensions = *dim;
+                    foundImageDim = true;
+                }
+                
+                if (!foundImageDim) {
+                    
+                    SendRequestImageDimensions(
+                        webSocket,
+                        object->GetType());
+                    
+                    return;
+                }
+                
+                const auto width = imageDimensions.w/60.0f*tileBounds.w;
+                const auto height = imageDimensions.h/60.0f*tileBounds.h;
+                
+                const auto newBounds = BoxF{tileBounds.x + tileBounds.w/2 -
+                                            width/2,
+                                            tileBounds.y + tileBounds.h -
+                                            height, width, height};
+                
+                SendImageDrawInstruction(
                     webSocket,
-                    tile->GetObject()->GetType());
-                
-                return;
+                    object->GetType(),
+                    newBounds);
             }
-            
-            const auto width = imageDimensions.w/60.0f*tileBounds.w;
-            const auto height = imageDimensions.h/60.0f*tileBounds.h;
-            
-            const auto newBounds = BoxF{tileBounds.x + tileBounds.w/2 - width/2,
-                                   tileBounds.y + tileBounds.h - height, width, height};
-            
-            SendImageDrawInstruction(
-                webSocket,
-                tile->GetObject()->GetType(),
-                newBounds);
         }
     }
 }

@@ -9,7 +9,7 @@
 namespace JoD {
     
     class Mob;
-    class Object;
+    class ObjectsPile;
     
     ///
     /// Represents a square tile in the game world.
@@ -27,10 +27,6 @@ namespace JoD {
         
         void SetGround(std::string_view imageName);
         
-        Object* GetObject() const;
-        
-        void SetObject(std::unique_ptr<Object> value);
-        
         const std::shared_ptr<Mob> GetMob() const;
         
         void SetMob(std::shared_ptr<Mob> value) ;
@@ -42,6 +38,8 @@ namespace JoD {
         int GetGroundCover() const;
         
         void SetGroundCover(int value);
+        
+        ObjectsPile &GetObjectsPile() const;
         
       private:
         struct Impl;

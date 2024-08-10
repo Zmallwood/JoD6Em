@@ -1,6 +1,6 @@
 /*
  * Combat.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -14,10 +14,11 @@
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Object.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Mob.hpp"
+#include "ServerCore/ServerWide/WorldStructure/ObjectsPile.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 
 namespace JoD {
-
+    
     void Combat::Update(UserID userID) {
         
         auto player =
@@ -25,7 +26,8 @@ namespace JoD {
         
         auto mobTargeting =
             static_cast<MobTargeting*>(
-                _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene")->GetComponent(
+                _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>(
+                    "MainScene")->GetComponent(
                     MainSceneComponents::
                     MobTargeting));
         
@@ -33,7 +35,8 @@ namespace JoD {
             
             const auto &worldArea = _<World>().GetCurrentWorldArea();
             const auto pos =
-                worldArea->GetMobCoord(mobTargeting->GetTargetedCreature()).value();
+                worldArea->GetMobCoord(
+                    mobTargeting->GetTargetedCreature()).value();
             
             auto playerCoord = player->GetCoord();
             
@@ -48,22 +51,31 @@ namespace JoD {
                             static_cast<int>(
                                 1000/
                                 player->GetAttackSpeed())))) {
-                                
+                    
                     
                     
                     player->SetTicksLastAttackOnOther(Now());
                     
                     mobTargeting->GetTargetedCreature()->Hit(1);
                     
-                    worldArea->GetTile(pos)->SetGroundCover(Hash("GroundCoverPoolOfBlood"));
+                    worldArea->GetTile(pos)->SetGroundCover(
+                        Hash(
+                            "GroundCoverPoolOfBlood"));
                     
                     if (mobTargeting->GetTargetedCreature()->GetHP() <= 0) {
                         
-                        worldArea->GetTile(pos)->SetObject(std::make_unique<Object>("ObjectBoneRemains"));
+                        if (false ==
+                            worldArea->GetTile(
+                                pos)->GetObjectsPile().HasObjectOfType(
+                                "ObjectBoneRemains")){
+                            worldArea->GetTile(pos)->GetObjectsPile().AddObject("ObjectBoneRemains");
+                        }
                         
-                        player->AddExperience(mobTargeting->GetTargetedCreature()->GetExp());
+                        player->AddExperience(
+                            mobTargeting->GetTargetedCreature()->GetExp());
                         
-                        worldArea->RemoveMobPosition(mobTargeting->GetTargetedCreature());
+                        worldArea->RemoveMobPosition(
+                            mobTargeting->GetTargetedCreature());
                         
                         mobTargeting->SetTargetedCreature(nullptr);
                         

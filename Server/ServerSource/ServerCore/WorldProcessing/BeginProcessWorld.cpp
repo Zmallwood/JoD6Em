@@ -9,6 +9,7 @@
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Object.hpp"
+#include "ServerCore/ServerWide/WorldStructure/ObjectsPile.hpp"
 
 namespace JoD {
     
@@ -38,15 +39,15 @@ namespace JoD {
                         
                         auto tile = worldArea->GetTile(x, y);
                         
-                        auto object = tile->GetObject();
+                        auto objects = tile->GetObjectsPile().GetObjects();
                         
-                        if (object) {
+                        for (auto object : objects) {
                             
                             if (object->GetType() == Hash("ObjectBoneRemains")) {
-                                
+                            
                                 if (Now() > object->GetCreationTime() + k_remainsStayDuration) {
                                     
-                                    tile->SetObject(nullptr);
+                                    tile->GetObjectsPile().RemoveObject(object);
                                 }
                             }
                         }

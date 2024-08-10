@@ -8,6 +8,7 @@
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "ServerCore/ServerWide/WorldStructure/ObjectsPile.hpp"
 
 namespace JoD {
     
@@ -67,7 +68,7 @@ namespace JoD {
             return;
         }
         
-        if (tile->GetObject()) {
+        if (tile->GetObjectsPile().HasObjects()) {
             
             return;
         }

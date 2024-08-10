@@ -7,7 +7,7 @@
 #include "GenerateObjects.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Object.hpp"
+#include "ServerCore/ServerWide/WorldStructure/ObjectsPile.hpp"
 #include "Configuration/GameProperties.hpp"
 
 namespace JoD {
@@ -42,7 +42,7 @@ namespace JoD {
                 
                 if (ground != Hash("GroundWater") && ground != Hash("GroundCobbleStone")) {
                     
-                    worldArea->GetTile(x, y)->SetObject(std::make_unique<Object>(objectName));
+                    worldArea->GetTile(x, y)->GetObjectsPile().AddObject(objectName);
                 }
             }
         }
