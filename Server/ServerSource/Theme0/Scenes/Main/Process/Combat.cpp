@@ -62,7 +62,7 @@ namespace JoD {
                         Hash(
                             "GroundCoverPoolOfBlood"));
                     
-                    if (mobTargeting->GetTargetedCreature()->GetHP() <= 0) {
+                    if (mobTargeting->GetTargetedCreature()->IsDead()) {
                         
                         if (false ==
                             worldArea->GetTile(

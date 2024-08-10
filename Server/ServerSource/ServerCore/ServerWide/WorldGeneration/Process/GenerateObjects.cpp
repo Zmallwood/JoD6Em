@@ -21,6 +21,20 @@ namespace JoD {
     
     void GenerateObjects(WorldArea* worldArea) {
         
+        for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
+            
+            for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w;
+                 x++) {
+                
+                if (worldArea->GetTile(x,y)->GetGround() == Hash("GroundGrass")) {
+                    
+                    worldArea->GetTile(
+                        x,
+                        y)->GetObjectsPile().AddObject("ObjectGrass");
+                }
+            }
+        }
+        
         GenerateObjectOfType(worldArea, "ObjectTree1", 300);
         GenerateObjectOfType(worldArea, "ObjectTree2", 300);
         GenerateObjectOfType(worldArea, "ObjectBush1", 200);
@@ -35,14 +49,20 @@ namespace JoD {
             
             for (auto i = 0; i < amount; i++) {
                 
-                const auto x = rand() % _<GameProperties>().GetWorldAreaSize().w;
-                const auto y = rand() % _<GameProperties>().GetWorldAreaSize().h;
+                const auto x = rand() %
+                               _<GameProperties>().GetWorldAreaSize().w;
+                const auto y = rand() %
+                               _<GameProperties>().GetWorldAreaSize().h;
                 
                 const auto ground = worldArea->GetTile(x, y)->GetGround();
                 
-                if (ground != Hash("GroundWater") && ground != Hash("GroundCobbleStone")) {
+                if (ground != Hash("GroundWater") &&
+                    ground != Hash("GroundCobbleStone") &&
+                    ground != Hash("GroundBridge")) {
                     
-                    worldArea->GetTile(x, y)->GetObjectsPile().AddObject(objectName);
+                    worldArea->GetTile(
+                        x,
+                        y)->GetObjectsPile().AddObject(objectName);
                 }
             }
         }

@@ -51,6 +51,10 @@ namespace JoD {
         
         bool IsDead() const;
         
+        void InflictDeath();
+        
+        float m_hunger {0.0f};
+        
       private:
         int m_type {0}; ///< Hash code of mob type name.
         int m_level {0}; ///< Level, as provided in ctor.

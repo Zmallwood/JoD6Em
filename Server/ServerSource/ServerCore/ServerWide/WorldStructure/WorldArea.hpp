@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "MobGroup.hpp"
+
 namespace JoD {
     
     class Tile;
@@ -39,6 +41,8 @@ namespace JoD {
         void RemoveMobPosition(std::shared_ptr<Mob> mob);
         
         std::optional<Point> GetMobCoord(std::shared_ptr<Mob> mob) const;
+        
+        std::vector<MobGroup> m_mobGroups;
         
       private:
         struct Impl;

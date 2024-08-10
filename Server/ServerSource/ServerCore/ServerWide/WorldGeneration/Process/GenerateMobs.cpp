@@ -24,6 +24,10 @@ namespace JoD {
             const auto xCenter = rand() % 50 + 50;
             const auto yCenter = rand() % 50;
             
+            MobGroup mobGroup;
+            
+            mobGroup.m_coordinate = {xCenter, yCenter};
+            
             for (auto j = 0; j < numMobsInGroup; j++) {
                 
                 const auto x = xCenter + rand() % 5 - rand() % 5;
@@ -46,16 +50,24 @@ namespace JoD {
                 
                 const auto newMob = std::make_shared<Mob>("MobBlueSlime", 1);
                 
+                mobGroup.m_mobs.push_back(newMob);
+                
                 worldArea->RegisterMobPosition(newMob, {x, y});
                 
                 worldArea->GetTile(x, y)->SetMob(newMob);
             }
+            
+            worldArea->m_mobGroups.push_back(mobGroup);
         }
         
         for (auto i = 0; i < numYellowSlimeGroups; i++) {
             
             const auto xCenter = rand() % 50 + 50;
             const auto yCenter = rand() % 50 + 50;
+            
+            MobGroup mobGroup;
+            
+            mobGroup.m_coordinate = {xCenter, yCenter};
             
             for (auto j = 0; j < numMobsInGroup; j++) {
                 
@@ -81,14 +93,22 @@ namespace JoD {
                 
                 worldArea->RegisterMobPosition(newMob, {x, y});
                 
+                mobGroup.m_mobs.push_back(newMob);
+                
                 worldArea->GetTile(x, y)->SetMob(newMob);
             }
+            
+            worldArea->m_mobGroups.push_back(mobGroup);
         }
         
         for (auto i = 0; i < numRedSlimeGroups; i++){
             
             const auto xCenter = rand() % 50;
             const auto yCenter = rand() % 50 + 50;
+            
+            MobGroup mobGroup;
+            
+            mobGroup.m_coordinate = {xCenter, yCenter};
             
             for (auto j = 0; j < numMobsInGroup; j++) {
                 
@@ -114,8 +134,55 @@ namespace JoD {
                 
                 worldArea->RegisterMobPosition(newMob, {x, y});
                 
+                mobGroup.m_mobs.push_back(newMob);
+                
                 worldArea->GetTile(x, y)->SetMob(newMob);
             }
+            
+            worldArea->m_mobGroups.push_back(mobGroup);
+        }
+        
+        auto numCowGroups = 70;
+        
+        for (auto i = 0; i < numCowGroups; i++){
+            
+            const auto xCenter = rand() % 100;
+            const auto yCenter = rand() % 100;
+            
+            MobGroup mobGroup;
+            
+            mobGroup.m_coordinate = {xCenter, yCenter};
+            
+            for (auto j = 0; j < numMobsInGroup; j++) {
+                
+                const auto x = xCenter + rand() % 5 - rand() % 5;
+                const auto y = yCenter + rand() % 5 - rand() % 5;
+                
+                if (!worldArea->IsValidCoord({x,y})) {
+                    
+                    continue;
+                }
+                
+                if (worldArea->GetTile(x, y)->GetMob()) {
+                    
+                    continue;
+                }
+                
+                if (worldArea->GetTile(x, y)->GetGround() == Hash("GroundWater")) {
+                    
+                    continue;
+                }
+                
+                const auto newMob = std::make_shared<Mob>("MobCow", 3);
+                
+                worldArea->RegisterMobPosition(newMob, {x, y});
+                
+                mobGroup.m_mobs.push_back(newMob);
+                
+                worldArea->GetTile(x, y)->SetMob(newMob);
+            }
+            
+            worldArea->m_mobGroups.push_back(mobGroup);
         }
     }
 }

@@ -19,6 +19,8 @@ namespace JoD {
         m_atkSpeed = level/1.0f;
         m_hp = level*5;
         m_exp = level*5;
+        
+        m_hunger = static_cast<float>(rand()) / RAND_MAX;
     }
     
     void Mob::Hit(int damage) {
@@ -35,5 +37,10 @@ namespace JoD {
     bool Mob::IsDead() const {
         
         return m_hp <= 0;
+    }
+    
+    void Mob::InflictDeath() {
+        
+        m_hp = 0;
     }
 }

@@ -22,6 +22,8 @@ namespace JoD {
             
             return m_creationTime;
         }
+
+        float m_durability {1.0f};
         
       private:
         int m_type {0};

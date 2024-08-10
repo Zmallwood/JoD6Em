@@ -75,13 +75,13 @@ namespace JoD {
             return;
         }
         
-        auto canWalkThroughObject = !tile->GetObjectsPile().HasObjects();
+        auto canWalkThroughObject = true;
         
         for (auto object : tile->GetObjectsPile().GetObjects()) {
             
-            if (_<ObjectsIndex>().CanWalkThroughObject(object->GetType())) {
+            if (!_<ObjectsIndex>().CanWalkThroughObject(object->GetType())) {
                 
-                canWalkThroughObject = true;
+                canWalkThroughObject = false;
                 break;
             }
         }
