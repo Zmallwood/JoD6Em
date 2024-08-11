@@ -11,7 +11,7 @@ namespace JoD {
     
     struct Tile::Impl {
         int ground {0}; ///< Hash code for ground type.
-        std::shared_ptr<Mob> mob; ///< Mob currently occupying this tile, nullptr means no mob.
+        std::shared_ptr<Creature> creature; ///< Mob currently occupying this tile, nullptr means no mob.
         int elevation {0};
         int groundCover {0};
         ObjectsPile objectsPile;
@@ -41,14 +41,14 @@ namespace JoD {
         SetGround(Hash(imageName));
     }
     
-    const std::shared_ptr<Mob> Tile::GetMob() const {
+    const std::shared_ptr<Creature> Tile::GetCreature() const {
         
-        return m_pImpl->mob;
+        return m_pImpl->creature;
     }
     
-    void Tile::SetMob(std::shared_ptr<Mob> value) {
+    void Tile::SetCreature(std::shared_ptr<Creature> value) {
         
-        m_pImpl->mob = value;
+        m_pImpl->creature = value;
     }
     
     int Tile::GetElevation() const {

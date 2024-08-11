@@ -1,5 +1,5 @@
 /*
- * MobGroup.hpp
+ * CreatureGroup.hpp
  *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
@@ -8,13 +8,13 @@
 
 namespace JoD {
     
-    class Mob;
+    class Creature;
     
-    class MobGroup {
+    class CreatureGroup {
       public:
-        Point m_coordinate;
-        std::vector<std::shared_ptr<Mob>> m_mobs;
+        Point m_coord;
+        std::vector<std::shared_ptr<Creature>> m_creatures;
         Point m_destCoord = {rand() % 100, rand() % 100};
-        int m_nrMobsInGroup {6};
+        int m_numMobsInGroup {6};
     };
 }

@@ -9,7 +9,7 @@
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "TileHovering.hpp"
-#include "MobTargeting.hpp"
+#include "CreatureTargeting.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
@@ -27,7 +27,7 @@ namespace JoD {
                     TileHovering));
                     
         auto mobTargeting =
-            static_cast<MobTargeting*>(
+            static_cast<CreatureTargeting*>(
                 mainScene.GetComponent(
                     MainSceneComponents::
                     MobTargeting));

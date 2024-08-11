@@ -1,5 +1,5 @@
 /*
- * GenerateMobs.hpp
+ * GenerateCreatures.hpp
  * 
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
@@ -15,5 +15,5 @@ namespace JoD {
     /// 
     /// @param worldArea World area to generate mobs on.
     ///
-    void GenerateMobs(WorldArea* worldArea);
+    void GenerateCreatures(WorldArea* worldArea);
 }

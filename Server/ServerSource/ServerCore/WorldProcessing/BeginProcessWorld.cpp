@@ -9,7 +9,7 @@
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Mob.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Creature.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Object.hpp"
 #include "ServerCore/ServerWide/WorldStructure/ObjectsPile.hpp"
 
@@ -43,18 +43,18 @@ namespace JoD {
                     
                     auto worldArea = _<World>().GetCurrentWorldArea();
                     
-                    auto &mobGroups = worldArea->m_mobGroups;
+                    auto &creatureGroups = worldArea->m_creatureGroups;
                     
-                    for (auto &mobGroup : mobGroups) {
+                    for (auto &creatureGroup : creatureGroups) {
                         
-                        auto dx = mobGroup.m_destCoord.x -
-                                  mobGroup.m_coordinate.x;
-                        auto dy = mobGroup.m_destCoord.y -
-                                  mobGroup.m_coordinate.y;
+                        auto dx = creatureGroup.m_destCoord.x -
+                                  creatureGroup.m_coord.x;
+                        auto dy = creatureGroup.m_destCoord.y -
+                                  creatureGroup.m_coord.y;
                         
                         if (dx == 0 && dy == 0) {
                             
-                            mobGroup.m_destCoord = {rand() % 100, rand() % 100};
+                            creatureGroup.m_destCoord = {rand() % 100, rand() % 100};
                         }
                         
                         auto absDx = std::abs(dx);
@@ -73,10 +73,10 @@ namespace JoD {
                             normY = dy/absDy;
                         }
                         
-                        mobGroup.m_coordinate.x += normX;
-                        mobGroup.m_coordinate.y += normY;
+                        creatureGroup.m_coord.x += normX;
+                        creatureGroup.m_coord.y += normY;
                         
-                        for (auto mob : mobGroup.m_mobs) {
+                        for (auto mob : creatureGroup.m_creatures) {
                             
                             auto pos = worldArea->GetMobCoord(mob);
                             
@@ -84,8 +84,8 @@ namespace JoD {
                                 
                                 const int k_maxMobGroupRadius = 4;
                                 
-                                auto dx = mobGroup.m_coordinate.x - pos.value().x;
-                                auto dy = mobGroup.m_coordinate.y - pos.value().y;
+                                auto dx = creatureGroup.m_coord.x - pos.value().x;
+                                auto dy = creatureGroup.m_coord.y - pos.value().y;
                                 
                                 
                                 if (dx*dx + dy*dy >
@@ -122,10 +122,10 @@ namespace JoD {
                                         newX,
                                         newY);
                                     
-                                    if (newTile->GetMob() == nullptr) {
+                                    if (newTile->GetCreature() == nullptr) {
                                         
-                                        newTile->SetMob(mob);
-                                        worldArea->GetTile(pos.value())->SetMob(
+                                        newTile->SetCreature(mob);
+                                        worldArea->GetTile(pos.value())->SetCreature(
                                             nullptr);
                                         
                                         worldArea->RemoveMobPosition(mob);
@@ -161,7 +161,7 @@ namespace JoD {
                                 }
                             }
                             
-                            auto mob = tile->GetMob();
+                            auto mob = tile->GetCreature();
                             
                             if (mob) {
                                 
@@ -198,19 +198,19 @@ namespace JoD {
                                         bool goOn = true;
                                         
                                         for (auto groupIt =
-                                                 worldArea->m_mobGroups.begin();
+                                                 worldArea->m_creatureGroups.begin();
                                              groupIt !=
-                                             worldArea->m_mobGroups.end() && goOn;
+                                             worldArea->m_creatureGroups.end() && goOn;
                                              groupIt++) {
                                             
                                             for (auto it =
-                                                     groupIt->m_mobs.begin();
-                                                 it != groupIt->m_mobs.end();
+                                                     groupIt->m_creatures.begin();
+                                                 it != groupIt->m_creatures.end();
                                                  it++) {
                                                 
-                                                if (*it == tile->GetMob()) {
+                                                if (*it == tile->GetCreature()) {
                                                     
-                                                    groupIt->m_mobs.erase(it);
+                                                    groupIt->m_creatures.erase(it);
                                                     goOn = false;
                                                     break;
                                                 }
@@ -218,9 +218,9 @@ namespace JoD {
                                         }
                                         
                                         worldArea->RemoveMobPosition(
-                                            tile->GetMob());
+                                            tile->GetCreature());
                                         
-                                        tile->SetMob(nullptr);
+                                        tile->SetCreature(nullptr);
                                     }
                                 }
                             }

@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include "MobGroup.hpp"
+#include "CreatureGroup.hpp"
 
 namespace JoD {
     
     class Tile;
-    class Mob;
+    class Creature;
     
     ///
     /// A portion of the total world map composed of a tile grid.
@@ -36,13 +36,13 @@ namespace JoD {
         
         Tile* GetTile(int xCoord, int yCoord) const;
         
-        void RegisterMobPosition(std::shared_ptr<Mob> mob, Point coord);
+        void RegisterMobPosition(std::shared_ptr<Creature> mob, Point coord);
         
-        void RemoveMobPosition(std::shared_ptr<Mob> mob);
+        void RemoveMobPosition(std::shared_ptr<Creature> mob);
         
-        std::optional<Point> GetMobCoord(std::shared_ptr<Mob> mob) const;
+        std::optional<Point> GetMobCoord(std::shared_ptr<Creature> mob) const;
         
-        std::vector<MobGroup> m_mobGroups;
+        std::vector<CreatureGroup> m_creatureGroups;
         
       private:
         struct Impl;

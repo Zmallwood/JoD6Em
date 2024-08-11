@@ -1,10 +1,10 @@
 /*
- * MobTargeting.cpp
+ * CreatureTargeting.cpp
  *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "MobTargeting.hpp"
+#include "CreatureTargeting.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
 #include "TileHovering.hpp"
@@ -18,7 +18,7 @@
 
 namespace JoD {
     
-    void MobTargeting::Update(UserID userID) {
+    void CreatureTargeting::Update(UserID userID) {
         
         auto player =
             _<EngineGet>().GetPlayer(userID);
@@ -45,9 +45,9 @@ namespace JoD {
             
             const auto &tile = worldArea->GetTile(hoveredTile.value());
             
-            if (tile->GetMob()) {
+            if (tile->GetCreature()) {
                 
-                m_targetedCreature = tile->GetMob();
+                m_targetedCreature = tile->GetCreature();
                 
             }else {
                 

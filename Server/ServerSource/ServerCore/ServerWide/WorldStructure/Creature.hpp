@@ -13,7 +13,7 @@ namespace JoD {
     ///
     /// Combatable mob object which can be positioned on a tile.
     ///
-    class Mob {
+    class Creature {
         
       public:
         ///
@@ -22,7 +22,7 @@ namespace JoD {
         /// @param mobName Mob type name.
         /// @param level Initial level, determines all the stats of the mob.
         ///
-        Mob(std::string_view mobName, int level);
+        Creature(std::string_view mobName, int level);
         
         void Hit(int damage);
         

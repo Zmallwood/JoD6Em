@@ -1,5 +1,5 @@
 /*
- * MobTargeting.hpp
+ * CreatureTargeting.hpp
  *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
@@ -10,12 +10,12 @@
 
 namespace JoD {
     
-    class Mob;
+    class Creature;
     
     ///
     /// Enables targeting mobs in the game world by right clicking on them.
     ///
-    class MobTargeting : public IMainSceneComponent {
+    class CreatureTargeting : public IMainSceneComponent {
         
       public:
         ///
@@ -28,18 +28,18 @@ namespace JoD {
         ///
         void Update(UserID userID) override;
         
-        std::shared_ptr<Mob> GetTargetedCreature() const {
+        std::shared_ptr<Creature> GetTargetedCreature() const {
             
             return m_targetedCreature;
         }
         
-        void SetTargetedCreature(std::shared_ptr<Mob> value) {
+        void SetTargetedCreature(std::shared_ptr<Creature> value) {
             
             m_targetedCreature = value;
         }
         
       private:
-        std::shared_ptr<Mob>
+        std::shared_ptr<Creature>
         m_targetedCreature; ///< Currently targeted creature, nullptr means no target.
     };
 }

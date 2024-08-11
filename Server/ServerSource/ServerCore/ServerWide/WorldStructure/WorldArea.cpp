@@ -12,7 +12,7 @@ namespace JoD {
     
     struct WorldArea::Impl {
         std::vector<std::vector<std::unique_ptr<Tile>>> tiles; ///< Tile grid.
-        std::map<std::shared_ptr<Mob>, Point>
+        std::map<std::shared_ptr<Creature>, Point>
         mobPositions; ///< Helper structure which maps mobs to their positions.
     };
     
@@ -75,12 +75,12 @@ namespace JoD {
         return GetTile({xCoord, yCoord});
     }
     
-    void WorldArea::RegisterMobPosition(std::shared_ptr<Mob> mob, Point coord) {
+    void WorldArea::RegisterMobPosition(std::shared_ptr<Creature> mob, Point coord) {
         
         m_pImpl->mobPositions.insert({mob, coord});
     }
     
-    void WorldArea::RemoveMobPosition(std::shared_ptr<Mob> mob) {
+    void WorldArea::RemoveMobPosition(std::shared_ptr<Creature> mob) {
         
         if (m_pImpl->mobPositions.contains(mob)) {
             
@@ -88,7 +88,7 @@ namespace JoD {
         }
     }
     
-    std::optional<Point> WorldArea::GetMobCoord(std::shared_ptr<Mob> mob) const {
+    std::optional<Point> WorldArea::GetMobCoord(std::shared_ptr<Creature> mob) const {
         
         if (m_pImpl->mobPositions.contains(mob)) {
             

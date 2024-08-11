@@ -4,11 +4,11 @@
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "Mob.hpp"
+#include "Creature.hpp"
 
 namespace JoD {
     
-    Mob::Mob(std::string_view mobName,
+    Creature::Creature(std::string_view mobName,
              int level) : m_type(Hash(mobName)) {
         
         m_level = level;
@@ -23,7 +23,7 @@ namespace JoD {
         m_hunger = static_cast<float>(rand()) / RAND_MAX;
     }
     
-    void Mob::Hit(int damage) {
+    void Creature::Hit(int damage) {
         
         if (IsDead()) {
             
@@ -34,12 +34,12 @@ namespace JoD {
         m_ticksLastHitFromOther = Now();
     }
     
-    bool Mob::IsDead() const {
+    bool Creature::IsDead() const {
         
         return m_hp <= 0;
     }
     
-    void Mob::InflictDeath() {
+    void Creature::InflictDeath() {
         
         m_hp = 0;
     }

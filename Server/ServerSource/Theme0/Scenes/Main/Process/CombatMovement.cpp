@@ -6,7 +6,7 @@
 
 #include "CombatMovement.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
-#include "MobTargeting.hpp"
+#include "CreatureTargeting.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
@@ -19,7 +19,7 @@ namespace JoD {
             _<EngineGet>().GetPlayer(userID);
         
         auto mobTargeting =
-            static_cast<MobTargeting*>(
+            static_cast<CreatureTargeting*>(
                 _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene")->GetComponent(
                     MainSceneComponents::
                     MobTargeting));

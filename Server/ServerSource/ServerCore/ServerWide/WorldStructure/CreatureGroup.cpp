@@ -1,10 +1,10 @@
 /*
- * MobGroup.cpp
+ * CreatureGroup.cpp
  * 
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "MobGroup.hpp"
+#include "CreatureGroup.hpp"
 
 namespace JoD {
 

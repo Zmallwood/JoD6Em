@@ -7,7 +7,7 @@
 #include "GenerateNewWorld.hpp"
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "Process/ClearWithGrass.hpp"
-#include "Process/GenerateMobs.hpp"
+#include "Process/GenerateCreatures.hpp"
 #include "Process/GenerateObjects.hpp"
 #include "Process/GenerateWater.hpp"
 #include "Process/GenerateRoads.hpp"
@@ -26,6 +26,6 @@ namespace JoD {
         GenerateRock(worldArea);
         GenerateRoads(worldArea);
         GenerateObjects(worldArea);
-        GenerateMobs(worldArea);
+        GenerateCreatures(worldArea);
     }
 }

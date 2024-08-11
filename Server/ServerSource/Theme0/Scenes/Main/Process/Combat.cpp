@@ -6,14 +6,14 @@
 
 #include "Combat.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
-#include "MobTargeting.hpp"
+#include "CreatureTargeting.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 #include "ServerCore/ServerWide/WorldStructure/World.hpp"
 #include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Object.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Mob.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Creature.hpp"
 #include "ServerCore/ServerWide/WorldStructure/ObjectsPile.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 
@@ -25,7 +25,7 @@ namespace JoD {
             _<EngineGet>().GetPlayer(userID);
         
         auto mobTargeting =
-            static_cast<MobTargeting*>(
+            static_cast<CreatureTargeting*>(
                 _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>(
                     "MainScene")->GetComponent(
                     MainSceneComponents::
@@ -79,7 +79,7 @@ namespace JoD {
                         
                         mobTargeting->SetTargetedCreature(nullptr);
                         
-                        worldArea->GetTile(pos)->SetMob(nullptr);
+                        worldArea->GetTile(pos)->SetCreature(nullptr);
                         
                     }
                 }

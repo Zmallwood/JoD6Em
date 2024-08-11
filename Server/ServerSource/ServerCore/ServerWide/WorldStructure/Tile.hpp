@@ -8,7 +8,7 @@
 
 namespace JoD {
     
-    class Mob;
+    class Creature;
     class ObjectsPile;
     
     ///
@@ -27,9 +27,9 @@ namespace JoD {
         
         void SetGround(std::string_view imageName);
         
-        const std::shared_ptr<Mob> GetMob() const;
+        const std::shared_ptr<Creature> GetCreature() const;
         
-        void SetMob(std::shared_ptr<Mob> value) ;
+        void SetCreature(std::shared_ptr<Creature> value) ;
         
         int GetElevation() const;
         

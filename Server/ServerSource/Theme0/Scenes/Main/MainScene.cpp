@@ -7,7 +7,7 @@
 #include "MainScene.hpp"
 #include "Process/TileHovering.hpp"
 #include "Process/MouseMovement.hpp"
-#include "Process/MobTargeting.hpp"
+#include "Process/CreatureTargeting.hpp"
 #include "Process/Combat.hpp"
 #include "Process/CombatMovement.hpp"
 #include "Process/WorldView/WorldView.hpp"
@@ -53,7 +53,7 @@ namespace JoD {
                  
         m_pImpl->components.insert(
             {MainSceneComponents::MobTargeting,
-             std::make_unique<MobTargeting>() });
+             std::make_unique<CreatureTargeting>() });
                  
         m_pImpl->components.insert(
             {MainSceneComponents::WorldView,

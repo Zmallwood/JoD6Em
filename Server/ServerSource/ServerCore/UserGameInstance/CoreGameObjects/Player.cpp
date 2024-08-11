@@ -70,7 +70,7 @@ namespace JoD {
             return;
         }
         
-        if (tile->GetMob()) {
+        if (tile->GetCreature()) {
             
             return;
         }

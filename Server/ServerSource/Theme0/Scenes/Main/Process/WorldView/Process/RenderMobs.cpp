@@ -6,9 +6,9 @@
 
 #include "RenderMobs.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Mob.hpp"
+#include "ServerCore/ServerWide/WorldStructure/Creature.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
-#include "Theme0/Scenes/Main/Process/MobTargeting.hpp"
+#include "Theme0/Scenes/Main/Process/CreatureTargeting.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {
@@ -24,14 +24,14 @@ namespace JoD {
         Tile* tile, BoxF tileBounds) {
         
         const auto mobTargeting =
-            static_cast<MobTargeting*>(
+            static_cast<CreatureTargeting*>(
                 mainScene.GetComponent(
                     MainSceneComponents::
                     MobTargeting));
         
-        if (tile->GetMob()) {
+        if (tile->GetCreature()) {
             
-            if (tile->GetMob() ==
+            if (tile->GetCreature() ==
                 mobTargeting->
                 GetTargetedCreature()){
                 
@@ -43,17 +43,17 @@ namespace JoD {
             
             SendImageDrawInstruction(
                 webSocket,
-                tile->GetMob()->GetType(),
+                tile->GetCreature()->GetType(),
                 tileBounds);
             
             SendTextDrawInstruction(
                 webSocket,
                 "Mob, Lvl." +
-                std::to_string(tile->GetMob()->GetLevel()),
+                std::to_string(tile->GetCreature()->GetLevel()),
                 {tileBounds.x, tileBounds.y - 0.5f*tileBounds.h});
             
             
-            if (Now() < tile->GetMob()->GetTicksLastHitFromOther() + Duration(
+            if (Now() < tile->GetCreature()->GetTicksLastHitFromOther() + Duration(
                     Millis(
                         static_cast<int>(
                             k_showHitEffectDuration)))) {
