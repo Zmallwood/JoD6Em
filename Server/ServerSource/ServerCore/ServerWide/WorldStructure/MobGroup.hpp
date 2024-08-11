@@ -15,5 +15,6 @@ namespace JoD {
         Point m_coordinate;
         std::vector<std::shared_ptr<Mob>> m_mobs;
         Point m_destCoord = {rand() % 100, rand() % 100};
+        int m_nrMobsInGroup {6};
     };
 }

@@ -52,6 +52,11 @@ namespace JoD {
                         auto dy = mobGroup.m_destCoord.y -
                                   mobGroup.m_coordinate.y;
                         
+                        if (dx == 0 && dy == 0) {
+                            
+                            mobGroup.m_destCoord = {rand() % 100, rand() % 100};
+                        }
+                        
                         auto absDx = std::abs(dx);
                         auto absDy = std::abs(dy);
                         
@@ -77,41 +82,52 @@ namespace JoD {
                             
                             if (pos.has_value()) {
                                 
-                                auto dx = mobGroup.m_coordinate.x - pos.value().x;
-                                auto dy = mobGroup.m_coordinate.y - pos.value().y;
-                                
                                 const int k_maxMobGroupRadius = 4;
                                 
-                                if (dx*dx + dy*dy > k_maxMobGroupRadius*k_maxMobGroupRadius) {
+                                auto dx = mobGroup.m_coordinate.x + rand() %
+                                          k_maxMobGroupRadius - rand() %
+                                          k_maxMobGroupRadius - pos.value().x;
+                                auto dy = mobGroup.m_coordinate.y + rand() %
+                                          k_maxMobGroupRadius - rand() %
+                                          k_maxMobGroupRadius - pos.value().y;
                                 
+                                
+                                if (dx*dx + dy*dy >
+                                    k_maxMobGroupRadius*k_maxMobGroupRadius){
+                                    
                                     auto absDx = std::abs(dx);
                                     auto absDy = std::abs(dy);
-                                
+                                    
                                     auto normX = 0;
                                     auto normY = 0;
-                                
+                                    
                                     if (dx) {
-                                
+                                        
                                         normX = dx/absDx;
                                     }
-                                
+                                    
                                     if (dy) {
-                                
+                                        
                                         normY = dy/absDy;
                                     }
-                                
+                                    
                                     auto newX = pos.value().x + normX;
                                     auto newY = pos.value().y + normY;
-                                
-                                    auto newTile = worldArea->GetTile(newX, newY);
-                                
+                                    
+                                    auto newTile = worldArea->GetTile(
+                                        newX,
+                                        newY);
+                                    
                                     if (newTile->GetMob() == nullptr) {
-                                
+                                        
                                         newTile->SetMob(mob);
-                                        worldArea->GetTile(pos.value())->SetMob(nullptr);
-                                
+                                        worldArea->GetTile(pos.value())->SetMob(
+                                            nullptr);
+                                        
                                         worldArea->RemoveMobPosition(mob);
-                                        worldArea->RegisterMobPosition(mob, {newX, newY});
+                                        worldArea->RegisterMobPosition(mob,
+                                                                       {newX,
+                                                                        newY});
                                     }
                                 }
                             }
@@ -166,13 +182,35 @@ namespace JoD {
                                     mob->m_hunger += 0.01f;
                                     
                                     if (mob->m_hunger >= 1.0f) {
-                                    
+                                        
                                         if (false ==
                                             tile->GetObjectsPile().
                                             HasObjectOfType(
                                                 "ObjectBoneRemains")){
                                             tile->GetObjectsPile().AddObject(
                                                 "ObjectBoneRemains");
+                                        }
+                                        
+                                        bool goOn = true;
+                                        
+                                        for (auto groupIt =
+                                                 worldArea->m_mobGroups.begin();
+                                             groupIt !=
+                                             worldArea->m_mobGroups.end() && goOn;
+                                             groupIt++) {
+                                            
+                                            for (auto it =
+                                                     groupIt->m_mobs.begin();
+                                                 it != groupIt->m_mobs.end();
+                                                 it++) {
+                                                
+                                                if (*it == tile->GetMob()) {
+                                                    
+                                                    groupIt->m_mobs.erase(it);
+                                                    goOn = false;
+                                                    break;
+                                                }
+                                            }
                                         }
                                         
                                         worldArea->RemoveMobPosition(
