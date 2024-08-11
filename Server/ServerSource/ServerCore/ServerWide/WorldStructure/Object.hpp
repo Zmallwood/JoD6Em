@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "ObjectMaturity.hpp"
+
 namespace JoD {
     
     class Object {
@@ -28,5 +30,6 @@ namespace JoD {
       private:
         int m_type {0};
         TimePoint m_creationTime;
+        ObjectMaturity m_maturity {ObjectMaturity::Mature};
     };
 }

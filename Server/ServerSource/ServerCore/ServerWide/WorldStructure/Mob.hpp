@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "CreatureMaturity.hpp"
+
 namespace JoD {
     
     ///
@@ -66,5 +68,6 @@ namespace JoD {
         int m_hp {0}; ///< Health points.
         int m_exp {0}; ///< Experience gained when defeating this mob.
         TimePoint m_ticksLastHitFromOther {Now()};
+        CreatureMaturity m_maturity {CreatureMaturity::Mature};
     };
 }

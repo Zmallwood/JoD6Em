@@ -84,16 +84,20 @@ namespace JoD {
                                 
                                 const int k_maxMobGroupRadius = 4;
                                 
-                                auto dx = mobGroup.m_coordinate.x + rand() %
-                                          k_maxMobGroupRadius - rand() %
-                                          k_maxMobGroupRadius - pos.value().x;
-                                auto dy = mobGroup.m_coordinate.y + rand() %
-                                          k_maxMobGroupRadius - rand() %
-                                          k_maxMobGroupRadius - pos.value().y;
+                                auto dx = mobGroup.m_coordinate.x - pos.value().x;
+                                auto dy = mobGroup.m_coordinate.y - pos.value().y;
                                 
                                 
                                 if (dx*dx + dy*dy >
                                     k_maxMobGroupRadius*k_maxMobGroupRadius){
+                                        
+                                        dx +=  + rand() %
+                                          k_maxMobGroupRadius - rand() %
+                                          k_maxMobGroupRadius;
+                                          
+                                          dy +=  + rand() %
+                                          k_maxMobGroupRadius - rand() %
+                                          k_maxMobGroupRadius;
                                     
                                     auto absDx = std::abs(dx);
                                     auto absDy = std::abs(dy);
