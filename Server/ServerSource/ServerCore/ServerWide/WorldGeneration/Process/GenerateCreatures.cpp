@@ -48,11 +48,11 @@ namespace JoD {
                     continue;
                 }
                 
-                const auto newCreature = std::make_shared<Creature>("MobBlueSlime", 1);
+                const auto newCreature = std::make_shared<Creature>("CreatureBlueSlime", 1);
                 
                 creatureGroup.m_creatures.push_back(newCreature);
                 
-                worldArea->RegisterMobPosition(newCreature, {x, y});
+                worldArea->RegisterCreaturePosition(newCreature, {x, y});
                 
                 worldArea->GetTile(x, y)->SetCreature(newCreature);
             }
@@ -89,9 +89,9 @@ namespace JoD {
                     continue;
                 }
                 
-                const auto newCreature = std::make_shared<Creature>("MobYellowSlime", 2);
+                const auto newCreature = std::make_shared<Creature>("CreatureYellowSlime", 2);
                 
-                worldArea->RegisterMobPosition(newCreature, {x, y});
+                worldArea->RegisterCreaturePosition(newCreature, {x, y});
                 
                 creatureGroup.m_creatures.push_back(newCreature);
                 
@@ -130,9 +130,9 @@ namespace JoD {
                     continue;
                 }
                 
-                const auto newCreature = std::make_shared<Creature>("MobRedSlime", 3);
+                const auto newCreature = std::make_shared<Creature>("CreatureRedSlime", 3);
                 
-                worldArea->RegisterMobPosition(newCreature, {x, y});
+                worldArea->RegisterCreaturePosition(newCreature, {x, y});
                 
                 creatureGroup.m_creatures.push_back(newCreature);
                 
@@ -173,9 +173,9 @@ namespace JoD {
                     continue;
                 }
                 
-                const auto newCreature = std::make_shared<Creature>("MobCow", 3);
+                const auto newCreature = std::make_shared<Creature>("CreatureCow", 3);
                 
-                worldArea->RegisterMobPosition(newCreature, {x, y});
+                worldArea->RegisterCreaturePosition(newCreature, {x, y});
                 
                 creatureGroup.m_creatures.push_back(newCreature);
                 

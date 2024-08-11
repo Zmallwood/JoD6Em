@@ -76,28 +76,28 @@ namespace JoD {
                         creatureGroup.m_coord.x += normX;
                         creatureGroup.m_coord.y += normY;
                         
-                        for (auto mob : creatureGroup.m_creatures) {
+                        for (auto creature : creatureGroup.m_creatures) {
                             
-                            auto pos = worldArea->GetMobCoord(mob);
+                            auto pos = worldArea->GetCreatureCoord(creature);
                             
                             if (pos.has_value()) {
                                 
-                                const int k_maxMobGroupRadius = 4;
+                                const int k_maxCreatureGroupRadius = 4;
                                 
                                 auto dx = creatureGroup.m_coord.x - pos.value().x;
                                 auto dy = creatureGroup.m_coord.y - pos.value().y;
                                 
                                 
                                 if (dx*dx + dy*dy >
-                                    k_maxMobGroupRadius*k_maxMobGroupRadius){
+                                    k_maxCreatureGroupRadius*k_maxCreatureGroupRadius){
                                         
                                         dx +=  + rand() %
-                                          k_maxMobGroupRadius - rand() %
-                                          k_maxMobGroupRadius;
+                                          k_maxCreatureGroupRadius - rand() %
+                                          k_maxCreatureGroupRadius;
                                           
                                           dy +=  + rand() %
-                                          k_maxMobGroupRadius - rand() %
-                                          k_maxMobGroupRadius;
+                                          k_maxCreatureGroupRadius - rand() %
+                                          k_maxCreatureGroupRadius;
                                     
                                     auto absDx = std::abs(dx);
                                     auto absDy = std::abs(dy);
@@ -124,12 +124,12 @@ namespace JoD {
                                     
                                     if (newTile->GetCreature() == nullptr) {
                                         
-                                        newTile->SetCreature(mob);
+                                        newTile->SetCreature(creature);
                                         worldArea->GetTile(pos.value())->SetCreature(
                                             nullptr);
                                         
-                                        worldArea->RemoveMobPosition(mob);
-                                        worldArea->RegisterMobPosition(mob,
+                                        worldArea->RemoveCreaturePosition(creature);
+                                        worldArea->RegisterCreaturePosition(creature,
                                                                        {newX,
                                                                         newY});
                                     }
@@ -161,11 +161,11 @@ namespace JoD {
                                 }
                             }
                             
-                            auto mob = tile->GetCreature();
+                            auto creature = tile->GetCreature();
                             
-                            if (mob) {
+                            if (creature) {
                                 
-                                if (mob->GetType() == Hash("MobCow")) {
+                                if (creature->GetType() == Hash("CreatureCow")) {
                                     
                                     for (auto object : objects) {
                                         
@@ -173,7 +173,7 @@ namespace JoD {
                                             Hash("ObjectGrass")) {
                                             
                                             object->m_durability -= 1.0f;
-                                            mob->m_hunger -= 0.01f;
+                                            creature->m_hunger -= 0.01f;
                                             
                                             if (object->m_durability <= 0.0f) {
                                                 
@@ -183,9 +183,9 @@ namespace JoD {
                                         }
                                     }
                                     
-                                    mob->m_hunger += 0.01f;
+                                    creature->m_hunger += 0.01f;
                                     
-                                    if (mob->m_hunger >= 1.0f) {
+                                    if (creature->m_hunger >= 1.0f) {
                                         
                                         if (false ==
                                             tile->GetObjectsPile().
@@ -217,7 +217,7 @@ namespace JoD {
                                             }
                                         }
                                         
-                                        worldArea->RemoveMobPosition(
+                                        worldArea->RemoveCreaturePosition(
                                             tile->GetCreature());
                                         
                                         tile->SetCreature(nullptr);

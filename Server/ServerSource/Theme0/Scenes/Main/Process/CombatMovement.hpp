@@ -11,7 +11,7 @@
 namespace JoD {
     
     ///
-    /// Handles combat moving, such as chasing a targeted mob.
+    /// Handles combat moving, such as chasing a targeted creature.
     ///
     class CombatMovement : public IMainSceneComponent {
         

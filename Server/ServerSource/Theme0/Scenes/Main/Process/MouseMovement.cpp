@@ -26,11 +26,11 @@ namespace JoD {
                     MainSceneComponents::
                     TileHovering));
                     
-        auto mobTargeting =
+        auto creatureTargeting =
             static_cast<CreatureTargeting*>(
                 mainScene.GetComponent(
                     MainSceneComponents::
-                    MobTargeting));
+                    CreatureTargeting));
         
         const auto mouseDown =
             _<EngineGet>().GetMouseInput(userID)->
@@ -45,7 +45,7 @@ namespace JoD {
         if (mouseDown && hoveredTile.has_value()) {
             
             player->SetDestCoord(hoveredTile.value());
-            mobTargeting->SetTargetedCreature(nullptr);
+            creatureTargeting->SetTargetedCreature(nullptr);
         }
         
         if (std::chrono::high_resolution_clock::now() >

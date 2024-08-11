@@ -36,11 +36,11 @@ namespace JoD {
         
         Tile* GetTile(int xCoord, int yCoord) const;
         
-        void RegisterMobPosition(std::shared_ptr<Creature> mob, Point coord);
+        void RegisterCreaturePosition(std::shared_ptr<Creature> creature, Point coord);
         
-        void RemoveMobPosition(std::shared_ptr<Creature> mob);
+        void RemoveCreaturePosition(std::shared_ptr<Creature> creature);
         
-        std::optional<Point> GetMobCoord(std::shared_ptr<Creature> mob) const;
+        std::optional<Point> GetCreatureCoord(std::shared_ptr<Creature> creature) const;
         
         std::vector<CreatureGroup> m_creatureGroups;
         

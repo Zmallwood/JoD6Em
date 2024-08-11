@@ -24,19 +24,19 @@ namespace JoD {
         auto player =
             _<EngineGet>().GetPlayer(userID);
         
-        auto mobTargeting =
+        auto creatureTargeting =
             static_cast<CreatureTargeting*>(
                 _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>(
                     "MainScene")->GetComponent(
                     MainSceneComponents::
-                    MobTargeting));
+                    CreatureTargeting));
         
-        if (mobTargeting->GetTargetedCreature()) {
+        if (creatureTargeting->GetTargetedCreature()) {
             
             const auto &worldArea = _<World>().GetCurrentWorldArea();
             const auto pos =
-                worldArea->GetMobCoord(
-                    mobTargeting->GetTargetedCreature()).value();
+                worldArea->GetCreatureCoord(
+                    creatureTargeting->GetTargetedCreature()).value();
             
             auto playerCoord = player->GetCoord();
             
@@ -56,13 +56,13 @@ namespace JoD {
                     
                     player->SetTicksLastAttackOnOther(Now());
                     
-                    mobTargeting->GetTargetedCreature()->Hit(1);
+                    creatureTargeting->GetTargetedCreature()->Hit(1);
                     
                     worldArea->GetTile(pos)->SetGroundCover(
                         Hash(
                             "GroundCoverPoolOfBlood"));
                     
-                    if (mobTargeting->GetTargetedCreature()->IsDead()) {
+                    if (creatureTargeting->GetTargetedCreature()->IsDead()) {
                         
                         if (false ==
                             worldArea->GetTile(
@@ -72,12 +72,12 @@ namespace JoD {
                         }
                         
                         player->AddExperience(
-                            mobTargeting->GetTargetedCreature()->GetExp());
+                            creatureTargeting->GetTargetedCreature()->GetExp());
                         
-                        worldArea->RemoveMobPosition(
-                            mobTargeting->GetTargetedCreature());
+                        worldArea->RemoveCreaturePosition(
+                            creatureTargeting->GetTargetedCreature());
                         
-                        mobTargeting->SetTargetedCreature(nullptr);
+                        creatureTargeting->SetTargetedCreature(nullptr);
                         
                         worldArea->GetTile(pos)->SetCreature(nullptr);
                         

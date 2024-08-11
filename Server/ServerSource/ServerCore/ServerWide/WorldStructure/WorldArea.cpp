@@ -13,7 +13,7 @@ namespace JoD {
     struct WorldArea::Impl {
         std::vector<std::vector<std::unique_ptr<Tile>>> tiles; ///< Tile grid.
         std::map<std::shared_ptr<Creature>, Point>
-        mobPositions; ///< Helper structure which maps mobs to their positions.
+        creaturePositions; ///< Helper structure which maps creatures to their positions.
     };
     
     WorldArea::WorldArea()
@@ -75,24 +75,24 @@ namespace JoD {
         return GetTile({xCoord, yCoord});
     }
     
-    void WorldArea::RegisterMobPosition(std::shared_ptr<Creature> mob, Point coord) {
+    void WorldArea::RegisterCreaturePosition(std::shared_ptr<Creature> creature, Point coord) {
         
-        m_pImpl->mobPositions.insert({mob, coord});
+        m_pImpl->creaturePositions.insert({creature, coord});
     }
     
-    void WorldArea::RemoveMobPosition(std::shared_ptr<Creature> mob) {
+    void WorldArea::RemoveCreaturePosition(std::shared_ptr<Creature> creature) {
         
-        if (m_pImpl->mobPositions.contains(mob)) {
+        if (m_pImpl->creaturePositions.contains(creature)) {
             
-            m_pImpl->mobPositions.erase(mob);
+            m_pImpl->creaturePositions.erase(creature);
         }
     }
     
-    std::optional<Point> WorldArea::GetMobCoord(std::shared_ptr<Creature> mob) const {
+    std::optional<Point> WorldArea::GetCreatureCoord(std::shared_ptr<Creature> creature) const {
         
-        if (m_pImpl->mobPositions.contains(mob)) {
+        if (m_pImpl->creaturePositions.contains(creature)) {
             
-            return m_pImpl->mobPositions.at(mob);
+            return m_pImpl->creaturePositions.at(creature);
         }
         
         return std::nullopt;

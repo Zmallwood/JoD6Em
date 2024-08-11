@@ -13,7 +13,7 @@ namespace JoD {
     class Creature;
     
     ///
-    /// Enables targeting mobs in the game world by right clicking on them.
+    /// Enables targeting creatures in the game world by right clicking on them.
     ///
     class CreatureTargeting : public IMainSceneComponent {
         

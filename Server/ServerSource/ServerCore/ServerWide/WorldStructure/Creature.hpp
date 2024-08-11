@@ -11,18 +11,18 @@
 namespace JoD {
     
     ///
-    /// Combatable mob object which can be positioned on a tile.
+    /// Combatable creature object which can be positioned on a tile.
     ///
     class Creature {
         
       public:
         ///
-        /// Construct a new Mob object.
+        /// Construct a new Creature object.
         ///
-        /// @param mobName Mob type name.
-        /// @param level Initial level, determines all the stats of the mob.
+        /// @param creatureName Creature type name.
+        /// @param level Initial level, determines all the stats of the creature.
         ///
-        Creature(std::string_view mobName, int level);
+        Creature(std::string_view creatureName, int level);
         
         void Hit(int damage);
         
@@ -58,7 +58,7 @@ namespace JoD {
         float m_hunger {0.0f};
         
       private:
-        int m_type {0}; ///< Hash code of mob type name.
+        int m_type {0}; ///< Hash code of creature type name.
         int m_level {0}; ///< Level, as provided in ctor.
         int m_pAtk {0}; ///< Physical attack.
         int m_mAtk {0}; ///< Magic attack.
@@ -66,7 +66,7 @@ namespace JoD {
         int m_mDef {0}; ///< Magic defense.
         float m_atkSpeed {0}; ///< Attack speed.
         int m_hp {0}; ///< Health points.
-        int m_exp {0}; ///< Experience gained when defeating this mob.
+        int m_exp {0}; ///< Experience gained when defeating this creature.
         TimePoint m_ticksLastHitFromOther {Now()};
         CreatureMaturity m_maturity {CreatureMaturity::Mature};
     };

@@ -1,5 +1,5 @@
 /*
- * RenderMobs.hpp
+ * RenderCreatures.hpp
  *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
@@ -19,7 +19,7 @@ namespace JoD {
     /// @param tile Tile of which mob is to be rendered.
     /// @param tileBounds Bounds area of the tile, which mob is to be rendered.
     ///
-    void RenderMobs(
+    void RenderCreatures(
         const MainScene& mainScene,
         WebSocket &webSocket,
         Tile* tile, BoxF tileBounds);

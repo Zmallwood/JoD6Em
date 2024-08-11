@@ -15,7 +15,7 @@
 #include "Process/RenderGround.hpp"
 #include "Process/RenderTileSymbols.hpp"
 #include "Process/RenderObjects.hpp"
-#include "Process/RenderMobs.hpp"
+#include "Process/RenderCreatures.hpp"
 #include "Process/RenderPlayer.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
@@ -105,7 +105,7 @@ namespace JoD {
                 
                 RenderObjects(webSocket, tile, tileBounds);
                 
-                RenderMobs(
+                RenderCreatures(
                     mainScene, webSocket, tile,
                     tileBounds);
                 

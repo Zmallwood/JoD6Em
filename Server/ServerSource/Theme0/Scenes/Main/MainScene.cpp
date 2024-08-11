@@ -52,7 +52,7 @@ namespace JoD {
              std::make_unique<MouseMovement>() });
                  
         m_pImpl->components.insert(
-            {MainSceneComponents::MobTargeting,
+            {MainSceneComponents::CreatureTargeting,
              std::make_unique<CreatureTargeting>() });
                  
         m_pImpl->components.insert(

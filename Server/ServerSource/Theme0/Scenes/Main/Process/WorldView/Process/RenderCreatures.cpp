@@ -1,10 +1,10 @@
 /*
- * RenderMobs.cpp
+ * RenderCreatures.cpp
  *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "RenderMobs.hpp"
+#include "RenderCreatures.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
 #include "ServerCore/ServerWide/WorldStructure/Creature.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
@@ -18,7 +18,7 @@ namespace JoD {
         const int k_showHitEffectDuration {300};
     }
     
-    void RenderMobs(
+    void RenderCreatures(
         const MainScene& mainScene,
         WebSocket &webSocket,
         Tile* tile, BoxF tileBounds) {
@@ -27,7 +27,7 @@ namespace JoD {
             static_cast<CreatureTargeting*>(
                 mainScene.GetComponent(
                     MainSceneComponents::
-                    MobTargeting));
+                    CreatureTargeting));
         
         if (tile->GetCreature()) {
             

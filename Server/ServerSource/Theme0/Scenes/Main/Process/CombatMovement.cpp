@@ -18,17 +18,17 @@ namespace JoD {
         auto player =
             _<EngineGet>().GetPlayer(userID);
         
-        auto mobTargeting =
+        auto creatureTargeting =
             static_cast<CreatureTargeting*>(
                 _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene")->GetComponent(
                     MainSceneComponents::
-                    MobTargeting));
+                    CreatureTargeting));
         
-        if (mobTargeting->GetTargetedCreature()) {
+        if (creatureTargeting->GetTargetedCreature()) {
             
             const auto &worldArea = _<World>().GetCurrentWorldArea();
             const auto pos =
-                worldArea->GetMobCoord(mobTargeting->GetTargetedCreature()).value();
+                worldArea->GetCreatureCoord(creatureTargeting->GetTargetedCreature()).value();
             
             if (Now() > player->GetTicksLastMove() +
                 Duration(

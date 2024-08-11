@@ -11,7 +11,7 @@ namespace JoD {
     
     struct Tile::Impl {
         int ground {0}; ///< Hash code for ground type.
-        std::shared_ptr<Creature> creature; ///< Mob currently occupying this tile, nullptr means no mob.
+        std::shared_ptr<Creature> creature; ///< Creature currently occupying this tile, nullptr means no creature.
         int elevation {0};
         int groundCover {0};
         ObjectsPile objectsPile;
