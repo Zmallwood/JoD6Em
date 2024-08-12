@@ -73,11 +73,14 @@ namespace JoD {
     
     Size ImageBank::GetImageDimensions(int imageNameHash) const {
         
+        // Try find the image with specified hash in the storage.
         if (m_images.contains(imageNameHash)) {
             
+            // And return its dimensions.
             return m_images.at(imageNameHash).dimensions;
         }
         
+        // If not found, return empty dimensions.
         return {0, 0};
     }
     

@@ -11,6 +11,7 @@ namespace JoD {
     class Object;
     
     class ObjectsPile {
+        
       public:
         ObjectsPile();
         

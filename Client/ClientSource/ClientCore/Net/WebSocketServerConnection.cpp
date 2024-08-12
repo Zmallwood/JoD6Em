@@ -13,31 +13,38 @@ namespace JoD {
     
     namespace {
         
+        // Callback for opening new connection.
         EM_BOOL OnOpen(
             int eventType,
             const EmscriptenWebSocketOpenEvent *webSocketEvent,
             void *userData);
         
+        // Callback for error occurring.
         EM_BOOL OnError(
             int eventType,
             const EmscriptenWebSocketErrorEvent *webSocketEvent,
             void *userData);
         
+        // Callback for connection closing.
         EM_BOOL OnClose(
             int eventType,
             const EmscriptenWebSocketCloseEvent *webSocketEvent,
             void *userData);
         
+        // Callback for message recieved.
         EM_BOOL OnMessage(
             int eventType,
             const EmscriptenWebSocketMessageEvent *
             webSocketEvent,
             void *userData);
         
+        // Process a message recieved from server.
         void ProcessIncomingMessage(unsigned char *bytes);
         
+        // Convert four bytes into an integer.
         int ReadFourBytesAsInt(unsigned char *bytes);
         
+        // Convert four bytes into a float.
         float ReadFourBytesAsFloat(unsigned char *bytes);
     }
     
@@ -305,19 +312,33 @@ namespace JoD {
             }
             case MessageCodes::k_drawStringInstr: {
                 
+                // Next four bytes contain the x position.
                 auto x = ReadFourBytesAsFloat(bytes + 4);
+                
+                // Next for bytes contain the y position.
                 auto y = ReadFourBytesAsFloat(bytes + 8);
+                
+                // Next for bytes contain the centerAlign state.
                 auto centerAlign = ReadFourBytesAsInt(bytes + 12) != 0 ? true : false;
+                
+                // Next for bytes contain the length of the string to draw.
                 auto length = ReadFourBytesAsInt(bytes + 16);
                 
+                // To hold the recieved text string.
                 std::string str;
                 
+                // Get the character from the incoming message and add to the resulting
+                // string object.
                 for (auto i = 0; i < length; i++) {
                     
+                    // Get the char code.
                     auto c = ReadFourBytesAsInt(bytes + 20 + i*4);
+                    
+                    // Cast to char and append to resulting string object.
                     str += (char)c;
                 }
                 
+                // Add new text draw instruction with the collected data.
                 _<DrawInstructionsManager>().AddTextDrawInstruction(
                     str,
                     {x,y},
@@ -327,11 +348,14 @@ namespace JoD {
             }
             case MessageCodes::k_requestImageDimensions: {
                 
+                // Next four bytes contain the image name hash code.
                 auto imageNameHash = ReadFourBytesAsInt(bytes + 4);
                 
+                // Get the image dimensions for the obtain image name hash code.
                 auto dimensions =
                     _<ImageBank>().GetImageDimensions(imageNameHash);
                 
+                // Prepare a new message for returning the dimensions result.
                 int data[4];
                 
                 // Fill data with message type and canvas size dimensions.
@@ -340,6 +364,7 @@ namespace JoD {
                 data[2] = dimensions.w;
                 data[3] = dimensions.h;
                 
+                // Send the message to server.
                 _<WebSocketServerConnection>().SendMessage(data, 4);
                 
                 break;

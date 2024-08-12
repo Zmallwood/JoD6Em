@@ -13,21 +13,26 @@ namespace JoD {
     
     namespace {
         
+        // Callback function for key events.
         void KeyCallback(
             GLFWwindow *window, int key, int scan_code,
             int action,
             int mods);
         
+        // Callback function for mouse button events.
         void MouseButtonCallback(
             GLFWwindow *window, int button, int action,
             int mods);
         
+        // Callback function for character typing events.
         void CharacterCallback(
             GLFWwindow *window, unsigned int code_point);
         
+        // Callback function for touch start events.
         EM_BOOL TouchStartCallback(
             int, EmscriptenTouchEvent const *, void *);
         
+        // Callback function for touch end events.
         EM_BOOL TouchEndCallback(
             int, EmscriptenTouchEvent const *, void *);
     }
@@ -51,8 +56,8 @@ namespace JoD {
             nullptr,
             true,
             TouchStartCallback);
-        // Set callback for touch end event.
         
+        // Set callback for touch end event.
         emscripten_set_touchend_callback(
             "#canvas",
             nullptr,
@@ -75,28 +80,30 @@ namespace JoD {
         
         void MouseButtonCallback(
             GLFWwindow *window, int button, int action,
-            int mods) { 
+            int mods) {
             
-            if (button == GLFW_MOUSE_BUTTON_LEFT
+            auto & srvConn = _<WebSocketServerConnection>();
+            
+            if (button == GLFW_MOUSE_BUTTON_LEFT // Left mouse button has been pressed.
                 && action == GLFW_PRESS){
                 
-                _<WebSocketServerConnection>().SendMessage(
-                    MessageCodes::k_leftMouseDown);
-            } else if (button == GLFW_MOUSE_BUTTON_LEFT &&
+                // Send message to server.
+                srvConn.SendMessage(MessageCodes::k_leftMouseDown);
+            } else if (button == GLFW_MOUSE_BUTTON_LEFT && // Left mouse button has been released.
                        action == GLFW_RELEASE) {
                 
-                _<WebSocketServerConnection>().SendMessage(
-                    MessageCodes::k_leftMouseUp);
-            }else if (button == GLFW_MOUSE_BUTTON_RIGHT
+                // Send message to server.
+                srvConn.SendMessage(MessageCodes::k_leftMouseUp);
+            }else if (button == GLFW_MOUSE_BUTTON_RIGHT // Right mouse button has been pressed.
                       && action == GLFW_PRESS){
                 
-                _<WebSocketServerConnection>().SendMessage(
-                    MessageCodes::k_rightMouseDown);
-            } else if (button == GLFW_MOUSE_BUTTON_RIGHT &&
+                // Send message to server.
+                srvConn.SendMessage(MessageCodes::k_rightMouseDown);
+            } else if (button == GLFW_MOUSE_BUTTON_RIGHT && // Right mouse button has been released.
                        action == GLFW_RELEASE) {
                 
-                _<WebSocketServerConnection>().SendMessage(
-                    MessageCodes::k_rightMouseUp);
+                // Send message to server.
+                srvConn.SendMessage(MessageCodes::k_rightMouseUp);
             }
             
             // if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
