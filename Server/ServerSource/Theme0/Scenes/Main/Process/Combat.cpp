@@ -16,6 +16,7 @@
 #include "ServerCore/ServerWide/WorldStructure/Creature.hpp"
 #include "ServerCore/ServerWide/WorldStructure/ObjectsPile.hpp"
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
+#include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
 
 namespace JoD {
     
@@ -23,6 +24,8 @@ namespace JoD {
         
         auto player =
             _<EngineGet>().GetPlayer(userID);
+        
+        auto textMessages = _<EngineGet>().GetTextMessages(userID);
         
         auto creatureTargeting =
             static_cast<CreatureTargeting*>(
@@ -56,7 +59,11 @@ namespace JoD {
                     
                     player->SetTicksLastAttackOnOther(Now());
                     
-                    creatureTargeting->GetTargetedCreature()->Hit(1);
+                    auto damage = 1;
+                    
+                    creatureTargeting->GetTargetedCreature()->Hit(damage);
+                    
+                    textMessages->Print("You hit creature for " + std::to_string(damage) + " dmg.");
                     
                     worldArea->GetTile(pos)->SetGroundCover(
                         Hash(
@@ -68,7 +75,8 @@ namespace JoD {
                             worldArea->GetTile(
                                 pos)->GetObjectsPile().HasObjectOfType(
                                 "ObjectBoneRemains")){
-                            worldArea->GetTile(pos)->GetObjectsPile().AddObject("ObjectBoneRemains");
+                            worldArea->GetTile(pos)->GetObjectsPile().AddObject(
+                                "ObjectBoneRemains");
                         }
                         
                         player->AddExperience(
