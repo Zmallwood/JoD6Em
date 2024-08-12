@@ -90,6 +90,16 @@ namespace JoD {
             return m_attackSpeed;
         }
         
+        int GetHP() const {
+            
+            return m_hp;
+        }
+        
+        int GetMaxHP() const {
+            
+            return m_maxHP;
+        }
+        
       private:
         void TryMoveToCoord(UserID userID, Point coord);
         
@@ -101,5 +111,7 @@ namespace JoD {
         int m_experience {0};
         TimePoint m_ticksLastAttackOnOther {Now()};
         float m_attackSpeed {1.0f};
+        int m_hp {10};
+        int m_maxHP {10};
     };
 }

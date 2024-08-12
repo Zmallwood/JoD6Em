@@ -122,7 +122,7 @@ namespace JoD {
                                         newX,
                                         newY);
                                     
-                                    if (newTile->GetCreature() == nullptr) {
+                                    if (newTile && newTile->GetCreature() == nullptr) {
                                         
                                         newTile->SetCreature(creature);
                                         worldArea->GetTile(pos.value())->SetCreature(

@@ -28,5 +28,19 @@ namespace JoD {
         auto level = GetCurrLevel(player->GetExperience());
         
         SendTextDrawInstruction(userID, "Level: " + std::to_string(level), {0.01f, 0.031f});
+        
+        auto hpText = "HP: " + std::to_string(player->GetHP()) + " / " + std::to_string(player->GetMaxHP());
+        
+        SendTextDrawInstruction(userID, hpText, {0.01f, 0.052f});
+        
+        auto hpBarBox = BoxF {0.08f, 0.053f, 0.06f, 0.02f};
+        
+        SendImageDrawInstruction(userID, "Black", hpBarBox);
+        
+        auto hpFrac = static_cast<float>(player->GetHP())/player->GetMaxHP();
+        
+        auto hpBarBoxFilled = BoxF {hpBarBox.x, hpBarBox.y, hpBarBox.w*hpFrac, hpBarBox.h};
+        
+        SendImageDrawInstruction(userID, "Red", hpBarBoxFilled);
     }
 }
