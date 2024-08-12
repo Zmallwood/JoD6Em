@@ -172,9 +172,9 @@ namespace JoD {
                                         if (object->GetType() ==
                                             Hash("ObjectGrass")) {
                                             
-                                            object->m_durability -= 1.0f;
+                                            object->SetDurability(object->GetDurability() - 1.0f);
                                             
-                                            if (object->m_durability <= 0.0f) {
+                                            if (object->GetDurability() <= 0.0f) {
                                                 
                                                 tile->GetObjectsPile().
                                                 RemoveObject(object);
