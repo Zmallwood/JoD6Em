@@ -54,7 +54,7 @@ namespace JoD {
         // Render text outline onto surface.
         const auto textOutlineSurface =
             TTF_RenderText_Blended(
-                m_fonts.at(fontSize)->GetOutlineFont().get(),
+                m_fonts.at(fontSize)->GetOutlineFont(),
                 text.data(), outlineColorSDL);
         
         // Check that the surface was created correctly.
@@ -65,7 +65,7 @@ namespace JoD {
         
         // Render main text onto surface.
         const auto textSurface = TTF_RenderText_Blended(
-            font.get(), text.data(),
+            font, text.data(),
             colorSDL);
         
         // Check that the surface was created correctly.
@@ -219,7 +219,7 @@ namespace JoD {
         
         // Measure the rendered text.
         TTF_SizeText(
-            m_fonts.at(fontSize)->GetFont().get(), text.data(), &textWidth,
+            m_fonts.at(fontSize)->GetFont(), text.data(), &textWidth,
             &textHeight);
         
         // If the text should be aligned at its center.
@@ -268,7 +268,7 @@ namespace JoD {
         int textHeight;
         
         // Get the dimensions.
-        TTF_SizeText(font.get(), text.data(), &textWidth, &textHeight);
+        TTF_SizeText(font, text.data(), &textWidth, &textHeight);
         
         const auto canvasSize = GetCanvasSize();
         

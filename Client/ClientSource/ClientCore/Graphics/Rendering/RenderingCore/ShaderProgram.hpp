@@ -31,6 +31,11 @@ namespace JoD {
         ///
         void Cleanup() const;
         
+        ///
+        /// Get the program ID for the program.
+        /// 
+        /// @return GLuint Program ID.
+        ///
         GLuint GetProgramID() const {
             
             return m_programID;

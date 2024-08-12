@@ -17,6 +17,6 @@ namespace JoD {
         
         PointF position; ///< Position at where the text will be drawn, if its a text render instruction.
         std::string text; ///< Text to draw if its a text render instruction.
-        bool centerAligned {false};
+        bool centerAligned {false}; ///< If the position member specifies the center point or left op corner of the text.
     };
 }

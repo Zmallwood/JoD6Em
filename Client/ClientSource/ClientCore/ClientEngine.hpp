@@ -24,6 +24,12 @@ namespace JoD {
         ///
         void PollEvents();
         
+        ///
+        /// Tells if the client engine is currently running.
+        /// 
+        /// @return true If the game engine is running.
+        /// @return false It the game engine is not running.
+        ///
         bool GetRunning() const {
             
             return m_running;

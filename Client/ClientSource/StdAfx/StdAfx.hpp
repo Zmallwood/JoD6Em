@@ -41,3 +41,4 @@
 #include "Common/MouseUtilities.hpp"
 #include "Common/SDLDeleter.hpp"
 #include "CommonUtils.hpp"
+#include "CommonAliases.hpp"

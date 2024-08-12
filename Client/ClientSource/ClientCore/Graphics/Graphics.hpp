@@ -21,6 +21,12 @@ namespace JoD {
         Graphics();
         
         ///
+        /// Destroy the Graphics object, probably not relevant for emscripten app but including
+        /// it for good practice to cleanup allocated resources.
+        ///
+        ~Graphics();
+        
+        ///
         /// Clear web browser before rendering new contents.
         ///
         void ClearCanvas() const;
@@ -30,6 +36,11 @@ namespace JoD {
         ///
         void PresentCanvas() const;
         
+        ///
+        /// Get the GLFW window object which enables rendering using OpenGL to the browser window.
+        /// 
+        /// @return GLFWwindow* GLFW window object.
+        ///
         GLFWwindow *GetWindow() const {
             
             return m_window;

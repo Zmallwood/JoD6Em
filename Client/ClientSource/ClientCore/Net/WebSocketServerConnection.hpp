@@ -35,6 +35,11 @@ namespace JoD {
         ///
         void SendMessage(const int *data, int length) const;
         
+        ///
+        /// Set the WebSocketEvent object associated with the connection to the game server.
+        /// 
+        /// @param value The new WebSocketEvent object.
+        ///
         void SetWebSocketEvent(std::unique_ptr<const EmscriptenWebSocketOpenEvent> value) {
             
             m_webSocketEvent = std::move(value);

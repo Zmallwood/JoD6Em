@@ -22,16 +22,31 @@ namespace JoD {
         ///
         Font(std::string_view fontFileName, int fontSize);
         
-        const std::unique_ptr<TTF_Font, SDLDeleter>& GetFont() const {
+        ///
+        /// Get the regular font object used for text rendering.
+        /// 
+        /// @return TTF_Font* The regular font object.
+        ///
+        TTF_Font* GetFont() const {
             
-            return m_font;
+            return m_font.get();
         }
         
-        const std::unique_ptr<TTF_Font, SDLDeleter>& GetOutlineFont() const {
+        ///
+        /// Get the outline font object used for text outline rendering.
+        /// 
+        /// @return TTF_Font* The outline font object.
+        ///
+        TTF_Font* GetOutlineFont() const {
             
-            return m_outlineFont;
+            return m_outlineFont.get();
         }
         
+        ///
+        /// Get the constant value for font outline width.
+        /// 
+        /// @return constexpr int Font outline width.
+        ///
         static constexpr int GetFontOutlineWidth() {
             
             return k_fontOutlineWidth;

@@ -5,6 +5,7 @@
  */
 
 #include "Graphics.hpp"
+#include <GLFW/glfw3.h>
 
 namespace JoD {
     
@@ -48,6 +49,11 @@ namespace JoD {
         
         // Hide default system cursor.
         glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    }
+    
+    Graphics::~Graphics() {
+        
+        glfwDestroyWindow(m_window);
     }
     
     void Graphics::ClearCanvas() const {

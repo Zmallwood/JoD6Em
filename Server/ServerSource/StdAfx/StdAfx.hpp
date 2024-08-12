@@ -31,5 +31,6 @@
 #include "MathLib/SizeF.hpp"
 #include "MathLib/Colors.hpp"
 #include "Common/Aliases.hpp"
+#include "CommonAliases.hpp"
 #include "CommonUtils.hpp"
 #include "NetConfiguration.hpp"
