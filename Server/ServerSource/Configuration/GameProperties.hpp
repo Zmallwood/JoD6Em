@@ -15,12 +15,12 @@ namespace JoD {
         
       public:
         ///
-        /// Construct a new Game Properties object
+        /// Construct a new Game Properties object.
         ///
         GameProperties();
         
         ///
-        /// Destroy the Game Properties object
+        /// Destroy the Game Properties object. Needed by PIMPL idiom.
         ///
         ~GameProperties();
         
@@ -39,7 +39,10 @@ namespace JoD {
         Size GetWorldAreaSize() const;
         
       private:
-        struct Impl; ///< PIMPL struct defined in source file.
+        ///
+        /// PIMPL struct defined in source file.
+        ///
+        struct Impl;
         
         std::unique_ptr<Impl> m_pImpl; ///< PIMPL idiom used for compilation speed reasons.
     };

@@ -14,10 +14,16 @@ namespace JoD {
     class WebSocketServer {
         
       public:
+        ///
+        /// Construct a new Web Socket Server object.
+        ///
         WebSocketServer();
-        
+
+        ///
+        /// Destroy the Web Socket Server object. Needed by PIMPL idiom.
+        ///
         ~WebSocketServer();
-      
+        
         ///
         /// Run web socket server and start listening for incoming connections.
         ///
@@ -27,8 +33,11 @@ namespace JoD {
         void Run(std::string_view socketAddress, std::string_view socketPort);
         
       private:
+        ///
+        /// PIMPL struct defined in source file.
+        ///
         struct Impl;
         
-        std::unique_ptr<Impl> m_pImpl;
+        std::unique_ptr<Impl> m_pImpl; ///< PIMPL idiom used for compilation speed reasons.
     };
 }

@@ -22,25 +22,31 @@ namespace JoD {
         ///
         UserConnection(Socket socket);
         
+        ///
+        /// Destroy the User Connection object. Needed by PIMPL idiom.
+        ///
         ~UserConnection();
         
       private:
         ///
         /// Running game loop for user.
         ///
-        /// @param socket Socket object.
+        /// @param userID ID of user for which to running the game loop.
         ///
         void DoSession(UserID userID);
         
         ///
         /// Running loop for reading incoming web socket messages and handle them.
         ///
-        /// @param webSocket Socket object.
+        /// @param webSocket Websocket object.
         ///
         void DoSessionNested(WebSocket* webSocket);
         
+        ///
+        /// PIMPL struct defined in source file.
+        ///
         struct Impl;
         
-        std::unique_ptr<Impl> m_pImpl;
+        std::unique_ptr<Impl> m_pImpl; ///< PIMPL idiom used for compilation speed reasons.
     };
 }
