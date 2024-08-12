@@ -19,8 +19,6 @@ namespace JoD {
         m_atkSpeed = level/1.0f;
         m_hp = level*5;
         m_exp = level*5;
-        
-        m_hunger = static_cast<float>(rand()) / RAND_MAX;
     }
     
     void Creature::Hit(int damage) {
@@ -37,10 +35,5 @@ namespace JoD {
     bool Creature::IsDead() const {
         
         return m_hp <= 0;
-    }
-    
-    void Creature::InflictDeath() {
-        
-        m_hp = 0;
     }
 }

@@ -173,7 +173,6 @@ namespace JoD {
                                             Hash("ObjectGrass")) {
                                             
                                             object->m_durability -= 1.0f;
-                                            creature->m_hunger -= 0.01f;
                                             
                                             if (object->m_durability <= 0.0f) {
                                                 
@@ -181,46 +180,6 @@ namespace JoD {
                                                 RemoveObject(object);
                                             }
                                         }
-                                    }
-                                    
-                                    creature->m_hunger += 0.01f;
-                                    
-                                    if (creature->m_hunger >= 1.0f) {
-                                        
-                                        if (false ==
-                                            tile->GetObjectsPile().
-                                            HasObjectOfType(
-                                                "ObjectBoneRemains")){
-                                            tile->GetObjectsPile().AddObject(
-                                                "ObjectBoneRemains");
-                                        }
-                                        
-                                        bool goOn = true;
-                                        
-                                        for (auto groupIt =
-                                                 worldArea->m_creatureGroups.begin();
-                                             groupIt !=
-                                             worldArea->m_creatureGroups.end() && goOn;
-                                             groupIt++) {
-                                            
-                                            for (auto it =
-                                                     groupIt->m_creatures.begin();
-                                                 it != groupIt->m_creatures.end();
-                                                 it++) {
-                                                
-                                                if (*it == tile->GetCreature()) {
-                                                    
-                                                    groupIt->m_creatures.erase(it);
-                                                    goOn = false;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        
-                                        worldArea->RemoveCreaturePosition(
-                                            tile->GetCreature());
-                                        
-                                        tile->SetCreature(nullptr);
                                     }
                                 }
                             }

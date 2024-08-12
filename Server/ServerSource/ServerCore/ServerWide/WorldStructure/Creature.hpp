@@ -24,38 +24,70 @@ namespace JoD {
         ///
         Creature(std::string_view creatureName, int level);
         
+        ///
+        /// Hit the creature for a certain amount of damage.
+        ///
+        /// @param damage Damage to hit with, will result in a hp decrease by the same amount.
+        ///
         void Hit(int damage);
         
+        ///
+        /// Get the creature type.
+        /// 
+        /// @return int Creature type.
+        ///
         int GetType() const {
             
             return m_type;
         }
         
+        ///
+        /// Get the creature level.
+        /// 
+        /// @return int Creature level.
+        ///
         int GetLevel() const {
             
             return m_level;
         }
         
+        ///
+        /// Get the creature health points.
+        /// 
+        /// @return int Creature health points.
+        ///
         int GetHP() const {
             
             return m_hp;
         }
         
+        ///
+        /// Get the amount of experience gained when defeating this creature.
+        /// 
+        /// @return int Exp gain value.
+        ///
         int GetExp() const {
             
             return m_exp;
         }
         
+        ///
+        /// Get the timepoint for when this creature last got hit by another.
+        /// 
+        /// @return TimePoint Last time hit by another.
+        ///
         TimePoint GetTicksLastHitFromOther() const {
             
             return m_ticksLastHitFromOther;
         }
         
+        ///
+        /// Tells if this creature is dead.
+        /// 
+        /// @return true If dead.
+        /// @return false If alive.
+        ///
         bool IsDead() const;
-        
-        void InflictDeath();
-        
-        float m_hunger {0.0f};
         
       private:
         int m_type {0}; ///< Hash code of creature type name.
@@ -67,7 +99,7 @@ namespace JoD {
         float m_atkSpeed {0}; ///< Attack speed.
         int m_hp {0}; ///< Health points.
         int m_exp {0}; ///< Experience gained when defeating this creature.
-        TimePoint m_ticksLastHitFromOther {Now()};
-        CreatureMaturity m_maturity {CreatureMaturity::Mature};
+        TimePoint m_ticksLastHitFromOther {Now()}; ///< TimePoint for when this creature was last hit by another.
+        CreatureMaturity m_maturity {CreatureMaturity::Mature}; ///< Specifies the maturity/aging of this creature.
     };
 }
