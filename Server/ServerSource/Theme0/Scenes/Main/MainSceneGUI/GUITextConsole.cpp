@@ -21,8 +21,6 @@ namespace JoD {
         
         GUIPanel::RenderDerived(userID);
         
-        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
-        
         auto textOut = _<EngineGet>().GetTextMessages(userID);
         
         auto& textData = textOut->GetData();
@@ -32,7 +30,7 @@ namespace JoD {
         
         for (auto i = 0; i < textData.size(); i++) {
             
-            SendTextDrawInstruction(webSocket, textData.at(i), {m_position.x + k_margin, lineY});
+            SendTextDrawInstruction(userID, textData.at(i), {m_position.x + k_margin, lineY});
             
             lineY += k_lineHeight;
         }

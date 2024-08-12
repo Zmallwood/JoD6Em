@@ -21,6 +21,6 @@ namespace JoD {
     ///
     void RenderCreatures(
         const MainScene& mainScene,
-        WebSocket &webSocket,
+        UserID userID,
         Tile* tile, BoxF tileBounds);
 }

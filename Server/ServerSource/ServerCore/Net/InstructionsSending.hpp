@@ -16,7 +16,7 @@ namespace JoD {
     /// @param destination Destination to draw the image at.
     ///
     void SendImageDrawInstruction(
-        WebSocket &webSocket,
+        UserID userID,
         std::string_view imageName,
         BoxF destination);
     
@@ -28,7 +28,7 @@ namespace JoD {
     /// @param destination Destination to draw the image at.
     ///
     void SendImageDrawInstruction(
-        WebSocket &webSocket,
+        UserID userID,
         int imageNamehash,
         BoxF destination);
     
@@ -41,7 +41,7 @@ namespace JoD {
     /// @param centerAlign
     ///
     void SendTextDrawInstruction(
-        WebSocket &webSocket,
+        UserID userID,
         std::string_view text, PointF position, bool centerAlign = false);
     
     ///
@@ -49,7 +49,7 @@ namespace JoD {
     ///
     /// @param webSocket Socket object.
     ///
-    void SendPresentCanvasInstruction(WebSocket &webSocket);
+    void SendPresentCanvasInstruction(UserID userID);
     
     ///
     /// Send request to user to retrieve dimensions for an image.
@@ -58,10 +58,10 @@ namespace JoD {
     /// @param imageNameHash Hash code of image name to get dimensions for.
     ///
     void SendRequestImageDimensions(
-        WebSocket &webSocket,
+        UserID userID,
         int imageNameHash);
         
     void SendRequestImageDimensions(
-        WebSocket &webSocket,
+        UserID userID,
         std::string_view imageName);
 }

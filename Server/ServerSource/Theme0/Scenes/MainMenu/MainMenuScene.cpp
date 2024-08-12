@@ -24,14 +24,12 @@ namespace JoD {
     
     void MainMenuScene::RenderDerived(UserID userID) const {
         
-        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
-        
         SendImageDrawInstruction(
-            webSocket, "DefaultSceneBackground",
+            userID, "DefaultSceneBackground",
             {0.0f, 0.0f, 1.0f, 1.0f});
         
         SendImageDrawInstruction(
-            webSocket, "JoDLogo",
+            userID, "JoDLogo",
             {0.4f, 0.1f, 0.2f, 0.1f});
     }
 }

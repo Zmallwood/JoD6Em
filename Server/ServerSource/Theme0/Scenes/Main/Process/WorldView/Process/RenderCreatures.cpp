@@ -20,7 +20,7 @@ namespace JoD {
     
     void RenderCreatures(
         const MainScene& mainScene,
-        WebSocket &webSocket,
+        UserID userID,
         Tile* tile, BoxF tileBounds) {
         
         const auto mobTargeting =
@@ -36,18 +36,18 @@ namespace JoD {
                 GetTargetedCreature()){
                 
                 SendImageDrawInstruction(
-                    webSocket,
+                    userID,
                     "TargetedMob",
                     tileBounds);
             }
             
             SendImageDrawInstruction(
-                webSocket,
+                userID,
                 tile->GetCreature()->GetType(),
                 tileBounds);
             
             SendTextDrawInstruction(
-                webSocket,
+                userID,
                 "Mob, Lvl." +
                 std::to_string(tile->GetCreature()->GetLevel()),
                 {tileBounds.x, tileBounds.y - 0.5f*tileBounds.h});
@@ -59,7 +59,7 @@ namespace JoD {
                             k_showHitEffectDuration)))) {
                 
                 SendImageDrawInstruction(
-                    webSocket,
+                    userID,
                     "HitEffect",
                     tileBounds);
             }

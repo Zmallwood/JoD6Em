@@ -18,6 +18,6 @@ namespace JoD {
     /// @param tileBounds Bounds area of tile of which objects are to be rendered.
     ///
     void RenderObjects(
-        WebSocket &webSocket,
+        UserID userID,
         Tile* tile, BoxF tileBounds);
 }

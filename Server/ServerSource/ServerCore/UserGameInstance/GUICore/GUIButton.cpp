@@ -36,15 +36,13 @@ namespace JoD {
     void GUIButton::RenderDerived(UserID userID) const {
         
         
-        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
-        
         std::string imageName =
             m_hovered ? "GUIButtonHoveredBground" : "GUIButtonBground";
         
-        SendImageDrawInstruction(webSocket, imageName, GetBounds());;
+        SendImageDrawInstruction(userID, imageName, GetBounds());;
         
         SendTextDrawInstruction(
-            webSocket, m_text, GetBounds().GetCenter(),
+            userID, m_text, GetBounds().GetCenter(),
             true);
     }
     

@@ -6,22 +6,25 @@
 
 #include "InstructionsSending.hpp"
 #include "MessageCodes.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
     
     void SendImageDrawInstruction(
-        WebSocket &webSocket,
+        UserID userID,
         std::string_view
         imageName,
         BoxF destination) {
         
-        SendImageDrawInstruction(webSocket, Hash(imageName), destination);
+        SendImageDrawInstruction(userID, Hash(imageName), destination);
     }
     
     void SendImageDrawInstruction(
-        WebSocket &webSocket,
+        UserID userID,
         int imageNameHash,
         BoxF destination) {
+            
+        auto& webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         const auto messageCode = MessageCodes::k_drawImageInstr;
         
@@ -43,10 +46,12 @@ namespace JoD {
     }
     
     void SendTextDrawInstruction(
-        WebSocket &webSocket,
+        UserID userID,
         std::string_view text,
         PointF position,
         bool centerAlign) {
+            
+        auto& webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         const auto messageCode = MessageCodes::k_drawStringInstr;
         
@@ -71,7 +76,9 @@ namespace JoD {
     }
     
     void SendPresentCanvasInstruction(
-        WebSocket &webSocket) {
+        UserID userID) {
+            
+        auto& webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         const auto messageCode = MessageCodes::k_applyBuffer;
         
@@ -80,8 +87,10 @@ namespace JoD {
     }
     
     void SendRequestImageDimensions(
-        WebSocket &webSocket,
+        UserID userID,
         int imageNameHash) {
+            
+        auto& webSocket = *_<EngineGet>().GetWebSocket(userID);
         
         const auto messageCode = MessageCodes::k_requestImageDimensions;
         
@@ -94,8 +103,8 @@ namespace JoD {
     }
     
     void SendRequestImageDimensions(
-        WebSocket &webSocket,
+        UserID userID,
         std::string_view imageName) {
-        SendRequestImageDimensions(webSocket, Hash(imageName));
+        SendRequestImageDimensions(userID, Hash(imageName));
     }
 }

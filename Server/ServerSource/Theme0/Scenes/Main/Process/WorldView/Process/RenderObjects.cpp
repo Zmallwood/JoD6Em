@@ -14,7 +14,7 @@
 namespace JoD {
     
     void RenderObjects(
-        WebSocket &webSocket,
+        UserID userID,
         Tile* tile, BoxF tileBounds) {
         
         for (auto object : tile->GetObjectsPile().GetObjects()) {
@@ -37,7 +37,7 @@ namespace JoD {
                 if (!foundImageDim) {
                     
                     SendRequestImageDimensions(
-                        webSocket,
+                        userID,
                         object->GetType());
                     
                     return;
@@ -52,7 +52,7 @@ namespace JoD {
                                             height, width, height};
                 
                 SendImageDrawInstruction(
-                    webSocket,
+                    userID,
                     object->GetType(),
                     newBounds);
             }

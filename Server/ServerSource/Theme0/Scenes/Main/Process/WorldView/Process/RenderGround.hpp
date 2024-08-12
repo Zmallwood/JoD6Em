@@ -18,6 +18,6 @@ namespace JoD {
     /// @param tileBounds Bounds area of the tile which ground is to be rendered.
     ///
     void RenderGround(
-        WebSocket &webSocket,
+        UserID userID,
         Tile* tile, BoxF tileBounds, Tile* tileW, Tile* tileN, int playerElev);
 }

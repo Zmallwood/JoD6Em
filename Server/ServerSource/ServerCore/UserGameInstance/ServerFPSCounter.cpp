@@ -26,10 +26,8 @@ namespace JoD {
     
     void ServerFPSCounter::Render(UserID userID) const {
         
-        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
-        
         SendTextDrawInstruction(
-            webSocket,
+            userID,
             "Server fps: " + std::to_string(m_fps), {0.8f, 0.1f});
     }
 }

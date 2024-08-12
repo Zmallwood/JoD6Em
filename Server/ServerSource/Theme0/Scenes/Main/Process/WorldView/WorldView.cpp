@@ -88,7 +88,7 @@ namespace JoD {
                                                                       1);
                 }
                 
-                RenderGround(webSocket, tile, groundBounds, tileW, tileN,
+                RenderGround(userID, tile, groundBounds, tileW, tileN,
                              playerElev);
                 
                 
@@ -100,13 +100,13 @@ namespace JoD {
                     tileSize.h + smallValue};
                 
                 RenderTileSymbols(
-                    mainScene, userID, webSocket,
+                    mainScene, userID,
                     {coordX, coordY}, tileBounds);
                 
-                RenderObjects(webSocket, tile, tileBounds);
+                RenderObjects(userID, tile, tileBounds);
                 
                 RenderCreatures(
-                    mainScene, webSocket, tile,
+                    mainScene, userID, tile,
                     tileBounds);
                 
                 auto playerBounds =  BoxF {
@@ -116,7 +116,7 @@ namespace JoD {
                     tileSize.h + smallValue};
                 
                 RenderPlayer(
-                    userID, webSocket, {coordX, coordY},
+                    userID, {coordX, coordY},
                     playerBounds);
             }
         }

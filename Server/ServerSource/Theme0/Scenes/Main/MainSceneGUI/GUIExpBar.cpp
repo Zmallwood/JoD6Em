@@ -29,18 +29,16 @@ namespace JoD {
     
     void GUIExpBar::RenderDerived(UserID userID) const {
         
-        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
-        
         auto boundsBground = BoxF {m_position.x, m_position.y, 1.0f, k_height};
         
-        SendImageDrawInstruction(webSocket, "Black", boundsBground);
+        SendImageDrawInstruction(userID, "Black", boundsBground);
         
         auto boundsFilled = BoxF {m_position.x, m_position.y, m_filledAmount, k_height};
         
-        SendImageDrawInstruction(webSocket, "Gold", boundsFilled);
+        SendImageDrawInstruction(userID, "Gold", boundsFilled);
         
         auto boundsBorder = BoxF {m_position.x, m_position.y, 1.0f, 0.001f};
         
-        SendImageDrawInstruction(webSocket, "White", boundsBorder);
+        SendImageDrawInstruction(userID, "White", boundsBorder);
     }
 }

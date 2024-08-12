@@ -66,9 +66,7 @@ namespace JoD {
         
         m_pImpl->cursor->Render(userID);
         
-        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
-        
-        SendPresentCanvasInstruction(webSocket);
+        SendPresentCanvasInstruction(userID);
     }
     
     float EngineInstance::GetAspectRatio() const {

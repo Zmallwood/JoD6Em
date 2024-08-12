@@ -16,8 +16,6 @@ namespace JoD {
     
     void GUILabel::RenderDerived(UserID userID) const {
         
-        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
-        
-        SendTextDrawInstruction(webSocket, m_text, m_position, m_centerAligned);
+        SendTextDrawInstruction(userID, m_text, m_position, m_centerAligned);
     }
 }

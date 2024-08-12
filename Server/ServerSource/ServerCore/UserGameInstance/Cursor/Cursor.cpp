@@ -12,8 +12,6 @@ namespace JoD {
     
     void Cursor::Render(UserID userID) const {
         
-        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
-        
         // Get current mouse position.
         const auto mousePosition = _<EngineGet>().GetMousePosition(userID).value();
         
@@ -32,7 +30,7 @@ namespace JoD {
         
         // Render the cursor image.
         SendImageDrawInstruction(
-            webSocket, k_cursorImageName,
+            userID, k_cursorImageName,
             cursorDestination);
     }
 }

@@ -21,14 +21,12 @@ namespace JoD {
         
         GUIPanel::RenderDerived(userID);
         
-        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
-        
         auto player = _<EngineGet>().GetPlayer(userID);
         
-        SendTextDrawInstruction(webSocket, player->GetName(), {0.01f, 0.01f});
+        SendTextDrawInstruction(userID, player->GetName(), {0.01f, 0.01f});
         
         auto level = GetCurrLevel(player->GetExperience());
         
-        SendTextDrawInstruction(webSocket, "Level: " + std::to_string(level), {0.01f, 0.031f});
+        SendTextDrawInstruction(userID, "Level: " + std::to_string(level), {0.01f, 0.031f});
     }
 }

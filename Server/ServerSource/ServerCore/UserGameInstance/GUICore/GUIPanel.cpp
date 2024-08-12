@@ -17,9 +17,7 @@ namespace JoD {
     
     void GUIPanel::RenderDerived(UserID userID) const {
         
-        auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
-        
-        SendImageDrawInstruction(webSocket, "GUIPanelBground", GetBounds());
+        SendImageDrawInstruction(userID, "GUIPanelBground", GetBounds());
     }
     
     BoxF GUIPanel::GetBounds() const {

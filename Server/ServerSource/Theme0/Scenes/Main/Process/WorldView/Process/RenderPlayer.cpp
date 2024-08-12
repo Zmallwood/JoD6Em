@@ -13,7 +13,7 @@
 namespace JoD {
     
     void RenderPlayer(
-        UserID userID, WebSocket &webSocket,
+        UserID userID,
         Point coordinate, BoxF tileBounds) {
         
         const auto playerCoordinate =
@@ -35,7 +35,7 @@ namespace JoD {
             if (!foundImageDim) {
                 
                 SendRequestImageDimensions(
-                    webSocket,
+                    userID,
                     "Player");
                 
                 return;
@@ -48,7 +48,7 @@ namespace JoD {
                                    tileBounds.y + tileBounds.h/2 - height, width, height};
             
             SendImageDrawInstruction(
-                webSocket, "Player", newBounds);
+                userID, "Player", newBounds);
         }
     }
 }

@@ -22,6 +22,5 @@ namespace JoD {
     ///
     void RenderTileSymbols(
         const MainScene& mainScene, UserID userID,
-        WebSocket &webSocket,
         Point coordinate, BoxF tileBounds);
 }

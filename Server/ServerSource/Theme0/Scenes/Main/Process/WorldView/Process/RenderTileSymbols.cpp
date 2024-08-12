@@ -16,7 +16,6 @@ namespace JoD {
     void RenderTileSymbols(
         const MainScene& mainScene,
         UserID userID,
-        WebSocket &webSocket,
         Point coordinate, BoxF tileBounds) {
         
         const auto &player = _<EngineGet>().GetPlayer(userID);
@@ -30,7 +29,7 @@ namespace JoD {
         if (tileHovering->GetHoveredCoordinate().has_value() && coordinate == tileHovering->GetHoveredCoordinate()){
             
             SendImageDrawInstruction(
-                webSocket,
+                userID,
                 "HoveredTile",
                 tileBounds);
         }
@@ -39,7 +38,7 @@ namespace JoD {
             coordinate == player->GetDestCoord()) {
             
             SendImageDrawInstruction(
-                webSocket,
+                userID,
                 "DestinationSymbol",
                 tileBounds);
         }
