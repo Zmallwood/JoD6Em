@@ -11,8 +11,10 @@ int main(int argc, char *argv[]) {
     // Catch all exceptions that can happen during execution.
     try{
         
+        // Make sure correct number of input arguments has been provided.
         if (argc != 3){
             
+            // If now, notify user.
             std::cerr << "Usage: JoDServer <address> <port>\n"
                       << "Example:\n"
                       << "    JoDServer 0.0.0.0 8080\n";

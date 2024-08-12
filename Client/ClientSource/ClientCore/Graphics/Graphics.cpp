@@ -5,7 +5,6 @@
  */
 
 #include "Graphics.hpp"
-#include <GLFW/glfw3.h>
 
 namespace JoD {
     
@@ -53,6 +52,9 @@ namespace JoD {
     
     Graphics::~Graphics() {
         
+        // Probably never occurring in emscripten app, but
+        // including if the game would ever by ported into
+        // another format.
         glfwDestroyWindow(m_window);
     }
     

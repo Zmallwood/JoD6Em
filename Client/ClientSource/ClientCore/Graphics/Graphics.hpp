@@ -22,7 +22,7 @@ namespace JoD {
         
         ///
         /// Destroy the Graphics object, probably not relevant for emscripten app but including
-        /// it for good practice to cleanup allocated resources.
+        /// it for the case if the game would be ported into another format.
         ///
         ~Graphics();
         

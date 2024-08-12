@@ -15,6 +15,7 @@ int main(int argc, char *argv[]) {
         JoD::RunNewClientInstance(); 
     } 
     catch (const std::exception &e){ 
+        
         std::cout << "Error: " << e.what() << std::endl;
         
         // An exception occured, exit game.

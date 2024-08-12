@@ -15,11 +15,12 @@ namespace JoD {
     namespace {
         
         int locNoPixelEffect{-1}; // Location of pixelation effect switch variable in vertex shader.
-        std::vector<int> defaultIndices;
-        const std::vector<float> k_defaultColorsWhite = std::vector<float>(
-            16,
-            1.0f);                                                                    ///< A set of floats representing the default white image color.
-        const std::vector<float> k_defaultUVs ///< A set of floats representing a default UV coordinates layout for an image.
+        std::vector<int> defaultIndices; // To hold the default set of indices for 2D image rendering.
+        const std::vector<float> k_defaultColorsWhite // A set of floats representing the default white image color.
+            =  std::vector<float>(
+                  16,
+                  1.0f);
+        const std::vector<float> k_defaultUVs // A set of floats representing a default UV coordinates layout for an image.
         {0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f};
         constexpr int k_locPosition{0}; // Location of position variable in vertex shader.
         constexpr int k_locColor{1}; // Location of color variable in vertex shader.
@@ -38,6 +39,7 @@ namespace JoD {
         // Create indices for the vertices.
         defaultIndices = std::vector<int>(
             MathConstants::k_numVerticesInRectangle);
+            
         std::iota(std::begin(defaultIndices), std::end(defaultIndices), 0);
     }
     
@@ -62,20 +64,24 @@ namespace JoD {
         const auto uvBuffID = GenNewBuffID(BufferTypes::UVs, rid);
         
         // Set buffers to empty data.
+        
         SetIndicesData(
             indexBuffID,
             MathConstants::k_numVerticesInRectangle,
             nullptr);
+            
         SetData(
             posBuffID,
             MathConstants::k_numVerticesInRectangle,
             nullptr,
             BufferTypes::Positions2D);
+            
         SetData(
             colorBuffID,
             MathConstants::k_numVerticesInRectangle,
             nullptr,
             BufferTypes::Colors);
+            
         SetData(
             uvBuffID,
             MathConstants::k_numVerticesInRectangle,
@@ -126,8 +132,11 @@ namespace JoD {
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         }
         
+        // To hold positions data as a series of floats.
         std::vector<float> positions;
         
+        // Add the positions data adjusted to the GL coordinate system,
+        // and provided in expected order.
         positions.push_back(glRect.x);
         positions.push_back(glRect.y - glRect.h);
         positions.push_back(glRect.x);
@@ -152,17 +161,19 @@ namespace JoD {
         const auto uvBuffID = GetBuffID(BufferTypes::UVs, rid);
         
         // Provide the float vector data to the buffers.
+        
         UpdateIndicesData(indexBuffID, defaultIndices);
+        
         UpdateData(
             posBuffID, positions, BufferTypes::Positions2D,
             k_locPosition);
         
-        if (color == Colors::white) {
+        if (color == Colors::white) { // If color is white, we can use predefined data.
             
             UpdateData(
                 colorBuffID, k_defaultColorsWhite, BufferTypes::Colors,
                 k_locColor);
-        }else {
+        }else { // If color is not white, the color-floats-data need to be created.
             
             std::vector<float> colors;
             
@@ -178,10 +189,12 @@ namespace JoD {
                 colorBuffID, colors, BufferTypes::Colors,
                 k_locColor);
         }
+        
+        // If no texture repetition is desired, we can use predefined UV-float-data.
         if (textureFillAmount.w == 1.0f && textureFillAmount.h == 1.0f) {
             
             UpdateData(uvBuffID, k_defaultUVs, BufferTypes::UVs, k_locUV);
-        } else {
+        } else { // If texture repetition is desired, the UUV-float-data need to be created.
             
             std::vector<float> uvs;
             
