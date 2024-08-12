@@ -33,6 +33,6 @@ namespace JoD {
         RID m_rid {0}; ///< RID used to render the FPS text.
         int m_framesCount {0}; ///< Number of frames counted since last FPS update.
         int m_fps {0}; ///< Last calculated FPS value.
-        int m_ticksLastUpdate {0}; ///< Ticks at the time of last FPS update.
+        TimePoint m_ticksLastUpdate {Now()};
     };
 }

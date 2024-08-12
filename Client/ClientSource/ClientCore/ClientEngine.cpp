@@ -37,26 +37,6 @@ namespace JoD {
         emscripten_set_main_loop(GameLoopFunction, 0, simulateInfiniteLoop);
     }
     
-    void ClientEngine::PollEvents() {
-        
-        SDL_Event event;
-        
-        // Poll for events from user every frame.
-        while (SDL_PollEvent(&event)) {
-            
-            switch (event.type){
-            
-            case SDL_QUIT: {
-                
-                // Quit game by stopping ClientEngine.
-                m_running = false;
-                
-                break;
-            }
-            }
-        }
-    }
-    
     namespace {
         
         void GameLoopFunction() {
@@ -66,9 +46,6 @@ namespace JoD {
                 
                 emscripten_cancel_main_loop();
             }
-            
-            // Poll user events and process them.
-            _<ClientEngine>().PollEvents();
             
             _<ClientFPSCounter>().Update();
             

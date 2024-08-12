@@ -16,13 +16,13 @@ namespace JoD {
     
     void ClientFPSCounter::Update() {
         
-        if (GetTicks() > m_ticksLastUpdate + 1000) {
+        if (Now() > m_ticksLastUpdate + Duration(Millis(1000))) {
             
             m_fps = m_framesCount;
             
             m_framesCount = 0;
             
-            m_ticksLastUpdate = GetTicks();
+            m_ticksLastUpdate = Now();
         }
         
         m_framesCount++;  

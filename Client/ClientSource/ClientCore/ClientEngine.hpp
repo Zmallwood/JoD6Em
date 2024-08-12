@@ -20,11 +20,6 @@ namespace JoD {
         void Run() const;
         
         ///
-        /// Poll input events from user.
-        ///
-        void PollEvents();
-        
-        ///
         /// Tells if the client engine is currently running.
         /// 
         /// @return true If the game engine is running.

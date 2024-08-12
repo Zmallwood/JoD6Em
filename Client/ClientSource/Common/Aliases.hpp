@@ -9,6 +9,4 @@
 namespace JoD {
     
     using RID = GLuint; ///< Resource ID.
-    
-    static auto GetTicks = SDL_GetTicks; ///< Current number of ticks now.
 }
