@@ -43,6 +43,6 @@ namespace JoD {
         
         std::unique_ptr<Impl> m_pImpl;
         
-        inline static UserID s_currentUserID {0};
+        inline static UserID s_currentUserID {1}; ///< Note: IDs start at 1 so 0 can be used for unspecified/lacking IDs.
     };
 }

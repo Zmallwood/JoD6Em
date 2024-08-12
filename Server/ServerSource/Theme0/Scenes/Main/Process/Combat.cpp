@@ -26,6 +26,7 @@ namespace JoD {
             _<EngineGet>().GetPlayer(userID);
         
         auto textMessages = _<EngineGet>().GetTextMessages(userID);
+        const auto &worldArea = _<World>().GetCurrentWorldArea();
         
         auto creatureTargeting =
             static_cast<CreatureTargeting*>(
@@ -36,7 +37,6 @@ namespace JoD {
         
         if (creatureTargeting->GetTargetedCreature()) {
             
-            const auto &worldArea = _<World>().GetCurrentWorldArea();
             const auto pos =
                 worldArea->GetCreatureCoord(
                     creatureTargeting->GetTargetedCreature()).value();
@@ -63,7 +63,12 @@ namespace JoD {
                     
                     creatureTargeting->GetTargetedCreature()->Hit(damage);
                     
-                    textMessages->Print("You hit creature for " + std::to_string(damage) + " dmg.");
+                    creatureTargeting->GetTargetedCreature()->SetTargetedUserID(
+                        userID);
+                    
+                    textMessages->Print(
+                        "You hit creature for " +
+                        std::to_string(damage) + " dmg.");
                     
                     worldArea->GetTile(pos)->SetGroundCover(
                         Hash(
@@ -89,6 +94,37 @@ namespace JoD {
                         
                         worldArea->GetTile(pos)->SetCreature(nullptr);
                         
+                    }
+                }
+            }
+        }
+        
+        const auto &creaturePositions = worldArea->GetCreaturePositions();
+        
+        for (auto& entry : creaturePositions) {
+            
+            auto creature = entry.first;
+            auto coord = entry.second;
+            
+            if (creature->GetTargetedUserID() == userID) {
+                
+                auto absDx = std::abs(player->GetCoord().x - coord.x);
+                auto absDy = std::abs(player->GetCoord().y - coord.y);
+                
+                if (absDx <= 1 && absDy <= 1) {
+                    
+                    if (Now() >
+                        creature->GetTicksLastAttackOnOther() + Duration(
+                            Millis(
+                                static_cast<int>(
+                                    1000/
+                                    creature->GetAttackSpeed())))) {
+                        
+                        auto damage = 1;
+                        
+                        player->Hit(damage);
+                        
+                        creature->SetTicksLastAttackOnOther(Now());
                     }
                 }
             }

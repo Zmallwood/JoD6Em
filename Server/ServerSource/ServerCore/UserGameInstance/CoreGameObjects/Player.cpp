@@ -54,6 +54,11 @@ namespace JoD {
         TryMoveToCoord(userID, {m_coord.x - 1, m_coord.y - 1});
     }
     
+    void Player::Hit(int damage) {
+        
+        m_hp -= damage;
+    }
+    
     void Player::TryMoveToCoord(UserID userID, Point coord) {
         
         const auto &worldArea = _<World>().GetCurrentWorldArea();

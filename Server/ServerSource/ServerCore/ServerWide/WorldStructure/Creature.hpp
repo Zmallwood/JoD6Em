@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "CommonAliases.hpp"
 #include "CreatureMaturity.hpp"
 
 namespace JoD {
@@ -89,6 +90,31 @@ namespace JoD {
         ///
         bool IsDead() const;
         
+        UserID GetTargetedUserID() const {
+            
+            return m_targetedUserID;
+        }
+        
+        void SetTargetedUserID(UserID userID) {
+            
+            m_targetedUserID = userID;
+        }
+        
+        TimePoint GetTicksLastAttackOnOther() const {
+            
+            return m_ticksLastAttackOnOther;
+        }
+        
+        void SetTicksLastAttackOnOther(TimePoint value) {
+            
+            m_ticksLastAttackOnOther = value;
+        }
+        
+        float GetAttackSpeed() const {
+            
+            return m_attackSpeed;
+        }
+        
       private:
         int m_type {0}; ///< Hash code of creature type name.
         int m_level {0}; ///< Level, as provided in ctor.
@@ -101,5 +127,8 @@ namespace JoD {
         int m_exp {0}; ///< Experience gained when defeating this creature.
         TimePoint m_ticksLastHitFromOther {Now()}; ///< TimePoint for when this creature was last hit by another.
         CreatureMaturity m_maturity {CreatureMaturity::Mature}; ///< Specifies the maturity/aging of this creature.
+        UserID m_targetedUserID {0};
+        TimePoint m_ticksLastAttackOnOther {Now()};
+        float m_attackSpeed {1.0f};
     };
 }

@@ -97,4 +97,9 @@ namespace JoD {
         
         return std::nullopt;
     }
+    
+    const std::map<std::shared_ptr<Creature>, Point>& WorldArea::GetCreaturePositions() const {
+        
+        return m_pImpl->creaturePositions;
+    }
 }

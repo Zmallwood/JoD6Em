@@ -42,6 +42,8 @@ namespace JoD {
         
         std::optional<Point> GetCreatureCoord(std::shared_ptr<Creature> creature) const;
         
+        const std::map<std::shared_ptr<Creature>, Point>& GetCreaturePositions() const;
+        
         std::vector<CreatureGroup> m_creatureGroups;
         
       private:

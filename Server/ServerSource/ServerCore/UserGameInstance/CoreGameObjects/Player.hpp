@@ -30,6 +30,8 @@ namespace JoD {
         
         void TryMoveNorthWest(UserID userID);
         
+        void Hit(int damage);
+        
         std::string GetName() const {
             
             return m_name;
