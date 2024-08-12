@@ -8,8 +8,8 @@
 
 namespace JoD {
     
-    Creature::Creature(std::string_view mobName,
-             int level) : m_type(Hash(mobName)) {
+    Creature::Creature(std::string_view creatureName,
+             int level) : m_type(Hash(creatureName)) {
         
         m_level = level;
         m_pAtk = level;

@@ -1,12 +1,15 @@
 /*
  * DrawInstructionsManager.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
 #include "DrawInstructionsManager.hpp"
 #include "ClientCore/Graphics/Rendering/Images/ImageRenderer.hpp"
 #include "ClientCore/Graphics/Rendering/Text/TextRenderer.hpp"
+#include "ImageDrawInstruction.hpp"
+#include "TextDrawInstruction.hpp"
+#include <memory>
 
 namespace JoD {
     
@@ -28,28 +31,31 @@ namespace JoD {
         int imageNameHash,
         BoxF destination) {
         
-        m_inactiveBuffer->emplace_back(
-            DrawInstructionTypes::DrawImage,
-            m_ridsImages.at(
+        auto newInstruction = std::make_unique<ImageDrawInstruction>();
+        
+        newInstruction->type = DrawInstructionTypes::DrawImage;
+        newInstruction->rid = m_ridsImages.at(
                 m_ridCounterImages
-                ++),
-            imageNameHash,
-            destination);
+                ++);
+        newInstruction->imageNameHash = imageNameHash;
+        newInstruction->destination = destination;
+        
+        m_inactiveBuffer->push_back(std::move(newInstruction));
     }
     
     
     void DrawInstructionsManager::AddTextDrawInstruction(
         std::string_view text, PointF position, bool centerAlign) {
         
-        auto newInstruction = DrawInstruction {};
+        auto newInstruction = std::make_unique<TextDrawInstruction>();
         
-        newInstruction.rid = m_ridsText.at(m_ridCounterText++);
-        newInstruction.type = DrawInstructionTypes::DrawText;
-        newInstruction.text = text;
-        newInstruction.position = position;
-        newInstruction.centerAligned = centerAlign;
+        newInstruction->rid = m_ridsText.at(m_ridCounterText++);
+        newInstruction->type = DrawInstructionTypes::DrawText;
+        newInstruction->text = text;
+        newInstruction->position = position;
+        newInstruction->centerAligned = centerAlign;
         
-        m_inactiveBuffer->push_back(newInstruction);
+        m_inactiveBuffer->push_back(std::move(newInstruction));
     }
     
     void DrawInstructionsManager::ApplyBuffer() {
@@ -68,23 +74,27 @@ namespace JoD {
         // Execute all drawing instructions that have been added.
         for (const auto &instruction : *m_activeBuffer){
             
-            switch (instruction.type) {
+            switch (instruction->type) {
             
             case DrawInstructionTypes::DrawImage: {
                 
+                auto casted = static_cast<ImageDrawInstruction*>(instruction.get());
+                
                 _<ImageRenderer>().DrawImage(
-                    instruction.rid,
-                    instruction.imageNameHash,
-                    instruction.destination);
+                    casted->rid,
+                    casted->imageNameHash,
+                    casted->destination);
                 break;
             }
             case DrawInstructionTypes::DrawText: {
                 
+                auto casted = static_cast<TextDrawInstruction*>(instruction.get());
+                
                 _<TextRenderer>().DrawString(
-                    instruction.rid, instruction.text,
-                    instruction.position,
+                    casted->rid, casted->text,
+                    casted->position,
                     Colors::wheat,
-                    instruction.centerAligned);
+                    casted->centerAligned);
                 break;
             }
             case DrawInstructionTypes::None: {

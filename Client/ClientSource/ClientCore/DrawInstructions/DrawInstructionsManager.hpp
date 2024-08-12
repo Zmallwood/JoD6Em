@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "DrawInstruction.hpp"
+#include "IDrawInstruction.hpp"
 
 namespace JoD {
     
@@ -43,13 +43,13 @@ namespace JoD {
         void ExecuteInstructions() const;
         
       private:
-        std::vector<DrawInstruction>
+        std::vector<std::unique_ptr<IDrawInstruction>>
         m_drawInstructionsBuffer1; ///< One of two instruction buffers.
-        std::vector<DrawInstruction>
+        std::vector<std::unique_ptr<IDrawInstruction>>
         m_drawInstructionsBuffer2; ///< One of two instruction buffers.
-        std::vector<DrawInstruction>* m_activeBuffer {
+        std::vector<std::unique_ptr<IDrawInstruction>>* m_activeBuffer {
             &m_drawInstructionsBuffer1}; ///< Pointer to active buffer which instructions are executed each frame.
-        std::vector<DrawInstruction>* m_inactiveBuffer {
+        std::vector<std::unique_ptr<IDrawInstruction>>* m_inactiveBuffer {
             &m_drawInstructionsBuffer2}; ///< Pointer to inactive buffer which is being populated with instructions,
         std::vector<RID> m_ridsImages; ///< A set of preallocated RIDs used for drawing images, created in the constructor.
         std::vector<RID> m_ridsText; ///< A set of preallocated RIDs used for drawing text, created in the constructor
