@@ -5,7 +5,7 @@
  */
 
 #include "RenderGround.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "Tile.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {

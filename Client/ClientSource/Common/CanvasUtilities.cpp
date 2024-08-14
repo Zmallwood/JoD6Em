@@ -40,11 +40,13 @@ namespace JoD {
     
     float ConvertHeightToWidth(float height) {
         
+        // Use aspect ratio to convert from height to corresponding width.
         return height / GetAspectRatio();
     }
     
     SDL_Color ToSDLColor(ColorF color) {
         
+        // Convert color components individually.
         return {static_cast<unsigned char>(color.r * 255),
                 static_cast<unsigned char>(color.g * 255),
                 static_cast<unsigned char>(color.b * 255),

@@ -8,12 +8,14 @@
 
 namespace JoD {
     
-    struct GameProperties::Impl { 
-        const int k_numGridRows {11};         ///< Number of rows in tile grid in world view.
-        const Size k_worldAreaSize {100, 100};
+    struct GameProperties::Impl {
+        
+        const int k_numGridRows {11}; // Number of rows in tile grid in world view.
+        const Size k_worldAreaSize {100, 100}; // Size of tile grid for newly created WorldAreas.
     };
     
-    GameProperties::GameProperties() : m_pImpl(std::make_unique<Impl>()){
+    GameProperties::GameProperties()
+        : m_pImpl(std::make_unique<Impl>()){
     }
     
     GameProperties::~GameProperties() {

@@ -6,12 +6,12 @@
 
 #include "BeginProcessWorld.hpp"
 #include "Common/Aliases.hpp"
-#include "ServerCore/ServerWide/WorldStructure/World.hpp"
-#include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Creature.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Object.hpp"
-#include "ServerCore/ServerWide/WorldStructure/ObjectsPile.hpp"
+#include "World.hpp"
+#include "WorldArea.hpp"
+#include "Tile.hpp"
+#include "Creature.hpp"
+#include "Object.hpp"
+#include "ObjectsPile.hpp"
 
 namespace JoD {
     
@@ -43,100 +43,100 @@ namespace JoD {
                     
                     auto worldArea = _<World>().GetCurrentWorldArea();
                     
-                    auto &creatureGroups = worldArea->m_creatureGroups;
+                    // auto &creatureGroups = worldArea->m_creatureGroups;
                     
-                    for (auto &creatureGroup : creatureGroups) {
+                    // for (auto &creatureGroup : creatureGroups) {
                         
-                        auto dx = creatureGroup.m_destCoord.x -
-                                  creatureGroup.m_coord.x;
-                        auto dy = creatureGroup.m_destCoord.y -
-                                  creatureGroup.m_coord.y;
+                    //     auto dx = creatureGroup.m_destCoord.x -
+                    //               creatureGroup.m_coord.x;
+                    //     auto dy = creatureGroup.m_destCoord.y -
+                    //               creatureGroup.m_coord.y;
                         
-                        if (dx == 0 && dy == 0) {
+                    //     if (dx == 0 && dy == 0) {
                             
-                            creatureGroup.m_destCoord = {rand() % 100, rand() % 100};
-                        }
+                    //         creatureGroup.m_destCoord = {rand() % 100, rand() % 100};
+                    //     }
                         
-                        auto absDx = std::abs(dx);
-                        auto absDy = std::abs(dy);
+                    //     auto absDx = std::abs(dx);
+                    //     auto absDy = std::abs(dy);
                         
-                        auto normX = 0;
-                        auto normY = 0;
+                    //     auto normX = 0;
+                    //     auto normY = 0;
                         
-                        if (dx) {
+                    //     if (dx) {
                             
-                            normX = dx/absDx;
-                        }
+                    //         normX = dx/absDx;
+                    //     }
                         
-                        if (dy) {
+                    //     if (dy) {
                             
-                            normY = dy/absDy;
-                        }
+                    //         normY = dy/absDy;
+                    //     }
                         
-                        creatureGroup.m_coord.x += normX;
-                        creatureGroup.m_coord.y += normY;
+                    //     creatureGroup.m_coord.x += normX;
+                    //     creatureGroup.m_coord.y += normY;
                         
-                        for (auto creature : creatureGroup.m_creatures) {
+                    //     for (auto creature : creatureGroup.m_creatures) {
                             
-                            auto pos = worldArea->GetCreatureCoord(creature);
+                    //         auto pos = worldArea->GetCreatureCoord(creature);
                             
-                            if (pos.has_value()) {
+                    //         if (pos.has_value()) {
                                 
-                                const int k_maxCreatureGroupRadius = 4;
+                    //             const int k_maxCreatureGroupRadius = 4;
                                 
-                                auto dx = creatureGroup.m_coord.x - pos.value().x;
-                                auto dy = creatureGroup.m_coord.y - pos.value().y;
+                    //             auto dx = creatureGroup.m_coord.x - pos.value().x;
+                    //             auto dy = creatureGroup.m_coord.y - pos.value().y;
                                 
                                 
-                                if (dx*dx + dy*dy >
-                                    k_maxCreatureGroupRadius*k_maxCreatureGroupRadius){
+                    //             if (dx*dx + dy*dy >
+                    //                 k_maxCreatureGroupRadius*k_maxCreatureGroupRadius){
                                         
-                                        dx +=  + rand() %
-                                          k_maxCreatureGroupRadius - rand() %
-                                          k_maxCreatureGroupRadius;
+                    //                     dx +=  + rand() %
+                    //                       k_maxCreatureGroupRadius - rand() %
+                    //                       k_maxCreatureGroupRadius;
                                           
-                                          dy +=  + rand() %
-                                          k_maxCreatureGroupRadius - rand() %
-                                          k_maxCreatureGroupRadius;
+                    //                       dy +=  + rand() %
+                    //                       k_maxCreatureGroupRadius - rand() %
+                    //                       k_maxCreatureGroupRadius;
                                     
-                                    auto absDx = std::abs(dx);
-                                    auto absDy = std::abs(dy);
+                    //                 auto absDx = std::abs(dx);
+                    //                 auto absDy = std::abs(dy);
                                     
-                                    auto normX = 0;
-                                    auto normY = 0;
+                    //                 auto normX = 0;
+                    //                 auto normY = 0;
                                     
-                                    if (dx) {
+                    //                 if (dx) {
                                         
-                                        normX = dx/absDx;
-                                    }
+                    //                     normX = dx/absDx;
+                    //                 }
                                     
-                                    if (dy) {
+                    //                 if (dy) {
                                         
-                                        normY = dy/absDy;
-                                    }
+                    //                     normY = dy/absDy;
+                    //                 }
                                     
-                                    auto newX = pos.value().x + normX;
-                                    auto newY = pos.value().y + normY;
+                    //                 auto newX = pos.value().x + normX;
+                    //                 auto newY = pos.value().y + normY;
                                     
-                                    auto newTile = worldArea->GetTile(
-                                        newX,
-                                        newY);
+                    //                 auto newTile = worldArea->GetTile(
+                    //                     newX,
+                    //                     newY);
                                     
-                                    if (newTile && newTile->GetCreature() == nullptr) {
+                    //                 if (newTile && newTile->GetCreature() == nullptr) {
                                         
-                                        newTile->SetCreature(creature);
-                                        worldArea->GetTile(pos.value())->SetCreature(
-                                            nullptr);
+                    //                     newTile->SetCreature(creature);
+                    //                     worldArea->GetTile(pos.value())->SetCreature(
+                    //                         nullptr);
                                         
-                                        worldArea->RemoveCreaturePosition(creature);
-                                        worldArea->RegisterCreaturePosition(creature,
-                                                                       {newX,
-                                                                        newY});
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    //                     worldArea->RemoveCreaturePosition(creature);
+                    //                     worldArea->RegisterCreaturePosition(creature,
+                    //                                                    {newX,
+                    //                                                     newY});
+                    //                 }
+                    //             }
+                    //         }
+                    //     }
+                    // }
                     
                     for (auto y = 0; y < worldArea->GetSize().h; y++) {
                         

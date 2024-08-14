@@ -7,12 +7,12 @@ set(CMAKE_EXECUTABLE_SUFFIX ".html")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_CXX_FLAGS "-sUSE_SDL=2 -sUSE_SDL_TTF=2 -sUSE_SDL_IMAGE=2 -sUSE_WEBGL2=1 -sSTB_IMAGE -sUSE_GLFW=3 --preload-file ${CMAKE_SOURCE_DIR}/../preloaded_files@/ --shell-file ${CMAKE_SOURCE_DIR}/../html/shell_minimal.html ")
 file(GLOB_RECURSE sources ../ClientSource/**.cpp)
-file(GLOB_RECURSE sources_shared ../../Shared/SharedSource/**.cpp)
+file(GLOB_RECURSE sources_shared ../../Shared/SharedCommonSource/**.cpp ../../Shared/SharedNetSource/**.cpp)
 add_executable(JourneyOfDreams 
     ${sources}
     ${sources_shared}
 )
-target_include_directories(JourneyOfDreams PRIVATE ../ClientSource ../../Shared/SharedSource)
+target_include_directories(JourneyOfDreams PRIVATE ../ClientSource ../../Shared/SharedCommonSource ../../Shared/SharedNetSource)
 
 target_precompile_headers(JourneyOfDreams PRIVATE ../ClientSource/StdAfx/StdAfx.hpp)
 target_link_libraries(JourneyOfDreams websocket.js)

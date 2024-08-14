@@ -89,7 +89,8 @@ namespace JoD {
     
     void ShaderProgram::Cleanup() const {
         
-        glDeleteProgram(m_programID); // Delete GL program.
+        // Delete GL program.
+        glDeleteProgram(m_programID);
     }
     
     GLuint ShaderProgram::CompileShader(

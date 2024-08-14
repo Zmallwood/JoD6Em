@@ -7,10 +7,16 @@
             "path": "Server/ServerSource"
         },
         {
-            "path": "Shared/SharedSource"
+            "path": "WorldEditor/WorldEditorSource"
         },
         {
-            "path": "WorldEditor/WorldEditorSource"
+            "path": "Shared/SharedCommonSource"
+        },
+        {
+            "path": "Shared/SharedNetSource"
+        },
+        {
+            "path": "Shared/SharedWorldStructureSource"
         }
     ],
 	"settings": {

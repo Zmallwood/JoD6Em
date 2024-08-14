@@ -10,6 +10,7 @@
 namespace JoD {
     
     namespace {
+        
         const auto k_numFloatsPerEntry // Predefined constants of number of floats for different entry types.
         {std::map<BufferTypes, int> {
              {BufferTypes::Indices, 1},

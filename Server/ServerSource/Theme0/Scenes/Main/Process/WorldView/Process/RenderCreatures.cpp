@@ -5,8 +5,8 @@
  */
 
 #include "RenderCreatures.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Creature.hpp"
+#include "Tile.hpp"
+#include "Creature.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "Theme0/Scenes/Main/Process/CreatureTargeting.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"

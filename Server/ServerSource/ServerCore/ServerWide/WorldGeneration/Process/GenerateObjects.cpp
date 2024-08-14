@@ -5,9 +5,9 @@
  */
 
 #include "GenerateObjects.hpp"
-#include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
-#include "ServerCore/ServerWide/WorldStructure/ObjectsPile.hpp"
+#include "WorldArea.hpp"
+#include "Tile.hpp"
+#include "ObjectsPile.hpp"
 #include "Configuration/GameProperties.hpp"
 
 namespace JoD {

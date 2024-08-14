@@ -24,8 +24,7 @@ namespace JoD {
         
         // Then only keep the part preceeding the last occurrence of '.'.
         const auto fileName = nameWithExt.substr(
-            0,
-            nameWithExt.find_last_of('.'));
+            0, nameWithExt.find_last_of('.'));
         
         return fileName;
     }

@@ -5,8 +5,8 @@
  */
 
 #include "GenerateRock.hpp"
-#include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
+#include "WorldArea.hpp"
+#include "Tile.hpp"
 #include "Configuration/GameProperties.hpp"
 
 namespace JoD {

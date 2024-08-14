@@ -5,11 +5,11 @@
  */
 
 #include "Player.hpp"
-#include "ServerCore/ServerWide/WorldStructure/World.hpp"
-#include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Tile.hpp"
-#include "ServerCore/ServerWide/WorldStructure/Object.hpp"
-#include "ServerCore/ServerWide/WorldStructure/ObjectsPile.hpp"
+#include "World.hpp"
+#include "WorldArea.hpp"
+#include "Tile.hpp"
+#include "Object.hpp"
+#include "ObjectsPile.hpp"
 #include "Configuration/ObjectsIndex.hpp"
 
 namespace JoD {

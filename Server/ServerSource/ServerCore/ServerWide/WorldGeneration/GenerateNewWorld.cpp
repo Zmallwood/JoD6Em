@@ -5,7 +5,7 @@
  */
 
 #include "GenerateNewWorld.hpp"
-#include "ServerCore/ServerWide/WorldStructure/World.hpp"
+#include "World.hpp"
 #include "Process/ClearWithGrass.hpp"
 #include "Process/GenerateCreatures.hpp"
 #include "Process/GenerateObjects.hpp"

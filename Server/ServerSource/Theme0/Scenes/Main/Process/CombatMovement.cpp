@@ -8,8 +8,8 @@
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 #include "CreatureTargeting.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
-#include "ServerCore/ServerWide/WorldStructure/World.hpp"
-#include "ServerCore/ServerWide/WorldStructure/WorldArea.hpp"
+#include "World.hpp"
+#include "WorldArea.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
 

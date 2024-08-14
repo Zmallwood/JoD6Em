@@ -16,6 +16,7 @@ namespace JoD {
     
     namespace {
         
+        // Called infinitely in the emscripten game loop.
         void GameLoopFunction();
     }
     
@@ -47,8 +48,10 @@ namespace JoD {
                 emscripten_cancel_main_loop();
             }
             
+            // Update client side FPS counter.
             _<ClientFPSCounter>().Update();
             
+            // Send net message with mouse position each frame.
             _<WebSocketServerConnection>().SendMessage(
                 MessageCodes::k_mousePosition);
             
@@ -58,6 +61,7 @@ namespace JoD {
             // Draw canvas in its current state (current set of drawing instructions).
             _<DrawInstructionsManager>().ExecuteInstructions();
             
+            // Draw the FPS text on top of everything else.
             _<ClientFPSCounter>().Render();
             
             // Present canvas to users web browser.
