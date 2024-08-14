@@ -1,6 +1,6 @@
 /*
  * DrawInstructionsManager.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -29,7 +29,9 @@ namespace JoD {
         ///
         void AddImageDrawInstruction(int imageNameHash, BoxF destination);
         
-        void AddTextDrawInstruction(std::string_view text, PointF position, bool centerAlign);
+        void AddTextDrawInstruction
+            (std::string_view text, PointF position,
+            bool centerAlign);
         
         ///
         /// Copies the buffered render instructions to the active render instructions set.

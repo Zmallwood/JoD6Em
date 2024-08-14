@@ -24,9 +24,7 @@ namespace JoD {
     }
     
     RendererBase::RendererBase()
-        : m_shaderProgram(std::make_unique<ShaderProgram>()){
-        
-    }
+        : m_shaderProgram(std::make_unique<ShaderProgram>()){}
     
     GLuint RendererBase::GenNewVAOID() {
         
@@ -95,7 +93,8 @@ namespace JoD {
                 data,
                 k_numFloatsPerEntry.at(buffType),
                 layoutLocation);
-        } else {
+        }
+        else {
             
             // Call this function for all buffer types except BoneIDs.
             SetArrayBufferData(
@@ -294,7 +293,8 @@ namespace JoD {
                 data,
                 k_numFloatsPerEntry.at(buffType),
                 layoutLocation);
-        } else {
+        }
+        else {
             
             // Else, update with float data.
             UpdateArrayBufferData(

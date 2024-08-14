@@ -1,6 +1,6 @@
 /*
  * ObjectsIndex.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -8,11 +8,13 @@
 #include "ObjectFlags.hpp"
 
 namespace JoD {
-
+    
     ObjectsIndex::ObjectsIndex() {
         
         // Insert object flags for certain objects.
-        m_objectFlags.insert({Hash("ObjectPinkFlower"), ObjectFlags::k_walkThrough});
+        m_objectFlags.insert(
+            {Hash("ObjectPinkFlower"),
+             ObjectFlags::k_walkThrough});
         m_objectFlags.insert({Hash("ObjectGrass"), ObjectFlags::k_walkThrough});
     }
     
@@ -22,7 +24,8 @@ namespace JoD {
         if (m_objectFlags.contains(objectNameHash)) {
             
             // If it does, return wether it has the walk-through flag or not.
-            return (m_objectFlags.at(objectNameHash) & ObjectFlags::k_walkThrough) != 0;
+            return (m_objectFlags.at(objectNameHash) &
+                    ObjectFlags::k_walkThrough) != 0;
         }
         
         // Return false as default, if the object type doesnt exist in storage.

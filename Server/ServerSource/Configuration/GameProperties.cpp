@@ -15,12 +15,9 @@ namespace JoD {
     };
     
     GameProperties::GameProperties()
-        : m_pImpl(std::make_unique<Impl>()){
-    }
+        : m_pImpl(std::make_unique<Impl>()){}
     
-    GameProperties::~GameProperties() {
-        
-    }
+    GameProperties::~GameProperties() {}
     
     int GameProperties::GetNumGridRows() const {
         

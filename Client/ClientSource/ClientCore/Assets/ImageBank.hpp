@@ -31,7 +31,7 @@ namespace JoD {
         ///
         /// Destroy the image bank object.
         ///
-        /// @details Deletes all GL textures in m_images. 
+        /// @details Deletes all GL textures in m_images.
         ///
         ~ImageBank();
         
@@ -73,7 +73,7 @@ namespace JoD {
         
         ///
         ///  Get image dimensions for provided image name hash code.
-        /// 
+        ///
         /// @param imageNameHash Image name hash code to get dimensions for.
         /// @return Size Image dimensions.
         ///

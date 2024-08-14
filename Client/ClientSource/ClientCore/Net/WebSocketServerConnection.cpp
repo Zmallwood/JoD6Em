@@ -57,7 +57,8 @@ namespace JoD {
         }
         
         // Create address to connect to.
-        const auto serverAddress = "ws://" + k_host + ":" + std::to_string(k_port);
+        const auto serverAddress = "ws://" + k_host + ":" +
+                                   std::to_string(k_port);
         
         // Create attributes.
         auto wsAttrs = EmscriptenWebSocketCreateAttributes{
@@ -70,11 +71,14 @@ namespace JoD {
         emscripten_websocket_set_onopen_callback(webSocket, nullptr, OnOpen);
         emscripten_websocket_set_onerror_callback(webSocket, nullptr, OnError);
         emscripten_websocket_set_onclose_callback(webSocket, nullptr, OnClose);
-        emscripten_websocket_set_onmessage_callback(webSocket, nullptr, OnMessage);
+        emscripten_websocket_set_onmessage_callback(
+            webSocket, nullptr,
+            OnMessage);
     }
     
     
-    void WebSocketServerConnection::SendMessage(const int *data, int length) const {
+    void WebSocketServerConnection::SendMessage(const int *data,
+                                                int length) const {
         
         // Try send packet and handle failure.
         if (auto result =
@@ -218,7 +222,8 @@ namespace JoD {
             void *userData){
             
             // Save web socket event to WebSocketClient so it can be used from that object by its own.
-            _<WebSocketServerConnection>().SetWebSocketEvent(std::unique_ptr<const EmscriptenWebSocketOpenEvent>(
+            _<WebSocketServerConnection>().SetWebSocketEvent(
+                std::unique_ptr<const EmscriptenWebSocketOpenEvent>(
                     webSocketEvent));
             
             std::cout << "Opening new connection.\n";
@@ -281,7 +286,7 @@ namespace JoD {
             // Perform corresponding action.
             switch (messageCode){
             
-            case MessageCodes::k_drawImageInstr: {
+            case MessageCodes::k_drawImageInstruction: {
                 
                 // Next 4 bytes contains the image name hash code.
                 auto imageNameHash = ReadFourBytesAsInt(bytes + 4);
@@ -310,7 +315,7 @@ namespace JoD {
                 
                 break;
             }
-            case MessageCodes::k_drawStringInstr: {
+            case MessageCodes::k_drawStringInstruction: {
                 
                 // Next four bytes contain the x position.
                 auto x = ReadFourBytesAsFloat(bytes + 4);
@@ -319,7 +324,8 @@ namespace JoD {
                 auto y = ReadFourBytesAsFloat(bytes + 8);
                 
                 // Next for bytes contain the centerAlign state.
-                auto centerAlign = ReadFourBytesAsInt(bytes + 12) != 0 ? true : false;
+                auto centerAlign = ReadFourBytesAsInt(bytes + 12) !=
+                                   0 ? true : false;
                 
                 // Next for bytes contain the length of the string to draw.
                 auto length = ReadFourBytesAsInt(bytes + 16);

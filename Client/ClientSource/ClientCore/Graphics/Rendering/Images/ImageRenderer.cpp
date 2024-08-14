@@ -39,7 +39,7 @@ namespace JoD {
         // Create indices for the vertices.
         defaultIndices = std::vector<int>(
             MathConstants::k_numVerticesInRectangle);
-            
+        
         std::iota(std::begin(defaultIndices), std::end(defaultIndices), 0);
     }
     
@@ -69,19 +69,19 @@ namespace JoD {
             indexBuffID,
             MathConstants::k_numVerticesInRectangle,
             nullptr);
-            
+        
         SetData(
             posBuffID,
             MathConstants::k_numVerticesInRectangle,
             nullptr,
             BufferTypes::Positions2D);
-            
+        
         SetData(
             colorBuffID,
             MathConstants::k_numVerticesInRectangle,
             nullptr,
             BufferTypes::Colors);
-            
+        
         SetData(
             uvBuffID,
             MathConstants::k_numVerticesInRectangle,
@@ -126,7 +126,8 @@ namespace JoD {
             
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        }else{
+        }
+        else{
             
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -173,7 +174,8 @@ namespace JoD {
             UpdateData(
                 colorBuffID, k_defaultColorsWhite, BufferTypes::Colors,
                 k_locColor);
-        }else { // If color is not white, the color-floats-data need to be created.
+        }
+        else {  // If color is not white, the color-floats-data need to be created.
             
             std::vector<float> colors;
             
@@ -194,7 +196,8 @@ namespace JoD {
         if (textureFillAmount.w == 1.0f && textureFillAmount.h == 1.0f) {
             
             UpdateData(uvBuffID, k_defaultUVs, BufferTypes::UVs, k_locUV);
-        } else { // If texture repetition is desired, the UUV-float-data need to be created.
+        }
+        else {   // If texture repetition is desired, the UUV-float-data need to be created.
             
             std::vector<float> uvs;
             

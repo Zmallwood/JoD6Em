@@ -33,14 +33,14 @@ namespace JoD {
         ///
         /// @param userID ID of user for which to running the game loop.
         ///
-        void DoSession(UserID userID);
+        void RunUserGameLoop(UserID userID);
         
         ///
         /// Running loop for reading incoming web socket messages and handle them.
         ///
         /// @param webSocket Websocket object.
         ///
-        void DoSessionNested(WebSocket* webSocket);
+        void HandleIncoming(WebSocket* webSocket);
         
         ///
         /// PIMPL struct defined in source file.

@@ -16,20 +16,25 @@ using namespace boost::beast;
 namespace JoD {
     
     struct UserConnection::Impl {
-        UserID userID;
+        
+        UserID userID; // Unique ID for every connected user.
     };
     
-    UserConnection::UserConnection(Socket socket) : m_pImpl(
-            std::make_unique<Impl>()){
+    UserConnection::UserConnection(Socket socket)
+        : m_pImpl(std::make_unique<Impl>()){
         
-        m_pImpl->userID = _<EngineGet>().RegisterEngineInstance(std::move(socket));
+        // Register the new user with its socket object and obtain its user ID.
+        m_pImpl->userID =
+            _<EngineGet>().RegisterEngineInstance(std::move(socket));
         
-        auto& webSocket = *_<EngineGet>().GetWebSocket(m_pImpl->userID);
+        // Get the web socket object for the new user.
+        auto webSocket = _<EngineGet>().GetWebSocket(m_pImpl->userID);
         
+        // Notify about the new user connection.
         std::cout << "User connected, got ID: " << m_pImpl->userID << std::endl;
         
         // Set a decorator to change the Server of the handshake.
-        webSocket.set_option(
+        webSocket->set_option(
             websocket::stream_base::decorator(
                 [](websocket::response_type &res){
                     
@@ -39,98 +44,37 @@ namespace JoD {
                         " websocket-server-sync");
                 }));
         
-        webSocket.accept();     // Accept the websocket handshake.
+        // Accept the websocket handshake.
+        webSocket->accept();
         
-        webSocket.text(false);     // Receive binary data, not text.
+        // Receive binary data, not text.
+        webSocket->text(false);
         
+        // Start listening for incoming messages in separate thread.
         std::thread(
-            &UserConnection::DoSession, this, m_pImpl->userID).detach();
-    }
-    
-    UserConnection::~UserConnection() {
+            &UserConnection::HandleIncoming, this,
+            webSocket).detach();
         
+        // Run users game loop in separate thread.
+        std::thread(
+            &UserConnection::RunUserGameLoop, this, m_pImpl->userID).detach();
     }
     
-    void UserConnection::DoSessionNested(WebSocket* webSocket) {
-        
-        try {
-            
-            while (true){
-                
-                flat_buffer buffer; // This buffer will hold the incoming message.
-                webSocket->read(buffer); // Read a message.
-                const auto data = buffer_cast<int *>(buffer.data());
-                
-                if (*data == MessageCodes::k_canvasSize){
-                    
-                    const auto width = (int)data[1];
-                    const auto height = (int)data[2];
-                    _<EngineGet>().GetInstance(m_pImpl->userID)->SetCanvasSize(
-                        {width, height});
-                }else if (*data == MessageCodes::k_leftMouseDown) {
-                    
-                    _<EngineGet>().GetInstance(
-                        m_pImpl->userID)->GetMouseInput()->
-                    RegisterMouseDown(
-                        MouseButtons::Left);
-                }else if (*data == MessageCodes::k_leftMouseUp) {
-                    
-                    _<EngineGet>().GetInstance(
-                        m_pImpl->userID)->GetMouseInput()->
-                    RegisterMouseUp(
-                        MouseButtons::Left);
-                }else if (*data == MessageCodes::k_rightMouseDown) {
-                    
-                    _<EngineGet>().GetInstance(
-                        m_pImpl->userID)->GetMouseInput()->
-                    RegisterMouseDown(
-                        MouseButtons::Right);
-                }else if (*data == MessageCodes::k_rightMouseUp) {
-                    
-                    _<EngineGet>().GetInstance(
-                        m_pImpl->userID)->GetMouseInput()->
-                    RegisterMouseUp(
-                        MouseButtons::Right);
-                }else if (*data == MessageCodes::k_mousePosition) {
-                    
-                    const auto x = data[1] / NetConstants::k_floatPrecision;
-                    const auto y = data[2] / NetConstants::k_floatPrecision;
-                    _<EngineGet>().GetInstance(
-                        m_pImpl->userID)->SetMousePosition({x, y});
-                }else if (*data == MessageCodes::k_provideImageDimensions) {
-                    
-                    const auto imageNameHash = (int)data[1];
-                    const auto width = (int)data[2];
-                    const auto height = (int)data[3];
-                    
-                    _<ImageDimensions>().SetDimension(
-                        imageNameHash,
-                        {width, height});
-                }
-            }
-        }
-        catch (const std::exception& ex) {
-            
-            std::cout << "Exception: " << ex.what() << std::endl;
-            
-            return;
-        }
-    }
+    UserConnection::~UserConnection() {}
     
-    void UserConnection::DoSession(UserID userID) {
+    void UserConnection::RunUserGameLoop(UserID userID) {
         
         try{
-            auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
-            
-            std::thread(
-                &UserConnection::DoSessionNested, this,
-                &webSocket).detach();
             
             while (true){
                 
+                // Update users game state.
                 _<EngineGet>().GetInstance(m_pImpl->userID)->Update(userID);
+                
+                // Render users game state.
                 _<EngineGet>().GetInstance(m_pImpl->userID)->Render(userID);
                 
+                // Slow down the loop rate.
                 std::this_thread::sleep_for(std::chrono::milliseconds(70));
             }
         }
@@ -145,6 +89,103 @@ namespace JoD {
         catch (std::exception const &e){
             
             std::cerr << "Error: " << e.what() << std::endl;
+        }
+    }
+    
+    void UserConnection::HandleIncoming(WebSocket* webSocket) {
+        
+        try {
+            
+            while (true){
+                
+                // This buffer will hold the incoming message.
+                flat_buffer buffer;
+                
+                // Read a message.
+                webSocket->read(buffer);
+                
+                // Cast the recieved data to int array.
+                const auto data = buffer_cast<int *>(buffer.data());
+                
+                auto engineInstance =
+                    _<EngineGet>().GetInstance(m_pImpl->userID);
+                
+                // Check the first int in the recieved data,
+                // which contains the message code.
+                
+                if (*data == MessageCodes::k_canvasSize){
+                    
+                    // Extract the data components.
+                    
+                    const auto width = (int)data[1];
+                    const auto height = (int)data[2];
+                    
+                    // Set the users canvas size to the recieved dimensions.
+                    
+                    engineInstance->SetCanvasSize({width, height});
+                }
+                else if (*data == MessageCodes::k_leftMouseDown) {
+                    
+                    // Register left mouse button as pressed down.
+                    
+                    engineInstance->GetMouseInput()->RegisterMouseDown(
+                        MouseButtons::Left);
+                }
+                else if (*data == MessageCodes::k_leftMouseUp) {
+                    
+                    // Register left mouse button as released.
+                    
+                    engineInstance->GetMouseInput()->RegisterMouseUp(
+                        MouseButtons::Left);
+                }
+                else if (*data == MessageCodes::k_rightMouseDown) {
+                    
+                    // Register right mouse button as pressed down.
+                    
+                    engineInstance->GetMouseInput()->RegisterMouseDown(
+                        MouseButtons::Right);
+                }
+                else if (*data == MessageCodes::k_rightMouseUp) {
+                    
+                    // Register right mouse button as released.
+                    
+                    engineInstance->GetMouseInput()->RegisterMouseUp(
+                        MouseButtons::Right);
+                }
+                else if (*data == MessageCodes::k_mousePosition) {
+                    
+                    // Extract the data components.
+                    
+                    const auto x = data[1] / NetConstants::k_floatPrecision;
+                    const auto y = data[2] / NetConstants::k_floatPrecision;
+                    
+                    // Set the users mouse position to the new value.
+                    
+                    engineInstance->SetMousePosition({x, y});
+                }
+                else if (*data == MessageCodes::k_provideImageDimensions) {
+                    
+                    // Extract the data components.
+                    
+                    const auto imageNameHash = (int)data[1];
+                    const auto width = (int)data[2];
+                    const auto height = (int)data[3];
+                    
+                    // Set the images dimensions to the recieved value.
+                    
+                    _<ImageDimensions>().SetDimension(
+                        imageNameHash,
+                        {width, height});
+                }
+            }
+        }
+        catch (const std::exception& ex) {
+            
+            // Notify if something went wrong.
+            
+            std::cout << "Exception: " << ex.what() << std::endl;
+            
+            return;
         }
     }
 }

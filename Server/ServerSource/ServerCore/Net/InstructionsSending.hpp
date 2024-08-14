@@ -13,24 +13,24 @@ namespace JoD {
     ///
     /// @param userID User ID of user for which to draw.
     /// @param imageName Name of image to draw.
-    /// @param destination Destination to draw the image at.
+    /// @param dest Destination to draw the image at.
     ///
     void SendImageDrawInstruction(
         UserID userID,
         std::string_view imageName,
-        BoxF destination);
+        BoxF dest);
     
     ///
     /// Send an image drawing instruction to the user.
     ///
     /// @param userID User ID of user for which to draw.
     /// @param imageNamehash Hash code of image name to draw.
-    /// @param destination Destination to draw the image at.
+    /// @param dest Destination to draw the image at.
     ///
     void SendImageDrawInstruction(
         UserID userID,
         int imageNamehash,
-        BoxF destination);
+        BoxF dest);
     
     ///
     /// Send a text drawing instruction to the user.

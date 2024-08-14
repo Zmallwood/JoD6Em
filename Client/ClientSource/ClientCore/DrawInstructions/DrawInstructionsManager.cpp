@@ -37,8 +37,8 @@ namespace JoD {
         // Fill with data.
         newInstr->type = DrawInstructionTypes::DrawImage;
         newInstr->rid = m_ridsImages.at(
-                m_ridCounterImages
-                ++);
+            m_ridCounterImages
+            ++);
         newInstr->imageNameHash = imageNameHash;
         newInstr->destination = destination;
         
@@ -87,20 +87,22 @@ namespace JoD {
             case DrawInstructionTypes::DrawImage: {
                 
                 // Cast to image instruction type.
-                auto casted = static_cast<ImageDrawInstruction*>(instruction.get());
+                auto casted =
+                    static_cast<ImageDrawInstruction*>(instruction.get());
                 
                 // Draw image as specified in the instruction.
                 _<ImageRenderer>().DrawImage(
                     casted->rid,
                     casted->imageNameHash,
                     casted->destination);
-                    
+                
                 break;
             }
             case DrawInstructionTypes::DrawText: {
                 
                 // Cast to text instruction type.
-                auto casted = static_cast<TextDrawInstruction*>(instruction.get());
+                auto casted =
+                    static_cast<TextDrawInstruction*>(instruction.get());
                 
                 // Draw string as specified in the instruction.
                 _<TextRenderer>().DrawString(
@@ -108,7 +110,7 @@ namespace JoD {
                     casted->position,
                     Colors::wheat,
                     casted->centerAligned);
-                    
+                
                 break;
             }
             case DrawInstructionTypes::None: {
