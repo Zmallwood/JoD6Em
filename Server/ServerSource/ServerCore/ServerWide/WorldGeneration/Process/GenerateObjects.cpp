@@ -15,7 +15,7 @@ namespace JoD {
     namespace {
         
         // Packed arguments for GenerateObjectOfType() function.
-        struct ObjectGenerateArgs {
+        struct GenerateObjectOfTypeArgs {
             
             WorldArea* worldArea;
             std::string objectName;
@@ -23,7 +23,7 @@ namespace JoD {
         };
         
         // Generate a certain amount of objects of specific type.
-        void GenerateObjectOfType(ObjectGenerateArgs args);
+        void GenerateObjectOfType(GenerateObjectOfTypeArgs args);
         
         void GenerateGrassOverWholeWorldArea(WorldArea* worldArea);
     }
@@ -50,7 +50,7 @@ namespace JoD {
     
     namespace {
         
-        void GenerateObjectOfType(ObjectGenerateArgs args) {
+        void GenerateObjectOfType(GenerateObjectOfTypeArgs args) {
             
             for (auto i = 0; i < args.amount; i++) {
                 

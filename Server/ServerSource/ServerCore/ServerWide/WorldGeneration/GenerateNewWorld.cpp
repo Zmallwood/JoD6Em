@@ -13,6 +13,7 @@
 #include "Process/GenerateRoads.hpp"
 #include "Process/GenerateElevation.hpp"
 #include "Process/GenerateRock.hpp"
+#include "Process/GenerateCastleYard.hpp"
 
 namespace JoD {
     
@@ -24,8 +25,9 @@ namespace JoD {
         GenerateWater(worldArea);
         GenerateElevation(worldArea);
         GenerateRock(worldArea);
-        GenerateRoads(worldArea);
+        GenerateCastleYard(worldArea);
         GenerateObjects(worldArea);
+        GenerateRoads(worldArea);
         GenerateCreatures(worldArea);
     }
 }

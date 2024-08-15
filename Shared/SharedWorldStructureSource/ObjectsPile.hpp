@@ -27,6 +27,8 @@ namespace JoD {
         
         bool HasObjectOfType(std::string_view objectName) const;
         
+        void Clear();
+        
       private:
         struct Impl;
         

@@ -73,4 +73,9 @@ namespace JoD {
         
         return false;
     }
+    
+    void ObjectsPile::Clear() {
+        
+        m_pImpl->m_objects.clear();
+    }
 }

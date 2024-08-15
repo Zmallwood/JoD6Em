@@ -7,13 +7,14 @@
 #include "GenerateRoads.hpp"
 #include "WorldArea.hpp"
 #include "Tile.hpp"
+#include "ObjectsPile.hpp"
 
 namespace JoD {
     
     namespace {
         
         // Argument packing for GenerateRoadSection() function.
-        struct RoadGenerateArgs {
+        struct GenerateRoadSectionArgs {
             
             WorldArea* worldArea;
             Point startCoord;
@@ -22,7 +23,7 @@ namespace JoD {
         };
         
         // Generate roads for a distance of tiles in the world area.
-        Point GenerateRoadSection(RoadGenerateArgs args);
+        Point GenerateRoadSection(GenerateRoadSectionArgs args);
     }
     
     void GenerateRoads(WorldArea* worldArea) {
@@ -63,7 +64,7 @@ namespace JoD {
     
     namespace {
         
-        Point GenerateRoadSection(RoadGenerateArgs args) {
+        Point GenerateRoadSection(GenerateRoadSectionArgs args) {
             
             auto coord = args.startCoord;
             
@@ -72,18 +73,26 @@ namespace JoD {
                 
                 auto tile = args.worldArea->GetTile(coord);
                 
-                // If ground is not water...
-                if (tile->GetGround() != Hash("GroundWater")) {
+                // If ground is grass
+                if (tile->GetGround() == Hash("GroundGrass")) {
                     
-                    // Then create cobblestone.
-                    tile->SetGround("GroundCobbleStone");
+                    // Then create trail.
+                    tile->SetGround("GroundTrail");
                 }
-                // Else if ground is water...
-                else {
+                // If ground is cobblestone
+                else if (tile->GetGround() == Hash("GroundCobbleStone")) {
+                    
+                    // Then create slabs.
+                    tile->SetGround("GroundSlabs");
+                }
+                // Else if ground is water
+                else if (tile->GetGround() == Hash("GroundWater")) {
                     
                     // Then create bridge.
                     tile->SetGround("GroundBridge");
                 }
+                
+                tile->GetObjectsPile().Clear();
                 
                 // Move to next tile.
                 coord += args.deltaStep;
