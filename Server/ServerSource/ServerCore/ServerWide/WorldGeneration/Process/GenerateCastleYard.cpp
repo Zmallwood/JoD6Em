@@ -8,11 +8,12 @@
 #include "WorldArea.hpp"
 #include "Tile.hpp"
 #include "ObjectsPile.hpp"
-#include "Configuration/GameProperties.hpp"
 
 namespace JoD {
     
     void GenerateCastleYard(WorldArea* worldArea) {
+        
+        // Create cobble stone ground type.
         
         for (auto y = 0; y < 25; y++) {
             
@@ -25,12 +26,16 @@ namespace JoD {
             }
         }
         
+        // Create castle walls to the east.
+        
         for (auto y = 0; y < 24; y++) {
             
             auto tile = worldArea->GetTile(25, y);
             
             tile->GetObjectsPile().AddObject("ObjectCastleWallE");
         }
+        
+        // Create castle walls to the south.
         
         for (auto x = 0; x < 24; x++) {
             

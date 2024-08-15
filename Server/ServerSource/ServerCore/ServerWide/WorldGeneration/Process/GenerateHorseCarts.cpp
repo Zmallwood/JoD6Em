@@ -17,50 +17,67 @@ namespace JoD {
     
     void GenerateHorseCarts(WorldArea* worldArea) {
         
-        auto i = 0;
-        auto horseOffset = 8;
-        auto horseInterval = 20;
+        auto tileStep = 0;
+        auto tileStepOffset = 8;
+        auto horseCreationInterval = 20;
+        
+        // Loop over whole world area.
         
         for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
             
             for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w;
-                 x++) {
+                 x++){
+                
+                // Dont consider tiles where x == 0, as there is no room for a cart then.
+                if (x == 0) {
+                    
+                    continue;
+                }
                 
                 auto tile = worldArea->GetTile(x,y);
                 
+                // Check if current tile is of road type.
                 if (tile->GetGround() == Hash("GroundSlabs")
                     || tile->GetGround() == Hash("GroundTrail")
                     || tile->GetGround() == Hash("Bridge")) {
                     
-                    if (i % horseInterval == horseOffset) {
+                    // Only create horse with an interval equal to horseCreationInterval.
+                    if ((tileStep - tileStepOffset) % horseCreationInterval ==
+                        0) {
                         
+                        // Create new horse creature.
                         const auto newHorse =
                             std::make_shared<Creature>(
                                 "CreatureHorse",
                                 3);
                         
                         // Register the creatures position to the world area.
-                        worldArea->RegisterCreaturePosition(
-                            newHorse,
-                            {x, y});
+                        worldArea->RegisterCreaturePosition(newHorse, {x, y});
                         
                         // Add the new creature object to the tile its located at.
                         worldArea->GetTile(x, y)->SetCreature(newHorse);
                         
-                        auto tileW = worldArea->GetTile(x - 1, y);
+                        // Get west neighbour tile to create a cart there.
+                        auto tileWest = worldArea->GetTile(x - 1, y);
+                        tileWest->GetObjectsPile().Clear();
                         
-                        tileW->GetObjectsPile().Clear();
-                        
+                        // Create new cart object.
                         auto cart = std::make_unique<Object>("ObjectHorseCart");
                         
+                        // Make it contain a NPC.
                         cart->SetContainedNPC(std::make_unique<NPC>());
                         
-                        newHorse->SetConnectedObject({.connectedObject = cart, .objectCoord = {x, y}});
+                        // Connect the cart to the horse.
+                        newHorse->SetConnectedObject(
+                            {.connectedObject = cart,
+                             .objectCoord = {x, y}});
                         
-                        tileW->GetObjectsPile().AddObject(std::move(cart));
+                        // Add the cart to the world area.
+                        tileWest->GetObjectsPile().AddObject(std::move(cart));
                     }
                     
-                    i++;
+                    // Count steps taken.
+                    tileStep++;
                 }
             }
         }
