@@ -11,178 +11,81 @@
 
 namespace JoD {
     
+    namespace {
+        
+        void GenerateCreatureGroupOfType(
+            WorldArea *worldArea,
+            std::string_view creatureName,
+            int numGroups, int numCreaturesInGroup, Box area, int level);
+    }
+    
     void GenerateCreatures(WorldArea* worldArea) {
         
-        const auto numBlueSlimeGroups = 6;
-        const auto numYellowSlimeGroups = 6;
-        const auto numRedSlimeGroups = 6;
+        GenerateCreatureGroupOfType(
+            worldArea, "CreatureBlueSlime", 6, 6,
+            {50, 0, 50, 50}, 1);
+        GenerateCreatureGroupOfType(
+            worldArea, "CreatureYellowSlime", 6, 6,
+            {50, 50, 50, 50}, 2);
+        GenerateCreatureGroupOfType(
+            worldArea, "CreatureRedSlime", 6, 6,
+            {0, 50, 50, 50}, 3);
+        GenerateCreatureGroupOfType(
+            worldArea, "CreatureCow", 60, 6,
+            {0, 0, 100, 100}, 3);
+    }
+    
+    namespace {
         
-        const auto numCreaturesInGroup = 6;
-        
-        for (auto i = 0; i < numBlueSlimeGroups; i++) {
+        void GenerateCreatureGroupOfType(
+            WorldArea *worldArea,
+            std::string_view creatureName,
+            int numGroups, int numCreaturesInGroup, Box area, int level) {
             
-            const auto xCenter = rand() % 50 + 50;
-            const auto yCenter = rand() % 50;
-            
-            CreatureGroup creatureGroup;
-            
-            creatureGroup.m_coord = {xCenter, yCenter};
-            
-            for (auto j = 0; j < numCreaturesInGroup; j++) {
+            for (auto i = 0; i < numGroups; i++) {
                 
-                const auto x = xCenter + rand() % 5 - rand() % 5;
-                const auto y = yCenter + rand() % 5 - rand() % 5;
+                const auto xCenter = rand() % area.w + area.x;
+                const auto yCenter = rand() % area.h + area.y;
                 
-                if (!worldArea->IsValidCoord({x,y})) {
+                CreatureGroup creatureGroup;
+                
+                creatureGroup.m_coord = {xCenter, yCenter};
+                
+                for (auto j = 0; j < numCreaturesInGroup; j++) {
                     
-                    continue;
+                    const auto x = xCenter + rand() % 5 - rand() % 5;
+                    const auto y = yCenter + rand() % 5 - rand() % 5;
+                    
+                    if (!worldArea->IsValidCoord({x,y})) {
+                        
+                        continue;
+                    }
+                    
+                    if (worldArea->GetTile(x, y)->GetCreature()) {
+                        
+                        continue;
+                    }
+                    
+                    if (worldArea->GetTile(
+                            x,
+                            y)->GetGround() ==
+                        Hash("GroundWater")) {
+                        
+                        continue;
+                    }
+                    
+                    const auto newCreature =
+                        std::make_shared<Creature>(creatureName, level);
+                    
+                    creatureGroup.m_creatures.push_back(newCreature);
+                    
+                    worldArea->RegisterCreaturePosition(newCreature, {x, y});
+                    
+                    worldArea->GetTile(x, y)->SetCreature(newCreature);
                 }
                 
-                if (worldArea->GetTile(x, y)->GetCreature()) {
-                    
-                    continue;
-                }
-                
-                if (worldArea->GetTile(x, y)->GetGround() == Hash("GroundWater")) {
-                    
-                    continue;
-                }
-                
-                const auto newCreature = std::make_shared<Creature>("CreatureBlueSlime", 1);
-                
-                creatureGroup.m_creatures.push_back(newCreature);
-                
-                worldArea->RegisterCreaturePosition(newCreature, {x, y});
-                
-                worldArea->GetTile(x, y)->SetCreature(newCreature);
+                worldArea->m_creatureGroups.push_back(creatureGroup);
             }
-            
-            worldArea->m_creatureGroups.push_back(creatureGroup);
-        }
-        
-        for (auto i = 0; i < numYellowSlimeGroups; i++) {
-            
-            const auto xCenter = rand() % 50 + 50;
-            const auto yCenter = rand() % 50 + 50;
-            
-            CreatureGroup creatureGroup;
-            
-            creatureGroup.m_coord = {xCenter, yCenter};
-            
-            for (auto j = 0; j < numCreaturesInGroup; j++) {
-                
-                const auto x = xCenter + rand() % 5 - rand() % 5;
-                const auto y = yCenter + rand() % 5 - rand() % 5;
-                
-                if (!worldArea->IsValidCoord({x,y})) {
-                    
-                    continue;
-                }
-                
-                if (worldArea->GetTile(x, y)->GetCreature()) {
-                    
-                    continue;
-                }
-                
-                if (worldArea->GetTile(x, y)->GetGround() == Hash("GroundWater")) {
-                    
-                    continue;
-                }
-                
-                const auto newCreature = std::make_shared<Creature>("CreatureYellowSlime", 2);
-                
-                worldArea->RegisterCreaturePosition(newCreature, {x, y});
-                
-                creatureGroup.m_creatures.push_back(newCreature);
-                
-                worldArea->GetTile(x, y)->SetCreature(newCreature);
-            }
-            
-            worldArea->m_creatureGroups.push_back(creatureGroup);
-        }
-        
-        for (auto i = 0; i < numRedSlimeGroups; i++){
-            
-            const auto xCenter = rand() % 50;
-            const auto yCenter = rand() % 50 + 50;
-            
-            CreatureGroup creatureGroup;
-            
-            creatureGroup.m_coord = {xCenter, yCenter};
-            
-            for (auto j = 0; j < numCreaturesInGroup; j++) {
-                
-                const auto x = xCenter + rand() % 5 - rand() % 5;
-                const auto y = yCenter + rand() % 5 - rand() % 5;
-                
-                if (!worldArea->IsValidCoord({x,y})) {
-                    
-                    continue;
-                }
-                
-                if (worldArea->GetTile(x, y)->GetCreature()) {
-                    
-                    continue;
-                }
-                
-                if (worldArea->GetTile(x, y)->GetGround() == Hash("GroundWater")) {
-                    
-                    continue;
-                }
-                
-                const auto newCreature = std::make_shared<Creature>("CreatureRedSlime", 3);
-                
-                worldArea->RegisterCreaturePosition(newCreature, {x, y});
-                
-                creatureGroup.m_creatures.push_back(newCreature);
-                
-                worldArea->GetTile(x, y)->SetCreature(newCreature);
-            }
-            
-            worldArea->m_creatureGroups.push_back(creatureGroup);
-        }
-        
-        auto numCowGroups = 70;
-        
-        for (auto i = 0; i < numCowGroups; i++){
-            
-            const auto xCenter = rand() % 100;
-            const auto yCenter = rand() % 100;
-            
-            CreatureGroup creatureGroup;
-            
-            creatureGroup.m_coord = {xCenter, yCenter};
-            
-            for (auto j = 0; j < numCreaturesInGroup; j++) {
-                
-                const auto x = xCenter + rand() % 5 - rand() % 5;
-                const auto y = yCenter + rand() % 5 - rand() % 5;
-                
-                if (!worldArea->IsValidCoord({x,y})) {
-                    
-                    continue;
-                }
-                
-                if (worldArea->GetTile(x, y)->GetCreature()) {
-                    
-                    continue;
-                }
-                
-                if (worldArea->GetTile(x, y)->GetGround() == Hash("GroundWater")) {
-                    
-                    continue;
-                }
-                
-                const auto newCreature = std::make_shared<Creature>("CreatureCow", 3);
-                
-                worldArea->RegisterCreaturePosition(newCreature, {x, y});
-                
-                creatureGroup.m_creatures.push_back(newCreature);
-                
-                worldArea->GetTile(x, y)->SetCreature(newCreature);
-            }
-            
-            worldArea->m_creatureGroups.push_back(creatureGroup);
         }
     }
 }

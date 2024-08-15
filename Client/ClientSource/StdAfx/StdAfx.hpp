@@ -31,6 +31,7 @@
 #include "MathLib/GLBoxF.hpp"
 #include "MathLib/Point.hpp"
 #include "MathLib/PointF.hpp"
+#include "MathLib/Box.hpp"
 #include "MathLib/BoxF.hpp"
 #include "MathLib/Size.hpp"
 #include "MathLib/SizeF.hpp"
