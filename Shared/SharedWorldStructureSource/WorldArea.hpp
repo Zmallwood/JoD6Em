@@ -7,6 +7,7 @@
 #pragma once
 
 #include "CreatureGroup.hpp"
+#include "RoadPath.hpp"
 
 namespace JoD {
     
@@ -45,6 +46,8 @@ namespace JoD {
         const std::map<std::shared_ptr<Creature>, Point>& GetCreaturePositions() const;
         
         std::vector<CreatureGroup> m_creatureGroups;
+        
+        RoadPath m_roadPath;
         
       private:
         struct Impl;

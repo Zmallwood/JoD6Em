@@ -35,7 +35,7 @@ namespace JoD {
                 "ElevationE",
                 boundsElevE);
             
-            tileBounds.x -= tileBounds.w/4;
+            tileBounds.x -= tileBounds.w/8;
             tileBounds.y -= tileBounds.h/4;
         }
         

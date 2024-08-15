@@ -60,6 +60,14 @@ namespace JoD {
             {.worldArea = worldArea,
              .startCoord = coord, .deltaStep = {0, 1},
              .numSteps = 25});
+        
+        RoadPath roadPath;
+        roadPath.points.push_back({0,0});
+        roadPath.points.push_back({25,25});
+        roadPath.points.push_back({75,25});
+        roadPath.points.push_back({75,75});
+        roadPath.points.push_back({25,75});
+        roadPath.points.push_back({25,100});
     }
     
     namespace {

@@ -19,6 +19,8 @@ namespace JoD {
         
         void AddObject(std::string_view objectName);
         
+        void AddObject(std::unique_ptr<Object> object);
+        
         std::vector<Object*> GetObjects() const;
         
         bool HasObjects() const;

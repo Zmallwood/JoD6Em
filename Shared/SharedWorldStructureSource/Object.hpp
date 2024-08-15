@@ -7,6 +7,7 @@
 #pragma once
 
 #include "ObjectMaturity.hpp"
+#include "NPC.hpp"
 
 namespace JoD {
     
@@ -65,10 +66,21 @@ namespace JoD {
             m_durability = durability;
         }
         
+        NPC* GetContainedNPC() const {
+            
+            return m_containedNPC.get();
+        }
+        
+        void SetContainedNPC(std::unique_ptr<NPC> containedNPC) {
+            
+            m_containedNPC = std::move(containedNPC);
+        }
+        
       private:
         float m_durability {1.0f}; ///< Durability of the object in the range 0.0f-1.0f.
         int m_type {0}; ///< Hash code of name of object type.
         TimePoint m_creationTime; ///< Point in time when the object was created, is set in the ctor.
         ObjectMaturity m_maturity {ObjectMaturity::Mature}; ///< Maturity stage of the object.
+        std::unique_ptr<NPC> m_containedNPC;
     };
 }

@@ -1,5 +1,5 @@
 /*
- * NPC.hpp
+ * RoadPath.hpp
  * 
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
@@ -7,9 +7,9 @@
 #pragma once
 
 namespace JoD {
-
-    class NPC {
-        public:
-          
+    
+    struct RoadPath {
+        
+        std::vector<Point> points;
     };
 }

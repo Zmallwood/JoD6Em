@@ -14,13 +14,9 @@ namespace JoD {
     };
     
     ObjectsPile::ObjectsPile()
-        : m_pImpl(std::make_unique<Impl>()){
-        
-    }
+        : m_pImpl(std::make_unique<Impl>()) {}
     
-    ObjectsPile::~ObjectsPile() {
-        
-    }
+    ObjectsPile::~ObjectsPile() {}
     
     std::vector<Object*> ObjectsPile::GetObjects() const {
         
@@ -37,6 +33,12 @@ namespace JoD {
     void ObjectsPile::AddObject(std::string_view objectName) {
         
         m_pImpl->m_objects.push_back(std::make_unique<Object>(objectName));
+    }
+    
+    
+    void ObjectsPile::AddObject(std::unique_ptr<Object> object) {
+        
+        m_pImpl->m_objects.push_back(std::move(object));
     }
     
     bool ObjectsPile::HasObjects() const {

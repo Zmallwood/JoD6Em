@@ -8,8 +8,15 @@
 
 #include "CommonAliases.hpp"
 #include "CreatureMaturity.hpp"
+#include "Object.hpp"
 
 namespace JoD {
+    
+    struct ConnectedObject {
+        
+        std::unique_ptr<Object>& connectedObject;
+        Point objectCoord;
+    };
     
     ///
     /// Combatable creature object which can be positioned on a tile.
@@ -34,7 +41,7 @@ namespace JoD {
         
         ///
         /// Get the creature type.
-        /// 
+        ///
         /// @return int Creature type.
         ///
         int GetType() const {
@@ -44,7 +51,7 @@ namespace JoD {
         
         ///
         /// Get the creature level.
-        /// 
+        ///
         /// @return int Creature level.
         ///
         int GetLevel() const {
@@ -54,7 +61,7 @@ namespace JoD {
         
         ///
         /// Get the creature health points.
-        /// 
+        ///
         /// @return int Creature health points.
         ///
         int GetHP() const {
@@ -64,7 +71,7 @@ namespace JoD {
         
         ///
         /// Get the amount of experience gained when defeating this creature.
-        /// 
+        ///
         /// @return int Exp gain value.
         ///
         int GetExp() const {
@@ -74,7 +81,7 @@ namespace JoD {
         
         ///
         /// Get the timepoint for when this creature last got hit by another.
-        /// 
+        ///
         /// @return TimePoint Last time hit by another.
         ///
         TimePoint GetTicksLastHitFromOther() const {
@@ -84,7 +91,7 @@ namespace JoD {
         
         ///
         /// Tells if this creature is dead.
-        /// 
+        ///
         /// @return true If dead.
         /// @return false If alive.
         ///
@@ -115,6 +122,12 @@ namespace JoD {
             return m_attackSpeed;
         }
         
+        void SetConnectedObject(ConnectedObject connectedObject) {
+            
+            m_connectedObject =
+                std::make_unique<ConnectedObject>(connectedObject.connectedObject, connectedObject.objectCoord);
+        }
+        
       private:
         int m_type {0}; ///< Hash code of creature type name.
         int m_level {0}; ///< Level, as provided in ctor.
@@ -130,5 +143,6 @@ namespace JoD {
         UserID m_targetedUserID {0};
         TimePoint m_ticksLastAttackOnOther {Now()};
         float m_attackSpeed {1.0f};
+        std::unique_ptr<ConnectedObject> m_connectedObject;
     };
 }

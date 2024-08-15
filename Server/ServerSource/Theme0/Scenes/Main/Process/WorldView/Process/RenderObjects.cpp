@@ -55,6 +55,14 @@ namespace JoD {
                     userID,
                     object->GetType(),
                     newBounds);
+                
+                if (object->GetContainedNPC()) {
+                    
+                SendImageDrawInstruction(
+                    userID,
+                    "NPC_Mounted",
+                    newBounds);
+                }
             }
         }
     }
