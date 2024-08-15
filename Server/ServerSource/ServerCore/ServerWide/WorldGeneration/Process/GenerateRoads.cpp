@@ -10,90 +10,87 @@
 
 namespace JoD {
     
+    namespace {
+        
+        // Argument packing for GenerateRoadSection() function.
+        struct RoadGenerateArgs {
+            
+            WorldArea* worldArea;
+            Point startCoord;
+            Point deltaStep;
+            int numSteps;
+        };
+        
+        // Generate roads for a distance of tiles in the world area.
+        Point GenerateRoadSection(RoadGenerateArgs args);
+    }
+    
     void GenerateRoads(WorldArea* worldArea) {
         
-        auto roadX = 0;
-        auto roadY = 0;
+        // Start generating roads from top left corner of the world area.
+        auto coord = Point {0, 0};
         
-        for (auto i = 0; i < 25; i++) {
-            
-            auto tile = worldArea->GetTile(roadX, roadY);
-            
-            if (tile->GetGround() != Hash("GroundWater")) {
-                
-                tile->SetGround("GroundCobbleStone");
-            }
-            else {
-                
-                tile->SetGround("GroundBridge");
-            }
-            
-            roadX++;
-            roadY++;
-        }
+        // Generate diagonal roads in south east direction.
+        coord = GenerateRoadSection(
+            {.worldArea = worldArea,
+             .startCoord = coord, .deltaStep = {1, 1},
+             .numSteps = 25});
         
-        for (auto i = 0; i < 50; i++) {
-            
-            auto tile = worldArea->GetTile(roadX, roadY);
-            
-            if (tile->GetGround() != Hash("GroundWater")) {
-                
-                tile->SetGround("GroundCobbleStone");
-            }
-            else {
-                
-                tile->SetGround("GroundBridge");
-            }
-            
-            roadX++;
-        }
+        // Generate straight road to the east.
+        coord = GenerateRoadSection(
+            {.worldArea = worldArea,
+             .startCoord = coord, .deltaStep = {1, 0},
+             .numSteps = 50});
         
-        for (auto i = 0; i < 50; i++) {
-            
-            auto tile = worldArea->GetTile(roadX, roadY);
-            
-            if (tile->GetGround() != Hash("GroundWater")) {
-                
-                tile->SetGround("GroundCobbleStone");
-            }
-            else {
-                
-                tile->SetGround("GroundBridge");
-            }
-            
-            roadY++;
-        }
+        // Generate straight road to the south.
+        coord = GenerateRoadSection(
+            {.worldArea = worldArea,
+             .startCoord = coord, .deltaStep = {0, 1},
+             .numSteps = 50});
         
-        for (auto i = 0; i < 50; i++) {
-            
-            auto tile = worldArea->GetTile(roadX, roadY);
-            
-            if (tile->GetGround() != Hash("GroundWater")) {
-                
-                tile->SetGround("GroundCobbleStone");
-            }
-            else {
-                
-                tile->SetGround("GroundBridge");
-            }
-            
-            roadX--;
-        }
+        // Generate straight road to the west.
+        coord = GenerateRoadSection(
+            {.worldArea = worldArea,
+             .startCoord = coord, .deltaStep = {-1, 0},
+             .numSteps = 50});
         
-        for (auto i = 0; i < 25; i++) {
+        // Generate straight road to the south.
+        coord = GenerateRoadSection(
+            {.worldArea = worldArea,
+             .startCoord = coord, .deltaStep = {0, 1},
+             .numSteps = 25});
+    }
+    
+    namespace {
+        
+        Point GenerateRoadSection(RoadGenerateArgs args) {
             
-            auto tile = worldArea->GetTile(roadX, roadY);
+            auto coord = args.startCoord;
             
-            if (tile->GetGround() != Hash("GroundWater")) {
+            // Iterate the provided distance of steps.
+            for (auto i = 0; i < args.numSteps; i++) {
                 
-                tile->SetGround("GroundCobbleStone");
-            }
-            else {
+                auto tile = args.worldArea->GetTile(coord);
                 
-                tile->SetGround("GroundBridge");
+                // If ground is not water...
+                if (tile->GetGround() != Hash("GroundWater")) {
+                    
+                    // Then create cobblestone.
+                    tile->SetGround("GroundCobbleStone");
+                }
+                // Else if ground is water...
+                else {
+                    
+                    // Then create bridge.
+                    tile->SetGround("GroundBridge");
+                }
+                
+                // Move to next tile.
+                coord += args.deltaStep;
             }
             
-            roadY++;
+            // Return the final tile which the generation ended on.
+            return coord;
         }
     }
 }

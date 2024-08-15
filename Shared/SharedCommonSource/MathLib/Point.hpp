@@ -12,6 +12,8 @@ namespace JoD {
         
         bool operator==(const Point& rhs) const;
         
+        void operator+=(const Point& rhs);
+        
         int x {0};
         int y {0};
     };
