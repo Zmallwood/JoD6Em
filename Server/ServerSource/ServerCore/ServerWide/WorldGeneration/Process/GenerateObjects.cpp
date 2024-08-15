@@ -14,55 +14,90 @@ namespace JoD {
     
     namespace {
         
-        void GenerateObjectOfType(
-            WorldArea* worldArea, std::string_view objectName,
-            int amount);
+        // Packed arguments for GenerateObjectOfType() function.
+        struct ObjectGenerateArgs {
+            
+            WorldArea* worldArea;
+            std::string objectName;
+            int amount;
+        };
+        
+        // Generate a certain amount of objects of specific type.
+        void GenerateObjectOfType(ObjectGenerateArgs args);
+        
+        void GenerateGrassOverWholeWorldArea(WorldArea* worldArea);
     }
     
     void GenerateObjects(WorldArea* worldArea) {
         
-        for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
-            
-            for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w;
-                 x++) {
-                
-                if (worldArea->GetTile(x,y)->GetGround() == Hash("GroundGrass")) {
-                    
-                    worldArea->GetTile(
-                        x,
-                        y)->GetObjectsPile().AddObject("ObjectGrass");
-                }
-            }
-        }
+        // Add grass.
+        GenerateGrassOverWholeWorldArea(worldArea);
         
-        GenerateObjectOfType(worldArea, "ObjectTree1", 300);
-        GenerateObjectOfType(worldArea, "ObjectTree2", 300);
-        GenerateObjectOfType(worldArea, "ObjectBush1", 200);
-        GenerateObjectOfType(worldArea, "ObjectPinkFlower", 200);
+        // Generate certain amount of objects of different types.
+        
+        GenerateObjectOfType(
+            {.worldArea = worldArea,
+             .objectName = "ObjectTree1", .amount = 300});
+        
+        GenerateObjectOfType(
+            {.worldArea = worldArea,
+             .objectName = "ObjectTree2", .amount = 200});
+        
+        GenerateObjectOfType(
+            {.worldArea = worldArea,
+             .objectName = "ObjectPinkFlower", .amount = 200});
     }
     
     namespace {
         
-        void GenerateObjectOfType(
-            WorldArea* worldArea, std::string_view objectName,
-            int amount) {
+        void GenerateObjectOfType(ObjectGenerateArgs args) {
             
-            for (auto i = 0; i < amount; i++) {
+            for (auto i = 0; i < args.amount; i++) {
                 
-                const auto x = rand() %
-                               _<GameProperties>().GetWorldAreaSize().w;
-                const auto y = rand() %
-                               _<GameProperties>().GetWorldAreaSize().h;
+                // Randomize coordinate for new object.
                 
-                const auto ground = worldArea->GetTile(x, y)->GetGround();
+                const auto x =
+                    rand() %
+                    _<GameProperties>().GetWorldAreaSize().w;
                 
+                const auto y =
+                    rand() %
+                    _<GameProperties>().GetWorldAreaSize().h;
+                
+                const auto ground = args.worldArea->GetTile(x, y)->GetGround();
+                
+                // Dont add objects on water or roads.
                 if (ground != Hash("GroundWater") &&
                     ground != Hash("GroundCobbleStone") &&
                     ground != Hash("GroundBridge")) {
                     
-                    worldArea->GetTile(
+                    // Add the object to the tile.
+                    args.worldArea->GetTile(
                         x,
-                        y)->GetObjectsPile().AddObject(objectName);
+                        y)->GetObjectsPile().AddObject(args.objectName);
+                }
+            }
+        }
+        
+        void GenerateGrassOverWholeWorldArea(WorldArea* worldArea) {
+            
+            // Loop over whole world area.
+            
+            for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++){
+                
+                for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w;
+                     x++) {
+                    
+                    // Only add grass object on ground of grass type.
+                    if (worldArea->GetTile(
+                            x,
+                            y)->GetGround() ==
+                        Hash("GroundGrass")) {
+                        
+                        worldArea->GetTile(
+                            x,
+                            y)->GetObjectsPile().AddObject("ObjectGrass");
+                    }
                 }
             }
         }

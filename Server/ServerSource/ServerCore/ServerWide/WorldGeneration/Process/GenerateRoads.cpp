@@ -27,7 +27,7 @@ namespace JoD {
                 
                 tile->SetGround("GroundBridge");
             }
-                
+            
             roadX++;
             roadY++;
         }
@@ -44,7 +44,7 @@ namespace JoD {
                 
                 tile->SetGround("GroundBridge");
             }
-                
+            
             roadX++;
         }
         
@@ -60,7 +60,7 @@ namespace JoD {
                 
                 tile->SetGround("GroundBridge");
             }
-                
+            
             roadY++;
         }
         
@@ -76,7 +76,7 @@ namespace JoD {
                 
                 tile->SetGround("GroundBridge");
             }
-                
+            
             roadX--;
         }
         
@@ -92,7 +92,7 @@ namespace JoD {
                 
                 tile->SetGround("GroundBridge");
             }
-                
+            
             roadY++;
         }
     }
