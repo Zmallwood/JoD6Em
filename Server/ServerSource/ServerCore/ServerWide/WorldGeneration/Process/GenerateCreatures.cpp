@@ -13,60 +13,71 @@ namespace JoD {
     
     namespace {
         
-        void GenerateCreatureGroupOfType(
-            WorldArea *worldArea,
-            std::string_view creatureName,
-            int numGroups, int numCreaturesInGroup, Box area, int level);
+        struct CreatureGenerateArgs {
+            
+            WorldArea* worldArea;
+            std::string creatureName;
+            int numGroups;
+            int numCreaturesInGroup;
+            Box area;
+            int creatureLevel;
+        };
+        
+        void GenerateCreatureGroupOfType(CreatureGenerateArgs args);
     }
     
     void GenerateCreatures(WorldArea* worldArea) {
         
         GenerateCreatureGroupOfType(
-            worldArea, "CreatureBlueSlime", 6, 6,
-            {50, 0, 50, 50}, 1);
+            {.worldArea = worldArea, .creatureName="CreatureBlueSlime",
+             .numGroups = 6, .numCreaturesInGroup = 6,
+             .area = {50, 0, 50, 50}, .creatureLevel=1});
+        
         GenerateCreatureGroupOfType(
-            worldArea, "CreatureYellowSlime", 6, 6,
-            {50, 50, 50, 50}, 2);
+            {.worldArea = worldArea, .creatureName="CreatureYellowSlime",
+             .numGroups = 6, .numCreaturesInGroup = 6,
+             .area = {50, 50, 50, 50}, .creatureLevel=2});
+        
         GenerateCreatureGroupOfType(
-            worldArea, "CreatureRedSlime", 6, 6,
-            {0, 50, 50, 50}, 3);
+            {.worldArea = worldArea, .creatureName="CreatureRedSlime",
+             .numGroups = 6, .numCreaturesInGroup = 6,
+             .area = {0, 50, 50, 50}, .creatureLevel=3});
+        
         GenerateCreatureGroupOfType(
-            worldArea, "CreatureCow", 60, 6,
-            {0, 0, 100, 100}, 3);
+            {.worldArea = worldArea, .creatureName="CreatureCow",
+             .numGroups = 6, .numCreaturesInGroup = 6,
+             .area = {0, 0, 100, 100}, .creatureLevel=3});
     }
     
     namespace {
         
-        void GenerateCreatureGroupOfType(
-            WorldArea *worldArea,
-            std::string_view creatureName,
-            int numGroups, int numCreaturesInGroup, Box area, int level) {
+        void GenerateCreatureGroupOfType(CreatureGenerateArgs args) {
             
-            for (auto i = 0; i < numGroups; i++) {
+            for (auto i = 0; i < args.numGroups; i++) {
                 
-                const auto xCenter = rand() % area.w + area.x;
-                const auto yCenter = rand() % area.h + area.y;
+                const auto xCenter = rand() % args.area.w + args.area.x;
+                const auto yCenter = rand() % args.area.h + args.area.y;
                 
                 CreatureGroup creatureGroup;
                 
                 creatureGroup.m_coord = {xCenter, yCenter};
                 
-                for (auto j = 0; j < numCreaturesInGroup; j++) {
+                for (auto j = 0; j < args.numCreaturesInGroup; j++) {
                     
                     const auto x = xCenter + rand() % 5 - rand() % 5;
                     const auto y = yCenter + rand() % 5 - rand() % 5;
                     
-                    if (!worldArea->IsValidCoord({x,y})) {
+                    if (!args.worldArea->IsValidCoord({x,y})) {
                         
                         continue;
                     }
                     
-                    if (worldArea->GetTile(x, y)->GetCreature()) {
+                    if (args.worldArea->GetTile(x, y)->GetCreature()) {
                         
                         continue;
                     }
                     
-                    if (worldArea->GetTile(
+                    if (args.worldArea->GetTile(
                             x,
                             y)->GetGround() ==
                         Hash("GroundWater")) {
@@ -75,16 +86,20 @@ namespace JoD {
                     }
                     
                     const auto newCreature =
-                        std::make_shared<Creature>(creatureName, level);
+                        std::make_shared<Creature>(
+                            args.creatureName,
+                            args.creatureLevel);
                     
                     creatureGroup.m_creatures.push_back(newCreature);
                     
-                    worldArea->RegisterCreaturePosition(newCreature, {x, y});
+                    args.worldArea->RegisterCreaturePosition(
+                        newCreature,
+                        {x, y});
                     
-                    worldArea->GetTile(x, y)->SetCreature(newCreature);
+                    args.worldArea->GetTile(x, y)->SetCreature(newCreature);
                 }
                 
-                worldArea->m_creatureGroups.push_back(creatureGroup);
+                args.worldArea->m_creatureGroups.push_back(creatureGroup);
             }
         }
     }
