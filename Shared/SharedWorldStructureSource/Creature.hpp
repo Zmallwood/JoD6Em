@@ -14,7 +14,7 @@ namespace JoD {
     
     struct ConnectedObject {
         
-        std::unique_ptr<Object>& connectedObject;
+        std::shared_ptr<Object> connectedObject;
         Point objectCoord;
     };
     
@@ -128,6 +128,36 @@ namespace JoD {
                 std::make_unique<ConnectedObject>(connectedObject.connectedObject, connectedObject.objectCoord);
         }
         
+        bool GetIsFollowingPath() const {
+            
+            return m_isFollowingPath;
+        }
+        
+        void SetIsFollowingPath(bool isFollowingPath) {
+            
+            m_isFollowingPath = isFollowingPath;
+        }
+        
+        TimePoint GetTicksLastMove() const {
+            
+            return m_ticksLastMove;
+        }
+        
+        void SetTicksLastMove(TimePoint ticksLastMove) {
+            
+            m_ticksLastMove = ticksLastMove;
+        }
+        
+        float GetMovementSpeed() const {
+            
+            return m_movementSpeed;
+        }
+        
+        ConnectedObject* GetConnectedObject() const {
+            
+            return m_connectedObject.get();
+        }
+        
       private:
         int m_type {0}; ///< Hash code of creature type name.
         int m_level {0}; ///< Level, as provided in ctor.
@@ -144,5 +174,8 @@ namespace JoD {
         TimePoint m_ticksLastAttackOnOther {Now()};
         float m_attackSpeed {1.0f};
         std::unique_ptr<ConnectedObject> m_connectedObject;
+        bool m_isFollowingPath {false};
+        TimePoint m_ticksLastMove {Now()};
+        float m_movementSpeed {6.0f};
     };
 }

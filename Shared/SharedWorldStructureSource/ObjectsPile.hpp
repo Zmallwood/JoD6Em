@@ -19,13 +19,13 @@ namespace JoD {
         
         void AddObject(std::string_view objectName);
         
-        void AddObject(std::unique_ptr<Object> object);
+        void AddObject(std::shared_ptr<Object> object);
         
-        std::vector<Object*> GetObjects() const;
+        std::vector<std::shared_ptr<Object>> GetObjects() const;
         
         bool HasObjects() const;
         
-        void RemoveObject(Object* object);
+        void RemoveObject(std::shared_ptr<Object> object);
         
         bool HasObjectOfType(std::string_view objectName) const;
         

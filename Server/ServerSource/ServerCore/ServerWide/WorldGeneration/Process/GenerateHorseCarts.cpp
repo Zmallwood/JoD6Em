@@ -51,6 +51,8 @@ namespace JoD {
                                 "CreatureHorse",
                                 3);
                         
+                        newHorse->SetIsFollowingPath(true);
+                        
                         // Register the creatures position to the world area.
                         worldArea->RegisterCreaturePosition(newHorse, {x, y});
                         
@@ -62,7 +64,7 @@ namespace JoD {
                         tileWest->GetObjectsPile().Clear();
                         
                         // Create new cart object.
-                        auto cart = std::make_unique<Object>("ObjectHorseCart");
+                        auto cart = std::make_shared<Object>("ObjectHorseCart");
                         
                         // Make it contain a NPC.
                         cart->SetContainedNPC(std::make_unique<NPC>());
@@ -70,10 +72,10 @@ namespace JoD {
                         // Connect the cart to the horse.
                         newHorse->SetConnectedObject(
                             {.connectedObject = cart,
-                             .objectCoord = {x, y}});
+                             .objectCoord = {x - 1, y}});
                         
                         // Add the cart to the world area.
-                        tileWest->GetObjectsPile().AddObject(std::move(cart));
+                        tileWest->GetObjectsPile().AddObject(cart);
                     }
                     
                     // Count steps taken.

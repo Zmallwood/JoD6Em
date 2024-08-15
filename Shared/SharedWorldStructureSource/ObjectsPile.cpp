@@ -10,7 +10,7 @@
 namespace JoD {
     struct ObjectsPile::Impl {
         
-        std::vector<std::unique_ptr<Object>> m_objects;
+        std::vector<std::shared_ptr<Object>> m_objects;
     };
     
     ObjectsPile::ObjectsPile()
@@ -18,13 +18,13 @@ namespace JoD {
     
     ObjectsPile::~ObjectsPile() {}
     
-    std::vector<Object*> ObjectsPile::GetObjects() const {
+    std::vector<std::shared_ptr<Object>> ObjectsPile::GetObjects() const {
         
-        std::vector<Object*> results;
+        std::vector<std::shared_ptr<Object>> results;
         
         for (auto& entry : m_pImpl->m_objects) {
             
-            results.push_back(entry.get());
+            results.push_back(entry);
         }
         
         return results;
@@ -36,9 +36,9 @@ namespace JoD {
     }
     
     
-    void ObjectsPile::AddObject(std::unique_ptr<Object> object) {
+    void ObjectsPile::AddObject(std::shared_ptr<Object> object) {
         
-        m_pImpl->m_objects.push_back(std::move(object));
+        m_pImpl->m_objects.push_back(object);
     }
     
     bool ObjectsPile::HasObjects() const {
@@ -47,13 +47,13 @@ namespace JoD {
     }
     
     
-    void ObjectsPile::RemoveObject(Object* object) {
+    void ObjectsPile::RemoveObject(std::shared_ptr<Object> object) {
         
         for (auto i = 0; i < m_pImpl->m_objects.size(); i++) {
             
             auto &objectEntry = m_pImpl->m_objects.at(i);
             
-            if (objectEntry.get() == object) {
+            if (objectEntry == object) {
                 
                 m_pImpl->m_objects.erase(m_pImpl->m_objects.begin() + i);
                 return;

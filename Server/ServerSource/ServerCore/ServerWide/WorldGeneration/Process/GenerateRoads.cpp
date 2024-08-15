@@ -20,6 +20,7 @@ namespace JoD {
             Point startCoord;
             Point deltaStep;
             int numSteps;
+            RoadPath& roadPath;
         };
         
         // Generate roads for a distance of tiles in the world area.
@@ -28,6 +29,8 @@ namespace JoD {
     
     void GenerateRoads(WorldArea* worldArea) {
         
+        RoadPath roadPath;
+        
         // Start generating roads from top left corner of the world area.
         auto coord = Point {0, 0};
         
@@ -35,39 +38,38 @@ namespace JoD {
         coord = GenerateRoadSection(
             {.worldArea = worldArea,
              .startCoord = coord, .deltaStep = {1, 1},
-             .numSteps = 25});
+             .numSteps = 25,
+             .roadPath = roadPath});
         
         // Generate straight road to the east.
         coord = GenerateRoadSection(
             {.worldArea = worldArea,
              .startCoord = coord, .deltaStep = {1, 0},
-             .numSteps = 50});
+             .numSteps = 50,
+             .roadPath = roadPath});
         
         // Generate straight road to the south.
         coord = GenerateRoadSection(
             {.worldArea = worldArea,
              .startCoord = coord, .deltaStep = {0, 1},
-             .numSteps = 50});
+             .numSteps = 50,
+             .roadPath = roadPath});
         
         // Generate straight road to the west.
         coord = GenerateRoadSection(
             {.worldArea = worldArea,
              .startCoord = coord, .deltaStep = {-1, 0},
-             .numSteps = 50});
+             .numSteps = 50,
+             .roadPath = roadPath});
         
         // Generate straight road to the south.
         coord = GenerateRoadSection(
             {.worldArea = worldArea,
              .startCoord = coord, .deltaStep = {0, 1},
-             .numSteps = 25});
-        
-        RoadPath roadPath;
-        roadPath.points.push_back({0,0});
-        roadPath.points.push_back({25,25});
-        roadPath.points.push_back({75,25});
-        roadPath.points.push_back({75,75});
-        roadPath.points.push_back({25,75});
-        roadPath.points.push_back({25,100});
+             .numSteps = 25,
+             .roadPath = roadPath});
+             
+        worldArea->m_roadPath = roadPath;
     }
     
     namespace {
@@ -78,6 +80,8 @@ namespace JoD {
             
             // Iterate the provided distance of steps.
             for (auto i = 0; i < args.numSteps; i++) {
+                
+                args.roadPath.points.push_back(coord);
                 
                 auto tile = args.worldArea->GetTile(coord);
                 
