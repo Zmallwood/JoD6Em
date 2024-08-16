@@ -38,6 +38,7 @@ namespace JoD {
     
     void Cursor::ResetCursorType() {
         
+        // Reset cursor type to default at start of each frame.
         m_currCursorType = CursorTypes::Default;
     }
 }
