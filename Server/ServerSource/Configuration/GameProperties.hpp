@@ -26,14 +26,14 @@ namespace JoD {
         
         ///
         /// Get the number of grid rows in tile grid in WorldView.
-        /// 
+        ///
         /// @return int Number of grid rows.
         ///
         int GetNumGridRows() const;
         
         ///
         /// Get the size used to create new world areas.
-        /// 
+        ///
         /// @return Size World area size.
         ///
         Size GetWorldAreaSize() const;

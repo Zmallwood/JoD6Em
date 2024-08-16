@@ -17,8 +17,10 @@ namespace JoD {
         
         for (auto i = 0; i < numLakes; i++){
             
-            const auto xCenter = rand() % _<GameProperties>().GetWorldAreaSize().w;
-            const auto yCenter = rand() % _<GameProperties>().GetWorldAreaSize().h;
+            const auto xCenter = rand() %
+                                 _<GameProperties>().GetWorldAreaSize().w;
+            const auto yCenter = rand() %
+                                 _<GameProperties>().GetWorldAreaSize().h;
             
             const auto r = 3 + rand() % 11;
             

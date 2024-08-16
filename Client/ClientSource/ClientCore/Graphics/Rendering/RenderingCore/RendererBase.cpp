@@ -24,7 +24,7 @@ namespace JoD {
     }
     
     RendererBase::RendererBase()
-        : m_shaderProgram(std::make_unique<ShaderProgram>()){}
+        : m_shaderProgram(std::make_unique<ShaderProgram>()) {}
     
     GLuint RendererBase::GenNewVAOID() {
         
@@ -40,7 +40,7 @@ namespace JoD {
     
     GLuint RendererBase::GenNewBuffID(
         BufferTypes buffType,
-        GLuint vaoID){
+        GLuint vaoID) {
         
         // Generate new Vertex Buffer Object.
         GLuint buffID;

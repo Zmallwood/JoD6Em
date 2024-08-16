@@ -37,19 +37,20 @@ namespace JoD {
         
         ///
         /// Set the WebSocketEvent object associated with the connection to the game server.
-        /// 
+        ///
         /// @param value The new WebSocketEvent object.
         ///
-        void SetWebSocketEvent(std::unique_ptr<const EmscriptenWebSocketOpenEvent> value) {
+        void SetWebSocketEvent(
+            std::unique_ptr<const EmscriptenWebSocketOpenEvent> value) {
             
             m_webSocketEvent = std::move(value);
         }
         
       private:
         std::unique_ptr<const EmscriptenWebSocketOpenEvent>
-        m_webSocketEvent; ///< Web socket event object related to the opened connection.
+        m_webSocketEvent;                       ///< Web socket event object related to the opened connection.
         //const std::string k_host {"164.90.238.23"}; ///< Host name of the server to connect to.
         const std::string k_host {"localhost"}; ///< Host name of the server to connect to.
-        const int k_port {8765}; ///< Port number to open the connection at.
+        const int k_port {8765};                ///< Port number to open the connection at.
     };
 }

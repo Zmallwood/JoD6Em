@@ -10,7 +10,7 @@ namespace JoD {
     
     bool ShaderProgram::Create(
         const GLchar *vertexShaderSource,
-        const GLchar *fragmentShaderSource){
+        const GLchar *fragmentShaderSource) {
         
         // To hold the shader IDs.
         GLuint vertexShader = 0;

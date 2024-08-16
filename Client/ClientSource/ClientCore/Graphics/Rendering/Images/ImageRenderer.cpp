@@ -14,20 +14,20 @@ namespace JoD {
     
     namespace {
         
-        int locNoPixelEffect{-1}; // Location of pixelation effect switch variable in vertex shader.
-        std::vector<int> defaultIndices; // To hold the default set of indices for 2D image rendering.
+        int locNoPixelEffect{-1};                     // Location of pixelation effect switch variable in vertex shader.
+        std::vector<int> defaultIndices;              // To hold the default set of indices for 2D image rendering.
         const std::vector<float> k_defaultColorsWhite // A set of floats representing the default white image color.
             =  std::vector<float>(
                   16,
                   1.0f);
-        const std::vector<float> k_defaultUVs // A set of floats representing a default UV coordinates layout for an image.
+        const std::vector<float> k_defaultUVs         // A set of floats representing a default UV coordinates layout for an image.
         {0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f};
-        constexpr int k_locPosition{0}; // Location of position variable in vertex shader.
-        constexpr int k_locColor{1}; // Location of color variable in vertex shader.
-        constexpr int k_locUV{2}; // Location of UV variable in vertex shader.
+        constexpr int k_locPosition{0};               // Location of position variable in vertex shader.
+        constexpr int k_locColor{1};                  // Location of color variable in vertex shader.
+        constexpr int k_locUV{2};                     // Location of UV variable in vertex shader.
     }
     
-    ImageRenderer::ImageRenderer(){
+    ImageRenderer::ImageRenderer() {
         
         // Create shader program.
         GetShaderProgram()->Create(
@@ -43,7 +43,7 @@ namespace JoD {
         std::iota(std::begin(defaultIndices), std::end(defaultIndices), 0);
     }
     
-    ImageRenderer::~ImageRenderer(){
+    ImageRenderer::~ImageRenderer() {
         
         // Delete allocated resources for the renderer.
         CleanupBase();
@@ -175,7 +175,7 @@ namespace JoD {
                 colorBuffID, k_defaultColorsWhite, BufferTypes::Colors,
                 k_locColor);
         }
-        else {  // If color is not white, the color-floats-data need to be created.
+        else {                        // If color is not white, the color-floats-data need to be created.
             
             std::vector<float> colors;
             
@@ -197,7 +197,7 @@ namespace JoD {
             
             UpdateData(uvBuffID, k_defaultUVs, BufferTypes::UVs, k_locUV);
         }
-        else {   // If texture repetition is desired, the UUV-float-data need to be created.
+        else {                        // If texture repetition is desired, the UUV-float-data need to be created.
             
             std::vector<float> uvs;
             

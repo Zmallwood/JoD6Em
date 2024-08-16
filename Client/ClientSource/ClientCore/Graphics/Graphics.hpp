@@ -38,7 +38,7 @@ namespace JoD {
         
         ///
         /// Get the GLFW window object which enables rendering using OpenGL to the browser window.
-        /// 
+        ///
         /// @return GLFWwindow* GLFW window object.
         ///
         GLFWwindow *GetWindow() const {
@@ -48,7 +48,7 @@ namespace JoD {
         
       private:
         GLFWwindow *m_window {nullptr}; ///< GLFW window object.
-        const std::string k_title ///< Window title used if the game would be in desktop application format.
+        const std::string k_title       ///< Window title used if the game would be in desktop application format.
         {"Journey of Dreams"};
     };
 }

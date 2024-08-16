@@ -30,6 +30,6 @@ namespace JoD {
         bool CanWalkThroughObject(int objectNameHash) const;
         
       private:
-        std::map<int, int> m_objectFlags;
+        std::map<int, int> m_objectFlags; ///< Storage of object types and their flags.
     };
 }

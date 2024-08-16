@@ -1,6 +1,6 @@
 /*
  * GenerateElevation.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -19,8 +19,8 @@ namespace JoD {
         for (auto i = 0; i < numHills; i++) {
             
             // Set properties for each hill.
-            auto xCenter = rand() % _<GameProperties>().GetWorldAreaSize().w; 
-            auto yCenter = rand() % _<GameProperties>().GetWorldAreaSize().h; 
+            auto xCenter = rand() % _<GameProperties>().GetWorldAreaSize().w;
+            auto yCenter = rand() % _<GameProperties>().GetWorldAreaSize().h;
             auto rMax = 3 + rand() % 8;
             
             // Loop over the area several times, decrease the radius each time.

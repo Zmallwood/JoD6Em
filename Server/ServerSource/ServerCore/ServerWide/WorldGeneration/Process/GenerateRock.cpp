@@ -1,6 +1,6 @@
 /*
  * GenerateRock.cpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -17,13 +17,13 @@ namespace JoD {
         
         for (auto i = 0; i < numRockAreas; i++) {
             
-            auto xCenter = rand() % _<GameProperties>().GetWorldAreaSize().w; 
-            auto yCenter = rand() % _<GameProperties>().GetWorldAreaSize().h; 
+            auto xCenter = rand() % _<GameProperties>().GetWorldAreaSize().w;
+            auto yCenter = rand() % _<GameProperties>().GetWorldAreaSize().h;
             auto r = 3 + rand() % 8;
             
             // Loop in the form a square, but only consider tiles within the radius r.
             for (auto y = yCenter - r; y <= yCenter + r; y++) {
-             
+                
                 for (auto x = xCenter - r; x <= xCenter + r; x++) {
                     
                     // Coord outside world area, skip iteration.

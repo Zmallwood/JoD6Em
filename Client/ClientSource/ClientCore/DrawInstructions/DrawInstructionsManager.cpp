@@ -12,7 +12,7 @@
 
 namespace JoD {
     
-    DrawInstructionsManager::DrawInstructionsManager(){
+    DrawInstructionsManager::DrawInstructionsManager() {
         
         // Create a sufficient amount of RIDs for drawing images at game start.
         for (auto i = 0; i < k_maxNumImageDrawInstructions; i++) {

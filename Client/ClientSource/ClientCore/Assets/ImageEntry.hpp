@@ -17,7 +17,7 @@ namespace JoD {
     ///
     struct ImageEntry {
         
-        GLuint id {0}; ///< OpenGL ID for the stored image as a GL texture.
+        GLuint id {0};   ///< OpenGL ID for the stored image as a GL texture.
         Size dimensions; ///< Dimensions for image obtained during texture initialization.
     };
 }

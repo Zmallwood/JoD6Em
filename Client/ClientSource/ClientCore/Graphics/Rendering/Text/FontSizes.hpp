@@ -16,6 +16,6 @@ namespace JoD {
         _10, ///< Point size 10
         _20, ///< Point size 20
         _30, ///< Point size 30
-        _50 ///< Point size 40
+        _50  ///< Point size 40
     };
 }

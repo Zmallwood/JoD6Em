@@ -33,7 +33,7 @@ namespace JoD {
         
         ///
         /// Get the program ID for the program.
-        /// 
+        ///
         /// @return GLuint Program ID.
         ///
         GLuint GetProgramID() const {

@@ -16,12 +16,12 @@ namespace JoD {
         // Sent as argument to creature group generation function.
         struct GenerateCreatureGroupOfTypeArgs {
             
-            WorldArea* worldArea; // World area to generate creatures in.
+            WorldArea* worldArea;     // World area to generate creatures in.
             std::string creatureName; // Name of creature to generate.
-            int numGroups; // Number of groups of the creature type to generate.
-            int numCreaturesInGroup; // Number of creatures in one generated group.
-            Box area; // Area in the world area where the groups will be spawned.
-            int creatureLevel; // Level of creatures that are generated, determines how strong they area.
+            int numGroups;            // Number of groups of the creature type to generate.
+            int numCreaturesInGroup;  // Number of creatures in one generated group.
+            Box area;                 // Area in the world area where the groups will be spawned.
+            int creatureLevel;        // Level of creatures that are generated, determines how strong they area.
         };
         
         void GenerateCreatureGroupOfType(GenerateCreatureGroupOfTypeArgs args);

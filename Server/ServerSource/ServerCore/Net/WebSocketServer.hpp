@@ -18,7 +18,7 @@ namespace JoD {
         /// Construct a new Web Socket Server object.
         ///
         WebSocketServer();
-
+        
         ///
         /// Destroy the Web Socket Server object. Needed by PIMPL idiom.
         ///

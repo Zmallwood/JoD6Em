@@ -16,7 +16,8 @@ namespace JoD {
         // Iterate through all tiles in the tile grid.
         for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
             
-            for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w; x++) {
+            for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w;
+                 x++) {
                 
                 // Set ground to grass type.
                 worldArea->GetTile(x, y)->SetGround(Hash("GroundGrass"));

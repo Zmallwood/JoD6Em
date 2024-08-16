@@ -21,7 +21,7 @@ namespace JoD {
         
         ///
         /// Tells if the client engine is currently running.
-        /// 
+        ///
         /// @return true If the game engine is running.
         /// @return false It the game engine is not running.
         ///

@@ -74,9 +74,9 @@ namespace JoD {
             SizeF &out_dimensions) const;
         
         std::map<FontSizes, std::unique_ptr<const Font>> m_fonts; ///< Stored font objects of different sizes.
-        std::map<RID, std::string> m_uniqueNameIDs; ///< Unique names of images created to render text.
-        std::map<RID, RID> m_ridsGLResources; ///< Map where key is imageID and value is RID used with ImageRenderer.
-        const std::string k_relFontsPath{"Resources/Fonts/"}; ///< File system path to fonts location.
-        const ColorF k_outlineColor{0.0f, 0.0f, 0.0f, 1.0f}; ///< Color of outline of all rendered text.
+        std::map<RID, std::string> m_uniqueNameIDs;               ///< Unique names of images created to render text.
+        std::map<RID, RID> m_ridsGLResources;                     ///< Map where key is imageID and value is RID used with ImageRenderer.
+        const std::string k_relFontsPath{"Resources/Fonts/"};     ///< File system path to fonts location.
+        const ColorF k_outlineColor{0.0f, 0.0f, 0.0f, 1.0f};      ///< Color of outline of all rendered text.
     };
 }

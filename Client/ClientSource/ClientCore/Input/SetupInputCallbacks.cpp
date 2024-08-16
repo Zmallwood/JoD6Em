@@ -84,25 +84,25 @@ namespace JoD {
             
             auto & srvConn = _<WebSocketServerConnection>();
             
-            if (button == GLFW_MOUSE_BUTTON_LEFT // Left mouse button has been pressed.
+            if (button == GLFW_MOUSE_BUTTON_LEFT          // Left mouse button has been pressed.
                 && action == GLFW_PRESS){
                 
                 // Send message to server.
                 srvConn.SendMessage(MessageCodes::k_leftMouseDown);
             }
-            else if (button == GLFW_MOUSE_BUTTON_LEFT &&   // Left mouse button has been released.
+            else if (button == GLFW_MOUSE_BUTTON_LEFT &&  // Left mouse button has been released.
                      action == GLFW_RELEASE) {
                 
                 // Send message to server.
                 srvConn.SendMessage(MessageCodes::k_leftMouseUp);
             }
-            else if (button == GLFW_MOUSE_BUTTON_RIGHT  // Right mouse button has been pressed.
+            else if (button == GLFW_MOUSE_BUTTON_RIGHT    // Right mouse button has been pressed.
                      && action == GLFW_PRESS){
                 
                 // Send message to server.
                 srvConn.SendMessage(MessageCodes::k_rightMouseDown);
             }
-            else if (button == GLFW_MOUSE_BUTTON_RIGHT &&   // Right mouse button has been released.
+            else if (button == GLFW_MOUSE_BUTTON_RIGHT && // Right mouse button has been released.
                      action == GLFW_RELEASE) {
                 
                 // Send message to server.

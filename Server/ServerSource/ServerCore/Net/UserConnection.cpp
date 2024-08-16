@@ -21,7 +21,7 @@ namespace JoD {
     };
     
     UserConnection::UserConnection(Socket socket)
-        : m_pImpl(std::make_unique<Impl>()){
+        : m_pImpl(std::make_unique<Impl>()) {
         
         // Register the new user with its socket object and obtain its user ID.
         m_pImpl->userID =
@@ -69,10 +69,12 @@ namespace JoD {
             while (true){
                 
                 // Update users game state.
-                _<EngineGet>().GetEngineInstance(m_pImpl->userID)->Update(userID);
+                _<EngineGet>().GetEngineInstance(m_pImpl->userID)->Update(
+                    userID);
                 
                 // Render users game state.
-                _<EngineGet>().GetEngineInstance(m_pImpl->userID)->Render(userID);
+                _<EngineGet>().GetEngineInstance(m_pImpl->userID)->Render(
+                    userID);
                 
                 // Slow down the loop rate.
                 std::this_thread::sleep_for(std::chrono::milliseconds(70));

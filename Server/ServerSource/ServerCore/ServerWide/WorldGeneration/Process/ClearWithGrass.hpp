@@ -12,7 +12,7 @@ namespace JoD {
     
     ///
     /// Clears a world area with grass as ground.
-    /// 
+    ///
     /// @param worldArea World area to clear.
     ///
     void ClearWithGrass(WorldArea* worldArea);

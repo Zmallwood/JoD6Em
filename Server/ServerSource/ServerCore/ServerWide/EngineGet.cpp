@@ -14,7 +14,7 @@ namespace JoD {
         
         std::map<UserID, std::unique_ptr<EngineInstance>> engineInstances; // Engine isntances for all connected users.
         
-        inline static UserID s_currentUserID {1}; // Note: IDs start at 1 so 0 can be used for unspecified/lacking IDs.
+        inline static UserID s_currentUserID {1};                          // Note: IDs start at 1 so 0 can be used for unspecified/lacking IDs.
     };
     
     EngineGet::EngineGet() : m_pImpl(std::make_unique<Impl>()) {}

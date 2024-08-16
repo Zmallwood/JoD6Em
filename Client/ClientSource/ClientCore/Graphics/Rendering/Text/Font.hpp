@@ -24,7 +24,7 @@ namespace JoD {
         
         ///
         /// Get the regular font object used for text rendering.
-        /// 
+        ///
         /// @return TTF_Font* The regular font object.
         ///
         TTF_Font* GetFont() const {
@@ -34,7 +34,7 @@ namespace JoD {
         
         ///
         /// Get the outline font object used for text outline rendering.
-        /// 
+        ///
         /// @return TTF_Font* The outline font object.
         ///
         TTF_Font* GetOutlineFont() const {
@@ -44,7 +44,7 @@ namespace JoD {
         
         ///
         /// Get the constant value for font outline width.
-        /// 
+        ///
         /// @return constexpr int Font outline width.
         ///
         static constexpr int GetFontOutlineWidth() {
@@ -53,8 +53,8 @@ namespace JoD {
         }
         
       private:
-        std::unique_ptr<TTF_Font, SDLDeleter> m_font; ///< Regular SDL font object.
+        std::unique_ptr<TTF_Font, SDLDeleter> m_font;        ///< Regular SDL font object.
         std::unique_ptr<TTF_Font, SDLDeleter> m_outlineFont; ///< Outline SDL font object.
-        static constexpr int k_fontOutlineWidth{2}; ///< Font outline width.
+        static constexpr int k_fontOutlineWidth{2};          ///< Font outline width.
     };
 }

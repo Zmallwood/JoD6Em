@@ -68,7 +68,7 @@ namespace JoD {
              .startCoord = coord, .deltaStep = {0, 1},
              .numSteps = 25,
              .roadPath = roadPath});
-             
+        
         worldArea->m_roadPath = roadPath;
     }
     

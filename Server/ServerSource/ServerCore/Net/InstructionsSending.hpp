@@ -63,7 +63,7 @@ namespace JoD {
     
     ///
     /// Send request to user to retrieve dimensions for an image.
-    /// 
+    ///
     /// @param userID User ID of user for which to request image dimensions.
     /// @param imageNameHash Hash code of image name to get dimensions for.
     ///

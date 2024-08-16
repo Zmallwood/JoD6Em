@@ -17,7 +17,7 @@ namespace JoD {
         EM_JS(int, CanvasGetHeight, (), { return window.innerHeight; });
     }
     
-    Graphics::Graphics(){
+    Graphics::Graphics() {
         
         // Initialize GLFW.
         glfwInit();

@@ -13,14 +13,14 @@ namespace JoD {
     ///
     enum class BufferTypes {
         
-        Indices, ///< Indices
+        Indices,     ///< Indices
         Positions2D, ///< Positions in 2D coordinates
         Positions3D, ///< Positions in 3D coordinates.
-        Colors, ///< Colors.
-        UVs, ///< Texture coordinates.
-        Normals, ///< Normals in 3D space.
-        BoneIDs, ///< Bone IDs for skeleton animations.
-        Weights, ///< Bone weights for skeleton animations.
-        Misc ///< Other types of buffer data.
+        Colors,      ///< Colors.
+        UVs,         ///< Texture coordinates.
+        Normals,     ///< Normals in 3D space.
+        BoneIDs,     ///< Bone IDs for skeleton animations.
+        Weights,     ///< Bone weights for skeleton animations.
+        Misc         ///< Other types of buffer data.
     };
 }

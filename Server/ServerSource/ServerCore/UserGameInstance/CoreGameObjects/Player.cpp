@@ -95,7 +95,7 @@ namespace JoD {
         // Do check if destination tile has an object which is considered an obstace.
         
         auto canWalkThroughObject = true;
-
+        
         // Loop through all objects on destination tile.
         for (auto object : tile->GetObjectsPile().GetObjects()) {
             

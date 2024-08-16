@@ -219,7 +219,7 @@ namespace JoD {
         EM_BOOL OnOpen(
             int eventType,
             const EmscriptenWebSocketOpenEvent *webSocketEvent,
-            void *userData){
+            void *userData) {
             
             // Save web socket event to WebSocketClient so it can be used from that object by its own.
             _<WebSocketServerConnection>().SetWebSocketEvent(
@@ -247,7 +247,7 @@ namespace JoD {
         EM_BOOL OnError(
             int eventType,
             const EmscriptenWebSocketErrorEvent *webSocketEvent,
-            void *userData){
+            void *userData) {
             
             // Notify on web socket errors.
             std::cout << "Web socket error.\n";
@@ -258,7 +258,7 @@ namespace JoD {
         EM_BOOL OnClose(
             int eventType,
             const EmscriptenWebSocketCloseEvent *webSocketEvent,
-            void *userData){
+            void *userData) {
             
             // Notify on closing web socket connection.
             std::cout << "Closing web socket connection.\n";
@@ -270,7 +270,7 @@ namespace JoD {
             int eventType,
             const EmscriptenWebSocketMessageEvent *
             webSocketEvent,
-            void *userData){
+            void *userData) {
             
             // Process the raw message data in bytes.
             ProcessIncomingMessage(webSocketEvent->data);
