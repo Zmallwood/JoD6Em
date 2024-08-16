@@ -14,6 +14,7 @@
 #include "MainSceneGUI/GUITextConsole.hpp"
 #include "MainSceneGUI/GUIExpBar.hpp"
 #include "MainSceneGUI/GUIStatusPanel.hpp"
+#include "MainSceneGUI/GUIInteractionMenu.hpp"
 #include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
 #include "Process/IMainSceneComponent.hpp"
@@ -42,6 +43,8 @@ namespace JoD {
         GUI()->AddComponent<GUIExpBar>();
         
         GUI()->AddComponent<GUIStatusPanel>();
+        
+        GUI()->AddComponent<GUIInteractionMenu>();
         
         m_pImpl->components.insert(
             {MainSceneComponents::TileHovering,
