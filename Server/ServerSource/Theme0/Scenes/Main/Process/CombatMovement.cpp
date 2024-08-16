@@ -30,7 +30,7 @@ namespace JoD {
             const auto pos =
                 worldArea->GetCreatureCoord(creatureTargeting->GetTargetedCreature()).value();
             
-            if (Now() > player->GetTicksLastMove() +
+            if (Now() > player->GetTimeLastMove() +
                 Duration(
                     Millis(
                         static_cast<int>(
@@ -66,7 +66,7 @@ namespace JoD {
                     player->TryMove(userID, Directions::West);
                 }
                 
-                player->SetTicksLastMove(Now());
+                player->SetTimeLastMove(Now());
             }
         }
     }

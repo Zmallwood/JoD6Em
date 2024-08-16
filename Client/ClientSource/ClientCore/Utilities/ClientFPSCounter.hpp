@@ -39,6 +39,6 @@ namespace JoD {
 
         int m_fps {0};                       ///< Last calculated FPS value.
 
-        TimePoint m_ticksLastUpdate {Now()}; ///< Last time the FPS was calculated.
+        TimePoint m_timeLastUpdate {Now()}; ///< Last time the FPS was calculated.
     };
 }

@@ -48,7 +48,7 @@ namespace JoD {
             
             if (absDx <= 1 && absDy <= 1) {
                 
-                if (Now() > player->GetTicksLastAttackOnOther() +
+                if (Now() > player->GetTimeLastAttackOnOther() +
                     Duration(
                         Millis(
                             static_cast<int>(
@@ -57,7 +57,7 @@ namespace JoD {
                     
                     
                     
-                    player->SetTicksLastAttackOnOther(Now());
+                    player->SetTimeLastAttackOnOther(Now());
                     
                     auto damage = 1;
                     
@@ -114,7 +114,7 @@ namespace JoD {
                 if (absDx <= 1 && absDy <= 1) {
                     
                     if (Now() >
-                        creature->GetTicksLastAttackOnOther() + Duration(
+                        creature->GetTimeLastAttackOnOther() + Duration(
                             Millis(
                                 static_cast<int>(
                                     1000/
@@ -134,7 +134,7 @@ namespace JoD {
                             textMessages->Print("You have died! Your have lost all your experience.");
                         }
                         
-                        creature->SetTicksLastAttackOnOther(Now());
+                        creature->SetTimeLastAttackOnOther(Now());
                     }
                 }
             }

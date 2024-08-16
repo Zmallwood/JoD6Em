@@ -35,6 +35,6 @@ namespace JoD {
 
         int m_framesCount {0}; ///< Counting of nummer of frames reached in one second.
 
-        TimePoint m_ticksLastUpdate {Now()}; ///< Last time the FPS was calculated.
+        TimePoint m_timeLastUpdate {Now()}; ///< Last time the FPS was calculated.
     };
 }

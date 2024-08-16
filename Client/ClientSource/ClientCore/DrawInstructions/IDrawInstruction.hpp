@@ -16,6 +16,7 @@ namespace JoD {
     struct IDrawInstruction {
         
         DrawInstructionTypes type {DrawInstructionTypes::None}; ///< Should be specified for all object instances.
+        
         RID rid {0};                                            ///< Resource ID, used for both image RIDs and text RIDs.
     };
 }

@@ -29,7 +29,7 @@ namespace JoD {
         }
         
         m_hp -= damage;
-        m_ticksLastHitFromOther = Now();
+        m_timeLastHitFromOther = Now();
     }
     
     bool Creature::IsDead() const {

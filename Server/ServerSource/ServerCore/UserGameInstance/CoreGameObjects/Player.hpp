@@ -82,14 +82,14 @@ namespace JoD {
             m_destCoord = value;
         }
 
-        TimePoint GetTicksLastMove() const {
+        TimePoint GetTimeLastMove() const {
 
-            return m_ticksLastMove;
+            return m_timeLastMove;
         }
 
-        void SetTicksLastMove(TimePoint value) {
+        void SetTimeLastMove(TimePoint value) {
 
-            m_ticksLastMove = value;
+            m_timeLastMove = value;
         }
 
         float GetMovementSpeed() const {
@@ -112,14 +112,14 @@ namespace JoD {
             m_experience += value;
         }
 
-        TimePoint GetTicksLastAttackOnOther() const {
+        TimePoint GetTimeLastAttackOnOther() const {
 
-            return m_ticksLastAttackOnOther;
+            return m_timeLastAttackOnOther;
         }
 
-        void SetTicksLastAttackOnOther(TimePoint value) {
+        void SetTimeLastAttackOnOther(TimePoint value) {
 
-            m_ticksLastAttackOnOther = value;
+            m_timeLastAttackOnOther = value;
         }
 
         float GetAttackSpeed() const {
@@ -154,13 +154,13 @@ namespace JoD {
 
         std::optional<Point> m_destCoord {std::nullopt}; ///< Destination to which the player is moving.
 
-        TimePoint m_ticksLastMove {Now()};               ///< Last time the player moved one step.
+        TimePoint m_timeLastMove {Now()};               ///< Last time the player moved one step.
 
         float m_movementSpeed {5.0f};                    ///< Base movement speed.
 
         int m_experience {0};
 
-        TimePoint m_ticksLastAttackOnOther {Now()};
+        TimePoint m_timeLastAttackOnOther {Now()};
 
         float m_attackSpeed {1.0f};
 

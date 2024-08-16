@@ -31,15 +31,15 @@ namespace JoD {
         
         void RunWorldProcessingLoop() {
             
-            TimePoint ticksLastUpdate = Now();
+            TimePoint timeLastUpdate = Now();
             
             const auto updateInterval = Duration(Millis(800));
             
             while (true) {
                 
-                if (Now() > ticksLastUpdate + updateInterval) {
+                if (Now() > timeLastUpdate + updateInterval) {
                     
-                    ticksLastUpdate = Now();
+                    timeLastUpdate = Now();
                     
                     auto worldArea = _<World>().GetCurrentWorldArea();
                     
@@ -176,7 +176,7 @@ namespace JoD {
                                 if (npc->GetIsFollowingPath()) {
                                     
                                     if (Now() >
-                                        npc->GetTicksLastMove() +
+                                        npc->GetTimeLastMove() +
                                         Duration(
                                             Millis(
                                                 static_cast<int>(1000/
@@ -238,7 +238,7 @@ namespace JoD {
                                             }
                                         }
                                         
-                                        npc->SetTicksLastMove(Now());
+                                        npc->SetTimeLastMove(Now());
                                     }
                                 }
                             }
@@ -271,7 +271,7 @@ namespace JoD {
                                 if (creature->GetIsFollowingPath()) {
                                     
                                     if (Now() >
-                                        creature->GetTicksLastMove() +
+                                        creature->GetTimeLastMove() +
                                         Duration(
                                             Millis(
                                                 static_cast<int>(1000/
@@ -404,7 +404,7 @@ namespace JoD {
                                             }
                                         }
                                         
-                                        creature->SetTicksLastMove(Now());
+                                        creature->SetTimeLastMove(Now());
                                     }
                                 }
                             }

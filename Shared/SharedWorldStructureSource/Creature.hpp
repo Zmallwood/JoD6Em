@@ -84,9 +84,9 @@ namespace JoD {
         ///
         /// @return TimePoint Last time hit by another.
         ///
-        TimePoint GetTicksLastHitFromOther() const {
+        TimePoint GetTimeLastHitFromOther() const {
             
-            return m_ticksLastHitFromOther;
+            return m_timeLastHitFromOther;
         }
         
         ///
@@ -107,14 +107,14 @@ namespace JoD {
             m_targetedUserID = userID;
         }
         
-        TimePoint GetTicksLastAttackOnOther() const {
+        TimePoint GetTimeLastAttackOnOther() const {
             
-            return m_ticksLastAttackOnOther;
+            return m_timeLastAttackOnOther;
         }
         
-        void SetTicksLastAttackOnOther(TimePoint value) {
+        void SetTimeLastAttackOnOther(TimePoint value) {
             
-            m_ticksLastAttackOnOther = value;
+            m_timeLastAttackOnOther = value;
         }
         
         float GetAttackSpeed() const {
@@ -138,14 +138,14 @@ namespace JoD {
             m_isFollowingPath = isFollowingPath;
         }
         
-        TimePoint GetTicksLastMove() const {
+        TimePoint GetTimeLastMove() const {
             
-            return m_ticksLastMove;
+            return m_timeLastMove;
         }
         
-        void SetTicksLastMove(TimePoint ticksLastMove) {
+        void SetTimeLastMove(TimePoint timeLastMove) {
             
-            m_ticksLastMove = ticksLastMove;
+            m_timeLastMove = timeLastMove;
         }
         
         float GetMovementSpeed() const {
@@ -180,13 +180,13 @@ namespace JoD {
         
         int m_exp {0}; ///< Experience gained when defeating this creature.
         
-        TimePoint m_ticksLastHitFromOther {Now()}; ///< TimePoint for when this creature was last hit by another.
+        TimePoint m_timeLastHitFromOther {Now()}; ///< TimePoint for when this creature was last hit by another.
         
         CreatureMaturity m_maturity {CreatureMaturity::Mature}; ///< Specifies the maturity/aging of this creature.
         
         UserID m_targetedUserID {0};
         
-        TimePoint m_ticksLastAttackOnOther {Now()};
+        TimePoint m_timeLastAttackOnOther {Now()};
         
         float m_attackSpeed {1.0f};
         
@@ -194,7 +194,7 @@ namespace JoD {
         
         bool m_isFollowingPath {false};
         
-        TimePoint m_ticksLastMove {Now()};
+        TimePoint m_timeLastMove {Now()};
         
         float m_movementSpeed {6.0f};
     };

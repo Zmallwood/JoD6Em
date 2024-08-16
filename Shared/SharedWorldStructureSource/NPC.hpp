@@ -21,14 +21,14 @@ namespace JoD {
             m_isFollowingPath = isFollowingPath;
         }
         
-        TimePoint GetTicksLastMove() const {
+        TimePoint GetTimeLastMove() const {
             
-            return m_ticksLastMove;
+            return m_timeLastMove;
         }
         
-        void SetTicksLastMove(TimePoint ticksLastMove) {
+        void SetTimeLastMove(TimePoint timeLastMove) {
             
-            m_ticksLastMove = ticksLastMove;
+            m_timeLastMove = timeLastMove;
         }
         
         float GetMovementSpeed() const {
@@ -42,7 +42,7 @@ namespace JoD {
         
         bool m_isFollowingPath {false};
         
-        TimePoint m_ticksLastMove {Now()};
+        TimePoint m_timeLastMove {Now()};
         
         float m_movementSpeed {9.0f};
     };

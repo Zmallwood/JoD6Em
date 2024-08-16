@@ -53,7 +53,7 @@ namespace JoD {
                 {tileBounds.x, tileBounds.y - 0.5f*tileBounds.h});
             
             
-            if (Now() < tile->GetCreature()->GetTicksLastHitFromOther() + Duration(
+            if (Now() < tile->GetCreature()->GetTimeLastHitFromOther() + Duration(
                     Millis(
                         static_cast<int>(
                             k_showHitEffectDuration)))) {

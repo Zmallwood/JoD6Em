@@ -49,7 +49,7 @@ namespace JoD {
         }
         
         if (std::chrono::high_resolution_clock::now() >
-            player->GetTicksLastMove() +
+            player->GetTimeLastMove() +
             std::chrono::high_resolution_clock::duration(
                 std::chrono::milliseconds(
                     static_cast<int>(1000/
@@ -96,7 +96,7 @@ namespace JoD {
                 
                 if (dx || dy) {
                     
-                    player->SetTicksLastMove(Now());
+                    player->SetTimeLastMove(Now());
                 } else  {
                     
                     player->SetDestCoord(std::nullopt);
