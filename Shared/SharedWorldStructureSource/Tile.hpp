@@ -42,9 +42,9 @@ namespace JoD {
         
         ObjectsPile &GetObjectsPile() const;
         
-        NPC* GetNPC() const;
+        std::shared_ptr<NPC> GetNPC() const;
         
-        void SetNPC(std::unique_ptr<NPC> npc);
+        void SetNPC(std::shared_ptr<NPC> npc);
         
       private:
         struct Impl;

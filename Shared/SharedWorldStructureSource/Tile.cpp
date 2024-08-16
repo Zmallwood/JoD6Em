@@ -16,7 +16,7 @@ namespace JoD {
         int elevation {0};
         int groundCover {0};
         ObjectsPile objectsPile;
-        std::unique_ptr<NPC> npc;
+        std::shared_ptr<NPC> npc;
     };
     
     Tile::Tile()
@@ -78,14 +78,13 @@ namespace JoD {
     
     
     
-    NPC* Tile::GetNPC() const {
+    std::shared_ptr<NPC> Tile::GetNPC() const {
         
-        return m_pImpl->npc.get();
+        return m_pImpl->npc;
     }
     
-    void Tile::SetNPC(std::unique_ptr<NPC> npc) {
+    void Tile::SetNPC(std::shared_ptr<NPC> npc) {
         
-        
-        m_pImpl->npc = std::move(npc);
+        m_pImpl->npc = npc;
     }
 }

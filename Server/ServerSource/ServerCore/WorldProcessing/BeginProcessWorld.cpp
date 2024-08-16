@@ -169,6 +169,80 @@ namespace JoD {
                                 }
                             }
                             
+                            auto npc = tile->GetNPC();
+                            
+                            if (npc) {
+                                
+                                if (npc->GetIsFollowingPath()) {
+                                    
+                                    if (Now() >
+                                        npc->GetTicksLastMove() +
+                                        Duration(
+                                            Millis(
+                                                static_cast<int>(1000/
+                                                                 npc
+                                                                 ->
+                                                                 GetMovementSpeed()))))
+                                    {
+                                        auto reversePath = worldArea->m_roadPath.points;
+                                        
+                                        std::reverse(reversePath.begin(), reversePath.end());
+                                        
+                                        for (auto it =
+                                                 reversePath.
+                                                 begin();
+                                             it !=
+                                             reversePath.end();
+                                             it++) {
+                                            
+                                            if (it->x == x && it->y == y) {
+                                                it++;
+                                                
+                                                if (it ==
+                                                    reversePath
+                                                    .end()) {
+                                                    
+                                                    auto beginningTile =
+                                                        worldArea->GetTile(
+                                                            reversePath[0]);
+                                                    
+                                                    beginningTile->SetNPC(
+                                                        npc);
+                                                    worldArea->GetTile(
+                                                        x,
+                                                        y)->SetNPC(
+                                                        nullptr);
+                                                    
+                                                    break;
+                                                }
+                                                
+                                                auto newTile =
+                                                    worldArea->GetTile(
+                                                        it->x,
+                                                        it->y);
+                                                
+                                                if (newTile &&
+                                                    newTile->GetNPC() ==
+                                                    nullptr) {
+                                                    
+                                                    newTile->SetNPC(
+                                                        npc);
+                                                    worldArea->GetTile(
+                                                        x,
+                                                        y)->SetNPC(
+                                                        nullptr);
+                                                    
+                                                }
+                                                
+                                                
+                                            }
+                                        }
+                                        
+                                        npc->SetTicksLastMove(Now());
+                                    }
+                                }
+                            }
+                            
                             auto creature = tile->GetCreature();
                             
                             if (creature) {

@@ -9,6 +9,7 @@
 #include "Tile.hpp"
 #include "NPC.hpp"
 #include "Configuration/GameProperties.hpp"
+#include <memory>
 
 namespace JoD {
     
@@ -34,8 +35,10 @@ namespace JoD {
                     if (tileStep % npcCreationInterval ==
                         tileStepOffset) {
                         
+                        auto newNPC = std::make_unique<NPC>();
+                        newNPC->SetIsFollowingPath(true);
                         
-                        tile->SetNPC(std::make_unique<NPC>());
+                        tile->SetNPC(std::move(newNPC));
                     }
                     
                     tileStep++;
