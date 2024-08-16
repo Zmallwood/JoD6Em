@@ -9,7 +9,7 @@
 #include "ImageEntry.hpp"
 
 namespace JoD {
-    
+
     ///
     /// Loads and provides image resources.
     ///
@@ -19,7 +19,7 @@ namespace JoD {
     ///          in the images path, defined by k_relImagesPath.
     ///
     class ImageBank {
-        
+
       public:
         ///
         /// Construct a new Image Bank object.
@@ -27,14 +27,14 @@ namespace JoD {
         /// @details Calls the LoadImages() function and nothing else.
         ///
         ImageBank();
-        
+
         ///
         /// Destroy the image bank object.
         ///
         /// @details Deletes all GL textures in m_images.
         ///
         ~ImageBank();
-        
+
         ///
         /// Get the Image object.
         ///
@@ -44,8 +44,8 @@ namespace JoD {
         /// @details Obtains the hash code for the imageName parameter and checks if it
         ///          exists as a key in m_images.
         ///
-        GLuint GetImage(std::string_view imageName) const;
-        
+        std::optional<GLuint> GetImage(std::string_view imageName) const;
+
         ///
         /// Get the Image object.
         ///
@@ -56,8 +56,8 @@ namespace JoD {
         /// @details Checks if the imageNameHash parameter exists as a key
         ///          in m_images.
         ///
-        GLuint GetImage(int imageNameHash) const;
-        
+        std::optional<GLuint> GetImage(int imageNameHash) const;
+
         ///
         /// Create a blank image object.
         ///
@@ -70,7 +70,7 @@ namespace JoD {
         ///          parameter as key.
         ///
         GLuint CreateBlankImage(std::string_view uniqueImageName);
-        
+
         ///
         ///  Get image dimensions for provided image name hash code.
         ///
@@ -84,7 +84,7 @@ namespace JoD {
         ///          parameter, then it returns an empty size: {0, 0}-
         ///
         Size GetImageDimensions(int imageNameHash) const;
-        
+
       private:
         ///
         /// Loads all images from file system and storesboth the images and their dimensions.
@@ -98,7 +98,7 @@ namespace JoD {
         ///          pure name, without path or extension, of the image file.
         ///
         void LoadImages();
-        
+
         std::map<int, ImageEntry> m_images;                    ///< Stores images as entries by image name hash code.
         const std::string k_relImagesPath{"Resources/Images"}; ///< Path to images location.
     };
