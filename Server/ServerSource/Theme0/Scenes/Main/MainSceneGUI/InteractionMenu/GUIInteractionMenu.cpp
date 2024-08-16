@@ -13,6 +13,8 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 #include "Tile.hpp"
+#include "ObjectsPile.hpp"
+#include "Object.hpp"
 #include "Theme0/Scenes/Main/Process/TileHovering.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
@@ -20,9 +22,7 @@
 namespace JoD {
     
     GUIInteractionMenu::GUIInteractionMenu()
-        : GUIComponent({0.0f, 0.0f})  {
-        
-    }
+        : GUIComponent({0.0f, 0.0f}) {}
     
     void GUIInteractionMenu::UpdateDerived(UserID userID) {
         
@@ -32,22 +32,85 @@ namespace JoD {
         
         auto mainScene = sceneManager->GetScene<MainScene>("MainScene");
         
-        auto tileHovering = static_cast<TileHovering*>(mainScene->GetComponent(MainSceneComponents::TileHovering));
+        auto tileHovering =
+            static_cast<TileHovering*>(mainScene->GetComponent(
+                                           MainSceneComponents::TileHovering));
+        auto mousePosition = _<EngineGet>().GetMousePosition(userID).value();
         
         if (mouseInput->GetRightButton().GetIsPressed()) {
             
-            auto tile = _<World>().GetCurrentWorldArea()->GetTile(tileHovering->GetHoveredCoordinate().value());
+            auto tile =
+                _<World>().GetCurrentWorldArea()->GetTile(
+                    tileHovering->GetHoveredCoordinate().value());
+            
+            m_clickedCoord = tileHovering->GetHoveredCoordinate().value();
             
             if (tile->GetCreature()) {
                 
                 return;
             }
             
-            auto mousePosition = _<EngineGet>().GetMousePosition(userID).value();
             
             m_position = mousePosition;
             
             m_active = true;
+            
+            m_menuEntries.clear();
+            
+            auto menuEntryIndex = 0;
+            
+            for (auto object : tile->GetObjectsPile().GetObjects()) {
+                
+                if (object->GetType() == Hash("ObjectTree1") ||
+                    object->GetType() == Hash("ObjectTree2")){
+                    
+                    m_menuEntries.push_back(
+                        {.label="Chop down tree", .action = [&] {
+                                                                auto tile =
+                                                                    _<World>().
+                                                                    GetCurrentWorldArea()
+                                                                    ->GetTile(
+                                                                        m_clickedCoord);
+                                                                
+                                                                for (auto object
+                                                                     : tile->
+                                                                     GetObjectsPile()
+                                                                     .GetObjects())
+                                                                {
+                                                                    
+                                                                    if (object->
+                                                                        GetType()
+                                                                        == Hash(
+                                                                            "ObjectTree1")
+                                                                        ||
+                                                                        object->
+                                                                        GetType()
+                                                                        == Hash(
+                                                                            "ObjectTree2"))
+                                                                    {
+                                                                        tile->
+                                                                        GetObjectsPile()
+                                                                        .
+                                                                        RemoveObject
+                                                                        (
+                                                                            object);
+                                                                        tile->
+                                                                        GetObjectsPile()
+                                                                        .
+                                                                        AddObject
+                                                                        (
+                                                                            "ObjectFelledTree");
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            },
+                         .bounds = {m_position.x,
+                                    m_position.y + menuEntryIndex*k_menuRowHeight,
+                                    m_size.w, k_menuRowHeight}});
+                    
+                    menuEntryIndex++;
+                }
+            }
         }
         
         if (!m_active) {
@@ -56,6 +119,18 @@ namespace JoD {
         }
         
         if (mouseInput->GetLeftButton().GetIsPressed()) {
+            
+            for (auto menuEntry: m_menuEntries) {
+                
+                auto bounds = menuEntry.bounds;
+                
+                if (bounds.Contains(mousePosition)) {
+                    std::cout << "ACTION\n";
+                    
+                    menuEntry.action();
+                }
+            }
+            
             
             m_active = false;
         }
@@ -69,6 +144,15 @@ namespace JoD {
         }
         
         SendImageDrawInstruction(userID, "GUIPanelBground", GetBounds());
+        
+        auto linePos = m_position;
+        
+        for (auto menuEntry : m_menuEntries) {
+            
+            SendTextDrawInstruction(userID, menuEntry.label, linePos);
+            
+            linePos.y += k_menuRowHeight;
+        }
     }
     
     BoxF GUIInteractionMenu::GetBounds() const {

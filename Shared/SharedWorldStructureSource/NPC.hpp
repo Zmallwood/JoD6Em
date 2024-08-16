@@ -39,6 +39,6 @@ namespace JoD {
       private:
         bool m_isFollowingPath {false};
         TimePoint m_ticksLastMove {Now()};
-        float m_movementSpeed {6.0f};
+        float m_movementSpeed {9.0f};
     };
 }

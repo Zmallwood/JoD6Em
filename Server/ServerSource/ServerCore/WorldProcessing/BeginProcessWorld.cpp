@@ -33,7 +33,7 @@ namespace JoD {
             
             TimePoint ticksLastUpdate = Now();
             
-            const auto updateInterval = Duration(Millis(1000));
+            const auto updateInterval = Duration(Millis(800));
             
             while (true) {
                 

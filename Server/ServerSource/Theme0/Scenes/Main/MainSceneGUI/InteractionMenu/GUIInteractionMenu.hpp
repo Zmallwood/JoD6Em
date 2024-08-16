@@ -7,6 +7,7 @@
 #pragma once
 
 #include "ServerCore/UserGameInstance/GUICore/GUIComponent.hpp"
+#include "MenuEntry.hpp"
 
 namespace JoD {
     
@@ -24,5 +25,8 @@ namespace JoD {
         
         SizeF m_size {0.1f, 0.05f};
         bool m_active {false};
+        std::vector<MenuEntry> m_menuEntries;
+        Point m_clickedCoord = {-1, -1};
+        const float k_menuRowHeight {0.1f};
     };
 }
