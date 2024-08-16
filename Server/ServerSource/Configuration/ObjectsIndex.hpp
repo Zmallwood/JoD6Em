@@ -7,19 +7,19 @@
 #pragma once
 
 namespace JoD {
-    
+
     ///
     /// Manages properties and configuration for object types.
     ///
     class ObjectsIndex {
-        
+
       public:
         ///
         /// Construct a new Objects Index object by setting up object properties
         /// such as object flags.
         ///
         ObjectsIndex();
-        
+
         ///
         /// Tells if object of provided type allows walking through them.
         ///
@@ -28,8 +28,11 @@ namespace JoD {
         /// @return false If cannot walk through (obstacle) objects of this type.
         ///
         bool CanWalkThroughObject(int objectNameHash) const;
-        
+
       private:
+
+        // Members
+
         std::map<int, int> m_objectFlags; ///< Storage of object types and their flags.
     };
 }

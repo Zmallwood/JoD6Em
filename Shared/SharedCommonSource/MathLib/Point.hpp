@@ -16,7 +16,10 @@ namespace JoD {
         
         Point Translate(int dx, int dy) const;
         
+        // Members
+        
         int x {0};
+        
         int y {0};
     };
 }

@@ -18,6 +18,7 @@ namespace JoD {
     class Tile {
         
       public:
+      
         Tile();
         
         ~Tile();
@@ -47,6 +48,7 @@ namespace JoD {
         void SetNPC(std::shared_ptr<NPC> npc);
         
       private:
+      
         struct Impl;
         
         std::unique_ptr<Impl> m_pImpl;

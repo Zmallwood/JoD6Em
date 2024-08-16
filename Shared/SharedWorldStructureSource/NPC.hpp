@@ -37,8 +37,13 @@ namespace JoD {
         }
         
       private:
+        
+        // Members
+        
         bool m_isFollowingPath {false};
+        
         TimePoint m_ticksLastMove {Now()};
+        
         float m_movementSpeed {9.0f};
     };
 }

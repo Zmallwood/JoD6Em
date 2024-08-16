@@ -13,7 +13,10 @@ namespace JoD {
     ///
     struct PointF {
         
+        // Members
+        
         float x {0.0f}; ///< X coordinate in float type.
+        
         float y {0.0f}; ///< Y coordinate in float type.
     };
 }

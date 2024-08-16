@@ -7,23 +7,27 @@
 #pragma once
 
 namespace JoD {
-    
+
     ///
     /// Custom cursor object which replaces the default system cursor.
     ///
     class Cursor {
-        
+
       public:
-        
+
         ///
         /// Render the cursor to canvas.
-        /// 
+        ///
         /// @param webSocket Users web socket object.
         ///
         void Render(UserID userID) const;
-        
+
       private:
+
+        // Members
+
         const std::string k_cursorImageName {"CursorDefault"}; ///< Image name for default cursor style.
+
         const float k_cursorSize {0.045f}; ///< Size of rendered cursor symbol.
     };
 }

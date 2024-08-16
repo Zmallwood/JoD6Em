@@ -159,23 +159,43 @@ namespace JoD {
         }
         
       private:
+        
+        // Members
+        
         int m_type {0}; ///< Hash code of creature type name.
+        
         int m_level {0}; ///< Level, as provided in ctor.
+        
         int m_pAtk {0}; ///< Physical attack.
+        
         int m_mAtk {0}; ///< Magic attack.
+        
         int m_pDef {0}; ///< Physical defense.
+        
         int m_mDef {0}; ///< Magic defense.
+        
         float m_atkSpeed {0}; ///< Attack speed.
+        
         int m_hp {0}; ///< Health points.
+        
         int m_exp {0}; ///< Experience gained when defeating this creature.
+        
         TimePoint m_ticksLastHitFromOther {Now()}; ///< TimePoint for when this creature was last hit by another.
+        
         CreatureMaturity m_maturity {CreatureMaturity::Mature}; ///< Specifies the maturity/aging of this creature.
+        
         UserID m_targetedUserID {0};
+        
         TimePoint m_ticksLastAttackOnOther {Now()};
+        
         float m_attackSpeed {1.0f};
+        
         std::unique_ptr<ConnectedObject> m_connectedObject;
+        
         bool m_isFollowingPath {false};
+        
         TimePoint m_ticksLastMove {Now()};
+        
         float m_movementSpeed {6.0f};
     };
 }

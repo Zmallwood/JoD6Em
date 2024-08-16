@@ -17,6 +17,7 @@ namespace JoD {
     class World {
         
       public:
+      
         ///
         /// Construct a new World object by creating contained world area.
         ///
@@ -27,6 +28,7 @@ namespace JoD {
         WorldArea* GetCurrentWorldArea() const;
         
       private:
+      
         struct Impl;
         
         std::unique_ptr<Impl> m_pImpl;

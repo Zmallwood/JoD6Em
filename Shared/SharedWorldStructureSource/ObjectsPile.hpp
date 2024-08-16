@@ -13,6 +13,7 @@ namespace JoD {
     class ObjectsPile {
         
       public:
+      
         ObjectsPile();
         
         ~ObjectsPile();
@@ -32,6 +33,7 @@ namespace JoD {
         void Clear();
         
       private:
+      
         struct Impl;
         
         std::unique_ptr<Impl> m_pImpl;

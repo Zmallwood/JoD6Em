@@ -15,8 +15,13 @@ namespace JoD {
     
     void GenerateNPCs(WorldArea* worldArea) {
         
+        // Current tile step.
         auto tileStep = 0;
+        
+        // Shift the tiles on which the NPCs are created.
         auto tileStepOffset = 12;
+        
+        // Create NPC every x:th tile.
         auto npcCreationInterval = 18;
         
         for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
@@ -31,11 +36,12 @@ namespace JoD {
                     || tile->GetGround() == Hash("GroundTrail")
                     || tile->GetGround() == Hash("Bridge")) {
                     
-                    // Only create horse with an interval equal to horseCreationInterval.
+                    // Only create NPC with an interval equal to npcCreationInterval.
                     if (tileStep % npcCreationInterval ==
                         tileStepOffset) {
                         
                         auto newNPC = std::make_unique<NPC>();
+                        
                         newNPC->SetIsFollowingPath(true);
                         
                         tile->SetNPC(std::move(newNPC));

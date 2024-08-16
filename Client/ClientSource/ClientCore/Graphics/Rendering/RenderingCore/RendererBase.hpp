@@ -9,28 +9,28 @@
 #include "BufferTypes.hpp"
 
 namespace JoD {
-    
+
     class ShaderProgram;
-    
+
     ///
     /// Functions as a base class for all renderers providing shared base functionality.
     ///
     class RendererBase {
-        
+
       protected:
         ///
         /// Construct a new Renderer Base object, creating shader program and buffer storing
         /// structures.
         ///
         RendererBase();
-        
+
         ///
         /// Create new Vertex Array Object and returns its ID.
         ///
         /// @return GLuint The ID of a new VAO.
         ///
         GLuint GenNewVAOID();
-        
+
         ///
         /// Generate a new Vertex Buffer Object and returns its ID.
         ///
@@ -39,7 +39,7 @@ namespace JoD {
         /// @return GLuint The ID of the new VBO.
         ///
         GLuint GenNewBuffID(BufferTypes buffType, GLuint VAOID);
-        
+
         ///
         /// Set indices data for a VBO.
         ///
@@ -51,7 +51,7 @@ namespace JoD {
             GLuint indicesVBOID,
             int numIndices,
             const void *data) const;
-        
+
         ///
         /// Set buffer data for a VBO.
         ///
@@ -67,7 +67,7 @@ namespace JoD {
             const void *data,
             BufferTypes buffType,
             int layoutLocation = -1) const;
-        
+
         ///
         /// Get layout location in the shader of an uniform variable.
         ///
@@ -75,14 +75,14 @@ namespace JoD {
         /// @return GLuint Location index.
         ///
         GLuint GetUniformLocation(std::string_view variableName) const;
-        
+
         ///
         /// Start using a Vertex Array Object.
         ///
         /// @param VAOID ID of the Vertex Array Object to start using.
         ///
         void UseVAOBegin(GLuint VAOID) const;
-        
+
         ///
         /// Get the ID of a Vertex Buffer Object of a specific type associated with a specific
         /// Vertex Array Object.
@@ -92,7 +92,7 @@ namespace JoD {
         /// @return GLuint The ID of the Vertex Buffer Object.
         ///
         GLuint GetBuffID(BufferTypes buffType, GLuint VAOID) const;
-        
+
         ///
         /// Update indices data.
         ///
@@ -101,7 +101,7 @@ namespace JoD {
         ///
         void UpdateIndicesData(GLuint indicesVBOID,
                                std::vector<int> &indices) const;
-        
+
         ///
         /// Update data in an Vertex Buffer Object holding a specific buffer type and at a
         /// specific layout location in the shader.
@@ -116,23 +116,23 @@ namespace JoD {
             const std::vector<float> &data,
             BufferTypes buffType,
             int layoutLocation) const;
-        
+
         ///
         /// Stop using the current Vertex Array Object.
         ///
         void UseVAOEnd() const;
-        
+
         ///
         /// Delete all buffers, the Vertex Array Object and cleanup the shader program.
         ///
         void CleanupBase() const;
-        
+
       protected:
         const std::unique_ptr<ShaderProgram>& GetShaderProgram() {
-            
+
             return m_shaderProgram;
         }
-        
+
       private:
         ///
         /// Apply data to an array buffer of float type.
@@ -149,7 +149,7 @@ namespace JoD {
             const void *data,
             int numFloatsPerEntry,
             int layoutLocation = -1) const;
-        
+
         ///
         /// Apply data to an array buffer of int type.
         ///
@@ -165,7 +165,7 @@ namespace JoD {
             const void *data,
             int numFloatsPerEntry,
             int layoutLocation = -1) const;
-        
+
         ///
         /// Update data to an array buffer of float type.
         ///
@@ -179,7 +179,7 @@ namespace JoD {
             const std::vector<float> &data,
             int numFloatsPerEntry,
             int layoutLocation) const;
-        
+
         ///
         /// Update data to an array buffer of int type.
         ///
@@ -193,10 +193,14 @@ namespace JoD {
             const std::vector<float> &data,
             int numFloatsPerEntry,
             int layoutLocation) const;
-        
+
+        // Members
+
         std::vector<GLuint> m_VAOIDs;                   ///< Stores IDs of all Vertex Array Objects.
+
         std::map<BufferTypes, std::map<GLuint,GLuint>>
         m_VBOIDs;                                       ///< Stores IDs of all Vertex Buffer Objects.
+
         std::unique_ptr<ShaderProgram> m_shaderProgram; ///< The shader program used for this renderer object.
     };
 }

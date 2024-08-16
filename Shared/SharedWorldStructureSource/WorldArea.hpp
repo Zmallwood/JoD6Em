@@ -20,6 +20,7 @@ namespace JoD {
     class WorldArea {
         
       public:
+      
         ///
         /// Construct a new World Area object by initializing tile grid structure.
         ///
@@ -50,6 +51,7 @@ namespace JoD {
         RoadPath m_roadPath;
         
       private:
+      
         struct Impl;
         
         std::unique_ptr<Impl> m_pImpl;

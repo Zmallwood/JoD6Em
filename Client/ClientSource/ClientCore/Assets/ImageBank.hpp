@@ -39,7 +39,7 @@ namespace JoD {
         /// Get the Image object.
         ///
         /// @param imageName of image, corresponding to filename wihtout extension.
-        /// @return GLuint Resource ID of obtained image object.
+        /// @return std::optional<GLuint> Resource ID of obtained image object.
         ///
         /// @details Obtains the hash code for the imageName parameter and checks if it
         ///          exists as a key in m_images.
@@ -51,7 +51,7 @@ namespace JoD {
         ///
         /// @param imageNameHash Hash code of image name, corresponding to hash code of filename
         ///                      wihtout extension.
-        /// @return GLuint Resource ID of obtained image object.
+        /// @return std::optional<GLuint> Resource ID of obtained image object.
         ///
         /// @details Checks if the imageNameHash parameter exists as a key
         ///          in m_images.
@@ -99,7 +99,10 @@ namespace JoD {
         ///
         void LoadImages();
 
+        // Members
+
         std::map<int, ImageEntry> m_images;                    ///< Stores images as entries by image name hash code.
+
         const std::string k_relImagesPath{"Resources/Images"}; ///< Path to images location.
     };
 }

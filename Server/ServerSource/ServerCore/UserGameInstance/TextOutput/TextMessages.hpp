@@ -1,24 +1,28 @@
 /*
  * TextMessages.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
 #pragma once
 
 namespace JoD {
-    
+
     class TextMessages {
-        
+
       public:
+
         void Print(std::string_view message);
-        
+
         const std::vector<std::string>& GetData() const {
-            
+
             return m_data;
         }
-        
+
       private:
+
+        // Members
+
         std::vector<std::string> m_data;
     };
 }
