@@ -16,48 +16,55 @@ namespace JoD {
     
     void Player::TryMoveNorth(UserID userID) {
         
+        // Decrease y by 1.
         TryMoveToCoord(userID, m_coord.Translate(0, -1));
     }
     
     void Player::TryMoveEast(UserID userID) {
         
+        // Increase x by 1.
         TryMoveToCoord(userID, m_coord.Translate(1, 0));
     }
     
     void Player::TryMoveSouth(UserID userID) {
         
+        // Increase y by 1.
         TryMoveToCoord(userID, m_coord.Translate(0, 1));
     }
     
     void Player::TryMoveWest(UserID userID) {
         
+        // Decrease x by 1.
         TryMoveToCoord(userID, m_coord.Translate(-1, 0));
     }
     
     void Player::TryMoveNorthEast(UserID userID) {
         
+        // Increase x by 1 and decrease y by 1.
         TryMoveToCoord(userID, m_coord.Translate(1, -1));
     }
     
     void Player::TryMoveSouthEast(UserID userID) {
         
+        // Increase x and y by one.
         TryMoveToCoord(userID, m_coord.Translate(1, 1));
     }
     
     void Player::TryMoveSouthWest(UserID userID) {
         
-        
+        // Decrease x by 1 and increase y by 1.
         TryMoveToCoord(userID, m_coord.Translate(-1, 1));
     }
     
     void Player::TryMoveNorthWest(UserID userID) {
         
-        
+        // Decrease x and y by 1.
         TryMoveToCoord(userID, m_coord.Translate(-1, -1));
     }
     
     void Player::Hit(int damage) {
         
+        // Reduce damage amount from health points.
         m_hp -= damage;
     }
     
@@ -65,6 +72,7 @@ namespace JoD {
         
         const auto &worldArea = _<World>().GetCurrentWorldArea();
         
+        // Cannot move outside world area.
         if (!worldArea->IsValidCoord(coord)) {
             
             return;
@@ -72,32 +80,43 @@ namespace JoD {
         
         const auto &tile = worldArea->GetTile(coord);
         
+        // Cannot move to water tile.
         if (tile->GetGround() == Hash("GroundWater")) {
             
             return;
         }
         
+        // Cannot move to a tile blocked by a creature.
         if (tile->GetCreature()) {
             
             return;
         }
         
-        auto canWalkThroughObject = true;
+        // Do check if destination tile has an object which is considered an obstace.
         
+        auto canWalkThroughObject = true;
+
+        // Loop through all objects on destination tile.
         for (auto object : tile->GetObjectsPile().GetObjects()) {
             
+            // Check in ObjectsIndex if object exists and allows walking through it or not.
             if (!_<ObjectsIndex>().CanWalkThroughObject(object->GetType())) {
                 
                 canWalkThroughObject = false;
+                
+                // If cannot walk through a single object its enough for blocket the player
+                // and we dont need to continue the check.
                 break;
             }
         }
         
+        // Destination tile was blocked, cancel movement attempt.
         if (!canWalkThroughObject) {
             
             return;
         }
         
+        // Destination tile passed all tests, move the player to its coordinate.
         m_coord = coord;
     }
 }
