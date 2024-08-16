@@ -124,6 +124,16 @@ namespace JoD {
                         
                         player->Hit(damage);
                         
+                        if (player->GetHP() <= 0) {
+                            
+                            player->SetCoord({5,5});
+                            player->SetDestCoord(std::nullopt);
+                            player->SetHP(player->GetMaxHP());
+                            player->ResetExperience();
+                            creatureTargeting->SetTargetedCreature(nullptr);
+                            textMessages->Print("You have died! Your have lost all your experience.");
+                        }
+                        
                         creature->SetTicksLastAttackOnOther(Now());
                     }
                 }

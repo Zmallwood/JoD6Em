@@ -30,6 +30,11 @@ namespace JoD {
             return m_coord;
         }
         
+        void SetCoord(Point coord) {
+            
+            m_coord = coord;
+        }
+        
         std::optional<Point> GetDestCoord() const {
             
             return m_destCoord;
@@ -60,6 +65,11 @@ namespace JoD {
             return m_experience;
         }
         
+        void ResetExperience() {
+            
+            m_experience = 0;
+        }
+        
         void AddExperience(int value) {
             
             m_experience += value;
@@ -83,6 +93,11 @@ namespace JoD {
         int GetHP() const {
             
             return m_hp;
+        }
+        
+        void SetHP(int hp) {
+            
+            m_hp = hp;
         }
         
         int GetMaxHP() const {

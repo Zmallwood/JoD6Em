@@ -47,6 +47,8 @@ namespace JoD {
             
             if (tile->GetCreature()) {
                 
+                m_active = false;
+                
                 return;
             }
             
@@ -125,7 +127,6 @@ namespace JoD {
                 auto bounds = menuEntry.bounds;
                 
                 if (bounds.Contains(mousePosition)) {
-                    std::cout << "ACTION\n";
                     
                     menuEntry.action();
                 }
