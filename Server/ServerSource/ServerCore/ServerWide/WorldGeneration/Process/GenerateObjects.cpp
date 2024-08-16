@@ -45,6 +45,10 @@ namespace JoD {
         
         GenerateObjectOfType(
             {.worldArea = worldArea,
+             .objectName = "ObjectBush1", .amount = 200});
+        
+        GenerateObjectOfType(
+            {.worldArea = worldArea,
              .objectName = "ObjectPinkFlower", .amount = 200});
     }
     
@@ -69,7 +73,8 @@ namespace JoD {
                 // Dont add objects on water or roads.
                 if (ground != Hash("GroundWater") &&
                     ground != Hash("GroundCobbleStone") &&
-                    ground != Hash("GroundBridge")) {
+                    ground != Hash("GroundBridge") &&
+                    ground != Hash("GroundRock")) {
                     
                     // Add the object to the tile.
                     args.worldArea->GetTile(

@@ -19,4 +19,9 @@ namespace JoD {
         x += rhs.x;
         y += rhs.y;
     }
+    
+    Point Point::Translate(int dx, int dy) const {
+        
+        return {x + dx, y + dy};
+    }
 }

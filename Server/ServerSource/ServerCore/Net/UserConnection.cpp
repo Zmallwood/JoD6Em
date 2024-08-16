@@ -25,7 +25,7 @@ namespace JoD {
         
         // Register the new user with its socket object and obtain its user ID.
         m_pImpl->userID =
-            _<EngineGet>().RegisterEngineInstance(std::move(socket));
+            _<EngineGet>().CreateNewEngineInstance(std::move(socket));
         
         // Get the web socket object for the new user.
         auto webSocket = _<EngineGet>().GetWebSocket(m_pImpl->userID);
@@ -69,10 +69,10 @@ namespace JoD {
             while (true){
                 
                 // Update users game state.
-                _<EngineGet>().GetInstance(m_pImpl->userID)->Update(userID);
+                _<EngineGet>().GetEngineInstance(m_pImpl->userID)->Update(userID);
                 
                 // Render users game state.
-                _<EngineGet>().GetInstance(m_pImpl->userID)->Render(userID);
+                _<EngineGet>().GetEngineInstance(m_pImpl->userID)->Render(userID);
                 
                 // Slow down the loop rate.
                 std::this_thread::sleep_for(std::chrono::milliseconds(70));
@@ -108,7 +108,7 @@ namespace JoD {
                 const auto data = buffer_cast<int *>(buffer.data());
                 
                 auto engineInstance =
-                    _<EngineGet>().GetInstance(m_pImpl->userID);
+                    _<EngineGet>().GetEngineInstance(m_pImpl->userID);
                 
                 // Check the first int in the recieved data,
                 // which contains the message code.

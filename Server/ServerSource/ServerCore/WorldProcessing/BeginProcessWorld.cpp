@@ -258,8 +258,6 @@ namespace JoD {
                                                     
                                                     for (auto object : objectTile->GetObjectsPile().GetObjects()) {
                                                         
-                                                            std::cout << "loop objects\n";
-                                                            
                                                         if (object == creature->GetConnectedObject()->connectedObject) {
                                                             
                                                             auto oldTile = worldArea->GetTile(creature->GetConnectedObject()->objectCoord);
@@ -268,8 +266,6 @@ namespace JoD {
                                                             
                                                             auto connectedObject = ConnectedObject {.connectedObject = object, .objectCoord = {x, y}};
                                                             creature->SetConnectedObject(connectedObject);
-                                                            
-                                                            std::cout << "cart moved\n";
                                                             
                                                             break;
                                                         }

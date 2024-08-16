@@ -14,6 +14,8 @@ namespace JoD {
         
         void operator+=(const Point& rhs);
         
+        Point Translate(int dx, int dy) const;
+        
         int x {0};
         int y {0};
     };

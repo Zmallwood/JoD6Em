@@ -16,42 +16,44 @@ namespace JoD {
     
     void Player::TryMoveNorth(UserID userID) {
         
-        TryMoveToCoord(userID, {m_coord.x, m_coord.y - 1});
+        TryMoveToCoord(userID, m_coord.Translate(0, -1));
     }
     
     void Player::TryMoveEast(UserID userID) {
         
-        TryMoveToCoord(userID, {m_coord.x + 1, m_coord.y});
+        TryMoveToCoord(userID, m_coord.Translate(1, 0));
     }
     
     void Player::TryMoveSouth(UserID userID) {
         
-        TryMoveToCoord(userID, {m_coord.x, m_coord.y + 1});
+        TryMoveToCoord(userID, m_coord.Translate(0, 1));
     }
     
     void Player::TryMoveWest(UserID userID) {
         
-        TryMoveToCoord(userID, {m_coord.x - 1, m_coord.y});
+        TryMoveToCoord(userID, m_coord.Translate(-1, 0));
     }
     
     void Player::TryMoveNorthEast(UserID userID) {
         
-        TryMoveToCoord(userID, {m_coord.x + 1, m_coord.y - 1});
+        TryMoveToCoord(userID, m_coord.Translate(1, -1));
     }
     
     void Player::TryMoveSouthEast(UserID userID) {
         
-        TryMoveToCoord(userID, {m_coord.x + 1, m_coord.y + 1});
+        TryMoveToCoord(userID, m_coord.Translate(1, 1));
     }
     
     void Player::TryMoveSouthWest(UserID userID) {
         
-        TryMoveToCoord(userID, {m_coord.x - 1, m_coord.y + 1});
+        
+        TryMoveToCoord(userID, m_coord.Translate(-1, 1));
     }
     
     void Player::TryMoveNorthWest(UserID userID) {
         
-        TryMoveToCoord(userID, {m_coord.x - 1, m_coord.y - 1});
+        
+        TryMoveToCoord(userID, m_coord.Translate(-1, -1));
     }
     
     void Player::Hit(int damage) {

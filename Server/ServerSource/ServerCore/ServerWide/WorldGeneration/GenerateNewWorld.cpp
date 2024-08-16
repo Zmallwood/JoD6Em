@@ -22,6 +22,8 @@ namespace JoD {
         
         auto worldArea = _<World>().GetCurrentWorldArea();
         
+        // Do all generation steps.
+        
         ClearWithGrass(worldArea);
         GenerateWater(worldArea);
         GenerateElevation(worldArea);
