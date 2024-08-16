@@ -20,6 +20,10 @@ namespace JoD {
             _<EngineGet>().GetSceneManager(userID)->
             GoToScene(userID, "MainScene");
         });
+        
+        GUI()->AddComponent<GUIButton>(BoxF{0.45f, 0.46f, 0.1f, 0.05f}, "Register", [=] {
+            
+        });
     }
     
     void MainMenuScene::RenderDerived(UserID userID) const {

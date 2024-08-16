@@ -13,11 +13,13 @@ namespace JoD {
     void Cursor::Render(UserID userID) const {
         
         // Get current mouse position.
-        const auto mousePosition = _<EngineGet>().GetMousePosition(userID).value();
+        const auto mousePosition =
+            _<EngineGet>().GetMousePosition(userID).value();
         
         // Obtain cursor dimensions.
         const auto cursorWidth = k_cursorSize;
-        const auto cursorHeight = k_cursorSize*_<EngineGet>().GetAspectRatio(userID).value();
+        const auto cursorHeight = k_cursorSize*
+                                  _<EngineGet>().GetAspectRatio(userID).value();
         
         // Calculate cursor position.
         const auto cursorX = mousePosition.x - cursorWidth / 2;
@@ -30,7 +32,12 @@ namespace JoD {
         
         // Render the cursor image.
         SendImageDrawInstruction(
-            userID, k_cursorImageName,
+            userID, k_cursorImageNames.at(m_currCursorType),
             cursorDestination);
+    }
+    
+    void Cursor::ResetCursorType() {
+        
+        m_currCursorType = CursorTypes::Default;
     }
 }

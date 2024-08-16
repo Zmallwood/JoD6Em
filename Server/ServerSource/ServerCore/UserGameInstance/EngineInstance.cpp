@@ -51,6 +51,11 @@ namespace JoD {
         
     }
     
+    void EngineInstance::Reset() {
+        
+        m_pImpl->cursor->ResetCursorType();
+    }
+    
     void EngineInstance::Update(UserID userID) {
         
         m_pImpl->sceneManager->UpdateCurrentScene(userID);
@@ -113,5 +118,11 @@ namespace JoD {
     WebSocket *EngineInstance::GetWebSocket() const {
         
         return &m_pImpl->webSocket;
+    }
+    
+        
+    Cursor *EngineInstance::GetCursor() const {
+        
+        return m_pImpl->cursor.get();
     }
 }

@@ -13,6 +13,7 @@ namespace JoD {
     class SceneManager;
     class MouseInput;
     class TextMessages;
+    class Cursor;
     
     ///
     /// Provides access to all components associated with the engine instances
@@ -103,6 +104,8 @@ namespace JoD {
         /// @return WebSocket* WebSocket object or nullptr if none exists.
         ///
         WebSocket *GetWebSocket(UserID userID) const;
+        
+        Cursor *GetCursor(UserID userID) const;
         
       private:
         ///

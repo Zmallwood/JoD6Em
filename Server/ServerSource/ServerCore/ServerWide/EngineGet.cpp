@@ -123,4 +123,14 @@ namespace JoD {
         
         return nullptr;
     }
+    
+    Cursor *EngineGet::GetCursor(UserID userID) const {
+        
+        if (m_pImpl->engineInstances.contains(userID)) {
+            
+            return m_pImpl->engineInstances.at(userID)->GetCursor();
+        }
+        
+        return nullptr;
+    }
 }

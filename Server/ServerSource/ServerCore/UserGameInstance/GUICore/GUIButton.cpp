@@ -9,6 +9,7 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
+#include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
 
 namespace JoD {
     GUIButton::GUIButton(BoxF bounds, std::string_view text,
@@ -23,6 +24,13 @@ namespace JoD {
         auto mousePosition = _<EngineGet>().GetMousePosition(userID).value();
         
         m_hovered = GetBounds().Contains(mousePosition);
+        
+        if (m_hovered) {
+            
+            auto cursor = _<EngineGet>().GetCursor(userID);
+            
+            cursor->SetCursorType(CursorTypes::Hovering);
+        }
         
         auto mouseInput =
             _<EngineGet>().GetMouseInput(userID);

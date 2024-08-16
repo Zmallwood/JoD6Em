@@ -68,6 +68,8 @@ namespace JoD {
             
             while (true){
                 
+                _<EngineGet>().GetEngineInstance(m_pImpl->userID)->Reset();
+                    
                 // Update users game state.
                 _<EngineGet>().GetEngineInstance(m_pImpl->userID)->Update(
                     userID);

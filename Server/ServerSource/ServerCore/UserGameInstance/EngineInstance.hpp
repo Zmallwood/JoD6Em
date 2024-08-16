@@ -12,6 +12,7 @@ namespace JoD {
     class Player;
     class SceneManager;
     class TextMessages;
+    class Cursor;
 
     ///
     /// An instance of this engine is created for every connected user.
@@ -26,6 +27,8 @@ namespace JoD {
         EngineInstance(UserID userID, Socket socket);
 
         ~EngineInstance();
+        
+        void Reset();
 
         ///
         /// Updates everything that needs it in the game loop.
@@ -61,6 +64,8 @@ namespace JoD {
         JoD::TextMessages *GetTextMessages() const;
 
         WebSocket *GetWebSocket() const;
+        
+        Cursor *GetCursor() const;
 
       private:
 
