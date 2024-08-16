@@ -42,8 +42,8 @@ namespace JoD {
                     || tile->GetGround() == Hash("Bridge")) {
                     
                     // Only create horse with an interval equal to horseCreationInterval.
-                    if ((tileStep - tileStepOffset) % horseCreationInterval ==
-                        0) {
+                    if (tileStep % horseCreationInterval ==
+                        tileStepOffset) {
                         
                         // Create new horse creature.
                         const auto newHorse =

@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     try{
         
         // Run new instance of the game. 
-        JoD::RunNewClientInstance(); 
+        JoD::RunNewClientInstance();  
     } 
     catch (const std::exception &e){ 
         

@@ -19,6 +19,7 @@
 #include "Process/RenderPlayer.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
+#include "Process/RenderNPCs.hpp"
 
 namespace JoD {
     
@@ -104,6 +105,10 @@ namespace JoD {
                     {coordX, coordY}, tileBounds);
                 
                 RenderObjects(userID, tile, tileBounds);
+                
+                RenderNPCs(
+                    userID, tile,
+                    tileBounds);
                 
                 RenderCreatures(
                     mainScene, userID, tile,

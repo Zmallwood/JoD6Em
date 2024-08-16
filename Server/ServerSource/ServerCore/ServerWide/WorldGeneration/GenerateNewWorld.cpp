@@ -15,6 +15,7 @@
 #include "Process/GenerateRock.hpp"
 #include "Process/GenerateCastleYard.hpp"
 #include "Process/GenerateHorseCarts.hpp"
+#include "Process/GenerateNPCs.hpp"
 
 namespace JoD {
     
@@ -32,6 +33,7 @@ namespace JoD {
         GenerateObjects(worldArea);
         GenerateRoads(worldArea);
         GenerateHorseCarts(worldArea);
+        GenerateNPCs(worldArea);
         GenerateCreatures(worldArea);
     }
 }

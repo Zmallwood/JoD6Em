@@ -10,6 +10,7 @@ namespace JoD {
     
     class Creature;
     class ObjectsPile;
+    class NPC;
     
     ///
     /// Represents a square tile in the game world.
@@ -40,6 +41,10 @@ namespace JoD {
         void SetGroundCover(int value);
         
         ObjectsPile &GetObjectsPile() const;
+        
+        NPC* GetNPC() const;
+        
+        void SetNPC(std::unique_ptr<NPC> npc);
         
       private:
         struct Impl;

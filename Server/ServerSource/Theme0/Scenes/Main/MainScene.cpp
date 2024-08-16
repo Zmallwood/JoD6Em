@@ -14,7 +14,7 @@
 #include "MainSceneGUI/GUITextConsole.hpp"
 #include "MainSceneGUI/GUIExpBar.hpp"
 #include "MainSceneGUI/GUIStatusPanel.hpp"
-#include "MainSceneGUI/GUIInteractionMenu.hpp"
+#include "MainSceneGUI/InteractionMenu/GUIInteractionMenu.hpp"
 #include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
 #include "Process/IMainSceneComponent.hpp"

@@ -6,25 +6,23 @@
 
 #include "Tile.hpp"
 #include "ObjectsPile.hpp"
+#include "NPC.hpp"
 
 namespace JoD {
     
     struct Tile::Impl {
-        int ground {0}; ///< Hash code for ground type.
+        int ground {0};                     ///< Hash code for ground type.
         std::shared_ptr<Creature> creature; ///< Creature currently occupying this tile, nullptr means no creature.
         int elevation {0};
         int groundCover {0};
         ObjectsPile objectsPile;
+        std::unique_ptr<NPC> npc;
     };
     
     Tile::Tile()
-        : m_pImpl(std::make_unique<Impl>()) {
-        
-    }
+        : m_pImpl(std::make_unique<Impl>()) {}
     
-    Tile::~Tile() {
-        
-    }
+    Tile::~Tile() {}
     
     int Tile::GetGround() const {
         
@@ -76,5 +74,18 @@ namespace JoD {
     ObjectsPile &Tile::GetObjectsPile() const {
         
         return m_pImpl->objectsPile;
+    }
+    
+    
+    
+    NPC* Tile::GetNPC() const {
+        
+        return m_pImpl->npc.get();
+    }
+    
+    void Tile::SetNPC(std::unique_ptr<NPC> npc) {
+        
+        
+        m_pImpl->npc = std::move(npc);
     }
 }
