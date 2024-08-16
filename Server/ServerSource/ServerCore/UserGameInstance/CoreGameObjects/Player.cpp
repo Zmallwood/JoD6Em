@@ -69,6 +69,16 @@ namespace JoD {
         m_hp -= damage;
     }
     
+    void Player::ResetExperience() {
+        
+        m_experience = 0;
+    }
+    
+    void Player::AddExperience(int value) {
+        
+        m_experience += value;
+    }
+    
     void Player::TryMoveToCoord(UserID userID, Point coord) {
         
         const auto &worldArea = _<World>().GetCurrentWorldArea();
