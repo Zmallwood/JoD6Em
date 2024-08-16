@@ -6,29 +6,17 @@
 
 #pragma once
 
+#include "Directions.hpp"
+
 namespace JoD {
     
     ///
-    /// Core player objects, of which one is created for each connecting user.
+    /// Core player object, of which one is created for each connecting user.
     ///
     class Player {
         
       public:
-        void TryMoveNorth(UserID userID);
-        
-        void TryMoveEast(UserID userID);
-        
-        void TryMoveSouth(UserID userID);
-        
-        void TryMoveWest(UserID userID);
-        
-        void TryMoveNorthEast(UserID userID);
-        
-        void TryMoveSouthEast(UserID userID);
-        
-        void TryMoveSouthWest(UserID userID);
-        
-        void TryMoveNorthWest(UserID userID);
+        void TryMove(UserID userID, Directions direction);
         
         void Hit(int damage);
         

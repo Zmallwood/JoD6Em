@@ -14,52 +14,53 @@
 
 namespace JoD {
     
-    void Player::TryMoveNorth(UserID userID) {
+    void Player::TryMove(UserID userID, Directions direction) {
         
-        // Decrease y by 1.
-        TryMoveToCoord(userID, m_coord.Translate(0, -1));
-    }
-    
-    void Player::TryMoveEast(UserID userID) {
+        switch (direction) {
         
-        // Increase x by 1.
-        TryMoveToCoord(userID, m_coord.Translate(1, 0));
-    }
-    
-    void Player::TryMoveSouth(UserID userID) {
-        
-        // Increase y by 1.
-        TryMoveToCoord(userID, m_coord.Translate(0, 1));
-    }
-    
-    void Player::TryMoveWest(UserID userID) {
-        
-        // Decrease x by 1.
-        TryMoveToCoord(userID, m_coord.Translate(-1, 0));
-    }
-    
-    void Player::TryMoveNorthEast(UserID userID) {
-        
-        // Increase x by 1 and decrease y by 1.
-        TryMoveToCoord(userID, m_coord.Translate(1, -1));
-    }
-    
-    void Player::TryMoveSouthEast(UserID userID) {
-        
-        // Increase x and y by one.
-        TryMoveToCoord(userID, m_coord.Translate(1, 1));
-    }
-    
-    void Player::TryMoveSouthWest(UserID userID) {
-        
-        // Decrease x by 1 and increase y by 1.
-        TryMoveToCoord(userID, m_coord.Translate(-1, 1));
-    }
-    
-    void Player::TryMoveNorthWest(UserID userID) {
-        
-        // Decrease x and y by 1.
-        TryMoveToCoord(userID, m_coord.Translate(-1, -1));
+        case Directions::North:
+            // Decrease y by 1.
+            TryMoveToCoord(userID, m_coord.Translate(0, -1));
+            break;
+            
+        case Directions::NorthEast:
+            // Increase x by 1 and decrease y by 1.
+            TryMoveToCoord(userID, m_coord.Translate(1, -1));
+            break;
+            
+        case Directions::East:
+            // Increase x by 1.
+            TryMoveToCoord(userID, m_coord.Translate(1, 0));
+            break;
+            
+        case Directions::SouthEast:
+            // Increase x and y by one.
+            TryMoveToCoord(userID, m_coord.Translate(1, 1));
+            break;
+            
+        case Directions::South:
+            // Increase y by 1.
+            TryMoveToCoord(userID, m_coord.Translate(0, 1));
+            break;
+            
+        case Directions::SouthWest:
+            // Decrease x by 1 and increase y by 1.
+            TryMoveToCoord(userID, m_coord.Translate(-1, 1));
+            break;
+            
+        case Directions::West:
+            // Decrease x by 1.
+            TryMoveToCoord(userID, m_coord.Translate(-1, 0));
+            break;
+            
+        case Directions::NorthWest:
+            // Decrease x and y by 1.
+            TryMoveToCoord(userID, m_coord.Translate(-1, -1));
+            break;
+            
+        case Directions::None:
+            break;
+        }
     }
     
     void Player::Hit(int damage) {

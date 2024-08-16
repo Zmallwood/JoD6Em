@@ -42,28 +42,28 @@ namespace JoD {
                 
                 if (dx < 0 && dy < 0) {
                     
-                    player->TryMoveNorthWest(userID);
+                    player->TryMove(userID, Directions::NorthWest);
                 }else if (dx == 0 && dy < 0) {
                     
-                    player->TryMoveNorth(userID);
+                    player->TryMove(userID, Directions::North);
                 }else if (dx > 0 && dy < 0) {
                     
-                    player->TryMoveNorthEast(userID);
+                    player->TryMove(userID, Directions::NorthEast);
                 }else if (dx > 0 && dy == 0) {
                     
-                    player->TryMoveEast(userID);
+                    player->TryMove(userID, Directions::East);
                 }else if (dx > 0 && dy > 0) {
                     
-                    player->TryMoveSouthEast(userID);
+                    player->TryMove(userID, Directions::SouthEast);
                 }else if (dx == 0 && dy > 0) {
                     
-                    player->TryMoveSouth(userID);
+                    player->TryMove(userID, Directions::South);
                 }else if (dx < 0 && dy > 0) {
                     
-                    player->TryMoveSouthWest(userID);
+                    player->TryMove(userID, Directions::SouthWest);
                 }else if (dx < 0 && dy == 0) {
                     
-                    player->TryMoveWest(userID);
+                    player->TryMove(userID, Directions::West);
                 }
                 
                 player->SetTicksLastMove(Now());

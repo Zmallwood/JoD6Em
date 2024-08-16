@@ -6,7 +6,7 @@
 
 #include "SetupInputCallbacks.hpp"
 #include "ClientCore/Graphics/Graphics.hpp"
-#include "ClientCore/Net/WebSocketServerConnection.hpp"
+#include "ClientCore/Net/WSServerConnection.hpp"
 #include "MessageCodes.hpp"
 
 namespace JoD {
@@ -82,7 +82,7 @@ namespace JoD {
             GLFWwindow *window, int button, int action,
             int mods) {
             
-            auto & srvConn = _<WebSocketServerConnection>();
+            auto & srvConn = _<WSServerConnection>();
             
             if (button == GLFW_MOUSE_BUTTON_LEFT          // Left mouse button has been pressed.
                 && action == GLFW_PRESS){

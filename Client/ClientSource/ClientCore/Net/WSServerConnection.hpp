@@ -1,5 +1,5 @@
 /*
- * WebSocketServerConnection.hpp
+ * WSServerConnection.hpp
  *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
@@ -12,7 +12,7 @@ namespace JoD {
     /// Connects to to web socket server and enables sending messages over the connection
     /// after it has opened.
     ///
-    class WebSocketServerConnection {
+    class WSServerConnection {
         
       public:
         ///

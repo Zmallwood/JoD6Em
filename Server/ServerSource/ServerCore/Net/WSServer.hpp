@@ -1,5 +1,5 @@
 /*
- * WebSocketServer.hpp
+ * WSServer.hpp
  *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
@@ -11,18 +11,18 @@ namespace JoD {
     ///
     /// Core web socker server object handling all incoming user connections.
     ///
-    class WebSocketServer {
+    class WSServer {
         
       public:
         ///
         /// Construct a new Web Socket Server object.
         ///
-        WebSocketServer();
+        WSServer();
         
         ///
         /// Destroy the Web Socket Server object. Needed by PIMPL idiom.
         ///
-        ~WebSocketServer();
+        ~WSServer();
         
         ///
         /// Run web socket server and start listening for incoming connections.

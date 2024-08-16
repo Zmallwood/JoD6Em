@@ -1,10 +1,10 @@
 /*
- * WebSocketServer.cpp
+ * WSServer.cpp
  *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "WebSocketServer.hpp"
+#include "WSServer.hpp"
 #include "UserConnection.hpp"
 
 using namespace boost::asio;
@@ -12,18 +12,18 @@ using namespace boost::asio::ip;
 
 namespace JoD {
     
-    struct WebSocketServer::Impl {
+    struct WSServer::Impl {
         
         std::vector<std::unique_ptr<UserConnection>>
         userConnections; // Holds all connected users.
     };
     
-    WebSocketServer::WebSocketServer()
+    WSServer::WSServer()
         : m_pImpl(std::make_unique<Impl>()) {}
     
-    WebSocketServer::~WebSocketServer() {}
+    WSServer::~WSServer() {}
     
-    void WebSocketServer::Run(
+    void WSServer::Run(
         std::string_view socketAddress,
         std::string_view socketPort) {
         

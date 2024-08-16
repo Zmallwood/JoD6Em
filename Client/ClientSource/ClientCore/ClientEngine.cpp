@@ -7,7 +7,7 @@
 #include "ClientEngine.hpp"
 #include "ClientCore/Graphics/Graphics.hpp"
 #include "MessageCodes.hpp"
-#include "ClientCore/Net/WebSocketServerConnection.hpp"
+#include "ClientCore/Net/WSServerConnection.hpp"
 #include "DrawInstructions/DrawInstructionsManager.hpp"
 #include "Input/SetupInputCallbacks.hpp"
 #include "Utilities/ClientFPSCounter.hpp"
@@ -23,7 +23,7 @@ namespace JoD {
     void ClientEngine::Run() const {
         
         // Start network connection.
-        _<WebSocketServerConnection>().Connect();
+        _<WSServerConnection>().Connect();
         
         // Required by SDL2 before using it.
         SDL_Init(SDL_INIT_EVERYTHING);
@@ -52,7 +52,7 @@ namespace JoD {
             _<ClientFPSCounter>().Update();
             
             // Send net message with mouse position each frame.
-            _<WebSocketServerConnection>().SendMessage(
+            _<WSServerConnection>().SendMessage(
                 MessageCodes::k_mousePosition);
             
             // Clear canvas with single color to prepare for new rendering.

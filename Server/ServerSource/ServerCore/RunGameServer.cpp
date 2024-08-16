@@ -6,7 +6,7 @@
 
 #include "RunGameServer.hpp"
 #include "ServerCore/ServerWide/WorldGeneration/GenerateNewWorld.hpp"
-#include "Net/RunWebSocketServer.hpp"
+#include "Net/RunWSServer.hpp"
 #include "WorldProcessing/BeginProcessWorld.hpp"
 
 namespace JoD {
@@ -24,6 +24,6 @@ namespace JoD {
         
         // Start the websocket server, accepting incoming connections
         // and handling them through connection life times.
-        RunWebSocketServer(argv[1], argv[2]);
+        RunWSServer(argv[1], argv[2]);
     }
 }

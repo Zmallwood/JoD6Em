@@ -1,10 +1,10 @@
 /*
- * WebSocketServerConnection.cpp
+ * WSServerConnection.cpp
  *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
-#include "WebSocketServerConnection.hpp"
+#include "WSServerConnection.hpp"
 #include "ClientCore/DrawInstructions/DrawInstructionsManager.hpp"
 #include "MessageCodes.hpp"
 #include "ClientCore/Assets/ImageBank.hpp"
@@ -48,7 +48,7 @@ namespace JoD {
         float ReadFourBytesAsFloat(unsigned char *bytes);
     }
     
-    void WebSocketServerConnection::Connect() const {
+    void WSServerConnection::Connect() const {
         
         // Check support exists.
         if (!emscripten_websocket_is_supported()) {
@@ -77,7 +77,7 @@ namespace JoD {
     }
     
     
-    void WebSocketServerConnection::SendMessage(const int *data,
+    void WSServerConnection::SendMessage(const int *data,
                                                 int length) const {
         
         // Try send packet and handle failure.
@@ -91,7 +91,7 @@ namespace JoD {
         }
     }
     
-    void WebSocketServerConnection::SendMessage(int messageType) const {
+    void WSServerConnection::SendMessage(int messageType) const {
         
         // Determine message type to be sent.
         switch (messageType){
@@ -222,7 +222,7 @@ namespace JoD {
             void *userData) {
             
             // Save web socket event to WebSocketClient so it can be used from that object by its own.
-            _<WebSocketServerConnection>().SetWebSocketEvent(
+            _<WSServerConnection>().SetWebSocketEvent(
                 std::unique_ptr<const EmscriptenWebSocketOpenEvent>(
                     webSocketEvent));
             
@@ -238,7 +238,7 @@ namespace JoD {
             }
             
             // Send canvas size immediately to server.
-            _<WebSocketServerConnection>().SendMessage(
+            _<WSServerConnection>().SendMessage(
                 MessageCodes::k_canvasSize);
             
             return EM_TRUE;
@@ -371,7 +371,7 @@ namespace JoD {
                 data[3] = dimensions.h;
                 
                 // Send the message to server.
-                _<WebSocketServerConnection>().SendMessage(data, 4);
+                _<WSServerConnection>().SendMessage(data, 4);
                 
                 break;
             }
