@@ -8,6 +8,9 @@
 
 #include "QtGui/qpixmap.h"
 #include "QtWidgets/qgridlayout.h"
+#include "Tools.hpp"
+#include "Canvas.hpp"
+
 namespace JoD {
 
 class Window : public QMainWindow {
@@ -17,6 +20,16 @@ class Window : public QMainWindow {
     explicit Window(QWidget *parent = 0);
     
     void paintEvent(QPaintEvent* event) override;
+    
+    Tools GetCurrTool() const {
+        
+        return m_currTool;
+    }
+    
+    int GetSelectedImageHash() const {
+        
+        return m_selectedImageHash;
+    }
     
   private:
     
@@ -28,7 +41,7 @@ class Window : public QMainWindow {
     QMenu m_menuTools;
     QMenu m_menuTools_selectTool;
     QScrollArea m_scrollArea;
-    QLabel m_canvasLabel;
+    Canvas m_canvas;
     QLabel m_mainLabel;
     QHBoxLayout m_gridLayout;
     QLabel m_sidePanel;
@@ -38,7 +51,8 @@ class Window : public QMainWindow {
     QLabel m_previewImage;
     QPixmap m_previewImagePixmap;
     std::map<int, QImage> m_images;
-    int m_selectImageHash {0};
+    int m_selectedImageHash {0};
+    Tools m_currTool {Tools::None};
 };
 
 }

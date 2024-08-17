@@ -9,8 +9,10 @@
 int main(int argc, char **argv) {
     
     QApplication app (argc, argv);
-    JoD::Window window;
-    window.show();
+    
+    using namespace JoD;
+    
+    _<Window>().show();
     
     return app.exec();
 }

@@ -43,7 +43,7 @@ Window::Window(QWidget *parent) {
                 for (auto x = 0; x < wArea->GetSize().w; x++) {
                     
                     auto tile = wArea->GetTile(x, y);
-                    tile->SetGround(m_selectImageHash);
+                    tile->SetGround(m_selectedImageHash);
                 }
             }
             
@@ -53,8 +53,8 @@ Window::Window(QWidget *parent) {
     m_menuTools.addAction("&Set tools shape");
     m_menuTools.addAction("&Set tools size");
     m_menuTools_selectTool.setTitle("&Select tool");
-    m_menuTools_selectTool.addAction("&Set ground");
-    m_menuTools_selectTool.addAction("&Add object");
+    m_menuTools_selectTool.addAction("&Set ground", [&] {m_currTool = Tools::SetGround;});
+    m_menuTools_selectTool.addAction("&Add object", [&] {m_currTool = Tools::AddObject;});
     m_menuTools.addMenu(&m_menuTools_selectTool);
     
     menuBar()->addMenu(&m_menuFile);
@@ -72,9 +72,9 @@ Window::Window(QWidget *parent) {
     
     m_gridLayout.addWidget(&m_scrollArea);
     
-    m_scrollArea.setWidget(&m_canvasLabel);
+    m_scrollArea.setWidget(&m_canvas);
     
-    m_canvasLabel.setFixedSize(
+    m_canvas.setFixedSize(
         {k_tileSize*WorldStructureConstants::k_worldAreaSize.w,
          k_tileSize*WorldStructureConstants::k_worldAreaSize.h});
     
@@ -125,8 +125,8 @@ void Window::paintEvent(QPaintEvent* event) {
     
     QMainWindow::paintEvent(event);
     
-    int h = m_canvasLabel.height();
-    int w = m_canvasLabel.width();
+    int h = m_canvas.height();
+    int w = m_canvas.width();
     QPixmap pix(w, h);
     QPainter paint(&pix);
     pix.fill( Qt::gray );
@@ -150,15 +150,15 @@ void Window::paintEvent(QPaintEvent* event) {
                 paint.drawImage(QRect(x*k_tileSize, y*k_tileSize, k_tileSize, k_tileSize), m_images.at(ground));
             }
             
-            paint.setPen(QColor(0, 0, 0, 255));
-            paint.drawRect(
-                QRect(
-                    x*k_tileSize,y*k_tileSize,k_tileSize,
-                    k_tileSize));
+            // paint.setPen(QColor(0, 0, 0, 255));
+            // paint.drawRect(
+            //     QRect(
+            //         x*k_tileSize,y*k_tileSize,k_tileSize,
+            //         k_tileSize));
         }
     }
     
-    m_canvasLabel.setPixmap(pix);
+    m_canvas.setPixmap(pix);
     
 }
 
@@ -179,7 +179,7 @@ void Window::ClickedItemInFileBrowser(const QModelIndex &index) {
         auto period = fileName.find(".");
         auto trimmedName = fileName.substr(0, period);
         
-        m_selectImageHash = Hash(trimmedName);
+        m_selectedImageHash = Hash(trimmedName);
     }
 }
 }
