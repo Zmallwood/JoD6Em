@@ -7,25 +7,26 @@
 #include "GUIComponent.hpp"
 
 namespace JoD {
+
+GUIComponent::GUIComponent(PointF position)
+    : m_position(position) {}
+
+void GUIComponent::Update(UserID userID) {
     
-    GUIComponent::GUIComponent(PointF position)
-        : m_position(position) {}
+    // Call update function of inheriting type.
+    UpdateDerived(userID);
+}
+
+void GUIComponent::Render(UserID userID) const {
     
-    void GUIComponent::Update(UserID userID) {
+    // Dont render if component is invisible.
+    if (!m_visible) {
         
-        // Call update function of inheriting type.
-        UpdateDerived(userID);
+        return;
     }
     
-    void GUIComponent::Render(UserID userID) const {
-        
-        // Dont render if component is invisible.
-        if (!m_visible) {
-            
-            return;
-        }
-        
-        // Call render function of inheriting type.
-        RenderDerived(userID);
-    }
+    // Call render function of inheriting type.
+    RenderDerived(userID);
+}
+
 }

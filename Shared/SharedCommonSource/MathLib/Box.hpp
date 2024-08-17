@@ -8,14 +8,15 @@
 
 namespace JoD {
 
-    struct Box {
+struct Box {
+    
+    int x {0};
+    
+    int y {0};
+    
+    int w {0};
+    
+    int h {0};
+};
 
-        int x {0};
-
-        int y {0};
-
-        int w {0};
-
-        int h {0};
-    };
 }

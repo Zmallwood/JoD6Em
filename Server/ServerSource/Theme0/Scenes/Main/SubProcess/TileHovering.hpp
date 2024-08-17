@@ -10,32 +10,33 @@
 
 namespace JoD {
 
+///
+/// Enables hovering the tile currently under the mouse cursor.
+///
+class TileHovering : public IMainSceneComponent  {
+    
+  public:
+    
     ///
-    /// Enables hovering the tile currently under the mouse cursor.
+    /// Use base ctor.
     ///
-    class TileHovering : public IMainSceneComponent  {
+    using IMainSceneComponent::IMainSceneComponent;
+    
+    ///
+    /// Override base class methdo.
+    ///
+    void Update(UserID userID) override;
+    
+    std::optional<Point> GetHoveredCoordinate() const {
+        
+        return m_hoveredCoordinate;
+    }
+    
+  private:
+    
+    // Members
+    
+    std::optional<Point> m_hoveredCoordinate {std::nullopt};     ///< Currently hovered tile coordinate, {-1, -1} means none.
+};
 
-      public:
-
-        ///
-        /// Use base ctor.
-        ///
-        using IMainSceneComponent::IMainSceneComponent;
-
-        ///
-        /// Override base class methdo.
-        ///
-        void Update(UserID userID) override;
-
-        std::optional<Point> GetHoveredCoordinate() const {
-
-            return m_hoveredCoordinate;
-        }
-
-      private:
-
-        // Members
-
-        std::optional<Point> m_hoveredCoordinate {std::nullopt}; ///< Currently hovered tile coordinate, {-1, -1} means none.
-    };
 }

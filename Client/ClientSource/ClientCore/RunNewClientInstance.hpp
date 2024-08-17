@@ -7,9 +7,10 @@
 #pragma once
 
 namespace JoD {
-    
-    ///
-    /// Start new game instance.
-    ///
-    void RunNewClientInstance();
+
+///
+/// Start new game instance.
+///
+void RunNewClientInstance();
+
 }

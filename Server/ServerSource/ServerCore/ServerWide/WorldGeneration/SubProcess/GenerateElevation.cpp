@@ -10,56 +10,57 @@
 #include "Configuration/GameProperties.hpp"
 
 namespace JoD {
+
+void GenerateElevation(WorldArea* worldArea) {
     
-    void GenerateElevation(WorldArea* worldArea) {
+    // In parameter, number of hills to generate.
+    auto numHills = 20;
+    
+    for (auto i = 0; i < numHills; i++) {
         
-        // In parameter, number of hills to generate.
-        auto numHills = 20;
+        // Set properties for each hill.
+        auto xCenter = rand() % _<GameProperties>().GetWorldAreaSize().w;
+        auto yCenter = rand() % _<GameProperties>().GetWorldAreaSize().h;
+        auto rMax = 3 + rand() % 8;
         
-        for (auto i = 0; i < numHills; i++) {
+        // Loop over the area several times, decrease the radius each time.
+        for (auto r = rMax; r >= 0; r -= 3) {
             
-            // Set properties for each hill.
-            auto xCenter = rand() % _<GameProperties>().GetWorldAreaSize().w;
-            auto yCenter = rand() % _<GameProperties>().GetWorldAreaSize().h;
-            auto rMax = 3 + rand() % 8;
-            
-            // Loop over the area several times, decrease the radius each time.
-            for (auto r = rMax; r >= 0; r -= 3) {
+            for (auto y = yCenter - r; y <= yCenter + r; y++) {
                 
-                for (auto y = yCenter - r; y <= yCenter + r; y++) {
+                for (auto x = xCenter - r; x <= xCenter + r; x++) {
                     
-                    for (auto x = xCenter - r; x <= xCenter + r; x++) {
+                    // Coordinate is outside world area, skip iteration.
+                    if (!worldArea->IsValidCoord(x, y)) {
                         
-                        // Coordinate is outside world area, skip iteration.
-                        if (!worldArea->IsValidCoord(x, y)) {
-                            
-                            continue;
-                        }
+                        continue;
+                    }
+                    
+                    auto tile = worldArea->GetTile(x, y);
+                    
+                    // Tile is water, skip iteration.
+                    if (tile->GetGround() == Hash("GroundWater")) {
                         
-                        auto tile = worldArea->GetTile(x, y);
+                        continue;
+                    }
+                    
+                    auto dx = x - xCenter;
+                    auto dy = y - yCenter;
+                    
+                    // Compare squared radiuses. If inside the current iterated radius,
+                    // increase elevation by 1.
+                    if (dx*dx + dy*dy <= r*r) {
                         
-                        // Tile is water, skip iteration.
-                        if (tile->GetGround() == Hash("GroundWater")) {
-                            
-                            continue;
-                        }
+                        auto currElevation = tile->GetElevation();
                         
-                        auto dx = x - xCenter;
-                        auto dy = y - yCenter;
+                        currElevation++;
                         
-                        // Compare squared radiuses. If inside the current iterated radius,
-                        // increase elevation by 1.
-                        if (dx*dx + dy*dy <= r*r) {
-                            
-                            auto currElevation = tile->GetElevation();
-                            
-                            currElevation++;
-                            
-                            tile->SetElevation(currElevation);
-                        }
+                        tile->SetElevation(currElevation);
                     }
                 }
             }
         }
     }
+}
+
 }

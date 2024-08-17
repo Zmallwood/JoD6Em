@@ -7,11 +7,12 @@
 #pragma once
 
 namespace JoD {
-    
-    ///
-    /// Get the mouse position in the canvas in the web browser.
-    ///
-    /// @return pointf The mouse position.
-    ///
-    PointF GetMousePosition();
+
+///
+/// Get the mouse position in the canvas in the web browser.
+///
+/// @return pointf The mouse position.
+///
+PointF GetMousePosition();
+
 }

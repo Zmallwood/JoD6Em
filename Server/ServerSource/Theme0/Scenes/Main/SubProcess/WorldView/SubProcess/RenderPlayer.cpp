@@ -11,44 +11,46 @@
 #include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
 
 namespace JoD {
+
+void RenderPlayer(
+    UserID userID,
+    Point coordinate, BoxF tileBounds) {
     
-    void RenderPlayer(
-        UserID userID,
-        Point coordinate, BoxF tileBounds) {
+    const auto playerCoordinate =
+        _<EngineGet>().GetPlayer(userID)->GetCoord();
+    
+    if (coordinate == playerCoordinate){
         
-        const auto playerCoordinate =
-            _<EngineGet>().GetPlayer(userID)->GetCoord();
+        auto foundImageDim = false;
+        Size imageDimensions;
         
-        if (coordinate == playerCoordinate){
+        auto dim = _<ImageDimensions>().GetDimension("Player");
+        
+        if (dim.has_value()) {
             
-            auto foundImageDim = false;
-            Size imageDimensions;
-            
-            auto dim = _<ImageDimensions>().GetDimension("Player");
-            
-            if (dim.has_value()) {
-                
-                imageDimensions = *dim;
-                foundImageDim = true;
-            }
-            
-            if (!foundImageDim) {
-                
-                SendRequestImageDimensions(
-                    userID,
-                    "Player");
-                
-                return;
-            }
-            
-            const auto width = imageDimensions.w/60.0f*tileBounds.w;
-            const auto height = imageDimensions.h/60.0f*tileBounds.h;
-            
-            const auto newBounds = BoxF{tileBounds.x + tileBounds.w/2 - width/2,
-                                   tileBounds.y + tileBounds.h/2 - height, width, height};
-            
-            SendImageDrawInstruction(
-                userID, "Player", newBounds);
+            imageDimensions = *dim;
+            foundImageDim = true;
         }
+        
+        if (!foundImageDim) {
+            
+            SendRequestImageDimensions(
+                userID,
+                "Player");
+            
+            return;
+        }
+        
+        const auto width = imageDimensions.w/60.0f*tileBounds.w;
+        const auto height = imageDimensions.h/60.0f*tileBounds.h;
+        
+        const auto newBounds = BoxF{tileBounds.x + tileBounds.w/2 - width/2,
+                                    tileBounds.y + tileBounds.h/2 - height,
+                                    width, height};
+        
+        SendImageDrawInstruction(
+            userID, "Player", newBounds);
     }
+}
+
 }

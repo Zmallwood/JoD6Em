@@ -10,29 +10,31 @@
 #include "Object.hpp"
 
 namespace JoD {
+
+namespace {
+
+static constexpr Duration k_remainsStayDuration {Millis(5000)};
+
+}
+
+void UpdateObjects(Tile* tile) {
     
-    namespace {
-        
-        static constexpr Duration k_remainsStayDuration {Millis(5000)};
-    }
+    auto objects = tile->GetObjectsPile().GetObjects();
     
-    void UpdateObjects(Tile* tile) {
+    for (auto object : objects) {
         
-        auto objects = tile->GetObjectsPile().GetObjects();
-        
-        for (auto object : objects) {
+        if (object->GetType() ==
+            Hash("ObjectBoneRemains")) {
             
-            if (object->GetType() ==
-                Hash("ObjectBoneRemains")) {
+            if (Now() >
+                object->GetCreationTime() +
+                k_remainsStayDuration) {
                 
-                if (Now() >
-                    object->GetCreationTime() +
-                    k_remainsStayDuration) {
-                    
-                    tile->GetObjectsPile().RemoveObject(
-                        object);
-                }
+                tile->GetObjectsPile().RemoveObject(
+                    object);
             }
         }
     }
+}
+
 }

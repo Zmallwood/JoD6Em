@@ -6,6 +6,4 @@
 
 #include "IMainSceneComponent.hpp"
 
-namespace JoD {
-    
-}
+namespace JoD {}

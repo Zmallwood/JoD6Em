@@ -11,47 +11,48 @@
 
 namespace JoD {
 
-    class IMainSceneComponent;
+class IMainSceneComponent;
 
+///
+/// The main scene where the playing takes place.
+///
+class MainScene : public IScene {
+    
+  public:
+    
+    MainScene();
+    
+    ~MainScene();
+    
+    IMainSceneComponent *GetComponent(
+        MainSceneComponents mainSceneComponent) const;
+    
+  protected:
+    
     ///
-    /// The main scene where the playing takes place.
+    /// Adds components to the scene.
     ///
-    class MainScene : public IScene {
+    void Initialize(UserID userID) override;
+    
+    void OnEnter(UserID userID) override;
+    
+    ///
+    /// Update game logic.
+    ///
+    void UpdateDerived(UserID userID) override;
+    
+    ///
+    /// Render the scene to canvas.
+    ///
+    /// @param webSocket Web socket object for user.
+    ///
+    void RenderDerived(UserID userID) const override;
+    
+  private:
+    
+    struct Impl;
+    
+    std::unique_ptr<Impl> m_pImpl;
+};
 
-      public:
-
-        MainScene();
-
-        ~MainScene();
-
-        IMainSceneComponent *GetComponent(
-            MainSceneComponents mainSceneComponent) const;
-
-      protected:
-
-        ///
-        /// Adds components to the scene.
-        ///
-        void Initialize(UserID userID) override;
-
-        void OnEnter(UserID userID) override;
-
-        ///
-        /// Update game logic.
-        ///
-        void UpdateDerived(UserID userID) override;
-
-        ///
-        /// Render the scene to canvas.
-        ///
-        /// @param webSocket Web socket object for user.
-        ///
-        void RenderDerived(UserID userID) const override;
-
-      private:
-
-        struct Impl;
-
-        std::unique_ptr<Impl> m_pImpl;
-    };
 }

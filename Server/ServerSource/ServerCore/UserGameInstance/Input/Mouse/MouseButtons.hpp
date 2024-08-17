@@ -7,14 +7,15 @@
 #pragma once
 
 namespace JoD {
+
+///
+/// Available types of mouse buttons.
+///
+enum class MouseButtons {
     
-    ///
-    /// Available types of mouse buttons.
-    ///
-    enum class MouseButtons {
-        
-        None, ///< Not defined.
-        Left, ///< Left mouse button.
-        Right ///< Right mouse button.
-    };
+    None,     ///< Not defined.
+    Left,     ///< Left mouse button.
+    Right     ///< Right mouse button.
+};
+
 }

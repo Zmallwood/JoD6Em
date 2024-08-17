@@ -16,74 +16,76 @@
 #include "SubProcess/UpdateCreaturesPathFollowing.hpp"
 
 namespace JoD {
+
+namespace {
+
+void RunWorldProcessingLoop();
+
+void UpdateTile(Point coord);
+
+}
+
+void BeginProcessWorld() {
     
-    namespace {
-        
-        void RunWorldProcessingLoop();
-        
-        void UpdateTile(Point coord);
-    }
+    std::thread(&RunWorldProcessingLoop).detach();
+}
+
+namespace {
+
+void RunWorldProcessingLoop() {
     
-    void BeginProcessWorld() {
-        
-        std::thread(&RunWorldProcessingLoop).detach();
-    }
+    TimePoint timeLastUpdate = Now();
     
-    namespace {
+    const auto updateInterval = Duration(Millis(800));
+    
+    while (true) {
         
-        void RunWorldProcessingLoop() {
+        if (Now() > timeLastUpdate + updateInterval) {
             
-            TimePoint timeLastUpdate = Now();
+            timeLastUpdate = Now();
             
-            const auto updateInterval = Duration(Millis(800));
-            
-            while (true) {
-                
-                if (Now() > timeLastUpdate + updateInterval) {
-                    
-                    timeLastUpdate = Now();
-                    
-                    UpdateMoveCreatureGroups();
-                    
-                    auto worldArea = _<World>().GetCurrWorldArea();
-                    
-                    for (auto y = 0; y < worldArea->GetSize().h; y++) {
-                        
-                        for (auto x = 0; x < worldArea->GetSize().w; x++) {
-                            
-                            UpdateTile({x, y});
-                        }
-                    }
-                }
-                
-                std::this_thread::sleep_for(std::chrono::milliseconds(70));
-            }
-        }
-    }
-    
-    namespace {
-        
-        void UpdateTile(Point coord) {
+            UpdateMoveCreatureGroups();
             
             auto worldArea = _<World>().GetCurrWorldArea();
             
-            auto tile = worldArea->GetTile(coord.x, coord.y);
-            
-            UpdateObjects(tile);
-            
-            UpdateNPCs(tile, coord);
-            
-            auto creature = tile->GetCreature();
-            
-            if (creature) {
+            for (auto y = 0; y < worldArea->GetSize().h; y++) {
                 
-                if (creature->GetType() == Hash("CreatureCow")) {
+                for (auto x = 0; x < worldArea->GetSize().w; x++) {
                     
-                    UpdateAnimalsEating(tile);
+                    UpdateTile({x, y});
                 }
-                
-                UpdateCreaturesPathFollowing(tile, coord);
             }
         }
+        
+        std::this_thread::sleep_for(std::chrono::milliseconds(70));
     }
+}
+}
+
+namespace {
+
+void UpdateTile(Point coord) {
+    
+    auto worldArea = _<World>().GetCurrWorldArea();
+    
+    auto tile = worldArea->GetTile(coord.x, coord.y);
+    
+    UpdateObjects(tile);
+    
+    UpdateNPCs(tile, coord);
+    
+    auto creature = tile->GetCreature();
+    
+    if (creature) {
+        
+        if (creature->GetType() == Hash("CreatureCow")) {
+            
+            UpdateAnimalsEating(tile);
+        }
+        
+        UpdateCreaturesPathFollowing(tile, coord);
+    }
+}
+
+}
 }

@@ -1,6 +1,6 @@
 /*
  * BeginProcessWorld.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -8,5 +8,6 @@
 
 namespace JoD {
 
-    void BeginProcessWorld();
+void BeginProcessWorld();
+
 }

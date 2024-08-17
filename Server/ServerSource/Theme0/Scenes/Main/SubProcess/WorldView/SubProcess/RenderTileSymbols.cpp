@@ -12,35 +12,37 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
+
+void RenderTileSymbols(
+    const MainScene& mainScene,
+    UserID userID,
+    Point coordinate, BoxF tileBounds) {
     
-    void RenderTileSymbols(
-        const MainScene& mainScene,
-        UserID userID,
-        Point coordinate, BoxF tileBounds) {
+    const auto &player = _<EngineGet>().GetPlayer(userID);
+    
+    auto tileHovering =
+        static_cast<TileHovering*>(
+            mainScene.GetComponent(
+                MainSceneComponents::
+                TileHovering));
+    
+    if (tileHovering->GetHoveredCoordinate().has_value() &&
+        coordinate == tileHovering->GetHoveredCoordinate()){
         
-        const auto &player = _<EngineGet>().GetPlayer(userID);
-        
-        auto tileHovering =
-            static_cast<TileHovering*>(
-                mainScene.GetComponent(
-                    MainSceneComponents::
-                    TileHovering));
-        
-        if (tileHovering->GetHoveredCoordinate().has_value() && coordinate == tileHovering->GetHoveredCoordinate()){
-            
-            SendImageDrawInstruction(
-                userID,
-                "HoveredTile",
-                tileBounds);
-        }
-        
-        if (player->GetDestCoord().has_value() &&
-            coordinate == player->GetDestCoord()) {
-            
-            SendImageDrawInstruction(
-                userID,
-                "DestinationSymbol",
-                tileBounds);
-        }
+        SendImageDrawInstruction(
+            userID,
+            "HoveredTile",
+            tileBounds);
     }
+    
+    if (player->GetDestCoord().has_value() &&
+        coordinate == player->GetDestCoord()) {
+        
+        SendImageDrawInstruction(
+            userID,
+            "DestinationSymbol",
+            tileBounds);
+    }
+}
+
 }

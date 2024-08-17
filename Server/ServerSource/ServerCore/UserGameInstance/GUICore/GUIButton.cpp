@@ -12,57 +12,58 @@
 #include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
 
 namespace JoD {
+
+GUIButton::GUIButton(BoxF bounds, std::string_view text,
+                     std::function<void()> action)
+    :  m_text(text), GUIComponent(bounds.GetPosition()),
+    m_size(bounds.GetSize()), m_action(action) {}
+
+void GUIButton::UpdateDerived(UserID userID) {
     
-    GUIButton::GUIButton(BoxF bounds, std::string_view text,
-                         std::function<void()> action)
-        :  m_text(text), GUIComponent(bounds.GetPosition()),
-        m_size(bounds.GetSize()), m_action(action) {}
+    // Rertieve current mouse position.
+    auto mousePos = _<EngineGet>().GetMousePosition(userID).value();
     
-    void GUIButton::UpdateDerived(UserID userID) {
+    // Update hovered status.
+    m_hovered = GetBounds().Contains(mousePos);
+    
+    if (m_hovered) {
         
-        // Rertieve current mouse position.
-        auto mousePos = _<EngineGet>().GetMousePosition(userID).value();
+        auto cursor = _<EngineGet>().GetCursor(userID);
         
-        // Update hovered status.
-        m_hovered = GetBounds().Contains(mousePos);
-        
-        if (m_hovered) {
-            
-            auto cursor = _<EngineGet>().GetCursor(userID);
-            
-            // Change cursor type to hovered type if button is hovered.
-            cursor->SetCursorType(CursorTypes::Hovering);
-        }
-        
-        auto mouseInput =
-            _<EngineGet>().GetMouseInput(userID);
-        
-        // If button is hovered and mouse is clicked...
-        if (m_hovered && mouseInput->GetLeftButton().GetIsPressed()) {
-            
-            // Perform button action.
-            m_action();
-        }
+        // Change cursor type to hovered type if button is hovered.
+        cursor->SetCursorType(CursorTypes::Hovering);
     }
     
-    void GUIButton::RenderDerived(UserID userID) const {
-        
-        // Get right button image.
-        std::string imageName =
-            m_hovered ? k_imageNameHovered : k_imageNameDefault;
-        
-        // Draw button image.
-        SendImageDrawInstruction(userID, imageName, GetBounds());;
-        
-        // Draw text on button.
-        SendTextDrawInstruction(
-            userID, m_text, GetBounds().GetCenter(),
-            true);
-    }
+    auto mouseInput =
+        _<EngineGet>().GetMouseInput(userID);
     
-    BoxF GUIButton::GetBounds() const {
+    // If button is hovered and mouse is clicked...
+    if (m_hovered && mouseInput->GetLeftButton().GetIsPressed()) {
         
-        // Combine position and size to get bounds.
-        return {m_position.x, m_position.y, m_size.w, m_size.h};
+        // Perform button action.
+        m_action();
     }
+}
+
+void GUIButton::RenderDerived(UserID userID) const {
+    
+    // Get right button image.
+    std::string imageName =
+        m_hovered ? k_imageNameHovered : k_imageNameDefault;
+    
+    // Draw button image.
+    SendImageDrawInstruction(userID, imageName, GetBounds());;
+    
+    // Draw text on button.
+    SendTextDrawInstruction(
+        userID, m_text, GetBounds().GetCenter(),
+        true);
+}
+
+BoxF GUIButton::GetBounds() const {
+    
+    // Combine position and size to get bounds.
+    return {m_position.x, m_position.y, m_size.w, m_size.h};
+}
+
 }

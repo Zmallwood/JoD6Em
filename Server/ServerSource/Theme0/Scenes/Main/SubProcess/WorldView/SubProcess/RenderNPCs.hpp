@@ -7,8 +7,9 @@
 #pragma once
 
 namespace JoD {
-    
-    class Tile;
-    
-    void RenderNPCs(UserID userID, Tile* tile, BoxF tileBounds);
+
+class Tile;
+
+void RenderNPCs(UserID userID, Tile* tile, BoxF tileBounds);
+
 }

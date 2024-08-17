@@ -10,21 +10,22 @@
 
 namespace JoD {
 
+///
+/// Handles combat moving, such as chasing a targeted creature.
+///
+class CombatMovement : public IMainSceneComponent {
+    
+  public:
+    
     ///
-    /// Handles combat moving, such as chasing a targeted creature.
+    /// User default ctor.
     ///
-    class CombatMovement : public IMainSceneComponent {
+    using IMainSceneComponent::IMainSceneComponent;
+    
+    ///
+    /// Override base class method.
+    ///
+    void Update(UserID userID) override;
+};
 
-      public:
-
-        ///
-        /// User default ctor.
-        ///
-        using IMainSceneComponent::IMainSceneComponent;
-
-        ///
-        /// Override base class method.
-        ///
-        void Update(UserID userID) override;
-    };
 }

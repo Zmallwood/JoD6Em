@@ -8,12 +8,13 @@
 
 namespace JoD {
 
-    struct MenuEntry {
+struct MenuEntry {
+    
+    std::string label;
+    
+    std::function<void()> action;
+    
+    BoxF bounds;
+};
 
-        std::string label;
-
-        std::function<void()> action;
-
-        BoxF bounds;
-    };
 }

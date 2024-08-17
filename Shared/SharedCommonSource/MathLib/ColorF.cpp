@@ -7,9 +7,10 @@
 #include "ColorF.hpp"
 
 namespace JoD {
+
+bool ColorF::operator==(const ColorF& rhs) const {
     
-    bool ColorF::operator==(const ColorF& rhs) const {
-        
-        return r == rhs.r && g == rhs.g && b == rhs.b && a == rhs.a;
-    }
+    return r == rhs.r && g == rhs.g && b == rhs.b && a == rhs.a;
+}
+
 }

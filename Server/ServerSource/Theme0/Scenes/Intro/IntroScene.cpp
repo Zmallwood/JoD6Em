@@ -14,37 +14,40 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
+
+void IntroScene::Initialize(UserID userID) {
     
-    void IntroScene::Initialize(UserID userID) {
+    m_guiLabelStartText = GetGUI()->AddComponent<GUILabel>(
+        PointF{0.5f, 0.5f},
+        "Press to start", true);
+}
+
+void IntroScene::UpdateDerived(UserID userID) {
+    
+    if (_<EngineGet>().GetMouseInput(userID)->
+        GetLeftButton().
+        GetIsPressedPickResult()) {
         
-        m_guiLabelStartText = GetGUI()->AddComponent<GUILabel>(PointF{0.5f, 0.5f}, "Press to start", true);
+        _<EngineGet>().GetSceneManager(userID)->
+        GoToScene(userID, "MainMenuScene");
     }
     
-    void IntroScene::UpdateDerived(UserID userID) {
-        
-        if (_<EngineGet>().GetMouseInput(userID)->
-            GetLeftButton().
-            GetIsPressedPickResult()) {
-            
-            _<EngineGet>().GetSceneManager(userID)->
-            GoToScene(userID, "MainMenuScene");
-        }
-        
-        auto now = Now();
-        
-        auto showStartText = (now.time_since_epoch().count() % 2000000)/1000000;
-        
-        m_guiLabelStartText->SetVisible(showStartText);
-    }
+    auto now = Now();
     
-    void IntroScene::RenderDerived(UserID userID) const {
-        
-        SendImageDrawInstruction(
-            userID, "DefaultSceneBackground",
-            {0.0f, 0.0f, 1.0f, 1.0f});
-        
-        SendImageDrawInstruction(
-            userID, "JoDLogo",
-            {0.3f, 0.2f, 0.4f, 0.2f});
-    }
+    auto showStartText = (now.time_since_epoch().count() % 2000000)/1000000;
+    
+    m_guiLabelStartText->SetVisible(showStartText);
+}
+
+void IntroScene::RenderDerived(UserID userID) const {
+    
+    SendImageDrawInstruction(
+        userID, "DefaultSceneBackground",
+        {0.0f, 0.0f, 1.0f, 1.0f});
+    
+    SendImageDrawInstruction(
+        userID, "JoDLogo",
+        {0.3f, 0.2f, 0.4f, 0.2f});
+}
+
 }

@@ -10,18 +10,19 @@
 #include "Configuration/GameProperties.hpp"
 
 namespace JoD {
+
+void ClearWithGrass(WorldArea* worldArea) {
     
-    void ClearWithGrass(WorldArea* worldArea) {
+    // Iterate through all tiles in the tile grid.
+    for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
         
-        // Iterate through all tiles in the tile grid.
-        for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
+        for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w;
+             x++) {
             
-            for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w;
-                 x++) {
-                
-                // Set ground to grass type.
-                worldArea->GetTile(x, y)->SetGround(Hash("GroundGrass"));
-            }
+            // Set ground to grass type.
+            worldArea->GetTile(x, y)->SetGround(Hash("GroundGrass"));
         }
     }
+}
+
 }

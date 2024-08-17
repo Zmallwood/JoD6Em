@@ -10,27 +10,28 @@
 
 namespace JoD {
 
+///
+/// The main menu scene which is entered after the intro scene.
+///
+class MainMenuScene : public IScene {
+    
+  public:
+    
     ///
-    /// The main menu scene which is entered after the intro scene.
+    /// Use base class ctor.
     ///
-    class MainMenuScene : public IScene {
+    using IScene::IScene;
+    
+    void Initialize(UserID userID) override;
+    
+  protected:
+    
+    ///
+    /// Render the scene to canvas.
+    ///
+    /// @param webSocket Web socket object for user.
+    ///
+    void RenderDerived(UserID userID) const override;
+};
 
-      public:
-
-        ///
-        /// Use base class ctor.
-        ///
-        using IScene::IScene;
-
-        void Initialize(UserID userID) override;
-
-      protected:
-
-        ///
-        /// Render the scene to canvas.
-        ///
-        /// @param webSocket Web socket object for user.
-        ///
-        void RenderDerived(UserID userID) const override;
-    };
 }

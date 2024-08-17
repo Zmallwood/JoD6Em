@@ -14,60 +14,71 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
-    void CombatMovement::Update(UserID userID) {
-        auto player =
-            _<EngineGet>().GetPlayer(userID);
+    
+void CombatMovement::Update(UserID userID) {
+    auto player =
+        _<EngineGet>().GetPlayer(userID);
+    
+    auto creatureTargeting =
+        static_cast<CreatureTargeting*>(
+            _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>(
+                "MainScene")->GetComponent(
+                MainSceneComponents::
+                CreatureTargeting));
+    
+    if (creatureTargeting->GetTargetedCreature()) {
         
-        auto creatureTargeting =
-            static_cast<CreatureTargeting*>(
-                _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene")->GetComponent(
-                    MainSceneComponents::
-                    CreatureTargeting));
+        const auto &worldArea = _<World>().GetCurrWorldArea();
+        const auto pos =
+            worldArea->GetCreatureCoord(
+                creatureTargeting->GetTargetedCreature()).value();
         
-        if (creatureTargeting->GetTargetedCreature()) {
+        if (Now() > player->GetTimeLastMove() +
+            Duration(
+                Millis(
+                    static_cast<int>(
+                        1000/
+                        player->GetMS())))) {
             
-            const auto &worldArea = _<World>().GetCurrWorldArea();
-            const auto pos =
-                worldArea->GetCreatureCoord(creatureTargeting->GetTargetedCreature()).value();
+            const auto dx = pos.x - player->GetCoord().x;
+            const auto dy = pos.y - player->GetCoord().y;
             
-            if (Now() > player->GetTimeLastMove() +
-                Duration(
-                    Millis(
-                        static_cast<int>(
-                            1000/
-                            player->GetMovementSpeed())))) {
+            if (dx < 0 && dy < 0) {
                 
-                const auto dx = pos.x - player->GetCoord().x;
-                const auto dy = pos.y - player->GetCoord().y;
-                
-                if (dx < 0 && dy < 0) {
-                    
-                    player->TryMove(userID, Directions::NorthWest);
-                }else if (dx == 0 && dy < 0) {
-                    
-                    player->TryMove(userID, Directions::North);
-                }else if (dx > 0 && dy < 0) {
-                    
-                    player->TryMove(userID, Directions::NorthEast);
-                }else if (dx > 0 && dy == 0) {
-                    
-                    player->TryMove(userID, Directions::East);
-                }else if (dx > 0 && dy > 0) {
-                    
-                    player->TryMove(userID, Directions::SouthEast);
-                }else if (dx == 0 && dy > 0) {
-                    
-                    player->TryMove(userID, Directions::South);
-                }else if (dx < 0 && dy > 0) {
-                    
-                    player->TryMove(userID, Directions::SouthWest);
-                }else if (dx < 0 && dy == 0) {
-                    
-                    player->TryMove(userID, Directions::West);
-                }
-                
-                player->SetTimeLastMove(Now());
+                player->TryMove(userID, Directions::NorthWest);
             }
+            else if (dx == 0 && dy < 0) {
+                
+                player->TryMove(userID, Directions::North);
+            }
+            else if (dx > 0 && dy < 0) {
+                
+                player->TryMove(userID, Directions::NorthEast);
+            }
+            else if (dx > 0 && dy == 0) {
+                
+                player->TryMove(userID, Directions::East);
+            }
+            else if (dx > 0 && dy > 0) {
+                
+                player->TryMove(userID, Directions::SouthEast);
+            }
+            else if (dx == 0 && dy > 0) {
+                
+                player->TryMove(userID, Directions::South);
+            }
+            else if (dx < 0 && dy > 0) {
+                
+                player->TryMove(userID, Directions::SouthWest);
+            }
+            else if (dx < 0 && dy == 0) {
+                
+                player->TryMove(userID, Directions::West);
+            }
+            
+            player->SetTimeLastMove(Now());
         }
     }
+}
+
 }

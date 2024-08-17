@@ -10,23 +10,24 @@
 
 namespace JoD {
 
+///
+/// Core component, rendered the world as a 2D tile grid.
+///
+class WorldView : public IMainSceneComponent {
+    
+  public:
+    
     ///
-    /// Core component, rendered the world as a 2D tile grid.
+    /// Use default ctor.
     ///
-    class WorldView : public IMainSceneComponent {
+    using IMainSceneComponent::IMainSceneComponent;
+    
+    ///
+    /// Renders the world to canvas as a 2D tile grid.
+    ///
+    /// @param webSocket Web socket associated with user.
+    ///
+    void Render(UserID userID) const override;
+};
 
-      public:
-
-        ///
-        /// Use default ctor.
-        ///
-        using IMainSceneComponent::IMainSceneComponent;
-
-        ///
-        /// Renders the world to canvas as a 2D tile grid.
-        ///
-        /// @param webSocket Web socket associated with user.
-        ///
-        void Render(UserID userID) const override;
-    };
 }

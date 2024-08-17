@@ -7,8 +7,10 @@
 #pragma once
 
 namespace JoD {
-    class Window : public QWidget {
-      public:
-        explicit Window(QWidget *parent = 0);
-    };
+    
+class Window : public QWidget {
+  public:
+    explicit Window(QWidget *parent = 0);
+};
+
 }

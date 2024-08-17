@@ -7,28 +7,29 @@
 #include "MouseButton.hpp"
 
 namespace JoD {
+
+void MouseButton::RegisterMouseDown() {
     
-    void MouseButton::RegisterMouseDown() {
-        
-        // Set pressed state accordingly.
-        m_isPressed = true; 
-    }
+    // Set pressed state accordingly.
+    m_isPressed = true;
+}
+
+void MouseButton::RegisterMouseUp() {
     
-    void MouseButton::RegisterMouseUp() {
-        
-        // Set pressed state accordingly.
-        m_isPressed = false; 
-    }
+    // Set pressed state accordingly.
+    m_isPressed = false;
+}
+
+bool MouseButton::GetIsPressedPickResult() {
     
-    bool MouseButton::GetIsPressedPickResult() {
-        
-        // Save state.
-        const auto result = m_isPressed;
-        
-        // Reset state.
-        m_isPressed = false;
-        
-        // Return saved state.
-        return result;
-    }
+    // Save state.
+    const auto result = m_isPressed;
+    
+    // Reset state.
+    m_isPressed = false;
+    
+    // Return saved state.
+    return result;
+}
+
 }

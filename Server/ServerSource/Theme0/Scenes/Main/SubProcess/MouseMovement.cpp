@@ -15,93 +15,95 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
+
+void MouseMovement::Update(UserID userID) {
     
-    void MouseMovement::Update(UserID userID){
+    auto &mainScene = *_<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene");
+    
+    auto tileHovering =
+        static_cast<TileHovering*>(
+            mainScene.GetComponent(
+                MainSceneComponents::
+                TileHovering));
+    
+    auto creatureTargeting =
+        static_cast<CreatureTargeting*>(
+            mainScene.GetComponent(
+                MainSceneComponents::
+                CreatureTargeting));
+    
+    const auto mouseDown =
+        _<EngineGet>().GetMouseInput(userID)->
+        GetLeftButton().
+        GetIsPressedPickResult();
+    
+    auto player = _<EngineGet>().GetPlayer(userID);
+    
+    const auto hoveredTile =
+        tileHovering->GetHoveredCoordinate();
+    
+    if (mouseDown && hoveredTile.has_value()) {
         
-        auto &mainScene = *_<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene");
+        player->SetDestCoord(hoveredTile.value());
+        creatureTargeting->SetTargetedCreature(nullptr);
+    }
+    
+    if (std::chrono::high_resolution_clock::now() >
+        player->GetTimeLastMove() +
+        std::chrono::high_resolution_clock::duration(
+            std::chrono::milliseconds(
+                static_cast<int>(1000/
+                                 player->
+                                 GetMS())))){
         
-        auto tileHovering =
-            static_cast<TileHovering*>(
-                mainScene.GetComponent(
-                    MainSceneComponents::
-                    TileHovering));
-                    
-        auto creatureTargeting =
-            static_cast<CreatureTargeting*>(
-                mainScene.GetComponent(
-                    MainSceneComponents::
-                    CreatureTargeting));
-        
-        const auto mouseDown =
-            _<EngineGet>().GetMouseInput(userID)->
-            GetLeftButton().
-            GetIsPressedPickResult();
-        
-        auto player = _<EngineGet>().GetPlayer(userID);
-        
-        const auto hoveredTile =
-            tileHovering->GetHoveredCoordinate();
-        
-        if (mouseDown && hoveredTile.has_value()) {
+        if (player->GetDestCoord().has_value()){
             
-            player->SetDestCoord(hoveredTile.value());
-            creatureTargeting->SetTargetedCreature(nullptr);
-        }
-        
-        if (std::chrono::high_resolution_clock::now() >
-            player->GetTimeLastMove() +
-            std::chrono::high_resolution_clock::duration(
-                std::chrono::milliseconds(
-                    static_cast<int>(1000/
-                                     player->
-                                     GetMovementSpeed())))){
+            const auto dx = player->GetDestCoord()->x - player->GetCoord().x;
+            const auto dy = player->GetDestCoord()->y - player->GetCoord().y;
             
-            if (player->GetDestCoord().has_value()){
+            if (dx < 0 && dy < 0) {
                 
-                const auto dx = player->GetDestCoord()->x - player->GetCoord().x;
-                const auto dy = player->GetDestCoord()->y - player->GetCoord().y;
+                player->TryMove(userID, Directions::NorthWest);
+            }
+            else if (dx == 0 && dy < 0) {
                 
-                if (dx < 0 && dy < 0) {
-                    
-                    player->TryMove(userID, Directions::NorthWest);
-                }
-                else if (dx == 0 && dy < 0) {
-                    
-                    player->TryMove(userID, Directions::North);
-                }
-                else if (dx > 0 && dy < 0) {
-                    
-                    player->TryMove(userID, Directions::NorthEast);
-                }
-                else if (dx > 0 && dy == 0) {
-                    
-                    player->TryMove(userID, Directions::East);
-                }
-                else if (dx > 0 && dy > 0) {
-                    
-                    player->TryMove(userID, Directions::SouthEast);
-                }
-                else if (dx == 0 && dy > 0) {
-                    
-                    player->TryMove(userID, Directions::South);
-                }
-                else if (dx < 0 && dy > 0) {
-                    
-                    player->TryMove(userID, Directions::SouthWest);
-                }
-                else if (dx < 0 && dy == 0) {
-                    
-                    player->TryMove(userID, Directions::West);
-                }
+                player->TryMove(userID, Directions::North);
+            }
+            else if (dx > 0 && dy < 0) {
                 
-                if (dx || dy) {
-                    
-                    player->SetTimeLastMove(Now());
-                } else  {
-                    
-                    player->SetDestCoord(std::nullopt);
-                }
+                player->TryMove(userID, Directions::NorthEast);
+            }
+            else if (dx > 0 && dy == 0) {
+                
+                player->TryMove(userID, Directions::East);
+            }
+            else if (dx > 0 && dy > 0) {
+                
+                player->TryMove(userID, Directions::SouthEast);
+            }
+            else if (dx == 0 && dy > 0) {
+                
+                player->TryMove(userID, Directions::South);
+            }
+            else if (dx < 0 && dy > 0) {
+                
+                player->TryMove(userID, Directions::SouthWest);
+            }
+            else if (dx < 0 && dy == 0) {
+                
+                player->TryMove(userID, Directions::West);
+            }
+            
+            if (dx || dy) {
+                
+                player->SetTimeLastMove(Now());
+            }
+            else {
+                
+                player->SetDestCoord(std::nullopt);
             }
         }
     }
+}
+
 }

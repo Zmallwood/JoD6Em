@@ -7,30 +7,31 @@
 #pragma once
 
 namespace JoD {
+
+class WorldArea;
+
+///
+/// Top-level world object, of which only one (static)
+/// instance exists and is used for all connected users.
+///
+class World {
     
-    class WorldArea;
+  public:
     
     ///
-    /// Top-level world object, of which only one (static)
-    /// instance exists and is used for all connected users.
+    /// Construct a new World object by creating contained world area.
     ///
-    class World {
-        
-      public:
-      
-        ///
-        /// Construct a new World object by creating contained world area.
-        ///
-        World();
-        
-        ~World();
-        
-        WorldArea* GetCurrWorldArea() const;
-        
-      private:
-      
-        struct Impl;
-        
-        std::unique_ptr<Impl> m_pImpl;
-    };
+    World();
+    
+    ~World();
+    
+    WorldArea* GetCurrWorldArea() const;
+    
+  private:
+    
+    struct Impl;
+    
+    std::unique_ptr<Impl> m_pImpl;
+};
+
 }

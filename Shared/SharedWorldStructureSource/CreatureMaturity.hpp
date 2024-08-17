@@ -7,15 +7,16 @@
 #pragma once
 
 namespace JoD {
+
+///
+/// Available maturity stages for creatures.
+///
+enum class CreatureMaturity {
     
-    ///
-    /// Available maturity stages for creatures.
-    ///
-    enum class CreatureMaturity {
-        
-        None, ///< Unspecified maturity.
-        Baby, ///< Young creature.
-        Mature, ///< Medium aged creature.
-        Old ///< Oldest stage of creature maturity.
-    };
+    None,   ///< Unspecified maturity.
+    Baby,   ///< Young creature.
+    Mature, ///< Medium aged creature.
+    Old     ///< Oldest stage of creature maturity.
+};
+
 }

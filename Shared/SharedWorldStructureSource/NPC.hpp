@@ -7,43 +7,45 @@
 #pragma once
 
 namespace JoD {
+
+class NPC {
     
-    class NPC {
-      public:
+  public:
+    
+    bool GetIsFollowingPath() const {
         
-        bool GetIsFollowingPath() const {
-            
-            return m_isFollowingPath;
-        }
+        return m_isFollowingPath;
+    }
+    
+    void SetIsFollowingPath(bool isFollowingPath) {
         
-        void SetIsFollowingPath(bool isFollowingPath) {
-            
-            m_isFollowingPath = isFollowingPath;
-        }
+        m_isFollowingPath = isFollowingPath;
+    }
+    
+    TimePoint GetTimeLastMove() const {
         
-        TimePoint GetTimeLastMove() const {
-            
-            return m_timeLastMove;
-        }
+        return m_timeLastMove;
+    }
+    
+    void SetTimeLastMove(TimePoint timeLastMove) {
         
-        void SetTimeLastMove(TimePoint timeLastMove) {
-            
-            m_timeLastMove = timeLastMove;
-        }
+        m_timeLastMove = timeLastMove;
+    }
+    
+    float GetMS() const {
         
-        float GetMovementSpeed() const {
-            
-            return m_movementSpeed;
-        }
-        
-      private:
-        
-        // Members
-        
-        bool m_isFollowingPath {false};
-        
-        TimePoint m_timeLastMove {Now()};
-        
-        float m_movementSpeed {9.0f};
-    };
+        return m_ms;
+    }
+    
+  private:
+    
+    // Members
+    
+    bool m_isFollowingPath {false};
+    
+    TimePoint m_timeLastMove {Now()};
+    
+    float m_ms {9.0f};
+};
+
 }

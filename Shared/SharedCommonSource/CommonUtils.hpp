@@ -1,6 +1,6 @@
 /*
  * CommonUtils.hpp
- * 
+ *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -9,14 +9,15 @@
 #include <string_view>
 
 namespace JoD {
+
+template <class T>
+T &_() {
     
-    template <class T>
-    T &_() {
-        
-        static T instance;
-        
-        return instance;
-    }
+    static T instance;
     
-    int Hash(std::string_view text);
+    return instance;
+}
+
+int Hash(std::string_view text);
+
 }

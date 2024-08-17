@@ -8,31 +8,32 @@
 #include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {
+
+void ServerFPSCounter::Update() {
     
-    void ServerFPSCounter::Update() {
+    // Recalculate FPS every second.
+    if (Now() > m_timeLastUpdate + Duration(Millis(1000))) {
         
-        // Recalculate FPS every second.
-        if (Now() > m_timeLastUpdate + Duration(Millis(1000))) {
-            
-            // FPS = number of frames counted during one second.
-            m_fps = m_framesCount;
-            
-            // Reset number of frames counted.
-            m_framesCount = 0;
-            
-            // Remember which point in time we calculated this FPS value.
-            m_timeLastUpdate = Now();
-        }
+        // FPS = number of frames counted during one second.
+        m_fps = m_framesCount;
         
-        // Add to frames counter every frame.
-        m_framesCount++;
+        // Reset number of frames counted.
+        m_framesCount = 0;
+        
+        // Remember which point in time we calculated this FPS value.
+        m_timeLastUpdate = Now();
     }
     
-    void ServerFPSCounter::Render(UserID userID) const {
-        
-        // Draw the FPS text to the canvas.
-        SendTextDrawInstruction(
-            userID,
-            "Server fps: " + std::to_string(m_fps), k_position);
-    }
+    // Add to frames counter every frame.
+    m_framesCount++;
+}
+
+void ServerFPSCounter::Render(UserID userID) const {
+    
+    // Draw the FPS text to the canvas.
+    SendTextDrawInstruction(
+        userID,
+        "Server fps: " + std::to_string(m_fps), k_position);
+}
+
 }

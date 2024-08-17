@@ -7,13 +7,14 @@
 #pragma once
 
 namespace JoD {
-    
-    class WorldArea;
-    
-    ///
-    /// Generates rock on a world area.
-    ///
-    /// @param worldArea World area to generate rocks on.
-    ///
-    void GenerateRock(WorldArea* worldArea);
+
+class WorldArea;
+
+///
+/// Generates rock on a world area.
+///
+/// @param worldArea World area to generate rocks on.
+///
+void GenerateRock(WorldArea* worldArea);
+
 }

@@ -7,8 +7,10 @@
 #include "Window.hpp"
 
 namespace JoD {
-    Window::Window(QWidget *parent)
-        : QWidget(parent) {
-        setWindowState(Qt::WindowMaximized);
-    }
+    
+Window::Window(QWidget *parent)
+    : QWidget(parent) {
+    setWindowState(Qt::WindowMaximized);
+}
+
 }

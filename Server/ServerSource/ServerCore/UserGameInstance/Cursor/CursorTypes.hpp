@@ -7,14 +7,15 @@
 #pragma once
 
 namespace JoD {
+
+///
+/// Available cursor types, which should hint what kind of
+/// effect a mouse click would have.
+///
+enum class CursorTypes {
     
-    ///
-    /// Available cursor types, which should hint what kind of
-    /// effect a mouse click would have.
-    ///
-    enum class CursorTypes {
-        
-        Default, ///< Default when clicking has no unusual effect.
-        Hovering ///< Hints that mouse is hovering a clickable button.
-    };
+    Default,     ///< Default when clicking has no unusual effect.
+    Hovering     ///< Hints that mouse is hovering a clickable button.
+};
+
 }

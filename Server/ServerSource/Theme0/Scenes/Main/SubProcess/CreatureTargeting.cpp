@@ -17,42 +17,45 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
+
+void CreatureTargeting::Update(UserID userID) {
     
-    void CreatureTargeting::Update(UserID userID) {
+    auto player =
+        _<EngineGet>().GetPlayer(userID);
+    
+    auto tileHovering =
+        static_cast<TileHovering*>(
+            _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>(
+                "MainScene")->GetComponent(
+                MainSceneComponents::
+                TileHovering));
+    
+    const auto mouseDown =
+        _<EngineGet>().GetMouseInput(userID)->
+        GetRightButton().
+        GetIsPressedPickResult();
+    
+    const auto hoveredTile =
+        tileHovering->GetHoveredCoordinate();
+    
+    if (mouseDown && hoveredTile.has_value()) {
         
-        auto player =
-            _<EngineGet>().GetPlayer(userID);
+        player->SetDestCoord(std::nullopt);
         
-        auto tileHovering =
-            static_cast<TileHovering*>(
-                _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene")->GetComponent(
-                    MainSceneComponents::
-                    TileHovering));
+        const auto &worldArea = _<World>().GetCurrWorldArea();
         
-        const auto mouseDown =
-            _<EngineGet>().GetMouseInput(userID)->
-            GetRightButton().
-            GetIsPressedPickResult();
+        const auto &tile = worldArea->GetTile(hoveredTile.value());
         
-        const auto hoveredTile =
-            tileHovering->GetHoveredCoordinate();
-        
-        if (mouseDown && hoveredTile.has_value()) {
+        if (tile->GetCreature()) {
             
-            player->SetDestCoord(std::nullopt);
+            m_targetedCreature = tile->GetCreature();
             
-            const auto &worldArea = _<World>().GetCurrWorldArea();
+        }
+        else {
             
-            const auto &tile = worldArea->GetTile(hoveredTile.value());
-            
-            if (tile->GetCreature()) {
-                
-                m_targetedCreature = tile->GetCreature();
-                
-            }else {
-                
-                m_targetedCreature = nullptr;
-            }
+            m_targetedCreature = nullptr;
         }
     }
+}
+
 }

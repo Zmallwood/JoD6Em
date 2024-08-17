@@ -12,28 +12,29 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
+
+void MainMenuScene::Initialize(UserID userID) {
     
-    void MainMenuScene::Initialize(UserID userID) {
-        
-        GetGUI()->AddComponent<GUIButton>(BoxF{0.45f, 0.4f, 0.1f, 0.05f}, "Login", [=] {
+    GetGUI()->AddComponent<GUIButton>(
+        BoxF{0.45f, 0.4f, 0.1f, 0.05f}, "Login", [=] {
             
             _<EngineGet>().GetSceneManager(userID)->
             GoToScene(userID, "MainScene");
         });
-        
-        GetGUI()->AddComponent<GUIButton>(BoxF{0.45f, 0.46f, 0.1f, 0.05f}, "Register", [=] {
-            
-        });
-    }
     
-    void MainMenuScene::RenderDerived(UserID userID) const {
-        
-        SendImageDrawInstruction(
-            userID, "DefaultSceneBackground",
-            {0.0f, 0.0f, 1.0f, 1.0f});
-        
-        SendImageDrawInstruction(
-            userID, "JoDLogo",
-            {0.4f, 0.1f, 0.2f, 0.1f});
-    }
+    GetGUI()->AddComponent<GUIButton>(
+        BoxF{0.45f, 0.46f, 0.1f, 0.05f}, "Register", [=] {});
+}
+
+void MainMenuScene::RenderDerived(UserID userID) const {
+    
+    SendImageDrawInstruction(
+        userID, "DefaultSceneBackground",
+        {0.0f, 0.0f, 1.0f, 1.0f});
+    
+    SendImageDrawInstruction(
+        userID, "JoDLogo",
+        {0.4f, 0.1f, 0.2f, 0.1f});
+}
+
 }

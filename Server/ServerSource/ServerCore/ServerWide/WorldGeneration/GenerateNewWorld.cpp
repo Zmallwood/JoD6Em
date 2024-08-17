@@ -18,22 +18,23 @@
 #include "SubProcess/GenerateNPCs.hpp"
 
 namespace JoD {
+
+void GenerateNewWorld() {
     
-    void GenerateNewWorld() {
-        
-        auto worldArea = _<World>().GetCurrWorldArea();
-        
-        // Do all generation steps.
-        
-        ClearWithGrass(worldArea);
-        GenerateWater(worldArea);
-        GenerateElevation(worldArea);
-        GenerateRock(worldArea);
-        GenerateCastleYard(worldArea);
-        GenerateObjects(worldArea);
-        GenerateRoads(worldArea);
-        GenerateHorseCarts(worldArea);
-        GenerateNPCs(worldArea);
-        GenerateCreatures(worldArea);
-    }
+    auto worldArea = _<World>().GetCurrWorldArea();
+    
+    // Do all generation steps.
+    
+    ClearWithGrass(worldArea);
+    GenerateWater(worldArea);
+    GenerateElevation(worldArea);
+    GenerateRock(worldArea);
+    GenerateCastleYard(worldArea);
+    GenerateObjects(worldArea);
+    GenerateRoads(worldArea);
+    GenerateHorseCarts(worldArea);
+    GenerateNPCs(worldArea);
+    GenerateCreatures(worldArea);
+}
+
 }

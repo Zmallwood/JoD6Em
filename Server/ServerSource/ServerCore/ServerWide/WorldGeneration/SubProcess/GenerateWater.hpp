@@ -7,13 +7,14 @@
 #pragma once
 
 namespace JoD {
-    
-    class WorldArea;
-    
-    ///
-    /// Generates water on a world area.
-    ///
-    /// @param worldArea World area to generate water on.
-    ///
-    void GenerateWater(WorldArea* worldArea);
+
+class WorldArea;
+
+///
+/// Generates water on a world area.
+///
+/// @param worldArea World area to generate water on.
+///
+void GenerateWater(WorldArea* worldArea);
+
 }

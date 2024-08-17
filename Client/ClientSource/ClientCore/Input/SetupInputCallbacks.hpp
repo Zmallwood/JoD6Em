@@ -7,9 +7,10 @@
 #pragma once
 
 namespace JoD {
-    
-    ///
-    /// Set the up callbacks for input handling.
-    ///
-    void SetupInputCallbacks();
+
+///
+/// Set the up callbacks for input handling.
+///
+void SetupInputCallbacks();
+
 }

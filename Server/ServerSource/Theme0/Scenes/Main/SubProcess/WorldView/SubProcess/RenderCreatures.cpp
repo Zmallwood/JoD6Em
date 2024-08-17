@@ -12,57 +12,59 @@
 #include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {
+
+namespace {
+
+const int k_showHitEffectDuration {300};
+
+}
+
+void RenderCreatures(
+    const MainScene& mainScene,
+    UserID userID,
+    Tile* tile, BoxF tileBounds) {
     
-    namespace {
-        
-        const int k_showHitEffectDuration {300};
-    }
+    const auto mobTargeting =
+        static_cast<CreatureTargeting*>(
+            mainScene.GetComponent(
+                MainSceneComponents::
+                CreatureTargeting));
     
-    void RenderCreatures(
-        const MainScene& mainScene,
-        UserID userID,
-        Tile* tile, BoxF tileBounds) {
+    if (tile->GetCreature()) {
         
-        const auto mobTargeting =
-            static_cast<CreatureTargeting*>(
-                mainScene.GetComponent(
-                    MainSceneComponents::
-                    CreatureTargeting));
-        
-        if (tile->GetCreature()) {
-            
-            if (tile->GetCreature() ==
-                mobTargeting->
-                GetTargetedCreature()){
-                
-                SendImageDrawInstruction(
-                    userID,
-                    "TargetedMob",
-                    tileBounds);
-            }
+        if (tile->GetCreature() ==
+            mobTargeting->
+            GetTargetedCreature()){
             
             SendImageDrawInstruction(
                 userID,
-                tile->GetCreature()->GetType(),
+                "TargetedMob",
                 tileBounds);
+        }
+        
+        SendImageDrawInstruction(
+            userID,
+            tile->GetCreature()->GetType(),
+            tileBounds);
+        
+        SendTextDrawInstruction(
+            userID,
+            "Mob, Lvl." +
+            std::to_string(tile->GetCreature()->GetLevel()),
+            {tileBounds.x, tileBounds.y - 0.5f*tileBounds.h});
+        
+        
+        if (Now() < tile->GetCreature()->GetTimeLastHitFromOther() + Duration(
+                Millis(
+                    static_cast<int>(
+                        k_showHitEffectDuration)))) {
             
-            SendTextDrawInstruction(
+            SendImageDrawInstruction(
                 userID,
-                "Mob, Lvl." +
-                std::to_string(tile->GetCreature()->GetLevel()),
-                {tileBounds.x, tileBounds.y - 0.5f*tileBounds.h});
-            
-            
-            if (Now() < tile->GetCreature()->GetTimeLastHitFromOther() + Duration(
-                    Millis(
-                        static_cast<int>(
-                            k_showHitEffectDuration)))) {
-                
-                SendImageDrawInstruction(
-                    userID,
-                    "HitEffect",
-                    tileBounds);
-            }
+                "HitEffect",
+                tileBounds);
         }
     }
+}
+
 }

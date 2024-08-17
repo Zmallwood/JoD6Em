@@ -10,22 +10,23 @@
 
 namespace JoD {
 
+///
+/// Enables moving the player character by clicking
+/// with mouse in the game world.
+///
+class MouseMovement : public IMainSceneComponent  {
+    
+  public:
+    
     ///
-    /// Enables moving the player character by clicking
-    /// with mouse in the game world.
+    /// User base ctor.
     ///
-    class MouseMovement : public IMainSceneComponent  {
+    using IMainSceneComponent::IMainSceneComponent;
+    
+    ///
+    /// Override base class method.
+    ///
+    void Update(UserID userID) override;
+};
 
-      public:
-
-        ///
-        /// User base ctor.
-        ///
-        using IMainSceneComponent::IMainSceneComponent;
-
-        ///
-        /// Override base class method.
-        ///
-        void Update(UserID userID) override;
-    };
 }

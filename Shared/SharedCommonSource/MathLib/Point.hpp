@@ -7,19 +7,20 @@
 #pragma once
 
 namespace JoD {
+
+struct Point {
     
-    struct Point {
-        
-        bool operator==(const Point& rhs) const;
-        
-        void operator+=(const Point& rhs);
-        
-        Point Translate(int dx, int dy) const;
-        
-        // Members
-        
-        int x {0};
-        
-        int y {0};
-    };
+    bool operator==(const Point& rhs) const;
+    
+    void operator+=(const Point& rhs);
+    
+    Point Translate(int dx, int dy) const;
+    
+    // Members
+    
+    int x {0};
+    
+    int y {0};
+};
+
 }

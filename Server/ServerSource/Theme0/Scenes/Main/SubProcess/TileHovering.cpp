@@ -11,33 +11,34 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
+
+void TileHovering::Update(UserID userID) {
     
-    void TileHovering::Update(UserID userID){
-        
-        const auto tileSize =
-            CalculateTileSize(
-                _<EngineGet>().GetAspectRatio(userID).value());
-        
-        const auto playerCoordinate =
-            _<EngineGet>().GetPlayer(userID)->GetCoord();
-        
-        const auto numRows = _<GameProperties>().GetNumGridRows();
-        const auto numCols =
-            CalculateNumGridCols(
-                _<EngineGet>().GetAspectRatio(userID).value());
-        
-        const auto tileX =
-            playerCoordinate.x - (numCols - 1) / 2 +
-            static_cast<int>(_<EngineGet>().
-                             GetMousePosition(userID).value().x /
-                             tileSize.w);
-        
-        const auto tileY =
-            playerCoordinate.y - (numRows - 1) / 2 +
-            static_cast<int>(_<EngineGet>().
-                             GetMousePosition(userID).value().y /
-                             tileSize.h);
-        
-        m_hoveredCoordinate = {tileX, tileY};
-    }
+    const auto tileSize =
+        CalculateTileSize(
+            _<EngineGet>().GetAspectRatio(userID).value());
+    
+    const auto playerCoordinate =
+        _<EngineGet>().GetPlayer(userID)->GetCoord();
+    
+    const auto numRows = _<GameProperties>().GetNumGridRows();
+    const auto numCols =
+        CalculateNumGridCols(
+            _<EngineGet>().GetAspectRatio(userID).value());
+    
+    const auto tileX =
+        playerCoordinate.x - (numCols - 1) / 2 +
+        static_cast<int>(_<EngineGet>().
+                         GetMousePosition(userID).value().x /
+                         tileSize.w);
+    
+    const auto tileY =
+        playerCoordinate.y - (numRows - 1) / 2 +
+        static_cast<int>(_<EngineGet>().
+                         GetMousePosition(userID).value().y /
+                         tileSize.h);
+    
+    m_hoveredCoordinate = {tileX, tileY};
+}
+
 }

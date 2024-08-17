@@ -10,12 +10,13 @@
 
 namespace JoD {
 
-    class Combat : public IMainSceneComponent {
+class Combat : public IMainSceneComponent {
+    
+  public:
+    
+    using IMainSceneComponent::IMainSceneComponent;
+    
+    void Update(UserID userID) override;
+};
 
-      public:
-
-        using IMainSceneComponent::IMainSceneComponent;
-
-        void Update(UserID userID) override;
-    };
 }
