@@ -43,7 +43,7 @@ Window::Window(QWidget *parent) {
                 for (auto x = 0; x < wArea->GetSize().w; x++) {
                     
                     auto tile = wArea->GetTile(x, y);
-                    tile->SetGround("GroundGrass");
+                    tile->SetGround(m_selectImageHash);
                 }
             }
             
@@ -52,7 +52,10 @@ Window::Window(QWidget *parent) {
     m_menuTools.setTitle("&Tools");
     m_menuTools.addAction("&Set tools shape");
     m_menuTools.addAction("&Set tools size");
-    m_menuTools.addAction("&Select tool");
+    m_menuTools_selectTool.setTitle("&Select tool");
+    m_menuTools_selectTool.addAction("&Set ground");
+    m_menuTools_selectTool.addAction("&Add object");
+    m_menuTools.addMenu(&m_menuTools_selectTool);
     
     menuBar()->addMenu(&m_menuFile);
     menuBar()->addMenu(&m_menuWorld);
@@ -138,14 +141,13 @@ void Window::paintEvent(QPaintEvent* event) {
             
             auto ground = tile->GetGround();
             
-            if (ground == Hash("GroundGrass")) {
+            if (m_images.contains(ground)) {
                 
                 // paint.fillRect(
                 //     QRect(
                 //         x*k_tileSize,y*k_tileSize,k_tileSize,
                 //         k_tileSize), QBrush(QColor(0, 255, 0, 255)));
-                auto image = m_images.at(Hash("GroundGrass"));
-                paint.drawImage(QRect(x*k_tileSize, y*k_tileSize, k_tileSize, k_tileSize), m_images.at(Hash("GroundGrass")));
+                paint.drawImage(QRect(x*k_tileSize, y*k_tileSize, k_tileSize, k_tileSize), m_images.at(ground));
             }
             
             paint.setPen(QColor(0, 0, 0, 255));
@@ -171,6 +173,13 @@ void Window::ClickedItemInFileBrowser(const QModelIndex &index) {
         m_previewImagePixmap = QPixmap(path);
         
         m_previewImage.setPixmap(m_previewImagePixmap);
+        
+        auto lastSlash = str.find_last_of("/");
+        auto fileName = str.substr(lastSlash + 1);
+        auto period = fileName.find(".");
+        auto trimmedName = fileName.substr(0, period);
+        
+        m_selectImageHash = Hash(trimmedName);
     }
 }
 }

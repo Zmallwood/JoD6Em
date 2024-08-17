@@ -26,6 +26,7 @@ class Window : public QMainWindow {
     QMenu m_menuWorld;
     QMenu m_menuBasic;
     QMenu m_menuTools;
+    QMenu m_menuTools_selectTool;
     QScrollArea m_scrollArea;
     QLabel m_canvasLabel;
     QLabel m_mainLabel;
@@ -37,6 +38,7 @@ class Window : public QMainWindow {
     QLabel m_previewImage;
     QPixmap m_previewImagePixmap;
     std::map<int, QImage> m_images;
+    int m_selectImageHash {0};
 };
 
 }
