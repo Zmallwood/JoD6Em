@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "QtGui/qpixmap.h"
+#include "QtWidgets/qgridlayout.h"
 namespace JoD {
 
 class Window : public QMainWindow {
@@ -18,14 +20,22 @@ class Window : public QMainWindow {
     
   private:
     
+    void ClickedItemInFileBrowser(const QModelIndex &index);
+    
     QMenu m_menuFile;
     QMenu m_menuWorld;
+    QMenu m_menuBasic;
     QMenu m_menuTools;
     QScrollArea m_scrollArea;
+    QLabel m_canvasLabel;
     QLabel m_mainLabel;
-    QGridLayout m_gridLayout;
-    QPushButton m_testButton;
-    QImage m_image;
+    QHBoxLayout m_gridLayout;
+    QLabel m_sidePanel;
+    QFileSystemModel m_fileSystemModel;
+    QTreeView m_treeView;
+    QVBoxLayout m_sidePanelLayout;
+    QLabel m_previewImage;
+    QPixmap m_previewImagePixmap;
 };
 
 }

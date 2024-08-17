@@ -15,6 +15,11 @@
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QTreeView>
+#include <QtGui/QFileSystemModel>
 #include <QtGui/QPainter>
 #include <QtGui/QImage>
 #include <QtGui/QPaintEvent>
