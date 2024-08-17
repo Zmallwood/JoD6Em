@@ -14,7 +14,7 @@ namespace JoD {
     
     void UpdateNPCs(Tile* tile, Point coord) {
         
-        auto worldArea = _<World>().GetCurrWorldArea();
+        auto wArea = _<World>().GetCurrWorldArea();
         
         auto npc = tile->GetNPC();
         
@@ -30,31 +30,26 @@ namespace JoD {
                                              npc
                                              ->
                                              GetMovementSpeed())))){
-                    auto reversePath = worldArea->m_roadPath;
+                    
+                    auto reversePath = wArea->m_roadPath;
                     
                     std::reverse(reversePath.begin(), reversePath.end());
                     
-                    for (auto it =
-                             reversePath.
-                             begin();
-                         it !=
-                         reversePath.end();
-                         it++) {
+                    for (auto it = reversePath.begin();
+                         it != reversePath.end(); it++) {
                         
                         if (it->x == coord.x && it->y == coord.y) {
+                            
                             it++;
                             
-                            if (it ==
-                                reversePath
-                                .end()) {
+                            if (it == reversePath.end()) {
                                 
                                 auto beginningTile =
-                                    worldArea->GetTile(
-                                        reversePath[0]);
+                                    wArea->GetTile(reversePath[0]);
                                 
-                                beginningTile->SetNPC(
-                                    npc);
-                                worldArea->GetTile(
+                                beginningTile->SetNPC(npc);
+                                
+                                wArea->GetTile(
                                     coord.x,
                                     coord.y)->SetNPC(
                                     nullptr);
@@ -62,25 +57,17 @@ namespace JoD {
                                 break;
                             }
                             
-                            auto newTile =
-                                worldArea->GetTile(
-                                    it->x,
-                                    it->y);
+                            auto newTile = wArea->GetTile(it->x, it->y);
                             
-                            if (newTile &&
-                                newTile->GetNPC() ==
-                                nullptr) {
+                            if (newTile && newTile->GetNPC() == nullptr) {
                                 
-                                newTile->SetNPC(
-                                    npc);
-                                worldArea->GetTile(
+                                newTile->SetNPC(npc);
+                                
+                                wArea->GetTile(
                                     coord.x,
                                     coord.y)->SetNPC(
                                     nullptr);
-                                
                             }
-                            
-                            
                         }
                     }
                     

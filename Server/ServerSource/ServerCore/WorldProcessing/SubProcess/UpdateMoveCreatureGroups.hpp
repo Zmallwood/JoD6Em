@@ -8,5 +8,8 @@
 
 namespace JoD {
 
+    ///
+    /// Update creature groups by moving them and their contains creatures.
+    ///
     void UpdateMoveCreatureGroups();
 }
