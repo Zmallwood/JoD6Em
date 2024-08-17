@@ -16,4 +16,4 @@ target_include_directories(JoDWorldEditor PRIVATE ../WorldEditorSource ../../Sha
 
 target_precompile_headers(JoDWorldEditor PRIVATE ../WorldEditorSource/StdAfx/StdAfx.hpp)
 #target_link_libraries(JoDServer python3.12)
-target_link_libraries(JoDWorldEditor Qt6Core Qt6Widgets)
+target_link_libraries(JoDWorldEditor Qt6Core Qt6Widgets Qt6Gui)

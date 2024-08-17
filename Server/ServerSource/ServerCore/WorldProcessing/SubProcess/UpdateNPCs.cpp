@@ -18,54 +18,45 @@ void UpdateNPCs(Tile* tile, Point coord) {
     
     auto npc = tile->GetNPC();
     
-    if (npc) {
+    if (npc && npc->GetIsFollowingPath()) {
         
-        if (npc->GetIsFollowingPath()) {
+        if (Now() >
+            npc->GetTimeLastMove() +
+            Duration(Millis(static_cast<int>(1000/npc->GetMS())))){
             
-            if (Now() > npc->GetTimeLastMove() +
-                Duration(Millis(static_cast<int>(1000/npc->GetMS())))){
+            auto revPath = wArea->m_roadPath;
+            
+            std::reverse(revPath.begin(), revPath.end());
+            
+            for (auto it = revPath.begin(); it != revPath.end(); it++) {
                 
-                auto reversePath = wArea->m_roadPath;
-                
-                std::reverse(reversePath.begin(), reversePath.end());
-                
-                for (auto it = reversePath.begin();
-                     it != reversePath.end(); it++) {
+                if (it->x == coord.x && it->y == coord.y) {
                     
-                    if (it->x == coord.x && it->y == coord.y) {
+                    it++;
+                    
+                    if (it == revPath.end()) {
                         
-                        it++;
+                        auto startTile = wArea->GetTile(revPath[0]);
                         
-                        if (it == reversePath.end()) {
-                            
-                            auto startTile = wArea->GetTile(reversePath[0]);
-                            
-                            startTile->SetNPC(npc);
-                            
-                            wArea->GetTile(
-                                coord.x,
-                                coord.y)->SetNPC(
-                                nullptr);
-                            
-                            break;
-                        }
+                        startTile->SetNPC(npc);
                         
-                        auto newTile = wArea->GetTile(it->x, it->y);
+                        wArea->GetTile(coord)->SetNPC(nullptr);
                         
-                        if (newTile && newTile->GetNPC() == nullptr) {
-                            
-                            newTile->SetNPC(npc);
-                            
-                            wArea->GetTile(
-                                coord.x,
-                                coord.y)->SetNPC(
-                                nullptr);
-                        }
+                        break;
+                    }
+                    
+                    auto newTile = wArea->GetTile(it->x, it->y);
+                    
+                    if (newTile && newTile->GetNPC() == nullptr) {
+                        
+                        newTile->SetNPC(npc);
+                        
+                        wArea->GetTile(coord)->SetNPC(nullptr);
                     }
                 }
-                
-                npc->SetTimeLastMove(Now());
             }
+            
+            npc->SetTimeLastMove(Now());
         }
     }
 }

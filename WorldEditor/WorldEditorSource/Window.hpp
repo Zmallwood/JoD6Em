@@ -7,10 +7,25 @@
 #pragma once
 
 namespace JoD {
+
+class Window : public QMainWindow {
     
-class Window : public QWidget {
   public:
+    
     explicit Window(QWidget *parent = 0);
+    
+    void paintEvent(QPaintEvent* event) override;
+    
+  private:
+    
+    QMenu m_menuFile;
+    QMenu m_menuWorld;
+    QMenu m_menuTools;
+    QScrollArea m_scrollArea;
+    QLabel m_mainLabel;
+    QGridLayout m_gridLayout;
+    QPushButton m_testButton;
+    QImage m_image;
 };
 
 }
