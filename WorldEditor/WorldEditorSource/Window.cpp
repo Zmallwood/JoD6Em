@@ -7,14 +7,15 @@
 #include "Window.hpp"
 #include "QtGui/qpixmap.h"
 #include "World.hpp"
+#include "WorldArea.hpp"
+#include "Tile.hpp"
+#include "WorldStructureConstants.hpp"
 
 namespace JoD {
 
 namespace {
 
 const int k_tileSize {60};
-const int k_worldAreaWidth {100};
-const int k_worldAreaHeight {100};
 }
 
 Window::Window(QWidget *parent) {
@@ -32,11 +33,21 @@ Window::Window(QWidget *parent) {
     m_menuWorld.addAction("&Add new world area");
     
     m_menuBasic.setTitle("&Basic");
-    m_menuBasic.addAction("&Set ground to whole world area", [&] {
-        
-        auto wArea = _<World>().GetCurrWorldArea();
-        
-    });
+    m_menuBasic.addAction(
+        "&Set ground to whole world area", [&] {
+            
+            auto wArea = _<World>().GetCurrWorldArea();
+            
+            for (auto y = 0; y < wArea->GetSize().h; y++) {
+                
+                for (auto x = 0; x < wArea->GetSize().w; x++) {
+                    
+                    auto tile = wArea->GetTile(x, y);
+                    tile->SetGround("GroundGrass");
+                }
+            }
+            
+        });
     
     m_menuTools.setTitle("&Tools");
     m_menuTools.addAction("&Set tools shape");
@@ -61,16 +72,18 @@ Window::Window(QWidget *parent) {
     m_scrollArea.setWidget(&m_canvasLabel);
     
     m_canvasLabel.setFixedSize(
-        {k_tileSize*k_worldAreaWidth,
-         k_tileSize*k_worldAreaHeight});
+        {k_tileSize*WorldStructureConstants::k_worldAreaSize.w,
+         k_tileSize*WorldStructureConstants::k_worldAreaSize.h});
     
     m_sidePanel.setFixedWidth(400);
     m_gridLayout.addWidget(&m_sidePanel);
     
-    m_fileSystemModel.setRootPath(QDir::currentPath());
+    m_fileSystemModel.setRootPath(QCoreApplication::applicationDirPath());
     m_treeView.setModel(&m_fileSystemModel);
     
-    m_treeView.setRootIndex(m_fileSystemModel.index(QDir::currentPath()));
+    m_treeView.setRootIndex(
+        m_fileSystemModel.index(
+            QCoreApplication::applicationDirPath()));
     
     m_sidePanel.setLayout(&m_sidePanelLayout);
     
@@ -83,6 +96,26 @@ Window::Window(QWidget *parent) {
     bool ok = connect(
         &m_treeView, &QTreeView::clicked, this,
         &Window::ClickedItemInFileBrowser);
+    
+    
+    using iterator = std::filesystem::recursive_directory_iterator;
+    
+    const std::string k_relImagesPath = "Resources/Images";
+    
+    const auto allImagesPath = QCoreApplication::applicationDirPath().toStdString() + "/" + k_relImagesPath + "/";
+    
+    for (auto &entry : iterator(allImagesPath)) {
+        
+        // Create path string to load the images from.
+        const auto absPath = entry.path().string();
+        
+        auto lastSlash = absPath.find_last_of("/");
+        auto fileName = absPath.substr(lastSlash + 1);
+        auto period = fileName.find(".");
+        auto trimmedName = fileName.substr(0, period);
+        
+        m_images.insert({Hash(trimmedName), QImage(absPath.c_str())});        
+    }
 }
 
 void Window::paintEvent(QPaintEvent* event) {
@@ -95,9 +128,25 @@ void Window::paintEvent(QPaintEvent* event) {
     QPainter paint(&pix);
     pix.fill( Qt::gray );
     
-    for (auto y = 0; y < k_worldAreaHeight; y++) {
+    auto wArea = _<World>().GetCurrWorldArea();
+    
+    for (auto y = 0; y < wArea->GetSize().h; y++) {
         
-        for (auto x = 0; x < k_worldAreaWidth; x++) {
+        for (auto x = 0; x < wArea->GetSize().w; x++) {
+            
+            auto tile = wArea->GetTile(x, y);
+            
+            auto ground = tile->GetGround();
+            
+            if (ground == Hash("GroundGrass")) {
+                
+                // paint.fillRect(
+                //     QRect(
+                //         x*k_tileSize,y*k_tileSize,k_tileSize,
+                //         k_tileSize), QBrush(QColor(0, 255, 0, 255)));
+                auto image = m_images.at(Hash("GroundGrass"));
+                paint.drawImage(QRect(x*k_tileSize, y*k_tileSize, k_tileSize, k_tileSize), m_images.at(Hash("GroundGrass")));
+            }
             
             paint.setPen(QColor(0, 0, 0, 255));
             paint.drawRect(

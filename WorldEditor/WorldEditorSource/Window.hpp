@@ -36,6 +36,7 @@ class Window : public QMainWindow {
     QVBoxLayout m_sidePanelLayout;
     QLabel m_previewImage;
     QPixmap m_previewImagePixmap;
+    std::map<int, QImage> m_images;
 };
 
 }

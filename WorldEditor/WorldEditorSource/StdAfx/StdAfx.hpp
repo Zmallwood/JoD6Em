@@ -7,6 +7,7 @@
 #pragma once
 
 #include <iostream>
+#include <map>
 
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QPushButton>
