@@ -5,8 +5,8 @@
  */
 
 #include "WorldArea.hpp"
-#include "Configuration/GameProperties.hpp"
 #include "Tile.hpp"
+#include "WorldStructureConstants.hpp"
 
 namespace JoD {
 
@@ -19,11 +19,11 @@ struct WorldArea::Impl {
 WorldArea::WorldArea()
     : m_pImpl(std::make_unique<Impl>()) {
     
-    for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w; x++){
+    for (auto x = 0; x < WorldStructureConstants::k_worldAreaSize.w; x++){
         
         m_pImpl->tiles.push_back(std::vector<std::unique_ptr<Tile>>());
         
-        for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h;
+        for (auto y = 0; y < WorldStructureConstants::k_worldAreaSize.h;
              y++) {
             
             m_pImpl->tiles.at(x).push_back(std::make_unique<Tile>());

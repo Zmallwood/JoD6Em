@@ -23,9 +23,9 @@ void GenerateNPCs(WorldArea* worldArea) {
     // Create NPC every x:th tile.
     auto npcCreationInterval = 18;
     
-    for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
+    for (auto y = 0; y < worldArea->GetSize().h; y++) {
         
-        for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w;
+        for (auto x = 0; x < worldArea->GetSize().w;
              x++){
             
             auto tile = worldArea->GetTile(x,y);

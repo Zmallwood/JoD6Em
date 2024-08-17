@@ -35,3 +35,5 @@
 #include "CommonAliases.hpp"
 #include "CommonUtils.hpp"
 #include "NetConfiguration.hpp"
+#include "WorldStructureAliases.hpp"
+#include "WorldStructureConstants.hpp"

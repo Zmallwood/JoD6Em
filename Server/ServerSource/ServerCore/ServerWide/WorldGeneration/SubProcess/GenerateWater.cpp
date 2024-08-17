@@ -18,9 +18,9 @@ void GenerateWater(WorldArea* worldArea) {
     for (auto i = 0; i < numLakes; i++){
         
         const auto xCenter = rand() %
-                             _<GameProperties>().GetWorldAreaSize().w;
+                             worldArea->GetSize().w;
         const auto yCenter = rand() %
-                             _<GameProperties>().GetWorldAreaSize().h;
+                             worldArea->GetSize().h;
         
         const auto r = 3 + rand() % 11;
         

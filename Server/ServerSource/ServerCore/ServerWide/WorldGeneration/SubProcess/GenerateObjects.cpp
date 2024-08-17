@@ -63,11 +63,11 @@ void GenerateObjectOfType(GenerateObjectOfTypeArgs args) {
         
         const auto x =
             rand() %
-            _<GameProperties>().GetWorldAreaSize().w;
+            args.worldArea->GetSize().w;
         
         const auto y =
             rand() %
-            _<GameProperties>().GetWorldAreaSize().h;
+            args.worldArea->GetSize().h;
         
         const auto ground = args.worldArea->GetTile(x, y)->GetGround();
         
@@ -89,9 +89,9 @@ void GenerateGrassOverWholeWorldArea(WorldArea* worldArea) {
     
     // Loop over whole world area.
     
-    for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++){
+    for (auto y = 0; y < worldArea->GetSize().h; y++){
         
-        for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w;
+        for (auto x = 0; x < worldArea->GetSize().w;
              x++) {
             
             // Only add grass object on ground of grass type.

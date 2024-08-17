@@ -31,6 +31,6 @@ int main(int argc, char *argv[]) {
         // An exception occured, exit game.
         return EXIT_FAILURE;
     }
-    
+     
     return EXIT_SUCCESS;
 }

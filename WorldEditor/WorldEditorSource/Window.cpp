@@ -6,6 +6,7 @@
 
 #include "Window.hpp"
 #include "QtGui/qpixmap.h"
+#include "World.hpp"
 
 namespace JoD {
 
@@ -31,8 +32,9 @@ Window::Window(QWidget *parent) {
     m_menuWorld.addAction("&Add new world area");
     
     m_menuBasic.setTitle("&Basic");
-    m_menuBasic.addAction("&Set ground to whole world area", [] {
+    m_menuBasic.addAction("&Set ground to whole world area", [&] {
         
+        auto wArea = _<World>().GetCurrWorldArea();
         
     });
     

@@ -23,9 +23,9 @@ void GenerateHorseCarts(WorldArea* worldArea) {
     
     // Loop over whole world area.
     
-    for (auto y = 0; y < _<GameProperties>().GetWorldAreaSize().h; y++) {
+    for (auto y = 0; y < worldArea->GetSize().h; y++) {
         
-        for (auto x = 0; x < _<GameProperties>().GetWorldAreaSize().w;
+        for (auto x = 0; x < worldArea->GetSize().w;
              x++){
             
             // Dont consider tiles where x == 0, as there is no room for a cart then.

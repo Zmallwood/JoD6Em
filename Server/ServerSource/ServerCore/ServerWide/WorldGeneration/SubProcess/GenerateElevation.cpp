@@ -19,8 +19,8 @@ void GenerateElevation(WorldArea* worldArea) {
     for (auto i = 0; i < numHills; i++) {
         
         // Set properties for each hill.
-        auto xCenter = rand() % _<GameProperties>().GetWorldAreaSize().w;
-        auto yCenter = rand() % _<GameProperties>().GetWorldAreaSize().h;
+        auto xCenter = rand() % worldArea->GetSize().w;
+        auto yCenter = rand() % worldArea->GetSize().h;
         auto rMax = 3 + rand() % 8;
         
         // Loop over the area several times, decrease the radius each time.

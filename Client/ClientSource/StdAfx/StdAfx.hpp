@@ -11,7 +11,7 @@
 #include <SDL_ttf.h>
 #include <emscripten/emscripten.h>
 #include <emscripten/websocket.h>
-#define GL_GLEXT_PROTOTYPES 1
+#define GL_GLEXT_PROTOTYPES 1 
 #include <SDL_opengles2.h>
 #include <stb_image.h>
 #include <GLFW/glfw3.h>

@@ -31,13 +31,6 @@ class GameProperties {
     ///
     int GetNumGridRows() const;
     
-    ///
-    /// Get the size used to create new world areas.
-    ///
-    /// @return Size World area size.
-    ///
-    Size GetWorldAreaSize() const;
-    
   private:
     ///
     /// PIMPL struct defined in source file.
