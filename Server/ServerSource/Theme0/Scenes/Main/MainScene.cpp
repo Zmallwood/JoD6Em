@@ -5,19 +5,19 @@
  */
 
 #include "MainScene.hpp"
-#include "Process/TileHovering.hpp"
-#include "Process/MouseMovement.hpp"
-#include "Process/CreatureTargeting.hpp"
-#include "Process/Combat.hpp"
-#include "Process/CombatMovement.hpp"
-#include "Process/WorldView/WorldView.hpp"
+#include "SubProcess/TileHovering.hpp"
+#include "SubProcess/MouseMovement.hpp"
+#include "SubProcess/CreatureTargeting.hpp"
+#include "SubProcess/Combat.hpp"
+#include "SubProcess/CombatMovement.hpp"
+#include "SubProcess/WorldView/WorldView.hpp"
 #include "MainSceneGUI/GUITextConsole.hpp"
 #include "MainSceneGUI/GUIExpBar.hpp"
 #include "MainSceneGUI/GUIStatusPanel.hpp"
 #include "MainSceneGUI/InteractionMenu/GUIInteractionMenu.hpp"
 #include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
-#include "Process/IMainSceneComponent.hpp"
+#include "SubProcess/IMainSceneComponent.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
@@ -38,13 +38,13 @@ namespace JoD {
     
     void MainScene::Initialize(UserID userID) {
         
-        GUI()->AddComponent<GUITextConsole>();
+        GetGUI()->AddComponent<GUITextConsole>();
         
-        GUI()->AddComponent<GUIExpBar>();
+        GetGUI()->AddComponent<GUIExpBar>();
         
-        GUI()->AddComponent<GUIStatusPanel>();
+        GetGUI()->AddComponent<GUIStatusPanel>();
         
-        GUI()->AddComponent<GUIInteractionMenu>();
+        GetGUI()->AddComponent<GUIInteractionMenu>();
         
         m_pImpl->components.insert(
             {MainSceneComponents::TileHovering,

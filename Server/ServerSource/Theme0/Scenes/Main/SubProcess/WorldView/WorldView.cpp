@@ -12,14 +12,14 @@
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
-#include "Process/RenderGround.hpp"
-#include "Process/RenderTileSymbols.hpp"
-#include "Process/RenderObjects.hpp"
-#include "Process/RenderCreatures.hpp"
-#include "Process/RenderPlayer.hpp"
+#include "SubProcess/RenderGround.hpp"
+#include "SubProcess/RenderTileSymbols.hpp"
+#include "SubProcess/RenderObjects.hpp"
+#include "SubProcess/RenderCreatures.hpp"
+#include "SubProcess/RenderPlayer.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
-#include "Process/RenderNPCs.hpp"
+#include "SubProcess/RenderNPCs.hpp"
 
 namespace JoD {
 

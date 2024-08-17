@@ -2,4 +2,4 @@
 
 cd cmake
 cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -G "Unix Makefiles" .;
-make;
+cmake --build . -- -j 3;

@@ -17,7 +17,7 @@ namespace JoD {
     
     void IntroScene::Initialize(UserID userID) {
         
-        m_guiLabelStartText = GUI()->AddComponent<GUILabel>(PointF{0.5f, 0.5f}, "Press to start", true);
+        m_guiLabelStartText = GetGUI()->AddComponent<GUILabel>(PointF{0.5f, 0.5f}, "Press to start", true);
     }
     
     void IntroScene::UpdateDerived(UserID userID) {

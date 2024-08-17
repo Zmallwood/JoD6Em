@@ -7,7 +7,7 @@
 #pragma once
 
 #include "ServerCore/UserGameInstance/ScenesCore/IScene.hpp"
-#include "Process/MainSceneComponents.hpp"
+#include "SubProcess/MainSceneComponents.hpp"
 
 namespace JoD {
 

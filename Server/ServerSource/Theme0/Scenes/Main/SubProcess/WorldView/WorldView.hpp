@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "Theme0/Scenes/Main/Process/IMainSceneComponent.hpp"
+#include "Theme0/Scenes/Main/SubProcess/IMainSceneComponent.hpp"
 
 namespace JoD {
 

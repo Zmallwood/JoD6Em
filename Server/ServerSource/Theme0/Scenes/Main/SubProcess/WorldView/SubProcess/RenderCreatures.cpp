@@ -8,7 +8,7 @@
 #include "Tile.hpp"
 #include "Creature.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
-#include "Theme0/Scenes/Main/Process/CreatureTargeting.hpp"
+#include "Theme0/Scenes/Main/SubProcess/CreatureTargeting.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
 
 namespace JoD {

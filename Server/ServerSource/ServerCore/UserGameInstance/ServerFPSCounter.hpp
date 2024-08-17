@@ -1,5 +1,5 @@
 /*
- * FPSCounter.hpp
+ * ServerFPSCounter.hpp
  *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
@@ -22,8 +22,8 @@ namespace JoD {
 
         ///
         /// Render the FPS value as string to canvas.
-        ///
-        /// @param webSocket Web socket object for the current user.
+        /// 
+        /// @param userID User ID for which this ServerFPSCounter belongs to.
         ///
         void Render(UserID userID) const;
 
@@ -36,5 +36,7 @@ namespace JoD {
         int m_framesCount {0}; ///< Counting of nummer of frames reached in one second.
 
         TimePoint m_timeLastUpdate {Now()}; ///< Last time the FPS was calculated.
+        
+        const PointF k_position {0.8f, 0.1f}; ///< Position in canvas where FPS text is drawn.
     };
 }

@@ -15,13 +15,13 @@ namespace JoD {
     
     void MainMenuScene::Initialize(UserID userID) {
         
-        GUI()->AddComponent<GUIButton>(BoxF{0.45f, 0.4f, 0.1f, 0.05f}, "Login", [=] {
+        GetGUI()->AddComponent<GUIButton>(BoxF{0.45f, 0.4f, 0.1f, 0.05f}, "Login", [=] {
             
             _<EngineGet>().GetSceneManager(userID)->
             GoToScene(userID, "MainScene");
         });
         
-        GUI()->AddComponent<GUIButton>(BoxF{0.45f, 0.46f, 0.1f, 0.05f}, "Register", [=] {
+        GetGUI()->AddComponent<GUIButton>(BoxF{0.45f, 0.46f, 0.1f, 0.05f}, "Register", [=] {
             
         });
     }

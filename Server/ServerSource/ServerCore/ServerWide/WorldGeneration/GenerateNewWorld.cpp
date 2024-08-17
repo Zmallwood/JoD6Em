@@ -6,16 +6,16 @@
 
 #include "GenerateNewWorld.hpp"
 #include "World.hpp"
-#include "Process/ClearWithGrass.hpp"
-#include "Process/GenerateCreatures.hpp"
-#include "Process/GenerateObjects.hpp"
-#include "Process/GenerateWater.hpp"
-#include "Process/GenerateRoads.hpp"
-#include "Process/GenerateElevation.hpp"
-#include "Process/GenerateRock.hpp"
-#include "Process/GenerateCastleYard.hpp"
-#include "Process/GenerateHorseCarts.hpp"
-#include "Process/GenerateNPCs.hpp"
+#include "SubProcess/ClearWithGrass.hpp"
+#include "SubProcess/GenerateCreatures.hpp"
+#include "SubProcess/GenerateObjects.hpp"
+#include "SubProcess/GenerateWater.hpp"
+#include "SubProcess/GenerateRoads.hpp"
+#include "SubProcess/GenerateElevation.hpp"
+#include "SubProcess/GenerateRock.hpp"
+#include "SubProcess/GenerateCastleYard.hpp"
+#include "SubProcess/GenerateHorseCarts.hpp"
+#include "SubProcess/GenerateNPCs.hpp"
 
 namespace JoD {
     
