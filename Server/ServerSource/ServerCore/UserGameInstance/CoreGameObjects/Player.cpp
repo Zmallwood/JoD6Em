@@ -81,7 +81,7 @@ namespace JoD {
     
     void Player::TryMoveToCoord(UserID userID, Point coord) {
         
-        const auto &worldArea = _<World>().GetCurrentWorldArea();
+        const auto &worldArea = _<World>().GetCurrWorldArea();
         
         // Cannot move outside world area.
         if (!worldArea->IsValidCoord(coord)) {

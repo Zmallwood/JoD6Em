@@ -26,7 +26,7 @@ namespace JoD {
         
         if (creatureTargeting->GetTargetedCreature()) {
             
-            const auto &worldArea = _<World>().GetCurrentWorldArea();
+            const auto &worldArea = _<World>().GetCurrWorldArea();
             const auto pos =
                 worldArea->GetCreatureCoord(creatureTargeting->GetTargetedCreature()).value();
             

@@ -23,7 +23,7 @@ namespace JoD {
         
     }
     
-    WorldArea* World::GetCurrentWorldArea() const {
+    WorldArea* World::GetCurrWorldArea() const {
             
         return m_pImpl->currentWorldArea.get();
     }

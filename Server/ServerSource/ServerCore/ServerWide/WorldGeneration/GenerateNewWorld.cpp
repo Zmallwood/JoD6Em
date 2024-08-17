@@ -21,7 +21,7 @@ namespace JoD {
     
     void GenerateNewWorld() {
         
-        auto worldArea = _<World>().GetCurrentWorldArea();
+        auto worldArea = _<World>().GetCurrWorldArea();
         
         // Do all generation steps.
         

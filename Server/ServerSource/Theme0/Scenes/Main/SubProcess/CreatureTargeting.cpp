@@ -41,7 +41,7 @@ namespace JoD {
             
             player->SetDestCoord(std::nullopt);
             
-            const auto &worldArea = _<World>().GetCurrentWorldArea();
+            const auto &worldArea = _<World>().GetCurrWorldArea();
             
             const auto &tile = worldArea->GetTile(hoveredTile.value());
             

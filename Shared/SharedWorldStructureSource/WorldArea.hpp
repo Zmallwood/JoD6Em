@@ -7,7 +7,6 @@
 #pragma once
 
 #include "CreatureGroup.hpp"
-#include "RoadPath.hpp"
 
 namespace JoD {
     
@@ -48,7 +47,7 @@ namespace JoD {
         
         std::vector<CreatureGroup> m_creatureGroups;
         
-        RoadPath m_roadPath;
+        std::vector<Point> m_roadPath;
         
       private:
       

@@ -26,7 +26,7 @@ namespace JoD {
             _<EngineGet>().GetPlayer(userID);
         
         auto textMessages = _<EngineGet>().GetTextMessages(userID);
-        const auto &worldArea = _<World>().GetCurrentWorldArea();
+        const auto &worldArea = _<World>().GetCurrWorldArea();
         
         auto creatureTargeting =
             static_cast<CreatureTargeting*>(

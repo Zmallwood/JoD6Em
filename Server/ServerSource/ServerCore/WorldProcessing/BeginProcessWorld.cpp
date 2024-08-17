@@ -45,7 +45,7 @@ namespace JoD {
                     
                     UpdateMoveCreatureGroups();
                     
-                    auto worldArea = _<World>().GetCurrentWorldArea();
+                    auto worldArea = _<World>().GetCurrWorldArea();
                     
                     for (auto y = 0; y < worldArea->GetSize().h; y++) {
                         
@@ -65,7 +65,7 @@ namespace JoD {
         
         void UpdateTile(Point coord) {
             
-            auto worldArea = _<World>().GetCurrentWorldArea();
+            auto worldArea = _<World>().GetCurrWorldArea();
             
             auto tile = worldArea->GetTile(coord.x, coord.y);
             

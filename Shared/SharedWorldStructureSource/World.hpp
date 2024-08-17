@@ -25,7 +25,7 @@ namespace JoD {
         
         ~World();
         
-        WorldArea* GetCurrentWorldArea() const;
+        WorldArea* GetCurrWorldArea() const;
         
       private:
       

@@ -35,7 +35,7 @@ namespace JoD {
             _<EngineGet>().GetPlayer(userID)->GetCoord();
 
         auto playerElev =
-            _<World>().GetCurrentWorldArea()->GetTile(
+            _<World>().GetCurrWorldArea()->GetTile(
                 playerCoordinate)->GetElevation();
 
         const auto numGridRows = _<GameProperties>().GetNumGridRows();
@@ -59,14 +59,14 @@ namespace JoD {
                 const auto coordY = playerCoordinate.y -
                                     (numGridRows - 1) / 2 + y;
 
-                if (!_<World>().GetCurrentWorldArea()->IsValidCoord({coordX,
+                if (!_<World>().GetCurrWorldArea()->IsValidCoord({coordX,
                                                                      coordY})) {
 
                     continue;
                 }
 
                 auto tile =
-                    _<World>().GetCurrentWorldArea()->GetTile(
+                    _<World>().GetCurrWorldArea()->GetTile(
                         coordX,
                         coordY);
 
@@ -83,10 +83,10 @@ namespace JoD {
 
                 if (coordX > 0) {
 
-                    tileW = _<World>().GetCurrentWorldArea()->GetTile(coordX -
+                    tileW = _<World>().GetCurrWorldArea()->GetTile(coordX -
                                                                       1,
                                                                       coordY);
-                    tileN = _<World>().GetCurrentWorldArea()->GetTile(coordX,
+                    tileN = _<World>().GetCurrWorldArea()->GetTile(coordX,
                                                                       coordY -
                                                                       1);
                 }

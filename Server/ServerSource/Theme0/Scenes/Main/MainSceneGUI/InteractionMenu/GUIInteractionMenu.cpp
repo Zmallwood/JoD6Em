@@ -40,7 +40,7 @@ namespace JoD {
         if (mouseInput->GetRightButton().GetIsPressed()) {
             
             auto tile =
-                _<World>().GetCurrentWorldArea()->GetTile(
+                _<World>().GetCurrWorldArea()->GetTile(
                     tileHovering->GetHoveredCoordinate().value());
             
             m_clickedCoord = tileHovering->GetHoveredCoordinate().value();
@@ -70,7 +70,7 @@ namespace JoD {
                         {.label="Chop down tree", .action = [&] {
                                                                 auto tile =
                                                                     _<World>().
-                                                                    GetCurrentWorldArea()
+                                                                    GetCurrWorldArea()
                                                                     ->GetTile(
                                                                         m_clickedCoord);
                                                                 

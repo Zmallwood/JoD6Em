@@ -14,7 +14,7 @@ namespace JoD {
     
     void UpdateNPCs(Tile* tile, Point coord) {
         
-        auto worldArea = _<World>().GetCurrentWorldArea();
+        auto worldArea = _<World>().GetCurrWorldArea();
         
         auto npc = tile->GetNPC();
         
@@ -30,7 +30,7 @@ namespace JoD {
                                              npc
                                              ->
                                              GetMovementSpeed())))){
-                    auto reversePath = worldArea->m_roadPath.points;
+                    auto reversePath = worldArea->m_roadPath;
                     
                     std::reverse(reversePath.begin(), reversePath.end());
                     

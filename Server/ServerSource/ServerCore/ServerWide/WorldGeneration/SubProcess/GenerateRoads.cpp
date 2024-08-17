@@ -20,7 +20,7 @@ namespace JoD {
             Point startCoord;
             Point deltaStep;
             int numSteps;
-            RoadPath& roadPath;
+            std::vector<Point>& roadPath;
         };
         
         // Generate roads for a distance of tiles in the world area.
@@ -29,7 +29,7 @@ namespace JoD {
     
     void GenerateRoads(WorldArea* worldArea) {
         
-        RoadPath roadPath;
+        std::vector<Point> roadPath;
         
         // Start generating roads from top left corner of the world area.
         auto coord = Point {0, 0};
@@ -81,7 +81,7 @@ namespace JoD {
             // Iterate the provided distance of steps.
             for (auto i = 0; i < args.numSteps; i++) {
                 
-                args.roadPath.points.push_back(coord);
+                args.roadPath.push_back(coord);
                 
                 auto tile = args.worldArea->GetTile(coord);
                 
