@@ -117,7 +117,7 @@ void UpdateMoveCreatureGroups() {
                     
 // If tile is valid and not already contains a creature...
                     
-                    if (newTile && newTile->GetCreature() == nullptr) {
+                    if ((newX != pos.value().x || newY != pos.value().y) && newTile && newTile->GetCreature() == nullptr) {
                         
 // Move the creature here.
                         

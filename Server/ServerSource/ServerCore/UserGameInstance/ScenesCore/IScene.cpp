@@ -31,6 +31,8 @@ void IScene::OnEnter(UserID userID) {
         
         Initialize(userID);
     }
+    
+    OnEnterDerived(userID);
 }
 
 void IScene::Update(UserID userID) {
