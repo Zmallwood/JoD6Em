@@ -22,19 +22,14 @@ class NPC {
         m_isFollowingPath = isFollowingPath;
     }
     
-    TimePoint GetTimeLastMove() const {
+    float GetMoveSpd() const {
         
-        return m_timeLastMove;
+        return m_moveSpd;
     }
     
-    void SetTimeLastMove(TimePoint timeLastMove) {
+    Timer& GetTimerMove() {
         
-        m_timeLastMove = timeLastMove;
-    }
-    
-    float GetMS() const {
-        
-        return m_ms;
+        return m_timerMove;
     }
     
   private:
@@ -43,9 +38,9 @@ class NPC {
     
     bool m_isFollowingPath {false};
     
-    TimePoint m_timeLastMove {Now()};
+    float m_moveSpd {9.0f};
     
-    float m_ms {9.0f};
+    Timer m_timerMove;
 };
 
 }

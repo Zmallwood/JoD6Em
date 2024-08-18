@@ -14,6 +14,7 @@ namespace JoD {
 namespace ObjectFlags {
 
 inline static const int k_walkThrough = 1;         ///< Able to walk through the object.
+
 }
 
 }

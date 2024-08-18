@@ -43,3 +43,4 @@
 #include "Common/SDLDeleter.hpp"
 #include "CommonUtils.hpp"
 #include "CommonAliases.hpp"
+#include "Timer.hpp"

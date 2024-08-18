@@ -54,7 +54,7 @@ void MouseMovement::Update(UserID userID) {
             std::chrono::milliseconds(
                 static_cast<int>(1000/
                                  player->
-                                 GetMS())))){
+                                 GetMoveSpd())))){
         
         if (player->GetDestCoord().has_value()){
             

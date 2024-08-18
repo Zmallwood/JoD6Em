@@ -14,4 +14,5 @@ class Canvas : public QLabel {
     void mousePressEvent(QMouseEvent* event);
     
 };
+
 }

@@ -14,6 +14,7 @@ namespace JoD {
 class GUIInteractionMenu : public GUIComponent {
     
   public:
+    
     GUIInteractionMenu();
     
     void UpdateDerived(UserID userID) override;
@@ -21,6 +22,7 @@ class GUIInteractionMenu : public GUIComponent {
     void RenderDerived(UserID userID) const override;
     
   private:
+    
     BoxF GetBounds() const;
     
     // Members

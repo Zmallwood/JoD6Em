@@ -16,6 +16,7 @@ namespace JoD {
 namespace {
 
 const int k_tileSize {60};
+
 }
 
 Window::Window(QWidget *parent) {
@@ -182,4 +183,5 @@ void Window::ClickedItemInFileBrowser(const QModelIndex &index) {
         m_selectedImageHash = Hash(trimmedName);
     }
 }
+
 }

@@ -38,7 +38,7 @@ void CombatMovement::Update(UserID userID) {
                 Millis(
                     static_cast<int>(
                         1000/
-                        player->GetMS())))) {
+                        player->GetMoveSpd())))) {
             
             const auto dx = pos.x - player->GetCoord().x;
             const auto dy = pos.y - player->GetCoord().y;

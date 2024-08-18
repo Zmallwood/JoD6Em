@@ -119,9 +119,9 @@ class Player {
     ///
     /// @return float Player movement speed.
     ///
-    float GetMS() const {
+    float GetMoveSpd() const {
         
-        return m_ms;
+        return m_moveSpd;
     }
     
     ///
@@ -215,7 +215,7 @@ class Player {
     
     TimePoint m_timeLastMove {Now()};                ///< Last time the player moved one step.
     
-    float m_ms {5.0f};                               ///< Base movement speed.
+    float m_moveSpd {5.0f};                               ///< Base movement speed.
     
     int m_experience {0};                            ///< Player total experience amount.
     

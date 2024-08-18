@@ -123,4 +123,5 @@ void GenerateCreatureGroupOfType(GenerateCreatureGroupOfTypeArgs args) {
 }
 
 }
+
 }

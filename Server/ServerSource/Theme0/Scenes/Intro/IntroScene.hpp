@@ -18,8 +18,11 @@ class GUILabel;
 class IntroScene : public IScene {
     
   public:
+    
     ///
     /// Adds GUI components and components to the scene.
+    ///
+    /// @param userID User ID for which the scene belongs to.
     ///
     void Initialize(UserID userID) override;
     
@@ -29,15 +32,18 @@ class IntroScene : public IScene {
     using IScene::IScene;
     
   protected:
+    
     ///
     /// Update game logic.
+    ///
+    /// @param userID User ID for which the scene belongs to.
     ///
     void UpdateDerived(UserID userID) override;
     
     ///
     /// Render the scene to canvas.
     ///
-    /// @param webSocket Web socket object for user.
+    /// @param userID User ID for which the scene belongs to.
     ///
     void RenderDerived(UserID userID) const override;
     
@@ -45,7 +51,8 @@ class IntroScene : public IScene {
     
     // Members
     
-    std::shared_ptr<GUILabel> m_guiLabelStartText;
+    std::shared_ptr<GUILabel>
+    m_guiLabelStartText; ///< Show a blinking start text in the center of the canvas.
 };
 
 }

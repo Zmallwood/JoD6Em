@@ -10,6 +10,11 @@ namespace JoD {
 
 class Tile;
 
+///
+/// Update objects on a specific tile.
+/// 
+/// @param tile Tile containin the objects to update.
+///
 void UpdateObjects(Tile* tile);
 
 }

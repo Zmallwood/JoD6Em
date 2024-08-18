@@ -150,9 +150,9 @@ class Creature {
         m_timeLastMove = timeLastMove;
     }
     
-    float GetMS() const {
+    float GetMoveSpd() const {
         
-        return m_ms;
+        return m_moveSpd;
     }
     
     ConnectedObject* GetConnectedObject() const {
@@ -198,7 +198,7 @@ class Creature {
     
     TimePoint m_timeLastMove {Now()};
     
-    float m_ms {6.0f};
+    float m_moveSpd {6.0f};
 };
 
 }

@@ -33,7 +33,7 @@ void UpdateCreaturesPathFollowing(Tile* tile, Point coord) {
             Duration(
                 Millis(
                     static_cast<int>(1000/
-                                     creature->GetMS())))){
+                                     creature->GetMoveSpd())))){
             
             // Move it along the road path.
             MoveCreatureAlongRoadPath(tile, coord);
