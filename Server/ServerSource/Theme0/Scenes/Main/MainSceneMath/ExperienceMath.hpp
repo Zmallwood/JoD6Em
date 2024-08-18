@@ -8,16 +8,16 @@
 
 namespace JoD {
 
-int GetCurrLevel(int exp);
+int CalcCurrLevel(int exp);
 
-int GetExpForLevel(int level);
+int CalcExpForLevel(int level);
 
-int GetExpDiffToNextLevel(int exp);
+int CalcExpDiffToNextLevel(int exp);
 
-int GetExpReqForCurrLevelStart(int exp);
+int CalcExpReqForCurrLevelStart(int exp);
 
-int GetExpGainedSinceLevelStart(int exp);
+int CalcExpGainedSinceLevelStart(int exp);
 
-float GetFractionalExpProgress(int exp);
+float CalcFractionalExpProgress(int exp);
 
 }

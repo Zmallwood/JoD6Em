@@ -24,7 +24,7 @@ void GUIExpBar::UpdateDerived(UserID userID) {
     
     auto exp = player->GetExperience();
     
-    m_filledAmount = GetFractionalExpProgress(exp);
+    m_filledAmount = CalcFractionalExpProgress(exp);
 }
 
 void GUIExpBar::RenderDerived(UserID userID) const {
