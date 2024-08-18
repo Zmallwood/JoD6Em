@@ -38,11 +38,15 @@ class GUIPanel : public GUIComponent {
     ///
     /// @return BoxF Panel bounds.
     ///
-    BoxF GetBounds() const;
+    BoxF GetInnerBounds(UserID userID) const;
+    
+    BoxF GetOuterBounds() const;
     
     // Members
     
     SizeF m_size;     ///< Size of the panel in canvas.
+    
+    const float m_borderWidth {0.005f};
 };
 
 }

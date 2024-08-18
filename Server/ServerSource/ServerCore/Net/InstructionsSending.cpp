@@ -52,6 +52,41 @@ void SendImageDrawInstruction(
     webSocket->write(boost::asio::buffer(data));
 }
 
+void SendImageRepeatDrawInstruction(
+    UserID userID, std::string_view imageName,
+    BoxF dest, SizeF textureFillAmount) {
+        
+// Get websocket object for user.
+    auto webSocket = _<EngineGet>().GetWebSocket(userID);
+    
+// Use message code for drawing images.
+    const auto messageCode = MessageCodes::k_drawImageRepeatInstruction;
+    
+// Get destination rectangle values.
+    const auto x = (int)(dest.x * NetConstants::k_floatPrecision);
+    const auto y = (int)(dest.y * NetConstants::k_floatPrecision);
+    const auto w = (int)(dest.w * NetConstants::k_floatPrecision);
+    const auto h = (int)(dest.h * NetConstants::k_floatPrecision);
+    auto textureFillW = (int)(textureFillAmount.w * NetConstants::k_floatPrecision);
+    auto textureFillH = (int)(textureFillAmount.h * NetConstants::k_floatPrecision);
+    
+// To hold the data to send.
+    auto data = std::vector<int>();
+    
+// Fill data with content.
+    data.push_back(messageCode);
+    data.push_back(Hash(imageName));
+    data.push_back(x);
+    data.push_back(y);
+    data.push_back(w);
+    data.push_back(h);
+    data.push_back(textureFillW);
+    data.push_back(textureFillH);
+    
+// Send the data.
+    webSocket->write(boost::asio::buffer(data));
+}
+
 void SendTextDrawInstruction(
     UserID userID,
     std::string_view text,

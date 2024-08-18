@@ -24,6 +24,7 @@ constexpr int k_requestImageDimensions {8}; ///< Server request image dimensions
 constexpr int k_provideImageDimensions {9}; ///< Client provides requested image dimensions to server.
 constexpr int k_leftMouseUp {10};
 constexpr int k_rightMouseUp {11};
+constexpr int k_drawImageRepeatInstruction {12};
 
 }
 }

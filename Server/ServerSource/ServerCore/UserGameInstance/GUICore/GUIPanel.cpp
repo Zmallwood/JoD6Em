@@ -6,6 +6,7 @@
 
 #include "GUIPanel.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
 
@@ -15,13 +16,111 @@ GUIPanel::GUIPanel(BoxF bounds)
 void GUIPanel::RenderDerived(UserID userID) const {
     
 // Draw the background image.
-    SendImageDrawInstruction(userID, "GUIPanelBground", GetBounds());
+    SendImageRepeatDrawInstruction(
+        userID, "GUIPanelBground", GetInnerBounds(userID),
+        {m_size.w, m_size.w*m_size.h/m_size.w});
+    
+    auto boundsLeftBorder = BoxF {GetOuterBounds().x,
+                                  GetOuterBounds().y + m_borderWidth * _<EngineGet>().GetAspectRatio(userID).value(),
+                                  m_borderWidth,
+                                  GetOuterBounds().h - 2*m_borderWidth * _<EngineGet>().GetAspectRatio(userID).value()};
+    
+    SendImageRepeatDrawInstruction(
+        userID, "GUIBorderVertical", boundsLeftBorder,
+        {1.0f, boundsLeftBorder.h/boundsLeftBorder.w});
+    
+    auto boundsRightBorder = BoxF {GetOuterBounds().x + GetOuterBounds().w -
+                                   m_borderWidth,
+                                   GetOuterBounds().y + m_borderWidth * _<EngineGet>().GetAspectRatio(userID).value(),
+                                   m_borderWidth,
+                                   GetOuterBounds().h - 2*m_borderWidth * _<EngineGet>().GetAspectRatio(userID).value()};
+    
+    SendImageRepeatDrawInstruction(
+        userID, "GUIBorderVertical", boundsRightBorder,
+        {1.0f, boundsRightBorder.h/boundsRightBorder.w});
+    
+    auto boundsTopBorder = BoxF {GetOuterBounds().x + m_borderWidth,
+                                 GetOuterBounds().y,
+                                 GetOuterBounds().w - 2*m_borderWidth,
+                                 m_borderWidth * _<EngineGet>().GetAspectRatio(
+                                     userID).value()};
+    
+    SendImageRepeatDrawInstruction(
+        userID, "GUIBorderHorizontal", boundsTopBorder,
+        {boundsTopBorder.w/boundsTopBorder.h, 1.0f});
+    
+    auto boundsBottomBorder = BoxF {GetOuterBounds().x + m_borderWidth,
+                                    GetOuterBounds().y + GetOuterBounds().h -
+                                    m_borderWidth*
+                                    _<EngineGet>().GetAspectRatio(
+                                        userID).value(),
+                                    GetOuterBounds().w - 2*m_borderWidth,
+                                    m_borderWidth * _<EngineGet>().
+                                    GetAspectRatio(userID).value()};
+    
+    SendImageRepeatDrawInstruction(
+        userID, "GUIBorderHorizontal", boundsBottomBorder,
+        {boundsBottomBorder.w/boundsBottomBorder.h, 1.0f});
+    
+    
+    auto boundsTopLeftCorner = BoxF {GetOuterBounds().x,
+                                     GetOuterBounds().y,
+                                     m_borderWidth,
+                                     m_borderWidth * _<EngineGet>().
+                                     GetAspectRatio(userID).value()};
+    
+    SendImageDrawInstruction(
+        userID, "GUIBorderTopLeft", boundsTopLeftCorner);
+    
+    
+    auto boundsTopRightCorner = BoxF {GetOuterBounds().x + GetOuterBounds().w -
+                                      m_borderWidth,
+                                      GetOuterBounds().y,
+                                      m_borderWidth,
+                                      m_borderWidth * _<EngineGet>().
+                                      GetAspectRatio(userID).value()};
+    SendImageDrawInstruction(
+        userID, "GUIBorderTopRight", boundsTopRightCorner);
+    
+    
+    auto boundsBottomLeftCorner = BoxF {GetOuterBounds().x,
+                                        GetOuterBounds().y +
+                                        GetOuterBounds().h - m_borderWidth* _<EngineGet>().
+                                        GetAspectRatio(userID).value(),
+                                        m_borderWidth,
+                                        m_borderWidth * _<EngineGet>().
+                                        GetAspectRatio(userID).value()};
+    SendImageDrawInstruction(
+        userID, "GUIBorderBottomLeft", boundsBottomLeftCorner);
+    
+    
+    auto boundsBottomRightCorner = BoxF {GetOuterBounds().x +
+                                         GetOuterBounds().w - m_borderWidth,
+                                         GetOuterBounds().y+
+                                         GetOuterBounds().h - m_borderWidth* _<EngineGet>().
+                                         GetAspectRatio(userID).value(),
+                                         m_borderWidth,
+                                         m_borderWidth * _<EngineGet>().
+                                         GetAspectRatio(userID).value()};
+    SendImageDrawInstruction(
+        userID, "GUIBorderBottomRight", boundsBottomRightCorner);
 }
 
-BoxF GUIPanel::GetBounds() const {
+BoxF GUIPanel::GetInnerBounds(UserID userID) const {
     
 // Combine position and size to create bounds.
-    return {m_position.x, m_position.y, m_size.w, m_size.h};
+    return {m_position.x + m_borderWidth,
+            m_position.y + m_borderWidth *
+            _<EngineGet>().GetAspectRatio(userID).value(),
+            m_size.w - 2*m_borderWidth,
+            m_size.h - 2*m_borderWidth *
+            _<EngineGet>().GetAspectRatio(userID).value()};
+}
+
+BoxF GUIPanel::GetOuterBounds() const {
+    
+    return {m_position.x, m_position.y,
+            m_size.w, m_size.h};
 }
 
 }

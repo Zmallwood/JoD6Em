@@ -32,6 +32,10 @@ void SendImageDrawInstruction(
     int imageNamehash,
     BoxF dest);
 
+void SendImageRepeatDrawInstruction(
+    UserID userID, std::string_view imageName,
+    BoxF dest, SizeF textureFillAmount);
+
 ///
 /// Send a text drawing instruction to the user.
 ///
@@ -70,5 +74,5 @@ void SendRequestImageDimensions(
 void SendRequestImageDimensions(
     UserID userID,
     std::string_view imageName);
-    
+
 }

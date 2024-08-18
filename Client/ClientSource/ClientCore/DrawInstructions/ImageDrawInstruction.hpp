@@ -19,6 +19,10 @@ struct ImageDrawInstruction : public IDrawInstruction {
     int imageNameHash {0};     ///<Hash code of image name to draw.
     
     BoxF destination;          ///< Destination rectangle to draw the image at.
+    
+    bool repeatTexture;
+    
+    SizeF textureFillAmount;
 };
 
 }

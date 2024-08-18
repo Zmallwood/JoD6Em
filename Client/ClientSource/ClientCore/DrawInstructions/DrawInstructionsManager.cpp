@@ -29,7 +29,7 @@ DrawInstructionsManager::DrawInstructionsManager() {
 
 void DrawInstructionsManager::AddImageDrawInstruction(
     int imageNameHash,
-    BoxF destination) {
+    BoxF destination, bool repeatTexture, SizeF textureFillAmount) {
     
 // Create empty image draw instruction.
     auto newInstr = std::make_unique<ImageDrawInstruction>();
@@ -41,6 +41,8 @@ void DrawInstructionsManager::AddImageDrawInstruction(
         ++);
     newInstr->imageNameHash = imageNameHash;
     newInstr->destination = destination;
+    newInstr->repeatTexture = repeatTexture;
+    newInstr->textureFillAmount = textureFillAmount;
     
 // Add to inactive buffer.
     m_inactiveBuffer->push_back(std::move(newInstr));
@@ -94,7 +96,9 @@ void DrawInstructionsManager::ExecuteInstructions() const {
             _<ImageRenderer>().DrawImage(
                 casted->rid,
                 casted->imageNameHash,
-                casted->destination);
+                casted->destination,
+                casted->repeatTexture,
+                casted->textureFillAmount);
             
             break;
         }

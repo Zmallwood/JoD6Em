@@ -27,7 +27,9 @@ class DrawInstructionsManager {
     /// @param imageNameHash Hash code of image name to draw.
     /// @param destination Destination rectangle to draw the image at.
     ///
-    void AddImageDrawInstruction(int imageNameHash, BoxF destination);
+    void AddImageDrawInstruction(int imageNameHash, BoxF destination,
+                                 bool repeatTexture,
+                                 SizeF textureFillAmount = {1.0f, 1.0f});
     
     void AddTextDrawInstruction
         (std::string_view text, PointF position,

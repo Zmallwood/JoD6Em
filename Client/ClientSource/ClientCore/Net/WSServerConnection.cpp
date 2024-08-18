@@ -306,7 +306,34 @@ void ProcessIncomingMessage(unsigned char *bytes) {
         
 // Add the complete instruction.
         _<DrawInstructionsManager>().AddImageDrawInstruction(
-            imageNameHash, {x, y, w, h});
+            imageNameHash, {x, y, w, h}, false);
+        
+        break;
+    }
+    case MessageCodes::k_drawImageRepeatInstruction: {
+        
+// Next 4 bytes contains the image name hash code.
+        auto imageNameHash = ReadFourBytesAsInt(bytes + 4);
+        
+// Next 4 bytes contains the x coordinate.
+        auto x = ReadFourBytesAsFloat(bytes + 8);
+        
+// Next 4 bytes contains the y coordinate.
+        auto y = ReadFourBytesAsFloat(bytes + 12);
+        
+// Next 4 bytes contains the width.
+        auto w = ReadFourBytesAsFloat(bytes + 16);
+        
+// Next 4 bytes contains the height.
+        auto h = ReadFourBytesAsFloat(bytes + 20);
+        
+        auto textureFillW = ReadFourBytesAsFloat(bytes + 24);
+        
+        auto textureFillH = ReadFourBytesAsFloat(bytes + 28);
+        
+// Add the complete instruction.
+        _<DrawInstructionsManager>().AddImageDrawInstruction(
+            imageNameHash, {x, y, w, h}, true, {textureFillW, textureFillH});
         
         break;
     }

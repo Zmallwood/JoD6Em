@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     try{
         
 // Run new instance of the game.
-        JoD::RunNewClientInstance();
+        JoD::RunNewClientInstance();  
     }
     catch (const std::exception &e){
         
@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 // An exception occured, exit game.
         return EXIT_FAILURE;
     }
-    
-// No exceptions occured.
-    return EXIT_SUCCESS;
+     
+// No exceptions occured. 
+    return EXIT_SUCCESS; 
 }
