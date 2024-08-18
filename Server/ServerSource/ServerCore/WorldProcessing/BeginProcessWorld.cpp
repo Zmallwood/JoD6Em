@@ -46,30 +46,37 @@ void RunWorldProcessingLoop() {
     
     while (true) {
         
+        try {
+            
 // If time to process world...
-        
-        if (Now() > timeLastUpdate + updateInterval) {
             
-            timeLastUpdate = Now();
-            
-// Move creature groups randomly around the worl darea.
-            
-            UpdateMoveCreatureGroups();
-            
-            auto worldArea = _<World>().GetCurrWorldArea();
-            
-// Update tiles in whole world area.
-            
-            for (auto y = 0; y < worldArea->GetSize().h; y++) {
+            if (Now() > timeLastUpdate + updateInterval) {
                 
-                for (auto x = 0; x < worldArea->GetSize().w; x++) {
+                timeLastUpdate = Now();
+                
+// Move creature groups randomly around the worl darea.
+                
+                UpdateMoveCreatureGroups();
+                
+                auto worldArea = _<World>().GetCurrWorldArea();
+                
+// Update tiles in whole world area.
+                
+                for (auto y = 0; y < worldArea->GetSize().h; y++) {
                     
-                    UpdateTile({x, y});
+                    for (auto x = 0; x < worldArea->GetSize().w; x++) {
+                        
+                        UpdateTile({x, y});
+                    }
                 }
             }
+            
+            std::this_thread::sleep_for(std::chrono::milliseconds(70));
         }
-        
-        std::this_thread::sleep_for(std::chrono::milliseconds(70));
+        catch (const std::exception& ex) {
+            
+            std::cout << std::string("Exception in BeginProcessWorld(): ") + ex.what() << std::endl;
+        }
     }
 }
 }
