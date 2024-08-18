@@ -34,7 +34,7 @@ class MainScene : public IScene {
     ///
     void Initialize(UserID userID) override;
     
-    void OnEnter(UserID userID) override;
+    void OnEnterDerived(UserID userID) override;
     
     ///
     /// Update game logic.

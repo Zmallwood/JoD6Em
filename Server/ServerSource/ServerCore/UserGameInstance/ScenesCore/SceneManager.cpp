@@ -44,9 +44,6 @@ void SceneManager::AddScene(
     std::string_view sceneName,
     std::unique_ptr<IScene> scene) {
     
-// Initialize scene.
-    scene->Initialize(userID);
-    
 // And store it by the hash code of the scene name as key.
     m_pImpl->scenes.insert({Hash(sceneName), std::move(scene)});
 }

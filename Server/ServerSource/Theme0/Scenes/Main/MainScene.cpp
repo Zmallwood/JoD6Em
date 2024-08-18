@@ -17,6 +17,7 @@
 #include "MainSceneGUI/InteractionMenu/GUIInteractionMenu.hpp"
 #include "ServerCore/UserGameInstance/TextOutput/TextMessages.hpp"
 #include "ServerCore/UserGameInstance/GUICore/GUI.hpp"
+#include "ServerCore/UserGameInstance/GUICore/GUIButton.hpp"
 #include "SubProcess/IMainSceneComponent.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
@@ -33,6 +34,22 @@ MainScene::MainScene() :
 MainScene::~MainScene() {}
 
 void MainScene::Initialize(UserID userID) {
+    
+    GetGUI()->AddComponent<GUIButton>(
+        BoxF{0.96f, 0.89f, 0.03f, 0.03f * _<EngineGet>().GetAspectRatio(userID).value()}, "", [=] {}, "GUIButtonSystem",
+        "GUIButtonSystemHovered");
+    
+    GetGUI()->AddComponent<GUIButton>(
+        BoxF{0.92f, 0.89f, 0.03f, 0.03f * _<EngineGet>().GetAspectRatio(userID).value()}, "", [=] {}, "GUIButtonSkills",
+        "GUIButtonSkillsHovered");
+    
+    GetGUI()->AddComponent<GUIButton>(
+        BoxF{0.88f, 0.89f, 0.03f, 0.03f * _<EngineGet>().GetAspectRatio(userID).value()}, "", [=] {}, "GUIButtonInventory",
+        "GUIButtonInventoryHovered");
+    
+    GetGUI()->AddComponent<GUIButton>(
+        BoxF{0.84f, 0.89f, 0.03f, 0.03f * _<EngineGet>().GetAspectRatio(userID).value()}, "", [=] {}, "GUIButtonCharacter",
+        "GUIButtonCharacterHovered");
     
     GetGUI()->AddComponent<GUITextConsole>();
     
@@ -67,7 +84,7 @@ void MainScene::Initialize(UserID userID) {
          std::make_unique<Combat>() });
 }
 
-void MainScene::OnEnter(UserID userID) {
+void MainScene::OnEnterDerived(UserID userID) {
     
     std::cout << "User " << userID << " entered MainScene\n";
     

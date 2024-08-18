@@ -12,6 +12,8 @@ namespace JoD {
 struct IScene::Impl {
     
     std::unique_ptr<JoD::GUI> gui; // A single GUI for every scene.
+    
+    bool initialized {false};
 };
 
 IScene::IScene()
@@ -22,6 +24,14 @@ IScene::IScene()
 }
 
 IScene::~IScene() {}
+
+void IScene::OnEnter(UserID userID) {
+    
+    if (!m_pImpl->initialized) {
+        
+        Initialize(userID);
+    }
+}
 
 void IScene::Update(UserID userID) {
     

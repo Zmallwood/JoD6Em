@@ -19,10 +19,10 @@ class GUIButton : public GUIComponent {
     
     //////
     /// Construct a new GUIButton object
-    /// 
-    /// @param bounds 
-    /// @param text 
-    /// @param action 
+    ///
+    /// @param bounds
+    /// @param text
+    /// @param action
     ///
     ///
     /// @param bounds Area in which the button will be rendered and is clickable.
@@ -30,7 +30,9 @@ class GUIButton : public GUIComponent {
     /// @param action Action to perform when the button is clicked.
     ///
     GUIButton(BoxF bounds, std::string_view text,
-              std::function<void()> action);
+              std::function<void()> action,
+              std::string_view imageNameDefault = "GUIButtonBground",
+              std::string_view imageNameHovered = "GUIButtonHoveredBground");
     
     ///
     /// Update hovered status and check if button has been clicked.
@@ -57,17 +59,17 @@ class GUIButton : public GUIComponent {
     
     // Members
     
-    std::string m_text;                                                   ///< Text label that is drawn on top of button image.
+    std::string m_text;                                             ///< Text label that is drawn on top of button image.
     
-    SizeF m_size;                                                         ///< Size of button.
+    SizeF m_size;                                                   ///< Size of button.
     
-    std::function<void()> m_action;                                       ///< Action to be performed when the button is clicked.
+    std::function<void()> m_action;                                 ///< Action to be performed when the button is clicked.
     
-    bool m_hovered {false};                                               ///< Holds the hovered state of the button.
+    bool m_hovered {false};                                         ///< Holds the hovered state of the button.
     
-    const std::string k_imageNameDefault {"GUIButtonBground"};            ///< Image to draw when button is not hovered.
+    std::string m_imageNameDefault;            ///< Image to draw when button is not hovered.
     
-    const std::string k_imageNameHovered {"GUIButtonHoveredBground"};     ///< Image to draw when button is hovered.
+    std::string m_imageNameHovered;     ///< Image to draw when button is hovered.
 };
 
 }

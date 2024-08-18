@@ -55,6 +55,46 @@ void RenderGround(
         ground,
         tileBounds);
     
+    if (tile->GetGround() == Hash("GroundWater")) {
+        
+        
+        if (tileW && tileW->GetGround() != Hash("GroundWater")) {
+            
+            SendImageDrawInstruction(
+                userID,
+                "EdgeW",
+                tileBounds);
+        }
+        
+        
+        if (tileN && tileN->GetGround() != Hash("GroundWater")) {
+            
+            SendImageDrawInstruction(
+                userID,
+                "EdgeN",
+                tileBounds);
+        }
+    }
+    else {
+        
+        if (tileW && tileW->GetGround() == Hash("GroundWater")) {
+            
+            SendImageDrawInstruction(
+                userID,
+                "EdgeW",
+                tileBounds);
+        }
+        
+        
+        if (tileN && tileN->GetGround() == Hash("GroundWater")) {
+            
+            SendImageDrawInstruction(
+                userID,
+                "EdgeN",
+                tileBounds);
+        }
+    }
+    
     auto groundCover = tile->GetGroundCover();
     
     if (groundCover) {
@@ -72,7 +112,7 @@ void RenderGround(
             
             SendImageDrawInstruction(
                 userID,
-                "ElevationW",
+                "EdgeW",
                 tileBounds);
         }
     }
@@ -84,7 +124,7 @@ void RenderGround(
             
             SendImageDrawInstruction(
                 userID,
-                "ElevationN",
+                "EdgeN",
                 tileBounds);
         }
     }

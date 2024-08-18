@@ -7,6 +7,7 @@
 #include "GUIInteractionMenu.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
+#include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
 #include "ServerCore/UserGameInstance/ScenesCore/SceneManager.hpp"
 #include "Theme0/Scenes/Main/SubProcess/MainSceneComponents.hpp"
@@ -49,7 +50,7 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
         auto tile =
             _<World>().GetCurrWorldArea()->GetTile(
                 tileHovering->GetHoveredCoordinate().value());
-                
+        
 // Save clicked coordinate.
         
         m_clickedCoord = tileHovering->GetHoveredCoordinate().value();
@@ -62,7 +63,7 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
             
             return;
         }
-
+        
 // Make the menu appear at the clicked mouse position on the canvas.
         
         m_position = mousePosition;
@@ -87,7 +88,7 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
             
             if (object->GetType() == Hash("ObjectTree1") ||
                 object->GetType() == Hash("ObjectTree2")){
-                    
+                
 // Add a chop down action to the menu.
                 
                 m_menuEntries.push_back(
@@ -95,7 +96,7 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
                      .bounds = {m_position.x,
                                 m_position.y + menuEntryIndex*k_menuRowHeight,
                                 m_size.w, k_menuRowHeight}});
-                                
+                
 // Increase added entries counter.
                 
                 menuEntryIndex++;
@@ -103,19 +104,25 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
         }
     }
     
-// If left mouse button is pressed...
+    auto leftButtonPressed = mouseInput->GetLeftButton().GetIsPressed();
     
-    if (mouseInput->GetLeftButton().GetIsPressed()) {
-        
+    
 // Loop over all current menu entries in the menu.
+    
+    for (auto menuEntry: m_menuEntries) {
         
-        for (auto menuEntry: m_menuEntries) {
-            
-            auto bounds = menuEntry.bounds;
-            
+        auto bounds = menuEntry.bounds;
+        
 // If mosue is hovered over one of the entries...
+        
+        if (bounds.Contains(mousePosition)) {
             
-            if (bounds.Contains(mousePosition)) {
+            _<EngineGet>().GetCursor(userID)->SetCursorType(
+                CursorTypes::Hovering);
+            
+            // If left mouse button is pressed...
+            
+            if (leftButtonPressed) {
                 
 // Perform its action.
                 
@@ -123,7 +130,9 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
             }
         }
         
-// Disable menu.
+    }
+    
+    if (leftButtonPressed) {
         
         m_active = false;
     }
@@ -145,7 +154,7 @@ void GUIInteractionMenu::RenderDerived(UserID userID) const {
 // Start rendering menu rows at menus top left corner position.
     
     auto linePos = m_position;
-
+    
 // Loop over all current menu entries.
     
     for (auto menuEntry : m_menuEntries) {

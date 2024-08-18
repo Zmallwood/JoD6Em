@@ -39,7 +39,9 @@ class IScene {
     ///
     /// @param userID User ID for which the scene belongs to.
     ///
-    virtual void OnEnter(UserID userID) {}
+    void OnEnter(UserID userID);
+    
+    virtual void OnEnterDerived(UserID userID) {}
     
     ///
     /// Called each frame in the user engines game loop.

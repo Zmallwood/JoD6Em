@@ -14,9 +14,13 @@
 namespace JoD {
 
 GUIButton::GUIButton(BoxF bounds, std::string_view text,
-                     std::function<void()> action)
+                     std::function<void()> action,
+                     std::string_view imageNameDefault,
+                     std::string_view imageNameHovered)
     :  m_text(text), GUIComponent(bounds.GetPosition()),
-    m_size(bounds.GetSize()), m_action(action) {}
+    m_size(bounds.GetSize()), m_action(action),
+    m_imageNameDefault(imageNameDefault),
+    m_imageNameHovered(imageNameHovered) { }
 
 void GUIButton::UpdateDerived(UserID userID) {
     
@@ -49,7 +53,7 @@ void GUIButton::RenderDerived(UserID userID) const {
     
 // Get right button image.
     std::string imageName =
-        m_hovered ? k_imageNameHovered : k_imageNameDefault;
+        m_hovered ? m_imageNameHovered : m_imageNameDefault;
     
 // Draw button image.
     SendImageDrawInstruction(userID, imageName, GetBounds());;
