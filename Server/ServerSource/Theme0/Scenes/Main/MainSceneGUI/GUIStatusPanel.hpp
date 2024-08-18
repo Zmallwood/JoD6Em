@@ -10,21 +10,32 @@
 
 namespace JoD {
 
+///
+/// A GUI component on canvas which shows basic information about the player.
+///
 class GUIStatusPanel : public GUIPanel {
     
   public:
     
+    ///
+    /// Construct a new GUIStatusPanel object
+    ///
     GUIStatusPanel();
     
+    ///
+    /// Render the panel in the top left corner of the canvas.
+    ///
+    /// @param userID User ID for which user the panel belongs to.
+    ///
     void RenderDerived(UserID userID) const override;
     
   private:
     
     // Members
     
-    static constexpr float k_width {0.15f};
+    static constexpr float k_width {0.15f};  ///< Width of the panel.
     
-    static constexpr float k_height {0.12f};
+    static constexpr float k_height {0.12f}; ///< Height of the panel.
 };
 
 }
