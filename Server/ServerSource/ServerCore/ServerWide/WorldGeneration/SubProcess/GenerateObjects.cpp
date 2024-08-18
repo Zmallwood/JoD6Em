@@ -37,11 +37,11 @@ void GenerateObjects(WorldArea* worldArea) {
     
     GenerateObjectOfType(
         {.worldArea = worldArea,
-         .objectName = "ObjectTree1", .amount = 300});
+         .objectName = "ObjectTree1", .amount = 2000});
     
     GenerateObjectOfType(
         {.worldArea = worldArea,
-         .objectName = "ObjectTree2", .amount = 200});
+         .objectName = "ObjectTree2", .amount = 2000});
     
     GenerateObjectOfType(
         {.worldArea = worldArea,
