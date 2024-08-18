@@ -8,19 +8,18 @@
 #include "WorldArea.hpp"
 #include "Tile.hpp"
 #include "NPC.hpp"
-#include "Configuration/GameProperties.hpp"
 
 namespace JoD {
 
 void GenerateNPCs(WorldArea* worldArea) {
     
-    // Current tile step.
+// Current tile step.
     auto tileStep = 0;
     
-    // Shift the tiles on which the NPCs are created.
+// Shift the tiles on which the NPCs are created.
     auto tileStepOffset = 12;
     
-    // Create NPC every x:th tile.
+// Create NPC every x:th tile.
     auto npcCreationInterval = 18;
     
     for (auto y = 0; y < worldArea->GetSize().h; y++) {
@@ -30,12 +29,12 @@ void GenerateNPCs(WorldArea* worldArea) {
             
             auto tile = worldArea->GetTile(x,y);
             
-            // Check if current tile is of road type.
+// Check if current tile is of road type.
             if (tile->GetGround() == Hash("GroundSlabs")
                 || tile->GetGround() == Hash("GroundTrail")
                 || tile->GetGround() == Hash("Bridge")) {
                 
-                // Only create NPC with an interval equal to npcCreationInterval.
+// Only create NPC with an interval equal to npcCreationInterval.
                 if (tileStep % npcCreationInterval ==
                     tileStepOffset) {
                     

@@ -12,23 +12,23 @@ bool ShaderProgram::Create(
     const GLchar *vertexShaderSource,
     const GLchar *fragmentShaderSource) {
     
-    // To hold the shader IDs.
+// To hold the shader IDs.
     GLuint vertexShader = 0;
     GLuint fragmentShader = 0;
     
-    // Create GL program.
+// Create GL program.
     m_programID = glCreateProgram();
     
     auto success = true;
     
     {
-        // Compile vertex shader.
+// Compile vertex shader.
         const auto vertexShaderRes = CompileShader(
             vertexShaderSource,
             &vertexShader,
             GL_VERTEX_SHADER);
         
-        // Check for errors.
+// Check for errors.
         if (vertexShaderRes != GL_TRUE){
             
             std::cout << "Unable to compile vertex shader.\n";
@@ -36,19 +36,19 @@ bool ShaderProgram::Create(
         }
     }
     
-    // If previous steps were successful, continue.
+// If previous steps were successful, continue.
     if (success){
         
-        // Attach compiled vertex shader to GL program.
+// Attach compiled vertex shader to GL program.
         glAttachShader(m_programID, vertexShader);
         
-        // Compile fragment shader.
+// Compile fragment shader.
         const auto fragmentShaderRes = CompileShader(
             fragmentShaderSource,
             &fragmentShader,
             GL_FRAGMENT_SHADER);
         
-        // Check for errors.
+// Check for errors.
         if (fragmentShaderRes != GL_TRUE){
             
             std::cout << "Unable to compile fragment shader.\n";
@@ -56,16 +56,16 @@ bool ShaderProgram::Create(
         }
     }
     
-    // If previous steps were successful, continue.
+// If previous steps were successful, continue.
     if (success){
         
-        // Attach fragment shader to GP program.
+// Attach fragment shader to GP program.
         glAttachShader(m_programID, fragmentShader);
         
-        // Link the GL program with attached vertex and fragment shaders.
+// Link the GL program with attached vertex and fragment shaders.
         glLinkProgram(m_programID);
         
-        // Check for errors.
+// Check for errors.
         GLint programSuccess = GL_TRUE;
         
         glGetProgramiv(
@@ -80,7 +80,7 @@ bool ShaderProgram::Create(
         }
     }
     
-    // Delete shader resources now that they are linked into the GL program.
+// Delete shader resources now that they are linked into the GL program.
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
     
@@ -89,7 +89,7 @@ bool ShaderProgram::Create(
 
 void ShaderProgram::Cleanup() const {
     
-    // Delete GL program.
+// Delete GL program.
     glDeleteProgram(m_programID);
 }
 
@@ -98,16 +98,16 @@ GLuint ShaderProgram::CompileShader(
     GLuint *out_shader,
     GLenum shader_type) const {
     
-    // Create shader object.
+// Create shader object.
     *out_shader = glCreateShader(shader_type);
     
-    // Apply shader sources.
+// Apply shader sources.
     glShaderSource(*out_shader, 1, &shader_source, NULL);
     
-    // Compile it.
+// Compile it.
     glCompileShader(*out_shader);
     
-    // Check for compilation errors.
+// Check for compilation errors.
     GLint shaderCompiled = GL_FALSE;
     glGetShaderiv(*out_shader, GL_COMPILE_STATUS, &shaderCompiled);
     

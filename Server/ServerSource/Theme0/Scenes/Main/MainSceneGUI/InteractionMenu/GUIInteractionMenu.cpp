@@ -66,45 +66,27 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
             if (object->GetType() == Hash("ObjectTree1") ||
                 object->GetType() == Hash("ObjectTree2")){
                 
+                auto chopAction =
+                    [&] (Point clickedCoord) {
+                        auto tile =
+                            _<World>().GetCurrWorldArea()->GetTile(
+                                clickedCoord);
+                        
+                        for (auto object : tile->GetObjectsPile().GetObjects()){
+                            
+                            if (object->GetType() == Hash("ObjectTree1") ||
+                                object->GetType() == Hash("ObjectTree2")){
+                                
+                                tile->GetObjectsPile().RemoveObject(object);
+                                tile->GetObjectsPile().AddObject("ObjectFelledTree");
+                                
+                                break;
+                            }
+                        }
+                    };
+                
                 m_menuEntries.push_back(
-                    {.label="Chop down tree", .action = [&] {
-                                                            auto tile =
-                                                                _<World>().
-                                                                GetCurrWorldArea()
-                                                                ->GetTile(
-                                                                    m_clickedCoord);
-                                                            
-                                                            for (auto object
-                                                                 : tile->
-                                                                 GetObjectsPile()
-                                                                 .GetObjects()){
-                                                                
-                                                                if (object->
-                                                                    GetType()
-                                                                    == Hash(
-                                                                        "ObjectTree1")
-                                                                    ||
-                                                                    object->
-                                                                    GetType()
-                                                                    == Hash(
-                                                                        "ObjectTree2"))
-                                                                {
-                                                                    tile->
-                                                                    GetObjectsPile()
-                                                                    .
-                                                                    RemoveObject
-                                                                    (
-                                                                        object);
-                                                                    tile->
-                                                                    GetObjectsPile()
-                                                                    .
-                                                                    AddObject
-                                                                    (
-                                                                        "ObjectFelledTree");
-                                                                    break;
-                                                                }
-                                                            }
-                                                        },
+                    {.label="Chop down tree", .action = chopAction,
                      .bounds = {m_position.x,
                                 m_position.y + menuEntryIndex*k_menuRowHeight,
                                 m_size.w, k_menuRowHeight}});
@@ -127,7 +109,7 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
             
             if (bounds.Contains(mousePosition)) {
                 
-                menuEntry.action();
+                menuEntry.action(m_clickedCoord);
             }
         }
         

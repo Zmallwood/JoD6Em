@@ -12,7 +12,7 @@ struct MenuEntry {
     
     std::string label;
     
-    std::function<void()> action;
+    std::function<void(Point)> action;
     
     BoxF bounds;
 };

@@ -14,13 +14,13 @@ GUIPanel::GUIPanel(BoxF bounds)
 
 void GUIPanel::RenderDerived(UserID userID) const {
     
-    // Draw the background image.
+// Draw the background image.
     SendImageDrawInstruction(userID, "GUIPanelBground", GetBounds());
 }
 
 BoxF GUIPanel::GetBounds() const {
     
-    // Combine position and size to create bounds.
+// Combine position and size to create bounds.
     return {m_position.x, m_position.y, m_size.w, m_size.h};
 }
 

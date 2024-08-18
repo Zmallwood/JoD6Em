@@ -16,7 +16,7 @@ GUILabel::GUILabel(PointF position, std::string_view text,
 
 void GUILabel::RenderDerived(UserID userID) const {
     
-    // Draw the labels text to canvas.
+// Draw the labels text to canvas.
     SendTextDrawInstruction(userID, m_text, m_position, m_centerAligned);
 }
 

@@ -13,7 +13,7 @@ namespace JoD {
 
 void GenerateCastleYard(WorldArea* worldArea) {
     
-    // Create cobble stone ground type.
+// Create cobble stone ground type.
     
     for (auto y = 0; y < 25; y++) {
         
@@ -26,7 +26,7 @@ void GenerateCastleYard(WorldArea* worldArea) {
         }
     }
     
-    // Create castle walls to the east.
+// Create castle walls to the east.
     
     for (auto y = 0; y < 24; y++) {
         
@@ -35,7 +35,7 @@ void GenerateCastleYard(WorldArea* worldArea) {
         tile->GetObjectsPile().AddObject("ObjectCastleWallE");
     }
     
-    // Create castle walls to the south.
+// Create castle walls to the south.
     
     for (auto x = 0; x < 24; x++) {
         

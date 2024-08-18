@@ -8,7 +8,6 @@
 #include "WorldArea.hpp"
 #include "Tile.hpp"
 #include "ObjectsPile.hpp"
-#include "Configuration/GameProperties.hpp"
 
 namespace JoD {
 
@@ -31,10 +30,10 @@ void GenerateGrassOverWholeWorldArea(WorldArea* worldArea);
 
 void GenerateObjects(WorldArea* worldArea) {
     
-    // Add grass.
+// Add grass.
     GenerateGrassOverWholeWorldArea(worldArea);
     
-    // Generate certain amount of objects of different types.
+// Generate certain amount of objects of different types.
     
     GenerateObjectOfType(
         {.worldArea = worldArea,
@@ -59,7 +58,7 @@ void GenerateObjectOfType(GenerateObjectOfTypeArgs args) {
     
     for (auto i = 0; i < args.amount; i++) {
         
-        // Randomize coordinate for new object.
+// Randomize coordinate for new object.
         
         const auto x =
             rand() %
@@ -71,13 +70,13 @@ void GenerateObjectOfType(GenerateObjectOfTypeArgs args) {
         
         const auto ground = args.worldArea->GetTile(x, y)->GetGround();
         
-        // Dont add objects on water or roads.
+// Dont add objects on water or roads.
         if (ground != Hash("GroundWater") &&
             ground != Hash("GroundCobbleStone") &&
             ground != Hash("GroundBridge") &&
             ground != Hash("GroundRock")) {
             
-            // Add the object to the tile.
+// Add the object to the tile.
             args.worldArea->GetTile(
                 x,
                 y)->GetObjectsPile().AddObject(args.objectName);
@@ -87,14 +86,14 @@ void GenerateObjectOfType(GenerateObjectOfTypeArgs args) {
 
 void GenerateGrassOverWholeWorldArea(WorldArea* worldArea) {
     
-    // Loop over whole world area.
+// Loop over whole world area.
     
     for (auto y = 0; y < worldArea->GetSize().h; y++){
         
         for (auto x = 0; x < worldArea->GetSize().w;
              x++) {
             
-            // Only add grass object on ground of grass type.
+// Only add grass object on ground of grass type.
             if (worldArea->GetTile(
                     x,
                     y)->GetGround() ==

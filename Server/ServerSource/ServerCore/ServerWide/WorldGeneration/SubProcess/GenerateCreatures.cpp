@@ -16,12 +16,12 @@ namespace {
 // Sent as argument to creature group generation function.
 struct GenerateCreatureGroupOfTypeArgs {
     
-    WorldArea* worldArea;             // World area to generate creatures in.
-    std::string creatureName;         // Name of creature to generate.
-    int numGroups;                    // Number of groups of the creature type to generate.
-    int numCreaturesInGroup;          // Number of creatures in one generated group.
-    Box area;                         // Area in the world area where the groups will be spawned.
-    int creatureLevel;                // Level of creatures that are generated, determines how strong they area.
+    WorldArea* worldArea;     // World area to generate creatures in.
+    std::string creatureName; // Name of creature to generate.
+    int numGroups;            // Number of groups of the creature type to generate.
+    int numCreaturesInGroup;  // Number of creatures in one generated group.
+    Box area;                 // Area in the world area where the groups will be spawned.
+    int creatureLevel;        // Level of creatures that are generated, determines how strong they area.
 };
 
 void GenerateCreatureGroupOfType(GenerateCreatureGroupOfTypeArgs args);
@@ -30,8 +30,8 @@ void GenerateCreatureGroupOfType(GenerateCreatureGroupOfTypeArgs args);
 
 void GenerateCreatures(WorldArea* worldArea) {
     
-    // Generate different kind of creatures at different parts of the world area,
-    // cows are generated all over the world area.
+// Generate different kind of creatures at different parts of the world area,
+// cows are generated all over the world area.
     
     GenerateCreatureGroupOfType(
         {.worldArea = worldArea, .creatureName="CreatureBlueSlime",
@@ -58,39 +58,39 @@ namespace {
 
 void GenerateCreatureGroupOfType(GenerateCreatureGroupOfTypeArgs args) {
     
-    // Loop for each group to generate.
+// Loop for each group to generate.
     for (auto i = 0; i < args.numGroups; i++) {
         
-        // Get center point of the group.
+// Get center point of the group.
         const auto xCenter = rand() % args.area.w + args.area.x;
         const auto yCenter = rand() % args.area.h + args.area.y;
         
-        // Create new group.
+// Create new group.
         CreatureGroup creatureGroup;
         
-        // Set its center coordinate.
+// Set its center coordinate.
         creatureGroup.m_coord = {xCenter, yCenter};
         
-        // Loop for each creature to spawn.
+// Loop for each creature to spawn.
         for (auto j = 0; j < args.numCreaturesInGroup; j++) {
             
-            // Place it randomly around the group center coordinate.
+// Place it randomly around the group center coordinate.
             const auto x = xCenter + rand() % 5 - rand() % 5;
             const auto y = yCenter + rand() % 5 - rand() % 5;
             
-            // Dont spawn creatures outside the world area.
+// Dont spawn creatures outside the world area.
             if (!args.worldArea->IsValidCoord({x,y})) {
                 
                 continue;
             }
             
-            // Dont spawn on top of another already existing creature.
+// Dont spawn on top of another already existing creature.
             if (args.worldArea->GetTile(x, y)->GetCreature()) {
                 
                 continue;
             }
             
-            // Dont spawn creatures in the water.
+// Dont spawn creatures in the water.
             if (args.worldArea->GetTile(
                     x,
                     y)->GetGround() ==
@@ -99,25 +99,25 @@ void GenerateCreatureGroupOfType(GenerateCreatureGroupOfTypeArgs args) {
                 continue;
             }
             
-            // Creature a new creature object.
+// Creature a new creature object.
             const auto newCreature =
                 std::make_shared<Creature>(
                     args.creatureName,
                     args.creatureLevel);
             
-            // Add it to the group.
+// Add it to the group.
             creatureGroup.m_creatures.push_back(newCreature);
             
-            // Register the creatures position to the world area.
+// Register the creatures position to the world area.
             args.worldArea->RegisterCreaturePosition(
                 newCreature,
                 {x, y});
             
-            // Add the new creature object to the tile its located at.
+// Add the new creature object to the tile its located at.
             args.worldArea->GetTile(x, y)->SetCreature(newCreature);
         }
         
-        // Add the created creature group to the world area.
+// Add the created creature group to the world area.
         args.worldArea->m_creatureGroups.push_back(creatureGroup);
     }
 }

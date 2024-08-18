@@ -17,13 +17,13 @@ void UpdateAnimalsEating(Tile* tile) {
     
     for (auto object : objects) {
         
-        // Find grass object on ground.
+// Find grass object on ground.
         if (object->GetType() == Hash("ObjectGrass")) {
             
-            // Reduce its durability, as the creature is eating from it.
+// Reduce its durability, as the creature is eating from it.
             object->SetDurability(object->GetDurability() - 1.0f);
             
-            // Remove it if durability reaches zero.
+// Remove it if durability reaches zero.
             if (object->GetDurability() <= 0.0f) {
                 
                 tile->GetObjectsPile().RemoveObject(object);

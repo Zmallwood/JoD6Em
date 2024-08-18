@@ -10,7 +10,7 @@ namespace JoD {
 
 struct GameProperties::Impl {
     
-    const int k_numGridRows {11};              // Number of rows in tile grid in world view.
+    const int k_numGridRows {11}; // Number of rows in tile grid in world view.
 };
 
 GameProperties::GameProperties()

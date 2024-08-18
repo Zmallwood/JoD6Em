@@ -14,35 +14,35 @@ namespace JoD {
 
 namespace {
 
-int locNoPixelEffect {-1};                            // Location of pixelation effect switch variable in vertex shader.
+int locNoPixelEffect {-1};                    // Location of pixelation effect switch variable in vertex shader.
 
-std::vector<int> defaultIndices;                      // To hold the default set of indices for 2D image rendering.
+std::vector<int> defaultIndices;              // To hold the default set of indices for 2D image rendering.
 
-const std::vector<float> k_defaultColorsWhite         // A set of floats representing the default white image color.
+const std::vector<float> k_defaultColorsWhite // A set of floats representing the default white image color.
     =  std::vector<float>(
           16,
           1.0f);
     
-const std::vector<float> k_defaultUVs                 // A set of floats representing a default UV coordinates layout for an image.
+const std::vector<float> k_defaultUVs         // A set of floats representing a default UV coordinates layout for an image.
 {0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f};
 
-constexpr int k_locPosition {0};                      // Location of position variable in vertex shader.
+constexpr int k_locPosition {0};              // Location of position variable in vertex shader.
 
-constexpr int k_locColor {1};                         // Location of color variable in vertex shader.
+constexpr int k_locColor {1};                 // Location of color variable in vertex shader.
 
-constexpr int k_locUV {2};                            // Location of UV variable in vertex shader.
+constexpr int k_locUV {2};                    // Location of UV variable in vertex shader.
 }
 
 ImageRenderer::ImageRenderer() {
     
-    // Create shader program.
+// Create shader program.
     GetShaderProgram()->Create(
         g_defaultShaderImagesVertex,
         g_defaultShaderImagesFragment);
     
     // m_locNoPixelEffect = GetUniformLocation("noPixelEffect");
     
-    // Create indices for the vertices.
+// Create indices for the vertices.
     defaultIndices = std::vector<int>(
         MathConstants::k_numVerticesInRectangle);
     
@@ -51,25 +51,25 @@ ImageRenderer::ImageRenderer() {
 
 ImageRenderer::~ImageRenderer() {
     
-    // Delete allocated resources for the renderer.
+// Delete allocated resources for the renderer.
     CleanupBase();
 }
 
 RID ImageRenderer::NewImage() {
     
-    // Create new Vertex Array Object.
+// Create new Vertex Array Object.
     const auto rid = GenNewVAOID();
     
-    // Use it.
+// Use it.
     UseVAOBegin(rid);
     
-    // Create buffers that are needed for 2D image rendering.
+// Create buffers that are needed for 2D image rendering.
     const auto indexBuffID = GenNewBuffID(BufferTypes::Indices, rid);
     const auto posBuffID = GenNewBuffID(BufferTypes::Positions2D, rid);
     const auto colorBuffID = GenNewBuffID(BufferTypes::Colors, rid);
     const auto uvBuffID = GenNewBuffID(BufferTypes::UVs, rid);
     
-    // Set buffers to empty data.
+// Set buffers to empty data.
     
     SetIndicesData(
         indexBuffID,
@@ -94,10 +94,10 @@ RID ImageRenderer::NewImage() {
         nullptr,
         BufferTypes::UVs);
     
-    // Stop using the Vertex Array Object.
+// Stop using the Vertex Array Object.
     UseVAOEnd();
     
-    // Return the ID for the created VAO.
+// Return the ID for the created VAO.
     return rid;
 }
 
@@ -109,25 +109,25 @@ void ImageRenderer::DrawImage(
     SizeF textureFillAmount,
     ColorF color) const {
     
-    // Convert destination to GL coordinate system.
+// Convert destination to GL coordinate system.
     const auto glRect = destination.ToGLBoxF();
     
-    // No need for depth testing in a 2D plane.
+// No need for depth testing in a 2D plane.
     glDisable(GL_DEPTH_TEST);
     
-    // Obtain GL ID for image to be rendered.
+// Obtain GL ID for image to be rendered.
     const auto imageID = _<ImageBank>().GetImage(imageNameHash);
     
     if (imageID == std::nullopt) {
         
-        // If requested image not found, stop the rendering.
+// If requested image not found, stop the rendering.
         return;
     }
     
-    // Start use the image.
+// Start use the image.
     glBindTexture(GL_TEXTURE_2D, imageID.value());
     
-    // If we should repeat the texture as a pattern or fit it to the destination rectangle.
+// If we should repeat the texture as a pattern or fit it to the destination rectangle.
     if (repeatTexture){
         
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -139,11 +139,11 @@ void ImageRenderer::DrawImage(
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     }
     
-    // To hold positions data as a series of floats.
+// To hold positions data as a series of floats.
     std::vector<float> positions;
     
-    // Add the positions data adjusted to the GL coordinate system,
-    // and provided in expected order.
+// Add the positions data adjusted to the GL coordinate system,
+// and provided in expected order.
     positions.push_back(glRect.x);
     positions.push_back(glRect.y - glRect.h);
     positions.push_back(glRect.x);
@@ -153,21 +153,21 @@ void ImageRenderer::DrawImage(
     positions.push_back(glRect.x + glRect.w);
     positions.push_back(glRect.y - glRect.h);
     
-    // Start using the Vertex Array Object.u
+// Start using the Vertex Array Object.u
     UseVAOBegin(rid);
     
-    // If pixelation effect should be used.
+// If pixelation effect should be used.
     const auto noPixelEffect = true;
     
     // glUniform1f(m_locNoPixelEffect, noPixelEffect ? 1.0f : 0.0f);
     
-    // Get buffer IDs for the required data contents.
+// Get buffer IDs for the required data contents.
     const auto indexBuffID = GetBuffID(BufferTypes::Indices, rid);
     const auto posBuffID = GetBuffID(BufferTypes::Positions2D, rid);
     const auto colorBuffID = GetBuffID(BufferTypes::Colors, rid);
     const auto uvBuffID = GetBuffID(BufferTypes::UVs, rid);
     
-    // Provide the float vector data to the buffers.
+// Provide the float vector data to the buffers.
     
     UpdateIndicesData(indexBuffID, defaultIndices);
     
@@ -175,13 +175,13 @@ void ImageRenderer::DrawImage(
         posBuffID, positions, BufferTypes::Positions2D,
         k_locPosition);
     
-    if (color == Colors::white) {     // If color is white, we can use predefined data.
+    if (color == Colors::white) { // If color is white, we can use predefined data.
         
         UpdateData(
             colorBuffID, k_defaultColorsWhite, BufferTypes::Colors,
             k_locColor);
     }
-    else {                            // If color is not white, the color-floats-data need to be created.
+    else {                        // If color is not white, the color-floats-data need to be created.
         
         std::vector<float> colors;
         
@@ -198,12 +198,12 @@ void ImageRenderer::DrawImage(
             k_locColor);
     }
     
-    // If no texture repetition is desired, we can use predefined UV-float-data.
+// If no texture repetition is desired, we can use predefined UV-float-data.
     if (textureFillAmount.w == 1.0f && textureFillAmount.h == 1.0f) {
         
         UpdateData(uvBuffID, k_defaultUVs, BufferTypes::UVs, k_locUV);
     }
-    else {                            // If texture repetition is desired, the UUV-float-data need to be created.
+    else {                        // If texture repetition is desired, the UUV-float-data need to be created.
         
         std::vector<float> uvs;
         
@@ -219,12 +219,12 @@ void ImageRenderer::DrawImage(
         UpdateData(uvBuffID, uvs, BufferTypes::UVs, k_locUV);
     }
     
-    // Do the actual rendering.
+// Do the actual rendering.
     glDrawElements(
         GL_TRIANGLE_FAN,
         MathConstants::k_numVerticesInRectangle, GL_UNSIGNED_INT, NULL);
     
-    // Stop using the Vertex Array Object.
+// Stop using the Vertex Array Object.
     UseVAOEnd();
 }
 
@@ -236,7 +236,7 @@ void ImageRenderer::DrawImage(
     SizeF textureFillAmount,
     ColorF color) const {
     
-    // Forward the method call to the main overload.
+// Forward the method call to the main overload.
     DrawImage(
         rid, Hash(imageName), destination, repeatTexture,
         textureFillAmount, color);

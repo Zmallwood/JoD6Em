@@ -32,38 +32,38 @@ void GenerateRoads(WorldArea* worldArea) {
     
     std::vector<Point> roadPath;
     
-    // Start generating roads from top left corner of the world area.
+// Start generating roads from top left corner of the world area.
     auto coord = Point {0, 0};
     
-    // Generate diagonal roads in south east direction.
+// Generate diagonal roads in south east direction.
     coord = GenerateRoadSection(
         {.worldArea = worldArea,
          .startCoord = coord, .deltaStep = {1, 1},
          .numSteps = 25,
          .roadPath = roadPath});
     
-    // Generate straight road to the east.
+// Generate straight road to the east.
     coord = GenerateRoadSection(
         {.worldArea = worldArea,
          .startCoord = coord, .deltaStep = {1, 0},
          .numSteps = 50,
          .roadPath = roadPath});
     
-    // Generate straight road to the south.
+// Generate straight road to the south.
     coord = GenerateRoadSection(
         {.worldArea = worldArea,
          .startCoord = coord, .deltaStep = {0, 1},
          .numSteps = 50,
          .roadPath = roadPath});
-    
-    // Generate straight road to the west.
+
+// Generate straight road to the west.
     coord = GenerateRoadSection(
         {.worldArea = worldArea,
          .startCoord = coord, .deltaStep = {-1, 0},
          .numSteps = 50,
          .roadPath = roadPath});
     
-    // Generate straight road to the south.
+// Generate straight road to the south.
     coord = GenerateRoadSection(
         {.worldArea = worldArea,
          .startCoord = coord, .deltaStep = {0, 1},
@@ -79,39 +79,39 @@ Point GenerateRoadSection(GenerateRoadSectionArgs args) {
     
     auto coord = args.startCoord;
     
-    // Iterate the provided distance of steps.
+// Iterate the provided distance of steps.
     for (auto i = 0; i < args.numSteps; i++) {
         
         args.roadPath.push_back(coord);
         
         auto tile = args.worldArea->GetTile(coord);
         
-        // If ground is grass
+// If ground is grass
         if (tile->GetGround() == Hash("GroundGrass")) {
             
-            // Then create trail.
+// Then create trail.
             tile->SetGround("GroundTrail");
         }
-        // If ground is cobblestone
+// If ground is cobblestone
         else if (tile->GetGround() == Hash("GroundCobbleStone")) {
             
-            // Then create slabs.
+// Then create slabs.
             tile->SetGround("GroundSlabs");
         }
-        // Else if ground is water
+// Else if ground is water
         else if (tile->GetGround() == Hash("GroundWater")) {
             
-            // Then create bridge.
+// Then create bridge.
             tile->SetGround("GroundBridge");
         }
         
         tile->GetObjectsPile().Clear();
         
-        // Move to next tile.
+// Move to next tile.
         coord += args.deltaStep;
     }
     
-    // Return the final tile which the generation ended on.
+// Return the final tile which the generation ended on.
     return coord;
 }
 

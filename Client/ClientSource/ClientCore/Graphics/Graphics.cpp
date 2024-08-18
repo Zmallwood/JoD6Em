@@ -20,17 +20,17 @@ EM_JS(int, CanvasGetHeight, (), { return window.innerHeight; });
 
 Graphics::Graphics() {
     
-    // Initialize GLFW.
+// Initialize GLFW.
     glfwInit();
     
-    // Use OPENGL ES, which is used for browser OpenGL.
+// Use OPENGL ES, which is used for browser OpenGL.
     glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_ES_API);
     
-    // Set OpenGL version.
+// Set OpenGL version.
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
     
-    // Create GLFW window object.
+// Create GLFW window object.
     m_window = glfwCreateWindow(
         CanvasGetWidth(),
         CanvasGetHeight(),
@@ -38,42 +38,42 @@ Graphics::Graphics() {
         NULL,
         NULL);
     
-    // Activate current window.
+// Activate current window.
     glfwMakeContextCurrent(m_window);
     
-    // Enable alpha blending to allow transparency in rendering.
+// Enable alpha blending to allow transparency in rendering.
     glEnable( GL_BLEND);
     
-    // Set desired alpha blending functions.
+// Set desired alpha blending functions.
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
-    // Hide default system cursor.
+// Hide default system cursor.
     glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
 Graphics::~Graphics() {
     
-    // Probably never occurring in emscripten app, but
-    // including if the game would ever by ported into
-    // another format.
+// Probably never occurring in emscripten app, but
+// including if the game would ever by ported into
+// another format.
     glfwDestroyWindow(m_window);
 }
 
 void Graphics::ClearCanvas() const {
     
-    // Clear canvas to prepare for rendering new contents.
+// Clear canvas to prepare for rendering new contents.
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void Graphics::PresentCanvas() const {
     
-    // Present buffer to web browser.
+// Present buffer to web browser.
     glfwSwapBuffers(m_window);
     
-    // Poll new input events from user.
+// Poll new input events from user.
     glfwPollEvents();
     
-    // Do not return until previously issued commands have finished.
+// Do not return until previously issued commands have finished.
     glFinish();
 }
 

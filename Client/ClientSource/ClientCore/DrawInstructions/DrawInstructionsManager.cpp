@@ -14,13 +14,13 @@ namespace JoD {
 
 DrawInstructionsManager::DrawInstructionsManager() {
     
-    // Create a sufficient amount of RIDs for drawing images at game start.
+// Create a sufficient amount of RIDs for drawing images at game start.
     for (auto i = 0; i < k_maxNumImageDrawInstructions; i++) {
         
         m_ridsImages.push_back(_<ImageRenderer>().NewImage());
     }
     
-    // Create a sufficient amount of RIDs for drawing text at game start.
+// Create a sufficient amount of RIDs for drawing text at game start.
     for (auto i = 0; i < k_maxNumTextDrawInstructions; i++) {
         
         m_ridsText.push_back(_<TextRenderer>().NewString());
@@ -31,10 +31,10 @@ void DrawInstructionsManager::AddImageDrawInstruction(
     int imageNameHash,
     BoxF destination) {
     
-    // Create empty image draw instruction.
+// Create empty image draw instruction.
     auto newInstr = std::make_unique<ImageDrawInstruction>();
     
-    // Fill with data.
+// Fill with data.
     newInstr->type = DrawInstructionTypes::DrawImage;
     newInstr->rid = m_ridsImages.at(
         m_ridCounterImages
@@ -42,7 +42,7 @@ void DrawInstructionsManager::AddImageDrawInstruction(
     newInstr->imageNameHash = imageNameHash;
     newInstr->destination = destination;
     
-    // Add to inactive buffer.
+// Add to inactive buffer.
     m_inactiveBuffer->push_back(std::move(newInstr));
 }
 
@@ -50,28 +50,28 @@ void DrawInstructionsManager::AddImageDrawInstruction(
 void DrawInstructionsManager::AddTextDrawInstruction(
     std::string_view text, PointF position, bool centerAlign) {
     
-    // Create empty text draw instruction.
+// Create empty text draw instruction.
     auto newInstr = std::make_unique<TextDrawInstruction>();
     
-    // Fill with data.
+// Fill with data.
     newInstr->rid = m_ridsText.at(m_ridCounterText++);
     newInstr->type = DrawInstructionTypes::DrawText;
     newInstr->text = text;
     newInstr->position = position;
     newInstr->centerAligned = centerAlign;
     
-    // Add to inactive buffer.
+// Add to inactive buffer.
     m_inactiveBuffer->push_back(std::move(newInstr));
 }
 
 void DrawInstructionsManager::ApplyBuffer() {
     
-    // Swap active and inactive buffers.
+// Swap active and inactive buffers.
     const auto temp = m_activeBuffer;
     m_activeBuffer = m_inactiveBuffer;
     m_inactiveBuffer = temp;
     
-    // Reset state for inactive buffer and rid counters.
+// Reset state for inactive buffer and rid counters.
     m_inactiveBuffer->clear();
     m_ridCounterImages = 0;
     m_ridCounterText = 0;
@@ -79,18 +79,18 @@ void DrawInstructionsManager::ApplyBuffer() {
 
 void DrawInstructionsManager::ExecuteInstructions() const {
     
-    // Execute all drawing instructions that have been added.
+// Execute all drawing instructions that have been added.
     for (const auto &instruction : *m_activeBuffer){
         
         switch (instruction->type) {
         
         case DrawInstructionTypes::DrawImage: {
             
-            // Cast to image instruction type.
+// Cast to image instruction type.
             auto casted =
                 static_cast<ImageDrawInstruction*>(instruction.get());
             
-            // Draw image as specified in the instruction.
+// Draw image as specified in the instruction.
             _<ImageRenderer>().DrawImage(
                 casted->rid,
                 casted->imageNameHash,
@@ -100,11 +100,11 @@ void DrawInstructionsManager::ExecuteInstructions() const {
         }
         case DrawInstructionTypes::DrawText: {
             
-            // Cast to text instruction type.
+// Cast to text instruction type.
             auto casted =
                 static_cast<TextDrawInstruction*>(instruction.get());
             
-            // Draw string as specified in the instruction.
+// Draw string as specified in the instruction.
             _<TextRenderer>().DrawString(
                 casted->rid, casted->text,
                 casted->position,

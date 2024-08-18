@@ -35,30 +35,30 @@ EM_BOOL TouchStartCallback(
 // Callback function for touch end events.
 EM_BOOL TouchEndCallback(
     int, EmscriptenTouchEvent const *, void *);
-    
+
 }
 
 void SetupInputCallbacks() {
     
-    // Set callback for keyboard events.
+// Set callback for keyboard events.
     glfwSetKeyCallback(_<Graphics>().GetWindow(), KeyCallback);
     
-    // Set callback for mouse events.
+// Set callback for mouse events.
     glfwSetMouseButtonCallback(
         _<Graphics>().GetWindow(),
         MouseButtonCallback);
     
-    // Set callback for text typing events.
+// Set callback for text typing events.
     glfwSetCharCallback(_<Graphics>().GetWindow(), CharacterCallback);
     
-    // Set callback for touch start event.
+// Set callback for touch start event.
     emscripten_set_touchstart_callback(
         "#canvas",
         nullptr,
         true,
         TouchStartCallback);
     
-    // Set callback for touch end event.
+// Set callback for touch end event.
     emscripten_set_touchend_callback(
         "#canvas",
         nullptr,
@@ -85,28 +85,28 @@ void MouseButtonCallback(
     
     auto & srvConn = _<WSServerConnection>();
     
-    if (button == GLFW_MOUSE_BUTTON_LEFT                  // Left mouse button has been pressed.
+    if (button == GLFW_MOUSE_BUTTON_LEFT          // Left mouse button has been pressed.
         && action == GLFW_PRESS){
         
-        // Send message to server.
+// Send message to server.
         srvConn.SendMessage(MessageCodes::k_leftMouseDown);
     }
-    else if (button == GLFW_MOUSE_BUTTON_LEFT &&          // Left mouse button has been released.
+    else if (button == GLFW_MOUSE_BUTTON_LEFT &&  // Left mouse button has been released.
              action == GLFW_RELEASE) {
         
-        // Send message to server.
+// Send message to server.
         srvConn.SendMessage(MessageCodes::k_leftMouseUp);
     }
-    else if (button == GLFW_MOUSE_BUTTON_RIGHT            // Right mouse button has been pressed.
+    else if (button == GLFW_MOUSE_BUTTON_RIGHT    // Right mouse button has been pressed.
              && action == GLFW_PRESS){
         
-        // Send message to server.
+// Send message to server.
         srvConn.SendMessage(MessageCodes::k_rightMouseDown);
     }
-    else if (button == GLFW_MOUSE_BUTTON_RIGHT &&         // Right mouse button has been released.
+    else if (button == GLFW_MOUSE_BUTTON_RIGHT && // Right mouse button has been released.
              action == GLFW_RELEASE) {
         
-        // Send message to server.
+// Send message to server.
         srvConn.SendMessage(MessageCodes::k_rightMouseUp);
     }
     

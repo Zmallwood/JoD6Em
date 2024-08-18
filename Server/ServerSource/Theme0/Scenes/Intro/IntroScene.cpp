@@ -17,12 +17,16 @@ namespace JoD {
 
 void IntroScene::Initialize(UserID userID) {
     
+// Add GUILabel for showin blinking start text in center of canvas.
+    
     m_guiLabelStartText = GetGUI()->AddComponent<GUILabel>(
         PointF{0.5f, 0.5f},
         "Press to start", true);
 }
 
 void IntroScene::UpdateDerived(UserID userID) {
+    
+// Go to MainMenuScene on mouse click.
     
     if (_<EngineGet>().GetMouseInput(userID)->
         GetLeftButton().
@@ -32,18 +36,22 @@ void IntroScene::UpdateDerived(UserID userID) {
         GoToScene(userID, "MainMenuScene");
     }
     
-    auto now = Now();
+// Make start text blink.
     
-    auto showStartText = (now.time_since_epoch().count() % 2000000)/1000000;
+    auto showStartText = (Now().time_since_epoch().count() % 2000000)/1000000;
     
     m_guiLabelStartText->SetVisible(showStartText);
 }
 
 void IntroScene::RenderDerived(UserID userID) const {
     
+// Draw scene background image.
+    
     SendImageDrawInstruction(
         userID, "DefaultSceneBackground",
         {0.0f, 0.0f, 1.0f, 1.0f});
+        
+// Draw Journey of Dreams logo image.
     
     SendImageDrawInstruction(
         userID, "JoDLogo",

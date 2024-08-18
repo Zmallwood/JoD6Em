@@ -7,19 +7,18 @@
 #include "ClearWithGrass.hpp"
 #include "WorldArea.hpp"
 #include "Tile.hpp"
-#include "Configuration/GameProperties.hpp"
 
 namespace JoD {
 
 void ClearWithGrass(WorldArea* worldArea) {
     
-    // Iterate through all tiles in the tile grid.
+// Iterate through all tiles in the tile grid.
     for (auto y = 0; y < worldArea->GetSize().h; y++) {
         
         for (auto x = 0; x < worldArea->GetSize().w;
              x++) {
             
-            // Set ground to grass type.
+// Set ground to grass type.
             worldArea->GetTile(x, y)->SetGround(Hash("GroundGrass"));
         }
     }

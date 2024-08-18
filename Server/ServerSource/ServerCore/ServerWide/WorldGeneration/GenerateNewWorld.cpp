@@ -23,7 +23,7 @@ void GenerateNewWorld() {
     
     auto worldArea = _<World>().GetCurrWorldArea();
     
-    // Do all generation steps.
+// Do all generation steps.
     
     ClearWithGrass(worldArea);
     GenerateWater(worldArea);

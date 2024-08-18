@@ -13,19 +13,19 @@ GUIComponent::GUIComponent(PointF position)
 
 void GUIComponent::Update(UserID userID) {
     
-    // Call update function of inheriting type.
+// Call update function of inheriting type.
     UpdateDerived(userID);
 }
 
 void GUIComponent::Render(UserID userID) const {
     
-    // Dont render if component is invisible.
+// Dont render if component is invisible.
     if (!m_visible) {
         
         return;
     }
     
-    // Call render function of inheriting type.
+// Call render function of inheriting type.
     RenderDerived(userID);
 }
 
