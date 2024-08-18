@@ -18,6 +18,8 @@ GUIExpBar::GUIExpBar()
 
 void GUIExpBar::UpdateDerived(UserID userID) {
     
+// Get the player, its experience, and experience progress.
+    
     auto player = _<EngineGet>().GetPlayer(userID);
     
     auto exp = player->GetExperience();
@@ -27,14 +29,20 @@ void GUIExpBar::UpdateDerived(UserID userID) {
 
 void GUIExpBar::RenderDerived(UserID userID) const {
     
+// Create the exp bar background bounds and render the background.
+    
     auto boundsBground = BoxF {m_position.x, m_position.y, 1.0f, k_height};
     
     SendImageDrawInstruction(userID, "Black", boundsBground);
+    
+// Create the exp bar filled background bounds and render the filled area.
     
     auto boundsFilled = BoxF {m_position.x, m_position.y, m_filledAmount,
                               k_height};
     
     SendImageDrawInstruction(userID, "Gold", boundsFilled);
+    
+// Create the exp bar border bounds and render the borders.
     
     auto boundsBorder = BoxF {m_position.x, m_position.y, 1.0f, 0.001f};
     
