@@ -6,7 +6,5 @@
 #pragma once
 
 namespace JoD {
-
 using RID = GLuint; ///< Resource ID.
-
 }

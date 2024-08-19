@@ -17,13 +17,9 @@
 #include "SubProcess/GenerateNPCs.hpp"
 
 namespace JoD {
-
 void GenerateNewWorld() {
-    
     auto worldArea = _<World>().GetCurrWorldArea();
-    
 // Do all generation steps.
-    
     ClearWithGrass(worldArea);
     GenerateWater(worldArea);
     GenerateElevation(worldArea);
@@ -35,5 +31,4 @@ void GenerateNewWorld() {
     GenerateNPCs(worldArea);
     GenerateCreatures(worldArea);
 }
-
 }

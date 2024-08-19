@@ -6,9 +6,6 @@
 #pragma once
 
 namespace JoD {
-
 using Socket = boost::asio::ip::tcp::socket;               ///< Socket object.
-
 using WebSocket = boost::beast::websocket::stream<Socket>; ///< Web socket object.
-
 }

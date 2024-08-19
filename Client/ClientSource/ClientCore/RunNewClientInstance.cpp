@@ -7,11 +7,8 @@
 #include "ClientEngine.hpp"
 
 namespace JoD {
-
 void RunNewClientInstance() {
-    
 // Access ClientEngine and run it.
     _<ClientEngine>().Run();
 }
-
 }

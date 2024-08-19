@@ -4,7 +4,6 @@
  */
 
 #pragma once
-
 // External.
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -14,7 +13,6 @@
 #include <SDL_opengles2.h>
 #include <stb_image.h>
 #include <GLFW/glfw3.h>
-
 // Std.
 #include <iostream>
 #include <memory>
@@ -22,7 +20,6 @@
 #include <filesystem>
 #include <numeric>
 #include <string>
-
 // Project.
 #include "NetConfiguration.hpp"
 #include "MathLib/MathConstants.hpp"

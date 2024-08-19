@@ -73,8 +73,7 @@ void ImageBank::LoadImages() {
 // Create path string to load the images from.
         auto absPath = entry.path().string();
 // Only handle files with png extenstion.
-        if (GetFileExtension(absPath) != "png")
-            continue;
+        if (GetFileExtension(absPath) != "png") continue;
 // Load the current file as an image resource.
         auto imageEntry = LoadSingleImage(absPath);
 // Extract its pure name without path or extension.
