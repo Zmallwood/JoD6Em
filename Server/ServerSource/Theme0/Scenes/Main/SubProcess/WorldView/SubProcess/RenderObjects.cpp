@@ -36,7 +36,7 @@ void RenderObjects(
             
             if (!foundImageDim) {
                 
-                SendRequestImageDimensions(
+                UserSendReqImageDimensions(
                     userID,
                     object->GetType());
                 
@@ -51,14 +51,14 @@ void RenderObjects(
                                         tileBounds.y + tileBounds.h -
                                         height, width, height};
             
-            SendImageDrawInstruction(
+            UserSendDrawImage(
                 userID,
                 object->GetType(),
                 newBounds);
             
             if (object->GetContainedNPC()) {
                 
-                SendImageDrawInstruction(
+                UserSendDrawImage(
                     userID,
                     "NPC_Mounted",
                     newBounds);

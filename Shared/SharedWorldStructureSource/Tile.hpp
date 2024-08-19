@@ -37,10 +37,6 @@ class Tile {
     
     void SetElevation(int value);
     
-    int GetGroundCover() const;
-    
-    void SetGroundCover(int value);
-    
     ObjectsPile &GetObjectsPile() const;
     
     std::shared_ptr<NPC> GetNPC() const;

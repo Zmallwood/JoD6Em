@@ -10,17 +10,17 @@
 
 namespace JoD {
 
-void SendImageDrawInstruction(
+void UserSendDrawImage(
     UserID userID,
     std::string_view
     imageName,
     BoxF dest) {
     
 // Forward function call to overload.
-    SendImageDrawInstruction(userID, Hash(imageName), dest);
+    UserSendDrawImage(userID, Hash(imageName), dest);
 }
 
-void SendImageDrawInstruction(
+void UserSendDrawImage(
     UserID userID,
     int imageNameHash,
     BoxF dest) {
@@ -52,7 +52,7 @@ void SendImageDrawInstruction(
     webSocket->write(boost::asio::buffer(data));
 }
 
-void SendImageRepeatDrawInstruction(
+void UserSendDrawImageRepeated(
     UserID userID, std::string_view imageName,
     BoxF dest, SizeF textureFillAmount) {
         
@@ -87,7 +87,7 @@ void SendImageRepeatDrawInstruction(
     webSocket->write(boost::asio::buffer(data));
 }
 
-void SendTextDrawInstruction(
+void UserSendDrawText(
     UserID userID,
     std::string_view text,
     PointF position,
@@ -125,7 +125,7 @@ void SendTextDrawInstruction(
     webSocket->write(boost::asio::buffer(data));
 }
 
-void SendPresentCanvasInstruction(
+void UserSendPresentCanvas(
     UserID userID) {
     
 // Get websocket object for user.
@@ -139,7 +139,7 @@ void SendPresentCanvasInstruction(
         boost::asio::buffer(&messageCode,sizeof(messageCode)));
 }
 
-void SendRequestImageDimensions(
+void UserSendReqImageDimensions(
     UserID userID,
     int imageNameHash) {
     
@@ -160,12 +160,12 @@ void SendRequestImageDimensions(
     webSocket->write(boost::asio::buffer(data));
 }
 
-void SendRequestImageDimensions(
+void UserSendReqImageDimensions(
     UserID userID,
     std::string_view imageName) {
     
 // Forward the function call to overload.
-    SendRequestImageDimensions(userID, Hash(imageName));
+    UserSendReqImageDimensions(userID, Hash(imageName));
 }
 
 }

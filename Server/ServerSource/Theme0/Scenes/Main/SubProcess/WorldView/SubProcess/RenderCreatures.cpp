@@ -10,6 +10,7 @@
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "Theme0/Scenes/Main/SubProcess/CreatureTargeting.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
+#include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
 
@@ -20,49 +21,49 @@ const int k_showHitEffectDuration {300};
 }
 
 void RenderCreatures(
-    const MainScene& mainScene,
     UserID userID,
     Tile* tile, BoxF tileBounds) {
     
-    const auto mobTargeting =
-        static_cast<CreatureTargeting*>(
-            mainScene.GetComponent(
-                MainSceneComponents::
-                CreatureTargeting));
+// Get main scene.
     
-    if (tile->GetCreature()) {
+    auto mainScene = _<EngineGet>().GetMainScene(userID);
+    
+// Access mob targeting component.
+    
+    auto mobTargeting = static_cast<CreatureTargeting*>(
+        mainScene->GetComponent(
+            MainSceneComponents::CreatureTargeting));
+    
+    auto creature = tile->GetCreature();
+    
+// If creature exists on tile.
+    if (creature) {
         
-        if (tile->GetCreature() ==
-            mobTargeting->
-            GetTargetedCreature()){
+// If the creature is targeted.
+        if (creature == mobTargeting->GetTargetedCreature()){
             
-            SendImageDrawInstruction(
-                userID,
-                "TargetedMob",
-                tileBounds);
+// Draw targeted symbol on tile.
+            UserSendDrawImage(userID, "TargetedMob", tileBounds);
         }
         
-        SendImageDrawInstruction(
-            userID,
-            tile->GetCreature()->GetType(),
-            tileBounds);
+// Draw the actual creature.
+        UserSendDrawImage(userID, creature->GetType(), tileBounds);
         
-        SendTextDrawInstruction(
+// Draw creature name and level above the creature.
+        UserSendDrawText(
             userID,
             "Mob, Lvl." +
-            std::to_string(tile->GetCreature()->GetLevel()),
+            std::to_string(creature->GetLevel()),
             {tileBounds.x, tileBounds.y - 0.5f*tileBounds.h});
         
-        
-        if (Now() < tile->GetCreature()->GetTimeLastHitFromOther() + Duration(
+// Check if creature has recently been attacked and should have a
+// hit effect drawn onto it.
+        if (Now() < creature->GetTimeLastHitFromOther() + Duration(
                 Millis(
                     static_cast<int>(
                         k_showHitEffectDuration)))) {
             
-            SendImageDrawInstruction(
-                userID,
-                "HitEffect",
-                tileBounds);
+            UserSendDrawImage(userID, "HitEffect", tileBounds);
         }
     }
 }

@@ -33,20 +33,20 @@ void GUIExpBar::RenderDerived(UserID userID) const {
     
     auto boundsBground = BoxF {m_position.x, m_position.y, 1.0f, k_height};
     
-    SendImageDrawInstruction(userID, "Black", boundsBground);
+    UserSendDrawImage(userID, "Black", boundsBground);
     
 // Create the exp bar filled background bounds and render the filled area.
     
     auto boundsFilled = BoxF {m_position.x, m_position.y, m_filledAmount,
                               k_height};
     
-    SendImageDrawInstruction(userID, "Gold", boundsFilled);
+    UserSendDrawImage(userID, "Gold", boundsFilled);
     
 // Create the exp bar border bounds and render the borders.
     
     auto boundsBorder = BoxF {m_position.x, m_position.y, 1.0f, 0.001f};
     
-    SendImageDrawInstruction(userID, "White", boundsBorder);
+    UserSendDrawImage(userID, "White", boundsBorder);
 }
 
 }

@@ -47,13 +47,13 @@ void IntroScene::RenderDerived(UserID userID) const {
     
 // Draw scene background image.
     
-    SendImageDrawInstruction(
+    UserSendDrawImage(
         userID, "DefaultSceneBackground",
         {0.0f, 0.0f, 1.0f, 1.0f});
         
 // Draw Journey of Dreams logo image.
     
-    SendImageDrawInstruction(
+    UserSendDrawImage(
         userID, "JoDLogo",
         {0.3f, 0.2f, 0.4f, 0.2f});
 }

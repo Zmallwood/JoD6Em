@@ -117,7 +117,7 @@ void WorldView::Render(UserID userID) const {
                 tileBounds);
             
             RenderCreatures(
-                mainScene, userID, tile,
+                userID, tile,
                 tileBounds);
             
             auto playerBounds =  BoxF {

@@ -14,7 +14,6 @@ struct Tile::Impl {
     int ground {0};                         ///< Hash code for ground type.
     std::shared_ptr<Creature> creature;     ///< Creature currently occupying this tile, nullptr means no creature.
     int elevation {0};
-    int groundCover {0};
     ObjectsPile objectsPile;
     std::shared_ptr<NPC> npc;
 };
@@ -57,17 +56,6 @@ int Tile::GetElevation() const {
 void Tile::SetElevation(int value) {
     
     m_pImpl->elevation = value;
-}
-
-int Tile::GetGroundCover() const {
-    
-    
-    return m_pImpl->groundCover;
-}
-
-void Tile::SetGroundCover(int value) {
-    
-    m_pImpl->groundCover = value;
 }
 
 

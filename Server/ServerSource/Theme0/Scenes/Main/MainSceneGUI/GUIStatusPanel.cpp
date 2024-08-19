@@ -25,13 +25,13 @@ void GUIStatusPanel::RenderDerived(UserID userID) const {
     
 // Draw player name tect.
     
-    SendTextDrawInstruction(userID, player->GetName(), {0.01f, 0.01f});
+    UserSendDrawText(userID, player->GetName(), {0.01f, 0.01f});
     
 // Draw player level.
     
     auto level = CalcCurrLevel(player->GetExperience());
     
-    SendTextDrawInstruction(
+    UserSendDrawText(
         userID, "Level: " + std::to_string(level),
         {0.01f, 0.031f});
         
@@ -40,20 +40,20 @@ void GUIStatusPanel::RenderDerived(UserID userID) const {
     auto hpText = "HP: " + std::to_string(player->GetHP()) + " / " +
                   std::to_string(player->GetMaxHP());
     
-    SendTextDrawInstruction(userID, hpText, {0.01f, 0.052f});
+    UserSendDrawText(userID, hpText, {0.01f, 0.052f});
     
 // Render a health points meter with back background color and red foreground color.
     
     auto hpBarBox = BoxF {0.08f, 0.053f, 0.06f, 0.02f};
     
-    SendImageDrawInstruction(userID, "Black", hpBarBox);
+    UserSendDrawImage(userID, "Black", hpBarBox);
     
     auto hpFrac = static_cast<float>(player->GetHP())/player->GetMaxHP();
     
     auto hpBarBoxFilled = BoxF {hpBarBox.x, hpBarBox.y, hpBarBox.w*hpFrac,
                                 hpBarBox.h};
     
-    SendImageDrawInstruction(userID, "Red", hpBarBoxFilled);
+    UserSendDrawImage(userID, "Red", hpBarBoxFilled);
 }
 
 }

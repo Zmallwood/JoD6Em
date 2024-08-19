@@ -70,9 +70,8 @@ void Combat::Update(UserID userID) {
                     "You hit creature for " +
                     std::to_string(damage) + " dmg.");
                 
-                worldArea->GetTile(pos)->SetGroundCover(
-                    Hash(
-                        "GroundCoverPoolOfBlood"));
+                worldArea->GetTile(pos)->GetObjectsPile().AddObject(
+                    "ObjectPoolOfBlood");
                 
                 if (creatureTargeting->GetTargetedCreature()->IsDead()) {
                     

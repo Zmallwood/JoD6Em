@@ -45,7 +45,7 @@ void GUITextConsole::RenderDerived(UserID userID) const {
         for (auto i = 0; i < textData.size(); i++) {
             
 // Draw the text line.
-            SendTextDrawInstruction(
+            UserSendDrawText(
                 userID, textData.at(i),
                 {m_position.x + k_margin, lineY});
             
@@ -60,7 +60,7 @@ void GUITextConsole::RenderDerived(UserID userID) const {
         for (auto i = textData.size() - numLines; i < textData.size(); i++) {
             
 // Draw the the line.
-            SendTextDrawInstruction(
+            UserSendDrawText(
                 userID, textData.at(i),
                 {m_position.x + k_margin, lineY});
             

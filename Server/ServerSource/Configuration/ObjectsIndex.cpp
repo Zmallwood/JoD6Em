@@ -15,8 +15,13 @@ ObjectsIndex::ObjectsIndex() {
     m_objectFlags.insert(
         {Hash("ObjectPinkFlower"),
          ObjectFlags::k_walkThrough});
+    m_objectFlags.insert(
+        {Hash("ObjectPoolOfBlood"),
+         ObjectFlags::k_walkThrough});
     m_objectFlags.insert({Hash("ObjectGrass"), ObjectFlags::k_walkThrough});
-    m_objectFlags.insert({Hash("ObjectFelledTree"), ObjectFlags::k_walkThrough});
+    m_objectFlags.insert(
+        {Hash("ObjectFelledTree"),
+                          ObjectFlags::k_walkThrough});
 }
 
 bool ObjectsIndex::CanWalkThroughObject(int objectNameHash) const {

@@ -16,7 +16,7 @@ GUIPanel::GUIPanel(BoxF bounds)
 void GUIPanel::RenderDerived(UserID userID) const {
     
 // Draw the background image.
-    SendImageRepeatDrawInstruction(
+    UserSendDrawImageRepeated(
         userID, "GUIPanelBground", GetInnerBounds(userID),
         {m_size.w, m_size.w*m_size.h/m_size.w});
     
@@ -25,7 +25,7 @@ void GUIPanel::RenderDerived(UserID userID) const {
                                   m_borderWidth,
                                   GetOuterBounds().h - 2*m_borderWidth * _<EngineGet>().GetAspectRatio(userID).value()};
     
-    SendImageRepeatDrawInstruction(
+    UserSendDrawImageRepeated(
         userID, "GUIBorderVertical", boundsLeftBorder,
         {1.0f, boundsLeftBorder.h/boundsLeftBorder.w});
     
@@ -35,7 +35,7 @@ void GUIPanel::RenderDerived(UserID userID) const {
                                    m_borderWidth,
                                    GetOuterBounds().h - 2*m_borderWidth * _<EngineGet>().GetAspectRatio(userID).value()};
     
-    SendImageRepeatDrawInstruction(
+    UserSendDrawImageRepeated(
         userID, "GUIBorderVertical", boundsRightBorder,
         {1.0f, boundsRightBorder.h/boundsRightBorder.w});
     
@@ -45,7 +45,7 @@ void GUIPanel::RenderDerived(UserID userID) const {
                                  m_borderWidth * _<EngineGet>().GetAspectRatio(
                                      userID).value()};
     
-    SendImageRepeatDrawInstruction(
+    UserSendDrawImageRepeated(
         userID, "GUIBorderHorizontal", boundsTopBorder,
         {boundsTopBorder.w/boundsTopBorder.h, 1.0f});
     
@@ -58,7 +58,7 @@ void GUIPanel::RenderDerived(UserID userID) const {
                                     m_borderWidth * _<EngineGet>().
                                     GetAspectRatio(userID).value()};
     
-    SendImageRepeatDrawInstruction(
+    UserSendDrawImageRepeated(
         userID, "GUIBorderHorizontal", boundsBottomBorder,
         {boundsBottomBorder.w/boundsBottomBorder.h, 1.0f});
     
@@ -69,7 +69,7 @@ void GUIPanel::RenderDerived(UserID userID) const {
                                      m_borderWidth * _<EngineGet>().
                                      GetAspectRatio(userID).value()};
     
-    SendImageDrawInstruction(
+    UserSendDrawImage(
         userID, "GUIBorderTopLeft", boundsTopLeftCorner);
     
     
@@ -79,7 +79,7 @@ void GUIPanel::RenderDerived(UserID userID) const {
                                       m_borderWidth,
                                       m_borderWidth * _<EngineGet>().
                                       GetAspectRatio(userID).value()};
-    SendImageDrawInstruction(
+    UserSendDrawImage(
         userID, "GUIBorderTopRight", boundsTopRightCorner);
     
     
@@ -90,7 +90,7 @@ void GUIPanel::RenderDerived(UserID userID) const {
                                         m_borderWidth,
                                         m_borderWidth * _<EngineGet>().
                                         GetAspectRatio(userID).value()};
-    SendImageDrawInstruction(
+    UserSendDrawImage(
         userID, "GUIBorderBottomLeft", boundsBottomLeftCorner);
     
     
@@ -102,7 +102,7 @@ void GUIPanel::RenderDerived(UserID userID) const {
                                          m_borderWidth,
                                          m_borderWidth * _<EngineGet>().
                                          GetAspectRatio(userID).value()};
-    SendImageDrawInstruction(
+    UserSendDrawImage(
         userID, "GUIBorderBottomRight", boundsBottomRightCorner);
 }
 

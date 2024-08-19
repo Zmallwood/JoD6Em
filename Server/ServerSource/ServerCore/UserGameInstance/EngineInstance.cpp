@@ -86,7 +86,7 @@ void EngineInstance::Render(UserID userID) const {
     
 // Let user know that canvas rendering is finished,
 // and the canvas can be presented.
-    SendPresentCanvasInstruction(userID);
+    UserSendPresentCanvas(userID);
 }
 
 float EngineInstance::GetAspectRatio() const {

@@ -56,10 +56,10 @@ void GUIButton::RenderDerived(UserID userID) const {
         m_hovered ? m_imageNameHovered : m_imageNameDefault;
     
 // Draw button image.
-    SendImageDrawInstruction(userID, imageName, GetBounds());;
+    UserSendDrawImage(userID, imageName, GetBounds());;
     
 // Draw text on button.
-    SendTextDrawInstruction(
+    UserSendDrawText(
         userID, m_text, GetBounds().GetCenter(),
         true);
 }

@@ -34,7 +34,7 @@ void RenderPlayer(
         
         if (!foundImageDim) {
             
-            SendRequestImageDimensions(
+            UserSendReqImageDimensions(
                 userID,
                 "Player");
             
@@ -48,7 +48,7 @@ void RenderPlayer(
                                     tileBounds.y + tileBounds.h/2 - height,
                                     width, height};
         
-        SendImageDrawInstruction(
+        UserSendDrawImage(
             userID, "Player", newBounds);
     }
 }

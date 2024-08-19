@@ -14,6 +14,7 @@ class SceneManager;
 class MouseInput;
 class TextMessages;
 class Cursor;
+class MainScene;
 
 ///
 /// Provides access to all components associated with the engine instances
@@ -106,6 +107,8 @@ class EngineGet {
     WebSocket *GetWebSocket(UserID userID) const;
     
     Cursor *GetCursor(UserID userID) const;
+    
+    const MainScene* GetMainScene(UserID userID) const;
     
   private:
     ///

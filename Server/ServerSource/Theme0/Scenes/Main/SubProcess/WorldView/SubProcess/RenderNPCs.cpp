@@ -28,7 +28,7 @@ void RenderNPCs(UserID userID, Tile* tile, BoxF tileBounds) {
         
         if (!foundImageDim) {
             
-            SendRequestImageDimensions(
+            UserSendReqImageDimensions(
                 userID,
                 "NPC");
             
@@ -42,7 +42,7 @@ void RenderNPCs(UserID userID, Tile* tile, BoxF tileBounds) {
                                     tileBounds.y + tileBounds.h/2 - height,
                                     width, height};
         
-        SendImageDrawInstruction(
+        UserSendDrawImage(
             userID,
             "NPC",
             newBounds);

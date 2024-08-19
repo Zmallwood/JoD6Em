@@ -15,7 +15,7 @@ namespace JoD {
 /// @param imageName Name of image to draw.
 /// @param dest Destination to draw the image at.
 ///
-void SendImageDrawInstruction(
+void UserSendDrawImage(
     UserID userID,
     std::string_view imageName,
     BoxF dest);
@@ -27,12 +27,12 @@ void SendImageDrawInstruction(
 /// @param imageNamehash Hash code of image name to draw.
 /// @param dest Destination to draw the image at.
 ///
-void SendImageDrawInstruction(
+void UserSendDrawImage(
     UserID userID,
     int imageNamehash,
     BoxF dest);
 
-void SendImageRepeatDrawInstruction(
+void UserSendDrawImageRepeated(
     UserID userID, std::string_view imageName,
     BoxF dest, SizeF textureFillAmount);
 
@@ -44,7 +44,7 @@ void SendImageRepeatDrawInstruction(
 /// @param position Position to draw the text at.
 /// @param centerAlign
 ///
-void SendTextDrawInstruction(
+void UserSendDrawText(
     UserID userID,
     std::string_view text, PointF position, bool centerAlign = false);
 
@@ -53,7 +53,7 @@ void SendTextDrawInstruction(
 ///
 /// @param userID User ID of user for which to present canvas.
 ///
-void SendPresentCanvasInstruction(UserID userID);
+void UserSendPresentCanvas(UserID userID);
 
 ///
 /// Send request to user to retrieve dimensions for an image.
@@ -61,7 +61,7 @@ void SendPresentCanvasInstruction(UserID userID);
 /// @param userID User ID of user for which to request image dimensions.
 /// @param imageNameHash Hash code of image name to get dimensions for.
 ///
-void SendRequestImageDimensions(
+void UserSendReqImageDimensions(
     UserID userID,
     int imageNameHash);
 
@@ -71,7 +71,7 @@ void SendRequestImageDimensions(
 /// @param userID User ID of user for which to request image dimensions.
 /// @param imageNameHash Hash code of image name to get dimensions for.
 ///
-void SendRequestImageDimensions(
+void UserSendReqImageDimensions(
     UserID userID,
     std::string_view imageName);
 

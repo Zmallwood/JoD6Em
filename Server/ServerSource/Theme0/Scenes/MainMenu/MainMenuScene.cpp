@@ -28,11 +28,11 @@ void MainMenuScene::Initialize(UserID userID) {
 
 void MainMenuScene::RenderDerived(UserID userID) const {
     
-    SendImageDrawInstruction(
+    UserSendDrawImage(
         userID, "DefaultSceneBackground",
         {0.0f, 0.0f, 1.0f, 1.0f});
     
-    SendImageDrawInstruction(
+    UserSendDrawImage(
         userID, "JoDLogo",
         {0.4f, 0.1f, 0.2f, 0.1f});
 }

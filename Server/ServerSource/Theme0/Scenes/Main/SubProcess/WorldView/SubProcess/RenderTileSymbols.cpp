@@ -29,7 +29,7 @@ void RenderTileSymbols(
     if (tileHovering->GetHoveredCoordinate().has_value() &&
         coordinate == tileHovering->GetHoveredCoordinate()){
         
-        SendImageDrawInstruction(
+        UserSendDrawImage(
             userID,
             "HoveredTile",
             tileBounds);
@@ -38,7 +38,7 @@ void RenderTileSymbols(
     if (player->GetDestCoord().has_value() &&
         coordinate == player->GetDestCoord()) {
         
-        SendImageDrawInstruction(
+        UserSendDrawImage(
             userID,
             "DestinationSymbol",
             tileBounds);

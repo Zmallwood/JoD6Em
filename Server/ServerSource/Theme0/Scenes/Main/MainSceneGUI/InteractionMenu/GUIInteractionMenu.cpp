@@ -149,7 +149,7 @@ void GUIInteractionMenu::RenderDerived(UserID userID) const {
     
 // Draw menu background image.
     
-    SendImageDrawInstruction(userID, "GUIPanelBground", GetBounds());
+    UserSendDrawImage(userID, "GUIPanelBground", GetBounds());
     
 // Start rendering menu rows at menus top left corner position.
     
@@ -161,7 +161,7 @@ void GUIInteractionMenu::RenderDerived(UserID userID) const {
         
 // Draw the label of the menu entry on its own row.
         
-        SendTextDrawInstruction(userID, menuEntry.label, linePos);
+        UserSendDrawText(userID, menuEntry.label, linePos);
         
 // Translate y position downwards for every entry.
         

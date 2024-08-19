@@ -31,7 +31,7 @@ void Cursor::Render(UserID userID) const {
         cursorHeight};
     
 // Render the cursor image.
-    SendImageDrawInstruction(
+    UserSendDrawImage(
         userID, k_cursorImageNames.at(m_currCursorType),
         cursorDestination);
 }

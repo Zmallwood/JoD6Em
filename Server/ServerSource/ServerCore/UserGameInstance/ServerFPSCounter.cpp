@@ -31,7 +31,7 @@ void ServerFPSCounter::Update() {
 void ServerFPSCounter::Render(UserID userID) const {
     
 // Draw the FPS text to the canvas.
-    SendTextDrawInstruction(
+    UserSendDrawText(
         userID,
         "Server fps: " + std::to_string(m_fps), k_position);
 }
