@@ -35,14 +35,14 @@ class Player {
     ///
     /// Sets the players experience to zero.
     ///
-    void ResetExperience();
+    void ResetExp();
     
     ///
     /// Add experience amount to players total experience.
     ///
     /// @param value
     ///
-    void AddExperience(int value);
+    void AddExp(int value);
     
     ///
     /// Get the name of the player.
@@ -129,9 +129,9 @@ class Player {
     ///
     /// @return float Player experience amount.
     ///
-    float GetExperience() const {
+    float GetExp() const {
         
-        return m_experience;
+        return m_exp;
     }
     
     ///
@@ -207,7 +207,7 @@ class Player {
     
     float m_moveSpd {5.0f};                               ///< Base movement speed.
     
-    int m_experience {0};                            ///< Player total experience amount.
+    int m_exp {0};                            ///< Player total experience amount.
     
     float m_atkSpd {1.0f};                      ///< Player attack speed.
     

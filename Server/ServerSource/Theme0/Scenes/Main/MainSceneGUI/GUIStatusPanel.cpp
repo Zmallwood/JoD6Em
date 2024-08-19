@@ -29,7 +29,7 @@ void GUIStatusPanel::RenderDerived(UserID userID) const {
     
 // Draw player level.
     
-    auto level = CalcCurrLevel(player->GetExperience());
+    auto level = CalcCurrLevel(player->GetExp());
     
     UserSendDrawText(
         userID, "Level: " + std::to_string(level),

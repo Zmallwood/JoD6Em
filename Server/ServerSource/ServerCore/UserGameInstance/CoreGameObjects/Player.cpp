@@ -69,14 +69,14 @@ void Player::Hit(int damage) {
     m_hp -= damage;
 }
 
-void Player::ResetExperience() {
+void Player::ResetExp() {
     
-    m_experience = 0;
+    m_exp = 0;
 }
 
-void Player::AddExperience(int value) {
+void Player::AddExp(int value) {
     
-    m_experience += value;
+    m_exp += value;
 }
 
 void Player::TryMoveToCoord(UserID userID, Point coord) {

@@ -22,7 +22,7 @@ void GUIExpBar::UpdateDerived(UserID userID) {
     
     auto player = _<EngineGet>().GetPlayer(userID);
     
-    auto exp = player->GetExperience();
+    auto exp = player->GetExp();
     
     m_filledAmount = CalcFractionalExpProgress(exp);
 }

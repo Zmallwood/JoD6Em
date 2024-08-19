@@ -112,9 +112,9 @@ class Creature {
         return m_timerAttackOnOther;
     }
     
-    float GetAttackSpeed() const {
+    float GetAtkSpd() const {
         
-        return m_attackSpeed;
+        return m_atkSpd;
     }
     
     void SetConnectedObject(ConnectedObject connectedObject) {
@@ -171,7 +171,7 @@ class Creature {
     
     int m_mDef {0};                                         ///< Magic defense.
     
-    float m_atkSpeed {0};                                   ///< Attack speed.
+    float m_atkSpd {0};                                   ///< Attack speed.
     
     int m_hp {0};                                           ///< Health points.
     

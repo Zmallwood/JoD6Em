@@ -16,7 +16,7 @@ Creature::Creature(std::string_view creatureName,
     m_mAtk = 0;
     m_pDef = level;
     m_mDef = level;
-    m_atkSpeed = level/1.0f;
+    m_atkSpd = level/1.0f;
     m_hp = level*5;
     m_exp = level*5;
 }
