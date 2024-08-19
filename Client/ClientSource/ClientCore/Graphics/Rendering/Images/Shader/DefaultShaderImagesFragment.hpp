@@ -6,7 +6,6 @@
 #pragma once
 
 namespace JoD {
-
 inline static const GLchar *
     g_defaultShaderImagesFragment     // Fragment shader for image rendering
 {
@@ -27,5 +26,4 @@ inline static const GLchar *
     "    FragColor = texture(TexUnit, ex_TexCoord);\n"
     "}\0"
 };
-
 }

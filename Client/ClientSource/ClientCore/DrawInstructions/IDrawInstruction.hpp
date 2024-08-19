@@ -4,19 +4,14 @@
  */
 
 #pragma once
-
 #include "DrawInstructionTypes.hpp"
 
 namespace JoD {
-
-///
 /// Base clase for different kinds of draw instructions.
-///
 struct IDrawInstruction {
-    
-    DrawInstructionTypes type {DrawInstructionTypes::None};     ///< Should be specified for all object instances.
-    
-    RID rid {0};                                                ///< Resource ID, used for both image RIDs and text RIDs.
+    /// Should be specified for all object instances.
+    DrawInstructionTypes type {DrawInstructionTypes::None};
+    /// Resource ID, used for both image RIDs and text RIDs.
+    RID rid {0};    
 };
-
 }

@@ -6,7 +6,6 @@
 #pragma once
 
 namespace JoD {
-
 inline static const GLchar *
     g_defaultShaderImagesVertex     // Vertex shader for image rendering
 {
@@ -29,5 +28,4 @@ inline static const GLchar *
     "   ex_Pos = aPos.xy;\n"
     "}\0"
 };
-
 }
