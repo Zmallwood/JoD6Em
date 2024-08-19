@@ -9,7 +9,6 @@
 namespace JoD {
 /// Loads and provides image resources.
 class ImageBank {
-    
   public:
     /// Construct a new Image Bank object.
     ImageBank();
