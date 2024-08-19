@@ -157,7 +157,6 @@ void ImageRenderer::DrawImage(
             colorBuffID, colors, BufferTypes::Colors,
             k_locColor);
     }
-    
 // If no texture repetition is desired, we can use predefined UV-float-data.
     if (textureFillAmount.w == 1.0f && textureFillAmount.h == 1.0f) {
         UpdateData(uvBuffID, k_defaultUVs, BufferTypes::UVs, k_locUV);
