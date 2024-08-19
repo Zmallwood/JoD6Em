@@ -1,6 +1,5 @@
 /*
  * RenderPlayer.hpp
- *
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
