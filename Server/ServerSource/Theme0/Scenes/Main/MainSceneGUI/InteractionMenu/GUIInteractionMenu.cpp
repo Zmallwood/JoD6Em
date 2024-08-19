@@ -49,11 +49,11 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
         
         auto tile =
             _<World>().GetCurrWorldArea()->GetTile(
-                tileHovering->GetHoveredCoordinate().value());
+                tileHovering->GetHoveredCoord().value());
         
 // Save clicked coordinate.
         
-        m_clickedCoord = tileHovering->GetHoveredCoordinate().value();
+        m_clickedCoord = tileHovering->GetHoveredCoord().value();
         
 // If tile contains a creature, cancel the menu activation.
         

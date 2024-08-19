@@ -23,20 +23,20 @@ class TileHovering : public IMainSceneComponent  {
     using IMainSceneComponent::IMainSceneComponent;
     
     ///
-    /// Override base class methdo.
+    /// Override base class method.
     ///
     void Update(UserID userID) override;
     
-    std::optional<Point> GetHoveredCoordinate() const {
+    std::optional<Point> GetHoveredCoord() const {
         
-        return m_hoveredCoordinate;
+        return m_hoveredCoord;
     }
     
   private:
     
     // Members
     
-    std::optional<Point> m_hoveredCoordinate {std::nullopt};     ///< Currently hovered tile coordinate, {-1, -1} means none.
+    std::optional<Point> m_hoveredCoord {std::nullopt};     ///< Currently hovered tile coordinate, {-1, -1} means none.
 };
 
 }

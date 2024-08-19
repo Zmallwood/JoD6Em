@@ -40,7 +40,7 @@ void MouseMovement::Update(UserID userID) {
     auto player = _<EngineGet>().GetPlayer(userID);
     
     const auto hoveredTile =
-        tileHovering->GetHoveredCoordinate();
+        tileHovering->GetHoveredCoord();
     
     if (mouseDown && hoveredTile.has_value()) {
         

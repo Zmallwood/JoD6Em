@@ -14,7 +14,7 @@ namespace JoD {
 /// @param aspectRatio Aspect ratio of canvas.
 /// @return SizeF Tile size.
 ///
-SizeF CalculateTileSize(float aspectRatio);
+SizeF CalcTileSize(float aspectRatio);
 
 ///
 /// Calculates number of columns in the grid,
@@ -23,6 +23,6 @@ SizeF CalculateTileSize(float aspectRatio);
 /// @param aspectRatio Aspect ratio of canvas.
 /// @return int Number of tile grid columns.
 ///
-int CalculateNumGridCols(float aspectRatio);
+int CalcNumGridCols(float aspectRatio);
 
 }

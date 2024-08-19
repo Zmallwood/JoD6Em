@@ -9,7 +9,7 @@
 
 namespace JoD {
 
-SizeF CalculateTileSize(float aspectRatio) {
+SizeF CalcTileSize(float aspectRatio) {
     
 // Get tile height.
     const auto tileHeight = 1.0f / _<GameProperties>().GetNumGridRows();
@@ -20,10 +20,10 @@ SizeF CalculateTileSize(float aspectRatio) {
     return {tileWidth, tileHeight};
 }
 
-int CalculateNumGridCols(float aspectRatio) {
+int CalcNumGridCols(float aspectRatio) {
     
 // Get tile size.
-    const auto tileSize = CalculateTileSize(aspectRatio);
+    const auto tileSize = CalcTileSize(aspectRatio);
     
 // Calculate number of grid columns by using the tile width.
     return static_cast<int>(1.0f/tileSize.w);

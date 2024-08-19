@@ -15,7 +15,7 @@ namespace JoD {
 void TileHovering::Update(UserID userID) {
     
     const auto tileSize =
-        CalculateTileSize(
+        CalcTileSize(
             _<EngineGet>().GetAspectRatio(userID).value());
     
     const auto playerCoordinate =
@@ -23,7 +23,7 @@ void TileHovering::Update(UserID userID) {
     
     const auto numRows = _<GameProperties>().GetNumGridRows();
     const auto numCols =
-        CalculateNumGridCols(
+        CalcNumGridCols(
             _<EngineGet>().GetAspectRatio(userID).value());
     
     const auto tileX =
@@ -38,7 +38,7 @@ void TileHovering::Update(UserID userID) {
                          GetMousePosition(userID).value().y /
                          tileSize.h);
     
-    m_hoveredCoordinate = {tileX, tileY};
+    m_hoveredCoord = {tileX, tileY};
 }
 
 }

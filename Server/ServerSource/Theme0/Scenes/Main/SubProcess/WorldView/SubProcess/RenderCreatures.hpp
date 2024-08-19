@@ -8,7 +8,6 @@
 
 namespace JoD {
 
-class MainScene;
 class Tile;
 
 ///

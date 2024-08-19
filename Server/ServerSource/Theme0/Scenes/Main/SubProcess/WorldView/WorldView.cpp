@@ -25,110 +25,105 @@ namespace JoD {
 
 void WorldView::Render(UserID userID) const {
     
-    auto &webSocket = *_<EngineGet>().GetWebSocket(userID);
+// Get tile size.
+    auto tileSz = CalcTileSize(
+        _<EngineGet>().GetAspectRatio(userID).value());
     
-    const auto tileSize =
-        CalculateTileSize(
-            _<EngineGet>().GetAspectRatio(userID).value());
+// Get player coordinate.
+    auto playerCoord = _<EngineGet>().GetPlayer(userID)->GetCoord();
     
-    const auto playerCoordinate =
-        _<EngineGet>().GetPlayer(userID)->GetCoord();
+// Get current world area.
+    auto currWArea = _<World>().GetCurrWorldArea();
     
-    auto playerElev =
-        _<World>().GetCurrWorldArea()->GetTile(
-            playerCoordinate)->GetElevation();
+// Get tile elevation at player coordinate.
+    auto playerElev = currWArea->GetTile(playerCoord)->GetElevation();
     
-    const auto numGridRows = _<GameProperties>().GetNumGridRows();
-    const auto numGridCols =
-        CalculateNumGridCols(
-            _<EngineGet>().GetAspectRatio(userID).value());
+// Determine dimensions of tile grid.
+    auto numGridRows = _<GameProperties>().GetNumGridRows();
+    auto numGridCols =
+        CalcNumGridCols(_<EngineGet>().GetAspectRatio(userID).value());
     
-    auto &mainScene = *_<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene");
+// Used to make tiles slightly overlap each other to avoid some graphical artifacts.
+    auto smallValue = 0.0001f;
     
-    const auto smallValue = 0.0001f;
+// Value by which tiles are rendered outside the visible canvas, as otherwise sometimes
+// elevation differences results in unrendered areas in the canvas.
+    auto tilesMargin = 2;
     
-    auto tilesMargin = 3;
-    
+// Loop over the tile grid from top to bottom.
     for (auto y = -tilesMargin; y < numGridRows + tilesMargin; y++){
         
+// Loop over one row in the tile grid from left to right.
         for (auto x = -tilesMargin; x < numGridCols + tilesMargin; x++){
             
-            const auto coordX = playerCoordinate.x -
-                                (numGridCols - 1) / 2 + x;
+// Determine the coordinate for this iterations tile.
+            auto coordX = playerCoord.x - (numGridCols - 1) / 2 + x;
+            auto coordY = playerCoord.y - (numGridRows - 1) / 2 + y;
             
-            const auto coordY = playerCoordinate.y -
-                                (numGridRows - 1) / 2 + y;
-            
-            if (!_<World>().GetCurrWorldArea()->IsValidCoord(
-                    {coordX,
-                     coordY})) {
+// Skip processing if not a valid tile coordinate.
+            if (!currWArea->IsValidCoord({coordX, coordY})) {
                 
                 continue;
             }
             
-            auto tile =
-                _<World>().GetCurrWorldArea()->GetTile(
-                    coordX,
-                    coordY);
+// Obtain the tile object.
+            auto tile = currWArea->GetTile(coordX, coordY);
             
-            auto elev = tile->GetElevation();
+// Create bounds for ground offseted with regards to player elevation
+// but without elevating the tile.
+            auto groundBounds = BoxF {
+                x * tileSz.w + playerElev*tileSz.w*0.25f,
+                y * tileSz.h + playerElev*tileSz.h*0.25f,
+                tileSz.w + smallValue,
+                tileSz.h + smallValue};
             
-            const auto groundBounds = BoxF {
-                x * tileSize.w + playerElev*tileSize.w*0.25f,
-                y * tileSize.h + playerElev*tileSize.h*0.25f,
-                tileSize.w + smallValue,
-                tileSize.h + smallValue};
-            
+// To hold west and north tile neighbours.
+
             Tile* tileW = nullptr;
             Tile* tileN = nullptr;
             
+// Can only create west neighbour if not at the west edge.
             if (coordX > 0) {
                 
-                tileW = _<World>().GetCurrWorldArea()->GetTile(
-                    coordX -
-                    1,
-                    coordY);
-                tileN = _<World>().GetCurrWorldArea()->GetTile(
-                    coordX,
-                    coordY -
-                    1);
+                tileW = currWArea->GetTile(
+                    coordX - 1, coordY);
+            }
+
+// Can only create north neighbour if not at the north edge.
+            if (coordY > 0) {
+                
+                tileN = currWArea->GetTile(
+                    coordX, coordY - 1);
             }
             
+// Draw the ground surface.
             RenderGround(
                 userID, tile, groundBounds, tileW, tileN,
                 playerElev);
             
+            auto elev = tile->GetElevation();
             
+// Create bounds for tile, elevated to tile height.
+            auto tileBounds = BoxF {
+                x * tileSz.w + (playerElev - elev)*tileSz.w*0.25f,
+                y * tileSz.h + (playerElev - elev)*tileSz.h*0.25f,
+                tileSz.w + smallValue,
+                tileSz.h + smallValue};
             
-            const auto tileBounds = BoxF {
-                x * tileSize.w + (playerElev - elev)*tileSize.w*0.25f,
-                y * tileSize.h + (playerElev - elev)*tileSize.h*0.25f,
-                tileSize.w + smallValue,
-                tileSize.h + smallValue};
+// Render tile symbols on the ground.
+            RenderTileSymbols(userID, {coordX, coordY}, tileBounds);
             
-            RenderTileSymbols(
-                mainScene, userID,
-                {coordX, coordY}, tileBounds);
-            
+// Render objects on the tile.
             RenderObjects(userID, tile, tileBounds);
             
-            RenderNPCs(
-                userID, tile,
-                tileBounds);
+// Render NPC on the tile if there is one.
+            RenderNPCs( userID, tile, tileBounds);
             
-            RenderCreatures(
-                userID, tile,
-                tileBounds);
+// Render creature on the tile if there is one.
+            RenderCreatures(userID, tile, tileBounds);
             
-            auto playerBounds =  BoxF {
-                x * tileSize.w,
-                y * tileSize.h,
-                tileSize.w + smallValue,
-                tileSize.h + smallValue};
-            
-            RenderPlayer(
-                userID, {coordX, coordY},
-                playerBounds);
+// Render player if current tile is the one the player is located on.
+            RenderPlayer(userID, {coordX, coordY}, tileBounds);
         }
     }
 }

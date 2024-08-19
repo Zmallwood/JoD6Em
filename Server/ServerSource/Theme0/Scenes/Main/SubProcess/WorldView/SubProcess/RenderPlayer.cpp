@@ -12,44 +12,51 @@
 
 namespace JoD {
 
-void RenderPlayer(
-    UserID userID,
-    Point coordinate, BoxF tileBounds) {
+void RenderPlayer(UserID userID, Point coord, BoxF tileBounds) {
     
-    const auto playerCoordinate =
-        _<EngineGet>().GetPlayer(userID)->GetCoord();
+// Get player coordinate.
+    auto playerCoord = _<EngineGet>().GetPlayer(userID)->GetCoord();
     
-    if (coordinate == playerCoordinate){
+// If considered coordinate equals the players coordinate.
+    if (coord == playerCoord){
         
+// To hold information from looking up image dimensions.
         auto foundImageDim = false;
         Size imageDimensions;
         
+// Contains image dimensions or std::nullopt value.
         auto dim = _<ImageDimensions>().GetDimension("Player");
         
+// If proper image dimensions were obtained.
         if (dim.has_value()) {
             
+// Use them.
             imageDimensions = *dim;
             foundImageDim = true;
         }
         
+// If proper image dimensions were not obtained.
         if (!foundImageDim) {
             
-            UserSendReqImageDimensions(
-                userID,
-                "Player");
+// Request image dimensions from user.
+            UserSendReqImageDimensions(userID, "Player");
             
+// Cancel drawing since we lack image dimensions.
             return;
         }
         
-        const auto width = imageDimensions.w/60.0f*tileBounds.w;
-        const auto height = imageDimensions.h/60.0f*tileBounds.h;
+// Convert image dimensions to format for canvas.
+        auto width = imageDimensions.w/60.0f*tileBounds.w;
+        auto height = imageDimensions.h/60.0f*tileBounds.h;
         
-        const auto newBounds = BoxF{tileBounds.x + tileBounds.w/2 - width/2,
-                                    tileBounds.y + tileBounds.h/2 - height,
-                                    width, height};
+// Create bounds for drawing the image.
+        auto newBounds = BoxF {
+            tileBounds.x + tileBounds.w/2 - width/2,
+            tileBounds.y + tileBounds.h/2 - height,
+            width, height};
         
-        UserSendDrawImage(
-            userID, "Player", newBounds);
+// Draw player image.
+        UserSendDrawImage(userID, "Player", newBounds);
     }
 }
 

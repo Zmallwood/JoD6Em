@@ -17,8 +17,6 @@ class Tile;
 /// @param tile Tile of which objects are to be rendered.
 /// @param tileBounds Bounds area of tile of which objects are to be rendered.
 ///
-void RenderObjects(
-    UserID userID,
-    Tile* tile, BoxF tileBounds);
-    
+void RenderObjects(UserID userID, Tile* tile, BoxF tileBounds);
+
 }
