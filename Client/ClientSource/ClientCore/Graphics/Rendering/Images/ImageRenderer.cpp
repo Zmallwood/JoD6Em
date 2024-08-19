@@ -20,15 +20,15 @@ const std::vector<float> k_defaultColorsWhite
     =  std::vector<float>(
           16,
           1.0f);
-// A set of floats representing a default UV coordinates layout for an image.    
-const std::vector<float> k_defaultUVs         
+// A set of floats representing a default UV coordinates layout for an image.
+const std::vector<float> k_defaultUVs
 {0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f};
 // Location of position variable in vertex shader.
-constexpr int k_locPosition {0};              
+constexpr int k_locPosition {0};
 // Location of color variable in vertex shader.
-constexpr int k_locColor {1};                 
+constexpr int k_locColor {1};
 // Location of UV variable in vertex shader.
-constexpr int k_locUV {2};                    
+constexpr int k_locUV {2};
 }
 
 ImageRenderer::ImageRenderer() {
@@ -145,7 +145,7 @@ void ImageRenderer::DrawImage(
             k_locColor);
     }
 // If color is not white, the color-floats-data need to be created.
-    else {                        
+    else {
         std::vector<float> colors;
         for (auto i = 0; i < 4; i++) {
             colors.push_back(color.r);
@@ -161,7 +161,8 @@ void ImageRenderer::DrawImage(
     if (textureFillAmount.w == 1.0f && textureFillAmount.h == 1.0f) {
         UpdateData(uvBuffID, k_defaultUVs, BufferTypes::UVs, k_locUV);
     }
-    else {                        // If texture repetition is desired, the UUV-float-data need to be created.
+// If texture repetition is desired, the UUV-float-data need to be created.
+    else {
         std::vector<float> uvs;
         uvs.push_back(0.0f);
         uvs.push_back(1.0f / textureFillAmount.h);
