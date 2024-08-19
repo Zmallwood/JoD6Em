@@ -107,14 +107,9 @@ class Creature {
         m_targetedUserID = userID;
     }
     
-    TimePoint GetTimeLastAttackOnOther() const {
+    Timer& GetTimerAttackOnOther() {
         
-        return m_timeLastAttackOnOther;
-    }
-    
-    void SetTimeLastAttackOnOther(TimePoint value) {
-        
-        m_timeLastAttackOnOther = value;
+        return m_timerAttackOnOther;
     }
     
     float GetAttackSpeed() const {
@@ -188,9 +183,9 @@ class Creature {
     
     UserID m_targetedUserID {0};
     
-    TimePoint m_timeLastAttackOnOther {Now()};
-    
     float m_attackSpeed {1.0f};
+    
+    Timer m_timerAttackOnOther;
     
     std::unique_ptr<ConnectedObject> m_connectedObject;
     

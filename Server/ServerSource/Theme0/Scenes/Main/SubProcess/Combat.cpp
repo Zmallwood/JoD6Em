@@ -22,24 +22,25 @@ namespace JoD {
 
 void Combat::Update(UserID userID) {
     
-    auto player =
-        _<EngineGet>().GetPlayer(userID);
+    auto player = _<EngineGet>().GetPlayer(userID);
     
-    auto textMessages = _<EngineGet>().GetTextMessages(userID);
-    const auto &worldArea = _<World>().GetCurrWorldArea();
+    auto textMsgs = _<EngineGet>().GetTextMessages(userID);
+    const auto &wArea = _<World>().GetCurrWorldArea();
     
-    auto creatureTargeting =
-        static_cast<CreatureTargeting*>(
-            _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>(
-                "MainScene")->GetComponent(
-                MainSceneComponents::
-                CreatureTargeting));
+    auto mainScene = _<EngineGet>().GetMainScene(userID);
     
-    if (creatureTargeting->GetTargetedCreature()) {
+    auto creaTarg = static_cast<CreatureTargeting*>(
+        mainScene->GetComponent(
+            MainSceneComponents::
+            CreatureTargeting));
+    
+    auto targCrea = creaTarg->GetTargetedCreature();
+    
+    if (targCrea) {
         
-        const auto pos =
-            worldArea->GetCreatureCoord(
-                creatureTargeting->GetTargetedCreature()).value();
+        auto pos = wArea->GetCreatureCoord(targCrea).value();
+        
+        auto creaTile = wArea->GetTile(pos);
         
         auto playerCoord = player->GetCoord();
         
@@ -48,76 +49,58 @@ void Combat::Update(UserID userID) {
         
         if (absDx <= 1 && absDy <= 1) {
             
-            if (Now() > player->GetTimeLastAttackOnOther() +
-                Duration(
-                    Millis(
-                        static_cast<int>(
-                            1000/
-                            player->GetAttackSpeed())))) {
-                
-                
-                
-                player->SetTimeLastAttackOnOther(Now());
+            if (player->GetTimerAttackOnOther().Tick(player->GetAtkSpd())) {
                 
                 auto damage = 1;
                 
-                creatureTargeting->GetTargetedCreature()->Hit(damage);
+                targCrea->Hit(damage);
                 
-                creatureTargeting->GetTargetedCreature()->SetTargetedUserID(
-                    userID);
+                targCrea->SetTargetedUserID(userID);
                 
-                textMessages->Print(
+                textMsgs->Print(
                     "You hit creature for " +
                     std::to_string(damage) + " dmg.");
                 
-                worldArea->GetTile(pos)->GetObjectsPile().AddObject(
+                creaTile->GetObjectsPile().AddObject(
                     "ObjectPoolOfBlood");
                 
-                if (creatureTargeting->GetTargetedCreature()->IsDead()) {
+                if (targCrea->IsDead()) {
                     
-                    if (false ==
-                        worldArea->GetTile(
-                            pos)->GetObjectsPile().HasObjectOfType(
+                    if (false == creaTile->GetObjectsPile().HasObjectOfType(
                             "ObjectBoneRemains")){
-                        worldArea->GetTile(pos)->GetObjectsPile().AddObject(
+                        
+                        creaTile->GetObjectsPile().AddObject(
                             "ObjectBoneRemains");
                     }
                     
-                    player->AddExperience(
-                        creatureTargeting->GetTargetedCreature()->GetExp());
+                    player->AddExperience(targCrea->GetExp());
                     
-                    worldArea->RemoveCreaturePosition(
-                        creatureTargeting->GetTargetedCreature());
+                    wArea->RemoveCreaturePosition(targCrea);
                     
-                    creatureTargeting->SetTargetedCreature(nullptr);
+                    creaTarg->SetTargetedCreature(nullptr);
                     
-                    worldArea->GetTile(pos)->SetCreature(nullptr);
+                    creaTile->SetCreature(nullptr);
                     
                 }
             }
         }
     }
     
-    const auto &creaturePositions = worldArea->GetCreaturePositions();
+    auto &creaPositions = wArea->GetCreaturePositions();
     
-    for (auto& entry : creaturePositions) {
+    for (auto& entry : creaPositions) {
         
-        auto creature = entry.first;
+        auto crea = entry.first;
         auto coord = entry.second;
         
-        if (creature->GetTargetedUserID() == userID) {
+        if (crea->GetTargetedUserID() == userID) {
             
             auto absDx = std::abs(player->GetCoord().x - coord.x);
             auto absDy = std::abs(player->GetCoord().y - coord.y);
             
             if (absDx <= 1 && absDy <= 1) {
                 
-                if (Now() >
-                    creature->GetTimeLastAttackOnOther() + Duration(
-                        Millis(
-                            static_cast<int>(
-                                1000/
-                                creature->GetAttackSpeed())))) {
+                if (crea->GetTimerAttackOnOther().Tick(crea->GetAttackSpeed())) {
                     
                     auto damage = 1;
                     
@@ -129,12 +112,10 @@ void Combat::Update(UserID userID) {
                         player->SetDestCoord(std::nullopt);
                         player->SetHP(player->GetMaxHP());
                         player->ResetExperience();
-                        creatureTargeting->SetTargetedCreature(nullptr);
-                        textMessages->Print(
+                        creaTarg->SetTargetedCreature(nullptr);
+                        textMsgs->Print(
                             "You have died! Your have lost all your experience.");
                     }
-                    
-                    creature->SetTimeLastAttackOnOther(Now());
                 }
             }
         }

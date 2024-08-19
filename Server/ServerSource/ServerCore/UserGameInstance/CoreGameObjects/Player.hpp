@@ -139,19 +139,9 @@ class Player {
     ///
     /// @return TimePoint Time point when player last attacked another.
     ///
-    TimePoint GetTimeLastAttackOnOther() const {
+    Timer& GetTimerAttackOnOther() {
         
-        return m_timeLastAttackOnOther;
-    }
-    
-    ///
-    /// Set the time point for when player last attacked another.
-    ///
-    /// @param value New timepoint value.
-    ///
-    void SetTimeLastAttackOnOther(TimePoint value) {
-        
-        m_timeLastAttackOnOther = value;
+        return m_timerAttackOnOther;
     }
     
     ///
@@ -159,9 +149,9 @@ class Player {
     ///
     /// @return float Player attack speed.
     ///
-    float GetAttackSpeed() const {
+    float GetAtkSpd() const {
         
-        return m_attackSpeed;
+        return m_atkSpd;
     }
     
     ///
@@ -219,9 +209,9 @@ class Player {
     
     int m_experience {0};                            ///< Player total experience amount.
     
-    TimePoint m_timeLastAttackOnOther {Now()};       ///< Last time the player attacked another.
+    float m_atkSpd {1.0f};                      ///< Player attack speed.
     
-    float m_attackSpeed {1.0f};                      ///< Player attack speed.
+    Timer m_timerAttackOnOther;
     
     int m_hp {10};                                   ///< Players current health points.
     

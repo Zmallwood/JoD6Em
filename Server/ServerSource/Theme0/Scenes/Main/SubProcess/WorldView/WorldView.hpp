@@ -25,7 +25,7 @@ class WorldView : public IMainSceneComponent {
     ///
     /// Renders the world to canvas as a 2D tile grid.
     ///
-    /// @param webSocket Web socket associated with user.
+    /// @param userID User ID for user which the world view is rendered for.
     ///
     void Render(UserID userID) const override;
 };
