@@ -7,10 +7,9 @@
 #include "ShaderProgram.hpp"
 
 namespace JoD {
-
 namespace {
-
-const auto k_numFloatsPerEntry // Predefined constants of number of floats for different entry types.
+// Predefined constants of number of floats for different entry types.
+const auto k_numFloatsPerEntry
 {std::map<BufferTypes, int> {
      {BufferTypes::Indices, 1},
      {BufferTypes::Positions2D, 2},
@@ -26,35 +25,27 @@ RendererBase::RendererBase()
     : m_shaderProgram(std::make_unique<ShaderProgram>()) {}
 
 GLuint RendererBase::GenNewVAOID() {
-    
 // Generate new Vertex Array Object.
     GLuint vaoID;
     glGenVertexArraysOES(1, &vaoID);
-    
-// Store newly created VAO id.
+// Store newly created VAO id and return it.
     m_VAOIDs.push_back(vaoID);
-    
     return vaoID;
 }
 
 GLuint RendererBase::GenNewBuffID(
     BufferTypes buffType,
     GLuint vaoID) {
-    
 // Generate new Vertex Buffer Object.
     GLuint buffID;
     glGenBuffers(1, &buffID);
-    
 // If necessary storing structures not created yet, create them.
     if (!m_VBOIDs.contains(buffType)) {
-        
         m_VBOIDs.insert(
             {buffType, std::map<GLuint, GLuint>()});
     }
-    
 // Store newly created VBO id, with the VAO id as one of keys.
     (m_VBOIDs)[buffType][vaoID] = buffID;
-    
 // Return ID for newly created Vertex Buffer Object.
     return buffID;
 }
@@ -63,10 +54,8 @@ void RendererBase::SetIndicesData(
     GLuint indicesVBOID,
     int numIndices,
     const void *data) const {
-    
 // Bind the VBO buffer that should hold indices data.
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indicesVBOID);
-    
 // Set indices data as element array buffer.
     glBufferData(
         GL_ELEMENT_ARRAY_BUFFER,
@@ -82,9 +71,7 @@ void RendererBase::SetData(
     const void *data,
     BufferTypes buffType,
     int layoutLocation) const {
-    
     if (buffType == BufferTypes::BoneIDs) {
-        
 // Call other method for BoneIDs than other buffer types.
         SetArrayBufferDataInt(
             VBOID,
@@ -94,7 +81,6 @@ void RendererBase::SetData(
             layoutLocation);
     }
     else {
-        
 // Call this function for all buffer types except BoneIDs.
         SetArrayBufferData(
             VBOID,
@@ -111,20 +97,16 @@ void RendererBase::SetArrayBufferData(
     const void *data,
     int numFloatsPerEntry,
     int layoutLocation) const {
-    
 // Bind the VBO for the provided VBO id.
     glBindBuffer(GL_ARRAY_BUFFER, VBOID);
-    
 // Set the buffer data as an array buffer.
     glBufferData(
         GL_ARRAY_BUFFER,
         numEntries * numFloatsPerEntry * sizeof(float),
         data,
         GL_DYNAMIC_DRAW);
-    
 // Is valid layout location?
     if (layoutLocation >= 0){
-        
 // Configure layout float float values.
         glVertexAttribPointer(
             layoutLocation,
@@ -133,7 +115,6 @@ void RendererBase::SetArrayBufferData(
             GL_FALSE,
             0,
             (const GLvoid *)0);
-        
 // Enable layout.
         glEnableVertexAttribArray(layoutLocation);
     }
@@ -145,26 +126,20 @@ void RendererBase::SetArrayBufferDataInt(
     const void *data,
     int numFloatsPerEntry,
     int layoutLocation) const {
-    
 // Bind the VBO for the provided VBO id.
     glBindBuffer(GL_ARRAY_BUFFER, VBOID);
-    
 // Set the buffer data as an array buffer.
     glBufferData(
         GL_ARRAY_BUFFER,
         numEntries * numFloatsPerEntry * sizeof(int),
         data,
         GL_DYNAMIC_DRAW);
-    
 // Is valid layout location?
     if (layoutLocation >= 0){
-        
 // Enable generic vertex attribute.
         glEnableVertexAttribArray(3);
-        
 // // Configure layout for int values.
         // glVertexAttribIPointer(layoutLocation, numFloatsPerEntry, GL_INT, 0, (const GLvoid*)0);
-        
 // Configure layout for float values.
         glVertexAttribPointer(
             layoutLocation,
@@ -173,7 +148,6 @@ void RendererBase::SetArrayBufferDataInt(
             GL_FALSE,
             0,
             (const GLvoid *)0);
-        
 // Enable layout.
         glEnableVertexAttribArray(layoutLocation);
     }
@@ -181,7 +155,6 @@ void RendererBase::SetArrayBufferDataInt(
 
 GLuint RendererBase::GetUniformLocation(
     std::string_view variableName) const {
-    
 // Get layout location of uniform variable in the shader.
     return glGetUniformLocation(
         m_shaderProgram->GetProgramID(),
@@ -189,7 +162,6 @@ GLuint RendererBase::GetUniformLocation(
 }
 
 void RendererBase::UseVAOBegin(GLuint VAOID) const {
-    
 // Start using shader program and provided VAO.
     glUseProgram(m_shaderProgram->GetProgramID());
     glBindVertexArrayOES(VAOID);
@@ -198,7 +170,6 @@ void RendererBase::UseVAOBegin(GLuint VAOID) const {
 GLuint RendererBase::GetBuffID(
     BufferTypes buffType,
     GLuint VAOID) const {
-    
 // Returns the buffer of provided type and VAO id.
     return m_VBOIDs.at(buffType).at(VAOID);
 }
@@ -206,10 +177,8 @@ GLuint RendererBase::GetBuffID(
 void RendererBase::UpdateIndicesData(
     GLuint indicesVBOID,
     std::vector<int> &indices) const {
-    
 // Bind VBO with provided id, being an element array buffer.
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indicesVBOID);
-    
 // Set the buffer data.
     glBufferSubData(
         GL_ELEMENT_ARRAY_BUFFER,
@@ -223,17 +192,14 @@ void RendererBase::UpdateArrayBufferData(
     const std::vector<float> &data,
     int numFloatsPerEntry,
     int layoutLocation) const {
-    
 // Bind VBO with provided id, being an array buffer.
     glBindBuffer(GL_ARRAY_BUFFER, VBOID);
-    
 // Set the buffer data.
     glBufferSubData(
         GL_ARRAY_BUFFER,
         0,
         sizeof(float) * data.size(),
         data.data());
-    
     glVertexAttribPointer(
         layoutLocation,
         numFloatsPerEntry,
@@ -241,7 +207,6 @@ void RendererBase::UpdateArrayBufferData(
         GL_FALSE,
         0,
         (const GLvoid *)0);
-    
 // Enable layout.
     glEnableVertexAttribArray(layoutLocation);
 }
@@ -251,20 +216,16 @@ void RendererBase::UpdateArrayBufferDataInt(
     const std::vector<float> &data,
     int numFloatsPerEntry,
     int layoutLocation) const {
-    
 // Bind VBO with provided id, being an array buffer.
     glBindBuffer(GL_ARRAY_BUFFER, VBOID);
-    
 // Set the buffer data.
     glBufferSubData(
         GL_ARRAY_BUFFER,
         0,
         sizeof(int) * data.size(),
         data.data());
-    
 // // Configure layout for int values.
     // glVertexAttribIPointer(layoutLocation, numFloatsPerEntry, GL_INT, 0, (const GLvoid *)0);
-    
     glVertexAttribPointer(
         layoutLocation,
         numFloatsPerEntry,
@@ -272,7 +233,6 @@ void RendererBase::UpdateArrayBufferDataInt(
         GL_FALSE,
         0,
         (const GLvoid *)0);
-    
 // Enable layout.
     glEnableVertexAttribArray(layoutLocation);
 }
@@ -282,10 +242,8 @@ void RendererBase::UpdateData(
     const std::vector<float> &data,
     BufferTypes buffType,
     int layoutLocation) const {
-    
 // Does the buffer hold BoneID data?
     if (buffType == BufferTypes::BoneIDs){
-        
 // If so, update buffer with int data.
         UpdateArrayBufferDataInt(
             VBOID,
@@ -294,7 +252,6 @@ void RendererBase::UpdateData(
             layoutLocation);
     }
     else {
-        
 // Else, update with float data.
         UpdateArrayBufferData(
             VBOID,
@@ -305,36 +262,24 @@ void RendererBase::UpdateData(
 }
 
 void RendererBase::UseVAOEnd() const {
-    
 // Unbind currently used VAO.
     glBindVertexArrayOES(0);
-    
 // Stop using shader program.
     glUseProgram(0);
 }
 
 void RendererBase::CleanupBase() const {
-    
 // Loop through all keys of buffer types.
-    for (const auto &buff_type : m_VBOIDs) {
-        
+    for (const auto &buff_type : m_VBOIDs)
 // Loop through all keys of VAO ids.
-        for (const auto &buffer_entry : buff_type.second) {
-            
+        for (const auto &buffer_entry : buff_type.second)
 // Delete every VBO.
             glDeleteBuffers(1, &buffer_entry.second);
-        }
-    }
-    
 // Loop through all VAO ids.
-    for (const auto vao_id : m_VAOIDs) {
-        
+    for (const auto vao_id : m_VAOIDs)
 // And delete them.
         glDeleteVertexArraysOES(1, &vao_id);
-    }
-    
 // Finally, clean up shader proram.
     m_shaderProgram->Cleanup();
 }
-
 }

@@ -7,7 +7,7 @@
 
 namespace JoD {
 inline static const GLchar *
-    g_defaultShaderImagesFragment     // Fragment shader for image rendering
+    g_defaultShaderImagesFragment ///< Fragment shader for image rendering
 {
     "#version 300 es\n"
     

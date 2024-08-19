@@ -38,7 +38,7 @@ class ImageBank {
     Size GetImageDimensions(int imageNameHash) const;
     
   private:
-    /// Loads all images from file system and storesboth the images and their dimensions.
+// Loads all images from file system and storesboth the images and their dimensions.
     void LoadImages();
     
 // Stores images as entries by image name hash code.
