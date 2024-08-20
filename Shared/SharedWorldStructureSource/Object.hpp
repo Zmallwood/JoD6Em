@@ -79,6 +79,10 @@ class Object {
         return m_quantity;
     }
     
+    void DecreaseQuantity(int amount = 1) {
+        m_quantity -= amount;        
+    }
+    
   private:
     
     // Members

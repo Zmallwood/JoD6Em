@@ -33,6 +33,9 @@ ObjectsIndex::ObjectsIndex() {
     m_objectFlags.insert(
         {Hash("ObjectWoodLog"),
          {.name="Wood log", .flags = ObjectFlags::k_walkThrough}});
+    m_objectFlags.insert(
+        {Hash("ObjectWoodPlank"),
+         {.name="Wood plank", .flags = ObjectFlags::k_walkThrough}});
 }
 
 bool ObjectsIndex::CanWalkThroughObject(int objectNameHash) const {

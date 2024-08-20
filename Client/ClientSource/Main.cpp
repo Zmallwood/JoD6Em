@@ -16,6 +16,6 @@ int main(int argc, char *argv[]) {
 // An exception occured, exit game.
         return EXIT_FAILURE;  
     }
-// No exceptions occured. 
-    return EXIT_SUCCESS;       
-}  
+// No exceptions occured.     
+    return EXIT_SUCCESS;         
+}   

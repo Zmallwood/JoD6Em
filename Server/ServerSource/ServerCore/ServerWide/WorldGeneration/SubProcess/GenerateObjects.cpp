@@ -39,6 +39,9 @@ void GenerateObjects(WorldArea* worldArea) {
     GenerateObjectOfType(
         {.worldArea = worldArea,
          .objectName = "ObjectPinkFlower", .amount = 200});
+    GenerateObjectOfType(
+        {.worldArea = worldArea,
+         .objectName = "ObjectStoneBoulder", .amount = 200});
 }
 
 namespace {
@@ -53,6 +56,7 @@ void GenerateObjectOfType(GenerateObjectOfTypeArgs args) {
             ground != Hash("GroundCobbleStone") &&
             ground != Hash("GroundBridge") &&
             ground != Hash("GroundRock")) {
+            args.worldArea->GetTile(x, y)->GetObjectsPile().Clear();
 // Add the object to the tile.
             args.worldArea->GetTile(
                 x,

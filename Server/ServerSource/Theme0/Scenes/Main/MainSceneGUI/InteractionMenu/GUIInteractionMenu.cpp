@@ -20,6 +20,7 @@
 #include "ServerCore/Net/InstructionsSending.hpp"
 #include "Actions/ChopTreeAction.hpp"
 #include "Actions/ChopFelledTreeAction.hpp"
+#include "Actions/CreateWoodPlankAction.hpp"
 
 namespace JoD {
 GUIInteractionMenu::GUIInteractionMenu()
@@ -72,12 +73,22 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
             else if (object->GetType() == Hash("ObjectFelledTree")) {
 // Add a chop up action to the menu.
                 m_menuEntries.push_back(
-                    {.label="Chop up felled tree", .action = Actions::chopFelledTreeAction,
+                    {.label="Chop up felled tree",
+                     .action = Actions::chopFelledTreeAction,
                      .bounds = {m_position.x,
                                 m_position.y + menuEntryIndex*k_menuRowHeight,
                                 m_size.w, k_menuRowHeight}});
 // Increase added entries counter.
-                menuEntryIndex++; 
+                menuEntryIndex++;
+            }
+            else if (object->GetType() == Hash("ObjectWoodLog")) {
+                m_menuEntries.push_back(
+                    {.label="Create wood plank",
+                     .action = Actions::createWoodPlankAction,
+                     .bounds = {m_position.x,
+                                m_position.y + menuEntryIndex*k_menuRowHeight,
+                                m_size.w, k_menuRowHeight}});
+                menuEntryIndex++;
             }
         }
     }
