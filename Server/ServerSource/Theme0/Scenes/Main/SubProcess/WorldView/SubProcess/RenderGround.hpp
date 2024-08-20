@@ -17,5 +17,5 @@ class Tile;
 /// @param playerElev Elevation of the tile the player is located at.
 void RenderGround(
     UserID userID, Tile* tile, BoxF tileBounds, Tile* tileW, Tile* tileN,
-    int playerElev);
+    int playerElev, Point coord);
 }

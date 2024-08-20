@@ -22,10 +22,15 @@ void GenerateHorseCarts(WorldArea* worldArea) {
 // Dont consider tiles where x == 0, as there is no room for a cart then.
             if (x == 0) continue;
             auto tile = worldArea->GetTile(x,y);
+            bool coordInRoadPath = false;
+            for (auto p : worldArea->m_roadPath) {
+                if (p.x == x && p.y == y) {
+                    coordInRoadPath = true;
+                    break;
+                }
+            }
 // Check if current tile is of road type.
-            if (tile->GetGround() == Hash("GroundSlabs")
-                || tile->GetGround() == Hash("GroundTrail")
-                || tile->GetGround() == Hash("Bridge")) {
+            if (coordInRoadPath) {
 // Only create horse with an interval equal to horseCreationInterval.
                 if (tileStep % horseCreationInterval ==
                     tileStepOffset) {

@@ -84,4 +84,8 @@ void ObjectsPile::Clear() {
     m_pImpl->m_objects.clear();
 }
 
+int ObjectsPile::GetNumObjects() const {
+    return m_pImpl->m_objects.size();
+}
+
 }

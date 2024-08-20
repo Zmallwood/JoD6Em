@@ -16,15 +16,18 @@ void GenerateCastleYard(WorldArea* worldArea) {
             auto tile = worldArea->GetTile(x, y);
             tile->SetGround("GroundCobbleStone");
             tile->SetElevation(0);
+            tile->GetObjectsPile().Clear();
+            if (rand() % 10 == 0)
+                tile->GetObjectsPile().AddObject("ObjectGrass");
         }
     }
 // Create castle walls to the east.
-    for (auto y = 0; y < 24; y++) {
+    for (auto y = 0; y < 25; y++) {
         auto tile = worldArea->GetTile(25, y);
         tile->GetObjectsPile().AddObject("ObjectCastleWallE");
     }
 // Create castle walls to the south.
-    for (auto x = 0; x < 24; x++) {
+    for (auto x = 0; x < 25; x++) {
         auto tile = worldArea->GetTile(x, 25);
         tile->GetObjectsPile().AddObject("ObjectCastleWallS");
     }

@@ -4,6 +4,7 @@
  */
 
 #pragma once
+#include "CommonAliases.hpp"
 #include "Directions.hpp"
 
 namespace JoD {
@@ -111,6 +112,14 @@ class Player {
         return m_maxHP;
     }
     
+    TimePoint GetTimeSetDest() const {
+        return m_timeSetDest;
+    }
+    
+    void SetTimeSetDest(TimePoint timeSetDest) {
+        m_timeSetDest = timeSetDest;
+    }
+    
   private:
     
 /// Tries to move the player to a specific coordinate. Will succeed
@@ -138,6 +147,7 @@ class Player {
 // Players current health points.
     int m_hp {10};                                   
 // Players maximum amount of health points.
-    int m_maxHP {10};                                
+    int m_maxHP {10};    
+    TimePoint m_timeSetDest {Now()};                            
 };
 }

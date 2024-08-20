@@ -20,9 +20,14 @@ void GenerateNPCs(WorldArea* worldArea) {
         for (auto x = 0; x < worldArea->GetSize().w; x++){
             auto tile = worldArea->GetTile(x,y);
 // Check if current tile is of road type.
-            if (tile->GetGround() == Hash("GroundSlabs")
-                || tile->GetGround() == Hash("GroundTrail")
-                || tile->GetGround() == Hash("Bridge")) {
+            bool coordInRoadPath = false;
+            for (auto p : worldArea->m_roadPath) {
+                if (p.x == x && p.y == y) {
+                    coordInRoadPath = true;
+                    break;
+                }
+            }
+            if (coordInRoadPath) {
 // Only create NPC with an interval equal to npcCreationInterval.
                 if (tileStep % npcCreationInterval ==
                     tileStepOffset) {

@@ -31,6 +31,8 @@ class ObjectsPile {
     
     void Clear();
     
+    int GetNumObjects() const;
+    
   private:
     
     struct Impl;

@@ -10,7 +10,7 @@
 namespace JoD {
 void RenderGround(
     UserID userID, Tile* tile, BoxF tileBounds, Tile* tileW, Tile* tileN,
-    int playerElev) {
+    int playerElev, Point coord) {
 // Get elevation of tile.
     auto elev = tile->GetElevation();
 // Loop from the bottom up to elevation level.
@@ -36,8 +36,7 @@ void RenderGround(
     if (ground == Hash("GroundWater")) {
 // Calculate animation frame index based on time.
         auto animFrameIdx =
-            ((std::chrono::high_resolution_clock::now().
-              time_since_epoch().count()/1000000)%1200)/400;
+            (((Now().time_since_epoch().count()/1000000) + 6*coord.x*coord.y)%1200)/400;
 // Change the ground image hash code to an animated one.
         ground = Hash("GroundWater_" + std::to_string(animFrameIdx));
     }

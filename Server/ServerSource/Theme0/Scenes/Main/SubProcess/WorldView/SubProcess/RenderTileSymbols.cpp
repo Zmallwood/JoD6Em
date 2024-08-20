@@ -11,10 +11,14 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
+namespace {
+const Duration k_durationShowDestSymbol {Millis(200)};
+}
+
 void RenderTileSymbols(UserID userID, Point coord, BoxF tileBounds) {
 // Get main scene for the user.
     auto mainScene = _<EngineGet>().GetMainScene(userID);
-// Get player object for user.    
+// Get player object for user.
     const auto &player = _<EngineGet>().GetPlayer(userID);
 // Get tile hovering component.
     auto tileHovering =
@@ -25,7 +29,7 @@ void RenderTileSymbols(UserID userID, Point coord, BoxF tileBounds) {
 // Get hovered coordinate.
     auto hovCoord = tileHovering->GetHoveredCoord();
 // If proper hovered coordinate was obtained
-// and it equals the current coordinate.    
+// and it equals the current coordinate.
     if (hovCoord.has_value() && coord == hovCoord)
 // Draw hovered tile image.
         UserSendDrawImage(userID, "HoveredTile", tileBounds);
@@ -33,8 +37,11 @@ void RenderTileSymbols(UserID userID, Point coord, BoxF tileBounds) {
     auto destCoord = player->GetDestCoord();
 // If proper destination coordinate was obtained
 // and destination coordinate equals current coordinate.
-    if (destCoord.has_value() && coord == destCoord)
+    if (destCoord.has_value() && coord == destCoord) {
+        if (Now() < player->GetTimeSetDest() + k_durationShowDestSymbol){
 // Draw destination symbol on ground.
-        UserSendDrawImage(userID, "DestinationSymbol", tileBounds);
+            UserSendDrawImage(userID, "DestinationSymbol", tileBounds);
+        }
+    }
 }
 }

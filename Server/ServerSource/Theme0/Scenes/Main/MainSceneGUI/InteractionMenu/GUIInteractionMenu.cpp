@@ -21,6 +21,7 @@
 #include "Actions/ChopTreeAction.hpp"
 #include "Actions/ChopFelledTreeAction.hpp"
 #include "Actions/CreateWoodPlankAction.hpp"
+#include "Actions/PackGroundAction.hpp"
 
 namespace JoD {
 GUIInteractionMenu::GUIInteractionMenu()
@@ -56,6 +57,14 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
         m_menuEntries.clear();
 // To count the number of entries added to the meny.
         auto menuEntryIndex = 0;
+        if (tile->GetObjectsPile().GetNumObjects() == 0) {
+            m_menuEntries.push_back(
+                {.label="Pack ground", .action = Actions::packGroundAction,
+                 .bounds = {m_position.x,
+                            m_position.y + menuEntryIndex*k_menuRowHeight,
+                            m_size.w, k_menuRowHeight}});
+            menuEntryIndex++;
+        }
 // Loop over all objects on tile to determine what actions to add to the menu.
         for (auto object : tile->GetObjectsPile().GetObjects()) {
 // If tile contains tree objects.

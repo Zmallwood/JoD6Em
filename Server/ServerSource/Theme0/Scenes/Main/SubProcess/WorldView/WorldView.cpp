@@ -75,7 +75,7 @@ void WorldView::Render(UserID userID) const {
 // Draw the ground surface.
             RenderGround(
                 userID, tile, groundBounds, tileW, tileN,
-                playerElev);
+                playerElev, {coordX, coordY});
             auto elev = tile->GetElevation();
 // Create bounds for tile, elevated to tile height.
             auto tileBounds = BoxF {

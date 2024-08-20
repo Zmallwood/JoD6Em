@@ -38,6 +38,7 @@ void MouseMovement::Update(UserID userID) {
     if (mouseDown && hovTile.has_value()) {
 // Set player destination to hovered tile coordinate.
         player->SetDestCoord(hovTile.value());
+        player->SetTimeSetDest(Now());
 // Clear any creature targeting.
         creaTarg->SetTargetedCreature(nullptr);
     }
