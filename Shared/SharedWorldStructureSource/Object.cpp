@@ -7,7 +7,7 @@
 
 namespace JoD {
 
-Object::Object(std::string_view objectName)
-    : m_type(Hash(objectName)), m_creationTime(Now()) {}
+Object::Object(std::string_view objectName, int quantity)
+    : m_type(Hash(objectName)), m_creationTime(Now()), m_quantity(quantity) {}
 
 }

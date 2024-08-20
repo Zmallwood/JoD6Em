@@ -14,7 +14,7 @@
 namespace JoD {
 namespace Actions {
 /// Action for chopping down a tree.
-auto chopAction =
+auto chopTreeAction =
     [] (Point clickedCoord) {
 // Get tile with the tree.
         auto tile =

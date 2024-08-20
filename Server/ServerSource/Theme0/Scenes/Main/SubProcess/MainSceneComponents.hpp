@@ -13,6 +13,7 @@ enum class MainSceneComponents {
     TileHovering,      ///< Handles hovered of the tile currently under the cursor.
     WorldView,         ///< Core game world viewing as a 2D tile grid on canvas.
     CombatMovement,    ///< Handles combat movement such as chasing targeted creature.
-    Combat
+    Combat,
+    ObjectHovering
 };
 }

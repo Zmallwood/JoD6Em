@@ -10,6 +10,7 @@
 #include "SubProcess/Combat.hpp"
 #include "SubProcess/CombatMovement.hpp"
 #include "SubProcess/WorldView/WorldView.hpp"
+#include "SubProcess/ObjectHovering.hpp"
 #include "MainSceneGUI/GUITextConsole.hpp"
 #include "MainSceneGUI/GUIExpBar.hpp"
 #include "MainSceneGUI/GUIStatusPanel.hpp"
@@ -89,6 +90,10 @@ void MainScene::Initialize(UserID userID) {
     m_pImpl->components.insert(
         {MainSceneComponents::Combat,
          std::make_unique<Combat>() });
+// Add object hovering.
+    m_pImpl->components.insert(
+        {MainSceneComponents::ObjectHovering,
+         std::make_unique<ObjectHovering>() });
 }
 
 void MainScene::OnEnterDerived(UserID userID) {

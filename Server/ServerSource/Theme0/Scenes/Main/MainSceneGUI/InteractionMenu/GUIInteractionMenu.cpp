@@ -18,7 +18,8 @@
 #include "Theme0/Scenes/Main/SubProcess/TileHovering.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
 #include "ServerCore/Net/InstructionsSending.hpp"
-#include "Actions/ChopAction.hpp"
+#include "Actions/ChopTreeAction.hpp"
+#include "Actions/ChopFelledTreeAction.hpp"
 
 namespace JoD {
 GUIInteractionMenu::GUIInteractionMenu()
@@ -61,12 +62,22 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
                 object->GetType() == Hash("ObjectTree2")){
 // Add a chop down action to the menu.
                 m_menuEntries.push_back(
-                    {.label="Chop down tree", .action = Actions::chopAction,
+                    {.label="Chop down tree", .action = Actions::chopTreeAction,
                      .bounds = {m_position.x,
                                 m_position.y + menuEntryIndex*k_menuRowHeight,
                                 m_size.w, k_menuRowHeight}});
 // Increase added entries counter.
                 menuEntryIndex++;
+            }
+            else if (object->GetType() == Hash("ObjectFelledTree")) {
+// Add a chop up action to the menu.
+                m_menuEntries.push_back(
+                    {.label="Chop up felled tree", .action = Actions::chopFelledTreeAction,
+                     .bounds = {m_position.x,
+                                m_position.y + menuEntryIndex*k_menuRowHeight,
+                                m_size.w, k_menuRowHeight}});
+// Increase added entries counter.
+                menuEntryIndex++; 
             }
         }
     }

@@ -21,7 +21,7 @@ class Object {
     ///
     /// @param objectName Name of type of object o create.
     ///
-    Object(std::string_view objectName);
+    Object(std::string_view objectName, int quantity = 1);
     
     ///
     /// Get the hash code of the type of the object.
@@ -75,6 +75,10 @@ class Object {
         m_containedNPC = std::move(containedNPC);
     }
     
+    int GetQuantity() const {
+        return m_quantity;
+    }
+    
   private:
     
     // Members
@@ -88,6 +92,8 @@ class Object {
     ObjectMaturity m_maturity {ObjectMaturity::Mature}; ///< Maturity stage of the object.
     
     std::unique_ptr<NPC> m_containedNPC;
+    
+    int m_quantity {1};
 };
 
 }

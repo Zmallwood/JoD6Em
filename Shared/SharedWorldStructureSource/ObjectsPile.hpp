@@ -17,7 +17,7 @@ class ObjectsPile {
     
     ~ObjectsPile();
     
-    void AddObject(std::string_view objectName);
+    void AddObject(std::string_view objectName, int quantity = 1);
     
     void AddObject(std::shared_ptr<Object> object);
     

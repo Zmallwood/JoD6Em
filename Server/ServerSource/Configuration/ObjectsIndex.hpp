@@ -4,6 +4,7 @@
  */
 
 #pragma once
+#include "ObjectEntry.hpp"
 
 namespace JoD {
 /// Manages properties and configuration for object types.
@@ -19,8 +20,10 @@ class ObjectsIndex {
 /// @return false If cannot walk through (obstacle) objects of this type.
     bool CanWalkThroughObject(int objectNameHash) const;
     
+    std::string GetObjectName(int objectNameHash) const;
+    
   private:
 // Storage of object types and their flags.
-    std::map<int, int> m_objectFlags;
+    std::map<int, ObjectEntry> m_objectFlags;
 };
 }

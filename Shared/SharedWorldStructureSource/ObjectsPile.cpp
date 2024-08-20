@@ -7,7 +7,7 @@
 #include "Object.hpp"
 
 namespace JoD {
-    
+
 struct ObjectsPile::Impl {
     
     std::vector<std::shared_ptr<Object>> m_objects;
@@ -30,9 +30,12 @@ std::vector<std::shared_ptr<Object>> ObjectsPile::GetObjects() const {
     return results;
 }
 
-void ObjectsPile::AddObject(std::string_view objectName) {
+void ObjectsPile::AddObject(std::string_view objectName, int quantity) {
     
-    m_pImpl->m_objects.push_back(std::make_unique<Object>(objectName));
+    m_pImpl->m_objects.push_back(
+        std::make_unique<Object>(
+            objectName,
+            quantity));
 }
 
 
