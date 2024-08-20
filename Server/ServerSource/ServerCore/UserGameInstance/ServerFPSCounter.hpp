@@ -9,11 +9,11 @@ namespace JoD {
 /// Server side FPS counter for a single user.
 class ServerFPSCounter {
   public:
-    /// Update the object by producing the final FPS value.
+/// Update the object by producing the final FPS value.
     void Update();
     
-    /// Render the FPS value as string to canvas.
-    /// @param userID User ID for which this ServerFPSCounter belongs to.
+/// Render the FPS value as string to canvas.
+/// @param userID User ID for which this ServerFPSCounter belongs to.
     void Render(UserID userID) const;
     
   private:

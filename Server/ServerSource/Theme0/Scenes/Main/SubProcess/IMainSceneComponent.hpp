@@ -12,13 +12,12 @@ class EngineInstance;
 class IMainSceneComponent {
     
   public:
-    
-    /// Optionally overridable for inheriting component classes.
-    /// @param userID User ID for which the updated component belongs to.
+/// Optionally overridable for inheriting component classes.
+/// @param userID User ID for which the updated component belongs to.
     virtual void Update(UserID userID) {}
     
-    /// Optionally overridable for inheriting component classes.
-    /// @param userID User ID for which the rendered component belongs to.
+/// Optionally overridable for inheriting component classes.
+/// @param userID User ID for which the rendered component belongs to.
     virtual void Render(UserID userID) const {}
 };
 }

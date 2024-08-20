@@ -10,20 +10,20 @@ namespace JoD {
 /// left and right.
 class MouseButton {
   public:
-    /// Register the button has been pressed down.
+/// Register the button has been pressed down.
     void RegisterMouseDown();
     
-    /// Register the button has been released.
+/// Register the button has been released.
     void RegisterMouseUp();
     
-    /// Get the buttons pressed state and resets it at the same time.
-    /// @return true Button is currently being pressed down.
-    /// @return false Button is currently not being pressed down.
+/// Get the buttons pressed state and resets it at the same time.
+/// @return true Button is currently being pressed down.
+/// @return false Button is currently not being pressed down.
     bool GetIsPressedPickResult();
     
-    /// Get the pressed state for the button.
-    /// @return true If button is currently pressed down.
-    /// @return false If button is not currently pressed down.
+/// Get the pressed state for the button.
+/// @return true If button is currently pressed down.
+/// @return false If button is not currently pressed down.
     bool GetIsPressed() const {
         return m_isPressed;
     }

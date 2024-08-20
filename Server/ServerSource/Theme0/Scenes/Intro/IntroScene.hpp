@@ -12,21 +12,20 @@ class GUILabel;
 /// The first scene presented to the user on game start.
 class IntroScene : public IScene {
   public:
-    /// Adds GUI components and components to the scene.
-    /// @param userID User ID for which the scene belongs to.
+/// Adds GUI components and components to the scene.
+/// @param userID User ID for which the scene belongs to.
     void Initialize(UserID userID) override;
     
-    /// Use base class ctor.
+/// Use base class ctor.
     using IScene::IScene;
     
   protected:
-    
-    /// Update game logic.
-    /// @param userID User ID for which the scene belongs to.
+/// Update game logic.
+/// @param userID User ID for which the scene belongs to.
     void UpdateDerived(UserID userID) override;
     
-    /// Render the scene to canvas.
-    /// @param userID User ID for which the scene belongs to.
+/// Render the scene to canvas.
+/// @param userID User ID for which the scene belongs to.
     void RenderDerived(UserID userID) const override;
     
   private:

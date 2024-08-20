@@ -10,28 +10,28 @@ namespace JoD {
 /// A clickable button with a text label in the GUI.
 class GUIButton : public GUIComponent {
   public:
-    /// Construct a new GUIButton object
-    /// @param bounds Area in which the button will be rendered and is clickable.
-    /// @param text Label text to draw on top of the button image.
-    /// @param action Action to perform when the button is clicked.
-    /// @param imageNameDefault Image name when button is not hovered.
-    /// @param imageNameHovered Image name when button is hovered.
+/// Construct a new GUIButton object
+/// @param bounds Area in which the button will be rendered and is clickable.
+/// @param text Label text to draw on top of the button image.
+/// @param action Action to perform when the button is clicked.
+/// @param imageNameDefault Image name when button is not hovered.
+/// @param imageNameHovered Image name when button is hovered.
     GUIButton(BoxF bounds, std::string_view text,
               std::function<void()> action,
               std::string_view imageNameDefault = "GUIButtonBground",
               std::string_view imageNameHovered = "GUIButtonHoveredBground");
     
-    /// Update hovered status and check if button has been clicked.
-    /// @param userID User ID for which user GUI the button belongs to.
+/// Update hovered status and check if button has been clicked.
+/// @param userID User ID for which user GUI the button belongs to.
     void UpdateDerived(UserID userID) override;
     
-    /// Render the buttons image and text label.
-    /// @param userID User ID for which user GUI the button belongs to.
+/// Render the buttons image and text label.
+/// @param userID User ID for which user GUI the button belongs to.
     void RenderDerived(UserID userID) const override;
     
   private:
-    /// Get the bounds of the GUI button.
-    /// @return BoxF GUI button bounds.
+/// Get the bounds of the GUI button.
+/// @return BoxF GUI button bounds.
     BoxF GetBounds() const;
     
 // Text label that is drawn on top of button image.

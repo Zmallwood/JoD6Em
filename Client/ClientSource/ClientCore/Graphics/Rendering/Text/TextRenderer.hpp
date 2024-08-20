@@ -11,42 +11,42 @@ namespace JoD {
 /// Renderer used to allocated resources for, and render, text to the canvas.
 class TextRenderer {
   public:
-    /// Construct a new text renderer object by initializing
-    /// font objects for different sizes.
+/// Construct a new text renderer object by initializing
+/// font objects for different sizes.
     TextRenderer();
     
-    /// Draw a text string to the canvas.
-    /// @param rid Resource ID previously allocated.
-    /// @param text Text string to render.
-    /// @param position Position to render at in the canvas.
-    /// @param color Color of the rendered text.
-    /// @param centerAlign Specifies if text should be center aligned.
-    /// @param fontSize Font size of the rendered text.
+/// Draw a text string to the canvas.
+/// @param rid Resource ID previously allocated.
+/// @param text Text string to render.
+/// @param position Position to render at in the canvas.
+/// @param color Color of the rendered text.
+/// @param centerAlign Specifies if text should be center aligned.
+/// @param fontSize Font size of the rendered text.
     void DrawString(
         RID rid, std::string_view text, PointF position,
         ColorF color = Colors::wheat,
         bool centerAlign = false,
         FontSizes fontSize = FontSizes::_20) const;
     
-    /// Allocate resources for a text string to be rendered.
-    /// @return rid Resource ID for the allocated resources.
+/// Allocate resources for a text string to be rendered.
+/// @return rid Resource ID for the allocated resources.
     RID NewString();
     
-    /// Measure a text string with specified size and return its dimensions.
-    /// @param text Text string to be measured.
-    /// @param fontSize Font size to measure with.
-    /// @return sizef Text string dimensions.
+/// Measure a text string with specified size and return its dimensions.
+/// @param text Text string to be measured.
+/// @param fontSize Font size to measure with.
+/// @return sizef Text string dimensions.
     SizeF MeasureString(std::string_view text, FontSizes fontSize) const;
     
   private:
-    /// Does the actual rendering operations when drawing a string.
-    /// @param rid Resource ID previously allocated for the string.
-    /// @param text Text to draw to the canvas.
-    /// @param color Color of the text to draw.
-    /// @param centerAlign If the text should be center aligned or not.
-    /// @param fontSize Size of font to use.
-    /// @param out_uniqueNameID Outputs image name for the rendered text texture.
-    /// @param out_dimensions Output dimensions of the rendered text texture.
+/// Does the actual rendering operations when drawing a string.
+/// @param rid Resource ID previously allocated for the string.
+/// @param text Text to draw to the canvas.
+/// @param color Color of the text to draw.
+/// @param centerAlign If the text should be center aligned or not.
+/// @param fontSize Size of font to use.
+/// @param out_uniqueNameID Outputs image name for the rendered text texture.
+/// @param out_dimensions Output dimensions of the rendered text texture.
     void RenderText(
         RID rid, std::string_view text, ColorF color,
         bool centerAlign, FontSizes fontSize,

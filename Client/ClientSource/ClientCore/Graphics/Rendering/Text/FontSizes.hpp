@@ -13,5 +13,4 @@ enum class FontSizes {
     _30, ///< Point size 30
     _50  ///< Point size 40
 };
-
 }

@@ -10,20 +10,20 @@ namespace JoD {
 /// after it has opened.
 class WSServerConnection {
   public:
-    /// Open the connection to the web socket server.
+/// Open the connection to the web socket server.
     void Connect() const;
     
-    /// Send message to the server.
-    /// @param messageType Message type to be sent.
+/// Send message to the server.
+/// @param messageType Message type to be sent.
     void SendMessage(int messageType) const;
     
-    ///  Send message to the server.
-    /// @param data Int array data to send.
-    /// @param length Length of the int array data.
+///  Send message to the server.
+/// @param data Int array data to send.
+/// @param length Length of the int array data.
     void SendMessage(const int *data, int length) const;
     
-    /// Set the WebSocketEvent object associated with the connection to the game server.
-    /// @param value The new WebSocketEvent object.
+/// Set the WebSocketEvent object associated with the connection to the game server.
+/// @param value The new WebSocketEvent object.
     void SetWebSocketEvent(
         std::unique_ptr<const EmscriptenWebSocketOpenEvent> value) {
         m_webSocketEvent = std::move(value);

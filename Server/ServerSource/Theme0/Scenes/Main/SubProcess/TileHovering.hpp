@@ -10,13 +10,15 @@ namespace JoD {
 /// Enables hovering the tile currently under the mouse cursor.
 class TileHovering : public IMainSceneComponent {
   public:
-    /// Use base ctor.
+/// Use base ctor.
     using IMainSceneComponent::IMainSceneComponent;
     
-    /// Override base class method.
-    /// @param userID User ID for user which the component belongs.
+/// Override base class method.
+/// @param userID User ID for user which the component belongs.
     void Update(UserID userID) override;
     
+/// Get the hovered cpprdomate-
+/// @return std::optional<Point> Hovered coordinate.
     std::optional<Point> GetHoveredCoord() const {
         return m_hoveredCoord;
     }

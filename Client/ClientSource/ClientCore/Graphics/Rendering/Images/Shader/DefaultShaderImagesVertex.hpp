@@ -7,8 +7,7 @@
 
 namespace JoD {
 inline static const GLchar *
-    g_defaultShaderImagesVertex ///< Vertex shader for image rendering
-{
+    g_defaultShaderImagesVertex { ///< Vertex shader for image rendering
     "#version 300 es\n"
     
     "layout (location = 0) in vec3 aPos;\n"

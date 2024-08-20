@@ -10,11 +10,11 @@ namespace JoD {
 /// Text console GUI component at bottom left of the canvas.
 class GUITextConsole : public GUIPanel {
   public:
-    /// Construct a new GUITextConsole object.
+/// Construct a new GUITextConsole object.
     GUITextConsole();
     
-    /// Render the text console to canvas.
-    /// @param userID User ID for user which the text console belongs to.
+/// Render the text console to canvas.
+/// @param userID User ID for user which the text console belongs to.
     void RenderDerived(UserID userID) const override;
     
   private:

@@ -10,15 +10,15 @@ namespace JoD {
 /// Draws a single string of text to the canvas.
 class GUILabel : public GUIComponent {
   public:
-    /// Construct a new GUILabel object.
-    /// @param position Position in the canvas.
-    /// @param text Text to draw.
-    /// @param centerAligned If position represents text center or text top left corner.
+/// Construct a new GUILabel object.
+/// @param position Position in the canvas.
+/// @param text Text to draw.
+/// @param centerAligned If position represents text center or text top left corner.
     GUILabel(PointF position, std::string_view text,
              bool centerAligned = false);
     
-    /// Do the rendering of the label text.
-    /// @param userID User ID for which user GUI the GUILabel belongs to.
+/// Do the rendering of the label text.
+/// @param userID User ID for which user GUI the GUILabel belongs to.
     void RenderDerived(UserID userID) const override;
     
   private:

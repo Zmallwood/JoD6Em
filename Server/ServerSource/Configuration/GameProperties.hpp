@@ -9,14 +9,14 @@ namespace JoD {
 /// Holds game configuration parameters.
 class GameProperties {
   public:
-    /// Construct a new Game Properties object.
+/// Construct a new Game Properties object.
     GameProperties();
     
-    /// Destroy the Game Properties object. Needed by PIMPL idiom.
+/// Destroy the Game Properties object. Needed by PIMPL idiom.
     ~GameProperties();
     
-    /// Get the number of grid rows in tile grid in WorldView.
-    /// @return int Number of grid rows.
+/// Get the number of grid rows in tile grid in WorldView.
+/// @return int Number of grid rows.
     int GetNumGridRows() const;
     
   private:
