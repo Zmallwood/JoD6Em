@@ -4,12 +4,10 @@
  */
 
 #pragma once
-
 // External.
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/beast/websocket.hpp>
 #include <json/json.h>
-
 // Std.
 #include <string>
 #include <iostream>
@@ -19,7 +17,6 @@
 #include <thread>
 #include <chrono>
 #include <optional>
-
 // Project.
 #include "MathLib/MathConstants.hpp"
 #include "MathLib/ColorF.hpp"

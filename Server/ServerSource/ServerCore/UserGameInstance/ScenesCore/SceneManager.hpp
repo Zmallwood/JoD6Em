@@ -23,11 +23,11 @@ class SceneManager {
     
     /// Updates the scene currently being presented.
     /// @param userID User ID for which user the SceneManager belongs to.
-    void UpdateCurrentScene(UserID userID);
+    void UpdateCurrScene(UserID userID);
     
     /// Renders the scene currently being presented.
     /// @param userID User ID for which user the SceneManager belongs to.
-    void RenderCurrentScene(UserID userID) const;
+    void RenderCurrScene(UserID userID) const;
     
     /// Move from the currently presented scene to another one.
     /// @param userID User ID for which user the SceneManager belongs to.

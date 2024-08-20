@@ -6,10 +6,6 @@
 #pragma once
 
 namespace JoD {
-
-///
 /// Update the whole world by executing several updating processes.
-///
 void BeginProcessWorld();
-
 }

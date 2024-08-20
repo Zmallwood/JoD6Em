@@ -13,71 +13,55 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
-    
+
 void CombatMovement::Update(UserID userID) {
-    auto player =
-        _<EngineGet>().GetPlayer(userID);
-    
-    auto creatureTargeting =
+// Get player object.
+    auto player = _<EngineGet>().GetPlayer(userID);
+// Get creature targeting component.
+    auto creaTarg =
         static_cast<CreatureTargeting*>(
-            _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>(
-                "MainScene")->GetComponent(
+            _<EngineGet>().GetMainScene(userID)->GetComponent(
                 MainSceneComponents::
                 CreatureTargeting));
-    
-    if (creatureTargeting->GetTargetedCreature()) {
-        
+// Get targeted creature.
+    auto targCrea = creaTarg->GetTargetedCreature();
+// If targeted creature is valid.
+    if (targCrea) {
+// Get current world area.
         const auto &worldArea = _<World>().GetCurrWorldArea();
-        const auto pos =
-            worldArea->GetCreatureCoord(
-                creatureTargeting->GetTargetedCreature()).value();
-        
+// Get coordinate of targeted creature.
+        auto pos =
+            worldArea->GetCreatureCoord(targCrea).value();
+// If time for player to move.
         if (Now() > player->GetTimeLastMove() +
             Duration(
                 Millis(
                     static_cast<int>(
                         1000/
                         player->GetMoveSpd())))) {
-            
-            const auto dx = pos.x - player->GetCoord().x;
-            const auto dy = pos.y - player->GetCoord().y;
-            
-            if (dx < 0 && dy < 0) {
-                
+// Calculate deltas for the distance difference.
+            auto dx = pos.x - player->GetCoord().x;
+            auto dy = pos.y - player->GetCoord().y;
+// Move in directio based on delta values.
+            if (dx < 0 && dy < 0)
                 player->TryMove(userID, Directions::NorthWest);
-            }
-            else if (dx == 0 && dy < 0) {
-                
+            else if (dx == 0 && dy < 0)
                 player->TryMove(userID, Directions::North);
-            }
-            else if (dx > 0 && dy < 0) {
-                
+            else if (dx > 0 && dy < 0)
                 player->TryMove(userID, Directions::NorthEast);
-            }
-            else if (dx > 0 && dy == 0) {
-                
+            else if (dx > 0 && dy == 0)
                 player->TryMove(userID, Directions::East);
-            }
-            else if (dx > 0 && dy > 0) {
-                
+            else if (dx > 0 && dy > 0)
                 player->TryMove(userID, Directions::SouthEast);
-            }
-            else if (dx == 0 && dy > 0) {
-                
+            else if (dx == 0 && dy > 0)
                 player->TryMove(userID, Directions::South);
-            }
-            else if (dx < 0 && dy > 0) {
-                
+            else if (dx < 0 && dy > 0)
                 player->TryMove(userID, Directions::SouthWest);
-            }
-            else if (dx < 0 && dy == 0) {
-                
+            else if (dx < 0 && dy == 0)
                 player->TryMove(userID, Directions::West);
-            }
-            
+// Store time when move occured.
             player->SetTimeLastMove(Now());
         }
     }
 }
-
 }

@@ -16,45 +16,40 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
-
 void CreatureTargeting::Update(UserID userID) {
-    
+// Get player object.
     auto player =
         _<EngineGet>().GetPlayer(userID);
-    
-    auto tileHovering =
+// Get main scene object.
+    auto mainScene =
+        _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>(
+            "MainScene");
+// Get tile hovering component.
+    auto tileHov =
         static_cast<TileHovering*>(
-            _<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>(
-                "MainScene")->GetComponent(
+            mainScene->GetComponent(
                 MainSceneComponents::
                 TileHovering));
-    
+// Is mouse pressed down.
     const auto mouseDown =
         _<EngineGet>().GetMouseInput(userID)->
         GetRightButton().
         GetIsPressedPickResult();
-    
-    const auto hoveredTile =
-        tileHovering->GetHoveredCoord();
-    
-    if (mouseDown && hoveredTile.has_value()) {
-        
+// Get hovered tile.
+    const auto hovTile = tileHov->GetHoveredCoord();
+// If left mouse button is pressed and a proper tile coordinate is hovered.
+    if (mouseDown && hovTile.has_value()) {
+//Clear players destination coordinate.
         player->SetDestCoord(std::nullopt);
-        
-        const auto &worldArea = _<World>().GetCurrWorldArea();
-        
-        const auto &tile = worldArea->GetTile(hoveredTile.value());
-        
-        if (tile->GetCreature()) {
-            
+// Get hovered tile.
+        const auto &wArea = _<World>().GetCurrWorldArea();
+        const auto &tile = wArea->GetTile(hovTile.value());
+// If hovered tile has a creature, target it,
+// otherwise clear current creature target.
+        if (tile->GetCreature())
             m_targetedCreature = tile->GetCreature();
-            
-        }
-        else {
-            
+        else
             m_targetedCreature = nullptr;
-        }
     }
 }
-
 }

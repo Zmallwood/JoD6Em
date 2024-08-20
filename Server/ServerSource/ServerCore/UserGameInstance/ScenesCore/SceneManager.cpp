@@ -46,14 +46,14 @@ std::map<int, std::unique_ptr<IScene>> &SceneManager::GetScenes() const {
     return m_pImpl->scenes;
 }
 
-void SceneManager::UpdateCurrentScene(UserID userID) {
+void SceneManager::UpdateCurrScene(UserID userID) {
 // If scene exists...
     if (m_pImpl->scenes.contains(m_pImpl->currentScene))
 // Update it.
         m_pImpl->scenes.at(m_pImpl->currentScene)->Update(userID);
 }
 
-void SceneManager::RenderCurrentScene(UserID userID) const {
+void SceneManager::RenderCurrScene(UserID userID) const {
 // If scene exists...
     if (m_pImpl->scenes.contains(m_pImpl->currentScene))
 // Render it.
