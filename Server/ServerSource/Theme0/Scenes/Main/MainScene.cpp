@@ -21,10 +21,10 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
-
 struct MainScene::Impl {
+// Contains sub components for the scene.
     std::map<MainSceneComponents, std::unique_ptr<IMainSceneComponent>>
-    components;     ///< Contains sub components for the scene.
+    components;
 };
 
 MainScene::MainScene() :
@@ -33,88 +33,88 @@ MainScene::MainScene() :
 MainScene::~MainScene() {}
 
 void MainScene::Initialize(UserID userID) {
-    
+// Add system GUIButton.
     GetGUI()->AddComponent<GUIButton>(
-        BoxF{0.96f, 0.89f, 0.03f, 0.03f * _<EngineGet>().GetAspectRatio(userID).value()}, "", [=] {}, "GUIButtonSystem",
+        BoxF{0.96f, 0.89f, 0.03f,
+             0.03f * _<EngineGet>().GetAspectRatio(userID).value()}, "", [=] {},
+        "GUIButtonSystem",
         "GUIButtonSystemHovered");
-    
+// Add skills GUIButton.
     GetGUI()->AddComponent<GUIButton>(
-        BoxF{0.92f, 0.89f, 0.03f, 0.03f * _<EngineGet>().GetAspectRatio(userID).value()}, "", [=] {}, "GUIButtonSkills",
+        BoxF{0.92f, 0.89f, 0.03f,
+             0.03f * _<EngineGet>().GetAspectRatio(userID).value()}, "", [=] {},
+        "GUIButtonSkills",
         "GUIButtonSkillsHovered");
-    
+// Add inventory GUIButton.
     GetGUI()->AddComponent<GUIButton>(
-        BoxF{0.88f, 0.89f, 0.03f, 0.03f * _<EngineGet>().GetAspectRatio(userID).value()}, "", [=] {}, "GUIButtonInventory",
+        BoxF{0.88f, 0.89f, 0.03f,
+             0.03f * _<EngineGet>().GetAspectRatio(userID).value()}, "", [=] {},
+        "GUIButtonInventory",
         "GUIButtonInventoryHovered");
-    
+// Add character GUIButton.
     GetGUI()->AddComponent<GUIButton>(
-        BoxF{0.84f, 0.89f, 0.03f, 0.03f * _<EngineGet>().GetAspectRatio(userID).value()}, "", [=] {}, "GUIButtonCharacter",
+        BoxF{0.84f, 0.89f, 0.03f,
+             0.03f * _<EngineGet>().GetAspectRatio(userID).value()}, "", [=] {},
+        "GUIButtonCharacter",
         "GUIButtonCharacterHovered");
-    
+// Add text console GUI component.
     GetGUI()->AddComponent<GUITextConsole>();
-    
+// Add experience bar GUI component.
     GetGUI()->AddComponent<GUIExpBar>();
-    
+// Add status panel GUI component.
     GetGUI()->AddComponent<GUIStatusPanel>();
-    
+// Add interaction menu GUI component.
     GetGUI()->AddComponent<GUIInteractionMenu>();
-    
+// Add tile hovering component.
     m_pImpl->components.insert(
         {MainSceneComponents::TileHovering,
          std::make_unique<TileHovering>() });
-    
+// Add mouse movement component.
     m_pImpl->components.insert(
         {MainSceneComponents::MouseMovement,
          std::make_unique<MouseMovement>() });
-    
+// Add creature targeting component.
     m_pImpl->components.insert(
         {MainSceneComponents::CreatureTargeting,
          std::make_unique<CreatureTargeting>() });
-    
+// Add world view component.
     m_pImpl->components.insert(
         {MainSceneComponents::WorldView,
          std::make_unique<WorldView>() });
-    
+// Add combat movement component.
     m_pImpl->components.insert(
         {MainSceneComponents::CombatMovement,
          std::make_unique<CombatMovement>() });
-    
+// Add combat component.
     m_pImpl->components.insert(
         {MainSceneComponents::Combat,
          std::make_unique<Combat>() });
 }
 
 void MainScene::OnEnterDerived(UserID userID) {
-    
-    std::cout << "User " << userID << " entered MainScene\n";
-    
+// Notify user about entering the game world.
     _<EngineGet>().GetTextMessages(userID)->Print("Entering world.");
 }
 
 void MainScene::UpdateDerived(UserID userID) {
-    
-    for (const auto& component : m_pImpl->components) {
-        
+// Update all components for the scene.
+    for (const auto& component : m_pImpl->components)
         component.second->Update(userID);
-    }
 }
 
 void MainScene::RenderDerived(UserID userID) const {
-    
-    for (const auto& component : m_pImpl->components) {
-        
+// Render all components for the scene.
+    for (const auto& component : m_pImpl->components)
         component.second->Render(userID);
-    }
 }
 
 IMainSceneComponent *MainScene::GetComponent(
     MainSceneComponents mainSceneComponent) const {
-    
-    if (m_pImpl->components.contains(mainSceneComponent)) {
-        
+// If component of type has been added to the scene.
+    if (m_pImpl->components.contains(mainSceneComponent))
+// Return it.
         return m_pImpl->components.at(mainSceneComponent).get();
-    }
-    
+// Component with the type douesnt exists, return fail value.
     return nullptr;
 }
-
 }

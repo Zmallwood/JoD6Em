@@ -6,12 +6,8 @@
 #pragma once
 
 namespace JoD {
-
-///
 /// Available scene components for MainScene.
-///
 enum class MainSceneComponents {
-    
     CreatureTargeting, ///< Handles targeting of creatures in the world.
     MouseMovement,     ///< Handles moving by clicking with mouse.
     TileHovering,      ///< Handles hovered of the tile currently under the cursor.
@@ -19,5 +15,4 @@ enum class MainSceneComponents {
     CombatMovement,    ///< Handles combat movement such as chasing targeted creature.
     Combat
 };
-
 }

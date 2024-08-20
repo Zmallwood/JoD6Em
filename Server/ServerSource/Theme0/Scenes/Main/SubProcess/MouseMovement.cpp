@@ -14,95 +14,67 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
-
 void MouseMovement::Update(UserID userID) {
-    
-    auto &mainScene = *_<EngineGet>().GetSceneManager(userID)->GetScene<MainScene>("MainScene");
-    
-    auto tileHovering =
-        static_cast<TileHovering*>(
-            mainScene.GetComponent(
-                MainSceneComponents::
-                TileHovering));
-    
-    auto creatureTargeting =
-        static_cast<CreatureTargeting*>(
-            mainScene.GetComponent(
-                MainSceneComponents::
-                CreatureTargeting));
-    
-    const auto mouseDown =
-        _<EngineGet>().GetMouseInput(userID)->
-        GetLeftButton().
-        GetIsPressedPickResult();
-    
+// Get main scene.
+    auto &mainScene = *_<EngineGet>().GetMainScene(userID);
+// Get tile hovered component.
+    auto tileHov =
+        static_cast<TileHovering*>(mainScene.GetComponent(
+                                       MainSceneComponents::TileHovering));
+// Get creature targeting component.
+    auto creaTarg =
+        static_cast<CreatureTargeting*>(mainScene.GetComponent(
+                                            MainSceneComponents::
+                                            CreatureTargeting));
+// Is left mouse button pressed.
+    auto mouseDown =
+        _<EngineGet>().GetMouseInput(
+            userID)->GetLeftButton().GetIsPressedPickResult();
+// Get player object.
     auto player = _<EngineGet>().GetPlayer(userID);
-    
-    const auto hoveredTile =
-        tileHovering->GetHoveredCoord();
-    
-    if (mouseDown && hoveredTile.has_value()) {
-        
-        player->SetDestCoord(hoveredTile.value());
-        creatureTargeting->SetTargetedCreature(nullptr);
+//Get hovered tile coordinate.
+    auto hovTile = tileHov->GetHoveredCoord();
+// If left mouse button is pressed and proper hovered tile coordinate has been obtained.
+    if (mouseDown && hovTile.has_value()) {
+// Set player destination to hovered tile coordinate.
+        player->SetDestCoord(hovTile.value());
+// Clear any creature targeting.
+        creaTarg->SetTargetedCreature(nullptr);
     }
-    
-    if (std::chrono::high_resolution_clock::now() >
+// If its time for player to move.
+    if (Now() >
         player->GetTimeLastMove() +
-        std::chrono::high_resolution_clock::duration(
-            std::chrono::milliseconds(
-                static_cast<int>(1000/
-                                 player->
-                                 GetMoveSpd())))){
-        
+        Duration(Millis(static_cast<int>(1000/player->GetMoveSpd())))){
+// If player has valid destination coordinate.
         if (player->GetDestCoord().has_value()){
-            
-            const auto dx = player->GetDestCoord()->x - player->GetCoord().x;
-            const auto dy = player->GetDestCoord()->y - player->GetCoord().y;
-            
-            if (dx < 0 && dy < 0) {
-                
+// Get coordinate deltas.
+            auto dx = player->GetDestCoord()->x - player->GetCoord().x;
+            auto dy = player->GetDestCoord()->y - player->GetCoord().y;
+// Move in direction according to deltas.
+            if (dx < 0 && dy < 0)
                 player->TryMove(userID, Directions::NorthWest);
-            }
-            else if (dx == 0 && dy < 0) {
-                
+            else if (dx == 0 && dy < 0)
                 player->TryMove(userID, Directions::North);
-            }
-            else if (dx > 0 && dy < 0) {
-                
+            else if (dx > 0 && dy < 0)
                 player->TryMove(userID, Directions::NorthEast);
-            }
-            else if (dx > 0 && dy == 0) {
-                
+            else if (dx > 0 && dy == 0)
                 player->TryMove(userID, Directions::East);
-            }
-            else if (dx > 0 && dy > 0) {
-                
+            else if (dx > 0 && dy > 0)
                 player->TryMove(userID, Directions::SouthEast);
-            }
-            else if (dx == 0 && dy > 0) {
-                
+            else if (dx == 0 && dy > 0)
                 player->TryMove(userID, Directions::South);
-            }
-            else if (dx < 0 && dy > 0) {
-                
+            else if (dx < 0 && dy > 0)
                 player->TryMove(userID, Directions::SouthWest);
-            }
-            else if (dx < 0 && dy == 0) {
-                
+            else if (dx < 0 && dy == 0)
                 player->TryMove(userID, Directions::West);
-            }
-            
-            if (dx || dy) {
-                
+// If any of the delta components got a value (i.e. destination is not equal to current position)
+            if (dx || dy)
+// Player has moved so update time property.
                 player->SetTimeLastMove(Now());
-            }
-            else {
-                
+            else
+// Player has reached destination, clear destination property of player.
                 player->SetDestCoord(std::nullopt);
-            }
         }
     }
 }
-
 }
