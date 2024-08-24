@@ -12,23 +12,23 @@
 namespace JoD {
 namespace {
 // Location of pixelation effect switch variable in vertex shader.
-int locNoPixelEffect {-1};
+    int locNoPixelEffect {-1};
 // To hold the default set of indices for 2D image rendering.
-std::vector<int> defaultIndices;
+    std::vector<int> defaultIndices;
 // A set of floats representing the default white image color.
-const std::vector<float> k_defaultColorsWhite
-    =  std::vector<float>(
-          16,
-          1.0f);
+    const std::vector<float> k_defaultColorsWhite
+        =  std::vector<float>(
+              16,
+              1.0f);
 // A set of floats representing a default UV coordinates layout for an image.
-const std::vector<float> k_defaultUVs
-{0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f};
+    const std::vector<float> k_defaultUVs
+    {0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f};
 // Location of position variable in vertex shader.
-constexpr int k_locPosition {0};
+    constexpr int k_locPosition {0};
 // Location of color variable in vertex shader.
-constexpr int k_locColor {1};
+    constexpr int k_locColor {1};
 // Location of UV variable in vertex shader.
-constexpr int k_locUV {2};
+    constexpr int k_locUV {2};
 }
 
 ImageRenderer::ImageRenderer() {
@@ -123,7 +123,7 @@ void ImageRenderer::DrawImage(
     positions.push_back(glRect.y);
     positions.push_back(glRect.x + glRect.w);
     positions.push_back(glRect.y - glRect.h);
-// Start using the Vertex Array Object.u
+// Start using the Vertex Array Object.
     UseVAOBegin(rid);
 // If pixelation effect should be used.
     auto noPixelEffect = true;

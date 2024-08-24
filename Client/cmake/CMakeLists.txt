@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.30)
+cmake_minimum_required (VERSION 3.28.3)
 project (JourneyOfDreams)
 set (CMAKE_CXX_STANDARD 20)
 set (CXX_STANDARD_REQUIRED ON)
@@ -21,15 +21,19 @@ set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "index")
 
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-execute_process(COMMAND ${CMAKE_CXX_COMPILER} --cflags -sUSE_SDL=2 -sUSE_SDL_TTF=2
-    OUTPUT_VARIABLE EM_CFLAGS
-    COMMAND_ERROR_IS_FATAL ANY
-)
-string(STRIP "${EM_CFLAGS}" EM_CFLAGS)
-find_package(Python3 REQUIRED)
-message("Python: ${Python3_EXECUTABLE}")
-set(ENV{EXTRA_FLAGS} "${EM_CFLAGS}")
-execute_process(
-    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/fix_compile_commands.py
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-)
+#execute_process(COMMAND ${CMAKE_CXX_COMPILER} --cflags -sUSE_SDL=2 -sUSE_SDL_TTF=2
+#    OUTPUT_VARIABLE EM_CFLAGS
+#    COMMAND_ERROR_IS_FATAL ANY
+#)
+#string(STRIP "${EM_CFLAGS}" EM_CFLAGS)
+#find_package(Python3 REQUIRED)
+#message("Python: ${Python3_EXECUTABLE}")
+#set(ENV{EXTRA_FLAGS} "${EM_CFLAGS}")
+#execute_process(
+#    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/fix_compile_commands.py
+#    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+#)
+
+
+execute_process(COMMAND em++ --cflags -sUSE_SDL=2 -sUSE_SDL_IMAGE=2 -sUSE_SDL_TTF=2 OUTPUT_VARIABLE EM_CFLAGS2)
+set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "${EM_CFLAGS2}")

@@ -12,14 +12,17 @@
 
 namespace JoD {
 namespace Actions {
-auto packGroundAction =
-    [] (Point clickedCoord) {
-        auto tile =
-            _<World>().GetCurrWorldArea()->GetTile(
-                clickedCoord);
-        if (tile->GetObjectsPile().GetNumObjects() == 0) {
-            tile->SetGround("GroundTrail");
-        }
-    };
+/// Action to pack ground.
+    auto packGroundAction =
+        [] (Point clickedCoord) {
+// Get tile.
+            auto tile =
+                _<World>().GetCurrWorldArea()->GetTile(
+                    clickedCoord);
+// If no objects on tile, set the new ground type.
+            if (tile->GetObjectsPile().GetNumObjects() == 0) {
+                tile->SetGround("GroundTrail");
+            }
+        };
 }
 }

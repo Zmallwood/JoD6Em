@@ -7,7 +7,7 @@
 // External.
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/beast/websocket.hpp>
-#include <json/json.h>
+#include <jsoncpp/json/json.h>
 // Std.
 #include <string>
 #include <iostream>

@@ -11,32 +11,32 @@
 namespace JoD {
 namespace {
 // Callback for opening new connection.
-EM_BOOL OnOpen(
-    int eventType,
-    const EmscriptenWebSocketOpenEvent *webSocketEvent,
-    void *userData);
+    EM_BOOL OnOpen(
+        int eventType,
+        const EmscriptenWebSocketOpenEvent *webSocketEvent,
+        void *userData);
 // Callback for error occurring.
-EM_BOOL OnError(
-    int eventType,
-    const EmscriptenWebSocketErrorEvent *webSocketEvent,
-    void *userData);
+    EM_BOOL OnError(
+        int eventType,
+        const EmscriptenWebSocketErrorEvent *webSocketEvent,
+        void *userData);
 // Callback for connection closing.
-EM_BOOL OnClose(
-    int eventType,
-    const EmscriptenWebSocketCloseEvent *webSocketEvent,
-    void *userData);
+    EM_BOOL OnClose(
+        int eventType,
+        const EmscriptenWebSocketCloseEvent *webSocketEvent,
+        void *userData);
 // Callback for message recieved.
-EM_BOOL OnMessage(
-    int eventType,
-    const EmscriptenWebSocketMessageEvent *
-    webSocketEvent,
-    void *userData);
+    EM_BOOL OnMessage(
+        int eventType,
+        const EmscriptenWebSocketMessageEvent *
+        webSocketEvent,
+        void *userData);
 // Process a message recieved from server.
-void ProcessIncomingMessage(unsigned char *bytes);
+    void ProcessIncomingMessage(unsigned char *bytes);
 // Convert four bytes into an integer.
-int ReadFourBytesAsInt(unsigned char *bytes);
+    int ReadFourBytesAsInt(unsigned char *bytes);
 // Convert four bytes into a float.
-float ReadFourBytesAsFloat(unsigned char *bytes);
+    float ReadFourBytesAsFloat(unsigned char *bytes);
 }
 
 void WSServerConnection::Connect() const {
@@ -166,171 +166,173 @@ void WSServerConnection::SendMessage(int messageType) const {
 }
 
 namespace {
-EM_BOOL OnOpen(
-    int eventType,
-    const EmscriptenWebSocketOpenEvent *webSocketEvent,
-    void *userData) {
+    EM_BOOL OnOpen(
+        int eventType,
+        const EmscriptenWebSocketOpenEvent *webSocketEvent,
+        void *userData) {
 // Save web socket event to WebSocketClient so it can be used from that object by its own.
-    _<WSServerConnection>().SetWebSocketEvent(
-        std::unique_ptr<const EmscriptenWebSocketOpenEvent>(
-            webSocketEvent));
-    std::cout << "Opening new connection.\n";
+        _<WSServerConnection>().SetWebSocketEvent(
+            std::unique_ptr<const EmscriptenWebSocketOpenEvent>(
+                webSocketEvent));
+        std::cout << "Opening new connection.\n";
 // Send initial message and check result.
-    if (auto result = emscripten_websocket_send_utf8_text(
-            webSocketEvent->socket,
-            "Initialize connection")) {
-        std::cout << "Failed to send init message to server: " <<
-            result << std::endl;
-    }
+        if (auto result = emscripten_websocket_send_utf8_text(
+                webSocketEvent->socket,
+                "Initialize connection")) {
+            std::cout << "Failed to send init message to server: " <<
+                result << std::endl;
+        }
 // Send canvas size immediately to server.
-    _<WSServerConnection>().SendMessage(
-        MessageCodes::k_canvasSize);
-    return EM_TRUE;
-}
-
-EM_BOOL OnError(
-    int eventType,
-    const EmscriptenWebSocketErrorEvent *webSocketEvent,
-    void *userData) {
+        _<WSServerConnection>().SendMessage(
+            MessageCodes::k_canvasSize);
+        return EM_TRUE;
+    }
+    
+    EM_BOOL OnError(
+        int eventType,
+        const EmscriptenWebSocketErrorEvent *webSocketEvent,
+        void *userData) {
 // Notify on web socket errors.
-    std::cout << "Web socket error.\n";
-    return EM_TRUE;
-}
-
-EM_BOOL OnClose(
-    int eventType,
-    const EmscriptenWebSocketCloseEvent *webSocketEvent,
-    void *userData) {
+        std::cout << "Web socket error.\n";
+        return EM_TRUE;
+    }
+    
+    EM_BOOL OnClose(
+        int eventType,
+        const EmscriptenWebSocketCloseEvent *webSocketEvent,
+        void *userData) {
 // Notify on closing web socket connection.
-    std::cout << "Closing web socket connection.\n";
-    return EM_TRUE;
-}
-
-EM_BOOL OnMessage(
-    int eventType,
-    const EmscriptenWebSocketMessageEvent *
-    webSocketEvent,
-    void *userData) {
+        std::cout << "Closing web socket connection.\n";
+        return EM_TRUE;
+    }
+    
+    EM_BOOL OnMessage(
+        int eventType,
+        const EmscriptenWebSocketMessageEvent *
+        webSocketEvent,
+        void *userData) {
 // Process the raw message data in bytes.
-    ProcessIncomingMessage(webSocketEvent->data);
-    return EM_TRUE;
-}
-
-void ProcessIncomingMessage(unsigned char *bytes) {
+        ProcessIncomingMessage(webSocketEvent->data);
+        return EM_TRUE;
+    }
+    
+    void ProcessIncomingMessage(unsigned char *bytes) {
 // The first bytes contains the message code.
-    auto messageCode = ReadFourBytesAsInt(bytes);
+        auto messageCode = ReadFourBytesAsInt(bytes);
 // Perform corresponding action.
-    switch (messageCode){
-    case MessageCodes::k_drawImageInstruction: {
+        switch (messageCode){
+        case MessageCodes::k_drawImageInstruction: {
 // Next 4 bytes contains the image name hash code.
-        auto imageNameHash = ReadFourBytesAsInt(bytes + 4);
+            auto imageNameHash = ReadFourBytesAsInt(bytes + 4);
 // Next 4 bytes contains the x coordinate.
-        auto x = ReadFourBytesAsFloat(bytes + 8);
+            auto x = ReadFourBytesAsFloat(bytes + 8);
 // Next 4 bytes contains the y coordinate.
-        auto y = ReadFourBytesAsFloat(bytes + 12);
+            auto y = ReadFourBytesAsFloat(bytes + 12);
 // Next 4 bytes contains the width.
-        auto w = ReadFourBytesAsFloat(bytes + 16);
+            auto w = ReadFourBytesAsFloat(bytes + 16);
 // Next 4 bytes contains the height.
-        auto h = ReadFourBytesAsFloat(bytes + 20);
+            auto h = ReadFourBytesAsFloat(bytes + 20);
 // Add the complete instruction.
-        _<DrawInstructionsManager>().AddImageDrawInstruction(
-            imageNameHash, {x, y, w, h}, false);
-        break;
-    }
-    case MessageCodes::k_drawImageRepeatInstruction: {
+            _<DrawInstructionsManager>().AddImageDrawInstruction(
+                imageNameHash, {x, y, w, h}, false);
+            break;
+        }
+        case MessageCodes::k_drawImageRepeatInstruction: {
 // Next 4 bytes contains the image name hash code.
-        auto imageNameHash = ReadFourBytesAsInt(bytes + 4);
+            auto imageNameHash = ReadFourBytesAsInt(bytes + 4);
 // Next 4 bytes contains the x coordinate.
-        auto x = ReadFourBytesAsFloat(bytes + 8);
+            auto x = ReadFourBytesAsFloat(bytes + 8);
 // Next 4 bytes contains the y coordinate.
-        auto y = ReadFourBytesAsFloat(bytes + 12);
+            auto y = ReadFourBytesAsFloat(bytes + 12);
 // Next 4 bytes contains the width.
-        auto w = ReadFourBytesAsFloat(bytes + 16);
+            auto w = ReadFourBytesAsFloat(bytes + 16);
 // Next 4 bytes contains the height.
-        auto h = ReadFourBytesAsFloat(bytes + 20);
-        auto textureFillW = ReadFourBytesAsFloat(bytes + 24);
-        auto textureFillH = ReadFourBytesAsFloat(bytes + 28);
+            auto h = ReadFourBytesAsFloat(bytes + 20);
+            auto textureFillW = ReadFourBytesAsFloat(bytes + 24);
+            auto textureFillH = ReadFourBytesAsFloat(bytes + 28);
 // Add the complete instruction.
-        _<DrawInstructionsManager>().AddImageDrawInstruction(
-            imageNameHash, {x, y, w, h}, true, {textureFillW, textureFillH});
-        break;
-    }
-    case MessageCodes::k_applyBuffer: {
-        _<DrawInstructionsManager>().ApplyBuffer(); // Apply the buffered render instructions.
-        break;
-    }
-    case MessageCodes::k_drawStringInstruction: {
+            _<DrawInstructionsManager>().AddImageDrawInstruction(
+                imageNameHash, {x, y, w, h}, true,
+                {textureFillW, textureFillH});
+            break;
+        }
+        case MessageCodes::k_applyBuffer: {
+// Apply the buffered render instructions.
+            _<DrawInstructionsManager>().ApplyBuffer();
+            break;
+        }
+        case MessageCodes::k_drawStringInstruction: {
 // Next four bytes contain the x position.
-        auto x = ReadFourBytesAsFloat(bytes + 4);
+            auto x = ReadFourBytesAsFloat(bytes + 4);
 // Next for bytes contain the y position.
-        auto y = ReadFourBytesAsFloat(bytes + 8);
+            auto y = ReadFourBytesAsFloat(bytes + 8);
 // Next for bytes contain the centerAlign state.
-        auto centerAlign = ReadFourBytesAsInt(bytes + 12) !=
-                           0 ? true : false;
+            auto centerAlign = ReadFourBytesAsInt(bytes + 12) !=
+                               0 ? true : false;
 // Next for bytes contain the length of the string to draw.
-        auto length = ReadFourBytesAsInt(bytes + 16);
+            auto length = ReadFourBytesAsInt(bytes + 16);
 // To hold the recieved text string.
-        std::string str;
+            std::string str;
 // Get the character from the incoming message and add to the resulting
 // string object.
-        for (auto i = 0; i < length; i++) {
+            for (auto i = 0; i < length; i++) {
 // Get the char code.
-            auto c = ReadFourBytesAsInt(bytes + 20 + i*4);
+                auto c = ReadFourBytesAsInt(bytes + 20 + i*4);
 // Cast to char and append to resulting string object.
-            str += (char)c;
-        }
+                str += (char)c;
+            }
 // Add new text draw instruction with the collected data.
-        _<DrawInstructionsManager>().AddTextDrawInstruction(
-            str,
-            {x,y},
-            centerAlign);
-        break;
-    }
-    case MessageCodes::k_requestImageDimensions: {
+            _<DrawInstructionsManager>().AddTextDrawInstruction(
+                str,
+                {x,y},
+                centerAlign);
+            break;
+        }
+        case MessageCodes::k_requestImageDimensions: {
 // Next four bytes contain the image name hash code.
-        auto imageNameHash = ReadFourBytesAsInt(bytes + 4);
+            auto imageNameHash = ReadFourBytesAsInt(bytes + 4);
 // Get the image dimensions for the obtain image name hash code.
-        auto dimensions =
-            _<ImageBank>().GetImageDimensions(imageNameHash);
+            auto dimensions =
+                _<ImageBank>().GetImageDimensions(imageNameHash);
 // Prepare a new message for returning the dimensions result.
-        int data[4];
+            int data[4];
 // Fill data with message type and canvas size dimensions.
-        data[0] = MessageCodes::k_provideImageDimensions;
-        data[1] = imageNameHash;
-        data[2] = dimensions.w;
-        data[3] = dimensions.h;
+            data[0] = MessageCodes::k_provideImageDimensions;
+            data[1] = imageNameHash;
+            data[2] = dimensions.w;
+            data[3] = dimensions.h;
 // Send the message to server.
-        _<WSServerConnection>().SendMessage(data, 4);
-        break;
+            _<WSServerConnection>().SendMessage(data, 4);
+            break;
+        }
+        }
     }
-    }
-}
-
-int ReadFourBytesAsInt(unsigned char *bytes) {
+    
+    int ReadFourBytesAsInt(unsigned char *bytes) {
 // Pick out the separate bytes.
-    auto b0 = (int)bytes[0];
-    auto b1 = (int)bytes[1];
-    auto b2 = (int)bytes[2];
-    auto b3 = (int)bytes[3];
+        auto b0 = (int)bytes[0];
+        auto b1 = (int)bytes[1];
+        auto b2 = (int)bytes[2];
+        auto b3 = (int)bytes[3];
 // Shift the bytes to form an integer.
-    auto result = (b3 << 3 * 8) + (b2 << 2 * 8) + (b1 << 8) + b0;
-    return result;
-}
-
-float ReadFourBytesAsFloat(unsigned char *bytes) {
+        auto result = (b3 << 3 * 8) + (b2 << 2 * 8) + (b1 << 8) + b0;
+        return result;
+    }
+    
+    float ReadFourBytesAsFloat(unsigned char *bytes) {
 // Pick out the separate bytes.
-    auto b0 = (int)bytes[0];
-    auto b1 = (int)bytes[1];
-    auto b2 = (int)bytes[2];
-    auto b3 = (int)bytes[3];
+        auto b0 = (int)bytes[0];
+        auto b1 = (int)bytes[1];
+        auto b2 = (int)bytes[2];
+        auto b3 = (int)bytes[3];
 // Shift the bytes to form an integer, then divide it with 10000.0 to get a float with 4
 // decimals precision.
-    auto result =
-        ((b3 << 3 * 8)
-         + (b2 << 2 * 8)
-         + (b1 << 8) + b0) /
-        NetConstants::k_floatPrecision;
-    return result;
-}
+        auto result =
+            ((b3 << 3 * 8)
+             + (b2 << 2 * 8)
+             + (b1 << 8) + b0) /
+            NetConstants::k_floatPrecision;
+        return result;
+    }
 }
 }

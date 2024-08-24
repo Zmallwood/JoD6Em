@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.30)
+cmake_minimum_required (VERSION 3.28.3)
 project (JoDWorldEditor)
 set (CMAKE_CXX_STANDARD 20)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -12,7 +12,7 @@ add_executable(JoDWorldEditor
     ${sources_shared}
 )
 #target_include_directories(JoDServer PRIVATE ../ServerSource ../../Shared/SharedSource /usr/include/python3.12/)
-target_include_directories(JoDWorldEditor PRIVATE ../WorldEditorSource ../../Shared/SharedWorldStructureSource ../../Shared/SharedCommonSource/ /usr/include/qt6)
+target_include_directories(JoDWorldEditor PRIVATE ../WorldEditorSource ../../Shared/SharedWorldStructureSource ../../Shared/SharedCommonSource/ /usr/include/qt6 /usr/include/x86_64-linux-gnu/qt6)
 
 target_precompile_headers(JoDWorldEditor PRIVATE ../WorldEditorSource/StdAfx/StdAfx.hpp)
 #target_link_libraries(JoDServer python3.12)

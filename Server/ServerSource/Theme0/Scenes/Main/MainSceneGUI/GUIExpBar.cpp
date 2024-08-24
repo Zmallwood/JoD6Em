@@ -11,7 +11,6 @@
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 
 namespace JoD {
-
 GUIExpBar::GUIExpBar()
     : GUIComponent({0.0f, 1.0f - k_height}) {}
 

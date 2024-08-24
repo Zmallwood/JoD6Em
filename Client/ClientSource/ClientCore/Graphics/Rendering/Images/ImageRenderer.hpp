@@ -20,15 +20,14 @@ class ImageRenderer : public RendererBase {
     
 /// Allocates resources for a new image and return the ID used to render with these
 /// resources.
-///
 /// @return rid Resource ID used to render an image with the allocated resources.
     RID NewImage();
-
+    
 /// Render an image to the browser.
 /// @param rid Resource ID previously allocated.
 /// @param imageName Name of image to render.
 /// @param destination Destination rectangle to render the image at.
-/// @param repeatTexture True if repeat image as pattern or false for fitting it to
+/// @param repeatTexture True if repeat image as pattern or false for fitting it to.
 /// @param textureFillAmount Used to modify pattern repetition amount.
 /// @param color Used to modify overall color of the image.
     void DrawImage(
@@ -41,7 +40,7 @@ class ImageRenderer : public RendererBase {
     
 /// Render an image to the browser.
 /// @param rid Resource ID previously allocated.
-/// @param imageNameHash Hash code of name of image to render.
+/// @param imageNameHash Hash code of name of image to render
 /// @param destination Destination rectangle to render the image at.
 /// @param repeatTexture True if repeat image as pattern or false for fitting it to destination rectangle.
 /// @param textureFillAmount Used to modify pattern repetition amount.

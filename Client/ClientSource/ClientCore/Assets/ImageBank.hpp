@@ -17,7 +17,7 @@ class ImageBank {
     ~ImageBank();
     
 /// Get the Image object.
-/// @param imageName of image, corresponding to filename wihtout extension.
+/// @param imageName Of image, corresponding to filename wihtout extension.
 /// @return std::optional<GLuint> Resource ID of obtained image object.
     std::optional<GLuint> GetImage(std::string_view imageName) const;
     

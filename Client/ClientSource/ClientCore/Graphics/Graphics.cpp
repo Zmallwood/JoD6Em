@@ -8,9 +8,9 @@
 namespace JoD {
 namespace {
 // Use javascript call to get browser-canvas width.
-EM_JS(int, CanvasGetWidth, (), { return window.innerWidth; });
+    EM_JS(int, CanvasGetWidth, (), { return window.innerWidth; });
 // Use javascript call to get browser-canvas height.
-EM_JS(int, CanvasGetHeight, (), { return window.innerHeight; });
+    EM_JS(int, CanvasGetHeight, (), { return window.innerHeight; });
 }
 
 Graphics::Graphics() {

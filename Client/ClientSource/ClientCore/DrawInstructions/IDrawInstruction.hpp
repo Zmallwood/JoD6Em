@@ -12,6 +12,6 @@ struct IDrawInstruction {
     /// Should be specified for all object instances.
     DrawInstructionTypes type {DrawInstructionTypes::None};
     /// Resource ID, used for both image RIDs and text RIDs.
-    RID rid {0};    
+    RID rid {0};
 };
 }

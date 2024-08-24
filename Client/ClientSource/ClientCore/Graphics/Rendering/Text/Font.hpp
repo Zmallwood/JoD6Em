@@ -6,7 +6,6 @@
 #pragma once
 
 namespace JoD {
-
 /// Font object used for text rendering.
 class Font {
     

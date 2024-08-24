@@ -23,7 +23,6 @@ bool ShaderProgram::Create(
             GL_VERTEX_SHADER);
 // Check for errors.
         if (vertexShaderRes != GL_TRUE){
-            
             std::cout << "Unable to compile vertex shader.\n";
             success = false;
         }

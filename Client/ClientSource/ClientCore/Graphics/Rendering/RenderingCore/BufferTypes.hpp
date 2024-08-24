@@ -8,8 +8,8 @@
 namespace JoD {
 /// Available types of GL buffers that can be created.
 enum class BufferTypes {
-    Indices,     ///< Indices
-    Positions2D, ///< Positions in 2D coordinates
+    Indices,     ///< Indices.
+    Positions2D, ///< Positions in 2D coordinates.
     Positions3D, ///< Positions in 3D coordinates.
     Colors,      ///< Colors.
     UVs,         ///< Texture coordinates.

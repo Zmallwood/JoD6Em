@@ -41,12 +41,12 @@ class DrawInstructionsManager {
 // Pointer to active buffer which instructions are executed each frame.
     std::vector<std::unique_ptr<IDrawInstruction>>* m_activeBuffer {
         &m_drawInstructionsBuffer1};
-// Pointer to inactive buffer which is being populated with instructions,
+// Pointer to inactive buffer which is being populated with instructions.
     std::vector<std::unique_ptr<IDrawInstruction>>* m_inactiveBuffer {
         &m_drawInstructionsBuffer2};
 // A set of preallocated RIDs used for drawing images, created in the constructor.
     std::vector<RID> m_ridsImages;
-// A set of preallocated RIDs used for drawing text, created in the constructor
+// A set of preallocated RIDs used for drawing text, created in the constructor.
     std::vector<RID> m_ridsText;
 // Hold index for a free to use RID element in m_rids.
     int m_ridCounterImages {0};
@@ -57,5 +57,4 @@ class DrawInstructionsManager {
 // No more images than this value can be rendererd in a single game frame.
     const int k_maxNumTextDrawInstructions {100};
 };
-
 }

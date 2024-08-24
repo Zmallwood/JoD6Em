@@ -7,6 +7,8 @@
 #include "Theme0/Scenes/Intro/IntroScene.hpp"
 #include "Theme0/Scenes/MainMenu/MainMenuScene.hpp"
 #include "Theme0/Scenes/Main/MainScene.hpp"
+#include "Theme0/Scenes/Login/LoginScene.hpp"
+#include "Theme0/Scenes/Register/RegisterScene.hpp"
 
 namespace JoD {
 struct SceneManager::Impl {
@@ -14,7 +16,7 @@ struct SceneManager::Impl {
     int currentScene {0};
 // All scenes that has been added in ctor.
     std::map<int, std::unique_ptr<IScene>>
-    scenes;               
+    scenes;
 };
 
 SceneManager::SceneManager(UserID userID) : m_pImpl(std::make_unique<Impl>()) {
@@ -25,6 +27,8 @@ SceneManager::SceneManager(UserID userID) : m_pImpl(std::make_unique<Impl>()) {
         userID,
         "MainMenuScene",
         std::make_unique<MainMenuScene>());
+    AddScene(userID, "RegisterScene", std::make_unique<RegisterScene>());
+    AddScene(userID, "LoginScene", std::make_unique<LoginScene>());
 // Add main scene.
     AddScene(userID, "MainScene", std::make_unique<MainScene>());
 // Set starting scene to intro scene.

@@ -17,6 +17,7 @@ GameProperties::GameProperties()
 GameProperties::~GameProperties() {}
 
 int GameProperties::GetNumGridRows() const {
+// Return nr of grid rows in tile grid in world view.
     return m_pImpl->k_numGridRows;
 }
 }

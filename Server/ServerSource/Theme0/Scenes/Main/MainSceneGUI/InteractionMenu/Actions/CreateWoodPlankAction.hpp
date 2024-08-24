@@ -13,20 +13,23 @@
 
 namespace JoD {
 namespace Actions {
-auto createWoodPlankAction =
-    [] (Point clickedCoord) {
-        auto tile =
-            _<World>().GetCurrWorldArea()->GetTile(
-                clickedCoord);
-        for (auto object : tile->GetObjectsPile().GetObjects()){
-            if (object->GetType() == Hash("ObjectWoodLog")){
-                object->DecreaseQuantity(1);
-                if (object->GetQuantity() == 0)
-                    tile->GetObjectsPile().RemoveObject(object);
-                tile->GetObjectsPile().AddObject("ObjectWoodPlank", 1);
-                break;
+/// Action for creating wood planks out of wood logs.
+    auto createWoodPlankAction =
+        [] (Point clickedCoord) {
+// Get tile.
+            auto tile =
+                _<World>().GetCurrWorldArea()->GetTile(
+                    clickedCoord);
+// Find wood log object, and replace 1 quantity of it with a wood plank.
+            for (auto object : tile->GetObjectsPile().GetObjects()){
+                if (object->GetType() == Hash("ObjectWoodLog")){
+                    object->DecreaseQuantity(1);
+                    if (object->GetQuantity() == 0)
+                        tile->GetObjectsPile().RemoveObject(object);
+                    tile->GetObjectsPile().AddObject("ObjectWoodPlank", 1);
+                    break;
+                }
             }
-        }
-    };
+        };
 }
 }

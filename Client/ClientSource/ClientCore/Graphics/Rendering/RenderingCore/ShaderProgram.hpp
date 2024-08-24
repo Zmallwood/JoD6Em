@@ -41,5 +41,4 @@ class ShaderProgram {
 // Shader program ID.
     GLuint m_programID {0};
 };
-
 }

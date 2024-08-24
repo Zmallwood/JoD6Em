@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/source_build/emsdk/emsdk_env.sh;
+#source ~/source_build/emsdk/emsdk_env.sh;
 cd cmake;
 emcmake cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 .;
 cmake --build .;

@@ -16,8 +16,8 @@
 
 namespace JoD {
 namespace {
-void RunWorldProcessingLoop();
-void UpdateTile(Point coord);
+    void RunWorldProcessingLoop();
+    void UpdateTile(Point coord);
 }
 
 void BeginProcessWorld() {
@@ -26,50 +26,52 @@ void BeginProcessWorld() {
 }
 
 namespace {
-void RunWorldProcessingLoop() {
+    void RunWorldProcessingLoop() {
 // To keep track of update frequency.
-    TimePoint timeLastUpdate = Now();
+        TimePoint timeLastUpdate = Now();
 // How often the world will be processed.
-    const auto updateInterval = Duration(Millis(800));
-    while (true) {
-        try {
+        const auto updateInterval = Duration(Millis(800));
+        while (true) {
+            try {
 // If time to process world...
-            if (Now() > timeLastUpdate + updateInterval) {
-                timeLastUpdate = Now();
+                if (Now() > timeLastUpdate + updateInterval) {
+                    timeLastUpdate = Now();
 // Move creature groups randomly around the worl darea.
-                UpdateMoveCreatureGroups();
-                auto worldArea = _<World>().GetCurrWorldArea();
+                    UpdateMoveCreatureGroups();
+                    auto worldArea = _<World>().GetCurrWorldArea();
 // Update tiles in whole world area.
-                for (auto y = 0; y < worldArea->GetSize().h; y++)
-                    for (auto x = 0; x < worldArea->GetSize().w; x++)
-                        UpdateTile({x, y});
+                    for (auto y = 0; y < worldArea->GetSize().h; y++)
+                        for (auto x = 0; x < worldArea->GetSize().w; x++)
+                            UpdateTile({x, y});
+                }
+                std::this_thread::sleep_for(std::chrono::milliseconds(70));
             }
-            std::this_thread::sleep_for(std::chrono::milliseconds(70));
-        }
-        catch (const std::exception& ex) {
-            std::cout << std::string("Exception in BeginProcessWorld(): ") + ex.what() << std::endl;
+            catch (const std::exception& ex) {
+                std::cout <<
+                    std::string("Exception in BeginProcessWorld(): ") +
+                    ex.what() << std::endl;
+            }
         }
     }
-}
 }
 
 namespace {
-void UpdateTile(Point coord) {
-    auto worldArea = _<World>().GetCurrWorldArea();
-    auto tile = worldArea->GetTile(coord.x, coord.y);
+    void UpdateTile(Point coord) {
+        auto worldArea = _<World>().GetCurrWorldArea();
+        auto tile = worldArea->GetTile(coord.x, coord.y);
 // Update all objects on tile.
-    UpdateObjects(tile);
+        UpdateObjects(tile);
 // UPdate NPC on tile if there is one.
-    UpdateNPCs(tile, coord);
-    auto creature = tile->GetCreature();
+        UpdateNPCs(tile, coord);
+        auto creature = tile->GetCreature();
 // Update creature if is one on tile.
-    if (creature) {
+        if (creature) {
 // If creature is cow, update its eating grass from ground.
-        if (creature->GetType() == Hash("CreatureCow"))
-            UpdateAnimalsEating(tile);
+            if (creature->GetType() == Hash("CreatureCow"))
+                UpdateAnimalsEating(tile);
 // Make some creatures follow road paths.
-        UpdateCreaturesPathFollowing(tile, coord);
+            UpdateCreaturesPathFollowing(tile, coord);
+        }
     }
-}
 }
 }

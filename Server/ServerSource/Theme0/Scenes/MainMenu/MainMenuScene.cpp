@@ -17,11 +17,15 @@ void MainMenuScene::Initialize(UserID userID) {
         BoxF{0.45f, 0.4f, 0.1f, 0.05f}, "Login", [=] {
 // On click: go to MainScene.
             _<EngineGet>().GetSceneManager(userID)->
-            GoToScene(userID, "MainScene");
+            GoToScene(userID, "LoginScene");
         });
 // Add Register GUIButton.
     GetGUI()->AddComponent<GUIButton>(
-        BoxF{0.45f, 0.46f, 0.1f, 0.05f}, "Register", [=] {});
+        BoxF{0.45f, 0.46f, 0.1f, 0.05f}, "Register", [=] {
+            _<EngineGet>().GetSceneManager(userID)->GoToScene(
+                userID,
+                "RegisterScene");
+        });
 }
 
 void MainMenuScene::RenderDerived(UserID userID) const {

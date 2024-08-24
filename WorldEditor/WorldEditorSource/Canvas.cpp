@@ -10,14 +10,12 @@
 #include "Tile.hpp"
 
 namespace JoD {
-
 void Canvas::mousePressEvent(QMouseEvent* event) {
-    
+// Get current tool.    
     auto currTool = _<Window>().GetCurrTool();
     
     auto tileX = event->pos().x()/60;
     auto tileY = event->pos().y()/60;
-    
     
     auto wArea = _<World>().GetCurrWorldArea();
     
@@ -39,5 +37,4 @@ void Canvas::mousePressEvent(QMouseEvent* event) {
     
     _<Window>().repaint();
 }
-
 }

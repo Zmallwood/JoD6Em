@@ -1,1 +1,1 @@
-gdb --batch -ex run --args cmake/bin/JoDServer  127.0.0.1 8765
+gdb --batch -ex run --args cmake/bin/JoDServer  0.0.0.0 8765

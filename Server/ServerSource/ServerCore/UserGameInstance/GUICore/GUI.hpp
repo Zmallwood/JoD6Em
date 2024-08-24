@@ -7,6 +7,8 @@
 #include "GUIComponent.hpp"
 
 namespace JoD {
+class GUITextBox;
+
 /// A complete GUI of which every Scene has an instance of.
 class GUI {
   public:
@@ -35,6 +37,6 @@ class GUI {
     
   private:
 // All components that has been added to this GUI.
-    std::vector<std::shared_ptr<GUIComponent>> m_components;     
+    std::vector<std::shared_ptr<GUIComponent>> m_components;
 };
 }
