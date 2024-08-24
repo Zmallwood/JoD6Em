@@ -14,6 +14,7 @@
 #include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
 #include "TextOutput/TextMessages.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
+#include "Input/Keyboard/KeyboardInput.hpp"
 
 namespace JoD {
 struct EngineInstance::Impl {
@@ -39,6 +40,7 @@ struct EngineInstance::Impl {
     std::unique_ptr<TextMessages> textMessages;
 // Manages printed text messages to the user.
     WebSocket webSocket;
+    std::unique_ptr<KeyboardInput> keyboardInput;
 };
 
 EngineInstance::EngineInstance(UserID userID, Socket socket)
@@ -50,6 +52,7 @@ EngineInstance::EngineInstance(UserID userID, Socket socket)
     m_pImpl->player = std::make_unique<Player>();
     m_pImpl->cursor = std::make_unique<Cursor>();
     m_pImpl->textMessages = std::make_unique<TextMessages>();
+    m_pImpl->keyboardInput = std::make_unique<KeyboardInput>();
 }
 
 EngineInstance::~EngineInstance() {}
@@ -128,5 +131,9 @@ WebSocket *EngineInstance::GetWebSocket() const {
 Cursor *EngineInstance::GetCursor() const {
 // Return raw pointer to Cursor object.
     return m_pImpl->cursor.get();
+}
+
+KeyboardInput *EngineInstance::GetKeyboardInput()  const {
+    return m_pImpl->keyboardInput.get();
 }
 }

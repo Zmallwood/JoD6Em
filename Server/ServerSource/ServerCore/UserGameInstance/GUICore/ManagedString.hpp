@@ -8,5 +8,13 @@
 namespace JoD {
 class ManagedString {
   public:
+    void AppendText(std::string_view appendedText);
+    
+    std::string GetText() const {
+        return m_text;
+    }
+    
+  private:
+    std::string m_text;
 };
 }

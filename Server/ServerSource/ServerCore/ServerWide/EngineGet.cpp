@@ -96,6 +96,12 @@ Cursor *EngineGet::GetCursor(UserID userID) const {
     return nullptr;
 }
 
+KeyboardInput *EngineGet::GetKeyboardInput(UserID userID) const {
+    if (m_pImpl->engineInstances.contains(userID))
+        return m_pImpl->engineInstances.at(userID)->GetKeyboardInput();
+    return nullptr;
+}
+
 const MainScene *EngineGet::GetMainScene(UserID userID) const {
     if (m_pImpl->engineInstances.contains(userID))
         return GetSceneManager(userID)->GetScene<MainScene>("MainScene");

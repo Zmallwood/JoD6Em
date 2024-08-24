@@ -106,6 +106,11 @@ namespace {
         GLFWwindow *window,
         unsigned int codePoint) {
         // _<KeyboardInput>().AppendTextInput(std::string(1, (char)code_point));
+        auto & srvConn = _<WSServerConnection>();
+        int data[2];
+        data[0] = MessageCodes::k_textInput;
+        data[1] = (int)codePoint;
+        srvConn.SendMessage(data, 2);
     }
     
     EM_BOOL TouchStartCallback(

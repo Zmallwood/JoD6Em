@@ -10,6 +10,7 @@
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
 #include "GUI.hpp"
+#include "ServerCore/UserGameInstance/Input/Keyboard/KeyboardInput.hpp"
 
 namespace JoD {
 GUITextBox::GUITextBox(BoxF bounds, GUIComponent *parent) :
@@ -32,6 +33,10 @@ void GUITextBox::UpdateDerived(UserID userID) {
         auto gui = GetRootGUI();
         gui->SetFocusedTextBox(this);
     }
+    
+    if (GetRootGUI()->GetFocusedTextBox() == this)
+        m_managedText.AppendText(
+            _<EngineGet>().GetKeyboardInput(userID)->GetTextInputPickResult());
 }
 
 void GUITextBox::RenderDerived(UserID userID) const {
@@ -45,6 +50,7 @@ void GUITextBox::RenderDerived(UserID userID) const {
             UserSendDrawImage(userID, "GUITextBoxTextCursor", cursorBounds);
         }
     }
+    UserSendDrawText(userID, m_managedText.GetText(), m_position);
 }
 
 BoxF GUITextBox::GetBounds() const {

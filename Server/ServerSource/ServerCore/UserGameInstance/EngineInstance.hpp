@@ -11,6 +11,7 @@ class Player;
 class SceneManager;
 class TextMessages;
 class Cursor;
+class KeyboardInput;
 
 /// An instance of this engine is created for every connected user.
 class EngineInstance {
@@ -74,6 +75,8 @@ class EngineInstance {
 /// Get the Cursor object for the user.
 /// @return Cursor* Users Cursor object.
     Cursor *GetCursor() const;
+    
+    KeyboardInput *GetKeyboardInput() const;
     
   private:
 // PIMPL idiom, used to reduce number of includes

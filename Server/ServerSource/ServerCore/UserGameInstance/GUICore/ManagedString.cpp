@@ -5,4 +5,8 @@
 
 #include "ManagedString.hpp"
 
-namespace JoD {}
+namespace JoD {
+void ManagedString::AppendText(std::string_view appendedText) {
+    m_text.append(appendedText);
+}
+}

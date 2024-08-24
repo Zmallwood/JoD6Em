@@ -9,6 +9,7 @@
 #include "ServerCore/ServerWide/AssetsInformation/ImageDimensions.hpp"
 #include "ServerCore/UserGameInstance/EngineInstance.hpp"
 #include "ServerCore/ServerWide/EngineGet.hpp"
+#include "ServerCore/UserGameInstance/Input/Keyboard/KeyboardInput.hpp"
 
 using namespace boost::beast;
 
@@ -132,6 +133,10 @@ void UserConnection::HandleIncoming(WebSocket* webSocket) {
                 _<ImageDimensions>().SetDimension(
                     imageNameHash,
                     {width, height});
+            }
+            else if (*data == MessageCodes::k_textInput) {
+                auto c= (char)data[1];
+                engineInstance->GetKeyboardInput()->AppendCharacter(c);
             }
         }
     }

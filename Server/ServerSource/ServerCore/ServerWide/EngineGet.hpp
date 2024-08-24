@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "ServerCore/UserGameInstance/Input/Keyboard/KeyboardInput.hpp"
 namespace JoD {
 class EngineInstance;
 class Player;
@@ -13,6 +14,7 @@ class MouseInput;
 class TextMessages;
 class Cursor;
 class MainScene;
+class KeyboardInput;
 
 /// Provides access to all components associated with the engine instances
 /// of all connected users.
@@ -74,7 +76,9 @@ class EngineGet {
 /// @param userID User ID for the user which Cursor object should be retrieved.
 /// @return Cursor* Curspr object or nullptr if none exists.
     Cursor *GetCursor(UserID userID) const;
-
+    
+    KeyboardInput *GetKeyboardInput(UserID userID) const;
+    
 /// Get the Main Scene object.
 /// @param userID User ID for the user which MainScene object should be retrieved.
 /// @return const MainScene* MainScene object or nullptr if non exists.

@@ -20,7 +20,7 @@ class GUITextBox : public GUIComponent {
     BoxF GetBounds() const;
     
     SizeF m_size;
-    ManagedString m_text;
+    ManagedString m_managedText;
     const float k_cursorWidth {0.005f};
 };
 }
