@@ -37,7 +37,8 @@ class WSServerConnection {
     //const std::string k_host {"164.90.238.23"};
 // Host name of the server to connect to.
     //const std::string k_host {"localhost"};
-    const std::string k_host {"172.18.0.2"};
+//    const std::string k_host {"172.18.0.2"};
+    const std::string k_host {"localhost"};
 // Port number to open the connection at.
     const int k_port {8765};
 };

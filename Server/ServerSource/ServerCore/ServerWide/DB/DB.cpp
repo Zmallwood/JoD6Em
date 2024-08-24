@@ -6,7 +6,12 @@
 #include "DB.hpp"
 
 namespace JoD {
-DB::DB() {}
+DB::DB() {
+    SetupDB();
+}
 
 void DB::RegisterNewUser(std::string_view userName, int passwordHash) {}
+
+
+void DB::SetupDB() {}
 }

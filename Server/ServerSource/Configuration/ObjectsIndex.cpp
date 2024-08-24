@@ -18,8 +18,9 @@ ObjectsIndex::ObjectsIndex() {
     m_objectFlags.insert(
         {Hash("ObjectBoneRemains"),
          {.name="Bone remains", .flags = ObjectFlags::k_walkThrough}});
-    m_objectFlags.insert({Hash("ObjectGrass"),
-                          {.name="Grass",
+    m_objectFlags.insert(
+        {Hash("ObjectGrass"),
+         {.name="Grass",
                            .flags = ObjectFlags::k_walkThrough}});
     m_objectFlags.insert(
         {Hash("ObjectFelledTree"),

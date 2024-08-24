@@ -8,6 +8,7 @@
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/beast/websocket.hpp>
 #include <jsoncpp/json/json.h>
+#include <pqxx/pqxx>
 // Std.
 #include <string>
 #include <iostream>

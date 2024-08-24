@@ -16,4 +16,4 @@ target_include_directories(JoDServer PRIVATE ../ServerSource ../../Shared/Shared
 
 target_precompile_headers(JoDServer PRIVATE ../ServerSource/StdAfx/StdAfx.hpp)
 #target_link_libraries(JoDServer python3.12)
-target_link_libraries(JoDServer)
+target_link_libraries(JoDServer pqxx pq)
