@@ -11,8 +11,8 @@
 #include "ServerCore/UserGameInstance/CoreGameObjects/Player.hpp"
 
 namespace JoD {
-GUIExpBar::GUIExpBar()
-    : GUIComponent({0.0f, 1.0f - k_height}) {}
+GUIExpBar::GUIExpBar(GUIComponent *parent)
+    : GUIComponent({0.0f, 1.0f - k_height}, parent) {}
 
 void GUIExpBar::UpdateDerived(UserID userID) {
 // Get the player, its experience, and experience progress.

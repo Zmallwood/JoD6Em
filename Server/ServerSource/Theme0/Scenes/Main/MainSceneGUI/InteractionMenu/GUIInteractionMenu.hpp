@@ -13,7 +13,7 @@ namespace JoD {
 class GUIInteractionMenu : public GUIComponent {
   public:
 /// Construct a new GUIInteractionMenu object.
-    GUIInteractionMenu();
+    GUIInteractionMenu(GUIComponent *parent = nullptr);
     
 /// Checks if the menu should be activated by populating with menu options,
 /// and checks if an option has been clicked to perform its action.

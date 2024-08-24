@@ -11,7 +11,7 @@ namespace JoD {
 class GUITextConsole : public GUIPanel {
   public:
 /// Construct a new GUITextConsole object.
-    GUITextConsole();
+    GUITextConsole(GUIComponent *parent = nullptr);
     
 /// Render the text console to canvas.
 /// @param userID User ID for user which the text console belongs to.

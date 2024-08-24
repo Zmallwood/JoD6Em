@@ -15,7 +15,7 @@ class GUILabel : public GUIComponent {
 /// @param text Text to draw.
 /// @param centerAligned If position represents text center or text top left corner.
     GUILabel(PointF position, std::string_view text,
-             bool centerAligned = false);
+             bool centerAligned = false, GUIComponent *parent = nullptr);
     
 /// Do the rendering of the label text.
 /// @param userID User ID for which user GUI the GUILabel belongs to.

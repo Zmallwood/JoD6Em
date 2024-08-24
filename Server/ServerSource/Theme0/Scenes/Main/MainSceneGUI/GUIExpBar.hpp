@@ -12,7 +12,7 @@ namespace JoD {
 class GUIExpBar : public GUIComponent {
   public:
 /// Construct a new GUIExpBar object.
-    GUIExpBar();
+    GUIExpBar(GUIComponent *parent = nullptr);
     
 /// Calculates the filled amount of the experience bar.
 /// @param userID User ID for user which the experience bar belongs to.
@@ -31,8 +31,8 @@ class GUIExpBar : public GUIComponent {
     
   private:
 // Filled amount of the bar, in the range 0.0f - 1.0f.
-    float m_filledAmount {0.0f};             
+    float m_filledAmount {0.0f};
 // Height of the bar.
-    static constexpr float k_height {0.03f}; 
+    static constexpr float k_height {0.03f};
 };
 }

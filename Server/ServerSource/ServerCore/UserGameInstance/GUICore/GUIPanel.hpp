@@ -12,7 +12,7 @@ class GUIPanel : public GUIComponent {
   public:
 /// Construct a new GUIPanel object.
 /// @param bounds Bounds in which the background image is rendered.
-    GUIPanel(BoxF bounds);
+    GUIPanel(BoxF bounds, GUIComponent *parent = nullptr);
     
 /// Draw the background image of the panel.
 /// @param userID User ID for which user GUI the panel belongs to.
@@ -28,7 +28,7 @@ class GUIPanel : public GUIComponent {
     BoxF GetOuterBounds() const;
     
 // Size of the panel in canvas.
-    SizeF m_size;     
+    SizeF m_size;
 // Width of borders surrounding the panel.
     const float m_borderWidth {0.005f};
 };

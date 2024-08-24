@@ -8,8 +8,8 @@
 
 namespace JoD {
 GUILabel::GUILabel(PointF position, std::string_view text,
-                   bool centerAligned)
-    : m_text(text), GUIComponent(position),
+                   bool centerAligned, GUIComponent *parent)
+    : m_text(text), GUIComponent(position, parent),
     m_centerAligned(centerAligned) {}
 
 void GUILabel::RenderDerived(UserID userID) const {

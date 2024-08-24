@@ -6,12 +6,15 @@
 #pragma once
 
 namespace JoD {
+class GUI;
+
 /// Root base class for all inheriting GUI component types.
 class GUIComponent {
   public:
 /// Construct a new GUIComponent object.
 /// @param position Position where the component is located on the canvas.
-    GUIComponent(PointF position);
+    GUIComponent(PointF position,
+                 GUIComponent *parent = nullptr);
     
 /// Update the component.
 /// @param userID User ID for which user GUI the component belongs to.
@@ -35,10 +38,24 @@ class GUIComponent {
         m_visible = value;
     }
     
+    GUIComponent *GetParent() const {
+        return m_parent;
+    }
+    
+    GUI *GetRootGUI() const;
+    
   protected:
+    std::vector<std::shared_ptr<GUIComponent>> &GetChildComponents() {
+        return m_childComponents;
+    }
+    
 // Position of component in canvas.
     PointF m_position;
 // Visibility state.
     bool m_visible {true};
+    
+  private:
+    std::vector<std::shared_ptr<GUIComponent>> m_childComponents;
+    GUIComponent *m_parent = nullptr;
 };
 }

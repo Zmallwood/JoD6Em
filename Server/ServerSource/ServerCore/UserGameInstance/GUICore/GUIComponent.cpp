@@ -4,10 +4,12 @@
  */
 
 #include "GUIComponent.hpp"
+#include "GUI.hpp"
 
 namespace JoD {
-GUIComponent::GUIComponent(PointF position)
-    : m_position(position) {}
+GUIComponent::GUIComponent(PointF position,
+                           GUIComponent *parent)
+    : m_position(position), m_parent(parent) {}
 
 void GUIComponent::Update(UserID userID) {
 // Call update function of inheriting type.
@@ -19,5 +21,14 @@ void GUIComponent::Render(UserID userID) const {
     if (!m_visible) return;
 // Call render function of inheriting type.
     RenderDerived(userID);
+}
+
+GUI *GUIComponent::GetRootGUI() const {
+    GUIComponent *currParent = GetParent();
+    
+    while (currParent->GetParent() != nullptr) {
+        currParent = currParent->GetParent();
+    }
+    return static_cast<GUI*>(currParent);
 }
 }

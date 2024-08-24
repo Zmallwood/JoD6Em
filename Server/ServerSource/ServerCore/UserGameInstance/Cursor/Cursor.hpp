@@ -30,7 +30,8 @@ class Cursor {
 // Mapping of cursor images to cursor types.
     const std::map<CursorTypes, std::string> k_cursorImageNames {
         {CursorTypes::Default, "CursorDefault"},
-        {CursorTypes::Hovering, "CursorHovering"}
+        {CursorTypes::Hovering, "CursorHovering"},
+        {CursorTypes::TextInput, "CursorTextInput"}
     };
 // Size of rendered cursor symbol.
     const float k_cursorSize {0.045f};

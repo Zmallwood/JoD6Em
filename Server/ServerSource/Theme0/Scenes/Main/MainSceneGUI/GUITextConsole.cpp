@@ -11,9 +11,9 @@
 
 namespace JoD {
 
-GUITextConsole::GUITextConsole()
+GUITextConsole::GUITextConsole(GUIComponent *parent)
     : GUIPanel({0.0f, 1.0f - k_height - GUIExpBar::GetHeight(), k_width,
-                k_height}) {}
+                k_height}, parent) {}
 
 
 void GUITextConsole::RenderDerived(UserID userID) const {

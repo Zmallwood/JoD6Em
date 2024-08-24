@@ -8,8 +8,8 @@
 #include "ServerCore/ServerWide/EngineGet.hpp"
 
 namespace JoD {
-GUIPanel::GUIPanel(BoxF bounds)
-    : GUIComponent(bounds.GetPosition()), m_size(bounds.GetSize()) {}
+GUIPanel::GUIPanel(BoxF bounds, GUIComponent *parent)
+    : GUIComponent(bounds.GetPosition(), parent), m_size(bounds.GetSize()) {}
 
 void GUIPanel::RenderDerived(UserID userID) const {
 // Draw the background image.

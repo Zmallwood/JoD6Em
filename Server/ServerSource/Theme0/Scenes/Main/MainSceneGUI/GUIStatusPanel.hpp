@@ -11,7 +11,7 @@ namespace JoD {
 class GUIStatusPanel : public GUIPanel {
   public:
 /// Construct a new GUIStatusPanel object
-    GUIStatusPanel();
+    GUIStatusPanel(GUIComponent *parent = nullptr);
     
 /// Render the panel in the top left corner of the canvas.
 /// @param userID User ID for which user the panel belongs to.

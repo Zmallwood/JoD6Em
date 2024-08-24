@@ -10,8 +10,8 @@
 #include "Theme0/Scenes/Main/MainSceneMath/ExperienceMath.hpp"
 
 namespace JoD {
-GUIStatusPanel::GUIStatusPanel()
-    : GUIPanel({0.0f, 0.0f, k_width, k_height}) {}
+GUIStatusPanel::GUIStatusPanel(GUIComponent *parent)
+    : GUIPanel({0.0f, 0.0f, k_width, k_height}, parent) {}
 
 void GUIStatusPanel::RenderDerived(UserID userID) const {
 // Call base class function which draws the panel background image.

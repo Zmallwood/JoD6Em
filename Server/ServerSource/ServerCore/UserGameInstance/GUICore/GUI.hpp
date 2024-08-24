@@ -10,15 +10,17 @@ namespace JoD {
 class GUITextBox;
 
 /// A complete GUI of which every Scene has an instance of.
-class GUI {
+class GUI : public GUIComponent {
   public:
+    GUI();
+    
 /// Update the whole GUI and all its components.
 /// @param userID User ID for which user the GUI belongs to.
     void Update(UserID userID);
     
 /// Render the whole GUI and all its components.
 /// @param userID User ID for which user the GUI belongs to.
-    void Render(UserID userID) const;
+    void Render(UserID userID);
     
 /// Add a new component to the GUI.
 /// @tparam T Type of component to add.
@@ -28,15 +30,14 @@ class GUI {
     template<class T, class ... Args>
     std::shared_ptr<T> AddComponent(Args... args) {
         // Create new component object.
-        auto newComponent = std::make_shared<T>(args ...);
+        auto newComponent = std::make_shared<T>(args ..., this);
         // Add it to GUI.
-        m_components.push_back(newComponent);
+        GetChildComponents().push_back(newComponent);
         // And also return it.
         return newComponent;
     }
     
   private:
-// All components that has been added to this GUI.
-    std::vector<std::shared_ptr<GUIComponent>> m_components;
+    std::shared_ptr<GUITextBox> m_focusedTextBox;
 };
 }

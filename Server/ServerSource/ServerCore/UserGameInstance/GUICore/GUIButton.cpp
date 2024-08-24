@@ -14,11 +14,17 @@ namespace JoD {
 GUIButton::GUIButton(BoxF bounds, std::string_view text,
                      std::function<void()> action,
                      std::string_view imageNameDefault,
-                     std::string_view imageNameHovered)
-    :  m_text(text), GUIComponent(bounds.GetPosition()),
+                     std::string_view imageNameHovered,
+                     GUIComponent *parent)
+    :  m_text(text), GUIComponent(bounds.GetPosition(), parent),
     m_size(bounds.GetSize()), m_action(action),
     m_imageNameDefault(imageNameDefault),
     m_imageNameHovered(imageNameHovered) {}
+
+GUIButton::GUIButton(BoxF bounds, std::string_view text,
+                     std::function<void()> action, GUIComponent *parent) :
+    m_text(text), GUIComponent(bounds.GetPosition(), parent),
+    m_size(bounds.GetSize()), m_action(action) {}
 
 void GUIButton::UpdateDerived(UserID userID) {
 // Rertieve current mouse position.

@@ -24,8 +24,8 @@
 #include "Actions/PackGroundAction.hpp"
 
 namespace JoD {
-GUIInteractionMenu::GUIInteractionMenu()
-    : GUIComponent({0.0f, 0.0f}) {}
+GUIInteractionMenu::GUIInteractionMenu(GUIComponent *parent)
+    : GUIComponent({0.0f, 0.0f}, parent) {}
 
 void GUIInteractionMenu::UpdateDerived(UserID userID) {
 // Get necessary objects from engine and main scene.

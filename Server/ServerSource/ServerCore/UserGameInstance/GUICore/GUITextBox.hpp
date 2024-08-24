@@ -9,7 +9,9 @@
 namespace JoD {
 class GUITextBox : public GUIComponent {
   public:
-    GUITextBox(BoxF bounds);
+    GUITextBox(BoxF bounds, GUIComponent *parent = nullptr);
+    
+    void UpdateDerived(UserID userID) override;
     
     void RenderDerived(UserID userID) const override;
     
