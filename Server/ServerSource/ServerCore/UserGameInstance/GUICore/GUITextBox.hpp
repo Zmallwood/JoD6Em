@@ -5,6 +5,7 @@
 
 #pragma once
 #include "GUIComponent.hpp"
+#include "ManagedString.hpp"
 
 namespace JoD {
 class GUITextBox : public GUIComponent {
@@ -19,5 +20,7 @@ class GUITextBox : public GUIComponent {
     BoxF GetBounds() const;
     
     SizeF m_size;
+    ManagedString m_text;
+    const float k_cursorWidth {0.005f};
 };
 }

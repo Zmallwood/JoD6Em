@@ -37,7 +37,15 @@ class GUI : public GUIComponent {
         return newComponent;
     }
     
+    GUITextBox *GetFocusedTextBox() const {
+        return m_focusedTextBox;
+    }
+    
+    void SetFocusedTextBox(GUITextBox *focusedTextBox) {
+        m_focusedTextBox = focusedTextBox;
+    }
+    
   private:
-    std::shared_ptr<GUITextBox> m_focusedTextBox;
+    GUITextBox *m_focusedTextBox;
 };
 }

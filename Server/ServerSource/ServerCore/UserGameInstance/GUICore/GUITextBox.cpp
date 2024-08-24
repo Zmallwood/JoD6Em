@@ -9,6 +9,7 @@
 #include "ServerCore/UserGameInstance/Cursor/Cursor.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseInput.hpp"
 #include "ServerCore/UserGameInstance/Input/Mouse/MouseButton.hpp"
+#include "GUI.hpp"
 
 namespace JoD {
 GUITextBox::GUITextBox(BoxF bounds, GUIComponent *parent) :
@@ -27,11 +28,23 @@ void GUITextBox::UpdateDerived(UserID userID) {
     auto mouseInput =
         _<EngineGet>().GetMouseInput(userID);
 // If button is hovered and mouse is clicked...
-    if (hovered && mouseInput->GetLeftButton().GetIsPressed()) {}
+    if (hovered && mouseInput->GetLeftButton().GetIsPressed()) {
+        auto gui = GetRootGUI();
+        gui->SetFocusedTextBox(this);
+    }
 }
 
 void GUITextBox::RenderDerived(UserID userID) const {
     UserSendDrawImage(userID, "GUITextBoxBground", GetBounds());;
+    if (GetRootGUI()->GetFocusedTextBox() == this) {
+        auto blinkCursor = (Now().time_since_epoch().count() % 2000000)/
+                           1000000;
+        if (blinkCursor) {
+            auto cursorBounds = BoxF {m_position.x, m_position.y,
+                                      k_cursorWidth, m_size.h};
+            UserSendDrawImage(userID, "GUITextBoxTextCursor", cursorBounds);
+        }
+    }
 }
 
 BoxF GUITextBox::GetBounds() const {
