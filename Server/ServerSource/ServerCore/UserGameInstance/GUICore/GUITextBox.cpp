@@ -57,4 +57,8 @@ BoxF GUITextBox::GetBounds() const {
 // Combine position and size to get bounds.
     return {m_position.x, m_position.y, m_size.w, m_size.h};
 }
+
+std::string GUITextBox::GetText() const {
+    return m_managedText.GetText();
+}
 }

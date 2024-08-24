@@ -16,6 +16,8 @@ class GUITextBox : public GUIComponent {
     
     void RenderDerived(UserID userID) const override;
     
+    std::string GetText() const;
+    
   private:
     BoxF GetBounds() const;
     
