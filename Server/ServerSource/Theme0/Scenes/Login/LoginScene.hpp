@@ -7,11 +7,17 @@
 #include "ServerCore/UserGameInstance/ScenesCore/IScene.hpp"
 
 namespace JoD {
+class GUITextBox;
+
 class LoginScene : public IScene {
   public:
     void Initialize(UserID userID) override;
     
   protected:
     void RenderDerived(UserID userID) const override;
+    
+  private:
+    std::shared_ptr<GUITextBox> m_usernameTextBox;
+    std::shared_ptr<GUITextBox> m_passwordTextBox;
 };
 }

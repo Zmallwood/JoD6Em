@@ -4,6 +4,7 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: example
+      POSTGRES_DB: jod
     volumes:
       - pgdata:/var/lib/postgresql/data
 

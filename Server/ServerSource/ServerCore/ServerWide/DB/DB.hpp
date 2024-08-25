@@ -12,6 +12,8 @@ class DB {
     
     void RegisterNewUser(std::string_view userName, int passwordHash);
     
+    bool TryLoginUser(std::string_view userName, int passwordHash);
+    
   private:
     void SetupDB();
 };
