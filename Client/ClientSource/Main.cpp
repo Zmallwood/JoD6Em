@@ -5,7 +5,7 @@
 
 #include "ClientCore/RunNewClientInstance.hpp" 
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) { 
 // Catch all exceptions that can happen during execution.
     try{
 // Run new instance of the game.

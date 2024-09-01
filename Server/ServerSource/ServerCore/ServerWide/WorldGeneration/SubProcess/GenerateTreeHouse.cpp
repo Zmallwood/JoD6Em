@@ -51,11 +51,17 @@ void GenerateTreeHouse(WorldArea* worldArea) {
             tileAbove->SetGround("GroundWoodFloor");      
             
             if (x == coord.x - 1) {
-                tileAbove->GetObjectsPile().AddObject("ObjectWoodWallE");
+                if (y == coord.y)
+                    tileAbove->GetObjectsPile().AddObject("ObjectWoodWallWindowedE");
+                else
+                    tileAbove->GetObjectsPile().AddObject("ObjectWoodWallE");
             }        
             
             if (y == coord.y - 1) {
-                tileAbove->GetObjectsPile().AddObject("ObjectWoodWallS");
+                if (x == coord.x)
+                    tileAbove->GetObjectsPile().AddObject("ObjectWoodWallWindowedS");
+                else
+                    tileAbove->GetObjectsPile().AddObject("ObjectWoodWallS");
             }      
         }
     }
