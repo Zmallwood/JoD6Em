@@ -15,6 +15,7 @@
 #include "SubProcess/GenerateCastleYard.hpp"
 #include "SubProcess/GenerateHorseCarts.hpp"
 #include "SubProcess/GenerateNPCs.hpp"
+#include "SubProcess/GenerateTreeHouse.hpp"
 
 namespace JoD {
 void GenerateNewWorld() {
@@ -27,6 +28,7 @@ void GenerateNewWorld() {
     GenerateObjects(worldArea);
     GenerateCastleYard(worldArea);
     GenerateRoads(worldArea);
+    GenerateTreeHouse(worldArea);
     GenerateHorseCarts(worldArea);
     GenerateNPCs(worldArea);
     GenerateCreatures(worldArea);

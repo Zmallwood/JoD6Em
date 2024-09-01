@@ -8,7 +8,7 @@
 namespace JoD {
 namespace {
     pqxx::connection c(
-        "host=db port=5432 dbname=jod user=postgres password=example");
+        "host=localhost port=5432 dbname=jod user=jod_user password=testtest");
 }
 
 DB::DB() {

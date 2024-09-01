@@ -1,3 +1,3 @@
 #!/bin/sh
 
-cmake/bin/JoDServer 172.18.0.2 8765
+cmake/bin/JoDServer 127.0.0.1 8765

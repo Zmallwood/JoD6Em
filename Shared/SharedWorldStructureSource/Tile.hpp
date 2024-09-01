@@ -42,6 +42,10 @@ class Tile {
     
     void SetNPC(std::shared_ptr<NPC> npc);
     
+    Tile* GetAbove() const;
+    
+    void SetAbove(std::unique_ptr<Tile> above);
+    
   private:
     
     struct Impl;

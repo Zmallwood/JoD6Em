@@ -12,10 +12,10 @@ int main(int argc, char *argv[]) {
         JoD::RunNewClientInstance();
     }
     catch (const std::exception &e){
-        std::cout << "Error: " << e.what() << std::endl;
-// An exception occured, exit game.
-        return EXIT_FAILURE;
+        std::cout << "Error: " << e.what() << std::endl; 
+// An exception occured, exit game.   
+        return EXIT_FAILURE;  
     }
 // No exceptions occured.
-    return EXIT_SUCCESS;
+    return EXIT_SUCCESS;  
 }

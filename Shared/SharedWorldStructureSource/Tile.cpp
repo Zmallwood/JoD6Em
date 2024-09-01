@@ -15,6 +15,7 @@ struct Tile::Impl {
     int elevation {0};
     ObjectsPile objectsPile;
     std::shared_ptr<NPC> npc;
+    std::unique_ptr<Tile> above;
 };
 
 Tile::Tile()
@@ -73,6 +74,14 @@ std::shared_ptr<NPC> Tile::GetNPC() const {
 void Tile::SetNPC(std::shared_ptr<NPC> npc) {
     
     m_pImpl->npc = npc;
+}
+
+Tile* Tile::GetAbove() const {
+    return m_pImpl->above.get();
+}
+
+void Tile::SetAbove(std::unique_ptr<Tile> above) {
+    m_pImpl->above = std::move(above);
 }
 
 }
