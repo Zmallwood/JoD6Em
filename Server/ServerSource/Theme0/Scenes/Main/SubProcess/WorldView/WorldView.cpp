@@ -59,6 +59,13 @@ void WorldView::Render(UserID userID) const {
                 y * tileSz.h + playerElev*tileSz.h*0.25f,
                 tileSz.w + smallValue,
                 tileSz.h + smallValue};
+                
+                
+            auto floor = _<EngineGet>().GetPlayer(userID)->GetWorldFloor();
+            
+            groundBounds.x += groundBounds.w * floor;
+            groundBounds.y += 2*groundBounds.h * floor;
+                
 // To hold west and north tile neighbours.
             Tile* tileW = nullptr;
             Tile* tileN = nullptr;
@@ -83,6 +90,9 @@ void WorldView::Render(UserID userID) const {
                 y * tileSz.h + (playerElev - elev)*tileSz.h*0.25f,
                 tileSz.w + smallValue,
                 tileSz.h + smallValue};
+            
+            tileBounds.x += tileBounds.w * floor;
+            tileBounds.y += 2*tileBounds.h * floor;
 // Render tile symbols on the ground.
             RenderTileSymbols(userID, {coordX, coordY}, tileBounds);
 // Render objects on the tile.
@@ -92,6 +102,9 @@ void WorldView::Render(UserID userID) const {
 // Render creature on the tile if there is one.
             RenderCreatures(userID, tile, tileBounds);
 // Render player if current tile is the one the player is located on.
+            
+            tileBounds.x -= tileBounds.w * floor;
+            tileBounds.y -= 2*tileBounds.h * floor;
             RenderPlayer(userID, {coordX, coordY}, tileBounds);
         }
     }
