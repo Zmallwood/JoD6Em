@@ -120,6 +120,14 @@ class Player {
         m_timeSetDest = timeSetDest;
     }
     
+    int GetWorldFloor() const {
+        return m_worldFloor;
+    }
+    
+    void IncreaseWorldFloor(int amount = 1) {
+        m_worldFloor += amount;
+    }
+    
   private:
     
 /// Tries to move the player to a specific coordinate. Will succeed
@@ -131,7 +139,8 @@ class Player {
 // Player name.
     std::string m_name {"Unnamed player"};           
 // Coordinate on the current world area.
-    Point m_coord {5, 5};                            
+    Point m_coord {5, 5};  
+    int m_worldFloor {0};                          
 // Destination to which the player is moving.
     std::optional<Point> m_destCoord {std::nullopt}; 
 // Last time the player moved one step.

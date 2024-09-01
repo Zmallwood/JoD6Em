@@ -15,7 +15,7 @@ namespace JoD {
 namespace Actions {
 /// Action for creating wood planks out of wood logs.
     auto createWoodPlankAction =
-        [] (Point clickedCoord) {
+        [] (Point clickedCoord, UserID userID) {
 // Get tile.
             auto tile =
                 _<World>().GetCurrWorldArea()->GetTile(

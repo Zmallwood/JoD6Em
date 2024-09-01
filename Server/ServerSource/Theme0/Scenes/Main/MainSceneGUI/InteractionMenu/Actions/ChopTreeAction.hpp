@@ -14,7 +14,7 @@ namespace JoD {
 namespace Actions {
 /// Action for chopping down a tree.
     auto chopTreeAction =
-        [] (Point clickedCoord) {
+        [] (Point clickedCoord, UserID userID) {
 // Get tile with the tree.
             auto tile =
                 _<World>().GetCurrWorldArea()->GetTile(

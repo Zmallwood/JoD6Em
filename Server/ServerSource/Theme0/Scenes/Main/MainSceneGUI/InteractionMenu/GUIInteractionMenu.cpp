@@ -22,6 +22,7 @@
 #include "Actions/ChopFelledTreeAction.hpp"
 #include "Actions/CreateWoodPlankAction.hpp"
 #include "Actions/PackGroundAction.hpp"
+#include "Actions/ClimbLadderAction.hpp"
 
 namespace JoD {
 GUIInteractionMenu::GUIInteractionMenu(GUIComponent *parent)
@@ -99,6 +100,15 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
                                 m_size.w, k_menuRowHeight}});
                 menuEntryIndex++;
             }
+            else if (object->GetType() == Hash("ObjectLadder")) {
+                m_menuEntries.push_back(
+                    {.label="Climb ladder",
+                     .action = Actions::climbLadderAction,
+                     .bounds = {m_position.x,
+                                m_position.y + menuEntryIndex*k_menuRowHeight,
+                                m_size.w, k_menuRowHeight}});
+                menuEntryIndex++;
+            }
         }
     }
     auto leftButtonPressed = mouseInput->GetLeftButton().GetIsPressed();
@@ -112,7 +122,7 @@ void GUIInteractionMenu::UpdateDerived(UserID userID) {
             // If left mouse button is pressed...
             if (leftButtonPressed)
 // Perform its action.
-                menuEntry.action(m_clickedCoord);
+                menuEntry.action(m_clickedCoord, userID);
         }
     }
     if (leftButtonPressed)

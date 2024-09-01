@@ -51,5 +51,10 @@ void GenerateTreeHouse(WorldArea* worldArea) {
             tileAbove->SetGround("GroundWoodFloor");            
         }
     }
+    
+    worldArea->GetTile(coord.x - 1, coord.y + 1)->GetAbove()->SetGround("GroundWoodFloorOpening");
+    worldArea->GetTile(coord.x - 1, coord.y + 1)->SetElevation(0);
+    worldArea->GetTile(coord.x - 1, coord.y + 1)->GetObjectsPile().Clear();
+    worldArea->GetTile(coord.x - 1, coord.y + 1)->GetObjectsPile().AddObject("ObjectLadder");
 }
 }
