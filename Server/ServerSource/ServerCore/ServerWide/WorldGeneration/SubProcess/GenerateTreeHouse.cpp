@@ -48,7 +48,15 @@ void GenerateTreeHouse(WorldArea* worldArea) {
             tileGround->SetAbove(std::make_unique<Tile>());
             
             auto tileAbove = tileGround->GetAbove();
-            tileAbove->SetGround("GroundWoodFloor");            
+            tileAbove->SetGround("GroundWoodFloor");      
+            
+            if (x == coord.x - 1) {
+                tileAbove->GetObjectsPile().AddObject("ObjectWoodWallE");
+            }        
+            
+            if (y == coord.y - 1) {
+                tileAbove->GetObjectsPile().AddObject("ObjectWoodWallS");
+            }      
         }
     }
     
