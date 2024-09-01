@@ -55,6 +55,12 @@ void RenderObjects(UserID userID, Tile* tile, BoxF tileBounds) {
         tileBounds.x -= tileBounds.w;
         tileBounds.y -= 2*tileBounds.h;
         
+        auto elev = tile->GetElevation();
+        for (auto i = 0; i < elev; i++) {
+            tileBounds.x += tileBounds.w/8;
+            tileBounds.y += tileBounds.h/4;
+        }
+        
         tile = above;
         
 // Loop over all objects located on tile.

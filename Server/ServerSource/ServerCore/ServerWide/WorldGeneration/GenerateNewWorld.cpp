@@ -27,8 +27,8 @@ void GenerateNewWorld() {
     GenerateRock(worldArea);
     GenerateObjects(worldArea);
     GenerateCastleYard(worldArea);
-    GenerateRoads(worldArea);
     GenerateTreeHouse(worldArea);
+    GenerateRoads(worldArea);
     GenerateHorseCarts(worldArea);
     GenerateNPCs(worldArea);
     GenerateCreatures(worldArea);

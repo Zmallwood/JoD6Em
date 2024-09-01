@@ -13,6 +13,13 @@ void GenerateTreeHouse(WorldArea* worldArea) {
     
     auto coord = Point{28, 28};
     
+    
+    for (auto y = coord.y - 3; y <= coord.y + 3; y++) {
+        for (auto x = coord.x - 3; x <= coord.x + 3; x++) {
+            worldArea->GetTile(x,y)->SetGround("GroundGrass");   
+        }
+    }
+    
     auto tile = worldArea->GetTile(coord);
     
     tile->SetGround("GroundGrass");
@@ -28,5 +35,21 @@ void GenerateTreeHouse(WorldArea* worldArea) {
     
     above = above->GetAbove();
     above->GetObjectsPile().AddObject("ObjectTreeTop");
+    
+    // Add floor
+    
+    for (auto y = coord.y - 1; y <= coord.y + 1; y++) {
+        for (auto x = coord.x - 1; x <= coord.x + 1; x++) {
+            if (x == coord.x && y == coord.y )
+                continue;
+
+            auto tileGround = worldArea->GetTile(x, y);
+            
+            tileGround->SetAbove(std::make_unique<Tile>());
+            
+            auto tileAbove = tileGround->GetAbove();
+            tileAbove->SetGround("GroundWoodFloor");            
+        }
+    }
 }
 }

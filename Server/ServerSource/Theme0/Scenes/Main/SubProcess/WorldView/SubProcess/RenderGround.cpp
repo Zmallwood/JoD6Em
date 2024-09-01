@@ -15,7 +15,7 @@ void RenderGround(
     auto elev = tile->GetElevation();
 // Loop from the bottom up to elevation level.
     for (auto i = 0; i < elev; i++) {
-// Create bounds for bottom elevation image.        
+// Create bounds for bottom elevation image.
         auto boundsElevS = BoxF {tileBounds.x - tileBounds.w*0.25f,
                                  tileBounds.y, tileBounds.w*1.25f,
                                  tileBounds.h};
@@ -36,7 +36,8 @@ void RenderGround(
     if (ground == Hash("GroundWater")) {
 // Calculate animation frame index based on time.
         auto animFrameIdx =
-            (((Now().time_since_epoch().count()/1000000) + 6*coord.x*coord.y)%1200)/400;
+            (((Now().time_since_epoch().count()/1000000) + 6*coord.x*coord.y)%
+             1200)/400;
 // Change the ground image hash code to an animated one.
         ground = Hash("GroundWater_" + std::to_string(animFrameIdx));
     }
@@ -82,6 +83,69 @@ void RenderGround(
         if (tileN->GetElevation() < tile->GetElevation()) {
 // Draw tile edge to the north.
             UserSendDrawImage(userID, "EdgeN", tileBounds);
+        }
+    }
+    
+    
+    auto above = tile->GetAbove();
+    
+    if (above) {
+        tileBounds.x -= tileBounds.w;
+        tileBounds.y -= 2*tileBounds.h;
+        
+        auto elev = tile->GetElevation();
+        for (auto i = 0; i < elev; i++) {
+            tileBounds.x += tileBounds.w/8;
+            tileBounds.y += tileBounds.h/4;
+        }
+        
+        tile = above;
+        
+        tileW = tileW->GetAbove();
+        tileN = tileN->GetAbove();
+        
+        auto ground = tile->GetGround();
+// If ground is water, perform animation logic.
+        if (ground == Hash("GroundWater")) {
+// Calculate animation frame index based on time.
+            auto animFrameIdx =
+                (((Now().time_since_epoch().count()/1000000) + 6*coord.x*
+                  coord.y)%1200)/400;
+// Change the ground image hash code to an animated one.
+            ground = Hash("GroundWater_" + std::to_string(animFrameIdx));
+        }
+        if (ground)
+            UserSendDrawImage(userID, ground, tileBounds);
+        
+        if (ground && (!tileW || !tileW->GetGround())) {
+            UserSendDrawImage(userID, "EdgeW", tileBounds);
+        }
+        if (ground && (!tileN || !tileN->GetGround())) {
+            UserSendDrawImage(userID, "EdgeN", tileBounds);
+        }
+        if (!ground && (tileW && tileW->GetGround())) {
+            UserSendDrawImage(userID, "EdgeW", tileBounds);
+        }
+        if (!ground && (tileN && tileN->GetGround())) {
+            UserSendDrawImage(userID, "EdgeN", tileBounds);
+        }
+        
+    }
+    else {
+        if (tileW && tileW->GetAbove() && tileW->GetAbove()->GetGround()) {
+            auto tileBoundsW = tileBounds;
+            tileBoundsW.x -= tileBoundsW.w;
+            tileBoundsW.y -= 2*tileBoundsW.h;
+            
+            UserSendDrawImage(userID, "EdgeW", tileBoundsW);
+        }
+        
+        if (tileN && tileN->GetAbove() && tileN->GetAbove()->GetGround()) {
+            auto tileBoundsN = tileBounds;
+            tileBoundsN.x -= tileBoundsN.w;
+            tileBoundsN.y -= 2*tileBoundsN.h;
+            
+            UserSendDrawImage(userID, "EdgeN", tileBoundsN);
         }
     }
 }
