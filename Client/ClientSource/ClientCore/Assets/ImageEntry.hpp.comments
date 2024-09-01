@@ -1,0 +1,19 @@
+
+
+
+
+
+
+
+
+
+An entry for storing image data in ImageBank.
+OpenGL ID for the stored image as a GL texture.
+Dimensions for image obtained during texture initialization.
+
+
+
+
+
+
+

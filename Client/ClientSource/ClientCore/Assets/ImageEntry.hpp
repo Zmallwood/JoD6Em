@@ -6,9 +6,9 @@
 #pragma once
 
 namespace JoD {
-/// An entry for storing image data in ImageBank.
+
 struct ImageEntry {
-    GLuint id {0};   ///< OpenGL ID for the stored image as a GL texture.
-    Size dimensions; ///< Dimensions for image obtained during texture initialization.
+    GLuint id {0};
+    Size dimensions;
 };
 }

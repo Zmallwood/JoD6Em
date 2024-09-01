@@ -1,0 +1,28 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+Construct ImageBank, loads all images.
+Destroys all image resources, probably not used in emscripten application.
+Get image ID by image name.
+Get image ID by image name hash code.
+Create a new blank image with specified name.
+Get image dimensions by image name hash code.
+
+
+Load all images from images path and stores them in bank.
+
+Holds all loaded images as image entries.
+Images path relative to application path.
+
+
+

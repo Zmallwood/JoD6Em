@@ -1,0 +1,103 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pre-allocate a number of RIDs for image drawing.
+
+
+Pre-allocate a number of RIDs for text drawing.
+
+
+
+
+
+
+
+Create new image drawing instruction.
+
+Set its properties.
+
+
+
+
+
+
+Store the new instruction in the inactive buffer.
+
+
+
+
+
+Create new text draw instruction.
+
+Set its properties.
+
+
+
+
+
+Store the new instruction in the inactive buffer.
+
+
+
+
+Swap active and inactive buffer.
+
+
+
+Clear the inactive buffer.
+Reset the image RID counter.
+Reset the text RID counter.
+
+
+
+
+Loop over all instructions in the active buffer.
+
+
+
+Instruction type is image drawing.
+
+Cast the instruction to image drawing type.
+
+
+Draw image with the data in the instruction.
+
+
+
+
+
+
+
+
+Instruction type is text drawing.
+
+Cast the instruction to text drawing type.
+
+
+Draw text with data in the instruction.
+
+
+
+
+
+
+
+No instruction type set for the instruction.
+
+
+
+
+
+

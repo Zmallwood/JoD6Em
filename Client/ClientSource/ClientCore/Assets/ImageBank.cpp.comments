@@ -1,0 +1,165 @@
+
+
+
+
+
+
+
+
+
+
+
+Loads a single image and returns it.
+Does the actual loading of the image data.
+
+
+
+Load all images on creating ImageBank.
+
+
+
+
+
+Iterate through all images in bank.
+Delete all texture resources.
+
+
+
+
+
+Call function overload and return its results.
+
+
+
+
+
+Iterate through all image entries in the storage.
+If image entry found with the provided image name hash code,
+retturn its image ID.
+
+If no image found with the image name hash code, return fail value.
+
+
+
+
+
+To hold the new image ID.
+Generate new image iD.
+
+Store the a new image entry with the obtained ID and empty dimensions.
+
+
+
+
+
+
+If image entry exists with the provided image name hash code.
+Return the dimensions for the image entry.
+
+No image entry exist with the provided image name hash code, return fail value.
+
+
+
+
+
+
+Create absolute images path.
+
+Iterate over all files in image path, recursively.
+
+Get absolute path for current file.
+
+Skip files without png extension.
+
+Load image as an image entry.
+Get pure filename without path or extension.
+
+Store the image entry by its image name.
+
+
+
+
+
+
+
+To hold the loaded image's ID.
+
+Get the loaded image data as a SDL_Surface.
+
+We are using 2D textures.
+
+Generate a new GL texture resource.
+Use the texture.
+
+Set necessary texture parameters.
+Set necessary texture parameters.
+Set necessary texture parameters.
+Set necessary texture parameters.
+
+Check if the loaded image has an alpha channel.
+
+Use image with alpha channel.
+
+
+
+
+
+Use image without alpha channel.
+
+
+
+
+Get the image's dimensions.
+
+Free surface resouce as we dont need it any more.
+
+Return an image entry with the image ID and the image dimensions.
+
+
+
+
+
+
+
+
+Read raw image data.
+
+
+Calculate pitch.
+
+
+
+
+
+
+
+
+Create masks.
+
+
+
+
+
+
+
+
+
+
+
+
+Create SDL_Surface from the raw data with the pitch and masks.
+
+
+
+If no valid SDL_Surface object was created,
+
+free sources
+
+and return fail value.
+
+
+Return successfully created SDL_Surface object.
+
+
+
+
