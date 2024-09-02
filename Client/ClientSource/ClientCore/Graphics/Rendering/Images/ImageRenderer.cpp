@@ -6,159 +6,167 @@
 #include "ImageRenderer.hpp"
 #include "ClientCore/Assets/ImageBank.hpp"
 #include "ClientCore/Graphics/Rendering/RenderingCore/ShaderProgram.hpp"
-#include "Shader/DefaultShaderImagesFragment.hpp"
-#include "Shader/DefaultShaderImagesVertex.hpp"
+#include "Shader/ShaderImagesFrag.hpp"
+#include "Shader/ShaderImagesVert.hpp"
 
 namespace JoD {
+
 namespace {
-    int locNoPixelEffect {-1};
-    std::vector<int> defaultIndices;
-    const std::vector<float> k_defaultColorsWhite
-        =  std::vector<float>(
-              16,
-              1.0f);
-    const std::vector<float> k_defaultUVs
-    {0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f};
-    constexpr int k_locPosition {0};
+    
+    int locNoPixelFX {-1};
+    auto defaultIndices {std::vector<int>(MathConsts::k_numVertsInRect)};
+    const auto k_defaultClrWhite {std::vector<float>(16, 1.0f)};
+    const std::vector<float> k_defaultUVs {0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+                                           1.0f, 1.0f};
+    constexpr int k_locPos {0};
     constexpr int k_locColor {1};
     constexpr int k_locUV {2};
 }
 
 ImageRenderer::ImageRenderer() {
-    GetShaderProgram()->Create(
-        g_defaultShaderImagesVertex,
-        g_defaultShaderImagesFragment);
-    defaultIndices = std::vector<int>(
-        MathConstants::k_numVerticesInRectangle);
+    
+    GetShaderProg()->Create(g_shaderImagesVert, g_shaderImagesFrag);
+    
     std::iota(std::begin(defaultIndices), std::end(defaultIndices), 0);
 }
 
 ImageRenderer::~ImageRenderer() {
+    
     CleanupBase();
 }
 
-RID ImageRenderer::NewImage() {
-    const auto rid = GenNewVAOID();
+RID ImageRenderer::NewImg() {
+    
+    auto rid = GenNewVAOID();
+    
     UseVAOBegin(rid);
-    const auto indexBuffID = GenNewBuffID(BufferTypes::Indices, rid);
-    const auto posBuffID = GenNewBuffID(BufferTypes::Positions2D, rid);
-    const auto colorBuffID = GenNewBuffID(BufferTypes::Colors, rid);
-    const auto uvBuffID = GenNewBuffID(BufferTypes::UVs, rid);
-    SetIndicesData(
-        indexBuffID,
-        MathConstants::k_numVerticesInRectangle,
-        nullptr);
+    
+    auto indexBuffID = GenNewBuffID(BuffTypes::Indices, rid);
+    auto posBuffID = GenNewBuffID(BuffTypes::Pos2D, rid);
+    auto colorBuffID = GenNewBuffID(BuffTypes::Colors, rid);
+    auto uvBuffID = GenNewBuffID(BuffTypes::UVs, rid);
+    
+    SetIndicesData(indexBuffID, MathConsts::k_numVertsInRect, nullptr);
+    SetData(posBuffID, MathConsts::k_numVertsInRect, nullptr, BuffTypes::Pos2D);
     SetData(
-        posBuffID,
-        MathConstants::k_numVerticesInRectangle,
-        nullptr,
-        BufferTypes::Positions2D);
-    SetData(
-        colorBuffID,
-        MathConstants::k_numVerticesInRectangle,
-        nullptr,
-        BufferTypes::Colors);
-    SetData(
-        uvBuffID,
-        MathConstants::k_numVerticesInRectangle,
-        nullptr,
-        BufferTypes::UVs);
-    UpdateIndicesData(indexBuffID, defaultIndices);
-    UpdateData(
-        colorBuffID, k_defaultColorsWhite, BufferTypes::Colors,
-        k_locColor);
-    UpdateData(uvBuffID, k_defaultUVs, BufferTypes::UVs, k_locUV);
-    UseVAOEnd();
+        colorBuffID, MathConsts::k_numVertsInRect, nullptr,
+        BuffTypes::Colors);
+    SetData(uvBuffID, MathConsts::k_numVertsInRect, nullptr, BuffTypes::UVs);
+    
+    UpdIndicesData(indexBuffID, defaultIndices);
+    UpdData(colorBuffID, k_defaultClrWhite, BuffTypes::Colors, k_locColor);
+    UpdData(uvBuffID, k_defaultUVs, BuffTypes::UVs, k_locUV);
+    
+    UseVAOEnd(false);
+    
     return rid;
 }
 
-void ImageRenderer::DrawImage(
+void ImageRenderer::DrawImg(
     RID rid,
-    int imageNameHash,
-    const BoxF &destination,
-    bool repeatTexture,
-    SizeF textureFillAmount,
+    int imgNameHash,
+    const BoxF &dest,
+    bool repeatTex,
+    SizeF texFillAmount,
     ColorF color) const {
-    const auto glRect = destination.ToGLBoxF();
+    
+    auto glRect = dest.ToGLBoxF();
+    
     glDisable(GL_DEPTH_TEST);
-    const auto imageID = _<ImageBank>().GetImage(imageNameHash);
-    if (imageID == std::nullopt)
-        return;
-    glBindTexture(GL_TEXTURE_2D, imageID.value());
-    if (repeatTexture){
+    
+    auto imgID = _<ImageBank>().GetImage(imgNameHash);
+    
+    if (imgID == std::nullopt) return;
+    
+    glBindTexture(GL_TEXTURE_2D, imgID.value());
+    
+    if (repeatTex) {
+        
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     }
-    else{
+    else {
+        
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     }
-    std::vector<float> positions;
-    positions.push_back(glRect.x);
-    positions.push_back(glRect.y - glRect.h);
-    positions.push_back(glRect.x);
-    positions.push_back(glRect.y);
-    positions.push_back(glRect.x + glRect.w);
-    positions.push_back(glRect.y);
-    positions.push_back(glRect.x + glRect.w);
-    positions.push_back(glRect.y - glRect.h);
-    UseVAOBegin(rid);
-    auto noPixelEffect = true;
+    
+    std::vector<float> posData;
+    
+    posData.push_back(glRect.x);
+    posData.push_back(glRect.y - glRect.h);
+    posData.push_back(glRect.x);
+    posData.push_back(glRect.y);
+    posData.push_back(glRect.x + glRect.w);
+    posData.push_back(glRect.y);
+    posData.push_back(glRect.x + glRect.w);
+    posData.push_back(glRect.y - glRect.h);
+    
+    UseVAOBegin(rid, false);
+    
+    auto noPixelFX = true;
     GLuint colorBuffID;
     GLuint uvBuffID;
-    auto posBuffID = GetBuffID(BufferTypes::Positions2D, rid);
-    UpdateData(
-        posBuffID, positions, BufferTypes::Positions2D,
-        k_locPosition);
+    
+    auto posBuffID = GetBuffID(BuffTypes::Pos2D, rid);
+    
+    UpdData(posBuffID, posData, BuffTypes::Pos2D, k_locPos);
+    
     if (color != Colors::white) {
-        colorBuffID = GetBuffID(BufferTypes::Colors, rid);
+        
+        colorBuffID = GetBuffID(BuffTypes::Colors, rid);
+        
         std::vector<float> colors;
+        
         for (auto i = 0; i < 4; i++) {
+            
             colors.push_back(color.r);
             colors.push_back(color.g);
             colors.push_back(color.b);
             colors.push_back(color.a);
         }
-        UpdateData(
-            colorBuffID, colors, BufferTypes::Colors,
-            k_locColor);
+        
+        UpdData(colorBuffID, colors, BuffTypes::Colors, k_locColor);
     }
-    if (textureFillAmount.w != 1.0f || textureFillAmount.h != 1.0f) {
-        uvBuffID = GetBuffID(BufferTypes::UVs, rid);
+    if (texFillAmount.w != 1.0f || texFillAmount.h != 1.0f) {
+        
+        uvBuffID = GetBuffID(BuffTypes::UVs, rid);
+        
         std::vector<float> uvs;
+        
         uvs.push_back(0.0f);
-        uvs.push_back(1.0f / textureFillAmount.h);
+        uvs.push_back(1.0f / texFillAmount.h);
         uvs.push_back(0.0f);
         uvs.push_back(0.0f);
-        uvs.push_back(1.0f / textureFillAmount.w);
+        uvs.push_back(1.0f / texFillAmount.w);
         uvs.push_back(0.0f);
-        uvs.push_back(1.0f / textureFillAmount.w);
-        uvs.push_back(1.0f / textureFillAmount.h);
-        UpdateData(uvBuffID, uvs, BufferTypes::UVs, k_locUV);
+        uvs.push_back(1.0f / texFillAmount.w);
+        uvs.push_back(1.0f / texFillAmount.h);
+        
+        UpdData(uvBuffID, uvs, BuffTypes::UVs, k_locUV);
     }
+    
     glDrawElements(
-        GL_TRIANGLE_FAN,
-        MathConstants::k_numVerticesInRectangle, GL_UNSIGNED_INT, NULL);
-    if (color != Colors::white) {
-        UpdateData(
-            colorBuffID, k_defaultColorsWhite, BufferTypes::Colors,
-            k_locColor);
-    }
-    if (textureFillAmount.w != 1.0f || textureFillAmount.h != 1.0f) {
-        UpdateData(uvBuffID, k_defaultUVs, BufferTypes::UVs, k_locUV);
-    }
-    UseVAOEnd();
+        GL_TRIANGLE_FAN, MathConsts::k_numVertsInRect,
+        GL_UNSIGNED_INT, nullptr);
+    
+    if (color != Colors::white)
+        UpdData(colorBuffID, k_defaultClrWhite, BuffTypes::Colors, k_locColor);
+    
+    if (texFillAmount.w != 1.0f || texFillAmount.h != 1.0f)
+        UpdData(uvBuffID, k_defaultUVs, BuffTypes::UVs, k_locUV);
+    
+    UseVAOEnd(false);
 }
 
-void ImageRenderer::DrawImage(
+void ImageRenderer::DrawImg(
     RID rid,
-    std::string_view imageName,
-    const BoxF &destination,
-    bool repeatTexture,
-    SizeF textureFillAmount,
+    std::string_view imgName,
+    const BoxF &dest,
+    bool repeatTex,
+    SizeF texFillAmount,
     ColorF color) const {
-    DrawImage(
-        rid, Hash(imageName), destination, repeatTexture,
-        textureFillAmount, color);
+    
+    DrawImg(rid, Hash(imgName), dest, repeatTex, texFillAmount, color);
 }
 }

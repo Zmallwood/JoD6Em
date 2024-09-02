@@ -6,8 +6,8 @@
 #pragma once
 
 namespace JoD {
-namespace MathConstants {
+namespace MathConsts {
 /// To avoid magic number.
-    inline static constexpr int k_numVerticesInRectangle {4};
+    inline static constexpr int k_numVertsInRect {4};
 }
 }

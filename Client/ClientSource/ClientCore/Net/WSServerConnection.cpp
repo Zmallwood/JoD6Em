@@ -4,7 +4,7 @@
  */
 
 #include "WSServerConnection.hpp"
-#include "ClientCore/DrawInstructions/DrawInstructionsManager.hpp"
+#include "ClientCore/DrawInstructions/DrawInstrMngr.hpp"
 #include "MessageCodes.hpp"
 #include "ClientCore/Assets/ImageBank.hpp"
 
@@ -233,7 +233,7 @@ namespace {
 // Next 4 bytes contains the height.
             auto h = ReadFourBytesAsFloat(bytes + 20);
 // Add the complete instruction.
-            _<DrawInstructionsManager>().AddImageDrawInstruction(
+            _<DrawInstrMngr>().AddImageDrawInst(
                 imageNameHash, {x, y, w, h}, false);
             break;
         }
@@ -251,14 +251,14 @@ namespace {
             auto textureFillW = ReadFourBytesAsFloat(bytes + 24);
             auto textureFillH = ReadFourBytesAsFloat(bytes + 28);
 // Add the complete instruction.
-            _<DrawInstructionsManager>().AddImageDrawInstruction(
+            _<DrawInstrMngr>().AddImageDrawInst(
                 imageNameHash, {x, y, w, h}, true,
                 {textureFillW, textureFillH});
             break;
         }
         case MessageCodes::k_applyBuffer: {
 // Apply the buffered render instructions.
-            _<DrawInstructionsManager>().ApplyBuffer();
+            _<DrawInstrMngr>().ApplyBuffer();
             break;
         }
         case MessageCodes::k_drawStringInstruction: {
@@ -282,7 +282,7 @@ namespace {
                 str += (char)c;
             }
 // Add new text draw instruction with the collected data.
-            _<DrawInstructionsManager>().AddTextDrawInstruction(
+            _<DrawInstrMngr>().AddTextDrawInstr(
                 str,
                 {x,y},
                 centerAlign);

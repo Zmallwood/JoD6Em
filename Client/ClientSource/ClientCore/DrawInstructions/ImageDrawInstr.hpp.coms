@@ -1,0 +1,20 @@
+
+
+
+
+
+
+
+
+
+
+Holds data for doing a image drawing operation, created when such a request is incoming from the server.
+
+Hash code of image name to draw.
+Destination rectangle to draw the image at.
+If texture should be repeated or not.
+Scale of the texture repetition.
+
+
+
+

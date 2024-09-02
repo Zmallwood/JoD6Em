@@ -140,7 +140,7 @@ RID TextRenderer::NewString() {
 // Store the images ID and unique name.
     m_uniqueNameIDs.insert({ridImage, uniqueName});
 // Allocate image resources from the ImageRenderer.
-    const auto ridGLResource = _<ImageRenderer>().NewImage();
+    const auto ridGLResource = _<ImageRenderer>().NewImg();
 // Store also the ImageRenderer resource ID.
     m_ridsGLResources.insert({ridImage, ridGLResource});
 // Return the RID for the newly created blank image.
@@ -192,7 +192,7 @@ void TextRenderer::DrawString(
 // text has been rendered.
     const auto ridGLResource = m_ridsGLResources.at(rid);
 // Do the actual rendering operation.
-    _<ImageRenderer>().DrawImage(
+    _<ImageRenderer>().DrawImg(
         ridGLResource, uniqueNameID, box,
         false);
 }

@@ -11,15 +11,15 @@ class ImageRenderer : public RendererBase {
   public:
     ImageRenderer();
     ~ImageRenderer();
-    RID NewImage();
-    void DrawImage(
+    RID NewImg();
+    void DrawImg(
         RID rid,
         std::string_view imageName,
         const BoxF &destination,
         bool repeatTexture = false,
         SizeF textureFillAmount = {1.0f, 1.0f},
         ColorF color = Colors::white) const;
-    void DrawImage(
+    void DrawImg(
         RID rid,
         int imageNameHash,
         const BoxF &destination,

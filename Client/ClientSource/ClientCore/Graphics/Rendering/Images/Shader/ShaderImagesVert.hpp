@@ -1,13 +1,13 @@
 /*
- * DefaultShaderImagesVertex.hpp
+ * ShaderImagesVert.hpp
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
 #pragma once
 
 namespace JoD {
-inline static const GLchar *
-    g_defaultShaderImagesVertex { ///< Vertex shader for image rendering
+
+inline static const GLchar *g_shaderImagesVert {
     "#version 300 es\n"
     
     "layout (location = 0) in vec3 aPos;\n"

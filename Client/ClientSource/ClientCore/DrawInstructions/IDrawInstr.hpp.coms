@@ -1,0 +1,18 @@
+
+
+
+
+
+
+
+
+
+
+Base clase for different kinds of draw instructions.
+
+Should be specified for all object instances.
+Resource ID, used for both image RIDs and text RIDs.
+
+
+
+

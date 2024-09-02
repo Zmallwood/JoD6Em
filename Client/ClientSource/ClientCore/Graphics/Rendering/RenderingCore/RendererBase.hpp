@@ -4,7 +4,7 @@
  */
 
 #pragma once
-#include "BufferTypes.hpp"
+#include "BuffTypes.hpp"
 
 namespace JoD {
 class ShaderProgram;
@@ -24,7 +24,7 @@ class RendererBase {
 /// @param buffType Type of buffer the data will hold.
 /// @param VAOID The ID of the Vertex Array Object to which the new buffer is associated.
 /// @return GLuint The ID of the new VBO.
-    GLuint GenNewBuffID(BufferTypes buffType, GLuint VAOID);
+    GLuint GenNewBuffID(BuffTypes buffType, GLuint VAOID);
     
 /// Set indices data for a VBO.
 /// @param indicesVBOID The VBO ID associated with the indices data.
@@ -45,7 +45,7 @@ class RendererBase {
         GLuint VBOID,
         int numEntries,
         const void *data,
-        BufferTypes buffType,
+        BuffTypes buffType,
         int layoutLocation = -1) const;
     
 /// Get layout location in the shader of an uniform variable.
@@ -55,19 +55,19 @@ class RendererBase {
     
 /// Start using a Vertex Array Object.
 /// @param VAOID ID of the Vertex Array Object to start using.
-    void UseVAOBegin(GLuint VAOID) const;
+    void UseVAOBegin(GLuint VAOID, bool useProgram = true) const;
     
 /// Get the ID of a Vertex Buffer Object of a specific type associated with a specific
 /// Vertex Array Object.
 /// @param buffType The type of buffer to get the ID for.
 /// @param VAOID The Vertex Array Object to get the ID for.
 /// @return GLuint The ID of the Vertex Buffer Object.
-    GLuint GetBuffID(BufferTypes buffType, GLuint VAOID) const;
+    GLuint GetBuffID(BuffTypes buffType, GLuint VAOID) const;
     
 /// Update indices data.
 /// @param indicesVBOID The ID of the indices VBO to update.
 /// @param indices Indices data to update with.
-    void UpdateIndicesData(GLuint indicesVBOID,
+    void UpdIndicesData(GLuint indicesVBOID,
                            std::vector<int> &indices) const;
     
 /// Update data in an Vertex Buffer Object holding a specific buffer type and at a
@@ -76,14 +76,14 @@ class RendererBase {
 /// @param data The data to update with.
 /// @param buffType The type of data the buffer holds.
 /// @param layoutLocation The layout location in the shader for the data.
-    void UpdateData(
+    void UpdData(
         GLuint VBOID,
         const std::vector<float> &data,
-        BufferTypes buffType,
+        BuffTypes buffType,
         int layoutLocation) const;
     
 /// Stop using the current Vertex Array Object.
-    void UseVAOEnd() const;
+    void UseVAOEnd(bool stopUseProgram = true) const;
     
 /// Delete all buffers, the Vertex Array Object and cleanup the shader program.
     void CleanupBase() const;
@@ -91,7 +91,7 @@ class RendererBase {
   protected:
 /// Get the ShaderProgram object.
 /// @return const std::unique_ptr<ShaderProgram>& Shader program.
-    const std::unique_ptr<ShaderProgram>& GetShaderProgram() {
+    const std::unique_ptr<ShaderProgram>& GetShaderProg() {
         return m_shaderProgram;
     }
     
@@ -147,7 +147,7 @@ class RendererBase {
 // Stores IDs of all Vertex Array Objects.
     std::vector<GLuint> m_VAOIDs;
 // Stores IDs of all Vertex Buffer Objects.
-    std::map<BufferTypes, std::map<GLuint,GLuint>>
+    std::map<BuffTypes, std::map<GLuint,GLuint>>
     m_VBOIDs;
 // The shader program used for this renderer object.
     std::unique_ptr<ShaderProgram> m_shaderProgram;

@@ -1,5 +1,5 @@
 /*
- * BufferTypes.hpp
+ * BuffTypes.hpp
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
@@ -7,10 +7,10 @@
 
 namespace JoD {
 /// Available types of GL buffers that can be created.
-enum class BufferTypes {
+enum class BuffTypes {
     Indices,     ///< Indices.
-    Positions2D, ///< Positions in 2D coordinates.
-    Positions3D, ///< Positions in 3D coordinates.
+    Pos2D, ///< Positions in 2D coordinates.
+    Pos3D, ///< Positions in 3D coordinates.
     Colors,      ///< Colors.
     UVs,         ///< Texture coordinates.
     Normals,     ///< Normals in 3D space.

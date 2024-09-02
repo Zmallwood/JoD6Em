@@ -1,0 +1,26 @@
+
+
+
+
+
+
+
+
+
+
+Holds data for doing a image drawing operation, created when such a request is incoming from the server.
+
+Position at where the text will be drawn, if its a text render instruction.
+Text to draw if its a text render instruction.
+If the position member specifies the center point or left op corner of the text.
+
+
+
+
+
+
+
+
+
+
+

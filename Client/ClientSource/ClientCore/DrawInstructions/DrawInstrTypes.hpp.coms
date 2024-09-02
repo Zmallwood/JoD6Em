@@ -1,0 +1,16 @@
+
+
+
+
+
+
+
+
+
+Types of instructions that can be recieved from the server.
+
+No instruction.
+Draw an image to the canvas.
+Draw text to the canvas.
+
+

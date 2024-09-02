@@ -1,13 +1,13 @@
 /*
- * DefaultShaderImagesFragment.hpp
+ * ShaderImagesFrag.hpp
  * Copyright 2024 Andreas Åkerberg <zmallwood@proton.me>
  */
 
 #pragma once
 
 namespace JoD {
-inline static const GLchar *
-    g_defaultShaderImagesFragment { ///< Fragment shader for image rendering
+
+inline static const GLchar *g_shaderImagesFrag {
     "#version 300 es\n"
     
     "precision mediump float;\n"

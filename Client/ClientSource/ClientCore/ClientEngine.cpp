@@ -7,7 +7,7 @@
 #include "ClientCore/Graphics/Graphics.hpp"
 #include "MessageCodes.hpp"
 #include "ClientCore/Net/WSServerConnection.hpp"
-#include "DrawInstructions/DrawInstructionsManager.hpp"
+#include "DrawInstructions/DrawInstrMngr.hpp"
 #include "Input/SetupInputCallbacks.hpp"
 #include "Utilities/ClientFPSCounter.hpp"
 
@@ -33,7 +33,7 @@ namespace {
         _<WSServerConnection>().SendMessage(
             MessageCodes::k_mousePosition);
         _<Graphics>().ClearCanvas();
-        _<DrawInstructionsManager>().ExecuteInstructions();
+        _<DrawInstrMngr>().ExecAllInstr();
         _<ClientFPSCounter>().Render();
         _<Graphics>().PresentCanvas();
     }

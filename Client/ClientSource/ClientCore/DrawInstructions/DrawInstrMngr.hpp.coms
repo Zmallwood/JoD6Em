@@ -8,32 +8,21 @@
 
 
 
-Holds latest set of rendering instructions and executes them.
+Draw Instructions Manager: Holds latest set of rendering instructions and executes them.
 
 
 Construct a new Draw Instructions Manager object.
-
 Add new image draw instruction to group, called on request from server.
 
-
-
 Add new text draw instruction to group, called on request from server.
-
-
-
 Copies the buffered render instructions to the active render instructions set.
-
 Performs all rendering instructions by performing rendering instructions to the web browser.
 
 
 One of two instruction buffers.
-
 One of two instruction buffers.
-
 Pointer to active buffer which instructions are executed each frame.
-
 Pointer to inactive buffer which is being populated with instructions.
-
 A set of preallocated RIDs used for drawing images, created in the constructor.
 A set of preallocated RIDs used for drawing text, created in the constructor.
 Hold index for a free to use RID element in m_rids.

@@ -10,15 +10,15 @@ namespace JoD {
 namespace {
 // Predefined constants of number of floats for different entry types.
     const auto k_numFloatsPerEntry
-    {std::map<BufferTypes, int> {
-         {BufferTypes::Indices, 1},
-         {BufferTypes::Positions2D, 2},
-         {BufferTypes::Positions3D, 3},
-         {BufferTypes::Colors, 4},
-         {BufferTypes::UVs, 2},
-         {BufferTypes::Normals, 3},
-         {BufferTypes::BoneIDs, 4},
-         {BufferTypes::Weights, 4}}};
+    {std::map<BuffTypes, int> {
+         {BuffTypes::Indices, 1},
+         {BuffTypes::Pos2D, 2},
+         {BuffTypes::Pos3D, 3},
+         {BuffTypes::Colors, 4},
+         {BuffTypes::UVs, 2},
+         {BuffTypes::Normals, 3},
+         {BuffTypes::BoneIDs, 4},
+         {BuffTypes::Weights, 4}}};
 }
 
 RendererBase::RendererBase()
@@ -34,7 +34,7 @@ GLuint RendererBase::GenNewVAOID() {
 }
 
 GLuint RendererBase::GenNewBuffID(
-    BufferTypes buffType,
+    BuffTypes buffType,
     GLuint vaoID) {
 // Generate new Vertex Buffer Object.
     GLuint buffID;
@@ -59,7 +59,7 @@ void RendererBase::SetIndicesData(
 // Set indices data as element array buffer.
     glBufferData(
         GL_ELEMENT_ARRAY_BUFFER,
-        numIndices * k_numFloatsPerEntry.at(BufferTypes::Indices) *
+        numIndices * k_numFloatsPerEntry.at(BuffTypes::Indices) *
         sizeof(float),
         data,
         GL_DYNAMIC_DRAW);
@@ -69,9 +69,9 @@ void RendererBase::SetData(
     GLuint VBOID,
     int numEntries,
     const void *data,
-    BufferTypes buffType,
+    BuffTypes buffType,
     int layoutLocation) const {
-    if (buffType == BufferTypes::BoneIDs) {
+    if (buffType == BuffTypes::BoneIDs) {
 // Call other method for BoneIDs than other buffer types.
         SetArrayBufferDataInt(
             VBOID,
@@ -161,20 +161,21 @@ GLuint RendererBase::GetUniformLocation(
         variableName.data());
 }
 
-void RendererBase::UseVAOBegin(GLuint VAOID) const {
+void RendererBase::UseVAOBegin(GLuint VAOID, bool useProgram) const {
 // Start using shader program and provided VAO.
-    glUseProgram(m_shaderProgram->GetProgramID());
+    if (useProgram)
+        glUseProgram(m_shaderProgram->GetProgramID());
     glBindVertexArrayOES(VAOID);
 }
 
 GLuint RendererBase::GetBuffID(
-    BufferTypes buffType,
+    BuffTypes buffType,
     GLuint VAOID) const {
 // Returns the buffer of provided type and VAO id.
     return m_VBOIDs.at(buffType).at(VAOID);
 }
 
-void RendererBase::UpdateIndicesData(
+void RendererBase::UpdIndicesData(
     GLuint indicesVBOID,
     std::vector<int> &indices) const {
 // Bind VBO with provided id, being an element array buffer.
@@ -237,13 +238,13 @@ void RendererBase::UpdateArrayBufferDataInt(
     glEnableVertexAttribArray(layoutLocation);
 }
 
-void RendererBase::UpdateData(
+void RendererBase::UpdData(
     GLuint VBOID,
     const std::vector<float> &data,
-    BufferTypes buffType,
+    BuffTypes buffType,
     int layoutLocation) const {
 // Does the buffer hold BoneID data?
-    if (buffType == BufferTypes::BoneIDs){
+    if (buffType == BuffTypes::BoneIDs){
 // If so, update buffer with int data.
         UpdateArrayBufferDataInt(
             VBOID,
@@ -261,11 +262,12 @@ void RendererBase::UpdateData(
     }
 }
 
-void RendererBase::UseVAOEnd() const {
+void RendererBase::UseVAOEnd(bool stopUseProgram) const {
 // Unbind currently used VAO.
     glBindVertexArrayOES(0);
 // Stop using shader program.
-    glUseProgram(0);
+    if (stopUseProgram)
+        glUseProgram(0);
 }
 
 void RendererBase::CleanupBase() const {

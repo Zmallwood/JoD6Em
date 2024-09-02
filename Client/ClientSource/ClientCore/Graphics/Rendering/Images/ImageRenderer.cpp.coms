@@ -1,0 +1,177 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Location in the shader which enables pixelation effect.
+Will hold a default set of indices for a common rectangle.
+Will hold floats for the default color of white.
+Holds the default UV locations for an image in a rectangle.
+
+Location in the shader where the position is.
+Location in the shader where the color is.
+Location in the shader where the UV coordinates are.
+
+
+
+
+Create the shader program.
+
+fill the default indices object with values.
+
+
+
+
+Clean up the base class, RendererBase, object.
+
+
+
+
+Allocate new resources and obtain resource id.
+
+Use the new RID.
+
+Create index buffer and get id.
+Create position buffer and get id.
+Create colors buffer and get id.
+Create UVs buffer and get id.
+
+Set indices data to nullptr.
+Set positions data to nullptr.
+Set colors data to nullptr.
+
+
+Set UVs data to nullptr.
+
+Update indices data to the default values.
+Update color data to default white values.
+Update UVs data to default values.
+
+Stop using Vertex Array Object, but not the program. As long as game only uses image rendering, we never need to stop using the program.
+
+
+
+
+
+
+
+
+
+
+
+
+Convert destination box to GL coordinates.
+
+Dont need depth test for 2D images.
+
+Get image ID.
+
+Check ID is valid, else cancel.
+
+Start using image.
+
+Set proper texture parameters depending on if texture should be repeated or not.
+
+
+
+
+
+
+
+
+
+
+Holds floats for the positions of the image rectangle.
+
+
+
+
+
+
+
+
+
+
+Start using the Vertex Array Object, but not the program, which should already be in use.
+
+Disable pixelation effect.
+To hold the buffer ID for the image color.
+To hold the buffer ID for the image UVs.
+
+Get the buffer ID for the positions.
+
+Update the positions.
+
+If image color is not the default white.
+
+Get the color buffer ID.
+
+Create and populate vector for the color data.
+
+
+
+
+
+
+
+
+
+Update the buffer with the custom color.
+
+If the texture fill amount is not the default value.
+
+Get the buffer ID for the UVs.
+
+Create and populate the UVs data with custom values.
+
+
+
+
+
+
+
+
+
+
+Update the UVs buffer with the custom values.
+
+
+Do the actual rendering.
+
+
+
+If custom color vwas used,
+update the buffer with the default white afterwards.
+
+If custom texture fill amount was used,
+update the buffer with default UVs afterwards.
+
+Stop using the Vertex Array Object, but not the program, which we will continue to use next rendering opereation.
+
+
+
+
+
+
+
+
+
+
+Call function overload.
+
+
+
+
+
+
+
