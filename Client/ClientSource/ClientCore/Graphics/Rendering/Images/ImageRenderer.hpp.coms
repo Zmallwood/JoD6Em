@@ -1,0 +1,32 @@
+
+
+
+
+
+
+
+
+
+
+ImageRenderer: Allocates image resources and renders images.
+
+
+Create the shader program and initializes default values for indices.
+Cleans up the base RendererBase.
+Allocates resources for new image and returns ID for the image resource.
+Draws and image to the canvas.
+
+
+Overload for the above function, which takes an image name hash code instead of an image name.
+
+
+
+
+
+
+
+
+
+
+
+
